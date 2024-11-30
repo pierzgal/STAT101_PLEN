@@ -1,0 +1,2607 @@
+# Fundamentals of Univariate Descriptive Statistics
+
+Descriptive statistics are fundamental tools in social science research, providing a concise summary of data characteristics. They serve several crucial functions:
+
+-   Summarizing large datasets into manageable information
+-   Identifying patterns and trends in data
+-   Detecting potential anomalies or outliers
+-   Providing a foundation for further statistical analysis
+
+## Introduction to Sigma Notation (Σ) \| Wprowadzenie do Notacji Sigma (Σ)
+
+-   **What is Sigma? \| Co to jest notacja sumacyjna Sigma?** Sigma (Σ) is a mathematical operator that tells us to sum (add up) a sequence of terms - it functions as an instruction to perform addition of all elements in a specified range. \| Sigma (Σ) to operator matematyczny, który nakazuje nam zsumować (dodać) sekwencję wyrazów - działa jak instrukcja wykonania dodawania wszystkich elementów w określonym zakresie.
+
+-   **Purpose: \| Cel:** Provides a compact way to write sums of many similar terms using a single symbol, avoiding lengthy addition expressions. \| Zapewnia zwięzły sposób zapisu sum wielu podobnych wyrazów za pomocą jednego symbolu, unikając długich wyrażeń dodawania.
+
+### Basic Formula \| Podstawowa formuła
+
+-   The general form of a sigma notation is: \| Ogólna forma notacji sigma to:
+
+$$\sum_{i=a}^{b} f(i)$$
+
+-   **Index of Summation: \| Indeks sumowania:** $i$
+-   **Lower Limit: \| Dolna granica:** $a$
+-   **Upper Limit: \| Górna granica:** $b$
+-   **Function: \| Funkcja:** $f(i)$
+
+### Simple Example \| Prosty przykład
+
+-   Consider you want to add the first five positive integers: \| Załóżmy, że chcesz dodać pierwsze pięć dodatnich liczb całkowitych:
+
+$$\sum_{i=1}^{5} i = 1 + 2 + 3 + 4 + 5 = 15$$
+
+-   Adds the first five positive integers. \| Dodaje pierwsze pięć dodatnich liczb całkowitych.
+
+### Example with a Function \| Przykład z funkcją
+
+-   Suppose you want to sum the squares of the first four positive integers: \| Załóżmy, że chcesz zsumować kwadraty pierwszych czterech dodatnich liczb całkowitych:
+
+$$\sum_{i=1}^{4} i^2 = 1^2 + 2^2 + 3^2 + 4^2 = 30$$
+
+-   Sum of the squares of the first four positive integers. \| Suma kwadratów pierwszych czterech dodatnich liczb całkowitych.
+
+### Practical Application in Statistics \| Praktyczne zastosowanie w statystyce
+
+-   **Calculating the Mean: \| Obliczanie średniej:**
+
+    -   Data Points: \| Punkty danych: $x_1, x_2, ..., x_n$
+    -   Mean $\bar{x}$: \| Średnia $\bar{x}$:
+
+$$\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$$
+
+-   Example: \| Przykład: $x_1, x_2, x_3, x_4$ are 4, 8, 15, 16 \| $x_1, x_2, x_3, x_4$ to 4, 8, 15, 16
+
+$$\bar{x} = \frac{43}{4} = 10.75$$
+
+### Benefits of Using Sigma Notation \| Korzyści z używania notacji Sigma
+
+-   **Clarity: \| Jasność:** Provides a clear and concise representation of various statistical formulas. \| Zapewnia jasne i zwięzłe przedstawienie statystycznych formuł.
+
+::: callout-note
+## Summation (Σ) and Product (Π) Operators
+
+#### Sigma (Σ) Operator
+
+$\sum$ is a **summation operator** that instructs us to add terms:
+
+$\sum_{i=1}^{n} x_i = x_1 + x_2 + ... + x_n$
+
+where: - $i$ is the index variable - The lower value under Σ (here $i=1$) is the starting point - The upper value (here $n$) is the ending point
+
+#### Pi (Π) Operator
+
+$\prod$ is a **product operator** that instructs us to multiply terms:
+
+$\prod_{i=1}^{n} x_i = x_1 \times x_2 \times ... \times x_n$
+
+where: - $i$ is the index variable - The lower value under Π (here $i=1$) is the starting point - The upper value (here $n$) is the ending point
+:::
+
+::: callout-tip
+### Example of Σ
+
+$\sum_{i=1}^{4} i = 1 + 2 + 3 + 4 = 10$
+:::
+
+::: callout-tip
+### Example of Π
+
+$\prod_{i=1}^{4} i = 1 \times 2 \times 3 \times 4 = 24$
+:::
+
+::: callout-important
+### Key Differences
+
+-   Σ represents repeated addition
+-   Π represents repeated multiplication
+:::
+
+## Types of Data Distributions
+
+::: callout-important
+**Data distribution informs what values a variable takes and how often**.
+:::
+
+Understanding data distributions is crucial for data analysis and visualization. In this document, we'll explore various types of distributions and how to visualize them using ggplot2 in R.
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(palmerpenguins)
+set.seed(123)  # for reproducibility
+```
+
+### Normal Distribution
+
+The normal distribution, also known as the Gaussian distribution, is symmetric and bell-shaped.
+
+```{r}
+# Generate normal distribution data
+normal_data <- data.frame(x = rnorm(1000))
+
+# Plot
+ggplot(normal_data, aes(x)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "skyblue", color = "black") +
+  geom_density(color = "red") +
+  labs(title = "Normal Distribution", x = "Value", y = "Density")
+```
+
+### Uniform Distribution
+
+In a uniform distribution, all values have an equal probability of occurrence.
+
+```{r}
+# Generate uniform distribution data
+uniform_data <- data.frame(x = runif(1000))
+
+# Plot
+ggplot(uniform_data, aes(x)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "lightgreen", color = "black") +
+  geom_density(color = "red") +
+  labs(title = "Uniform Distribution", x = "Value", y = "Density")
+```
+
+### Skewed Distributions
+
+Skewed distributions are asymmetric, with one tail longer than the other.
+
+```{r}
+# Generate right-skewed data
+right_skewed <- data.frame(x = rlnorm(1000))
+
+# Plot
+ggplot(right_skewed, aes(x)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "lightyellow", color = "black") +
+  geom_density(color = "red") +
+  labs(title = "Right-Skewed Distribution", x = "Value", y = "Density")
+```
+
+### Bimodal Distribution
+
+A bimodal distribution has two peaks, indicating two distinct subgroups in the data.
+
+```{r}
+# Generate bimodal data
+bimodal_data <- data.frame(x = c(rnorm(500, mean = -2), rnorm(500, mean = 2)))
+
+# Plot
+ggplot(bimodal_data, aes(x)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "lightpink", color = "black") +
+  geom_density(color = "red") +
+  labs(title = "Bimodal Distribution", x = "Value", y = "Density")
+```
+
+| Distribution | Key Properties | Social Examples |
+|----------------------|------------------------|---------------------------|
+| Normal | Symmetric, bell-shaped, most values near mean | Height, IQ scores, standardized test scores |
+| Uniform | Equal probability across range | Birth dates in year, arrival times in hour |
+| Bimodal | Two peaks, suggests subgroups | Age in college towns, polarized opinions |
+| Log-normal | Right-skewed, cannot be negative | Income, house prices, social media followers |
+| Power law | Extreme skew, "rich get richer" | City sizes |
+
+## Visualizing Real-World Data Distributions
+
+Let's use the `palmerpenguins` dataset to explore real-world data distributions.
+
+### Histogram and Density Plot
+
+::: callout-note
+## Understanding Histograms and Density
+
+⭐ A histogram is a special graph for numerical data where:
+
+-   Data is grouped into ranges (called "bins")
+-   Bars touch each other (unlike bar charts!) because the data is continuous
+-   Each bar's height shows how many values fall into that range
+
+Think of density as showing how *common* or *concentrated* certain values are in your data:
+
+-   A higher point on a density curve (or taller bar in a histogram) means those values appear more frequently in your data
+-   A lower point means those values are less common
+
+Just like a crowded area has more people per space (higher density), a taller part of the graph shows values that appear more often in your dataset!
+:::
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "lightblue", color = "black") +
+  geom_density(color = "red") +
+  labs(title = "Distribution of Penguin Flipper Lengths", 
+       x = "Flipper Length (mm)", 
+       y = "Density")
+```
+
+### Box Plot
+
+Box plots are useful for comparing distributions across categories.
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_boxplot() +
+  labs(title = "Distribution of Penguin Body Mass by Species", 
+       x = "Species", 
+       y = "Body Mass (g)")
+```
+
+### Violin Plot
+
+Violin plots combine box plot and density plot features.
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_violin(trim = FALSE) +
+  geom_boxplot(width = 0.1, fill = "white") +
+  labs(title = "Distribution of Penguin Body Mass by Species", 
+       x = "Species", 
+       y = "Body Mass (g)")
+```
+
+### Ridgeline Plot
+
+Ridgeline plots are useful for comparing multiple distributions.
+
+```{r}
+library(ggridges)
+
+ggplot(penguins, aes(x = flipper_length_mm, y = species, fill = species)) +
+  geom_density_ridges(alpha = 0.6) +
+  labs(title = "Distribution of Flipper Length by Penguin Species",
+       x = "Flipper Length (mm)",
+       y = "Species")
+```
+
+### Conclusion
+
+Understanding and visualizing data distributions is crucial in data analysis. ggplot2 provides a flexible and powerful toolkit for creating various types of distribution plots. By exploring different visualization techniques, we can gain insights into the underlying patterns and characteristics of our data.
+
+::: callout-warning
+## Understanding Different Types of Data Sets and Their Formats
+
+### Cross-sectional Data
+
+Observations collected at a single point in time across multiple entities/individuals:
+
+| Individual | Age | Income | Education  |
+|------------|-----|--------|------------|
+| 1          | 25  | 50000  | Bachelor's |
+| 2          | 35  | 75000  | Master's   |
+| 3          | 45  | 90000  | PhD        |
+
+### Time Series Data
+
+Observations of a single entity tracked over multiple time points:
+
+| Year | GDP (in billions) | Unemployment Rate |
+|------|-------------------|-------------------|
+| 2018 | 20,580            | 3.9%              |
+| 2019 | 21,433            | 3.7%              |
+| 2020 | 20,933            | 8.1%              |
+
+### Panel Data (Longitudinal Data)
+
+Observations of multiple entities tracked over time:
+
+| Country | Year | GDP per capita | Life Expectancy |
+|---------|------|----------------|-----------------|
+| USA     | 2018 | 62,794         | 78.7            |
+| USA     | 2019 | 65,118         | 78.8            |
+| Canada  | 2018 | 46,194         | 81.9            |
+| Canada  | 2019 | 46,194         | 82.0            |
+
+### Time-series Cross-sectional (TSCS) Data
+
+A special case of panel data where:
+
+-   Number of time points \> Number of entities
+-   Similar structure to panel data but with emphasis on temporal depth
+-   Common in political science and economics research
+
+### Data Formats
+
+#### Wide Format
+
+Each row represents an entity; columns represent variables/time points:
+
+| Country | GDP_2018 | GDP_2019 | LE_2018 | LE_2019 |
+|---------|----------|----------|---------|---------|
+| USA     | 62,794   | 65,118   | 78.7    | 78.8    |
+| Canada  | 46,194   | 46,194   | 81.9    | 82.0    |
+
+#### Long Format
+
+Each row represents a unique entity-time-variable combination:
+
+| Country | Year | Variable        | Value  |
+|---------|------|-----------------|--------|
+| USA     | 2018 | GDP per capita  | 62,794 |
+| USA     | 2019 | GDP per capita  | 65,118 |
+| USA     | 2018 | Life Expectancy | 78.7   |
+| USA     | 2019 | Life Expectancy | 78.8   |
+| Canada  | 2018 | GDP per capita  | 46,194 |
+| Canada  | 2019 | GDP per capita  | 46,194 |
+| Canada  | 2018 | Life Expectancy | 81.9   |
+| Canada  | 2019 | Life Expectancy | 82.0   |
+
+**Note:** Long format is generally preferred for:
+
+-   Data manipulation in R and Python
+-   Statistical analysis
+-   Data visualization
+-   Mixed-effects modeling
+-   Repeated measures analyses
+:::
+
+## Understanding Outliers
+
+Before diving into specific measures, it's crucial to understand the concept of outliers, as they can significantly impact many descriptive statistics.
+
+Outliers are data points that differ significantly from other observations in the dataset. They can occur due to:
+
+-   Measurement or recording errors
+-   Genuine extreme values in the population
+-   Sampling from a different population
+
+Outliers can have a substantial effect on many statistical measures, especially those based on means or sums of squared deviations. Therefore, it's essential to:
+
+1.  Identify outliers through both statistical methods and domain knowledge
+2.  Investigate the cause of outliers
+3.  Make informed decisions about whether to include or exclude them in analyses
+
+Throughout this guide, we'll discuss how different descriptive measures are affected by outliers.
+
+## Statistical Symbols and Notations - Summary
+
+| Measure | Population Parameter | Sample Statistic | Alternative Notations | Usage Notes |
+|---------------|---------------|---------------|---------------|---------------|
+| Size | $N$ | $n$ | \- | Total count of observations |
+| Mean | $\mu$ | $\bar{x}$, $m$ | $M$, $E(X)$ | $E(X)$ used in probability theory |
+| Variance | $\sigma^2$ | $s^2$ | $\text{Var}(X)$, $V(X)$ | Squared deviations from mean |
+| Standard Deviation | $\sigma$ | $s$ | $\text{SD}$, $\text{std}$ | Square root of variance |
+| Proportion | $\pi$, $P$ | $\hat{p}$ | $\text{prop}$ | Relative frequencies |
+| Correlation | $\rho$ | $r$ | $\text{corr}(x,y)$ | Ranges from -1 to +1 |
+| Standard Error | $\sigma_{\bar{x}}$ | $s_{\bar{x}}$ | $\text{SE}$ | Standard error of mean |
+| Sum | $\sum$ | $\sum$ | $\sum_{i=1}^n$ | With indexing |
+| Individual Value | $X_i$ | $x_i$ | \- | $i$th observation |
+| Covariance | $\sigma_{xy}$ | $s_{xy}$ | $\text{Cov}(X,Y)$ | Joint variation |
+| Median | $\eta$ | $\text{Med}$ | $M$ | Central value |
+| Range | $R$ | $r$ | $\text{max}(X) - \text{min}(X)$ | Spread measure |
+| Mode | $\text{Mo}$ | $\text{mo}$ | $\text{mod}$ | Most frequent value |
+| Skewness | $\gamma_1$ | $g_1$ | $\text{SK}$ | Distribution asymmetry |
+| Kurtosis | $\gamma_2$ | $g_2$ | $\text{KU}$ | Distribution peakedness |
+
+Additional useful notations:
+
+-   Sample moments: $m_k = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^k$
+-   Population moments: $\mu_k = E[(X - \mu)^k]$
+-   Population standard error: $\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$
+-   Sample standard error: $s_{\bar{x}} = \frac{s}{\sqrt{n}}$
+
+## Measures of Central Tendency
+
+Measures of central tendency aim to identify the "typical" or "central" value in a dataset. The three primary measures are mean, median, and mode.
+
+### Arithmetic Mean
+
+The arithmetic mean is the sum of all values divided by the number of values.
+
+**Formula:** $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$
+
+**Important Property:** The mean is a balancing point in the data. The sum of deviations from the mean is always zero:
+
+$\sum_{i=1}^n (x_i - \bar{x}) = 0$
+
+This property makes the mean useful in many statistical calculations.
+
+::: callout-note
+## Understanding Mean as a Balance Point 🎯
+
+Let's consider a dataset $X = \{1, 2, 6, 7, 9\}$ on a number line, imagining it as a seesaw:
+
+![https://www.gastonsanchez.com/matrix4sl/mean-as-a-balancing-point.html](stat_imgs/IMG_4336.jpg)
+
+The mean ($\mu$) acts as the perfect **balance point** of this seesaw. For our data:
+
+$\mu = \frac{1 + 2 + 6 + 7 + 9}{5} = 5$
+
+### What happens at different support points? 🤔
+
+1.  **Support point at 6** (too high):
+    -   Left side: Values (1, 2) are below
+    -   Right side: Values (7, 9) are above
+    -   $\sum$ distances from left = (6-1) + (6-2) = 9
+    -   $\sum$ distances from right = (7-6) + (9-6) = 4
+    -   The seesaw tilts left! ⬅️ because 9 \> 4
+2.  **Support point at 4** (too low):
+    -   Left side: Values (1, 2) are below
+    -   Right side: Values (6, 7, 9) are above
+    -   $\sum$ distances from left = (4-1) + (4-2) = 5
+    -   $\sum$ distances from right = (6-4) + (7-4) + (9-4) = 10
+    -   The seesaw tilts right! ➡️ because 5 \< 10
+3.  **Support point at mean (5)** (perfect balance):
+    -   $\sum$ distances below = $\sum$ distances above
+    -   $((5-1) + (5-2)) = ((6-5) + (7-5) + (9-5))$
+    -   $7 = 7$ ✨ Perfect balance!
+
+This shows why the mean is the unique balance point, where:
+
+$\sum_{i=1}^n (x_i - \mu) = 0$
+
+The seesaw will always tilt unless the support point is placed exactly at the mean! 🎪
+:::
+
+::: callout-note
+### Mean as a Balance Point
+
+This visualization shows how the arithmetic mean (5) acts as a balance point between clustered points on the left and dispersed points on the right:
+
+Left side of the mean: - Points with values 2 and 3 - Close together (difference of 1 unit) - Distances from mean: 3 and 2 units - Sum of "pull" = 5 units
+
+Right side of the mean: - Points with values 6 and 9 - More spread out (difference of 3 units) - Distances from mean: 1 and 4 units - Sum of "pull" = 5 units
+
+Key observations:
+
+1.  The mean (5) is a balance point, even though:
+    -   Points on the left are clustered (2,3)
+    -   Points on the right are dispersed (6,9)
+    -   Green arrows show distances from the mean
+2.  Balance is maintained because:
+    -   Sum of distances balances out: (5-2) + (5-3) = (6-5) + (9-5)
+    -   Total sum of distances = 5 units on each side
+
+```{r}
+#| warning: false
+#| echo: false
+#| fig.width: 12
+#| fig.height: 7
+#| fig.align: 'center'
+
+library(ggplot2)
+library(dplyr)
+
+# Create sample data
+values <- c(2, 3, 6, 9)
+mean_val <- mean(values)
+
+# Create dataframe for plotting
+data <- data.frame(
+  x = values,
+  y = rep(0, length(values)),
+  arrow_height = c(0.35, 0.15, 0.35, 0.15),  # More separated heights for arrows
+  value_label_height = c(0.25, 0.05, 0.25, 0.05)  # Labels between arrows
+)
+
+# Create the visualization
+ggplot() +
+  # Draw the fulcrum triangle
+  geom_polygon(data = data.frame(
+    x = c(mean_val - 0.3, mean_val + 0.3, mean_val),
+    y = c(-0.2, -0.2, 0)
+  ), aes(x = x, y = y), fill = "darkgray") +
+  
+  # Draw the lever/beam
+  geom_segment(aes(x = min(values) - 1, xend = max(values) + 1, 
+                   y = 0, yend = 0),
+              color = "brown", linewidth = 2) +
+  
+  # Add points with different colors for left and right side
+  geom_point(data = data %>% mutate(side = ifelse(x < mean_val, "left", "right")), 
+             aes(x = x, y = y, color = side), 
+             size = 10) +
+  scale_color_manual(values = c("left" = "royalblue", "right" = "darkblue")) +
+  
+  # Add mean point
+  geom_point(aes(x = mean_val, y = 0), 
+             color = "red", size = 5) +
+  
+  # First set of arrows (upper)
+  geom_segment(data = subset(data, arrow_height > 0.3), 
+              aes(x = x, xend = mean_val,
+                  y = arrow_height, yend = arrow_height),
+              arrow = arrow(length = unit(0.2, "cm"), 
+                          ends = "both"),
+              color = "darkgreen") +
+  
+  # Second set of arrows (lower)
+  geom_segment(data = subset(data, arrow_height < 0.3), 
+              aes(x = x, xend = mean_val,
+                  y = arrow_height, yend = arrow_height),
+              arrow = arrow(length = unit(0.2, "cm"), 
+                          ends = "both"),
+              color = "darkgreen") +
+  
+  # Add value labels between arrows
+  geom_label(data = data, 
+            aes(x = x, y = value_label_height, label = x),
+            size = 4.5,
+            fill = "white",
+            label.padding = unit(0.2, "lines")) +
+  
+  # Add mean label
+  geom_text(aes(x = mean_val, y = -0.4, 
+                label = paste("Mean =", round(mean_val, 2))),
+            color = "red", size = 4.5, fontface = "bold") +
+  
+  # Add distance labels
+  geom_text(data = data, 
+            aes(x = (x + mean_val)/2, 
+                y = arrow_height + 0.08,
+                label = round(abs(x - mean_val), 2)),
+            color = "darkgreen",
+            size = 3.5) +
+  
+  # Customize the theme
+  theme_minimal() +
+  labs(title = "Understanding Arithmetic Mean as a Balance Point",
+       subtitle = paste("Mean =", round(mean_val, 2), "balances uneven distances on both sides"),
+       x = "Values",
+       y = NULL) +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5, size = 11),
+        legend.position = "none") +
+  coord_cartesian(ylim = c(-0.8, 0.8), 
+                 expand = TRUE)
+```
+:::
+
+**Manual Calculation Example:**
+
+Let's calculate the mean for the dataset: 2, 4, 4, 5, 5, 7, 9
+
+| Step | Description                | Calculation                    |
+|------|----------------------------|--------------------------------|
+| 1    | Sum all values             | 2 + 4 + 4 + 5 + 5 + 7 + 9 = 36 |
+| 2    | Count the number of values | n = 7                          |
+| 3    | Divide the sum by n        | 36 / 7 = 5.14                  |
+
+**R calculation:**
+
+```{r}
+data <- c(2, 4, 4, 5, 5, 7, 9)
+mean(data)
+```
+
+**Pros:**
+
+-   Easy to calculate and understand
+-   Uses all data points
+-   Useful for further statistical calculations
+
+**Cons:**
+
+-   Sensitive to outliers
+-   Not ideal for skewed distributions
+
+**Example with outlier:**
+
+```{r}
+data_with_outlier <- c(2, 4, 4, 5, 5, 7, 100)
+mean(data_with_outlier)
+```
+
+As we can see, the outlier (100) drastically affects the mean.
+
+### Median
+
+The median is the middle value when the data is ordered.
+
+**Manual Calculation Example:**
+
+Using the same dataset: 2, 4, 4, 5, 5, 7, 9
+
+| Step | Description           | Result              |
+|------|-----------------------|---------------------|
+| 1    | Order the data        | 2, 4, 4, 5, 5, 7, 9 |
+| 2    | Find the middle value | 5                   |
+
+For even number of values, take the average of the two middle values.
+
+**R calculation:**
+
+```{r}
+data <- c(2, 4, 4, 5, 5, 7, 9)
+median(data)
+median(data_with_outlier)
+```
+
+**Pros:**
+
+-   Not affected by extreme outliers
+-   Better for skewed distributions
+
+**Cons:**
+
+-   Doesn't use all data points
+-   Less useful for further statistical calculations
+
+::: callout-warning
+To find the position of the median in a dataset:
+
+1.  First sort the data in ascending order
+
+2.  If n is odd:
+
+    -   Median position = $\frac{n + 1}{2}$
+
+3.  If n is even:
+
+    -   First median position = $\frac{n}{2}$
+    -   Second median position = $\frac{n}{2} + 1$
+    -   Median = $\frac{\text{value at }\frac{n}{2} + \text{value at }(\frac{n}{2}+1)}{2}$
+
+For example:
+
+-   Odd n=7: position = $\frac{7+1}{2} = 4$th value
+-   Even n=8: positions = $\frac{8}{2} = 4$th and $4+1 = 5$th value
+:::
+
+### Mode
+
+The mode is the most frequently occurring value.
+
+**Manual Calculation Example:**
+
+Using the dataset: 2, 4, 4, 5, 5, 7, 9
+
+| Value | Frequency |
+|-------|-----------|
+| 2     | 1         |
+| 4     | 2         |
+| 5     | 2         |
+| 7     | 1         |
+| 9     | 1         |
+
+The mode is 4 and 5 (bimodal).
+
+**R calculation:**
+
+```{r}
+library(modeest)
+mfv(data)  # Most frequent value
+```
+
+**Pros:**
+
+-   Only measure of central tendency for nominal data
+-   Can identify multiple peaks in the data
+
+**Cons:**
+
+-   Not always uniquely defined
+-   Not useful for continuous data
+
+### Weighted (arithmetic) Mean (\*)
+
+The weighted mean is used when some data points are more important than others. There are two types of weighted means: with not normalized weights and with normalized weights.
+
+#### Weighted Mean with Not Normalized Weights
+
+This is the standard form of the weighted mean, where weights can be any positive numbers representing the importance of each data point.
+
+**Formula:** $\bar{x}_w = \frac{\sum_{i=1}^n w_i x_i}{\sum_{i=1}^n w_i}$
+
+**Manual Calculation Example:**
+
+Let's calculate the weighted mean for the dataset: 2, 4, 5, 7 with weights 1, 2, 3, 1
+
+| Step | Description | Calculation |
+|------------------|---------------------------|---------------------------|
+| 1 | Multiply each value by its weight | (2 \* 1) + (4 \* 2) + (5 \* 3) + (7 \* 1) = 2 + 8 + 15 + 7 = 32 |
+| 2 | Sum the weights | 1 + 2 + 3 + 1 = 7 |
+| 3 | Divide the result from step 1 by the result from step 2 | 32 / 7 = 4.57 |
+
+**R calculation:**
+
+```{r}
+x <- c(2, 4, 5, 7)
+w <- c(1, 2, 3, 1)
+weighted.mean(x, w)
+```
+
+#### Weighted Mean with Normalized Weights (Fractions)
+
+In this case, the weights are fractions that sum to 1, representing the proportion of importance for each data point.
+
+**Formula:** $\bar{x}_w = \sum_{i=1}^n w_i x_i$, where $\sum_{i=1}^n w_i = 1$
+
+**Manual Calculation Example:**
+
+Let's calculate the weighted mean for the dataset: 2, 4, 5, 7 with normalized weights 0.1, 0.3, 0.4, 0.2
+
+| Step | Description | Calculation |
+|------------------|---------------------------|---------------------------|
+| 1 | Multiply each value by its weight | (2 \* 0.1) + (4 \* 0.3) + (5 \* 0.4) + (7 \* 0.2) |
+| 2 | Sum the results | 0.2 + 1.2 + 2.0 + 1.4 = 4.8 |
+
+**R calculation:**
+
+```{r}
+x <- c(2, 4, 5, 7)
+w_normalized <- c(0.1, 0.3, 0.4, 0.2)  # Note: these sum to 1
+sum(x * w_normalized)
+```
+
+**Pros of Weighted Means:**
+
+-   Account for varying importance of data points
+-   Useful in survey analysis with different sample sizes or importance levels
+-   Can adjust for unequal probabilities in sampling designs
+
+**Cons of Weighted Means:**
+
+-   Require justification for weights
+-   Can be misused to manipulate results
+-   May be less intuitive to interpret than simple arithmetic mean
+
+## Measures of Variability
+
+These measures describe how spread out the data is. They are crucial for understanding the dispersion of data points around the central tendency.
+
+::: callout-important
+### Understanding Variance
+
+```{r}
+#| label: fig-variance
+#| fig-cap: "Three dot plots showing increasing variance with constant mean"
+#| echo: false
+#| warning: false
+#| message: false
+
+library(ggplot2)
+library(patchwork)
+
+# Create sample data
+set.seed(123)
+low_var <- data.frame(
+  value = c(9.5, 9.7, 10, 10, 10, 10.3, 10.5),
+  group = "Low Variance\nσ² = 1"
+)
+med_var <- data.frame(
+  value = c(8, 9, 9.5, 10, 10.5, 11, 12),
+  group = "Medium Variance\nσ² = 4"
+)
+high_var <- data.frame(
+  value = c(6, 7.5, 8.5, 10, 11.5, 12.5, 14),
+  group = "High Variance\nσ² = 9"
+)
+
+# Combine data
+plot_data <- rbind(low_var, med_var, high_var)
+
+# Create plot
+ggplot(plot_data, aes(x = value)) +
+  geom_dotplot(binwidth = 0.3, fill = "steelblue", alpha = 0.7) +
+  facet_wrap(~group, ncol = 1) +
+  geom_vline(xintercept = 10, linetype = "dashed", color = "gray50") +
+  scale_x_continuous(breaks = seq(5, 15, by = 2)) +
+  labs(x = "Values",
+       y = NULL) +
+  theme_minimal() +
+  theme(
+    axis.text.y = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+```
+
+The three dot plots above demonstrate how variance measures the spread of data around a central value:
+
+-   All distributions have the same mean (μ = 10), shown by the dashed line
+-   **Low Variance** (σ² = 1): Points cluster tightly around the mean
+-   **Medium Variance** (σ² = 4): Points show moderate spread
+-   **High Variance** (σ² = 9): Points spread widely around the mean
+:::
+
+::: callout-note
+## Understanding Different Levels of Variability
+
+```{r}
+#| warning: false
+#| echo: false
+#| fig.width: 8
+#| fig.height: 12
+#| fig.align: 'center'
+
+library(ggplot2)
+library(dplyr)
+library(patchwork)
+
+# Tworzenie danych z różnymi odchyleniami standardowymi
+set.seed(123)
+n_points <- 100
+
+create_data <- function(mean_val, sd_val, label) {
+  data.frame(
+    x = rnorm(n_points, mean = mean_val, sd = sd_val),
+    type = label,
+    sd = sd_val
+  )
+}
+
+# Łączenie zbiorów danych o różnej zmienności
+data_var <- rbind(
+  create_data(10, 0.5, "Low variance (σ = 0.5)"),
+  create_data(10, 2.0, "Medium variance (σ = 2.0)"),
+  create_data(10, 4.0, "High variance (σ = 4.0)")
+)
+
+# Funkcja tworząca wizualizację
+create_dist_plot <- function(df) {
+  mean_val <- mean(df$x)
+  sd_val <- sd(df$x)
+  
+  ggplot(df, aes(x = x)) +
+    geom_histogram(aes(y = ..density..), bins = 30, 
+                  fill = "lightblue", color = "black", alpha = 0.7) +
+    geom_density(color = "darkblue", linewidth = 1) +
+    geom_vline(xintercept = mean_val, color = "red", 
+               linetype = "dashed", linewidth = 1) +
+    geom_vline(xintercept = c(mean_val - sd_val, mean_val + sd_val), 
+               color = "darkgreen", linetype = "dashed", linewidth = 0.8) +
+    annotate("text", x = mean_val, y = 0.9 * max(density(df$x)$y), 
+             label = "Średnia", color = "red", angle = 90, vjust = -1) +
+    annotate("text", x = mean_val - sd_val, y = 0.9 * max(density(df$x)$y), 
+             label = "-1 OS", color = "darkgreen", angle = 90, vjust = -1) +
+    annotate("text", x = mean_val + sd_val, y = 0.9 * max(density(df$x)$y), 
+             label = "+1 OS", color = "darkgreen", angle = 90, vjust = -1) +
+    labs(title = unique(df$type),
+         x = "Wartość",
+         y = "Gęstość") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5, size = 12),
+          plot.subtitle = element_text(hjust = 0.5),
+          axis.title = element_text(size = 10),
+          axis.text = element_text(size = 9)) +
+    coord_cartesian(xlim = c(0, 20))
+}
+
+# Tworzenie poszczególnych wykresów
+plots <- data_var %>%
+  group_by(type) %>%
+  group_split() %>%
+  lapply(create_dist_plot)
+
+# Łączenie wykresów z odpowiednimi odstępami
+combined_plot <- plots[[1]] / plots[[2]] / plots[[3]] +
+  plot_layout(heights = c(1, 1, 1)) +
+  plot_annotation(
+title = "Comparison of Different Levels of Variability",
+subtitle = "All distributions have the same mean (μ = 10), but different standard deviations",
+    theme = theme(
+      plot.title = element_text(hjust = 0.5, size = 14),
+      plot.subtitle = element_text(hjust = 0.5, size = 12),
+      plot.margin = margin(t = 20, r = 20, b = 20, l = 20)
+    )
+  )
+
+# Wyświetlenie połączonego wykresu
+combined_plot
+```
+
+This visualization shows three normal distributions with the same mean (μ = 10) but different levels of variability:
+
+1.  **Low Variability (σ = 0.5)**
+    -   Data points cluster tightly around the mean
+    -   The density curve is tall and narrow
+    -   Most observations fall within ±0.5 units of the mean
+2.  **Medium Variability (σ = 2.0)**
+    -   Data points spread out more from the mean
+    -   The density curve is lower and wider
+    -   Most observations fall within ±2 units of the mean
+3.  **High Variability (σ = 4.0)**
+    -   Data points spread widely from the mean
+    -   The density curve is much flatter and wider
+    -   Most observations fall within ±4 units of the mean
+:::
+
+### Range
+
+The range is the difference between the maximum and minimum values.
+
+**Formula:** $R = x_{max} - x_{min}$
+
+**Manual Calculation Example:**
+
+Using the dataset: 2, 4, 4, 5, 5, 7, 9
+
+| Step | Description                   | Calculation |
+|------|-------------------------------|-------------|
+| 1    | Find the maximum value        | 9           |
+| 2    | Find the minimum value        | 2           |
+| 3    | Subtract minimum from maximum | 9 - 2 = 7   |
+
+**R calculation:**
+
+```{r}
+data <- c(2, 4, 4, 5, 5, 7, 9)
+range(data)
+max(data) - min(data)
+```
+
+**Pros:**
+
+-   Simple to calculate and understand
+-   Gives an immediate sense of data spread
+
+**Cons:**
+
+-   Extremely sensitive to outliers
+-   Doesn't provide information about the distribution between extremes
+
+### Interquartile Range (IQR)
+
+The IQR is the difference between the 75th and 25th percentiles.
+
+**Formula:** $IQR = Q_3 - Q_1$
+
+To find quartiles manually:
+
+1.  For odd number of values:
+    -   Q2 (median) is the middle value
+    -   Q1 is the median of the lower half (excluding the median of all observations)
+    -   Q3 is the median of the upper half (excluding the median of all observations)
+2.  For even number of values:
+    -   Q2 is the average of the two middle values
+    -   Q1 is the median of the lower half (excluding the median of all observations)
+    -   Q3 is the median of the upper half (excluding the median of all observations)
+
+**Manual Calculation Example:**
+
+Using the dataset: 2, 4, 4, 5, 5, 7, 9
+
+| Step | Description                    | Calculation         |
+|------|--------------------------------|---------------------|
+| 1    | Order the data                 | 2, 4, 4, 5, 5, 7, 9 |
+| 2    | Find Q2 (median)               | 5                   |
+| 3    | Find Q1 (median of lower half) | 4                   |
+| 4    | Find Q3 (median of upper half) | 7                   |
+| 5    | Calculate IQR                  | Q3 - Q1 = 7 - 4 = 3 |
+
+**R calculation:**
+
+```{r}
+data <- c(2, 4, 4, 5, 5, 7, 9)
+print(data)
+quantile(data, type = 1)
+IQR(data, type = 1)
+```
+
+**Pros:**
+
+-   Robust to outliers
+-   Provides information about the spread of the middle 50% of the data
+
+**Cons:**
+
+-   Ignores the tails of the distribution
+-   Less efficient than standard deviation for normal distributions
+
+### Variance
+
+Variance measures the average squared deviation from the mean.
+
+**Formula:** $s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1}$
+
+::: callout-note
+#### Variance: Understanding Average Squared Deviations
+
+**What is Variance?** Variance measures how "spread out" numbers are from their mean - it's the average of squared deviations from the mean.
+
+Formula: $s^2 = \frac{\sum(x_i - \bar{x})^2}{n-1}$
+
+**Simple Example:** Consider numbers: 2, 4, 6, 8, 10 Mean ($\bar{x}$) = 6
+
+```{r}
+#| echo: false
+#| fig.height: 4
+#| fig.width: 6
+library(ggplot2)
+
+# Data
+df <- data.frame(
+  x = 1:5,
+  values = c(2, 4, 6, 8, 10)
+)
+
+# Plot
+ggplot(df, aes(x = x, y = values)) +
+  geom_hline(yintercept = 6, color = "blue", linetype = "dashed") +
+  geom_point(size = 3) +
+  geom_segment(aes(xend = x, yend = 6), color = "red", linetype = "dotted") +
+  labs(title = "Deviations from Mean",
+       x = "Position",
+       y = "Value") +
+  scale_y_continuous(limits = c(0, 12)) +
+  theme_minimal()
+```
+
+**Calculating Deviations:**
+
+```{r}
+#| echo: false
+#| fig.height: 4
+#| fig.width: 6
+# Squared deviations data
+df$sq_dev <- (df$values - 6)^2
+
+ggplot(df, aes(x = x, y = sq_dev)) +
+  geom_col(fill = "skyblue") +
+  labs(title = "Squared Deviations",
+       x = "Position",
+       y = "Squared Deviation") +
+  theme_minimal()
+```
+
+| Value | Deviation from mean | Square of deviation |
+|-------|---------------------|---------------------|
+| 2     | -4                  | 16                  |
+| 4     | -2                  | 4                   |
+| 6     | 0                   | 0                   |
+| 8     | +2                  | 4                   |
+| 10    | +4                  | 16                  |
+
+Variance = $\frac{16 + 4 + 0 + 4 + 16}{4} = 10$
+
+**Key Points:**
+
+1.  Mean acts as a reference line (blue dashed line)
+2.  Deviations show distance from mean (red dotted lines)
+3.  Squaring makes all deviations positive (blue bars)
+4.  Larger deviations contribute more to variance
+:::
+
+**Manual Calculation Example:**
+
+Using the dataset: 2, 4, 4, 5, 5, 7, 9
+
+| Step | Description | Calculation |
+|------------------|---------------------------|---------------------------|
+| 1 | Calculate the mean | $\bar{x} = 5.14$ |
+| 2 | Subtract the mean from each value and square the result | $(2 - 5.14)^2 = 9.86$ |
+|  |  | $(4 - 5.14)^2 = 1.30$ |
+|  |  | $(4 - 5.14)^2 = 1.30$ |
+|  |  | $(5 - 5.14)^2 = 0.02$ |
+|  |  | $(5 - 5.14)^2 = 0.02$ |
+|  |  | $(7 - 5.14)^2 = 3.46$ |
+|  |  | $(9 - 5.14)^2 = 14.90$ |
+| 3 | Sum the squared differences | 30.86 |
+| 4 | Divide by (n-1), i.e. by the number of observations - 1 | 30.86 / 6 = 5.14 |
+
+**R calculation:**
+
+```{r}
+var(data)
+```
+
+**Pros:**
+
+-   Uses all data points
+-   Foundation for many statistical tests
+
+**Cons:**
+
+-   Units are squared, making interpretation less intuitive
+-   Sensitive to outliers
+
+::: callout-important
+#### Bessel's Correction: Why We Divide by (n-1) And Not by n
+
+**The Key Insight:**
+
+When we calculate deviations from the mean, they must sum to zero. This is a mathematical fact: $\sum(x_i - \bar{x}) = 0$
+
+**Think of it Like This:**
+
+If you have 5 numbers and their mean:
+
+-   Once you calculate 4 deviations from the mean
+-   The 5th deviation MUST be whatever makes the sum zero
+-   You don't really have 5 independent deviations
+-   You only have 4 truly "free" deviations
+
+**Simple Example:**
+
+Numbers: 2, 4, 6, 8, 10
+
+-   Mean = 6
+-   Deviations: -4, -2, 0, +2, +4
+-   Notice they sum to zero
+-   If you know any 4 deviations, the 5th is predetermined!
+
+**This is Why:**
+
+-   When calculating variance: $s^2 = \frac{\sum(x_i - \bar{x})^2}{n-1}$
+-   We divide by (n-1) not n
+-   Because only (n-1) deviations are truly independent
+-   The last one is determined by the others
+
+**Degrees of Freedom:**
+
+-   n = number of observations
+-   1 = constraint (deviations must sum to zero)
+-   n-1 = degrees of freedom = number of truly independent deviations
+
+**When to Use It:**
+
+-   When calculating sample variance
+-   When calculating sample standard deviation
+
+**When NOT to Use It:**
+
+-   Population calculations (when you have all data)
+
+**Remember:**
+
+-   It's not just a statistical trick
+-   Deviations from the mean must sum to zero
+-   This constraint costs us one degree of freedom
+:::
+
+### Standard Deviation
+
+The standard deviation is the square root of the variance and measures the average dispersion of the data about their arithmetic mean. In contrast to the variance, it has the advantage of being expressed in the same units as the original measurements, making its interpretation more intuitive.
+
+**Formula:** $s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1}}$
+
+**Manual Calculation Example:**
+
+Using the dataset: 2, 4, 4, 5, 5, 7, 9
+
+| Step | Description            | Calculation                              |
+|------|------------------------|------------------------------------------|
+| 1    | Calculate the variance | $s^2 = 5.14$ (from previous calculation) |
+| 2    | Take the square root   | $s = \sqrt{5.14} = 2.27$                 |
+
+**R calculation:**
+
+```{r}
+sd(data)
+```
+
+**Pros:**
+
+-   In same units as original data
+-   Widely used and understood
+
+**Cons:**
+
+-   Still sensitive to outliers
+-   Assumes data is roughly "normally" distributed
+
+### Coefficient of Variation (\*)
+
+The coefficient of variation is the standard deviation divided by the mean, often expressed as a percentage.
+
+**Formula:** $CV = \frac{s}{\bar{x}} \times 100\%$
+
+**Manual Calculation Example:**
+
+Using the dataset: 2, 4, 4, 5, 5, 7, 9
+
+| Step | Description | Calculation |
+|------------------|---------------------------|---------------------------|
+| 1 | Calculate the mean | $\bar{x} = 5.14$ |
+| 2 | Calculate the standard deviation | $s = 2.27$ |
+| 3 | Divide s by the mean and multiply by 100 | $(2.27 / 5.14) * 100 = 44.16\%$ |
+
+**R calculation:**
+
+```{r}
+(sd(data) / mean(data)) * 100
+```
+
+**Pros:**
+
+-   Allows comparison of variability between datasets with different units or means
+-   Useful in fields like finance for risk assessment
+
+**Cons:**
+
+-   Not meaningful for data with both positive and negative values
+-   Can be misleading when mean is close to zero
+
+::: callout-warning
+### Limitations of Coefficient of Variation (CV)
+
+The coefficient of variation, calculated as $(σ/μ) × 100\%$, has two important limitations:
+
+#### Not meaningful for data with both positive and negative values
+
+-   The mean could be close to zero due to positive and negative values cancelling out
+-   Example: Dataset {-5, -3, 2, 6} has mean = 0
+    -   CV = (std dev / 0) × 100%
+    -   This leads to division by zero
+    -   Even if mean isn't exactly zero, the CV doesn't represent true relative variability when data cross zero
+-   The CV assumes a natural zero point and meaningful ratios between values
+
+#### Misleading when mean is close to zero
+
+-   Since CV = $(σ/μ) × 100\%$, as $μ$ approaches zero:
+    -   The denominator becomes very small
+    -   Results in extremely large CV values
+    -   These large values don't meaningfully represent relative variability
+-   Example:
+    -   Dataset A: {0.001, 0.002, 0.003} has mean = 0.002
+    -   Even small standard deviations will produce very large CVs
+    -   The resulting large CV might suggest extreme variability when the data are actually quite close together
+
+#### Best Use Cases
+
+CV is most useful for:
+
+-   Strictly positive data
+-   Data measured on a ratio scale
+-   Data with means well above zero
+-   Comparing variability between datasets with different units or scales
+:::
+
+## Measures of Relative Position (Standing)
+
+Understanding where values sit within a dataset is crucial for data analysis. Let's explore these concepts step by step.
+
+### Quartiles (Q): The Basics
+
+Think of quartiles as special numbers that split your ordered data into four equal parts.
+
+![Doane, D. P., & Seward, L. W. (2016). Applied statistics in business and economics. Mcgraw-Hill.](stat_imgs/IMG_4327.jpg)
+
+#### What Are Quartiles?
+
+First Quartile (Q1):
+
+-   Separates the lowest 25% of data from the rest
+-   Also called the 25th percentile
+-   Example: If Q1 = 50 in a test score dataset, 25% of students scored below 50
+
+Second Quartile (Q2):
+
+-   The median - splits data in half
+-   Also called the 50th percentile
+-   Example: If Q2 = 70, half the students scored below 70
+
+Third Quartile (Q3):
+
+-   Separates the highest 25% of data from the rest
+-   Also called the 75th percentile
+-   Example: If Q3 = 85, 75% of students scored below 85
+
+#### How to Calculate Quartiles (Step by Step) - Two Methods
+
+Let's examine student test scores using both common quartile calculation methods:
+
+**Example 1: Odd Number Case (11 scores)**\
+60, 65, 70, 72, 75, 78, 80, 82, 85, 88, 90
+
+Step 1: Find Q2 (median) - Same for both methods
+
+-   With n = 11 values (odd)
+-   Median position = (n + 1)/2 = 6
+-   Q2 = 78
+
+Step 2: Find Q1
+
+-   Tukey's Method:
+    -   Look at lower half: 60, 65, 70, 72, 75
+    -   Q1 = median of lower half = 70
+-   Interpolation Method:
+    -   Position = (n + 1)/4 = (11 + 1)/4 = 3
+    -   Q1 = 70 (3rd value)
+
+Step 3: Find Q3
+
+-   Tukey's Method:
+    -   Look at upper half: 80, 82, 85, 88, 90
+    -   Q3 = median of upper half = 85
+-   Interpolation Method:
+    -   Position = 3(n + 1)/4 = 3(12)/4 = 9
+    -   Q3 = 85 (9th value)
+
+**Example 2: Even Number Case (10 scores)**\
+60, 65, 70, 72, 75, 78, 80, 82, 85, 90
+
+Step 1: Find Q2 (median) - Same for both methods
+
+-   With n = 10 values (even)
+-   Median positions = 5 and 6
+-   Q2 = (75 + 78)/2 = 76.5
+
+Step 2: Find Q1
+
+-   Tukey's Method:
+    -   Look at lower half: 60, 65, 70, 72, 75
+    -   Q1 = median of lower half = 70
+-   Interpolation Method:
+    -   Position = (10 + 1)/4 = 2.75
+    -   Q1 = 65 + 0.75(70 - 65) = 68.75
+
+Step 3: Find Q3
+
+-   Tukey's Method:
+    -   Look at upper half: 78, 80, 82, 85, 90
+    -   Q3 = median of upper half = 82
+-   Interpolation Method:
+    -   Position = 3(10 + 1)/4 = 8.25
+    -   Q3 = 82 + 0.25(85 - 82) = 82.75
+
+Important Notes:
+
+1.  Tukey's Method:
+
+    -   First find the median (Q2)
+    -   Split the data into lower and upper halves
+    -   Find Q1 as the median of the lower half
+    -   Find Q3 as the median of the upper half
+    -   When n is odd, the median is not included in either half
+
+2.  Interpolation Method:
+
+    -   Uses positions (n+1)/4 for Q1 and 3(n+1)/4 for Q3
+    -   When position falls between values, uses linear interpolation
+    -   Doesn't require splitting data into halves
+
+Both methods give the same results for simple positions (Example 1) but can differ when interpolation is needed (Example 2).
+
+::: callout-important
+## Manual Construction of Tukey Boxplot
+
+**Step 1: Calculate Key Components**
+
+1.  Find quartiles: $Q_1$, $Q_2$ (median), $Q_3$
+2.  Calculate Interquartile Range: $IQR = Q_3 - Q_1$
+
+**Step 2: Determine Whisker Boundaries**
+
+-   Lower fence: $Q_1 - 1.5 \times IQR$
+-   Upper fence: $Q_3 + 1.5 \times IQR$
+
+**Step 3: Identify Outliers** Data points are outliers if they are:
+
+-   Below lower fence: $x < Q_1 - 1.5 \times IQR$
+-   Above upper fence: $x > Q_3 + 1.5 \times IQR$
+
+**Example:** Given data: 2, 4, 6, 8, 9, 10, 11, 12, 14, 16, 50
+
+1.  Find quartiles:
+
+    -   $Q_1 = 6$
+    -   $Q_2 = 10$
+    -   $Q_3 = 14$
+
+2.  Calculate $IQR$:
+
+    -   $IQR = 14 - 6 = 8$
+
+3.  Calculate fences:
+
+    -   Lower: $6 - (1.5 \times 8) = -6$
+    -   Upper: $14 + (1.5 \times 8) = 26$
+
+4.  Identify outliers:
+
+    -   50 \> 26, therefore 50 is an outlier
+
+**Graphical Elements:**
+
+1.  Box: Draw from $Q_1$ to $Q_3$
+2.  Line inside box: Draw at $Q_2$
+3.  Whiskers: Extend to most extreme non-outlier points
+4.  Points: Plot outliers individually beyond whiskers
+:::
+
+### Percentiles: A More Precise Measure of Relative Standing (\*)
+
+#### What Are Percentiles?
+
+Percentiles give us a more detailed view by dividing data into 100 equal parts. Unlike quartiles, percentiles use linear interpolation for more precise measurements.
+
+Key Points:
+
+-   The 25th percentile equals Q1
+-   The 50th percentile equals Q2 (median)
+-   The 75th percentile equals Q3
+
+#### Calculating Percentiles
+
+The Formula: $P_k = \frac{k(n+1)}{100}$
+
+Where:
+
+-   $P_k$ is the position for the kth percentile
+-   k is the percentile we want (1-100)
+-   n is the number of observations
+
+**Example 3: Finding the 60th Percentile** Let's use student homework scores: 72, 75, 78, 80, 82, 85, 88, 90, 92, 95
+
+Step 1: Calculate position
+
+-   n = 10 scores
+-   For 60th percentile: $P_{60} = \frac{60(10+1)}{100} = 6.6$
+
+Step 2: Find surrounding values
+
+-   Position 6: score of 85
+-   Position 7: score of 88
+
+Step 3: Interpolate (important: percentiles use linear interpolation)
+
+-   We need to go 0.6 of the way between 85 and 88 $P_{60} = 85 + 0.6(88-85)$ $P_{60} = 85 + 0.6(3)$ $P_{60} = 85 + 1.8 = 86.8$
+
+What this means: 60% of students scored 86.8 or below.
+
+### Percentile Ranks (PR) (\*)
+
+#### What is a Percentile Rank?
+
+While percentiles tell us the value at a certain position, percentile rank tells us what percentage of values fall below a specific score. Think of it as answering the question "What percentage of the class did I score higher than?"
+
+$PR = \frac{\text{number of values below } + 0.5 \times \text{number of equal values}}{\text{total number of values}} \times 100$
+
+**Example 4: Finding a Percentile Rank** Consider these exam scores:
+
+65, 70, 70, 75, 75, 75, 80, 85, 85, 90
+
+Let's find the PR for a score of 75.
+
+Step 1: Count carefully
+
+-   Values below 75: 65, 70, 70 (3 values)
+-   Values equal to 75: 75, 75, 75 (3 values)
+-   Total values: 10
+
+Step 2: Apply the formula
+
+$PR = \frac{3 + 0.5(3)}{10} \times 100$ $PR = \frac{3 + 1.5}{10} \times 100$ $PR = \frac{4.5}{10} \times 100 = 45\%$
+
+Interpretation: A score of 75 is higher than 45% of the class scores.
+
+**Remark:**
+
+Q1: "Why do we use 0.5 for equal values in PR?"
+
+A1: This is because we're assuming people with the same score are evenly spread across that position. It's like saying they share the position equally.
+
+## Measures of Shape
+
+### Skewness
+
+#### Definition
+
+Skewness quantifies the asymmetry of a data distribution. It indicates whether the data clusters more on one side of the mean than the other.
+
+#### Mathematical Expression
+
+$SK = \frac{n}{(n-1)(n-2)} \sum_{i=1}^n (\frac{x_i - \bar{x}}{s})^3$
+
+where:
+
+-   $n$ is the sample size
+-   $x_i$ is the i-th observation
+-   $\bar{x}$ is the sample mean
+-   $s$ is the sample standard deviation
+
+#### Example: Voter Turnout Analysis
+
+```{r}
+library(moments)
+library(ggplot2)
+library(tidyverse)
+
+# Generate example precinct-level voter turnout data
+set.seed(123)
+turnout_data <- c(
+  # Urban precincts
+  rnorm(300, mean = 65, sd = 12),
+  # Suburban precincts
+  rnorm(400, mean = 70, sd = 10),
+  # Rural precincts
+  rnorm(300, mean = 68, sd = 15)
+) |> 
+  # Ensure turnout stays between 0-100%
+  pmax(0) |> 
+  pmin(100)
+
+# Calculate and visualize
+skew_value <- skewness(turnout_data)
+skew_value
+
+ggplot(data.frame(x = turnout_data), aes(x = x)) +
+  geom_histogram(bins = 50, fill = "skyblue", color = "black") +
+  geom_vline(xintercept = mean(turnout_data), color = "red", linetype = "dashed") +
+  geom_vline(xintercept = median(turnout_data), color = "blue", linetype = "dashed") +
+  labs(
+    title = str_glue("Precinct-Level Voter Turnout Distribution (Skewness = {round(skew_value, 4)})"),
+    subtitle = "Red: Mean, Blue: Median",
+    x = "Voter Turnout (%)",
+    y = "Number of Precincts"
+  ) +
+  theme_minimal()
+```
+
+#### Interpretation Guide
+
+-   **Positive Skewness (\> 0)**: Distribution has a longer right tail
+-   **Negative Skewness (\< 0)**: Distribution has a longer left tail
+-   **Zero Skewness**: Approximately symmetric distribution
+
+### Kurtosis
+
+### Definition
+
+Kurtosis measures the "tailedness" of a distribution, indicating the presence of extreme values relative to a normal distribution.
+
+#### Mathematical Expression
+
+$K = \frac{n(n+1)}{(n-1)(n-2)(n-3)} \sum_{i=1}^n (\frac{x_i - \bar{x}}{s})^4 - \frac{3(n-1)^2}{(n-2)(n-3)}$
+
+#### Example: Legislative Voting Analysis
+
+```{r}
+# Generate example legislative voting agreement scores
+set.seed(456)
+voting_agreement <- c(
+  # Regular voting patterns
+  rnorm(400, mean = 75, sd = 10),
+  # Cross-party cooperation instances
+  rnorm(80, mean = 50, sd = 15),
+  # Party-line votes
+  rnorm(20, mean = 95, sd = 5)
+) |> 
+  pmax(0) |> 
+  pmin(100)
+
+kurt_value <- kurtosis(voting_agreement)
+kurt_value
+
+# Visualization with normal distribution comparison
+x_range <- seq(min(voting_agreement)-1, max(voting_agreement)+1, length.out = 100)
+normal_dist <- dnorm(x_range, mean = mean(voting_agreement), sd = sd(voting_agreement))
+
+ggplot() +
+  geom_density(
+    data = data.frame(x = voting_agreement), 
+    aes(x = x), 
+    fill = "skyblue", 
+    alpha = 0.5
+  ) +
+  geom_line(
+    data = data.frame(x = x_range, y = normal_dist),
+    aes(x = x, y = y),
+    color = "red",
+    linetype = "dashed"
+  ) +
+  labs(
+    title = str_glue("Legislative Voting Agreement Distribution (Kurtosis = {round(kurt_value, 4)})"),
+    subtitle = "Observed distribution (blue) vs. Normal distribution (red)",
+    x = "Voting Agreement Score (%)",
+    y = "Density"
+  ) +
+  theme_minimal()
+```
+
+#### Interpretation Guide
+
+-   **Excess Kurtosis**: Difference from normal distribution's kurtosis
+    (3) 
+-   **Leptokurtic (\> 3)**: More extreme values than normal distribution
+-   **Platykurtic (\< 3)**: Fewer extreme values than normal distribution
+-   **Mesokurtic (= 3)**: Similar to normal distribution
+
+## Exercise 1. Center and dispersion of data
+
+### Data
+
+We have salary data (in thousands of euros) from two small European companies:
+
+| Index | Company X | Company Y |
+|-------|-----------|-----------|
+| 1     | 2         | 3         |
+| 2     | 2         | 3         |
+| 3     | 2         | 4         |
+| 4     | 3         | 4         |
+| 5     | 3         | 4         |
+| 6     | 3         | 4         |
+| 7     | 3         | 4         |
+| 8     | 3         | 4         |
+| 9     | 3         | 5         |
+| 10    | 4         | 5         |
+| 11    | 4         | 5         |
+| 12    | 4         | 5         |
+| 13    | 4         | 5         |
+| 14    | 4         | 5         |
+| 15    | 5         | 6         |
+| 16    | 5         | 6         |
+| 17    | 5         | 6         |
+| 18    | 5         | 7         |
+| 19    | 20        | 7         |
+| 20    | 35        | 8         |
+
+This table presents the data for both Company X and Company Y side by side, with an index column for easy reference.
+
+### Measures of Central Tendency
+
+#### Mean
+
+The mean is the average of all values in a dataset.
+
+Formula: $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$
+
+##### Manual Calculation for Company X
+
+| Value ($x_i$) | Frequency ($f_i$) | $x_i \cdot f_i$ |
+|---------------|-------------------|-----------------|
+| 2             | 3                 | 6               |
+| 3             | 6                 | 18              |
+| 4             | 5                 | 20              |
+| 5             | 4                 | 20              |
+| 20            | 1                 | 20              |
+| 35            | 1                 | 35              |
+| Total         | n = 20            | Sum = 119       |
+
+$\bar{x} = \frac{119}{20} = 5.95$
+
+##### Manual Calculation for Company Y
+
+| Value ($x_i$) | Frequency ($f_i$) | $x_i \cdot f_i$ |
+|---------------|-------------------|-----------------|
+| 3             | 2                 | 6               |
+| 4             | 6                 | 24              |
+| 5             | 6                 | 30              |
+| 6             | 3                 | 18              |
+| 7             | 2                 | 14              |
+| 8             | 1                 | 8               |
+| Total         | n = 20            | Sum = 100       |
+
+$\bar{y} = \frac{100}{20} = 5$
+
+##### R Verification
+
+```{r}
+X <- c(2,2,2,3,3,3,3,3,3,4,4,4,4,4,5,5,5,5,20,35)
+Y <- c(3,3,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,7,7,8)
+
+mean(X)
+mean(Y)
+```
+
+#### Median
+
+The median is the middle value when the data is ordered.
+
+##### Manual Calculation for Company X
+
+Ordered data: \[2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 20, 35\]
+
+n = 20 (even), so we take the average of the 10th and 11th values:
+
+Median = $\frac{4 + 4}{2} = 4$
+
+##### Manual Calculation for Company Y
+
+Ordered data: \[3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 7, 7, 8\]
+
+n = 20 (even), so we take the average of the 10th and 11th values:
+
+Median = $\frac{5 + 5}{2} = 5$
+
+##### R Verification
+
+```{r}
+median(X)
+median(Y)
+```
+
+#### Mode
+
+The mode is the most frequent value in the dataset.
+
+For Company X, the mode is 3 (appears 6 times). For Company Y, there are two modes: 4 and 5 (both appear 6 times).
+
+```{r}
+# Function to calculate mode
+get_mode <- function(x) {
+  unique_x <- unique(x)
+  unique_x[which.max(tabulate(match(x, unique_x)))]
+}
+
+get_mode(X)
+get_mode(Y)
+```
+
+### Measures of Dispersion
+
+#### Variance
+
+The variance measures the average squared deviation from the mean.
+
+Formula: $s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}$
+
+##### Manual Calculation for Company X
+
+| $x_i$ | $f_i$ | $x_i - \bar{x}$ | $(x_i - \bar{x})^2$ | $f_i(x_i - \bar{x})^2$ |
+|-------|-------|-----------------|---------------------|------------------------|
+| 2     | 3     | -3.95           | 15.6025             | 46.8075                |
+| 3     | 6     | -2.95           | 8.7025              | 52.215                 |
+| 4     | 5     | -1.95           | 3.8025              | 19.0125                |
+| 5     | 4     | -0.95           | 0.9025              | 3.61                   |
+| 20    | 1     | 14.05           | 197.4025            | 197.4025               |
+| 35    | 1     | 29.05           | 843.9025            | 843.9025               |
+| Total | 20    |                 |                     | 1162.95                |
+
+$s^2 = \frac{1162.95}{19} = 61.21$
+
+##### Manual Calculation for Company Y
+
+| $y_i$ | $f_i$ | $y_i - \bar{y}$ | $(y_i - \bar{y})^2$ | $f_i(y_i - \bar{y})^2$ |
+|-------|-------|-----------------|---------------------|------------------------|
+| 3     | 2     | -2              | 4                   | 8                      |
+| 4     | 6     | -1              | 1                   | 6                      |
+| 5     | 6     | 0               | 0                   | 0                      |
+| 6     | 3     | 1               | 1                   | 3                      |
+| 7     | 2     | 2               | 4                   | 8                      |
+| 8     | 1     | 3               | 9                   | 9                      |
+| Total | 20    |                 |                     | 34                     |
+
+$s^2 = \frac{34}{19} = 1.79$
+
+##### R Verification
+
+```{r}
+var(X)
+var(Y)
+```
+
+#### Standard Deviation
+
+The standard deviation is the square root of the variance.
+
+Formula: $s = \sqrt{s^2}$
+
+-   For Company X: $s = \sqrt{61.21} = 7.82$
+-   For Company Y: $s = \sqrt{1.79} = 1.34$
+
+##### R Verification
+
+```{r}
+sd(X)
+sd(Y)
+```
+
+### Quartiles
+
+Quartiles divide the dataset into four equal parts.
+
+#### Manual Calculation for Company X
+
+Ordered data: \[2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 20, 35\]
+
+-   Q1 (25th percentile): median of first 10 numbers = 3
+-   Q2 (50th percentile, median): 4
+-   Q3 (75th percentile): median of last 10 numbers = 5
+
+#### Manual Calculation for Company Y
+
+Ordered data: \[3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 7, 7, 8\]
+
+-   Q1 (25th percentile): median of first 10 numbers = 4
+-   Q2 (50th percentile, median): 5
+-   Q3 (75th percentile): median of last 10 numbers = 6
+
+#### R Verification
+
+```{r}
+quantile(X)
+quantile(Y)
+```
+
+#### IQR
+
+-   $IQR_x = 5 - 3 = 2$
+-   $IQR_y = 6 - 4 = 2$
+
+### Tukey Box Plot
+
+A Tukey box plot visually represents the distribution of data based on quartiles. We'll use ggplot2 to create the plot.
+
+```{r}
+library(ggplot2)
+library(tidyr)
+
+# Prepare the data
+data <- data.frame(
+  Company = rep(c("X", "Y"), each = 20),
+  Salary = c(X, Y)
+)
+
+# Create the box plot
+ggplot(data, aes(x = Company, y = Salary, fill = Company)) +
+  geom_boxplot() +
+  labs(title = "Salary Distribution in Companies X and Y",
+       x = "Company",
+       y = "Salary (thousands of euros)") +
+  theme_minimal() +
+  scale_fill_manual(values = c("X" = "#69b3a2", "Y" = "#404080"))
+
+# Create the box plot
+ggplot(data, aes(x = Company, y = Salary, fill = Company)) +
+  geom_boxplot(outliers = F) +
+  labs(title = "Salary Distribution in Companies X and Y",
+       x = "Company",
+       y = "Salary (thousands of euros)") +
+  theme_minimal() +
+  scale_fill_manual(values = c("X" = "#69b3a2", "Y" = "#404080"))
+```
+
+#### Interpreting the Box Plot
+
+1.  The box represents the interquartile range (IQR) from Q1 to Q3.
+2.  The line inside the box is the median (Q2).
+3.  Whiskers extend to the smallest and largest values within 1.5 \* IQR.
+4.  Points beyond the whiskers are considered outliers.
+
+### Comparison of Results
+
+| Measure            | Company X | Company Y |
+|--------------------|-----------|-----------|
+| Mean               | 5.95      | 5.00      |
+| Median             | 4         | 5         |
+| Mode               | 3         | 4 and 5   |
+| Variance           | 61.21     | 1.79      |
+| Standard Deviation | 7.82      | 1.34      |
+| Q1                 | 3         | 4         |
+| Q3                 | 5         | 6         |
+
+#### Key Observations:
+
+1.  Central Tendency: Company X has a higher mean but lower median than Company Y, indicating a right-skewed distribution for Company X.
+2.  Dispersion: Company X shows much higher variance and standard deviation, suggesting greater salary disparities.
+3.  Distribution Shape: Company Y's salaries are more tightly clustered, while Company X has extreme values (potential outliers) that significantly affect its mean and variance.
+4.  Quartiles: Company Y's interquartile range (Q3 - Q1) is slightly larger, but its overall range is much smaller than Company X's.
+
+### Conclusion
+
+This comparative analysis reveals significant differences in salary structures between the two companies. Company X shows greater variability and potential inequality in its pay scale, while Company Y demonstrates a more consistent and narrowly distributed salary range.
+
+## Exercise 2. Comparing Electoral District Size Variation Between Countries
+
+```{r setup_2, include=FALSE}
+library(tidyverse)
+library(knitr)
+options(digits = 4)
+```
+
+### Data
+
+We have electoral district size data from two countries:
+
+```{r data}
+x <- c(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)  # Country high variance
+y <- c(8, 9, 9, 10, 10, 11, 11, 12, 12, 13)  # Country low variance
+
+kable(data.frame(
+  "Country X (High var.)" = x,
+  "Country Y (Low var.)" = y
+))
+```
+
+### Measures of Central Tendency
+
+#### Arithmetic Mean
+
+Formula: $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$
+
+##### Calculations for Country X
+
+| Element | Value |
+|---------|-------|
+| 1       | 1     |
+| 2       | 3     |
+| 3       | 5     |
+| 4       | 7     |
+| 5       | 9     |
+| 6       | 11    |
+| 7       | 13    |
+| 8       | 15    |
+| 9       | 17    |
+| 10      | 19    |
+| Sum     | 100   |
+
+$\bar{x} = \frac{100}{10} = 10$
+
+```{r mean-x}
+mean_x <- mean(x)
+c("Manual" = 10, "R" = mean_x)
+```
+
+##### Calculations for Country Y
+
+| Element | Value |
+|---------|-------|
+| 1       | 8     |
+| 2       | 9     |
+| 3       | 9     |
+| 4       | 10    |
+| 5       | 10    |
+| 6       | 11    |
+| 7       | 11    |
+| 8       | 12    |
+| 9       | 12    |
+| 10      | 13    |
+| Sum     | 105   |
+
+$\bar{y} = \frac{105}{10} = 10.5$
+
+```{r mean-y}
+mean_y <- mean(y)
+c("Manual" = 10.5, "R" = mean_y)
+```
+
+#### Median
+
+The median is the middle value in an ordered dataset.
+
+##### Calculations for Country X
+
+Ordered data: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19
+
+For n = 10 (even number of observations): Middle positions: 5 and 6 Middle values: 9 and 11
+
+Median = $\frac{9 + 11}{2} = 10$
+
+```{r median-x}
+median_x <- median(x)
+c("Manual" = 10, "R" = median_x)
+```
+
+##### Calculations for Country Y
+
+Ordered data: 8, 9, 9, 10, 10, 11, 11, 12, 12, 13
+
+For n = 10 (even number of observations): Middle positions: 5 and 6 Middle values: 10 and 11
+
+Median = $\frac{10 + 11}{2} = 10.5$
+
+```{r median-y}
+median_y <- median(y)
+c("Manual" = 10.5, "R" = median_y)
+```
+
+#### Mode
+
+##### Calculations for Country X
+
+| Value | Frequency |
+|-------|-----------|
+| 1     | 1         |
+| 3     | 1         |
+| 5     | 1         |
+| 7     | 1         |
+| 9     | 1         |
+| 11    | 1         |
+| 13    | 1         |
+| 15    | 1         |
+| 17    | 1         |
+| 19    | 1         |
+
+Conclusion: No mode (all values occur once)
+
+##### Calculations for Country Y
+
+| Value | Frequency |
+|-------|-----------|
+| 8     | 1         |
+| 9     | 2         |
+| 10    | 2         |
+| 11    | 2         |
+| 12    | 2         |
+| 13    | 1         |
+
+Conclusion: Four modes: 9, 10, 11, 12 (each occurs twice)
+
+```{r mode}
+# Frequency tables
+table_x <- table(x)
+table_y <- table(y)
+
+list(
+  "Country X" = table_x,
+  "Country Y" = table_y
+)
+```
+
+#### Variance
+
+Variance measures the average squared deviation from the mean.
+
+Formula: $s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}$
+
+##### Calculations for Country X
+
+| $x_i$ | $(x_i - \bar{x})$ | $(x_i - \bar{x})^2$ |
+|-------|-------------------|---------------------|
+| 1     | -9                | 81                  |
+| 3     | -7                | 49                  |
+| 5     | -5                | 25                  |
+| 7     | -3                | 9                   |
+| 9     | -1                | 1                   |
+| 11    | 1                 | 1                   |
+| 13    | 3                 | 9                   |
+| 15    | 5                 | 25                  |
+| 17    | 7                 | 49                  |
+| 19    | 9                 | 81                  |
+| Sum   |                   | 330                 |
+
+$s^2_X = \frac{330}{9} = 36.67$
+
+```{r var-x}
+var_x <- var(x)
+c("Manual" = 36.67, "R" = var_x)
+```
+
+##### Calculations for Country Y
+
+| $x_i$ | $(y_i - \bar{y})$ | $(y_i - \bar{y})^2$ |
+|-------|-------------------|---------------------|
+| 8     | -2.5              | 6.25                |
+| 9     | -1.5              | 2.25                |
+| 9     | -1.5              | 2.25                |
+| 10    | -0.5              | 0.25                |
+| 10    | -0.5              | 0.25                |
+| 11    | 0.5               | 0.25                |
+| 11    | 0.5               | 0.25                |
+| 12    | 1.5               | 2.25                |
+| 12    | 1.5               | 2.25                |
+| 13    | 2.5               | 6.25                |
+| Sum   |                   | 22.5                |
+
+$s^2_Y = \frac{22.5}{9} = 2.5$
+
+```{r var-y}
+var_y <- var(y)
+c("Manual" = 2.5, "R" = var_y)
+```
+
+#### Standard Deviation
+
+Standard deviation is the square root of variance. It measures variability in the same units as the data.
+
+Formula: $s = \sqrt{s^2}$
+
+##### Calculations for Country X
+
+Using previously calculated variance: $s^2_X = 36.67$
+
+Calculate square root: $s_X = \sqrt{36.67} \approx 6.06$
+
+| Step            | Calculation    | Result |
+|-----------------|----------------|--------|
+| 1\. Variance    | $s^2_X$        | 36.67  |
+| 2\. Square root | $\sqrt{36.67}$ | 6.06   |
+
+```{r sd-x}
+sd_x <- sd(x)
+c("Manual" = 6.06, "R" = sd_x)
+```
+
+##### Calculations for Country Y
+
+Using previously calculated variance: $s^2_Y = 2.5$
+
+Calculate square root: $s_Y = \sqrt{2.5} \approx 1.58$
+
+| Step            | Calculation  | Result |
+|-----------------|--------------|--------|
+| 1\. Variance    | $s^2_Y$      | 2.5    |
+| 2\. Square root | $\sqrt{2.5}$ | 1.58   |
+
+```{r sd-y}
+sd_y <- sd(y)
+c("Manual" = 1.58, "R" = sd_y)
+```
+
+Interpretation:
+
+-   Country X: Average deviation from the mean is about 6 seats
+-   Country Y: Average deviation from the mean is about 1.6 seats
+
+### Coefficient of Variation (CV)
+
+The coefficient of variation is the ratio of standard deviation to mean, expressed as a percentage.
+
+Formula: $CV = \frac{s}{\bar{x}} \times 100\%$
+
+#### Calculations for Country X
+
+$CV_X = \frac{6.06}{10} \times 100\% = 60.6\%$
+
+| Component                | Value |
+|--------------------------|-------|
+| Standard deviation ($s$) | 6.06  |
+| Mean ($\bar{x}$)         | 10    |
+| CV                       | 60.6% |
+
+```{r cv-x}
+cv_x <- sd(x) / mean(x) * 100
+c("Manual" = 60.6, "R" = cv_x)
+```
+
+#### Calculations for Country Y
+
+$CV_Y = \frac{1.58}{10.5} \times 100\% = 15.0\%$
+
+| Component                | Value |
+|--------------------------|-------|
+| Standard deviation ($s$) | 1.58  |
+| Mean ($\bar{x}$)         | 10.5  |
+| CV                       | 15.0% |
+
+```{r cv-y}
+cv_y <- sd(y) / mean(y) * 100
+c("Manual" = 15.0, "R" = cv_y)
+```
+
+### Quartiles and Interquartile Range (IQR)
+
+#### Methods for Calculating Quartiles
+
+There are different methods for calculating quartiles. In our manual calculations, we'll use the median-excluding method:
+
+1.  Split the series at the median
+2.  Median is not included in quartile calculations
+3.  Calculate median of each part - these will be Q1 and Q3 respectively
+
+#### Calculations for Country X
+
+Ordered data: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19
+
+Median = 10 (not included in quartile calculations)
+
+Lower half: 1, 3, 5, 7, 9 Q1 = median of lower half = 5
+
+Upper half: 11, 13, 15, 17, 19 Q3 = median of upper half = 15
+
+IQR = Q3 - Q1 = 15 - 5 = 10
+
+#### Calculations for Country Y
+
+Ordered data: 8, 9, 9, 10, 10, 11, 11, 12, 12, 13
+
+Median = 10.5 (not included in quartile calculations)
+
+Lower half: 8, 9, 9, 10, 10 Q1 = median of lower half = 9
+
+Upper half: 11, 11, 12, 12, 13 Q3 = median of upper half = 12
+
+IQR = Q3 - Q1 = 12 - 9 = 3
+
+```{r quartiles-comparison}
+# Comparison of different quartile calculation methods in R
+methods_comparison <- data.frame(
+  Method = c("Manual (excl. median)", 
+             "R type=1", "R type=2", "R type=7 (default)"),
+  "Q1 Country X" = c(5, 
+                    quantile(x, 0.25, type=1),
+                    quantile(x, 0.25, type=2),
+                    quantile(x, 0.25, type=7)),
+  "Q3 Country X" = c(15,
+                    quantile(x, 0.75, type=1),
+                    quantile(x, 0.75, type=2),
+                    quantile(x, 0.75, type=7)),
+  "Q1 Country Y" = c(9,
+                    quantile(y, 0.25, type=1),
+                    quantile(y, 0.25, type=2),
+                    quantile(y, 0.25, type=7)),
+  "Q3 Country Y" = c(12,
+                    quantile(y, 0.75, type=1),
+                    quantile(y, 0.75, type=2),
+                    quantile(y, 0.75, type=7))
+)
+
+kable(methods_comparison, digits = 2,
+      caption = "Comparison of different quartile calculation methods")
+```
+
+#### Explanation of Different Quartile Calculation Methods
+
+1.  **Manual method (excluding median)**:
+    -   Splits data into two parts
+    -   Excludes median
+    -   Finds median of each part
+2.  **R type=1**:
+    -   First method in R
+    -   Uses whole positions
+    -   No interpolation
+3.  **R type=2**:
+    -   Second method in R
+    -   Uses whole positions
+    -   Interpolates when position is not whole
+4.  **R type=7 (default)**:
+    -   Default method in R
+    -   Uses quantile()\[5\] from SAS
+    -   Interpolates according to Hyndman and Fan method
+
+### Results Comparison
+
+```{r summary-table}
+summary_df <- data.frame(
+  Measure = c("Mean", "Median", "Mode", "Range", "Variance", 
+              "Std. Dev.", "Q1", "Q3", "IQR", "CV (%)"),
+  "Country X" = c(10, 10, "none", 18, 36.67, 6.06, 5, 15, 10, 60.6),
+  "Country Y" = c(10.5, 10.5, "9,10,11,12", 5, 2.5, 1.58, 9, 12, 3, 15.0)
+)
+
+kable(summary_df, 
+      caption = "Summary of all statistical measures",
+      align = c('l', 'r', 'r'))
+```
+
+### Comparison using Box Plot
+
+```{r boxplot, fig.width=10, fig.height=6}
+df_long <- data.frame(
+  country = rep(c("X", "Y"), each = 10),
+  size = c(x, y)
+)
+
+# Basic plot
+p <- ggplot(df_long, aes(x = country, y = size, fill = country)) +
+  geom_boxplot(outlier.shape = NA) +  # Disable default outlier points
+  geom_jitter(width = 0.2, alpha = 0.5) +  # Add points with transparency
+  scale_fill_manual(values = c("X" = "#FFA07A", "Y" = "#98FB98")) +
+  labs(
+    title = "Comparison of Electoral District Size Variation",
+    subtitle = paste("CV: Country X =", round(cv_x, 1), "%, Country Y =", round(cv_y, 1), "%"),
+    x = "Country",
+    y = "District Size"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+# Add quartile annotations
+p + annotate(
+  "text", 
+  x = c(1, 1, 1, 2, 2, 2), 
+  y = c(max(x)+1, mean(x), min(x)-1, max(y)+1, mean(y), min(y)-1),
+  label = c(
+    paste("Q3 =", quantile(x, 0.75, type=1)),
+    paste("M =", median(x)),
+    paste("Q1 =", quantile(x, 0.25, type=1)),
+    paste("Q3 =", quantile(y, 0.75, type=1)),
+    paste("M =", median(y)),
+    paste("Q1 =", quantile(y, 0.25, type=1))
+  ),
+  size = 3
+)
+```
+
+### Methodological Notes
+
+1.  **Quartile Calculations**:
+    -   The median-excluding method used may give different results than R's default functions
+    -   Differences in calculation methods don't affect overall conclusions
+    -   Always important to specify the method used in reports
+2.  **Visualization**:
+    -   Box plot effectively shows differences in distributions
+    -   Additional points show actual values
+    -   Annotations facilitate interpretation
+
+### Application Notes
+
+1.  **Using the Analysis**:
+    -   All calculations can be reproduced using the provided R code
+    -   Code chunks are self-contained and documented
+    -   Data format requirements are clearly specified
+2.  **Customization**:
+    -   Analysis can be adapted for different district size datasets
+    -   Visualization parameters can be adjusted for different presentation needs
+    -   Statistical methods can be modified based on specific requirements
+
+### Conclusion
+
+#### Summary Statistics Comparison
+
+| Measure  | Country X | Country Y             | Relative Difference |
+|----------|-----------|-----------------------|---------------------|
+| Mean     | 10.0      | 10.5                  | Similar             |
+| Median   | 10.0      | 10.5                  | Similar             |
+| Mode     | None      | Multiple (9,10,11,12) | \-                  |
+| Range    | 18        | 5                     | 3.6× larger in X    |
+| Variance | 36.67     | 2.5                   | 14.7× larger in X   |
+| IQR      | 10        | 3                     | 3.3× larger in X    |
+| CV       | 60.6%     | 15.0%                 | 4.0× larger in X    |
+
+#### Distribution Characteristics
+
+**Country X**:
+
+-   Uniform distribution pattern
+-   No dominant district size (no mode)
+-   Wide range: 1 to 19 seats
+-   High variability (CV = 60.6%) - Even spread of values across range
+
+**Country Y**:
+
+-   Clustered distribution pattern
+-   Multiple common sizes (four modes)
+-   Narrow range: 8 to 13 seats
+-   Low variability (CV = 15.0%) - Values concentrated around mean
+
+#### Box Plot Interpretation
+
+The box plot visualization reveals:
+
+**Structure Elements**:
+
+-   Box: Shows interquartile range (IQR)
+-   Lower edge: First quartile (Q1)
+-   Upper edge: Third quartile (Q3)
+-   Internal line: Median (Q2)
+-   Whiskers: Extend to ±1.5 IQR - Points: Individual district sizes
+
+**Key Visual Findings**:
+
+1.  **Box Size**:
+
+-   Country X: Large box indicates wide spread of middle 50%
+-   Country Y: Small box shows tight clustering of middle values
+
+2.  **Whisker Length**:
+
+    -   Country X: Long whiskers indicate broad overall distribution
+    -   Country Y: Short whiskers show limited total spread
+
+3.  **Point Distribution**:
+
+    -   Country X: Points widely dispersed
+    -   Country Y: Points densely clustered
+
+#### Key Observations
+
+1.  **Central Tendency**:
+
+    -   Similar average district sizes
+    -   Different distribution patterns
+    -   Distinct approaches to standardization
+
+2.  **Variability Measures**:
+
+    -   All metrics show Country X with 3-15 times more variation
+    -   Consistent pattern across different statistical measures
+    -   Systematic difference in district design
+
+3.  **System Design**:
+
+    -   Country X: Flexible, varied approach
+    -   Country Y: Standardized, uniform approach
+    -   Different philosophical approaches to representation
+
+4.  **Representative Implications**:
+
+    -   Country X: Variable voter-to-representative ratios
+    -   Country Y: More consistent representation levels
+    -   Different approaches to democratic representation
+
+This analysis demonstrates fundamental differences in electoral system design between the two countries, with Country X adopting a more varied approach and Country Y maintaining greater uniformity in district sizes.
+
+## Exercise. Understanding Boxplots Through Life Expectancy Data
+
+```{r}
+#| message: false
+library(tidyverse)
+library(gapminder)
+
+# Prepare data
+data_2007 <- gapminder %>%
+  filter(year == 2007)
+```
+
+## Introduction to Boxplots
+
+A boxplot (also known as a box-and-whisker plot) reveals key statistics about your data:
+
+-   **Median**: The middle line in the box (50th percentile)
+-   **First quartile (Q1)**: Bottom of the box (25th percentile)
+-   **Third quartile (Q3)**: Top of the box (75th percentile)
+-   **Interquartile Range (IQR)**: The height of the box (Q3 - Q1)
+-   **Whiskers**: Extend to the most extreme non-outlier values (Tukey's method: 1.5 × IQR)
+-   **Outliers**: Individual points beyond the whiskers
+
+### Visualizing Life Expectancy
+
+```{r}
+#| fig.height: 16
+#| fig.width: 10
+ggplot(data_2007, aes(x = reorder(continent, lifeExp, FUN = median), y = lifeExp)) +
+  geom_boxplot(fill = "lightblue", alpha = 0.7, outlier.shape = 24, 
+               outlier.fill = "red", outlier.alpha = 0.6, outlier.size = 4) +
+  geom_jitter(width = 0.2, alpha = 0.4, color = "darkblue") +
+  labs(title = "Life Expectancy by Continent (2007)",
+       subtitle = "Individual points show raw data; red points indicate outliers",
+       x = "Continent",
+       y = "Life Expectancy (years)") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10)
+  ) +
+  scale_y_continuous(breaks = seq(40, 85, by = 5))
+```
+
+## Understanding the Data
+
+### Median and Distribution
+
+Answer True or False:
+
+1.  50% of African countries have life expectancy below 54 years
+2.  The median life expectancy in Europe is approximately 78 years
+3.  More than 75% of countries in Oceania have life expectancy above 74 years
+4.  25% of Asian countries have life expectancy below 65 years
+5.  The middle 50% of life expectancies in Europe fall between 74 and 80 years
+
+### Spread and Variation
+
+Answer True or False:
+
+1.  Asia shows the largest spread (IQR) in life expectancy
+2.  Europe has the smallest IQR among all continents
+3.  The variation in Africa's life expectancy is greater than in the Americas
+4.  Oceania shows the least variation in life expectancy
+5.  The range (excluding outliers) in Asia is approximately 20 years
+
+### Outliers and Extremes
+
+Answer True or False:
+
+1.  Africa has two countries with unusually low life expectancy
+2.  There are no outliers in Oceania's distribution
+3.  Asia has both high and low outliers
+
+## Changes Over Time
+
+```{r}
+#| fig.height: 8
+#| fig.width: 12
+time_comparison <- gapminder %>%
+  filter(year %in% c(1957, 2007)) %>%
+  mutate(year = factor(year))
+
+ggplot(time_comparison, aes(x = continent, y = lifeExp, fill = year)) +
+  geom_boxplot(alpha = 0.7, position = "dodge", outlier.shape = 21,
+               outlier.alpha = 0.6) +
+  labs(title = "Life Expectancy: 1957 vs 2007",
+       subtitle = "Comparing distribution changes over 50 years",
+       x = "Continent",
+       y = "Life Expectancy (years)",
+       fill = "Year") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10)
+  ) +
+  scale_fill_brewer(palette = "Set2") +
+  scale_y_continuous(breaks = seq(30, 85, by = 5))
+```
+
+### Time Comparison Questions
+
+Answer True or False:
+
+1.  The median life expectancy increased in all continents between 1957 and 2007
+2.  The variation in life expectancy (IQR) decreased in most continents over time
+3.  Africa showed the smallest improvement in median life expectancy
+4.  The spread of life expectancies in Asia decreased substantially from 1957 to 2007
+5.  Oceania maintained the highest median life expectancy in both time periods
+
+### Statistical Summary
+
+```{r}
+# Calculate summary statistics
+summary_stats <- gapminder %>%
+  filter(year %in% c(1957, 2007)) %>%
+  group_by(continent, year) %>%
+  summarise(
+    median = median(lifeExp),
+    q1 = quantile(lifeExp, 0.25),
+    q3 = quantile(lifeExp, 0.75),
+    iqr = IQR(lifeExp),
+    n_outliers = sum(lifeExp < (q1 - 1.5 * iqr) | lifeExp > (q3 + 1.5 * iqr))
+  ) %>%
+  arrange(continent, year)
+
+knitr::kable(summary_stats, digits = 1,
+             caption = "Summary Statistics by Continent and Year")
+```
+
+## Key Learning Points
+
+1.  **Distribution Center**:
+    -   Median shows the typical life expectancy
+    -   Changes in median reflect overall improvements
+2.  **Spread and Variation**:
+    -   IQR (box height) indicates data dispersion
+    -   Wider boxes suggest more inequality in life expectancy
+3.  **Outliers and Extremes**:
+    -   Outliers often represent countries with unique circumstances
+4.  **Time Comparison**:
+    -   Shows both absolute improvements and changes in variation
+    -   Highlights persistent regional disparities
+    -   Reveals different rates of progress across continents
+
+## Appendix: Summary Tables for Data Types and Applicable Statistical Measures
+
+### Table 1: Pros and Cons of Various Statistical Measures
+
+#### Measures of Center
+
+| Measure | Pros | Cons | Applicable to |
+|-----------------|-----------------|-----------------|--------------------|
+| Mean | \- Uses all data points<br>- Allows for further statistical calculations<br>- Ideal for normally distributed data | \- Sensitive to outliers<br>- Not ideal for skewed distributions<br>- Not meaningful for nominal data | Interval, Ratio, some Discrete, Continuous |
+| Median | \- Not affected by outliers<br>- Good for skewed distributions<br>- Can be used with ordinal data | \- Ignores the actual values of most data points<br>- Less useful for further statistical analyses | Ordinal, Interval, Ratio, Discrete, Continuous |
+| Mode | \- Can be used with any data type<br>- Good for finding most common category | \- May not be unique (multimodal)<br>- Not useful for many types of analyses<br>- Ignores magnitude of differences between values | All types |
+
+#### Measures of Variability
+
+| Measure | Pros | Cons | Applicable to |
+|-----------------|-----------------|-----------------|--------------------|
+| Range | \- Simple to calculate and understand<br>- Gives quick idea of data spread | \- Very sensitive to outliers<br>- Ignores all data between extremes<br>- Not useful for further statistical analyses | Ordinal, Interval, Ratio, Discrete, Continuous |
+| Interquartile Range (IQR) | \- Not affected by outliers<br>- Good for skewed distributions | \- Ignores 50% of the data<br>- Less intuitive than range | Ordinal, Interval, Ratio, Discrete, Continuous |
+| Variance | \- Uses all data points<br>- Basis for many statistical procedures | \- Sensitive to outliers<br>- Units are squared (less intuitive) | Interval, Ratio, some Discrete, Continuous |
+| Standard Deviation | \- Uses all data points<br>- Same units as original data<br>- Widely used and understood | \- Sensitive to outliers<br>- Assumes roughly normal distribution for interpretation | Interval, Ratio, some Discrete, Continuous |
+| Coefficient of Variation | \- Allows comparison between datasets with different units or means | \- Can be misleading when means are close to zero<br>- Not meaningful for data with negative values | Ratio, some Interval |
+
+#### Measures of Correlation/Association
+
+| Measure | Pros | Cons | Applicable to |
+|-----------------|-----------------|-----------------|--------------------|
+| Pearson's r | \- Measures linear relationship<br>- Widely used and understood | \- Assumes normal distribution<br>- Sensitive to outliers<br>- Only captures linear relationships | Interval, Ratio, Continuous |
+| Spearman's rho | \- Can be used with ordinal data<br>- Captures monotonic relationships<br>- Less sensitive to outliers | \- Loses information by converting to ranks<br>- May miss some types of relationships | Ordinal, Interval, Ratio |
+| Kendall's tau | \- Can be used with ordinal data<br>- More robust than Spearman's for small samples<br>- Has nice interpretation (probability of concordance) | \- Loses information by only considering order<br>- Computationally more intensive | Ordinal, Interval, Ratio |
+| Chi-square | \- Can be used with nominal data<br>- Tests independence of categorical variables | \- Requires large sample sizes<br>- Sensitive to sample size<br>- Doesn't measure strength of association | Nominal, Ordinal |
+| Cramér's V | \- Can be used with nominal data<br>- Provides measure of strength of association<br>- Normalized to \[0,1\] range | \- Interpretation can be subjective<br>- May overestimate association in small samples | Nominal, Ordinal |
+
+::: callout-note
+### Statistical Measures Applicability / Zastosowanie miar statystycznych
+
+| Measure (EN) | Miara (PL) | Nominal | Ordinal | Interval | Ratio |
+|------------|------------|:----------:|:----------:|:----------:|:----------:|
+| **Central Tendency / Tendencja centralna:** |  |  |  |  |  |
+| Mode | Dominanta | ✓ | ✓ | ✓ | ✓ |
+| Median | Mediana | \- | ✓ | ✓ | ✓ |
+| Arithmetic Mean | Średnia arytmetyczna | \- | \- | ✓\* | ✓ |
+| Geometric Mean | Średnia geometryczna | \- | \- | \- | ✓ |
+| Harmonic Mean | Średnia harmoniczna | \- | \- | \- | ✓ |
+| **Dispersion / Rozproszenie:** |  |  |  |  |  |
+| Range | Rozstęp | \- | ✓ | ✓ | ✓ |
+| Interquartile Range | Rozstęp międzykwartylowy | \- | ✓ | ✓ | ✓ |
+| Mean Absolute Deviation | Średnie odchylenie bezwzględne | \- | \- | ✓ | ✓ |
+| Variance | Wariancja | \- | \- | ✓\* | ✓ |
+| Standard Deviation | Odchylenie standardowe | \- | \- | ✓\* | ✓ |
+| Coefficient of Variation | Współczynnik zmienności | \- | \- | \- | ✓ |
+| **Association / Współzależność:** |  |  |  |  |  |
+| Chi-square | Chi-kwadrat | ✓ | ✓ | ✓ | ✓ |
+| Spearman Correlation | Korelacja Spearmana | \- | ✓ | ✓ | ✓ |
+| Kendall's Tau | Tau Kendalla | \- | ✓ | ✓ | ✓ |
+| Pearson Correlation | Korelacja Pearsona | \- | \- | ✓\* | ✓ |
+| Covariance | Kowariancja | \- | \- | ✓\* | ✓ |
+
+\* Theoretically problematic but commonly used in practice / Teoretycznie problematyczne, ale powszechnie stosowane w praktyce
+
+### Notes / Uwagi:
+
+1.  Measurement Scales / Skale pomiarowe:
+
+-   **Nominal**: Categories without order / Kategorie bez uporządkowania
+-   **Ordinal**: Ordered categories / Kategorie uporządkowane
+-   **Interval**: Equal intervals, arbitrary zero / Równe interwały, umowne zero
+-   **Ratio**: Equal intervals, absolute zero / Równe interwały, absolutne zero
+
+2.  Practical Considerations / Aspekty praktyczne:
+
+-   Some measures marked with ✓\* are commonly used for interval data despite theoretical issues / Niektóre miary oznaczone ✓\* są powszechnie stosowane dla danych przedziałowych pomimo problemów teoretycznych
+-   Choice of measure should consider both theoretical appropriateness and practical utility / Wybór miary powinien uwzględniać zarówno poprawność teoretyczną jak i użyteczność praktyczną
+-   More restrictive scales (ratio) allow all measures from less restrictive scales / Bardziej restrykcyjne skale (ilorazowe) pozwalają na wszystkie miary z mniej restrykcyjnych skal
+:::

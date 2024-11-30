@@ -1,0 +1,463 @@
+---
+title: "STAT101 - exercises"
+author: "Michał P."
+date: "2024-09-24"
+format: 
+  html:
+    toc: true
+    code-fold: true
+    theme: cosmo
+execute:
+  echo: true
+  warning: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(ggpubr)
+```
+
+# Measures of Variability
+
+## Variance and Standard Deviation
+
+```{r}
+high_var <- c(2, 2, 3, 4, 5, 5)
+low_var <- c(2.5, 2.5, 3, 4, 4.5, 4.5)
+
+sd_high_var <- sd(high_var)
+sd_low_var <- sd(low_var)
+
+cat("Standard Deviation (High Variability):", round(sd_high_var, 2), "\n")
+cat("Standard Deviation (Low Variability):", round(sd_low_var, 2), "\n")
+
+cat("Variance (High Variability):", round(var(high_var), 2), "\n")
+cat("Variance (Low Variability):", round(var(low_var), 2), "\n")
+```
+
+### Visualization
+
+```{r}
+data_sd <- data.frame(time = c(89:94), high_var = high_var, low_var = low_var)
+
+data_long_sd <- data_sd %>%
+  pivot_longer(cols = c(high_var, low_var),
+               names_to = "variable",
+               values_to = "value")
+
+ggplot(data = data_long_sd, aes(x = variable, y = value)) + 
+  geom_boxplot() +
+  labs(title = "Boxplot of High and Low Variability Data",
+       x = "Variable", y = "Value")
+
+ggplot(data = data_long_sd, aes(x = time, y = value, color = variable)) + 
+  geom_point() + 
+  facet_wrap(vars(variable)) + 
+  theme_cleveland() +
+  labs(title = "Scatterplot of High and Low Variability Data",
+       x = "Time", y = "Value")
+```
+
+# Examples
+
+## Example 1: IQ Scores
+
+```{r}
+group_high_var <- c(85, 90, 95, 100, 105, 110, 115, 120, 125, 130)
+group_low_var <- c(96, 97, 98, 99, 100, 101, 102, 103, 104, 105)
+
+sd_high_var <- sd(group_high_var)
+sd_low_var <- sd(group_low_var)
+
+cat("Standard Deviation (High Variability):", round(sd_high_var, 2), "\n")
+cat("Standard Deviation (Low Variability):", round(sd_low_var, 2), "\n")
+```
+
+## Example 2: District Magnitude
+
+```{r}
+group_high_var <- c(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)
+group_low_var <- c(8, 9, 9, 10, 10, 11, 11, 12, 12, 13)
+
+sd_high_var <- sd(group_high_var)
+sd_low_var <- sd(group_low_var)
+
+cat("Standard Deviation (High Variability):", round(sd_high_var, 2), "\n")
+cat("Standard Deviation (Low Variability):", round(sd_low_var, 2), "\n")
+```
+
+### Quantiles
+
+```{r}
+cat("High Variability Group:\n")
+cat("25th percentile:", quantile(group_high_var, 0.25), "\n")
+cat("Median:", median(group_high_var), "\n")
+cat("75th percentile:", quantile(group_high_var, 0.75), "\n")
+
+cat("\nLow Variability Group:\n")
+cat("25th percentile:", quantile(group_low_var, 0.25), "\n")
+cat("Median:", median(group_low_var), "\n")
+cat("75th percentile:", quantile(group_low_var, 0.75), "\n")
+```
+
+### Visualization
+
+```{r}
+data_sd_dm <- data.frame(
+  group_high_var = group_high_var,
+  group_low_var = group_low_var
+)
+
+data_long_dm_sd <- data_sd_dm %>%
+  pivot_longer(cols = everything(),
+               names_to = "variable",
+               values_to = "value")
+
+ggplot(data = data_long_dm_sd) + 
+  geom_boxplot(aes(y = value, x = variable)) + 
+  theme_classic2() +
+  labs(title = "Boxplot of High and Low Variability Groups",
+       x = "Group", y = "Value")
+
+ggplot(data = data_long_dm_sd, aes(x = value, fill = factor(variable))) + 
+  geom_histogram(alpha = 0.5, binwidth = 2.5) + 
+  theme_cleveland() + 
+  labs(title = "Histogram of High and Low Variability Groups",
+       x = "Value", y = "Count", fill = "Group")
+```
+
+## Example 3: Another IQ Example
+
+```{r}
+iqgroup_A = c(100, 120, 80, 140, 70, 100, 90, 150)
+iqgroup_B = c(85, 90, 95, 100, 105, 110, 115, 120)
+
+cat("Variance of Group A:", round(var(iqgroup_A), 2), "\n")
+cat("Variance of Group B:", round(var(iqgroup_B), 2), "\n")
+
+cat("Standard Deviation of Group A:", round(sd(iqgroup_A), 2), "\n")
+cat("Standard Deviation of Group B:", round(sd(iqgroup_B), 2), "\n")
+```
+
+# Measures of Association
+
+## Example 1: Electoral District Magnitude vs. Gallagher Index
+
+```{r}
+DM <- c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+Gallagher <- c(18.2, 16.7, 15.8, 15.3, 15.0, 14.8, 14.7, 14.6, 14.55, 14.52)
+
+cat("Covariance:", round(cov(DM, Gallagher), 2), "\n")
+cat("Pearson Correlation:", round(cor(DM, Gallagher, method = "pearson"), 2), "\n")
+cat("Spearman Correlation:", round(cor(DM, Gallagher, method = "spearman"), 2), "\n")
+
+data <- data.frame(DM = DM, Gallagher = Gallagher)
+
+ggplot(data, aes(x = DM, y = Gallagher)) +
+  geom_point(size = 3, color = "blue") +
+  geom_smooth(method = "loess", se = FALSE, color = "red", linetype = "dashed") +
+  labs(x = "Electoral District Magnitude (DM)", y = "Gallagher Index",
+       title = "Relationship between Electoral District Magnitude and Gallagher Index") +
+  theme_minimal()
+```
+
+## Example 2: Anxiety Level vs. Cognitive Performance
+
+```{r}
+AL <- c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+CP <- c(18.2, 16.7, 15.8, 15.3, 15.0, 14.8, 14.7, 14.6, 14.55, 14.52)
+
+cat("Mean Cognitive Performance:", round(mean(CP), 2), "\n")
+cat("Variance of Cognitive Performance:", round(var(CP), 2), "\n")
+cat("Standard Deviation of Cognitive Performance:", round(sd(CP), 2), "\n")
+
+cat("Covariance:", round(cov(AL, CP), 2), "\n")
+cat("Pearson Correlation:", round(cor(AL, CP, method = "pearson"), 2), "\n")
+cat("Spearman Correlation:", round(cor(AL, CP, method = "spearman"), 2), "\n")
+
+data_alcp <- data.frame(AL = AL, CP = CP)
+
+ggplot(data_alcp, aes(x = AL, y = CP)) +
+  geom_point(size = 3, color = "blue") +
+  geom_smooth(method = "loess", se = FALSE, color = "red", linetype = "dashed") +
+  labs(x = "Anxiety Level", y = "Cognitive Performance",
+       title = "Relationship between Anxiety Level and Cognitive Performance") +
+  theme_minimal()
+
+model_alcp <- lm(CP ~ AL, data = data_alcp)
+summary(model_alcp)
+
+lin_log_model_alcp <- lm(CP ~ log(AL), data = data_alcp)
+summary(lin_log_model_alcp)
+```
+
+## Example 3: Stress Level vs. Cognitive Performance
+
+```{r}
+data <- data.frame(
+  stress_level = c(1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10, 11),
+  cognitive_performance = c(95, 93, 84, 88, 87, 84, 78, 74, 70, 60, 45, 30)
+)
+
+ggplot(data, aes(x = stress_level, y = cognitive_performance)) +
+  geom_point() +
+  geom_smooth(method = "loess", se = FALSE, color = "red") +
+  labs(x = "Stress Level", y = "Cognitive Performance",
+       title = "Relationship between Stress Level and Cognitive Performance") +
+  theme_minimal()
+
+cat("Pearson Correlation:", round(cor(data$stress_level, data$cognitive_performance, method = "pearson"), 2), "\n")
+cat("Spearman Correlation:", round(cor(data$stress_level, data$cognitive_performance, method = "spearman"), 2), "\n")
+cat("Kendall's Tau:", round(cor(data$stress_level, data$cognitive_performance, method = "kendall"), 2), "\n")
+```
+
+
+
+# Probability and Inference
+
+## Binomial Test
+
+```{r}
+# Compute P(45 < X < 55) for X ~ Binomial(100, 0.5)
+prob <- sum(dbinom(46:54, 100, 0.5))
+cat("P(45 < X < 55) for X ~ Binomial(100, 0.5):", round(prob, 4), "\n")
+
+# Compute P(X >= 8) for X ~ Binomial(10, 0.5)
+prob <- sum(dbinom(8:10, 10, 0.5))
+cat("P(X >= 8) for X ~ Binomial(10, 0.5):", round(prob, 4), "\n")
+```
+
+
+
+# Regression analysis - introductory examples
+
+```{r}
+x1 <- c(1, 2, 3, 4, 5)
+y1 <- c(2, 4, 5, 7, 8)
+
+data <- data.frame(x1, y1)
+
+model.1 <- lm(y1 ~ x1)
+summary(model.1)
+```
+
+
+## Example: Loosemore-Hanby Index vs. District Magnitude
+
+```{r}
+DM <- c(4,10,3,8,7,4,6,2,7,14)
+LHI <- c(12,8,15,10,6,13,11,16,9,5)
+
+cat("Variance of DM:", round(var(DM), 2), "\n")
+cat("Variance of LHI:", round(var(LHI), 2), "\n")
+cat("Standard Deviation of DM:", round(sd(DM), 2), "\n")
+cat("Standard Deviation of LHI:", round(sd(LHI), 2), "\n")
+
+cat("Covariance:", round(cov(DM, LHI), 2), "\n")
+cat("Pearson Correlation:", round(cor(DM, LHI, method = "pearson"), 2), "\n")
+cat("Spearman Correlation:", round(cor(DM, LHI, method = "spearman"), 2), "\n")
+
+data <- data.frame(DM = DM, LHI = LHI)
+
+ggplot(data, aes(x = DM, y = LHI)) +
+  geom_point(size = 3, color = "blue") +
+  geom_smooth(method = "loess", se = FALSE, color = "red", linetype = "dashed") +
+  labs(x = "District Magnitude (DM)", y = "LH Index",
+       title = "Relationship between District Magnitude and LH Index") +
+  theme_minimal()
+
+model_lh <- lm(LHI ~ DM, data = data)
+summary(model_lh)
+```
+
+## Example: Gallagher Index vs. District Magnitude
+
+```{r}
+DM <- c(5,11,4,8,7,4,6,3,7,15)
+GHI <- c(12,7,15,10,6,13,11,18,9,2)
+
+cat("Variance of DM:", round(var(DM), 2), "\n")
+cat("Variance of GHI:", round(var(GHI), 2), "\n")
+cat("Standard Deviation of DM:", round(sd(DM), 2), "\n")
+cat("Standard Deviation of GHI:", round(sd(GHI), 2), "\n")
+
+cat("Covariance:", round(cov(DM, GHI), 2), "\n")
+cat("Pearson Correlation:", round(cor(DM, GHI, method = "pearson"), 2), "\n")
+cat("Spearman Correlation:", round(cor(DM, GHI, method = "spearman"), 2), "\n")
+
+data <- data.frame(DM = DM, GHI = GHI)
+
+ggplot(data, aes(x = DM, y = GHI)) +
+  geom_point(size = 3, color = "blue") +
+  geom_smooth(method = "loess", se = FALSE, color = "red", linetype = "dashed") +
+  labs(x = "District Magnitude (DM)", y = "Gallagher Index",
+       title = "Relationship between District Magnitude and Gallagher Index") +
+  theme_minimal()
+
+model_gh <- lm(GHI ~ DM, data = data)
+summary(model_gh)
+```
+
+
+## Additional Examples
+
+### Example 0: Data Variability
+
+```{r}
+group_high_var <- c(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)
+group_low_var <- c(8, 9, 9, 10, 10, 11, 11, 12, 12, 13)
+
+sd_high_var <- sd(group_high_var)
+sd_low_var <- sd(group_low_var)
+
+cat("Standard Deviation (High Variability):", round(sd_high_var, 2), "\n")
+cat("Standard Deviation (Low Variability):", round(sd_low_var, 2), "\n")
+```
+
+### Example 1: Gallagher Index vs. District Magnitude
+
+```{r}
+DM <- c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+Gallagher <- c(18.2, 16.7, 15.8, 15.3, 15.0, 14.8, 14.7, 14.6, 14.55, 14.52)
+
+cat("Variance of DM:", round(var(DM), 2), "\n")
+cat("Variance of Gallagher:", round(var(Gallagher), 2), "\n")
+cat("Standard Deviation of DM:", round(sd(DM), 2), "\n")
+cat("Standard Deviation of Gallagher:", round(sd(Gallagher), 2), "\n")
+
+cat("Covariance:", round(cov(DM, Gallagher), 2), "\n")
+cat("Spearman Correlation:", round(cor(DM, Gallagher, method = "spearman"), 2), "\n")
+
+data_disp <- data.frame(DM, Gallagher)
+
+ggplot(data_disp, aes(x = DM, y = Gallagher)) +
+  geom_point(size = 3, color = "blue") +
+  geom_smooth(method = "loess", se = FALSE, color = "red", linetype = "dashed") +
+  labs(x = "Electoral District Magnitude (DM)", y = "Gallagher Index",
+       title = "Relationship between Electoral District Magnitude and Gallagher Index") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10)
+  )
+
+# Linear model
+model_disp <- lm(Gallagher ~ DM, data = data_disp)
+summary(model_disp)
+
+# Log-linear model
+lin_log_model_disp <- lm(Gallagher ~ log(DM), data = data_disp)
+summary(lin_log_model_disp)
+```
+
+### Example 2: Stress Level vs. Cognitive Performance
+
+```{r}
+data_alcp <- data.frame(
+  stress_level = c(1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10, 11),
+  cognitive_performance = c(95, 93, 84, 88, 87, 84, 78, 74, 70, 60, 45, 30)
+)
+
+ggplot(data_alcp, aes(x = stress_level, y = cognitive_performance)) +
+  geom_point() +
+  geom_smooth(method = "loess", se = FALSE, color = "red") +
+  labs(x = "Stress Level", y = "Cognitive Performance",
+       title = "Relationship between Stress Level and Cognitive Performance") +
+  theme_minimal()
+
+cat("Pearson Correlation:", round(cor(data_alcp$stress_level, data_alcp$cognitive_performance, method = "pearson"), 2), "\n")
+cat("Spearman Correlation:", round(cor(data_alcp$stress_level, data_alcp$cognitive_performance, method = "spearman"), 2), "\n")
+cat("Kendall's Tau:", round(cor(data_alcp$stress_level, data_alcp$cognitive_performance, method = "kendall"), 2), "\n")
+
+model_alcp <- lm(stress_level ~ cognitive_performance, data = data_alcp)
+summary(model_alcp)
+```
+
+### Example 3: Visualization - Box Plots
+
+```{r}
+group_high_var <- c(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)
+group_low_var <- c(8, 9, 9, 10, 10, 11, 11, 12, 12, 13)
+
+sd_high_var <- sd(group_high_var)
+sd_low_var <- sd(group_low_var)
+
+cat("Standard Deviation (High Variability):", round(sd_high_var, 2), "\n")
+cat("Standard Deviation (Low Variability):", round(sd_low_var, 2), "\n")
+
+data_sd_dm <- data.frame(
+  group_high_var = group_high_var,
+  group_low_var = group_low_var
+)
+
+data_long_dm_sd <- data_sd_dm %>%
+  pivot_longer(cols = everything(),
+               names_to = "variable",
+               values_to = "value")
+
+ggplot(data = data_long_dm_sd) + 
+  geom_boxplot(aes(y = value, x = variable)) + 
+  theme_classic2() +
+  labs(title = "Box Plot of High and Low Variability Groups",
+       x = "Group", y = "Value")
+
+ggplot(data = data_long_dm_sd, aes(x = value, fill = factor(variable))) + 
+  geom_histogram(alpha = 0.5, binwidth = 2) + 
+  theme_cleveland() + 
+  labs(title = "Histogram of High and Low Variability Groups",
+       x = "Value", y = "Count", fill = "Group")
+
+ggplot(data = data_long_dm_sd, aes(x = value)) + 
+  geom_histogram(alpha = 0.5, binwidth = 2.5) + 
+  facet_grid(. ~ variable) + 
+  theme_cleveland() +
+  labs(title = "Faceted Histogram of High and Low Variability Groups",
+       x = "Value", y = "Count")
+```
+
+### Example 4: Logistic Regression Tutorial for Political Science Students
+
+```{r}
+library(dplyr)
+
+# Generate synthetic data
+set.seed(123)  # For reproducibility
+
+data <- data.frame(
+  age = rnorm(1000, mean = 45, sd = 15),
+  income = rnorm(1000, mean = 50000, sd = 20000),
+  education = sample(c("High School", "Bachelor's", "Master's", "PhD"), 1000, replace = TRUE),
+  voted = sample(c(0, 1), 1000, replace = TRUE, prob = c(0.4, 0.6))
+)
+
+# Explore the data
+summary(data)
+table(data$education, data$voted)
+
+# Prepare the data for logistic regression
+data$education <- as.factor(data$education)  # Convert education to a factor variable
+
+# Fit the logistic regression model
+model <- glm(voted ~ age + income + education, data = data, family = binomial(link = "logit"))
+
+# Interpret the model results
+summary(model)
+
+# Make predictions using the model
+new_voter <- data.frame(age = 30, income = 60000, education = "Bachelor's")
+predict(model, new_voter, type = "response")
+```
+
+In this logistic regression example:
+
+1. We created synthetic data for voter characteristics and voting behavior.
+2. We explored the data using summary statistics and a contingency table.
+3. We prepared the data by converting the education variable to a factor.
+4. We fit a logistic regression model to predict voting behavior based on age, income, and education.
+5. We interpreted the model results using the summary output.
+6. Finally, we made a prediction for a new voter using the fitted model.
+
+This example demonstrates how logistic regression can be used in political science to analyze and predict voting behavior based on demographic factors.
+

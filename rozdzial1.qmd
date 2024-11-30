@@ -1,0 +1,1398 @@
+# Wprowadzenie do Nauki o Danych i Statystyki dla Nauk Społecznych
+
+Ten rozdział stanowi wprowadzenie do nauki o danych i statystyki dla studentów nauk społecznych.
+
+## Czym są Statystyka i Nauka o Danych?
+
+::: callout-important
+Statystyka i data science to sztuka i nauka (o metodach, technikach lub narzędziach) uczenia się z danych.
+:::
+
+1.  Nauka o danych i statystyka to potężne narzędzia, które pomagają nam zrozumieć złożone zjawiska w różnych naukach społecznych, w tym w politologii, ekonomii i socjologii. Te uzupełniające się dziedziny dostarczają badaczom i praktykom środków do analizy trendów, zachowań i wyników w społeczeństwie, oferując wgląd, który może kształtować politykę i pogłębiać nasze zrozumienie ludzkich zachowań.
+
+2.  Statystyka dostarcza matematycznych podstaw do analizy trendów i wyników społecznych, oferując metody projektowania badań, podsumowywania danych i wyciągania wniosków. Nauka o danych rozszerza tę podstawę, włączając metody obliczeniowe i wiedzę dziedzinową, aby radzić sobie z większymi zbiorami danych i przeprowadzać bardziej złożone analizy.
+
+3.  Razem te dyscypliny pozwalają nam zbierać i przetwarzać duże zbiory danych, wizualizować złożone informacje, odkrywać wzorce w interakcjach społecznych, oceniać wpływ polityk i wspierać podejmowanie decyzji opartych na dowodach. Ich zastosowania są rozległe i zróżnicowane, od badania wzorców głosowania i analizy wskaźników ekonomicznych po badanie nierówności społecznych i analizę zachowań ludzkich.
+
+4.  W miarę jak nasz świat staje się coraz bardziej oparty na danych, znaczenie nauki o danych i statystyki w naukach społecznych nadal rośnie.
+
+::: callout-note
+W naukach społecznych nauka o danych łączy metody statystyczne, narzędzia obliczeniowe i wiedzę dziedzinową do analizy złożonych zjawisk społecznych i zachowań ludzkich.
+:::
+
+## Związek Między Statystyką a Nauką o Danych
+
+Statystyka i data science to ściśle powiązane dziedziny o znaczącym nakładaniu się, szczególnie w naukach społecznych. Zamiast ścisłego podziału, trafniej jest postrzegać je jako komplementarne podejścia na pewnym kontinuum:
+
+::: panel-tabset
+### Tradycyjna Statystyka
+
+-   Zakorzeniona w teoriach matematycznych i metodach analizy danych
+-   Kładzie nacisk na wnioskowanie statystyczne, testowanie hipotez i teorię prawdopodobieństwa
+-   Historycznie kluczowa w naukach społecznych do analizy badań ankietowych, eksperymentów i badań obserwacyjnych
+
+### Nowoczesna Data Science
+
+-   Integruje metody statystyczne z nauką o komputerach i wiedzą dziedzinową
+-   Poszerza fokus o uczenie maszynowe, przetwarzanie big data i modelowanie predykcyjne
+-   W naukach społecznych często zajmuje się wielkoskalowymi danymi cyfrowymi i złożonymi zbiorami danych behawioralnych
+
+### Ewoluujący Krajobraz
+
+-   Granice między statystyką a data science są coraz bardziej rozmyte
+-   Wiele technik i narzędzi jest wspólnych dla obu dziedzin
+-   Naukowcy społeczni często łączą tradycyjne podejścia statystyczne z nowszymi metodami data science
+-   Wybór podejścia zależy od pytań badawczych, charakterystyki danych i konkretnych potrzeb analitycznych
+:::
+
+Nauka o danych może być postrzegana jako wynik ewolucji i rozszerzenie tradycyjnej statystyki, włączając nowe technologie i metody do obsługi większych i bardziej złożonych zbiorów danych w naukach społecznych.
+
+## Podstawowe Koncepcje w Nauce o Danych i Statystyce
+
+### Dane i Populacje (Data and Populations) oraz pojęcia pokrewne
+
+::: callout-important
+1.  **Dane**: Obserwacje lub pomiary zebrane z próby lub populacji.
+
+2.  **Populacja**: Cały zbiór osób lub elementów badanych w określonym czasie.
+
+    -   Przykład: Wszyscy uprawnieni wyborcy w kraju podczas konkretnego roku wyborczego.
+
+3.  **Próba**: Podzbiór populacji, który jest faktycznie mierzony. Reprezentatywna próba to podzbiór większej populacji, który dokładnie odzwierciedla cechy tej populacji. Próba powinna odzwierciedlać populację pod względem ważnych cech, takich jak wiek, płeć, status społeczno-ekonomiczny itp. Często wykorzystuje metody losowego doboru próby, aby uniknąć stronniczości. Jest wystarczająco duża, aby być statystycznie istotna, ale mniejsza niż cała populacja.
+
+    -   Przykład: 1500 losowo wybranych uprawnionych wyborców ankietowanych w przedwyborczym sondażu.
+:::
+
+::: callout-important
+**Proces Generowania Danych (PGD) i Superpopulacja: Rozszerzenie Tradycyjnych Koncepcji**
+
+W tradycyjnej statystyce często pracujemy z dwoma kluczowymi pojęciami:
+
+-   **Populacja**: Cała grupa, którą chcemy badać.
+-   **Próba**: Podzbiór populacji, który faktycznie obserwujemy i analizujemy.
+
+Chociaż te pojęcia są fundamentalne, współczesne badania często wymagają myślenia wykraczającego poza ten dychotomiczny podział. Tu wkraczają koncepcje Procesu Generowania Danych (PGD) i superpopulacji, rozszerzając nasze rozumienie danych i populacji.
+
+**Proces Generowania Danych (PGD; Data Generating Process, DGP)**:
+
+PGD to podstawowy mechanizm, który produkuje dane obserwowane w rzeczywistym świecie, zarówno w naszej próbie, jak i w całej populacji.
+
+Intuicyjne wyjaśnienie: Wyobraź sobie PGD jako złożony system, który przyjmuje różne dane wejściowe i produkuje obserwowalne wyniki. To "czarna skrzynka", która przekształca przyczyny w skutki, nie tylko dla naszej próby, ale dla całej populacji i poza nią.
+
+Przykład: Rozważmy badanie zachowań wyborczych. Tradycyjne podejście mogłoby zdefiniować populację jako "wszyscy zarejestrowani wyborcy" i pobrać z tej grupy próbę. PGD natomiast obejmowałby czynniki takie jak cechy demograficzne, warunki ekonomiczne, wydarzenia polityczne i wpływ mediów, które kształtują zachowania wyborcze wszystkich wyborców, niezależnie od tego, czy zostali uwzględnieni w próbie, czy nie.
+
+**Superpopulacja**:
+
+Superpopulacja to teoretyczna koncepcja, która wykracza zarówno poza próbę, jak i obserwowalną populację, obejmując wszystkie potencjalne wyniki, które mogłyby wystąpić w podobnych warunkach lub procesach.
+
+Przykłady:
+
+1.  Podejście tradycyjne vs. podejście superpopulacyjne:
+
+    -   Tradycyjne: populacja (wszyscy zarejestrowani wyborcy w województwie), próba (1000 ankietowanych wyborców)
+    -   Superpopulacja: Wszyscy możliwi wyborcy i scenariusze głosowania, w tym przyszłe wybory i hipotetyczne konteksty polityczne
+
+2.  Gdy próba równa się populacji:
+
+    W badaniach wszystkich 16 województw Polski:
+
+    -   Tradycyjne spojrzenie: Brak rozróżnienia między próbą a populacją
+    -   Spojrzenie superpopulacyjne: Traktuje te 16 województw jako "próbę" z teoretycznego zbioru wszystkich możliwych interakcji między województwami a polityką
+
+Zastosowanie w rzeczywistości: Załóżmy, że badacze studiują wpływ nowej polityki planowania urbanistycznego w kilku miastach:
+
+-   Podejście tradycyjne:
+
+    -   Populacja: Wszystkie miasta w kraju
+    -   Próba: Miasta uwzględnione w badaniu
+
+-   Podejście superpopulacyjne:
+
+    -   Obserwowane dane: Miasta w badaniu
+    -   Superpopulacja: Wszystkie miasta (istniejące lub potencjalne), w których można by zastosować podobne zasady planowania urbanistycznego
+
+PGD (DGP) w tym przypadku byłby złożonym zestawem czynników, które determinują, jak polityki planowania urbanistycznego wpływają na wyniki miast, mające zastosowanie nie tylko do badanych miast czy nawet wszystkich istniejących miast, ale do szerszej koncepcji "miasta" jako takiego.
+
+Ważne kwestie do rozważenia:
+
+1.  Zakres i ograniczenia: Badacze powinni jasno określić, jakie jednostki lub procesy starają się zrozumieć, wykraczając poza samo opisanie próby i populacji.
+
+2.  Możliwość uogólnienia: Przy formułowaniu wniosków dotyczących superpopulacji, badacze powinni wyraźnie określić granice, w których ich ustalenia mają zastosowanie.
+
+3.  Specyfika kontekstu: Chociaż koncepcja superpopulacji pozwala na szersze wnioskowanie niż tradycyjne pobieranie próbek, ważne jest, aby zdawać sobie sprawę, że PGD może się różnić w zależności od kontekstu.
+
+**Przykład podsumowujący**: Jakość Pizzy w Nowym Jorku
+
+Populacja: Wszystkie obecnie działające pizzerie w Nowym Jorku. To skończona, policzalna grupa lokali istniejących w danym momencie.
+
+Próba: Wybór 50 pizzerii losowo wybranych z różnych dzielnic Nowego Jorku. To konkretne pizzerie, w których badacze będą degustować i oceniać pizze.
+
+Superpopulacja: Wszystkie możliwe pizzerie, które mogłyby istnieć w Nowym Jorku, w tym:
+
+-   Obecnie działające pizzerie
+-   Przyszłe pizzerie, które jeszcze nie zostały otwarte
+-   Pizzerie, które zostały zamknięte
+-   Hipotetyczne pizzerie, które mogłyby istnieć w innych warunkach ekonomicznych lub kulturowych
+
+Koncepcja superpopulacji pozwala nam myśleć o jakości pizzy wykraczając poza obecny "zrzut ekranu" nowojorskich pizzerii.
+
+Proces Generowania Danych (PGD): PGD to złożony zestaw czynników, które przyczyniają się do jakości pizzy w każdej pizzerii. Może to obejmować:
+
+1.  Składniki: Jakość i źródło mąki, pomidorów, sera itp.
+2.  Umiejętności szefa kuchni: Szkolenie, doświadczenie i osobiste podejście pizzaiolo
+3.  Sprzęt: Rodzaj i stan pieca, używane narzędzia
+4.  Przepis: Proporcje składników, metody przygotowania
+5.  Czynniki środowiskowe: Wilgotność, jakość wody w Nowym Jorku
+6.  Wpływy kulturowe: Lokalne tradycje robienia pizzy, preferencje klientów
+7.  Czynniki ekonomiczne: Koszty składników, ceny wynajmu wpływające na decyzje biznesowe
+
+PGD jest jak "przepis na jakość pizzy", który ma zastosowanie nie tylko do naszej próby czy nawet obecnej populacji, ale do wszystkich potencjalnych pizzerii w superpopulacji.
+
+Intuicyjne Wyjaśnienie:
+
+-   Jeśli odwiedzisz wszystkie obecnie działające pizzerie w Nowym Jorku i je ocenisz, zbadałeś populację.
+-   Jeśli losowo wybierzesz 50 pizzerii do odwiedzenia i oceny, pobrałeś próbę.
+-   Jeśli zastanawiasz się, jak jakość pizzy mogłaby się różnić we wszystkich możliwych nowojorskich pizzeriach (przeszłych, obecnych, przyszłych i hipotetycznych), myślisz o superpopulacji.
+-   Jeśli próbujesz zrozumieć wszystkie czynniki, które składają się na jakość pizzy w Nowym Jorku, niezależnie od tego, czy dana pizzeria obecnie istnieje czy nie, badasz Proces Generowania Danych.
+:::
+
+```{mermaid}
+graph TD
+    A[Data Generating Process DGP]
+    B(Population)
+    C[Sample]
+    A -->|Generates| B
+    B -->|Sampled from| C
+    C -.->|Inference| B
+    C -.->|Inference| A
+    B -.->|Inference| A
+    
+    classDef dgp fill:#f9f,stroke:#333,stroke-width:4px;
+    classDef pop fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef sam fill:#bfb,stroke:#333,stroke-width:2px;
+    
+    class A dgp;
+    class B pop;
+    class C sam;
+```
+
+::: callout-note
+## Objaśnienie diagramu PGD, Populacji i Próby
+
+Diagram przedstawia relacje między Procesem Generującym Dane (PGD), populacją i próbą, wraz ze ścieżkami wnioskowania:
+
+1.  Relacje bezpośrednie (ciągłe strzałki):
+    -   PGD generuje populację
+    -   Z populacji pobierane są próby
+2.  Ścieżki wnioskowania (przerywane strzałki):
+    -   Od Próby do Populacji: Tradycyjne wnioskowanie statystyczne
+    -   Od Próby do PGD: Wnioskowanie o podstawowym procesie na podstawie danych z próby
+    -   Od Populacji do PGD: Wnioskowanie o PGD przy użyciu pełnych danych populacji
+
+Na przykład, w naszym badaniu wpływu ordynacji wyborczej na frekwencję w polskich gminach (wybory samorządowe 1998-2010):
+
+-   Dysponujemy danymi dla całej populacji gmin, więc nie musimy wnioskować z próby o populacji.
+-   Skupiamy się na wykorzystaniu pełnych danych populacyjnych (prawa przerywana strzałka) do wnioskowania o leżącym u podstaw PGD—złożonych procesach, poprzez które ordynacja wyborcza wpływa na frekwencję wyborczą w gminach.
+-   Takie podejście pozwala nam potencjalnie zrozumieć mechanizmy, dzięki którym różne systemy wyborcze (np. reprezentacja proporcjonalna vs. większościowa) wpływają na poziom frekwencji, oraz formułować uzasadnione przewidywania o tym, jak zmiany w ordynacji wyborczej mogłyby wpłynąć na przyszłą frekwencję lub jak te efekty mogłyby się uogólniać na podobne konteksty.
+:::
+
+![Populacja vs. próba. Retrieved from: https://allmodelsarewrong.github.io/mse.html](stat_imgs/sampling-estimators.svg)
+
+Dane stanowią podstawę analizy statystycznej. Mogą być:
+
+-   Dane pierwotne (Primary data): Zebrane bezpośrednio w określonym celu
+-   Dane wtórne (Secondary data): Uzyskane z istniejących źródeł
+
+Przykład: W badaniu wzrostu studentów uniwersyteckich, populacją są wszyscy studenci uniwersyteccy w kraju, podczas gdy próba może składać się z 1000 losowo wybranych studentów.
+
+### Zmienne i Stałe (Variables and Constants)
+
+Zmienne to cechy, które mogą przyjmować różne wartości w zbiorze danych. Mogą być:
+
+1.  Ilościowe (Quantitative):
+    -   Ciągłe (Continuous): Wzrost, waga, temperatura
+    -   Dyskretne (Discrete): Liczba dzieci, liczba błędów w programie
+2.  Jakościowe (Qualitative):
+    -   Nominalne (Nominal): Grupa krwi, kolor oczu
+    -   Porządkowe (Ordinal): Poziom wykształcenia, ocena satysfakcji klienta
+
+Stałe to wartości, które pozostają niezmienne w trakcie analizy.
+
+#### Rodzaje Danych w Naukach Społecznych
+
+Badania w naukach społecznych zajmują się różnymi rodzajami danych:
+
+1.  **Dane Ilościowe**: Dane liczbowe (np. odpowiedzi z ankiet, wskaźniki ekonomiczne)
+2.  **Dane Jakościowe**: Dane nieliczbowe (np. transkrypcje wywiadów, odpowiedzi na pytania otwarte w ankietach)
+3.  **Big Data**: Dane cyfrowe na dużą skalę (np. posty w mediach społecznościowych, logi zachowań online)
+
+### Parametry Populacji i Estymanda (Population Parameters and Estimands)
+
+Parametry populacji to liczbowe charakterystyki populacji. Kluczowe punkty:
+
+1.  Opisują całą populację, nie tylko próbę.
+2.  Zwykle oznaczane są greckimi literami.
+3.  W większości przypadków nie mogą być bezpośrednio obliczone, ponieważ nie możemy zmierzyć całej populacji.
+4.  Są determinowane przez podstawowy Proces Generujący Dane (DGP).
+
+Typowe parametry populacji to:
+
+-   Średnia populacji (Population mean) ($\mu$): Średnia/oczekiwana wartość zmiennej w populacji.
+-   Wariancja populacji (Population variance) ($\sigma^2$): Miara zmienności w populacji.
+-   Proporcja populacji (Population proportion) ($p$): Proporcja osób w populacji posiadających daną cechę.
+
+Estymand (Estimand) to cel estymacji - konkretny parametr populacji lub funkcja parametrów, którą chcemy oszacować. Definiuje to, co chcemy wiedzieć o populacji.
+
+::: callout-note
+## Przykład: Wzrost Studentów Uniwersyteckich
+
+Rozważmy wzrost wszystkich studentów uniwersyteckich w kraju:
+
+-   $\mu$ (estymand): Prawdziwa średnia wysokość wszystkich studentów uniwersyteckich (średnia populacji)
+-   $\sigma^2$ (estymand): Prawdziwa wariancja wysokości w populacji
+
+Te parametry są nieznanymi estymandami, które chcemy oszacować na podstawie danych z próby.
+:::
+
+### Statystyki i Estymatory (Statistic(s) and Estimators)
+
+Statystyka (pojedyncza) lub statystyka z próby to dowolna wielkość obliczona na podstawie wartości z próby, która jest rozważana w celu statystycznym.
+
+Gdy statystyka jest używana do oszacowania estymandy (parametru populacji), nazywana jest estymatorem. Estymatory są funkcjami danych z próby, które dostarczają przybliżonych wartości dla nieznanych parametrów populacji.
+
+Przykłady statystyk/estymatorów:
+
+-   Średnia z próby (Sample mean): $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ (szacuje $\mu$)
+-   Wariancja z próby (Sample variance): $s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$ (szacuje $\sigma^2$)
+-   Proporcja z próby (Sample proportion): $\hat{p} = \frac{x}{n}$ (szacuje $p$)
+
+### Oszacowania (Estimates)
+
+Oszacowanie to konkretna wartość uzyskana przez zastosowanie estymatora do konkretnej próby. Jest to wartość punktowa, która przybliża prawdziwą estymandę (parametr populacji).
+
+Przykład: Jeśli obliczamy średnią wysokość z próby wynoszącą 173 cm, to 173 cm jest naszym oszacowaniem estymandy $\mu$ (średniej wysokości populacji).
+
+### Modele Statystyczne (Statistical Models)
+
+::: callout-note
+Model w nauce to uproszczona reprezentacja złożonego systemu lub zjawiska. Jest on ta zaprojektowany, aby pomóc nam zrozumieć, wyjaśnić i przewidywać zjawiska zachodzące w rzeczywistym świecie. Modele mogą przybierać różne formy, w tym równania matematyczne, symulacje komputerowe lub ramy koncepcyjne. Pozwalają naukowcom skupić się na kluczowych aspektach systemu, ignorując mniej istotne szczegóły, co sprawia, że złożone problemy stają się łatwiejsze do zrozumienia i badania.
+:::
+
+Modele statystyczne reprezentują relacje między zmiennymi i pomagają w przewidywaniu lub wnioskowaniu o estymandach (parametrach populacji).
+
+Przykład: Model regresji liniowej $y = \beta_0 + \beta_1x + \epsilon$ opisuje relację między zmienną niezależną $x$ a zmienną zależną $y$, gdzie:
+
+-   $y$ to zmienna zależna (np. wielkość popytu na dobro)
+-   $x$ to zmienna niezależna (np. cena lub dochód konsumenta)
+-   $\beta_0$ i $\beta_1$ to parametry, estymandy do oszacowania
+-   $\epsilon$ to składnik błędu, reprezentujący niewyjaśnioną zmienność
+
+::: callout-note
+## Wnioskowanie przyczynowe i kontrfakty
+
+W naukach społecznych często chcemy zrozumieć **co by się stało**, gdybyśmy podjęli inne działanie - ten hipotetyczny scenariusz nazywamy *kontrfaktem/wynikiem kontrfaktycznym*. Na przykład:
+
+-   Jakie byłyby zarobki danej osoby, gdyby poszła na studia vs. gdyby nie poszła?
+-   Jak zmieniłaby się frekwencja wyborcza, gdyby głosowanie było obowiązkowe?
+
+Ponieważ nie możemy obserwować obu scenariuszy jednocześnie, modele statystyczne pomagają nam oszacować te kontrfakty poprzez:
+
+1.  Kontrolowanie zmiennych zakłócających (*confounders*)
+2.  Porównywanie podobnych grup, które różnią się tylko badanym czynnikiem
+3.  Wykorzystanie technik takich jak dopasowanie według współczynnika skłonności czy zmienne instrumentalne
+
+![Fundamentalny problem wnioskowania przyczynowego: We can think of causal inference as a PREDICTION problem. How could we predict the counterfactual given that we never observe it?](stat_imgs/meme_horse.svg)
+
+Pamiętaj: Korelacja ≠ Przyczynowość, ale staranny projekt badawczy i metody statystyczne mogą pomóc nam formułować wnioski przyczynowe.
+
+![Confounding bias and spurious correlation (https://www.bradyneal.com/causal-inference-course) drinking the night before is a common cause of sleeping with shoes on and waking up with a headache :-)](stat_imgs/IMG_4337.jpg)
+
+![Reverse causality: https://ff13.fastforwardlabs.com/](stat_imgs/ff13-23.png)
+:::
+
+### Wnioskowanie (Inference)
+
+Wnioskowanie statystyczne to proces wyciągania wniosków o estymandach (parametrach populacji) na podstawie danych z próby. Obejmuje dwa główne typy:
+
+1.  Estymacja (Estimation): Używanie statystyk z próby (estymatorów) do oszacowania estymand (parametrów populacji)
+2.  Testowanie hipotez (Hypothesis testing): Podejmowanie decyzji o estymandach na podstawie dowodów z próby
+
+::: callout-note
+## Estymacja i testowanie hipotez: wstęp
+
+1.  **Estymacja**
+
+Estymacja polega na określeniu prawdopodobnej wartości parametru populacji na podstawie danych z próby. W kontekście rozkładu dwumianowego możemy być zainteresowani oszacowaniem prawdopodobieństwa sukcesu (p) dla określonego zdarzenia.
+
+**Przykład: Rzucanie monetą**
+
+Powiedzmy, że rzucamy monetą 100 razy i chcemy oszacować prawdopodobieństwo wypadnięcia orła.
+
+-   Rzucamy monetą 100 razy i obserwujemy 55 orłów.
+-   Nasze punktowe oszacowanie p (prawdopodobieństwo wypadnięcia orła) wynosi 55/100 = 0,55
+-   Możemy również obliczyć przedział ufności, np. 95% przedział ufności może wynosić (0,45; 0,65).
+
+Przedział ufności mówi nam o zakresie, w którym może leżeć prawdziwe prawdopodobieństwo. Mówiąc prościej: "Jesteśmy w 95% pewni, że prawdziwe prawdopodobieństwo wypadnięcia orła mieści się między 45% a 65%."
+
+Celem jest tutaj dostarczenie naszego najlepszego oszacowania prawdziwego prawdopodobieństwa wypadnięcia orła, wraz z zakresem prawdopodobnych wartości.
+
+**Ważne Pojęcia Teorii Estymacji:**
+
+a.  **Obciążenie (Bias)**
+
+Obciążenie odnosi się do tendencji estymatora do systematycznego przeszacowania lub niedoszacowania prawdziwej wartości parametru populacji (estymandy).
+
+-   Estymator nieobciążony to taki, którego średnia wartość (przy wielokrotnym powtórzeniu estymacji) jest równa prawdziwej wartości parametru.
+-   Obciążenie można rozumieć jako różnicę między średnią wartością estymatora a prawdziwą wartością parametru.
+
+b.  **Efektywność (Efficiency)**
+
+Efektywność odnosi się do precyzji estymatora. Bardziej efektywny estymator daje wyniki bliższe prawdziwej wartości parametru, czyli ma mniejsze rozproszenie wyników.
+
+-   Mierzona jest najczęściej wariancją estymatora (im mniejsza wariancja, tym większa efektywność)
+-   Dla nieobciążonych estymatorów efektywność często porównuje się za pomocą Błędu Średniokwadratowego (Mean Squared Error, MSE)
+
+2.  **Testowanie hipotez**
+
+Testowanie hipotez z kolei polega na podejmowaniu decyzji między dwoma konkurencyjnymi twierdzeniami dotyczącymi parametru populacji. Zazwyczaj mamy hipotezę zerową (H0) i hipotezę alternatywną (H1).
+
+**Przykład: Czy moneta jest uczciwa?**
+
+Korzystając z tego samego scenariusza rzucania monetą, powiedzmy, że chcemy sprawdzić, czy moneta jest uczciwa (p = 0,5), czy też stronnicza na korzyść orła (p \> 0,5).
+
+-   Hipoteza zerowa (H0): p = 0,5 (moneta jest uczciwa)
+-   Hipoteza alternatywna (H1): p \> 0,5 (moneta jest stronnicza na korzyść orła)
+-   Obserwujemy 55 orłów na 100 rzutów
+
+**P-wartość** i jak testowanie hipotez działa jako rodzaj **"probabilistycznego dowodu nie wprost"**:
+
+1.  Zaczynamy od założenia, że hipoteza zerowa (H0) jest prawdziwa. W tym przypadku zakładamy, że moneta jest uczciwa.
+
+2.  Następnie pytamy: "Jeśli moneta byłaby naprawdę uczciwa, jakie byłoby prawdopodobieństwo zaobserwowania 55 lub więcej orłów na 100 rzutów?"
+
+3.  To prawdopodobieństwo nazywa się wartością p. Jest to prawdopodobieństwo zaobserwowania naszych danych (lub bardziej ekstremalnych) przy założeniu, że hipoteza zerowa jest prawdziwa.
+
+4.  Jeśli to prawdopodobieństwo (wartość p) jest bardzo małe, mamy sprzeczność: zaobserwowaliśmy coś, co powinno być bardzo rzadkie, gdyby nasze założenie (H0) było prawdziwe.
+
+5.  Zwykle ustalamy próg zwany poziomem istotności (często 0,05 lub 5%) dla tego, co uważamy za "bardzo małe".
+
+6.  Jeśli wartość p jest mniejsza niż wybrany poziom istotności, odrzucamy H0. Wnioskujemy, że nasza obserwacja jest zbyt mało prawdopodobna przy H0, więc faworyzujemy hipotezę alternatywną.
+
+7.  Jeśli wartość p jest większa niż nasz poziom istotności, nie odrzucamy H0. Nie mamy wystarczających dowodów, aby stwierdzić, że moneta jest stronnicza.
+
+Ten proces jest jak **"probabilistyczny dowód nie wprost"**, ponieważ:
+
+-   Zaczynamy od założenia H0 (podobnie jak zakładamy przeciwieństwo tego, co chcemy udowodnić w dowodzie nie wprost).
+-   Sprawdzamy, czy to założenie prowadzi do bardzo mało prawdopodobnej sytuacji (naszych zaobserwowanych danych).
+-   Jeśli tak, odrzucamy założenie (H0) i faworyzujemy alternatywę.
+
+Wartość p dokładnie określa, jak mało prawdopodobna jest nasza obserwacja przy założeniu H0. Bardzo mała wartość p (np. 0,01) oznacza: "Gdyby H0 była prawdziwa, spodziewalibyśmy się zobaczyć tak ekstremalne dane tylko około 1% czasu."
+
+**Testowanie hipotez i estymacja to powiązane, ale odrębne procedury statystyczne; testowanie hipotez może być wykorzystane do wyciągania wniosków o oszacowaniach i może uzupełniać estymację na kilka sposobów, np.**:
+
+-   Testowanie oszacowań punktowych: Testowanie hipotez może być wykorzystane do oceny, czy oszacowanie punktowe różni się istotnie od hipotetycznej wartości. Na przykład, jeśli oszacujemy, że moneta ma prawdopodobieństwo 0,55 wypadnięcia orłem, możemy użyć testu hipotezy, aby określić, czy ta wartość różni się istotnie od 0,5 (uczciwa moneta).
+-   Istotność parametrów: W modelach wielowymiarowych, testy hipotez (takie jak testy t w regresji) mogą pomóc określić, które oszacowane parametry różnią się istotnie od zera, dając wgląd w to, które zmienne są ważne w modelu.
+:::
+
+### Relacje Między Pojęciami
+
+1.  Proces Generujący Dane (DGP - Data Generating Process) określa rzeczywiste wartości parametrów populacji (estymand).
+2.  Estymandy są szacowane za pomocą statystyk obliczonych na podstawie próby (estymatorów).
+3.  Jakość estymatorów ocenia się na podstawie właściwości takich jak obciążenie i efektywność w szacowaniu estymandy.
+4.  Modele statystyczne wykorzystują oszacowane parametry do opisania relacji między zmiennymi w populacji.
+5.  Wnioskowanie statystyczne polega na wyciąganiu wniosków o estymandach na podstawie danych z próby, wykorzystując właściwości estymatorów.
+
+::: callout-tip
+## Przykład: Badanie Zachowań Wyborczych
+
+-   **Populacja**: Wszyscy uprawnieni wyborcy w kraju
+-   **Estymanda**: $p$ = rzeczywista proporcja wyborców popierających danego kandydata
+-   **Próba**: 1000 losowo wybranych uprawnionych wyborców
+-   **Estymator**: $\hat{p}$ = proporcja wyborców z próby popierających kandydata
+-   **Oszacowanie**: Konkretna wartość $\hat{p}$ obliczona z próby (np. 0,52)
+-   **DGP**: Złożona interakcja czynników wpływających na decyzje wyborcze, takich jak przekonania polityczne, warunki ekonomiczne, ekspozycja na media i sieci społeczne.
+
+Zrozumienie DGP pomaga badaczom interpretować, dlaczego estymanda $p$ ma określoną wartość i jak może się zmieniać w czasie. Na przykład, nagła zmiana w gospodarce może wpłynąć na preferencje wyborców, zmieniając tym samym wartość $p$.
+
+**Obciążenie i efektywność w kontekście przykładu**:
+
+-   Jeśli $\hat{p}$ jest nieobciążonym estymatorem, oznacza to, że przy wielokrotnym powtórzeniu badania na różnych próbach, średnia wartość $\hat{p}$ będzie bliska rzeczywistej wartości $p$.
+-   Efektywność $\hat{p}$ określa, jak bardzo rozproszone są wyniki poszczególnych badań wokół tej średniej. Im mniejsze rozproszenie, tym estymator jest bardziej efektywny.
+:::
+
+## Główne Komponenty Nauki o Danych w Badaniach Naukowych
+
+::: panel-tabset
+### Zbieranie Danych
+
+-   Metody eksperymentalne: Kontrolowane badania, w których naukowcy manipulują zmiennymi, aby obserwować efekty
+-   Badania obserwacyjne: Gromadzenie danych poprzez obserwację i rejestrację bez ingerencji
+-   Ankiety i wywiady: Zbieranie informacji bezpośrednio od ludzi poprzez zadawanie pytań
+-   Cyfrowe zbieranie danych: Gromadzenie danych ze źródeł internetowych, czujników lub systemów komputerowych
+-   Aspekty etyczne: Zapewnienie, że badania respektują prawa i dobro uczestników
+
+### Przetwarzanie Danych
+
+-   Czyszczenie danych: Usuwanie błędów i niespójności z surowych danych
+-   Obsługa brakujących wartości: Radzenie sobie z lukami w zbiorze danych, które mogłyby wpłynąć na analizę
+-   Transformacja danych: Konwertowanie danych na formaty odpowiednie do analizy, np. zmiana tekstu na liczby
+
+### Eksploracyjna Analiza Danych (EDA)
+
+-   Statystyki opisowe: Podsumowanie danych za pomocą miar takich jak średnia, mediana i odchylenie standardowe
+-   Wizualizacja danych: Tworzenie wykresów i diagramów do wizualnego przedstawienia wzorców w danych
+-   Identyfikacja wzorców: Odkrywanie trendów lub zależności w danych
+
+### Wnioskowanie Statystyczne
+
+-   Testowanie hipotez: Wykorzystanie danych do oceny twierdzeń o populacjach
+-   Analiza regresji: Badanie zależności między zmiennymi i dokonywanie przewidywań
+-   Wnioskowanie przyczynowe: Określanie, czy jedna zmienna bezpośrednio wpływa na inną
+
+### Uczenie Maszynowe
+
+-   Uczenie nadzorowane: Trenowanie modeli do przewidywania wyników przy użyciu danych ze znanymi odpowiedziami
+-   Uczenie nienadzorowane: Znajdowanie ukrytych wzorców w danych bez predefiniowanych kategorii
+-   Przetwarzanie języka naturalnego (NLP): Nauczanie komputerów rozumienia i analizy ludzkiego języka
+
+### Wizualizacja Danych i Komunikacja
+
+-   Efektywne wizualizacje: Tworzenie czytelnych, informatywnych grafik do przedstawiania złożonych danych
+-   Komunikacja naukowa: Wyjaśnianie wyników różnym odbiorcom, od ekspertów po ogół społeczeństwa
+-   Pisanie naukowe: Przygotowywanie artykułów i raportów naukowych w celu dzielenia się wynikami
+
+### Powtarzalność i Otwarta Nauka
+
+-   Kontrola wersji: Śledzenie zmian w danych i kodzie w trakcie procesu badawczego
+-   Praktyki otwartych danych: Udostępnianie danych i metod badawczych do weryfikacji i dalszych badań
+-   Powtarzalne procesy badawcze: Dokumentowanie kroków badawczych, aby inni mogli powtórzyć badanie
+:::
+
+## Narzędzia do Nauki o Danych w Naukach Społecznych
+
+W tym kursie będziemy głównie używać R do naszej analizy danych, ponieważ jest on szeroko stosowany w badaniach nauk społecznych.
+
+### R w Analizie Danych Nauk Społecznych
+
+R oferuje potężne możliwości dla badań w naukach społecznych, od manipulacji danymi po zaawansowane modelowanie statystyczne.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Kliknij, aby pokazać/ukryć kod R"
+
+library(tidyverse)
+
+# Set seed for reproducibility
+set.seed(42)
+
+# Generate example data with a Simpson's Paradox
+n <- 1000
+data <- tibble(
+  age_group = sample(c("Young", "Middle", "Old"), n, replace = TRUE, prob = c(0.3, 0.4, 0.3)),
+  education_years = case_when(
+    age_group == "Young" ~ rnorm(n, mean = 10, sd = 1),
+    age_group == "Middle" ~ rnorm(n, mean = 13, sd = 1),
+    age_group == "Old" ~ rnorm(n, mean = 16, sd = 1)
+  ),
+  income = case_when(
+    age_group == "Young" ~ 70000 + 1000 * education_years + rnorm(n, mean = 0, sd = 5000),
+    age_group == "Middle" ~ 50000 + 1000 * education_years + rnorm(n, mean = 0, sd = 5000),
+    age_group == "Old" ~ 30000 + 1000 * education_years + rnorm(n, mean = 0, sd = 5000)
+  )
+)
+
+# Basic data summary
+summary(data)
+
+# Correlation analysis
+cor(data %>% select(education_years, income))
+
+# Overall trend (Simpson's Paradox)
+overall_plot <- ggplot(data, aes(x = education_years, y = income)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "Overall Relationship between Education and Income",
+       subtitle = "Simpson's Paradox: Appears negative",
+       x = "Years of Education", y = "Income") +
+  theme_minimal()
+
+# Trend by age group (Resolving Simpson's Paradox)
+grouped_plot <- ggplot(data, aes(x = education_years, y = income, color = age_group)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Relationship between Education and Income by Age Group",
+       subtitle = "Resolving Simpson's Paradox: Positive relationship within groups",
+       x = "Years of Education", y = "Income") +
+  theme_minimal()
+
+# Statistical analysis
+model_overall <- lm(income ~ education_years, data = data)
+model_by_age <- lm(income ~ education_years + age_group, data = data)
+
+# Print results
+print(overall_plot)
+print(grouped_plot)
+print(summary(model_overall))
+print(summary(model_by_age))
+
+# Calculate and print correlations
+overall_cor <- cor(data$education_years, data$income)
+group_cors <- data %>%
+  group_by(age_group) %>%
+  summarize(correlation = cor(education_years, income))
+
+print("Overall correlation:")
+print(overall_cor)
+print("Correlations by age group:")
+print(group_cors)
+```
+
+Ten przykład demonstruje podstawowe operacje na danych, statystyki opisowe i wizualizację danych przy użyciu R.
+
+Certainly. Here's the Polish version of the section on causal inference versus observational studies:
+
+## Wnioskowanie przyczynowe a badania obserwacyjne
+
+W naukach społecznych i nie tylko, zrozumienie relacji między zmiennymi jest kluczowe. Dwa główne podejścia to wnioskowanie przyczynowe i badania obserwacyjne, każde z własnymi mocnymi stronami i ograniczeniami.
+
+::: panel-tabset
+### Wnioskowanie przyczynowe
+
+-   Dąży do ustalenia związków przyczynowo-skutkowych
+-   Często obejmuje plany eksperymentalne lub zaawansowane techniki statystyczne
+-   Stara się odpowiedzieć na pytania "Co by było, gdyby?" i określić wpływ interwencji
+-   Przykłady: Randomizowane badania kontrolowane, projekty quasi-eksperymentalne, zmienne instrumentalne
+
+### Badania obserwacyjne
+
+-   Badają relacje między zmiennymi bez bezpośredniej interwencji
+-   Opierają się na danych zebranych w naturalnych warunkach lub z istniejących zbiorów danych
+-   Mogą identyfikować korelacje i wzorce, ale mają trudności z ustaleniem przyczynowości
+-   Przykłady: Badania kohortowe, badania kliniczno-kontrolne, przekrojowe badania ankietowe
+
+### Kluczowe rozróżnienie: Korelacja vs. Przyczynowość
+:::
+
+::: callout-important
+## Pamiętaj: Korelacja nie implikuje przyczynowości
+
+Fundamentalna zasada w badaniach głosi, że korelacja między dwiema zmiennymi niekoniecznie implikuje związek przyczynowy. Ta koncepcja jest kluczowa przy interpretacji wyników badań obserwacyjnych.
+
+-   **Korelacja**: Mierzy siłę i kierunek związku między zmiennymi
+-   **Przyczynowość**: Wskazuje, że zmiany w jednej zmiennej bezpośrednio powodują zmiany w drugiej
+
+Chociaż silne korelacje mogą sugerować potencjalne związki przyczynowe, do ustalenia przyczynowości wymagane są dodatkowe dowody i rygorystyczne metody.
+:::
+
+::: panel-tabset
+### Wyzwania w ustalaniu przyczynowości
+
+-   Zmienne zakłócające: Niezmierzone czynniki wpływające zarówno na domniemaną przyczynę, jak i skutek
+-   Odwrotna przyczynowość: Domniemany skutek może w rzeczywistości powodować domniemaną przyczynę
+-   Błąd selekcji: Nielosowy dobór uczestników do grup badawczych
+
+### Metody wzmacniania twierdzeń przyczynowych
+
+1.  Randomizowane badania kontrolowane (gdy są etyczne i wykonalne)
+2.  Naturalne eksperymenty lub projekty quasi-eksperymentalne
+3.  Dopasowanie według propensity score
+4.  Analiza różnicy w różnicach
+5.  Podejścia oparte na zmiennych instrumentalnych
+6.  Skierowane grafy acykliczne (DAG) do wizualizacji relacji przyczynowych
+
+### Znaczenie w naukach społecznych
+
+Zrozumienie różnicy między wnioskowaniem przyczynowym a badaniami obserwacyjnymi jest kluczowe w naukach społecznych, gdzie względy etyczne często ograniczają manipulacje eksperymentalne. Badacze muszą starannie projektować badania i interpretować wyniki, aby uniknąć wprowadzających w błąd wniosków dotyczących przyczynowości.
+:::
+
+## Modele w Nauce: Od Deterministycznych do Stochastycznych
+
+Modele są niezbędnymi narzędziami w badaniach naukowych, pomagając naukowcom reprezentować, rozumieć i przewidywać złożone zjawiska. Ta sekcja omawia główne typy modeli stosowanych w nauce, wraz z przykładami ich zastosowań. Należy pamiętać, że te kategorie często się nakładają, a wiele modeli naukowych łączy w sobie różne aspekty.
+
+### Modele Matematyczne
+
+Modele matematyczne wykorzystują równania i koncepcje matematyczne do opisywania i analizowania systemów lub zjawisk. Można je podzielić na kilka podkategorii, choć należy pamiętać, że niektóre złożone modele mogą zawierać elementy z wielu kategorii:
+
+#### a. Modele Deterministyczne
+
+Modele deterministyczne dostarczają precyzyjnych przewidywań na podstawie zestawu zmiennych, bez uwzględniania losowości na poziomie makroskopowym.
+
+**Przykład:** Prawa ruchu Newtona, które mogą precyzyjnie przewidzieć ruch obiektów pod wpływem znanych sił w mechanice klasycznej.
+
+#### b. Modele Stochastyczne
+
+Modele stochastyczne uwzględniają losowość i prawdopodobieństwo. Jednak kluczowe jest rozróżnienie dwóch fundamentalnie różnych typów modeli stochastycznych:
+
+##### i. Klasyczne Modele Stochastyczne
+
+Te modele zajmują się losowością wynikającą z niepełnej informacji lub złożonych interakcji w systemach klasycznych. Podstawowy system jest deterministyczny, ale praktyczne ograniczenia w pomiarach lub obliczeniach prowadzą do użycia opisów probabilistycznych.
+
+**Przykład:** Modele regresji w statystyce, gdzie losowość reprezentuje niewyjaśnioną zmienność lub błąd pomiaru:
+
+$$y = β_0 + β_1x + ε$$
+
+Gdzie:
+
+-   $y$ to zmienna zależna (np. wielkość popytu na dobro)
+-   $x$ to zmienna niezależna (np. cena lub dochód konsumenta)
+-   $β_0$ i $β_1$ to parametry
+-   $ε$ to składnik błędu, reprezentujący niewyjaśnioną zmienność
+
+##### ii. Kwantowe Modele Stochastyczne
+
+Te modele zajmują się fundamentalną, nieredukowalną losowością nieodłącznie związaną z systemami mechaniki kwantowej. Ta losowość nie wynika z braku informacji, ale jest podstawową cechą rzeczywistości kwantowej.
+
+**Przykład:** Model Standardowy w fizyce cząstek elementarnych, który opisuje interakcje cząstek za pomocą kwantowej teorii pola. Na przykład, rozpad cząstki jest z natury probabilistyczny:
+
+$$P(t) = e^{-t/τ}$$
+
+Gdzie:
+
+-   $P(t)$ to prawdopodobieństwo, że cząstka nie rozpadła się po czasie t
+-   $τ$ to średni czas życia cząstki
+
+#### c. Modele Symulacji Komputerowych
+
+Symulacje komputerowe wykorzystują algorytmy i metody obliczeniowe oparte na modelach matematycznych do symulowania złożonych systemów i przewidywania ich zachowania w czasie. Mogą być deterministyczne lub stochastyczne.
+
+**Przykład:** Modele klimatyczne symulujące system klimatyczny Ziemi, uwzględniające czynniki takie jak skład atmosfery, prądy oceaniczne i promieniowanie słoneczne do prognozowania przyszłych scenariuszy klimatycznych.
+
+### Modele Koncepcyjne
+
+Modele koncepcyjne to abstrakcyjne reprezentacje systemów lub procesów, często wykorzystujące diagramy lub schematy blokowe do ilustrowania relacji między komponentami.
+
+**Przykład:** Model obiegu wody w naukach o Ziemi, który ilustruje ciągły ruch wody w obrębie Ziemi i atmosfery poprzez procesy takie jak parowanie, opady i spływ powierzchniowy.
+
+### Modele Fizyczne
+
+Modele fizyczne to namacalne reprezentacje obiektów lub systemów, często w formie pomniejszonej lub uproszczonej wersji rzeczywistego obiektu.
+
+**Przykład:** Modele tunelu aerodynamicznego w badaniach aerodynamiki, używane do badania efektów przepływu powietrza wokół obiektów stałych i optymalizacji projektów samolotów, pojazdów lub budynków.
+
+### Modele Teoretyczne
+
+Modele teoretyczne to abstrakcyjne ramy oparte na fundamentalnych zasadach i hipotezach, często używane do wyjaśniania obserwowanych zjawisk lub przewidywania nowych. Te modele często wykorzystują równania matematyczne i mogą być deterministyczne lub stochastyczne.
+
+**Przykład:** Teoria ewolucji poprzez dobór naturalny, która dostarcza ram do zrozumienia różnorodności i adaptacji form życia w czasie.
+
+### Podsumowanie
+
+Te różne formy modeli odgrywają kluczową rolę w badaniach naukowych, każda oferując unikalne zalety dla zrozumienia i przewidywania zjawisk naturalnych. Naukowcy często używają wielu typów modeli jednocześnie, aby uzyskać kompleksowy wgląd w złożone systemy i procesy.
+
+Ważne jest, aby zdawać sobie sprawę, że te kategorie nie są wzajemnie wykluczające i często się nakładają:
+
+1.  Modele matematyczne stanowią podstawę dla wielu innych typów modeli, w tym symulacji komputerowych i niektórych modeli teoretycznych.
+2.  Modele symulacji komputerowych są zasadniczo modelami matematycznymi implementowanymi za pomocą metod obliczeniowych i mogą być deterministyczne lub stochastyczne.
+3.  Modele teoretyczne często wykorzystują sformułowania matematyczne i mogą być implementowane jako symulacje komputerowe.
+4.  Modele fizyczne mogą być projektowane na podstawie modeli matematycznych i mogą być używane do walidacji symulacji komputerowych.
+
+Wybór typu modelu często zależy od konkretnego pytania badawczego, natury badanego systemu, dostępnych danych oraz zasobów obliczeniowych. W miarę postępu nauki granice między tymi typami modeli coraz bardziej się zacierają, prowadząc do coraz bardziej wyrafinowanych i interdyscyplinarnych podejść do modelowania złożonych zjawisk.
+
+Kluczowe jest rozróżnienie różnych typów modeli stochastycznych. Klasyczne modele stochastyczne, takie jak te używane w analizie regresji, zajmują się losowością wynikającą z niepełnej informacji lub złożonych interakcji w systemach, które są zasadniczo deterministyczne. Z drugiej strony, kwantowe modele stochastyczne, jak te w fizyce cząstek, zajmują się fundamentalną, nieredukowalną losowością nieodłącznie związaną z systemami mechaniki kwantowej. To rozróżnienie odzwierciedla głębokie różnice między klasycznymi a kwantowymi paradygmatami w fizyce i podkreśla różnorodne sposoby, w jakie prawdopodobieństwo jest wykorzystywane w modelowaniu naukowym.
+
+## Zrozumienie Pozornych Korelacji, Zmiennych Zakłócających i Kolizyjnych (\*)
+
+W tej sekcji zbadamy trzy ważne pojęcia w analizie statystycznej: pozorne korelacje, zmienne zakłócające i zmienne kolizyjne. Zrozumienie tych pojęć jest kluczowe dla uniknięcia błędnej interpretacji danych i wyciągania nieprawidłowych wniosków z analiz statystycznych.
+
+Zacznijmy od załadowania niezbędnych bibliotek:
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(dagitty)
+library(ggdag)
+set.seed(123) # dla powtarzalności
+```
+
+### Pozorne Korelacje
+
+Pozorne korelacje to związki między zmiennymi, które wydają się przyczynowe, ale w rzeczywistości są przypadkowe lub spowodowane przez niewidoczny trzeci czynnik.
+
+#### Przykład: Sprzedaż lodów a przypadki utonięć
+
+Stwórzmy zbiór danych, który pokazuje pozorną korelację między sprzedażą lodów a przypadkami utonięć:
+
+```{r}
+#| label: spurious-data
+
+n <- 100
+dane_pozorne <- tibble(
+  temperatura = rnorm(n, mean = 25, sd = 5),
+  sprzedaz_lodow = 100 + 5 * temperatura + rnorm(n, sd = 10),
+  przypadki_utoniec = 1 + 0.5 * temperatura + rnorm(n, sd = 2)
+)
+
+ggplot(dane_pozorne, aes(x = sprzedaz_lodow, y = przypadki_utoniec)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Pozorna Korelacja: Sprzedaż Lodów vs Przypadki Utonięć",
+       x = "Sprzedaż Lodów", y = "Przypadki Utonięć")
+```
+
+Ten wykres pokazuje pozytywną korelację między sprzedażą lodów a przypadkami utonięć. Jednak ta relacja jest pozorna. Prawdziwą przyczyną obu zjawisk jest temperatura:
+
+```{r}
+#| label: spurious-explanation
+
+ggplot(dane_pozorne, aes(x = temperatura)) +
+  geom_point(aes(y = sprzedaz_lodow), color = "blue") +
+  geom_point(aes(y = przypadki_utoniec * 10), color = "red") +
+  geom_smooth(aes(y = sprzedaz_lodow), method = "lm", se = FALSE, color = "blue") +
+  geom_smooth(aes(y = przypadki_utoniec * 10), method = "lm", se = FALSE, color = "red") +
+  scale_y_continuous(
+    name = "Sprzedaż Lodów",
+    sec.axis = sec_axis(~./10, name = "Przypadki Utonięć")
+  ) +
+  labs(title = "Temperatura jako Wspólna Przyczyna",
+       x = "Temperatura")
+```
+
+### Zmienne Zakłócające
+
+Zmienna zakłócająca to zmienna, która wpływa zarówno na zmienną zależną, jak i niezależną, powodując pozorny związek.
+
+#### Przykład: Edukacja, Dochód i Wiek
+
+Stwórzmy zbiór danych, w którym wiek zakłóca relację między edukacją a dochodem:
+
+```{r}
+#| label: confounder-data
+
+library(tidyverse)
+library(viridis)
+
+n <- 1000
+confounder_data <- tibble(
+  age = runif(n, 25, 65),
+  education = round(10 + 0.1 * age + rnorm(n, sd = 2)),
+  income = 20000 + 1000 * education + 500 * age + rnorm(n, sd = 5000)
+)
+
+# Without controlling for age
+model_naive <- lm(income ~ education, data = confounder_data)
+# Controlling for age
+model_adjusted <- lm(income ~ education + age, data = confounder_data)
+
+# Create age groups for visualization
+confounder_data <- confounder_data %>%
+  mutate(age_group = cut(age, breaks = 3, labels = c("Young", "Middle", "Old")))
+
+# Visualize
+ggplot(confounder_data, aes(x = education, y = income)) +
+  geom_point(aes(color = age), alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 1.2) +
+  geom_smooth(aes(group = age_group, color = as.numeric(age_group)), 
+              method = "lm", se = FALSE, linewidth = 1) +
+  scale_color_viridis_c(name = "Age", 
+                        breaks = c(30, 45, 60), 
+                        labels = c("Young", "Middle", "Old")) +
+  labs(title = "Education vs Income, Confounded by Age",
+       x = "Years of Education", y = "Income") +
+  theme_minimal()
+```
+
+Porównajmy współczynniki:
+
+```{r}
+#| label: confounder-models
+
+summary(model_naive)$coefficients["education", "Estimate"]
+summary(model_adjusted)$coefficients["education", "Estimate"]
+```
+
+Efekt edukacji na dochód jest przeszacowany, gdy nie kontrolujemy wieku.
+
+### Zmienne Kolizyjne
+
+Zmienna kolizyjna to zmienna, na którą wpływają zarówno zmienna niezależna, jak i zmienna zależna. Kontrolowanie zmiennej kolizyjnej może wprowadzić pozorną korelację.
+
+#### Przykład: Satysfakcja z pracy, Wynagrodzenie i Równowaga między pracą a życiem prywatnym
+
+Stwórzmy zbiór danych, w którym równowaga między pracą a życiem prywatnym jest zmienną kolizyjną między satysfakcją z pracy a wynagrodzeniem:
+
+```{r}
+#| label: collider-data
+
+n <- 1000
+dane_kolizyjne <- tibble(
+  satysfakcja_z_pracy = rnorm(n),
+  wynagrodzenie = rnorm(n),
+  rownowaga_praca_zycie = -0.5 * satysfakcja_z_pracy - 0.5 * wynagrodzenie + rnorm(n, sd = 0.5)
+)
+
+# Bez kontrolowania równowagi praca-życie
+model_poprawny <- lm(wynagrodzenie ~ satysfakcja_z_pracy, data = dane_kolizyjne)
+
+# Błędne kontrolowanie równowagi praca-życie
+model_kolizyjny <- lm(wynagrodzenie ~ satysfakcja_z_pracy + rownowaga_praca_zycie, data = dane_kolizyjne)
+
+# Wizualizacja
+ggplot(dane_kolizyjne, aes(x = satysfakcja_z_pracy, y = wynagrodzenie, color = rownowaga_praca_zycie)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  scale_color_viridis_c() +
+  labs(title = "Satysfakcja z Pracy vs Wynagrodzenie, Równowaga Praca-Życie jako Zmienna Kolizyjna",
+       x = "Satysfakcja z Pracy", y = "Wynagrodzenie")
+```
+
+Porównajmy współczynniki:
+
+```{r}
+#| label: collider-models
+
+summary(model_poprawny)$coefficients["satysfakcja_z_pracy", "Estimate"]
+summary(model_kolizyjny)$coefficients["satysfakcja_z_pracy", "Estimate"]
+```
+
+Kontrolowanie zmiennej kolizyjnej (równowaga praca-życie) wprowadza pozorną korelację między satysfakcją z pracy a wynagrodzeniem.
+
+### Podsumowanie
+
+Zrozumienie pozornych korelacji, zmiennych zakłócających i kolizyjnych jest kluczowe dla prawidłowej analizy statystycznej i wnioskowania przyczynowego. Zawsze rozważ podstawową strukturę przyczynową swoich danych i bądź ostrożny w kwestii tego, które zmienne kontrolujesz w swoich analizach.
+
+### Dalsza Lektura
+
+-   Pearl, J. (2009). Causality: Models, Reasoning, and Inference. Cambridge University Press.
+-   Hernán, M. A., & Robins, J. M. (2020). Causal Inference: What If. Boca Raton: Chapman & Hall/CRC.
+
+## Etyczne Aspekty w Analizie Danych Nauk Społecznych
+
+Etyka odgrywa kluczową rolę w badaniach nauk społecznych:
+
+1.  **Prywatność i Zgoda**: Zapewnienie prywatności uczestników i świadomej zgody
+2.  **Ochrona Danych**: Bezpieczne przechowywanie i zarządzanie wrażliwymi danymi osobowymi
+3.  **Błędy i Reprezentacja**: Adresowanie błędów próbkowania i zapewnienie różnorodnej reprezentacji
+4.  **Przejrzystość**: Jasne komunikowanie metod badawczych i ograniczeń
+5.  **Wpływ Społeczny**: Rozważanie potencjalnych społecznych implikacji wyników badań
+
+::: callout-warning
+Naukowcy społeczni muszą starannie rozważyć etyczne implikacje swoich praktyk zbierania, analizy i rozpowszechniania danych.
+:::
+
+### Kluczowe Wnioski
+
+1.  Nauka o danych w naukach społecznych bazuje na tradycyjnych metodach statystycznych, włączając nowe technologie do analizy złożonych zjawisk społecznych.
+2.  Zrozumienie koncepcji takich jak populacja, próba i procesy generowania danych jest kluczowe dla prawidłowych badań w naukach społecznych.
+3.  Proces nauki o danych w badaniach społecznych obejmuje wiele etapów, od etycznego zbierania danych po komunikację wniosków.
+4.  R jest potężnym narzędziem do analizy danych w naukach społecznych, oferującym szeroki zakres możliwości.
+5.  Aspekty etyczne powinny być na pierwszym planie każdego projektu związanego z danymi w naukach społecznych.
+
+## Appendix A: Losowość Klasyczna a Kwantowa: Zrozumienie Fundamentalnych Różnic
+
+Aby zrozumieć, jak losowość w mechanice kwantowej różni się od losowości reprezentowanej przez składnik błędu w modelach regresji, musimy przeanalizować ich pochodzenie, naturę i implikacje.
+
+### Pochodzenie Losowości
+
+#### Losowość Klasyczna (Modele Regresji)
+
+-   **Źródło**: Niekompletna informacja lub złożone interakcje w systemie, który w zasadzie jest deterministyczny.
+-   **Natura**: Niepewność epistemiczna (wynikająca z braku wiedzy).
+-   **Przykład**: W modelu regresji, $y = β_0 + β_1x + ε$, składnik błędu ε reprezentuje niewyjaśnioną zmienność.
+
+#### Losowość Kwantowa
+
+-   **Źródło**: Fundamentalna właściwość systemów kwantowych.
+-   **Natura**: Niepewność ontyczna (nieodłączna cecha systemu, nie wynika z braku wiedzy).
+-   **Przykład**: Dokładny moment rozpadu atomu radioaktywnego nie może być przewidziany, można określić jedynie jego prawdopodobieństwo.
+
+### Implikacje Filozoficzne
+
+#### Losowość Klasyczna
+
+-   **Determinizm**: Podstawowa rzeczywistość jest deterministyczna; losowość odzwierciedla naszą niewiedzę.
+-   **Ukryte Zmienne**: W zasadzie, gdybyśmy mieli pełną informację, moglibyśmy dokładnie przewidzieć wyniki.
+
+#### Losowość Kwantowa
+
+-   **Indeterminizm**: Losowość jest fundamentalną cechą rzeczywistości, nie tylko naszego jej opisu.
+-   **Brak Ukrytych Zmiennych**: Nawet przy pełnej informacji o systemie kwantowym, niektóre wyniki pozostają nieprzewidywalne (co sugeruje twierdzenie Bella).
+
+### Ujęcie Matematyczne
+
+#### Losowość Klasyczna
+
+-   **Teoria Prawdopodobieństwa**: Oparta na klasycznej teorii prawdopodobieństwa.
+-   **Rozkład**: Często zakłada się znane rozkłady (np. rozkład normalny w wielu modelach regresji).
+-   **Centralne Twierdzenie Graniczne**: Stosuje się do dużych prób zmiennych losowych.
+
+#### Losowość Kwantowa
+
+-   **Prawdopodobieństwo Kwantowe**: Oparte na matematycznych podstawach mechaniki kwantowej.
+-   **Funkcja Falowa**: Opisuje stan kwantowy i jego ewolucję.
+-   **Reguła Borna**: Określa prawdopodobieństwa wyników pomiarów na podstawie funkcji falowej.
+
+### Przewidywalność i Kontrola
+
+#### Losowość Klasyczna
+
+-   **Redukowalna**: W zasadzie można ją zmniejszyć, zbierając więcej danych lub poprawiając dokładność pomiarów.
+-   **Kontrolowalna**: Błędy systematyczne można zidentyfikować i skorygować.
+
+#### Losowość Kwantowa
+
+-   **Nieredukowalna**: Nie można jej wyeliminować nawet przy idealnych pomiarach.
+-   **Fundamentalnie Niekontrolowalna**: Sam akt pomiaru wpływa na system (problem pomiaru).
+
+### Praktyczne Implikacje
+
+#### Losowość Klasyczna
+
+-   **Redukcja Błędów**: Koncentracja na udoskonalaniu technik pomiarowych i zbierania danych.
+-   **Udoskonalanie Modelu**: Dążenie do wyjaśnienia większej wariancji i zmniejszenia składnika błędu.
+
+#### Losowość Kwantowa
+
+-   **Nieodłączne Ograniczenie**: Akceptacja fundamentalnych granic przewidywalności.
+-   **Przewidywania Probabilistyczne**: Skupienie na dokładnych rozkładach prawdopodobieństwa zamiast na dokładnych wynikach.
+
+### Przykłady Pomagające Zrozumieć Różnicę
+
+#### Przykład Losowości Klasycznej
+
+Wyobraź sobie rzut monetą. Fizyka klasyczna mówi, że wynik jest zdeterminowany przez warunki początkowe (przyłożona siła, opór powietrza itp.). "Losowość" wynika z naszej niezdolności do precyzyjnego zmierzenia i uwzględnienia wszystkich tych czynników.
+
+#### Przykład Losowości Kwantowej
+
+W eksperymencie z podwójną szczeliną pojedyncze cząstki wykazują wzory interferencyjne, jakby przechodziły przez obie szczeliny jednocześnie. Dokładna ścieżka każdej pojedynczej cząstki jest fundamentalnie nieokreślona do momentu pomiaru, a tej nieokreśloności nie można rozwiązać przez bardziej precyzyjne pomiary.
+
+### Podsumowanie
+
+Chociaż oba rodzaje losowości prowadzą do probabilistycznych przewidywań, ich fundamentalne natury są zupełnie różne:
+
+-   Losowość klasyczna w modelach regresji jest odzwierciedleniem naszej niepełnej wiedzy lub ograniczeń pomiarowych w systemie, który w zasadzie jest deterministyczny.
+-   Losowość kwantowa jest fundamentalną właściwością systemów kwantowych, reprezentującą nieodłączną nieokreśloność w naturze, która utrzymuje się nawet przy doskonałej wiedzy i pomiarze.
+
+Zrozumienie tych różnic jest kluczowe dla prawidłowej interpretacji i stosowania modeli statystycznych w różnych kontekstach naukowych, od nauk społecznych wykorzystujących analizę regresji po eksperymenty z fizyki kwantowej.
+
+## Appendix B: Duże Modele Językowe - Zrozumienie Ich Stochastycznej Natury
+
+Duże Modele Językowe (LLM), takie jak GPT-3, BERT i Claude, zrewolucjonizowały przetwarzanie języka naturalnego, ale mogą popełniać zagadkowe błędy, szczególnie w zadaniach matematycznych. Ten dodatek wyjaśnia funkcjonowanie LLM, ich stochastyczną naturę i porównuje je z klasycznymi modelami statystycznymi.
+
+### Podstawy LLM i Ich Stochastyczna Natura
+
+LLM są trenowane na ogromnych zbiorach danych tekstowych, aby przewidywać rozkład prawdopodobieństwa następnego tokenu w sekwencji. Wykorzystują architektury transformerowe do przetwarzania i generowania tekstu. Kluczowe aspekty ich stochastycznej natury obejmują:
+
+1.  Probabilistyczny wybór tokenów: LLM wybierają każde słowo na podstawie obliczonych prawdopodobieństw, a nie stałych reguł.
+2.  Losowość kontrolowana temperaturą: Parametr "temperatury" dostosowuje losowość wyborów, równoważąc kreatywność i spójność.
+3.  Niedeterministyczne wyniki: Te same dane wejściowe mogą prowadzić do różnych wyników w oddzielnych uruchomieniach.
+4.  Kontekstowa niejednoznaczność: LLM interpretują kontekst probabilistycznie, co czasami prowadzi do nieporozumień.
+
+### Porównanie z Klasycznymi Modelami Statystycznymi
+
+Aby lepiej zrozumieć LLM, porównajmy je z regresją Najmniejszych Kwadratów (OLS):
+
+| Aspekt | Regresja OLS | Duże Modele Językowe |
+|----|----|----|
+| Podstawowa funkcja | Przewiduje ciągłe wyniki na podstawie zmiennych wejściowych | Przewiduje rozkład prawdopodobieństwa następnego tokenu na podstawie poprzednich tokenów |
+| Wejście-Wyjście | Zmienne ciągłe, relacje liniowe | Dyskretne tokeny, relacje nieliniowe |
+| Typ predykcji | Predykcje punktowe z przedziałami ufności | Rozkłady prawdopodobieństwa dla możliwych tokenów |
+| Złożoność modelu | Niewiele parametrów | Miliardy parametrów |
+| Interpretowalność | Jasne interpretacje współczynników | Largely nieprzejrzyste działanie wewnętrzne |
+| Obsługa szumu | Zakłada losowy szum w zmiennej wynikowej | Radzi sobie ze zmiennością języka naturalnego |
+| Ekstrapolacja | Mniej wiarygodna poza zakresem treningu | Mniej wiarygodna dla nieznanych tematów |
+
+Oba modele dążą do nauczenia się mapowania wejścia-wyjścia na podstawie wzorców w danych treningowych.
+
+### Implikacje dla Zadań Matematycznych
+
+Stochastyczna natura LLM wpływa na operacje matematyczne:
+
+1.  Zmienne wyniki dla powtarzanych obliczeń: Każda próba może dać inny wynik ze względu na probabilistyczny wybór tokenów.
+2.  Pewność nie gwarantuje poprawności: Wysoka pewność modelu może wystąpić nawet dla niepoprawnych odpowiedzi.
+3.  Aproksymacja zamiast dokładnych obliczeń: LLM dopasowują wzorce zamiast wykonywać precyzyjne obliczenia.
+
+Ograniczenia w zadaniach matematycznych wynikają z:
+
+-   Niedopasowania celu treningu: LLM są trenowane do przewidywania języka, nie dokładności matematycznej.
+-   Braku jawnego rozumowania matematycznego: Nie mają wbudowanych reguł czy operacji matematycznych.
+-   Braku pamięci roboczej: LLM nie mogą niezawodnie przechowywać i manipulować wynikami pośrednimi.
+-   Ograniczonego okna kontekstowego: Mogą tracić istotne informacje w długich problemach.
+-   Ograniczeń danych treningowych: Niedoreprezentowanie pewnych koncepcji matematycznych może prowadzić do słabych wyników.
+-   Braku kontroli spójności: LLM nie weryfikują logicznej spójności swoich wyników.
+
+### Najlepsze Praktyki i Wnioski
+
+Przy korzystaniu z LLM do zadań matematycznych:
+
+1.  Skup się na wyjaśnieniach koncepcyjnych, nie na dokładnych obliczeniach: LLM doskonale wyjaśniają koncepcje, ale mogą zawodzić w dokładnych obliczeniach.
+2.  Weryfikuj wyniki dedykowanym oprogramowaniem: Zawsze sprawdzaj obliczenia LLM odpowiednimi narzędziami matematycznymi.
+3.  Rozbijaj złożone problemy: Podział zadań na mniejsze kroki może poprawić wydajność LLM.
+4.  Bądź świadomy efektów przeformułowania: Różne sformułowania tego samego problemu mogą dawać różne wyniki.
+5.  Używaj jako narzędzi wspomagających, nie zamienników dla ekspertyzy: LLM powinny uzupełniać, a nie zastępować wiedzę matematyczną.
+
+Zrozumienie probabilistycznej natury LLM pomaga wykorzystać ich mocne strony w zadaniach językowych, jednocześnie uznając ich ograniczenia w dziedzinach wymagających deterministycznej precyzji, takich jak matematyka.
+
+## Appendix C: Modele Deterministyczne a Modele Stochastyczne (\*)
+
+### Modele Deterministyczne
+
+Modele deterministyczne to te, w których wynik jest w pełni określony przez wartości parametrów i warunki początkowe. Modele te są często używane w fizyce i inżynierii.
+
+### Przykład: Ruch Jednostajnie Przyspieszony
+
+Klasycznym przykładem modelu deterministycznego jest ruch jednostajnie przyspieszony, opisany równaniem:
+
+$$x(t) = x_0 + v_0t + \frac{1}{2}at^2$$
+
+Gdzie:
+
+-   $x(t)$ to położenie w czasie $t$
+-   $x_0$ to położenie początkowe
+-   $v_0$ to prędkość początkowa
+-   $a$ to przyspieszenie
+-   $t$ to czas
+
+Zasymulujmy to w R:
+
+```{r}
+# Ruch jednostajnie przyspieszony
+symuluj_ruch_przyspieszony <- function(x0, v0, a, t) {
+  x0 + v0 * t + 0.5 * a * t^2
+}
+
+# Generowanie danych
+t <- seq(0, 10, by = 0.1)
+x <- symuluj_ruch_przyspieszony(x0 = 0, v0 = 2, a = 1, t = t)
+
+# Wykres
+plot(t, x, type = "l", xlab = "Czas", ylab = "Położenie", 
+     main = "Ruch Jednostajnie Przyspieszony")
+```
+
+Ten kod wygeneruje wykres ruchu jednostajnie przyspieszonego, który jest intuicyjnym przykładem z dynamiki Newtona. W tym przypadku obiekt zaczyna ruch z początkową prędkością i przyspiesza jednostajnie, co prowadzi do parabolicznej trajektorii na wykresie położenia w funkcji czasu.
+
+### Modele Stochastyczne w Naukach Społecznych
+
+Modele stochastyczne uwzględniają losowość i są często używane w naukach społecznych, gdzie istnieje nieodłączna niepewność w badanych systemach.
+
+### Przykład: Regresja Metodą Najmniejszych Kwadratów (OLS)
+
+OLS to podstawowy model stochastyczny w naukach społecznych. Jest reprezentowany jako:
+
+$$Y = \beta_0 + \beta_1X + \epsilon$$
+
+Gdzie:
+
+-   $Y$ to zmienna zależna
+-   $X$ to zmienna niezależna
+-   $\beta_0$ i $\beta_1$ to parametry
+-   $\epsilon$ to składnik błędu (komponent stochastyczny)
+
+Zademonstrujmy OLS w R:
+
+```{r}
+# Generowanie przykładowych danych
+set.seed(123)
+X <- rnorm(100)
+Y <- 2 + 3*X + rnorm(100, sd = 0.5)
+
+# Dopasowanie modelu OLS
+model <- lm(Y ~ X)
+
+# Podsumowanie modelu
+summary(model)
+
+# Wykres
+plot(X, Y, main = "Regresja OLS")
+abline(model, col = "red")
+```
+
+To dopasuje model OLS do symulowanych danych i wykreśli wyniki.
+
+![Retrieved from: https://scientistcafe.com/ids/vbtradeoff](stat_imgs/ModelError.png)
+
+### Zaawansowane Modele Stochastyczne: Duże Modele Językowe
+
+Duże Modele Językowe (LLM), takie jak GPT-3, to złożone modele stochastyczne używane w przetwarzaniu języka naturalnego. Chociaż nie możemy zaimplementować pełnego LLM w tym tutorialu, możemy omówić jego zasady.
+
+LLM opierają się na architekturze transformatora i wykorzystują mechanizmy samouwagi. Są trenowane na ogromnych ilościach danych tekstowych i uczą się przewidywać następny token w sekwencji.
+
+Rdzeń LLM można postrzegać jako warunkowy rozkład prawdopodobieństwa:
+
+$$P(x_t | x_{<t}, \theta)$$
+
+Gdzie:
+
+-   $x_t$ to aktualny token
+-   $x_{<t}$ reprezentuje wszystkie poprzednie tokeny
+-   $\theta$ to parametry modelu
+
+::: callout-note
+Tokeny w Dużych Modelach Językowych (LLM) to podstawowe jednostki tekstu, które model przetwarza. Można je postrzegać jako części słów lub znaki interpunkcyjne. Oto kluczowe informacje o tokenach:
+
+Definicja: Tokeny to najmniejsze jednostki tekstu, które LLM przetwarza. Mogą to być całe słowa, części słów, a nawet pojedyncze znaki lub znaki interpunkcyjne. Tokenizacja: Proces dzielenia tekstu na tokeny nazywa się tokenizacją. LLM używają specyficznych algorytmów do wykonania tego zadania. Przykłady:
+
+Słowo "kot" może być pojedynczym tokenem. Dłuższe słowo jak "zrozumienie" może być podzielone na wiele tokenów, np. "zrozum" i "ienie". Znaki interpunkcyjne jak "." czy "?" są często oddzielnymi tokenami. Powszechne przedrostki lub przyrostki mogą być własnymi tokenami.
+
+Słownictwo: LLM mają ustalone słownictwo tokenów, które rozpoznają. To słownictwo zazwyczaj obejmuje od dziesiątek tysięcy do setek tysięcy tokenów. Znaczenie: Sposób tokenizacji tekstu może wpływać na to, jak model rozumie i generuje język. Jest to szczególnie ważne przy obsłudze różnych języków, rzadkich słów lub specjalistycznego słownictwa. Kontekst: W równaniu dla LLM: $$P(x_t | x_{<t}, \theta)$$ Gdzie:
+
+$x_t$ reprezentuje bieżący token $x_{<t}$ reprezentuje wszystkie poprzednie tokeny w sekwencji $\theta$ reprezentuje parametry modelu
+:::
+
+W przeciwieństwie do modeli deterministycznych, LLM produkują różne wyniki nawet dla tego samego wejścia ze względu na ich stochastyczną naturę.
+
+### Podsumowanie
+
+Każdy rodzaj modelu ma swoje miejsce w nauce, w zależności od badanego systemu i poziomu niepewności.
+
+Pamiętaj, że wybór między modelami deterministycznymi a stochastycznymi często zależy od natury badanego systemu i pytań, na które próbujesz odpowiedzieć. Modele deterministyczne są świetne dla systemów o dobrze zrozumiałej mechanice, podczas gdy modele stochastyczne sprawdzają się przy radzeniu sobie z nieodłączną losowością lub złożonymi, nie w pełni zrozumiałymi systemami.
+
+## Appendix D: Wprowadzenie do R, RStudio i tidyverse
+
+R to potężny język programowania i środowisko do obliczeń statystycznych i grafiki. Jest szeroko stosowany w środowisku akademickim, szczególnie w naukach społecznych, do analizy danych i wizualizacji.
+
+#### Kluczowe cechy R:
+
+-   Otwarty kod źródłowy i darmowy
+-   Rozbudowany ekosystem pakietów
+-   Silne wsparcie społeczności
+-   Doskonały do analizy statystycznej i wizualizacji danych
+
+### Pierwsze kroki z RStudio
+
+RStudio to zintegrowane środowisko programistyczne (IDE) dla R, które ułatwia pracę z R.
+
+#### Instalacja R i RStudio
+
+1.  Pobierz i zainstaluj R ze strony [CRAN](https://cran.r-project.org/)
+2.  Pobierz i zainstaluj RStudio ze [strony RStudio](https://www.rstudio.com/products/rstudio/download/)
+
+#### Interfejs RStudio
+
+RStudio ma cztery główne panele:
+
+1.  **Edytor źródłowy**: Gdzie piszesz i edytujesz skrypty R
+2.  **Konsola**: Gdzie możesz wpisywać polecenia R i widzieć wyniki
+3.  **Środowisko/Historia**: Pokazuje wszystkie obiekty w twoim obszarze roboczym i historię poleceń
+4.  **Pliki/Wykresy/Pakiety/Pomoc**: Wielofunkcyjny panel do zarządzania plikami, przeglądania wykresów, zarządzania pakietami i dostępu do pomocy
+
+#### Podstawowe funkcje RStudio
+
+-   Tworzenie nowego skryptu R: Plik \> Nowy plik \> Skrypt R
+-   Uruchamianie kodu: Zaznacz kod i naciśnij Ctrl+Enter (Cmd+Enter na Macu)
+-   Instalowanie pakietów: Narzędzia \> Instaluj pakiety
+-   Uzyskiwanie pomocy: Wpisz `?nazwa_funkcji` w konsoli
+
+### Podstawy R
+
+#### Typy danych w R
+
+```{r}
+# Numeryczny
+x <- 10.5
+class(x)
+
+# Całkowity
+y <- 1L
+class(y)
+
+# Znakowy
+imie <- "Alicja"
+class(imie)
+
+# Logiczny
+jest_studentem <- TRUE
+class(jest_studentem)
+```
+
+#### Struktury danych
+
+##### Wektory
+
+```{r}
+# Tworzenie wektora
+liczby <- c(1, 2, 3, 4, 5)
+owoce <- c("jabłko", "banan", "wiśnia")
+
+# Operacje na wektorach
+liczby + 2
+liczby * 2
+mean(liczby)
+length(owoce)
+```
+
+##### Macierze
+
+```{r}
+# Tworzenie macierzy
+m <- matrix(1:6, nrow = 2, ncol = 3)
+print(m)
+
+# Operacje na macierzach
+t(m)  # transpozycja
+m * 2  # mnożenie skalarne
+```
+
+##### Ramki danych
+
+```{r}
+# Tworzenie ramki danych
+df <- data.frame(
+  imie = c("Alicja", "Bartek", "Celina"),
+  wiek = c(25, 30, 35),
+  student = c(TRUE, FALSE, TRUE)
+)
+print(df)
+
+# Dostęp do elementów ramki danych
+df$imie
+df[1, 2]
+df[df$wiek > 25, ]
+```
+
+#### Funkcje
+
+```{r}
+# Definiowanie funkcji
+powitaj <- function(imie) {
+  paste("Cześć,", imie, "!")
+}
+
+# Użycie funkcji
+powitaj("Alicja")
+
+# Funkcja z wieloma argumentami
+oblicz_bmi <- function(waga, wzrost) {
+  bmi <- waga / (wzrost^2)
+  return(bmi)
+}
+
+oblicz_bmi(70, 1.75)
+```
+
+#### Struktury kontrolne
+
+```{r}
+# Instrukcja if-else
+x <- 10
+if (x > 5) {
+  print("x jest większe niż 5")
+} else {
+  print("x nie jest większe niż 5")
+}
+
+# Pętla for
+for (i in 1:5) {
+  print(paste("Iteracja", i))
+}
+
+# Pętla while
+licznik <- 1
+while (licznik <= 5) {
+  print(paste("Licznik:", licznik))
+  licznik <- licznik + 1
+}
+```
+
+### Wprowadzenie do tidyverse
+
+Tidyverse to kolekcja pakietów R zaprojektowanych do nauki o danych. Te pakiety mają wspólną filozofię i są zaprojektowane do bezproblemowej współpracy.
+
+#### Kluczowe pakiety tidyverse
+
+-   ggplot2: do wizualizacji danych
+-   dplyr: do manipulacji danymi
+-   tidyr: do porządkowania danych
+-   readr: do odczytu danych prostokątnych
+-   purrr: do programowania funkcyjnego
+-   tibble: nowoczesne ujęcie ramek danych
+
+#### Rozpoczęcie pracy z tidyverse
+
+```{r}
+# Instalacja tidyverse (uruchom raz)
+# install.packages("tidyverse")
+
+# Wczytanie tidyverse
+library(tidyverse)
+```
+
+#### Import danych z readr
+
+```{r}
+#| eval: false
+# Odczyt plików CSV
+dane <- read_csv("dane_spoleczne.csv")
+
+# Odczyt innych formatów plików
+read_tsv("dane.tsv")  # Wartości oddzielone tabulatorem
+read_delim("dane.txt", delim = "|")  # Niestandardowy separator
+```
+
+#### Manipulacja danymi z dplyr
+
+```{r}
+# Użyjmy wbudowanego zbioru danych mtcars
+data("mtcars")
+
+# Wybieranie kolumn
+mtcars %>% 
+  select(mpg, cyl, hp)
+
+# Filtrowanie wierszy
+mtcars %>% 
+  filter(cyl == 4)
+
+# Sortowanie danych
+mtcars %>% 
+  arrange(desc(mpg))
+
+# Tworzenie nowych zmiennych
+mtcars %>% 
+  mutate(kpl = mpg * 0.425)
+
+# Podsumowywanie danych
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarize(srednie_mpg = mean(mpg),
+            liczba = n())
+```
+
+#### Wizualizacja danych z ggplot2
+
+```{r}
+#| label: wykres-rozrzutu
+#| fig-cap: "Waga samochodu vs. Zużycie paliwa"
+# Wykres rozrzutu
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(title = "Waga samochodu vs. Zużycie paliwa",
+       x = "Waga (1000 funtów)",
+       y = "Mile na galon")
+```
+
+```{r}
+#| label: wykres-slupkowy
+#| fig-cap: "Liczba samochodów według liczby cylindrów"
+# Wykres słupkowy
+mtcars %>% 
+  count(cyl) %>% 
+  ggplot(aes(x = factor(cyl), y = n)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Liczba samochodów według liczby cylindrów",
+       x = "Liczba cylindrów",
+       y = "Liczba")
+```
+
+```{r}
+#| label: wykres-pudelkowy
+#| fig-cap: "Zużycie paliwa według liczby cylindrów"
+# Wykres pudełkowy
+ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+  geom_boxplot() +
+  labs(title = "Zużycie paliwa według liczby cylindrów",
+       x = "Liczba cylindrów",
+       y = "Mile na galon")
+```
+
+### Dodatkowe zasoby
+
+-   [R for Data Science](https://r4ds.had.co.nz/)
+-   [Dokumentacja tidyverse](https://www.tidyverse.org/)
+-   [Ściągawki RStudio](https://www.rstudio.com/resources/cheatsheets/)
+-   [Przewodnik Quarto](https://quarto.org/docs/guide/)
+-   [R Cookbook](http://www.cookbook-r.com/)
+
+Pamiętaj, aby eksperymentować z kodem, modyfikować przykłady i nie wahaj się korzystać z wbudowanego systemu pomocy R (dostępnego przez wpisanie `?nazwa_funkcji` w konsoli), gdy napotkasz nieznane funkcje lub koncepcje.

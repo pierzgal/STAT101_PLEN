@@ -1,0 +1,375 @@
+# From Sample to Population - Understanding Randomness, Sampling, and Inference
+
+## Introduction to Randomness
+
+Randomness is a cornerstone concept in statistics and scientific research. It refers to the unpredictability of individual outcomes, even when the overall pattern may be predictable. In the social sciences, understanding randomness is crucial for designing studies, collecting data, and interpreting results.
+
+Consider flipping a fair coin. While we know that the probability of getting heads is 50%, we can't predict with certainty the outcome of any single flip. This unpredictability is the essence of randomness.
+
+Examples of random phenomena in social sciences include:
+
+1. **Participant Selection**: In a psychology experiment studying reaction times, the order in which participants arrive at the lab may be random.
+
+2. **Economic Behavior**: The daily fluctuations in stock prices often exhibit random patterns, influenced by countless unpredictable factors.
+
+3. **Social Interactions**: The occurrence of chance encounters between individuals in a community can be considered random events.
+
+Understanding randomness helps researchers distinguish between genuine effects and chance occurrences. For instance, if we observe a slight difference in test scores between two groups, randomness helps us determine whether this difference is likely due to a real effect or just chance variation.
+
+## Sampling: Bridging Sample and Population
+
+Sampling is the process of selecting a subset (sample) from a larger group (population) to make inferences about the population. It's a critical skill in social science research, as studying entire populations is often impractical, too expensive, or sometimes impossible.
+
+**Key Terms:**
+
+- **Population**: The entire group about which we want to draw conclusions.
+- **Sample**: A subset of the population that we actually study.
+- **Sampling Frame**: The list or procedure used to identify all members of the population.
+
+**Example:** 
+Suppose we want to study the job satisfaction of all teachers in the United States (the population). Instead of surveying millions of teachers, we might select a sample of 5,000 teachers from various states, school districts, and grade levels.
+
+Randomness in sampling helps ensure that the sample is representative of the population, reducing bias and allowing for more accurate inferences. This is why probability sampling methods, which we'll discuss next, are often preferred in scientific research.
+
+## Sampling Methods
+
+### Probability Sampling
+
+Probability sampling methods involve random selection, giving each member of the population a known, non-zero chance of being selected.
+
+1. **Simple Random Sampling**: 
+   Each member of the population has an equal chance of being selected.
+   
+   Example: To select 100 students from a university with 10,000 students, you could assign each student a number from 1 to 10,000, then use a random number generator to select 100 numbers.
+
+2. **Stratified Random Sampling**: 
+   The population is divided into subgroups (strata) based on shared characteristics, then samples are randomly selected from each stratum.
+   
+   Example: In a national political survey, you might divide the population into strata based on geographic regions (Northeast, Midwest, South, West) and then randomly sample from each region. This ensures representation from all areas of the country.
+
+3. **Cluster Sampling**: 
+   The population is divided into clusters (usually geographic), some clusters are randomly selected, and all members within those clusters are studied.
+   
+   Example: To study high school students' study habits, you might randomly select 20 high schools from across the country and then survey all students in those schools.
+
+4. **Systematic Sampling**: 
+   Selecting every kth item from a list after a random start.
+   
+   Example: At a busy shopping mall, you might survey every 20th person who enters the mall, starting with a randomly chosen number between 1 and 20.
+
+### Non-probability Sampling
+
+Non-probability sampling doesn't involve random selection. While it can introduce bias, it may be necessary in certain situations, especially when dealing with hard-to-reach populations or when resources are limited.
+
+1. **Convenience Sampling**: 
+   Selecting easily accessible subjects.
+   
+   Example: A researcher studying college students' sleep patterns might survey students in their own classes or around campus.
+
+2. **Purposive Sampling**: 
+   Selecting subjects based on specific characteristics.
+   
+   Example: For a study on the experiences of CEOs in the tech industry, a researcher might intentionally seek out and interview CEOs from various tech companies.
+
+3. **Snowball Sampling**: 
+   Participants recruit other participants.
+   
+   Example: In a study of undocumented immigrants' access to healthcare, researchers might ask initial participants to refer other potential participants from their community.
+
+4. **Quota Sampling**: 
+   Selecting participants to meet specific quotas for certain characteristics.
+   
+   Example: In a market research study, researchers might ensure they interview a specific number of people from different age groups, genders, and income levels to match the demographics of the target market.
+
+## Making Inferences from Samples
+
+Statistical inference is the process of drawing conclusions about a population based on a sample. This allows researchers to estimate characteristics of the entire population (parameters) using characteristics of the sample (statistics).
+
+::: {.callout-note}
+The Soup Analogy: A Taste of Statistics
+
+![](stat_imgs/soup-svgrepo-com.svg){width=30%}
+
+- When you taste a spoonful of soup and decide it isn't salty enough, that's exploratory/descriptive analysis.
+- If you generalize and conclude that your entire pot of soup needs salt, that's an inference.
+- For your inference to be valid, the spoonful you tasted (the sample) needs to be representative of the entire pot (the population).
+- If the soup is not well stirred (heterogeneous population), it doesn't matter how large a spoon you have (sample size), it will still not accurately represent the whole. If the soup is well stirred (homogeneous population), even a small spoon will suffice to test the soup.
+:::
+
+
+```{mermaid}
+graph TD
+    DGP[Data Generating Process] -->|Generates| A[Population]
+    A -->|Random Selection| B[Sample]
+    B -->|Statistical Inference| C[Estimates & Conclusions]
+    C -->|Generalize back to| A
+    C -.->|Attempt to understand| DGP
+
+    style DGP fill:#1E90FF,stroke:#000,stroke-width:4px,color:#FFF
+    style A fill:#DC143C,stroke:#000,stroke-width:4px,color:#FFF
+    style B fill:#228B22,stroke:#000,stroke-width:2px,color:#FFF
+    style C fill:#8B4513,stroke:#000,stroke-width:2px,color:#FFF
+    
+    classDef note fill:#F0F0F0,stroke:#000,stroke-width:1px;
+    D[["DGP:
+    Underlying process
+    that generates data"]]
+    E[["Population:
+    Entire group of interest"]]
+    F[["Sample:
+    Subset of population"]]
+    G[["Inference:
+    Drawing conclusions
+    about population
+    and DGP"]]
+    
+    class D,E,F,G note
+    
+    D --> DGP
+    E --> A
+    F --> B
+    G --> C
+```
+
+
+**Key Concepts:**
+
+1. **Point Estimates**: 
+   A single value used to estimate a population parameter.
+   
+   Example: The mean income of a sample of 1000 workers might be used to estimate the mean income of all workers in a country.
+
+2. **Confidence Intervals**: 
+   A range of values likely to contain the true population parameter.
+   
+   Example: We might say, "We are 95% confident that the true population mean income falls between $45,000 and $55,000."
+
+3. **Margin of Error**: 
+   The range of values above and below the sample statistic in a confidence interval.
+   
+   Example: In political polling, you might see a statement like "Candidate A is preferred by 52% of voters, with a margin of error of ±3%."
+
+4. **Hypothesis Testing**: 
+   A method for making decisions about population parameters based on sample data.
+   
+   Example: A researcher might test whether there's a significant difference in test scores between students who study with music and those who study in silence.
+
+## Sampling and Non-sampling Errors
+
+Understanding potential errors in research is crucial for interpreting results accurately.
+
+**Sampling Error**: 
+The difference between a sample statistic and the true population parameter, occurring due to chance variations in the selection of sample members.
+
+Example: If we estimate the average height of all adult males in a country based on a sample, our estimate will likely differ somewhat from the true average due to sampling error.
+
+**Non-sampling Errors**: 
+Errors not due to chance, which can occur in both sample surveys and censuses.
+
+1. **Coverage Error**: 
+   When the sampling frame doesn't accurately represent the population.
+   
+   Example: A telephone survey that only calls landlines would miss people who only have cell phones, potentially biasing the results.
+
+2. **Non-response Error**: 
+   When selected participants fail to respond, potentially introducing bias.
+   
+   Example: In a survey about job satisfaction, highly satisfied or highly dissatisfied employees might be more likely to respond, skewing the results.
+
+3. **Measurement Error**: 
+   Inaccuracies in the data collected.
+   
+   Example: A poorly worded survey question might be interpreted differently by different respondents, leading to inconsistent data.
+
+4. **Processing Error**: 
+   Mistakes made during data entry, coding, or analysis.
+   
+   Example: Accidentally entering "99" instead of "9" for a participant's response could significantly skew the results.
+
+## Sample Size and Power
+
+Determining the appropriate sample size involves balancing the need for precision with available resources.
+
+**Sample Size Considerations:**
+- Larger samples generally provide more precise estimates but are more costly and time-consuming to obtain.
+- The required sample size depends on factors such as the desired level of precision, the variability in the population, and the type of analysis planned.
+
+**Example:** 
+To estimate the proportion of voters who support a particular policy with a margin of error of ±3% at a 95% confidence level, you would need a sample size of about 1067 voters (assuming maximum variability).
+
+**Statistical Power:**
+The probability that a study will detect an effect when there is an effect to be detected.
+
+Factors affecting power:
+1. Sample size
+2. Effect size (the magnitude of the difference or relationship you're trying to detect)
+3. Chosen significance level (usually 0.05)
+
+**Example:** 
+In a study comparing two teaching methods, having a larger sample size would increase the likelihood of detecting a significant difference between the methods, if such a difference exists.
+
+
+::: {.callout-note}
+What is Study Power?
+
+Study power is about how likely we are to find something if it really exists. It's like having a good flashlight when you're looking for something in the dark - the better your flashlight, the more likely you are to find what you're looking for.
+
+1. **Effect Size**: How big the thing (effect, difference) we're looking for is.
+2. **Sample Size**: How many people or things we look at in our study.
+3. **Study Power**: How likely we are to find the effect if it's really there.
+
+The Relationship Between Effect Size and Sample Size:
+
+Imagine you're trying to find coins hidden in sand:
+
+1. **Big Effects (Big Coins)**:
+   - If you're looking for big coins (like quarters), you don't need to search through as much sand to find them.
+   - In research, if the effect is big, you can use a smaller sample.
+
+   Example: Testing if a new study method improves test scores by 20 points out of 100.
+   - You might only need to test 30 students to see this big difference.
+
+2. **Small Effects (Small Coins)**:
+   - If you're looking for tiny coins (like pennies), you'll need to search through more sand.
+   - In research, if the effect is small, you need a larger sample.
+
+   Example: Seeing if using social media affects happiness by a tiny amount.
+   - You might need to study 500 or more people to detect this small effect.
+
+Why Study Power Matters:
+
+1. **Not Missing Real Effects**: 
+   - With low power, you might miss real effects, like using a weak flashlight and missing something that's actually there.
+
+2. **Confidence in Results**: 
+   - Higher power gives you more confidence that what you found is real and not just luck.
+
+Example:
+
+Let's say we want to study if a new teaching method helps students learn better:
+
+1. **Small Study (Low Power)**:
+   - We try the method with just 10 students.
+   - Even if the method works, with such a small group, it's hard to tell if improvements are due to the new method or just chance.
+
+2. **Larger Study (Higher Power)**:
+   - We use the method with 100 students.
+   - Now we're more likely to see if the method really helps because we have more data to look at.
+:::
+
+
+
+
+## Sampling in the Digital Age
+
+The advent of big data and digital technologies has transformed sampling practices in many fields.
+
+**Big Data Opportunities and Challenges:**
+- Unprecedented volumes of information available
+- Potential lack of representativeness
+- Data quality concerns
+- Privacy and ethical issues
+
+**Example:** 
+Social media data can provide real-time insights into public opinion, but users of a particular platform may not be representative of the general population.
+
+**Web-based Surveys:**
+- Offer new opportunities for data collection
+- Face challenges such as coverage bias (not everyone has internet access) and self-selection bias
+
+**Example:** 
+An online survey about internet usage habits would inherently exclude people without internet access, potentially biasing the results.
+
+## Ethical Considerations in Sampling
+
+Ethical sampling practices are crucial in social science research:
+
+1. **Informed Consent**: 
+   Participants should understand the study's purpose and agree to participate.
+   
+   Example: Before conducting interviews about sensitive topics like mental health, researchers must clearly explain the study's aims and potential risks to participants.
+
+2. **Privacy and Confidentiality**: 
+   Researchers must protect participants' personal information.
+   
+   Example: In a study on workplace harassment, researchers might use code numbers instead of names to protect participants' identities.
+
+3. **Representativeness and Inclusivity**: 
+   Samples should fairly represent diverse populations, including marginalized groups.
+   
+   Example: A study on urban housing should make efforts to include participants from various socioeconomic backgrounds, ethnicities, and housing situations.
+
+
+## Conclusion
+
+Sampling remains a cornerstone of social science research, even in the era of big data. Understanding sampling principles helps researchers design studies, interpret results, and make valid inferences about populations. As we've seen, the journey from sample to population involves careful consideration of sampling methods, potential errors, ethical issues, and the ever-evolving landscape of data collection in the digital age.
+
+## Statistical Errors - Summary
+
+### Systematic Error vs. Random Error
+
+Systematic errors and random errors are two fundamental types of errors in statistical measurements and experiments.
+
+1. Systematic Error:
+   - Definition: Consistent, predictable deviations from the true value
+   - Characteristics:
+     - Biases the results in a specific direction
+     - Repeatable and often constant across measurements
+     - Can be corrected if identified
+   - Examples:
+     - Miscalibrated measuring instrument
+     - Consistent rounding error in data entry
+     - Biased sampling method
+
+2. Random Error:
+   - Definition: Unpredictable fluctuations in measurements due to chance
+   - Characteristics:
+     - Varies in magnitude and direction
+     - Follows a probability distribution (often normal)
+     - Can be reduced by increasing sample size or repeated measurements
+   - Examples:
+     - Natural variations in the phenomenon being measured
+     - Small fluctuations in measuring instruments
+     - Human errors in reading or recording data
+
+
+### Sampling Errors vs. Non-Sampling Errors
+
+Sampling and non-sampling errors are categories of errors that can occur in statistical studies, particularly in survey research.
+
+1. Sampling Errors:
+   - Definition: Errors that occur due to the sample not perfectly representing the population
+   - Characteristics:
+     - Inherent in any sample-based study
+     - Can be estimated and quantified using statistical methods
+     - Decreases as sample size increases
+   - Examples:
+     - Random fluctuations in sample statistics
+     - Over- or under-representation of certain groups in the sample
+
+2. Non-Sampling Errors:
+   - Definition: All errors in a study that are not related to sampling
+   - Characteristics:
+     - Can occur in both sample and census studies
+     - Often more difficult to quantify and control than sampling errors
+     - Can introduce bias into results
+     - Can be either systematic or random
+   - Examples:
+     - Response errors (e.g., misunderstanding questions, deliberate misreporting)
+     - Nonresponse bias (when certain groups are less likely to respond)
+     - Data processing errors (e.g., coding mistakes, data entry errors)
+     - Coverage errors (when the sampling frame doesn't accurately represent the population)
+
+Important clarification: Non-sampling errors can indeed be either systematic or random. This is a crucial distinction that should have been included in the original description. Non-sampling errors encompass a wide range of potential errors that are not directly related to the sampling process. Some of these can be systematic (e.g., a miscalibrated measuring instrument), while others can be random (e.g., occasional mistakes in data entry).
+
+The distinction between sampling and non-sampling errors is independent of the division between systematic and random errors. In practice, non-sampling errors can fall into both of these categories, which makes their identification and control a particularly important aspect of statistical research.
+
+Understanding these types of errors is crucial for designing robust statistical studies, interpreting results accurately, and making valid inferences about populations based on sample data.
+
+
+![Retrieved from: https://scientistcafe.com/ids/vbtradeoff](stat_imgs/ModelError.png)
+
+
+## Review Questions and Exercises
+
+(...)

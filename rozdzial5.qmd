@@ -1,0 +1,2703 @@
+# Podstawy Jednowymiarowej Statystyki Opisowej
+
+Statystyki opisowe są fundamentalnymi narzędziami w badaniach nauk społecznych, zapewniającymi zwięzłe podsumowanie charakterystyk danych. Pełnią kilka kluczowych funkcji:
+
+-   Podsumowanie dużych zbiorów danych w przystępne informacje
+-   Identyfikacja wzorców i trendów w danych
+-   Wykrywanie potencjalnych anomalii lub wartości odstających
+-   Zapewnienie podstawy do dalszej analizy statystycznej
+
+## Introduction to Sigma Notation (Σ) \| Wprowadzenie do Notacji Sigma (Σ)
+
+-   **What is Sigma? \| Co to jest notacja sumacyjna Sigma?** Sigma (Σ) is a mathematical operator that tells us to sum (add up) a sequence of terms - it functions as an instruction to perform addition of all elements in a specified range. \| Sigma (Σ) to operator matematyczny, który nakazuje nam zsumować (dodać) sekwencję wyrazów - działa jak instrukcja wykonania dodawania wszystkich elementów w określonym zakresie.
+
+-   **Purpose: \| Cel:** Provides a compact way to write sums of many similar terms using a single symbol, avoiding lengthy addition expressions. \| Zapewnia zwięzły sposób zapisu sum wielu podobnych wyrazów za pomocą jednego symbolu, unikając długich wyrażeń dodawania.
+
+### Basic Formula \| Podstawowa formuła
+
+-   The general form of a sigma notation is: \| Ogólna forma notacji sigma to:
+
+$$\sum_{i=a}^{b} f(i)$$
+
+-   **Index of Summation: \| Indeks sumowania:** $i$
+-   **Lower Limit: \| Dolna granica:** $a$
+-   **Upper Limit: \| Górna granica:** $b$
+-   **Function: \| Funkcja:** $f(i)$
+
+### Simple Example \| Prosty przykład
+
+-   Consider you want to add the first five positive integers: \| Załóżmy, że chcesz dodać pierwsze pięć dodatnich liczb całkowitych:
+
+$$\sum_{i=1}^{5} i = 1 + 2 + 3 + 4 + 5 = 15$$
+
+-   Adds the first five positive integers. \| Dodaje pierwsze pięć dodatnich liczb całkowitych.
+
+### Example with a Function \| Przykład z funkcją
+
+-   Suppose you want to sum the squares of the first four positive integers: \| Załóżmy, że chcesz zsumować kwadraty pierwszych czterech dodatnich liczb całkowitych:
+
+$$\sum_{i=1}^{4} i^2 = 1^2 + 2^2 + 3^2 + 4^2 = 30$$
+
+-   Sum of the squares of the first four positive integers. \| Suma kwadratów pierwszych czterech dodatnich liczb całkowitych.
+
+### Practical Application in Statistics \| Praktyczne zastosowanie w statystyce
+
+-   **Calculating the Mean: \| Obliczanie średniej:**
+
+    -   Data Points: \| Punkty danych: $x_1, x_2, ..., x_n$
+    -   Mean $\bar{x}$: \| Średnia $\bar{x}$:
+
+$$\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$$
+
+-   Example: \| Przykład: $x_1, x_2, x_3, x_4$ are 4, 8, 15, 16 \| $x_1, x_2, x_3, x_4$ to 4, 8, 15, 16
+
+$$\bar{x} = \frac{43}{4} = 10.75$$
+
+### Benefits of Using Sigma Notation \| Korzyści z używania notacji Sigma
+
+-   **Clarity: \| Jasność:** Provides a clear and concise representation of various statistical formulas. \| Zapewnia jasne i zwięzłe przedstawienie statystycznych formuł.
+
+::: callout-note
+## Operatory Sumy (Σ) i Iloczynu (Π)
+
+#### Operator Sigma (Σ)
+
+$\sum$ to **operator sumowania**, który nakazuje nam dodać wyrazy:
+
+$\sum_{i=1}^{n} x_i = x_1 + x_2 + ... + x_n$
+
+gdzie: - $i$ to zmienna indeksowa - Dolna wartość pod Σ (tutaj $i=1$) to punkt początkowy - Górna wartość (tutaj $n$) to punkt końcowy
+
+#### Operator Pi (Π)
+
+$\prod$ to **operator iloczynu**, który nakazuje nam pomnożyć wyrazy:
+
+$\prod_{i=1}^{n} x_i = x_1 \times x_2 \times ... \times x_n$
+
+gdzie: - $i$ to zmienna indeksowa - Dolna wartość pod Π (tutaj $i=1$) to punkt początkowy - Górna wartość (tutaj $n$) to punkt końcowy
+:::
+
+::: callout-tip
+### Przykład Σ
+
+$\sum_{i=1}^{4} i = 1 + 2 + 3 + 4 = 10$
+:::
+
+::: callout-tip
+### Przykład Π
+
+$\prod_{i=1}^{4} i = 1 \times 2 \times 3 \times 4 = 24$
+:::
+
+::: callout-important
+### Kluczowe Różnice
+
+-   Σ oznacza wielokrotne dodawanie
+-   Π oznacza wielokrotne mnożenie
+:::
+
+## Typy rozkładów danych
+
+::: callout-important
+**Rozkład danych informuje o tym, jakie wartości przyjmuje zmienna i jak często**.
+:::
+
+Zrozumienie rozkładów danych jest kluczowe dla analizy i wizualizacji danych. W tym dokumencie przyjrzymy się różnym typom rozkładów i sposobom ich wizualizacji przy użyciu ggplot2 w R.
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(palmerpenguins)
+set.seed(123)  # dla powtarzalności
+```
+
+### Rozkład normalny
+
+Rozkład normalny, znany również jako rozkład Gaussa, jest symetryczny i ma kształt dzwonu.
+
+```{r}
+# Generowanie danych o rozkładzie normalnym
+dane_normalne <- data.frame(x = rnorm(1000))
+
+# Wykres
+ggplot(dane_normalne, aes(x)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "skyblue", color = "black") +
+  geom_density(color = "red") +
+  labs(title = "Rozkład normalny", x = "Wartość", y = "Gęstość")
+```
+
+### Rozkład jednostajny
+
+W rozkładzie jednostajnym wszystkie wartości mają równe prawdopodobieństwo wystąpienia.
+
+```{r}
+# Generowanie danych o rozkładzie jednostajnym
+dane_jednostajne <- data.frame(x = runif(1000))
+
+# Wykres
+ggplot(dane_jednostajne, aes(x)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "lightgreen", color = "black") +
+  geom_density(color = "red") +
+  labs(title = "Rozkład jednostajny", x = "Wartość", y = "Gęstość")
+```
+
+### Rozkłady skośne
+
+Rozkłady skośne są asymetryczne, z jednym ogonem dłuższym niż drugi.
+
+```{r}
+# Generowanie danych o rozkładzie prawoskośnym
+dane_prawoskosne <- data.frame(x = rlnorm(1000))
+
+# Wykres
+ggplot(dane_prawoskosne, aes(x)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "lightyellow", color = "black") +
+  geom_density(color = "red") +
+  labs(title = "Rozkład prawoskośny", x = "Wartość", y = "Gęstość")
+```
+
+### Rozkład bimodalny
+
+Rozkład bimodalny ma dwa szczyty (dwie dominanty), wskazujące na dwie odrębne podgrupy w danych.
+
+```{r}
+# Generowanie danych bimodalnych
+dane_bimodalne <- data.frame(x = c(rnorm(500, mean = -2), rnorm(500, mean = 2)))
+
+# Wykres
+ggplot(dane_bimodalne, aes(x)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "lightpink", color = "black") +
+  geom_density(color = "red") +
+  labs(title = "Rozkład bimodalny", x = "Wartość", y = "Gęstość")
+```
+
+| Distribution | Key Properties | Social Examples |
+|----|----|----|
+| Normal | Symmetric, bell-shaped, most values near mean | Height, IQ scores, standardized test scores |
+| Uniform | Equal probability across range | Birth dates in year, arrival times in hour |
+| Bimodal | Two peaks, suggests subgroups | Age in college towns, polarized opinions |
+| Log-normal | Right-skewed, cannot be negative | Income, house prices, social media followers |
+| Power law | Extreme skew, "rich get richer" | City sizes |
+
+## Wizualizacja rozkładów danych rzeczywistych
+
+Użyjemy zbioru danych `palmerpenguins` do zbadania rozkładów danych rzeczywistych.
+
+### Histogram i wykres gęstości
+
+::: callout-note
+## Understanding Histograms and Density
+
+⭐ A histogram is a special graph for numerical data where:
+
+-   Data is grouped into ranges (called "bins")
+-   Bars touch each other (unlike bar charts!) because the data is continuous
+-   Each bar's height shows how many values fall into that range
+
+Think of density as showing how *common* or *concentrated* certain values are in your data:
+
+-   A higher point on a density curve (or taller bar in a histogram) means those values appear more frequently in your data
+-   A lower point means those values are less common
+
+Just like a crowded area has more people per space (higher density), a taller part of the graph shows values that appear more often in your dataset!
+:::
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "lightblue", color = "black") +
+  geom_density(color = "red") +
+  labs(title = "Rozkład długości płetw pingwinów", 
+       x = "Długość płetwy (mm)", 
+       y = "Gęstość")
+```
+
+### Wykres pudełkowy
+
+Wykresy pudełkowe są przydatne do porównywania rozkładów między kategoriami.
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_boxplot() +
+  labs(title = "Rozkład masy ciała pingwinów według gatunku", 
+       x = "Gatunek", 
+       y = "Masa ciała (g)")
+```
+
+### Wykres skrzypcowy
+
+Wykresy skrzypcowe łączą cechy wykresu pudełkowego i wykresu gęstości.
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_violin(trim = FALSE) +
+  geom_boxplot(width = 0.1, fill = "white") +
+  labs(title = "Rozkład masy ciała pingwinów według gatunku", 
+       x = "Gatunek", 
+       y = "Masa ciała (g)")
+```
+
+### Wykres grzbietowy
+
+Wykresy grzbietowe są przydatne do porównywania wielu rozkładów.
+
+```{r}
+library(ggridges)
+
+ggplot(penguins, aes(x = flipper_length_mm, y = species, fill = species)) +
+  geom_density_ridges(alpha = 0.6) +
+  labs(title = "Rozkład długości płetw według gatunku pingwina",
+       x = "Długość płetwy (mm)",
+       y = "Gatunek")
+```
+
+### Podsumowanie
+
+Zrozumienie i wizualizacja rozkładów danych są kluczowe w analizie danych. ggplot2 zapewnia elastyczny i potężny zestaw narzędzi do tworzenia różnych typów wykresów rozkładów. Badając różne techniki wizualizacji, możemy uzyskać wgląd w podstawowe wzorce i charakterystyki naszych danych.
+
+::: callout-warning
+## Rodzaje i Formaty Zbiorów Danych
+
+### Dane Przekrojowe
+
+Obserwacje zebrane w jednym punkcie czasowym dla wielu podmiotów:
+
+| Osoba | Wiek | Dochód | Wykształcenie |
+|-------|------|--------|---------------|
+| 1     | 25   | 5000   | Licencjat     |
+| 2     | 35   | 7500   | Magister      |
+| 3     | 45   | 9000   | Doktorat      |
+
+### Szeregi Czasowe
+
+Obserwacje jednego podmiotu w kolejnych punktach czasowych:
+
+| Rok  | PKB (w mld) | Stopa Bezrobocia |
+|------|-------------|------------------|
+| 2018 | 20.580      | 3,9%             |
+| 2019 | 21.433      | 3,7%             |
+| 2020 | 20.933      | 8,1%             |
+
+### Dane Panelowe (Longitudinalne)
+
+Obserwacje wielu podmiotów w czasie:
+
+| Kraj   | Rok  | PKB per capita | Długość życia |
+|--------|------|----------------|---------------|
+| Polska | 2018 | 32.794         | 76,7          |
+| Polska | 2019 | 35.118         | 76,8          |
+| Niemcy | 2018 | 46.194         | 81,9          |
+| Niemcy | 2019 | 46.194         | 82,0          |
+
+### Dane Przekrojowo-Czasowe (TSCS)
+
+Szczególny przypadek danych panelowych gdzie:
+
+-   Liczba punktów czasowych \> liczba podmiotów
+-   Struktura podobna do danych panelowych
+-   Często stosowane w ekonomii i naukach politycznych
+
+### Formaty Danych
+
+#### Format Szeroki
+
+Każdy wiersz to podmiot; kolumny to zmienne/punkty czasowe:
+
+| Kraj   | PKB_2018 | PKB_2019 | DŻ_2018 | DŻ_2019 |
+|--------|----------|----------|---------|---------|
+| Polska | 32.794   | 35.118   | 76,7    | 76,8    |
+| Niemcy | 46.194   | 46.194   | 81,9    | 82,0    |
+
+#### Format Długi
+
+Każdy wiersz to unikalna kombinacja podmiot-czas-zmienna:
+
+| Kraj   | Rok  | Zmienna        | Wartość |
+|--------|------|----------------|---------|
+| Polska | 2018 | PKB per capita | 32.794  |
+| Polska | 2019 | PKB per capita | 35.118  |
+| Polska | 2018 | Długość życia  | 76,7    |
+| Polska | 2019 | Długość życia  | 76,8    |
+| Niemcy | 2018 | PKB per capita | 46.194  |
+| Niemcy | 2019 | PKB per capita | 46.194  |
+| Niemcy | 2018 | Długość życia  | 81,9    |
+| Niemcy | 2019 | Długość życia  | 82,0    |
+
+**Uwaga:** Format długi jest zazwyczaj preferowany do:
+
+-   Manipulacji danymi w R i Pythonie
+-   Analiz statystycznych
+-   Wizualizacji danych
+-   Modelowania efektów mieszanych
+-   Analiz powtarzanych pomiarów
+:::
+
+## Wartości Odstające (Outliers)
+
+Przed zagłębieniem się w konkretne miary, kluczowe jest zrozumienie pojęcia wartości odstających, ponieważ mogą one znacząco wpływać na wiele statystyk opisowych.
+
+Wartości odstające to punkty danych, które znacznie różnią się od innych obserwacji w zbiorze danych. Mogą wystąpić z powodu:
+
+-   Błędów pomiaru lub zapisu
+-   Prawdziwych ekstremalnych wartości w populacji
+-   Próbkowania z innej populacji
+
+Wartości odstające mogą mieć istotny wpływ na wiele miar statystycznych, szczególnie tych opartych na średnich lub sumach kwadratów odchyleń. Dlatego ważne jest, aby:
+
+1.  Identyfikować wartości odstające zarówno poprzez metody statystyczne, jak i wiedzę dziedzinową
+2.  Badać przyczyny wartości odstających
+3.  Podejmować świadome decyzje o tym, czy włączać je do analiz, czy nie
+
+W tym przewodniku omówimy, jak różne miary opisowe są dotknięte przez wartości odstające.
+
+## Symbole Stosowane w Statystyce - podsumowanie
+
+| Miara | Parametr Populacji | Statystyka z Próby | Alternatywne Oznaczenia | Uwagi |
+|----|----|----|----|----|
+| Liczebność | $N$ | $n$ | \- | Całkowita liczba obserwacji |
+| Średnia | $\mu$ | $\bar{x}$ | $E(X)$, $M$ | $E(X)$ stosowane w rachunku prawdopodobieństwa |
+| Wariancja | $\sigma^2$ | $s^2$ | $\text{Var}(X)$, $V(X)$ | Kwadrat odchyleń od średniej |
+| Odchylenie standardowe | $\sigma$ | $s$ | $\text{OS}$, $\text{std}$ | Pierwiastek z wariancji |
+| Frakcja/Proporcja | $\pi$, $P$ | $\hat{p}$ | $\text{fr}$ | Częstości względne |
+| Współczynnik korelacji | $\rho$ | $r$ | $\text{kor}(x,y)$ | Wartości od -1 do +1 |
+| Błąd standardowy | $\sigma_{\bar{x}}$ | $s_{\bar{x}}$ | $\text{BS}$ | Błąd standardowy średniej |
+| Suma | $\sum$ | $\sum$ | $\sum_{i=1}^n$ | Z indeksowaniem |
+| Pojedyncza obserwacja | $X_i$ | $x_i$ | \- | $i$-ta obserwacja |
+| Kowariancja | $\sigma_{xy}$ | $s_{xy}$ | $\text{Cov}(X,Y)$ | Wspólna zmienność |
+| Mediana | $\eta$ | $\text{Me}$ | $M$ | Wartość środkowa |
+| Rozstęp | $R$ | $r$ | $\text{max}(X) - \text{min}(X)$ | Miara rozproszenia |
+| Dominanta | $\text{Mo}$ | $\text{mo}$ | $\text{mod}$ | Wartość najczęstsza |
+| Skośność | $\gamma_1$ | $g_1$ | $\text{SK}$ | Asymetria rozkładu |
+| Kurtoza | $\gamma_2$ | $g_2$ | $\text{KU}$ | Spłaszczenie rozkładu |
+
+Dodatkowe ważne wzory:
+
+-   Momenty z próby: $m_k = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^k$
+-   Momenty populacji: $\mu_k = E[(X - \mu)^k]$
+-   Błąd standardowy dla populacji: $\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$
+-   Błąd standardowy z próby: $s_{\bar{x}} = \frac{s}{\sqrt{n}}$
+
+## Miary Tendencji Centralnej
+
+Miary tendencji centralnej mają na celu identyfikację "typowej" lub "centralnej" wartości w zbiorze danych. Trzy podstawowe miary to średnia, mediana i moda.
+
+### Średnia Arytmetyczna
+
+Średnia arytmetyczna to suma wszystkich wartości podzielona przez liczbę wartości.
+
+**Wzór:** $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$
+
+**Ważna Właściwość:** Średnia jest punktem równowagi w danych. Suma odchyleń od średniej zawsze wynosi zero:
+
+$\sum_{i=1}^n (x_i - \bar{x}) = 0$
+
+Ta właściwość sprawia, że średnia jest użyteczna w wielu obliczeniach statystycznych.
+
+::: callout-note
+## Zrozumienie średniej jako punktu równowagi 🎯
+
+Rozważmy zbiór danych $X = \{1, 2, 6, 7, 9\}$ na osi liczbowej, wyobrażając go sobie jako huśtawkę:
+
+![https://www.gastonsanchez.com/matrix4sl/mean-as-a-balancing-point.html](stat_imgs/IMG_4336.jpg)
+
+Średnia ($\mu$) działa jak idealny **punkt równowagi** tej huśtawki. Dla naszych danych:
+
+$\mu = \frac{1 + 2 + 6 + 7 + 9}{5} = 5$
+
+### Co się dzieje przy różnych punktach podparcia? 🤔
+
+1.  **Punkt podparcia w 6** (za wysoko):
+    -   Lewa strona: Wartości (1, 2) są poniżej
+    -   Prawa strona: Wartości (7, 9) są powyżej
+    -   $\sum$ odległości z lewej = (6-1) + (6-2) = 9
+    -   $\sum$ odległości z prawej = (7-6) + (9-6) = 4
+    -   Huśtawka przechyla się w lewo! ⬅️ bo 9 \> 4
+2.  **Punkt podparcia w 4** (za nisko):
+    -   Lewa strona: Wartości (1, 2) są poniżej
+    -   Prawa strona: Wartości (6, 7, 9) są powyżej
+    -   $\sum$ odległości z lewej = (4-1) + (4-2) = 5
+    -   $\sum$ odległości z prawej = (6-4) + (7-4) + (9-4) = 10
+    -   Huśtawka przechyla się w prawo! ➡️ bo 5 \< 10
+3.  **Punkt podparcia w średniej (5)** (idealna równowaga):
+    -   $\sum$ odległości poniżej = $\sum$ odległości powyżej
+    -   $((5-1) + (5-2)) = ((6-5) + (7-5) + (9-5))$
+    -   $7 = 7$ ✨ Idealna równowaga!
+
+To pokazuje, dlaczego średnia jest unikalnym punktem równowagi, gdzie:
+
+$\sum_{i=1}^n (x_i - \mu) = 0$
+
+Huśtawka zawsze będzie się przechylać, chyba że punkt podparcia zostanie umieszczony dokładnie w średniej! 🎪
+:::
+
+::: callout-note
+### Średnia jako punkt równowagi
+
+Ta wizualizacja pokazuje, jak średnia arytmetyczna (5) działa jako punkt równowagi pomiędzy skupionymi punktami z lewej strony a rozproszonymi punktami z prawej strony:
+
+Lewa strona średniej:
+
+-   Punkty o wartościach 2 i 3
+-   Blisko siebie (różnica 1 jednostka)
+-   Odległości od średniej: 3 i 2 jednostki
+-   Suma "ciążenia" = 5 jednostek
+
+Prawa strona średniej:
+
+-   Punkty o wartościach 6 i 9
+-   Bardziej oddalone (różnica 3 jednostki)
+-   Odległości od średniej: 1 i 4 jednostki
+-   Suma "ciążenia" = 5 jednostek
+
+Kluczowe obserwacje:
+
+1.  Średnia (5) jest punktem równowagi, mimo że:
+
+    -   Punkty po lewej są skupione (2,3)
+    -   Punkty po prawej są rozproszone (6,9)
+    -   Zielone strzałki pokazują odległości od średniej
+
+2.  Równowaga jest zachowana ponieważ:
+
+    -   Suma odległości się równoważy: (5-2) + (5-3) = (6-5) + (9-5)
+    -   Całkowita suma odległości = 5 jednostek po każdej stronie
+
+```{r}
+#| warning: false
+#| echo: false
+#| fig.width: 12
+#| fig.height: 7
+#| fig.align: 'center'
+
+library(ggplot2)
+library(dplyr)
+
+# Tworzenie danych
+values <- c(2, 3, 6, 9)
+mean_val <- mean(values)
+
+# Ramka danych do wykresu
+data <- data.frame(
+  x = values,
+  y = rep(0, length(values)),
+  arrow_height = c(0.35, 0.15, 0.35, 0.15),  # Wysokości dla strzałek
+  value_label_height = c(0.25, 0.05, 0.25, 0.05)  # Etykiety między strzałkami
+)
+
+# Tworzenie wizualizacji
+ggplot() +
+  # Rysowanie trójkąta (punkt podparcia)
+  geom_polygon(data = data.frame(
+    x = c(mean_val - 0.3, mean_val + 0.3, mean_val),
+    y = c(-0.2, -0.2, 0)
+  ), aes(x = x, y = y), fill = "darkgray") +
+  
+  # Rysowanie belki
+  geom_segment(aes(x = min(values) - 1, xend = max(values) + 1, 
+                   y = 0, yend = 0),
+              color = "brown", linewidth = 2) +
+  
+  # Dodanie punktów
+  geom_point(data = data %>% mutate(side = ifelse(x < mean_val, "left", "right")), 
+             aes(x = x, y = y, color = side), 
+             size = 10) +
+  scale_color_manual(values = c("left" = "royalblue", "right" = "darkblue")) +
+  
+  # Punkt średniej
+  geom_point(aes(x = mean_val, y = 0), 
+             color = "red", size = 5) +
+  
+  # Pierwsza grupa strzałek (górne)
+  geom_segment(data = subset(data, arrow_height > 0.3), 
+              aes(x = x, xend = mean_val,
+                  y = arrow_height, yend = arrow_height),
+              arrow = arrow(length = unit(0.2, "cm"), 
+                          ends = "both"),
+              color = "darkgreen") +
+  
+  # Druga grupa strzałek (dolne)
+  geom_segment(data = subset(data, arrow_height < 0.3), 
+              aes(x = x, xend = mean_val,
+                  y = arrow_height, yend = arrow_height),
+              arrow = arrow(length = unit(0.2, "cm"), 
+                          ends = "both"),
+              color = "darkgreen") +
+  
+  # Etykiety wartości
+  geom_label(data = data, 
+            aes(x = x, y = value_label_height, label = x),
+            size = 4.5,
+            fill = "white",
+            label.padding = unit(0.2, "lines")) +
+  
+  # Etykieta średniej
+  geom_text(aes(x = mean_val, y = -0.4, 
+                label = paste("Średnia =", round(mean_val, 2))),
+            color = "red", size = 4.5, fontface = "bold") +
+  
+  # Etykiety odległości
+  geom_text(data = data, 
+            aes(x = (x + mean_val)/2, 
+                y = arrow_height + 0.08,
+                label = round(abs(x - mean_val), 2)),
+            color = "darkgreen",
+            size = 3.5) +
+  
+  # Dostosowanie motywu
+  theme_minimal() +
+  labs(title = "Średnia Arytmetyczna jako Punkt Równowagi",
+       subtitle = paste("Średnia =", round(mean_val, 2), "równoważy nierówne odległości po obu stronach"),
+       x = "Wartości",
+       y = NULL) +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5, size = 11),
+        legend.position = "none") +
+  coord_cartesian(ylim = c(-0.8, 0.8), 
+                 expand = TRUE)
+```
+:::
+
+**Przykład Ręcznego Obliczenia:**
+
+Obliczmy średnią dla zbioru danych: 2, 4, 4, 5, 5, 7, 9
+
+| Krok | Opis                     | Obliczenie                     |
+|------|--------------------------|--------------------------------|
+| 1    | Sumuj wszystkie wartości | 2 + 4 + 4 + 5 + 5 + 7 + 9 = 36 |
+| 2    | Policz liczbę wartości   | n = 7                          |
+| 3    | Podziel sumę przez n     | 36 / 7 = 5,14                  |
+
+**Obliczenie w R:**
+
+```{r}
+dane <- c(2, 4, 4, 5, 5, 7, 9)
+mean(dane)
+```
+
+**Zalety:**
+
+-   Łatwa do obliczenia i zrozumienia
+-   Wykorzystuje wszystkie punkty danych
+-   Przydatna do dalszych obliczeń statystycznych
+
+**Wady:**
+
+-   Wrażliwa na wartości odstające
+-   Nie idealna dla rozkładów skośnych
+
+### Mediana
+
+Mediana to środkowa wartość, gdy dane są uporządkowane.
+
+**Przykład Ręcznego Obliczenia:**
+
+Używając tego samego zbioru danych: 2, 4, 4, 5, 5, 7, 9
+
+| Krok | Opis                    | Wynik               |
+|------|-------------------------|---------------------|
+| 1    | Uporządkuj dane         | 2, 4, 4, 5, 5, 7, 9 |
+| 2    | Znajdź środkową wartość | 5                   |
+
+Dla parzystej liczby wartości, weź średnią z dwóch środkowych wartości.
+
+**Obliczenie w R:**
+
+```{r}
+dane <- c(2, 4, 4, 5, 5, 7, 9)
+median(dane)
+```
+
+**Zalety:**
+
+-   Nie jest zniekształcona przez skrajne wartości odstające (outliers)
+-   Lepsza dla rozkładów skośnych
+
+**Wady:**
+
+-   Nie wykorzystuje wszystkich punktów danych
+-   Mniej przydatna do dalszych obliczeń statystycznych
+
+::: callout-warning
+Jak znaleźć pozycję mediany w zbiorze danych:
+
+1.  Najpierw posortuj dane rosnąco
+
+2.  Gdy n jest nieparzyste:
+
+    -   Pozycja mediany = $\frac{n + 1}{2}$
+
+3.  Gdy n jest parzyste:
+
+    -   Pierwsza pozycja mediany = $\frac{n}{2}$
+    -   Druga pozycja mediany = $\frac{n}{2} + 1$
+    -   Mediana = $\frac{\text{wartość na pozycji }\frac{n}{2} + \text{wartość na pozycji }(\frac{n}{2}+1)}{2}$
+
+Przykłady:
+
+-   Nieparzyste n=7: pozycja = $\frac{7+1}{2} = 4$-ta wartość
+-   Parzyste n=8: pozycje = $\frac{8}{2} = 4$-ta i $4+1 = 5$-ta wartość
+:::
+
+### Moda (Dominanta)
+
+Moda to najczęściej występująca wartość.
+
+**Przykład Ręcznego Obliczenia:**
+
+Używając zbioru danych: 2, 4, 4, 5, 5, 7, 9
+
+| Wartość | Częstość |
+|---------|----------|
+| 2       | 1        |
+| 4       | 2        |
+| 5       | 2        |
+| 7       | 1        |
+| 9       | 1        |
+
+Moda to 4 i 5 (rozkład bimodalny).
+
+**Obliczenie w R:**
+
+```{r}
+library(modeest)
+mfv(dane)  # Najczęściej występująca wartość
+```
+
+**Zalety:**
+
+-   Jedyna miara tendencji centralnej dla danych nominalnych
+-   Może identyfikować wiele punktów szczytowych (dominujących) w danych
+
+**Wady:**
+
+-   Nie zawsze jednoznacznie zdefiniowana
+-   Nie przydatna dla danych ciągłych
+
+### Średnia (arytmetyczna) Ważona (\*)
+
+Średnia ważona jest używana, gdy niektóre punkty danych są ważniejsze niż inne. Występują dwa typy średnich ważonych: z wagami nienormalizowanymi i z wagami znormalizowanymi.
+
+#### Średnia Ważona z Wagami Nienormalizowanymi
+
+Jest to standardowa forma średniej ważonej, gdzie wagi mogą być dowolnymi liczbami dodatnimi reprezentującymi ważność każdego punktu danych.
+
+**Wzór:** $\bar{x}_w = \frac{\sum_{i=1}^n w_i x_i}{\sum_{i=1}^n w_i}$
+
+**Przykład Obliczeń Ręcznych:** Obliczmy średnią ważoną dla zbioru danych: 2, 4, 5, 7 z wagami 1, 2, 3, 1
+
+| Krok | Opis | Obliczenie |
+|----|----|----|
+| 1 | Pomnóż każdą wartość przez jej wagę | (2 \* 1) + (4 \* 2) + (5 \* 3) + (7 \* 1) = 2 + 8 + 15 + 7 = 32 |
+| 2 | Zsumuj wagi | 1 + 2 + 3 + 1 = 7 |
+| 3 | Podziel wynik z kroku 1 przez wynik z kroku 2 | 32 / 7 = 4.57 |
+
+**Obliczenia w R:**
+
+```{r}
+x <- c(2, 4, 5, 7)
+w <- c(1, 2, 3, 1)
+weighted.mean(x, w)
+```
+
+#### Średnia Ważona z Wagami Znormalizowanymi (Ułamki)
+
+W tym przypadku wagi są ułamkami sumującymi się do 1, reprezentującymi proporcję ważności dla każdego punktu danych.
+
+**Wzór:** $\bar{x}_w = \sum_{i=1}^n w_i x_i$, gdzie $\sum_{i=1}^n w_i = 1$
+
+**Przykład Obliczeń Ręcznych:**
+
+Obliczmy średnią ważoną dla zbioru danych: 2, 4, 5, 7 z wagami znormalizowanymi 0.1, 0.3, 0.4, 0.2
+
+| Krok | Opis | Obliczenie |
+|----|----|----|
+| 1 | Pomnóż każdą wartość przez jej wagę | (2 \* 0.1) + (4 \* 0.3) + (5 \* 0.4) + (7 \* 0.2) |
+| 2 | Zsumuj wyniki | 0.2 + 1.2 + 2.0 + 1.4 = 4.8 |
+
+**Obliczenia w R:**
+
+```{r}
+x <- c(2, 4, 5, 7)
+w_normalized <- c(0.1, 0.3, 0.4, 0.2)  # Uwaga: sumują się do 1
+sum(x * w_normalized)
+```
+
+**Zalety Średnich Ważonych:**
+
+-   Uwzględniają różną ważność punktów danych
+-   Przydatne w analizie ankiet o różnych wielkościach próby lub poziomach ważności
+-   Mogą korygować nierówne prawdopodobieństwa w projektach próbkowania
+
+**Wady Średnich Ważonych:**
+
+-   Wymagają uzasadnienia dla wag
+-   Mogą być niewłaściwie wykorzystane do manipulacji wynikami
+-   Mogą być mniej intuicyjne w interpretacji niż prosta średnia arytmetyczna
+
+## Miary Zmienności (Rozproszenia)
+
+Te miary opisują, jak bardzo rozproszone są dane.
+
+::: callout-important
+### Zrozumienie Wariancji
+
+```{r}
+#| label: fig-variance
+#| fig-cap: "Trzy wykresy punktowe pokazujące rosnącą wariancję przy stałej średniej"
+#| echo: false
+#| warning: false
+#| message: false
+
+library(ggplot2)
+library(patchwork)
+
+# Tworzenie danych przykładowych
+set.seed(123)
+low_var <- data.frame(
+  value = c(9.5, 9.7, 10, 10, 10, 10.3, 10.5),
+  group = "Mała Wariancja\nσ² = 1"
+)
+med_var <- data.frame(
+  value = c(8, 9, 9.5, 10, 10.5, 11, 12),
+  group = "Średnia Wariancja\nσ² = 4"
+)
+high_var <- data.frame(
+  value = c(6, 7.5, 8.5, 10, 11.5, 12.5, 14),
+  group = "Duża Wariancja\nσ² = 9"
+)
+
+# Łączenie danych
+plot_data <- rbind(low_var, med_var, high_var)
+
+# Tworzenie wykresu
+ggplot(plot_data, aes(x = value)) +
+  geom_dotplot(binwidth = 0.3, fill = "steelblue", alpha = 0.7) +
+  facet_wrap(~group, ncol = 1) +
+  geom_vline(xintercept = 10, linetype = "dashed", color = "gray50") +
+  scale_x_continuous(breaks = seq(5, 15, by = 2)) +
+  labs(x = "Wartości",
+       y = NULL) +
+  theme_minimal() +
+  theme(
+    axis.text.y = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+```
+
+Powyższe trzy wykresy punktowe pokazują, w jaki sposób wariancja mierzy rozproszenie danych wokół wartości centralnej:
+
+-   Wszystkie rozkłady mają tę samą średnią (μ = 10), oznaczoną linią przerywaną
+-   **Mała Wariancja** (σ² = 1): Punkty są skupione blisko średniej
+-   **Średnia Wariancja** (σ² = 4): Punkty wykazują umiarkowane rozproszenie
+-   **Duża Wariancja** (σ² = 9): Punkty są szeroko rozproszone wokół średniej
+:::
+
+::: callout-note
+## Zrozumienie Różnych Poziomów Zmienności
+
+```{r}
+#| warning: false
+#| echo: false
+#| fig.width: 8
+#| fig.height: 12
+#| fig.align: 'center'
+
+library(ggplot2)
+library(dplyr)
+library(patchwork)
+
+# Tworzenie danych z różnymi odchyleniami standardowymi
+set.seed(123)
+n_points <- 100
+
+create_data <- function(mean_val, sd_val, label) {
+  data.frame(
+    x = rnorm(n_points, mean = mean_val, sd = sd_val),
+    type = label,
+    sd = sd_val
+  )
+}
+
+# Łączenie zbiorów danych o różnej zmienności
+data <- rbind(
+  create_data(10, 0.5, "Mała zmienność (σ = 0.5)"),
+  create_data(10, 2.0, "Średnia zmienność (σ = 2.0)"),
+  create_data(10, 4.0, "Duża zmienność (σ = 4.0)")
+)
+
+# Funkcja tworząca wizualizację
+create_dist_plot <- function(df) {
+  mean_val <- mean(df$x)
+  sd_val <- sd(df$x)
+  
+  ggplot(df, aes(x = x)) +
+    geom_histogram(aes(y = ..density..), bins = 30, 
+                  fill = "lightblue", color = "black", alpha = 0.7) +
+    geom_density(color = "darkblue", linewidth = 1) +
+    geom_vline(xintercept = mean_val, color = "red", 
+               linetype = "dashed", linewidth = 1) +
+    geom_vline(xintercept = c(mean_val - sd_val, mean_val + sd_val), 
+               color = "darkgreen", linetype = "dashed", linewidth = 0.8) +
+    annotate("text", x = mean_val, y = 0.9 * max(density(df$x)$y), 
+             label = "Średnia", color = "red", angle = 90, vjust = -1) +
+    annotate("text", x = mean_val - sd_val, y = 0.9 * max(density(df$x)$y), 
+             label = "-1 OS", color = "darkgreen", angle = 90, vjust = -1) +
+    annotate("text", x = mean_val + sd_val, y = 0.9 * max(density(df$x)$y), 
+             label = "+1 OS", color = "darkgreen", angle = 90, vjust = -1) +
+    labs(title = unique(df$type),
+         x = "Wartość",
+         y = "Gęstość") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5, size = 12),
+          plot.subtitle = element_text(hjust = 0.5),
+          axis.title = element_text(size = 10),
+          axis.text = element_text(size = 9)) +
+    coord_cartesian(xlim = c(0, 20))
+}
+
+# Tworzenie poszczególnych wykresów
+plots <- data %>%
+  group_by(type) %>%
+  group_split() %>%
+  lapply(create_dist_plot)
+
+# Łączenie wykresów z odpowiednimi odstępami
+combined_plot <- plots[[1]] / plots[[2]] / plots[[3]] +
+  plot_layout(heights = c(1, 1, 1)) +
+  plot_annotation(
+    title = "Porównanie Różnych Poziomów Zmienności",
+    subtitle = "Wszystkie rozkłady mają tę samą średnią (μ = 10), ale różne odchylenia standardowe",
+    theme = theme(
+      plot.title = element_text(hjust = 0.5, size = 14),
+      plot.subtitle = element_text(hjust = 0.5, size = 12),
+      plot.margin = margin(t = 20, r = 20, b = 20, l = 20)
+    )
+  )
+
+# Wyświetlenie połączonego wykresu
+combined_plot
+```
+
+Ta wizualizacja przedstawia trzy rozkłady normalne o tej samej średniej (μ = 10), ale różnych poziomach zmienności:
+
+1.  **Mała zmienność (σ = 0.5)**
+    -   Punkty danych grupują się ściśle wokół średniej
+    -   Krzywa gęstości jest wysoka i wąska
+    -   Większość obserwacji mieści się w przedziale ±0.5 jednostki (odchylenia stand.) od średniej
+2.  **Średnia zmienność (σ = 2.0)**
+    -   Punkty danych są bardziej rozproszone wokół średniej
+    -   Krzywa gęstości jest niższa i szersza
+    -   Większość obserwacji mieści się w przedziale ±2 jednostki od średniej
+3.  **Duża zmienność (σ = 4.0)**
+    -   Punkty danych są szeroko rozproszone wokół średniej
+    -   Krzywa gęstości jest znacznie bardziej płaska i szeroka
+    -   Większość obserwacji mieści się w przedziale ±4 jednostki od średniej
+
+Zwróć uwagę, jak odchylenie standardowe (σ) bezpośrednio wpływa na rozproszenie rozkładu - większe wartości σ wskazują na większą zmienność danych, podczas gdy mniejsze wartości oznaczają, że punkty danych mają tendencję do grupowania się bliżej średniej.
+:::
+
+### Rozstęp
+
+Rozstęp to różnica między wartością maksymalną a minimalną.
+
+**Wzór:** $R = x_{max} - x_{min}$
+
+**Przykład Ręcznego Obliczenia:**
+
+Używając zbioru danych: 2, 4, 4, 5, 5, 7, 9
+
+| Krok | Opis                        | Obliczenie |
+|------|-----------------------------|------------|
+| 1    | Znajdź wartość maksymalną   | 9          |
+| 2    | Znajdź wartość minimalną    | 2          |
+| 3    | Odejmij minimum od maksimum | 9 - 2 = 7  |
+
+**Obliczenie w R:**
+
+```{r}
+dane <- c(2, 4, 4, 5, 5, 7, 9)
+range(dane)
+max(dane) - min(dane)
+```
+
+**Zalety:**
+
+-   Prosty do obliczenia i zrozumienia
+-   Szybka informacja o ogólnym rozproszeniu danych
+
+**Wady:**
+
+-   Bardzo wrażliwy na wartości odstające
+-   Nie dostarcza informacji o rozkładzie między skrajnościami
+
+### Rozstęp Międzykwartylowy (IQR)
+
+IQR to różnica między 75. a 25. percentylem (3. a 1. kwartylem).
+
+**Wzór:** $IQR = Q_3 - Q_1$
+
+Aby znaleźć kwartyle ręcznie:
+
+1.  Dla nieparzystej liczby wartości:
+    -   Q2 (mediana) to środkowa wartość
+    -   Q1 to mediana dolnej połowy (wyłączając medianę dla wszystkich obserwacji)
+    -   Q3 to mediana górnej połowy (wyłączając medianę dla wszystkich obserwacji)
+2.  Dla parzystej liczby wartości:
+    -   Q2 to średnia z dwóch środkowych wartości
+    -   Q1 to mediana dolnej połowy (wyłączając medianę dla wszystkich obserwacji)
+    -   Q3 to mediana górnej połowy (wyłączając medianę dla wszystkich obserwacji)
+
+**Przykład Ręcznego Obliczenia:**
+
+Używając zbioru danych: 2, 4, 4, 5, 5, 7, 9
+
+| Krok | Opis                              | Obliczenie          |
+|------|-----------------------------------|---------------------|
+| 1    | Uporządkuj dane                   | 2, 4, 4, 5, 5, 7, 9 |
+| 2    | Znajdź Q2 (medianę)               | 5                   |
+| 3    | Znajdź Q1 (medianę dolnej połowy) | 4                   |
+| 4    | Znajdź Q3 (medianę górnej połowy) | 7                   |
+| 5    | Oblicz IQR                        | Q3 - Q1 = 7 - 4 = 3 |
+
+**Obliczenie w R:**
+
+```{r}
+dane <- c(2, 4, 4, 5, 5, 7, 9)
+print(dane)
+quantile(dane, type = 1)
+IQR(dane, type = 1)
+```
+
+**Zalety:**
+
+-   Odporny na wartości odstające
+-   Dostarcza informacji o rozproszeniu środkowych 50% danych
+
+**Wady:**
+
+-   Ignoruje ogony rozkładu
+-   Mniej efektywny niż odchylenie standardowe dla rozkładów normalnych
+
+### Wariancja
+
+Wariancja mierzy średnie kwadratowe odchylenie od średniej.
+
+**Wzór:** $s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1}$
+
+::: callout-note
+#### Wariancja: Zrozumienie Średniego Odchylenia Kwadratowego
+
+**Czym jest Wariancja?** Wariancja mierzy, jak bardzo punkty danych są "rozrzucone" wokół średniej - jest średnią kwadratów odchyleń od średniej.
+
+Wzór: $s^2 = \frac{\sum(x_i - \bar{x})^2}{n-1}$
+
+**Prosty Przykład:** Rozważmy liczby: 2, 4, 6, 8, 10 Średnia ($\bar{x}$) = 6
+
+```{r}
+#| echo: false
+#| fig.height: 4
+#| fig.width: 6
+library(ggplot2)
+
+# Dane
+df <- data.frame(
+  x = 1:5,
+  values = c(2, 4, 6, 8, 10)
+)
+
+# Wykres
+ggplot(df, aes(x = x, y = values)) +
+  geom_hline(yintercept = 6, color = "blue", linetype = "dashed") +
+  geom_point(size = 3) +
+  geom_segment(aes(xend = x, yend = 6), color = "red", linetype = "dotted") +
+  labs(title = "Odchylenia od Średniej",
+       x = "Pozycja",
+       y = "Wartość") +
+  scale_y_continuous(limits = c(0, 12)) +
+  theme_minimal()
+```
+
+**Obliczanie Odchyleń:**
+
+```{r}
+#| echo: false
+#| fig.height: 4
+#| fig.width: 6
+# Dane odchyleń kwadratowych
+df$sq_dev <- (df$values - 6)^2
+
+ggplot(df, aes(x = x, y = sq_dev)) +
+  geom_col(fill = "skyblue") +
+  labs(title = "Odchylenia Kwadratowe",
+       x = "Pozycja",
+       y = "Odchylenie Kwadratowe") +
+  theme_minimal()
+```
+
+| Wartość | Odchylenie od średniej | Kwadrat odchylenia |
+|---------|------------------------|--------------------|
+| 2       | -4                     | 16                 |
+| 4       | -2                     | 4                  |
+| 6       | 0                      | 0                  |
+| 8       | +2                     | 4                  |
+| 10      | +4                     | 16                 |
+
+Wariancja = $\frac{16 + 4 + 0 + 4 + 16}{4} = 10$
+
+**Kluczowe Punkty:**
+
+1.  Średnia służy jako punkt odniesienia (niebieska przerywana linia)
+2.  Odchylenia pokazują odległość od średniej (czerwone kropkowane linie)
+3.  Podniesienie do kwadratu sprawia, że wszystkie odchylenia są dodatnie (niebieskie słupki)
+4.  Większe odchylenia mają większy wpływ na wariancję
+:::
+
+**Przykład Ręcznego Obliczenia:**
+
+Używając zbioru danych: 2, 4, 4, 5, 5, 7, 9
+
+| Krok | Opis | Obliczenie |
+|----|----|----|
+| 1 | Oblicz średnią | $\bar{x} = 5,14$ |
+| 2 | Odejmij średnią od każdej obserwacji i podnieś wynik do kwadratu | $(2 - 5,14)^2 = 9,86$ |
+|  |  | $(4 - 5,14)^2 = 1,30$ |
+|  |  | $(4 - 5,14)^2 = 1,30$ |
+|  |  | $(5 - 5,14)^2 = 0,02$ |
+|  |  | $(5 - 5,14)^2 = 0,02$ |
+|  |  | $(7 - 5,14)^2 = 3,46$ |
+|  |  | $(9 - 5,14)^2 = 14,90$ |
+| 3 | Sumuj kwadraty różnic | 30,86 |
+| 4 | Podziel przez (n-1), czyli przez liczbę obserwacji - 1 | 30,86 / 6 = 5,14 |
+
+**Obliczenie w R:**
+
+```{r}
+var(dane)
+```
+
+**Zalety:**
+
+-   Wykorzystuje wszystkie punkty danych
+-   Podstawa dla wielu testów statystycznych\*
+
+**Wady:**
+
+-   Jednostki są podniesione do kwadratu, co utrudnia interpretację
+-   Wrażliwa na wartości odstające
+
+::: callout-important
+#### Poprawka Bessela: Dlaczego Dzielimy przez (n-1), a nie po prostu przez n
+
+Gdy obliczamy odchylenia od średniej, ich suma musi wynosić zero. To matematyczny fakt: $\sum(x_i - \bar{x}) = 0$
+
+**Pomyśl o tym Tak:**
+
+Jeśli masz 5 liczb i ich średnią:
+
+-   Po obliczeniu 4 odchyleń od średniej
+-   5-te odchylenie MUSI być takie, żeby suma była zero
+-   Nie masz tak naprawdę 5 niezależnych odchyleń
+-   Masz tylko 4 prawdziwie "swobodne" odchylenia
+
+**Prosty Przykład:**
+
+Liczby: 2, 4, 6, 8, 10
+
+-   Średnia = 6
+-   Odchylenia: -4, -2, 0, +2, +4
+-   Zauważ, że sumują się do zera
+-   Jeśli znasz dowolne 4 odchylenia, 5-te jest z góry określone!
+
+**Dlatego Właśnie:**
+
+-   Przy obliczaniu wariancji: $s^2 = \frac{\sum(x_i - \bar{x})^2}{n-1}$
+-   Dzielimy przez (n-1), a nie n
+-   Ponieważ tylko (n-1) odchyleń jest naprawdę niezależnych
+-   Ostatnie jest określone przez pozostałe
+
+**Stopnie Swobody:**
+
+-   n = liczba obserwacji
+-   1 = ograniczenie (odchylenia muszą sumować się do zera)
+-   n-1 = stopnie swobody = liczba prawdziwie niezależnych odchyleń
+
+**Kiedy Stosować:**
+
+-   Przy obliczaniu wariancji z próby
+-   Przy obliczaniu odchylenia standardowego z próby
+
+**Kiedy NIE Stosować:**
+
+-   W obliczeniach dla całej populacji (gdy mamy wszystkie dane)
+-   Przy obliczaniu odchylenia od ustalonej, znanej wartości (nie obliczonej średniej)
+
+**Pamiętaj:**
+
+-   To nie jest tylko statystyczny trik
+-   Odchylenia od średniej muszą sumować się do zera
+-   To ograniczenie kosztuje nas jeden stopień swobody
+:::
+
+### Odchylenie Standardowe
+
+Odchylenie standardowe to pierwiastek kwadratowy z wariancji i mierzy przeciętne rozproszenie danych względem ich średniej arytmetycznej. W przeciwieństwie do wariancji, jest to miara mianowana i interpretowana w jednostkach bdanej zmiennej.
+
+**Wzór:** $s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1}}$
+
+**Przykład Ręcznego Obliczenia:**
+
+Używając zbioru danych: 2, 4, 4, 5, 5, 7, 9
+
+| Krok | Opis | Obliczenie |
+|----|----|----|
+| 1 | Oblicz wariancję | $s^2 = 5,14$ (z poprzedniego obliczenia) |
+| 2 | Wyciągnij pierwiastek kwadratowy | $s = \sqrt{5,14} = 2,27$ |
+
+**Obliczenie w R:**
+
+```{r}
+sd(dane)
+```
+
+**Zalety:**
+
+-   W tych samych jednostkach co oryginalne dane
+-   Szeroko stosowane i zrozumiałe
+
+**Wady:**
+
+-   Nadal wrażliwe na wartości odstające
+-   Zakłada, że dane są w przybliżeniu "normalnie" rozłożone
+
+### Współczynnik zmienności (\*)
+
+Współczynnik zmienności to odchylenie standardowe podzielone przez średnią arytmetyczną, często wyrażany jako wartość procentowa.
+
+**Wzór:** $CV = \frac{s}{\bar{x}} \times 100\%$
+
+**Przykład obliczeń ręcznych:**
+
+Dla zbioru danych: 2, 4, 4, 5, 5, 7, 9
+
+| Krok | Opis | Obliczenia |
+|----|----|----|
+| 1 | Oblicz średnią arytmetyczną | $\bar{x} = 5,14$ |
+| 2 | Oblicz odchylenie standardowe | $s = 2,27$ |
+| 3 | Podziel s przez średnią i pomnóż przez 100 | $(2,27 / 5,14) * 100 = 44,16\%$ |
+
+**Obliczenia w R:**
+
+```{r}
+(sd(dane) / mean(dane)) * 100
+```
+
+**Zalety:**
+
+\- Umożliwia porównanie zmienności między zbiorami danych o różnych jednostkach lub średnich
+
+\- Przydatny w dziedzinach takich jak finanse do oceny ryzyka
+
+**Wady:**
+
+\- Nie ma znaczenia dla danych zawierających zarówno wartości dodatnie, jak i ujemne
+
+\- Może być mylący, gdy średnia jest bliska zeru
+
+::: callout-warning
+### Ograniczenia Współczynnika Zmienności (CV)
+
+Współczynnik zmienności, obliczany jako $(σ/μ) × 100\%$, ma dwa istotne ograniczenia:
+
+#### Nie ma interpretacji dla danych zawierających wartości dodatnie i ujemne
+
+-   Średnia może być bliska zeru ze względu na wzajemne znoszenie się wartości dodatnich i ujemnych
+-   Przykład: Zbiór danych {-5, -3, 2, 6} ma średnią = 0
+    -   CV = (odch. std. / 0) × 100%
+    -   Prowadzi to do dzielenia przez zero
+    -   Nawet gdy średnia nie jest dokładnie zero, CV nie reprezentuje prawdziwej względnej zmienności, gdy dane przechodzą przez zero
+-   CV zakłada naturalny punkt zerowy i sensowne proporcje między wartościami
+
+#### Mylący gdy średnia jest bliska zeru
+
+-   Ponieważ CV = $(σ/μ) × 100\%$, gdy $μ$ zbliża się do zera:
+    -   Mianownik staje się bardzo mały
+    -   Skutkuje to ekstremalnie dużymi wartościami CV
+    -   Te duże wartości nie reprezentują sensownie względnej zmienności
+-   Przykład:
+    -   Zbiór danych A: {0.001, 0.002, 0.003} ma średnią = 0.002
+    -   Nawet małe odchylenia standardowe dadzą bardzo duże CV
+    -   Wynikający z tego duży CV może sugerować ekstremalne zróżnicowanie, gdy w rzeczywistości dane są dość skoncentrowane
+
+#### Najlepsze zastosowania
+
+CV jest najbardziej użyteczny dla:
+
+-   Danych ściśle dodatnich
+-   Danych mierzonych na skali ilorazowej
+-   Danych ze średnią znacznie powyżej zera
+-   Porównywania zmienności między zbiorami danych o różnych jednostkach lub skalach
+:::
+
+## Miary Położenia Względnego (Względnej Pozycji)
+
+Zrozumienie relatywnej (względnej) pozycji wartości w zbiorze danych.
+
+### Kwartyle (Q): Podstawy
+
+Kwartyle to specjalne liczby, które dzielą uporządkowane dane na cztery równe części.
+
+![Doane, D. P., & Seward, L. W. (2016). Applied statistics in business and economics. Mcgraw-Hill.](stat_imgs/IMG_4327.jpg)
+
+#### Czym są Kwartyle?
+
+**Pierwszy Kwartyl (Q1):**
+
+-   Oddziela najniższe 25% danych od reszty
+-   Nazywany również 25-tym percentylem
+-   Przykład: Jeśli Q1 = 50 w zbiorze wyników testu, 25% uczniów uzyskało wynik poniżej 50
+
+**Drugi Kwartyl (Q2):**
+
+-   Mediana - dzieli dane na pół
+-   Nazywany również 50-tym percentylem
+-   Przykład: Jeśli Q2 = 70, połowa uczniów uzyskała wynik poniżej 70
+
+**Trzeci Kwartyl (Q3):**
+
+-   Oddziela najwyższe 25% danych od reszty
+-   Nazywany również 75-tym percentylem
+-   Przykład: Jeśli Q3 = 85, 75% uczniów uzyskało wynik poniżej 85
+
+#### Jak Obliczać Kwartyle (Krok po Kroku) - Dwie Metody
+
+Przeanalizujmy wyniki testów uczniów używając obu popularnych metod wyznaczania kwartyli:
+
+**Przykład 1: Przypadek Nieparzystej Liczby Wyników (11 wyników)**\
+60, 65, 70, 72, 75, 78, 80, 82, 85, 88, 90
+
+Krok 1: Znajdź Q2 (medianę) - Tak samo dla obu metod
+
+-   Przy n = 11 wartościach (nieparzyste)
+-   Pozycja mediany = (n + 1)/2 = 6
+-   Q2 = 78
+
+Krok 2: Znajdź Q1
+
+-   Metoda Tukeya:
+    -   Spójrz na dolną połowę: 60, 65, 70, 72, 75
+    -   Q1 = mediana dolnej połowy = 70
+-   Metoda Interpolacji:
+    -   Pozycja = (n + 1)/4 = (11 + 1)/4 = 3
+    -   Q1 = 70 (3-cia wartość)
+
+Krok 3: Znajdź Q3
+
+-   Metoda Tukeya:
+    -   Spójrz na górną połowę: 80, 82, 85, 88, 90
+    -   Q3 = mediana górnej połowy = 85
+-   Metoda Interpolacji:
+    -   Pozycja = 3(n + 1)/4 = 3(12)/4 = 9
+    -   Q3 = 85 (9-ta wartość)
+
+**Przykład 2: Przypadek Parzystej Liczby (10 wyników)**\
+60, 65, 70, 72, 75, 78, 80, 82, 85, 90
+
+Krok 1: Znajdź Q2 (medianę) - Tak samo dla obu metod
+
+-   Przy n = 10 wartościach (parzyste)
+-   Pozycje mediany = 5 i 6
+-   Q2 = (75 + 78)/2 = 76.5
+
+Krok 2: Znajdź Q1
+
+-   Metoda Tukeya:
+    -   Spójrz na dolną połowę: 60, 65, 70, 72, 75
+    -   Q1 = mediana dolnej połowy = 70
+-   Metoda Interpolacji:
+    -   Pozycja = (10 + 1)/4 = 2.75
+    -   Q1 = 65 + 0.75(70 - 65) = 68.75
+
+Krok 3: Znajdź Q3
+
+-   Metoda Tukeya:
+    -   Spójrz na górną połowę: 78, 80, 82, 85, 90
+    -   Q3 = mediana górnej połowy = 82
+-   Metoda Interpolacji:
+    -   Pozycja = 3(10 + 1)/4 = 8.25
+    -   Q3 = 82 + 0.25(85 - 82) = 82.75
+
+Ważne Uwagi:
+
+1.  Metoda Tukeya:
+
+    -   Najpierw znajdź medianę (Q2)
+    -   Podziel dane na dolną i górną połowę
+    -   Znajdź Q1 jako medianę dolnej połowy
+    -   Znajdź Q3 jako medianę górnej połowy
+    -   Gdy n jest nieparzyste, mediana nie jest uwzględniana w żadnej połowie
+
+2.  Metoda Interpolacji:
+
+    -   Używa pozycji (n+1)/4 dla Q1 i 3(n+1)/4 dla Q3
+    -   Gdy pozycja wypada między wartościami, stosuje interpolację liniową
+    -   Nie wymaga podziału danych na połowy
+
+Obie metody dają te same wyniki dla prostych pozycji (Przykład 1), ale mogą się różnić, gdy potrzebna jest interpolacja (Przykład 2).
+
+::: callout-important
+## Manual Construction of Tukey Boxplot
+
+**Step 1: Calculate Key Components**
+
+1.  Find quartiles: $Q_1$, $Q_2$ (median), $Q_3$
+2.  Calculate Interquartile Range: $IQR = Q_3 - Q_1$
+
+**Step 2: Determine Whisker Boundaries**
+
+-   Lower fence: $Q_1 - 1.5 \times IQR$
+-   Upper fence: $Q_3 + 1.5 \times IQR$
+
+**Step 3: Identify Outliers** Data points are outliers if they are:
+
+-   Below lower fence: $x < Q_1 - 1.5 \times IQR$
+-   Above upper fence: $x > Q_3 + 1.5 \times IQR$
+
+**Example:** Given data: 2, 4, 6, 8, 9, 10, 11, 12, 14, 16, 50
+
+1.  Find quartiles:
+
+    -   $Q_1 = 6$
+    -   $Q_2 = 10$
+    -   $Q_3 = 14$
+
+2.  Calculate $IQR$:
+
+    -   $IQR = 14 - 6 = 8$
+
+3.  Calculate fences:
+
+    -   Lower: $6 - (1.5 \times 8) = -6$
+    -   Upper: $14 + (1.5 \times 8) = 26$
+
+4.  Identify outliers:
+
+    -   50 \> 26, therefore 50 is an outlier
+
+**Graphical Elements:**
+
+1.  Box: Draw from $Q_1$ to $Q_3$
+2.  Line inside box: Draw at $Q_2$
+3.  Whiskers: Extend to most extreme non-outlier points
+4.  Points: Plot outliers individually beyond whiskers
+:::
+
+### Percentyle: Bardziej Precyzyjna Miara Względnej Pozycji (\*)
+
+#### Czym są Percentyle?
+
+Percentyle dają nam bardziej szczegółowy obraz, dzieląc dane na 100 równych części. W przeciwieństwie do kwartyli, percentyle używają interpolacji liniowej.
+
+Kluczowe Punkty:
+
+-   25-ty percentyl równa się Q1
+-   50-ty percentyl równa się Q2 (mediana)
+-   75-ty percentyl równa się Q3
+
+#### Obliczanie Percentyli
+
+Wzór: $P_k = \frac{k(n+1)}{100}$
+
+Gdzie:
+
+-   $P_k$ to pozycja dla k-tego percentyla
+-   k to percentyl, który chcemy znaleźć (1-100)
+-   n to liczba obserwacji
+
+**Przykład 3: Znajdowanie 60-tego Percentyla** Użyjmy wyników zadań domowych uczniów: 72, 75, 78, 80, 82, 85, 88, 90, 92, 95
+
+Krok 1: Oblicz pozycję
+
+-   n = 10 wyników
+-   Dla 60-tego percentyla: $P_{60} = \frac{60(10+1)}{100} = 6.6$
+
+Krok 2: Znajdź otaczające wartości
+
+-   Pozycja 6: wynik 85
+-   Pozycja 7: wynik 88
+
+Krok 3: Interpoluj (ważne: percentyle używają interpolacji liniowej)
+
+-   Musimy przejść 0.6 drogi między 85 a 88 $P_{60} = 85 + 0.6(88-85)$ $P_{60} = 85 + 0.6(3)$ $P_{60} = 85 + 1.8 = 86.8$
+
+Co to oznacza: 60% uczniów uzyskało wynik 86.8 lub niższy.
+
+### Rangi Percentylowe (PR) (\*)
+
+#### Czym jest Ranga Percentylowa?
+
+Podczas gdy percentyle mówią nam o wartości na określonej pozycji, ranga percentylowa mówi nam, jaki procent wartości znajduje się poniżej określonego wyniku. Można to traktować jako odpowiedź na pytanie "Jaki procent klasy uzyskał wynik niższy niż ja?"
+
+$PR = \frac{\text{liczba wartości poniżej } + 0.5 \times \text{liczba równych wartości}}{\text{całkowita liczba wartości}} \times 100$
+
+**Przykład 4: Znajdowanie Rangi Percentylowej** Rozważmy te wyniki egzaminu:
+
+65, 70, 70, 75, 75, 75, 80, 85, 85, 90
+
+Znajdźmy PR dla wyniku 75.
+
+Krok 1: Dokładnie policz
+
+-   Wartości poniżej 75: 65, 70, 70 (3 wartości)
+-   Wartości równe 75: 75, 75, 75 (3 wartości)
+-   Całkowita liczba wartości: 10
+
+Krok 2: Zastosuj wzór
+
+$PR = \frac{3 + 0.5(3)}{10} \times 100$ $PR = \frac{3 + 1.5}{10} \times 100$ $PR = \frac{4.5}{10} \times 100 = 45\%$
+
+Interpretacja: Wynik 75 jest wyższy niż 45% wyników w klasie.
+
+**Uwaga:**
+
+P1: "Dlaczego używamy 0.5 dla równych wartości w PR?"
+
+O1: Jest tak, ponieważ zakładamy, że osoby z tym samym wynikiem są równomiernie rozłożone na tej pozycji. To jak powiedzenie, że dzielą pozycję po równo.
+
+### Zadania z Rozwiązaniami
+
+**Zadanie 1: Podstawowe Kwartyle**
+
+Dane: 10, 12, 15, 15, 18, 20, 22, 25, 25 Znajdź: Q1, Q2, Q3
+
+Rozwiązanie:
+
+1.  Q2 (n = 9, nieparzyste)
+    -   Pozycja = (9 + 1)/2 = 5
+    -   Q2 = 18
+2.  Q1
+    -   Pozycja = (9 + 1)/4 = 2.5
+    -   Między 12 a 15
+    -   Q1 = (12 + 15)/2 = 13.5
+3.  Q3
+    -   Pozycja = 3(9 + 1)/4 = 7.5
+    -   Między 22 a 25
+    -   Q3 = (22 + 25)/2 = 23.5
+
+::: callout-important
+### Podwójna Rola Mediany
+
+```{r}
+#| label: fig-median-dual
+#| fig-cap: "Wizualizacja podwójnej roli mediany"
+#| echo: false
+#| warning: false
+#| message: false
+
+library(ggplot2)
+
+# Tworzenie danych przykładowych
+set.seed(123)
+data <- data.frame(
+  value = c(2, 3, 4, 5, 7, 8, 9),
+  group = "Punkty Danych"
+)
+
+# Tworzenie wizualizacji
+ggplot(data, aes(x = value, y = 0)) +
+  # Dodanie punktów danych
+  geom_point(size = 3, color = "steelblue") +
+  # Dodanie linii mediany
+  geom_vline(xintercept = 5, linetype = "dashed", color = "red") +
+  # Adnotacje
+  annotate("text", x = 5, y = 0.2, label = "Mediana = 5\n50% poniżej | 50% powyżej", 
+           hjust = 0.5, color = "red") +
+  # Dostosowanie wykresu
+  labs(x = "Wartości", y = "") +
+  scale_y_continuous(breaks = NULL) +
+  theme_minimal() +
+  coord_cartesian(ylim = c(-0.1, 0.3))
+```
+
+Mediana pełni dwie odrębne, ale powiązane ze sobą role:
+
+**A. Jako Miara Centrum:**
+
+-   Reprezentuje środkowy punkt danych
+-   Równoważy liczbę obserwacji po obu stronach
+-   Jest odporna na wartości odstające (w przeciwieństwie do średniej arytmetycznej)
+
+**B. Jako Miara Pozycji Względnej:**
+
+-   Wyznacza 50-ty percentyl
+
+-   Dzieli dane na dwie równe części
+
+-   Każdą wartość można do niej odnieść:
+
+    -   Poniżej mediany: dolne 50%
+    -   Powyżej mediany: górne 50%
+
+Ta podwójna natura sprawia, że mediana jest szczególnie przydatna do:
+
+-   Opisywania wartości typowych (tendencja centralna)
+-   Zrozumienia pozycji w rozkładzie (pozycja względna)
+-   Dokonywania porównań między różnymi zbiorami danych
+:::
+
+## Miary Kształtu
+
+### Skośność
+
+#### Definicja
+
+Skośność kwantyfikuje asymetrię rozkładu danych. Wskazuje, czy dane grupują się bardziej po jednej stronie średniej niż po drugiej.
+
+#### Wyrażenie Matematyczne
+
+$SK = \frac{n}{(n-1)(n-2)} \sum_{i=1}^n (\frac{x_i - \bar{x}}{s})^3$ gdzie:
+
+-   $n$ to wielkość próby
+-   $x_i$ to i-ta obserwacja
+-   $\bar{x}$ to średnia z próby
+-   $s$ to odchylenie standardowe z próby
+
+#### Przykład: Analiza Frekwencji Wyborczej
+
+```{r}
+library(moments)
+library(ggplot2)
+library(tidyverse)
+
+# Generowanie przykładowych danych frekwencji w obwodach wyborczych
+set.seed(123)
+dane_frekwencji <- c(
+  # Obwody miejskie
+  rnorm(300, mean = 65, sd = 12),
+  # Obwody podmiejskie
+  rnorm(400, mean = 70, sd = 10),
+  # Obwody wiejskie
+  rnorm(300, mean = 68, sd = 15)
+) |> 
+  # Zapewnienie, że frekwencja mieści się w przedziale 0-100%
+  pmax(0) |> 
+  pmin(100)
+
+# Obliczenie i wizualizacja
+wartosc_skosnosci <- skewness(dane_frekwencji)
+wartosc_skosnosci
+
+ggplot(data.frame(x = dane_frekwencji), aes(x = x)) +
+  geom_histogram(bins = 50, fill = "skyblue", color = "black") +
+  geom_vline(xintercept = mean(dane_frekwencji), color = "red", linetype = "dashed") +
+  geom_vline(xintercept = median(dane_frekwencji), color = "blue", linetype = "dashed") +
+  labs(
+    title = str_glue("Rozkład Frekwencji w Obwodach Wyborczych (Skośność = {round(wartosc_skosnosci, 4)})"),
+    subtitle = "Czerwona: Średnia, Niebieska: Mediana",
+    x = "Frekwencja Wyborcza (%)",
+    y = "Liczba Obwodów"
+  ) +
+  theme_minimal()
+```
+
+#### Przewodnik Interpretacji
+
+-   **Skośność Dodatnia (\> 0)**: Rozkład ma dłuższy ogon prawy
+-   **Skośność Ujemna (\< 0)**: Rozkład ma dłuższy ogon lewy
+-   **Skośność Zero**: Rozkład w przybliżeniu symetryczny
+
+### Kurtoza
+
+#### Definicja
+
+Kurtoza mierzy "ogoniastość" rozkładu, wskazując na obecność wartości ekstremalnych w porównaniu z rozkładem normalnym.
+
+#### Wyrażenie Matematyczne
+
+$K = \frac{n(n+1)}{(n-1)(n-2)(n-3)} \sum_{i=1}^n (\frac{x_i - \bar{x}}{s})^4 - \frac{3(n-1)^2}{(n-2)(n-3)}$
+
+#### Przykład: Analiza Głosowań Parlamentarnych
+
+```{r}
+# Generowanie przykładowych wyników zgodności głosowań
+set.seed(456)
+zgodnosc_glosowan <- c(
+  # Standardowe wzorce głosowania
+  rnorm(400, mean = 75, sd = 10),
+  # Przypadki współpracy międzypartyjnej
+  rnorm(80, mean = 50, sd = 15),
+  # Głosowania zgodne z linią partii
+  rnorm(20, mean = 95, sd = 5)
+) |> 
+  pmax(0) |> 
+  pmin(100)
+
+wartosc_kurtozy <- kurtosis(zgodnosc_glosowan)
+wartosc_kurtozy
+
+# Wizualizacja z porównaniem do rozkładu normalnego
+zakres_x <- seq(min(zgodnosc_glosowan)-1, max(zgodnosc_glosowan)+1, length.out = 100)
+rozklad_normalny <- dnorm(zakres_x, mean = mean(zgodnosc_glosowan), sd = sd(zgodnosc_glosowan))
+
+ggplot() +
+  geom_density(
+    data = data.frame(x = zgodnosc_glosowan), 
+    aes(x = x), 
+    fill = "skyblue", 
+    alpha = 0.5
+  ) +
+  geom_line(
+    data = data.frame(x = zakres_x, y = rozklad_normalny),
+    aes(x = x, y = y),
+    color = "red",
+    linetype = "dashed"
+  ) +
+  labs(
+    title = str_glue("Rozkład Zgodności Głosowań (Kurtoza = {round(wartosc_kurtozy, 4)})"),
+    subtitle = "Rozkład obserwowany (niebieski) vs. Rozkład normalny (czerwony)",
+    x = "Wskaźnik Zgodności Głosowań (%)",
+    y = "Gęstość"
+  ) +
+  theme_minimal()
+```
+
+#### Przewodnik Interpretacji
+
+-   **Nadwyżka Kurtozy**: Różnica względem kurtozy rozkładu normalnego
+    (3) 
+-   **Leptokurtyczny (\> 3)**: Więcej wartości ekstremalnych niż w rozkładzie normalnym
+-   **Platykurtyczny (\< 3)**: Mniej wartości ekstremalnych niż w rozkładzie normalnym
+-   **Mezokurtyczny (= 3)**: Podobny do rozkładu normalnego
+
+## Ćwiczenie 1. Porównanie wynagrodzeń
+
+### Dane
+
+Mamy dane o wynagrodzeniach (w tysiącach euro) z dwóch małych firm europejskich:
+
+| Index | Firma X | Firma Y |
+|-------|---------|---------|
+| 1     | 2       | 3       |
+| 2     | 2       | 3       |
+| 3     | 2       | 4       |
+| 4     | 3       | 4       |
+| 5     | 3       | 4       |
+| 6     | 3       | 4       |
+| 7     | 3       | 4       |
+| 8     | 3       | 4       |
+| 9     | 3       | 5       |
+| 10    | 4       | 5       |
+| 11    | 4       | 5       |
+| 12    | 4       | 5       |
+| 13    | 4       | 5       |
+| 14    | 4       | 5       |
+| 15    | 5       | 6       |
+| 16    | 5       | 6       |
+| 17    | 5       | 6       |
+| 18    | 5       | 7       |
+| 19    | 20      | 7       |
+| 20    | 35      | 8       |
+
+### Miary tendencji centralnej
+
+#### Średnia arytmetyczna
+
+Średnia arytmetyczna to suma wszystkich wartości podzielona przez ich liczbę.
+
+Wzór: $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$
+
+##### Obliczenia ręczne dla Firmy X
+
+| Wartość ($x_i$) | Częstość ($f_i$) | $x_i \cdot f_i$ |
+|-----------------|------------------|-----------------|
+| 2               | 3                | 6               |
+| 3               | 6                | 18              |
+| 4               | 5                | 20              |
+| 5               | 4                | 20              |
+| 20              | 1                | 20              |
+| 35              | 1                | 35              |
+| Suma            | n = 20           | Suma = 119      |
+
+$\bar{x} = \frac{119}{20} = 5,95$
+
+##### Obliczenia ręczne dla Firmy Y
+
+| Wartość ($x_i$) | Częstość ($f_i$) | $x_i \cdot f_i$ |
+|-----------------|------------------|-----------------|
+| 3               | 2                | 6               |
+| 4               | 6                | 24              |
+| 5               | 6                | 30              |
+| 6               | 3                | 18              |
+| 7               | 2                | 14              |
+| 8               | 1                | 8               |
+| Suma            | n = 20           | Suma = 100      |
+
+$\bar{y} = \frac{100}{20} = 5$
+
+##### Weryfikacja w R
+
+```{r}
+X <- c(2,2,2,3,3,3,3,3,3,4,4,4,4,4,5,5,5,5,20,35)
+Y <- c(3,3,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,7,7,8)
+
+mean(X)
+mean(Y)
+```
+
+#### Mediana
+
+Mediana to wartość środkowa w uporządkowanym zbiorze danych.
+
+##### Obliczenia ręczne dla Firmy X
+
+Uporządkowane dane: \[2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 20, 35\]
+
+n = 20 (parzyste), więc bierzemy średnią z 10. i 11. wartości:
+
+Mediana = $\frac{4 + 4}{2} = 4$
+
+##### Obliczenia ręczne dla Firmy Y
+
+Uporządkowane dane: \[3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 7, 7, 8\]
+
+n = 20 (parzyste), więc bierzemy średnią z 10. i 11. wartości:
+
+Mediana = $\frac{5 + 5}{2} = 5$
+
+##### Weryfikacja w R
+
+```{r}
+median(X)
+median(Y)
+```
+
+#### Dominanta (moda)
+
+Dominanta to najczęściej występująca wartość w zbiorze danych.
+
+Dla Firmy X dominanta wynosi 3 (występuje 6 razy). Dla Firmy Y są dwie dominanty: 4 i 5 (obie występują 6 razy).
+
+```{r}
+# Funkcja do obliczania dominanty
+znajdz_dominante <- function(x) {
+  unikalne_x <- unique(x)
+  unikalne_x[which.max(tabulate(match(x, unikalne_x)))]
+}
+
+znajdz_dominante(X)
+znajdz_dominante(Y)
+```
+
+### Miary rozproszenia
+
+#### Wariancja
+
+Wariancja mierzy średnie kwadratowe odchylenie od średniej.
+
+Wzór: $s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}$
+
+##### Obliczenia ręczne dla Firmy X
+
+| $x_i$ | $f_i$ | $x_i - \bar{x}$ | $(x_i - \bar{x})^2$ | $f_i(x_i - \bar{x})^2$ |
+|-------|-------|-----------------|---------------------|------------------------|
+| 2     | 3     | -3,95           | 15,6025             | 46,8075                |
+| 3     | 6     | -2,95           | 8,7025              | 52,215                 |
+| 4     | 5     | -1,95           | 3,8025              | 19,0125                |
+| 5     | 4     | -0,95           | 0,9025              | 3,61                   |
+| 20    | 1     | 14,05           | 197,4025            | 197,4025               |
+| 35    | 1     | 29,05           | 843,9025            | 843,9025               |
+| Suma  | 20    |                 |                     | 1162,95                |
+
+$s^2 = \frac{1162,95}{19} = 61,21$
+
+##### Obliczenia ręczne dla Firmy Y
+
+| $y_i$ | $f_i$ | $y_i - \bar{x}$ | $(y_i - \bar{y})^2$ | $f_i(y_i - \bar{y})^2$ |
+|-------|-------|-----------------|---------------------|------------------------|
+| 3     | 2     | -2              | 4                   | 8                      |
+| 4     | 6     | -1              | 1                   | 6                      |
+| 5     | 6     | 0               | 0                   | 0                      |
+| 6     | 3     | 1               | 1                   | 3                      |
+| 7     | 2     | 2               | 4                   | 8                      |
+| 8     | 1     | 3               | 9                   | 9                      |
+| Suma  | 20    |                 |                     | 34                     |
+
+$s^2 = \frac{34}{19} = 1,79$
+
+##### Weryfikacja w R
+
+```{r}
+var(X)
+var(Y)
+```
+
+#### Odchylenie standardowe
+
+Odchylenie standardowe to pierwiastek kwadratowy z wariancji.
+
+Wzór: $s = \sqrt{s^2}$
+
+-   Dla Firmy X: $s = \sqrt{61,21} = 7,82$
+-   Dla Firmy Y: $s = \sqrt{1,79} = 1,34$
+
+##### Weryfikacja w R
+
+```{r}
+sd(X)
+sd(Y)
+```
+
+### Kwartyle
+
+Kwartyle dzielą zbiór danych na cztery równe części.
+
+#### Obliczenia ręczne dla Firmy X
+
+Uporządkowane dane: \[2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 20, 35\]
+
+-   Q1 (25. percentyl): mediana pierwszych 10 liczb = 3
+-   Q2 (50. percentyl, mediana): 4
+-   Q3 (75. percentyl): mediana ostatnich 10 liczb = 5
+
+#### Obliczenia ręczne dla Firmy Y
+
+Uporządkowane dane: \[3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 7, 7, 8\]
+
+-   Q1 (25. percentyl): mediana pierwszych 10 liczb = 4
+-   Q2 (50. percentyl, mediana): 5
+-   Q3 (75. percentyl): mediana ostatnich 10 liczb = 6
+
+#### Weryfikacja w R
+
+```{r}
+quantile(X)
+quantile(Y)
+```
+
+#### IQR
+
+-   $IQR_x = 5 - 3 = 2$
+-   $IQR_y = 6 - 4 = 2$
+
+### Wykres pudełkowy Tukeya
+
+Wykres pudełkowy Tukeya wizualnie przedstawia rozkład danych na podstawie kwartyli. Użyjemy biblioteki ggplot2 do stworzenia wykresu.
+
+```{r}
+library(ggplot2)
+library(tidyr)
+
+# Przygotowanie danych
+dane <- data.frame(
+  Firma = rep(c("X", "Y"), each = 20),
+  Wynagrodzenie = c(X, Y)
+)
+
+# Tworzenie wykresu pudełkowego
+ggplot(dane, aes(x = Firma, y = Wynagrodzenie, fill = Firma)) +
+  geom_boxplot() +
+  labs(title = "Rozkład wynagrodzeń w firmach X i Y",
+       x = "Firma",
+       y = "Wynagrodzenie (tysiące euro)") +
+  theme_minimal() +
+  scale_fill_manual(values = c("X" = "#69b3a2", "Y" = "#404080"))
+
+# Tworzenie wykresu pudełkowego
+ggplot(dane, aes(x = Firma, y = Wynagrodzenie, fill = Firma)) +
+  geom_boxplot(outliers = F) +
+  labs(title = "Rozkład wynagrodzeń w firmach X i Y",
+       x = "Firma",
+       y = "Wynagrodzenie (tysiące euro)") +
+  theme_minimal() +
+  scale_fill_manual(values = c("X" = "#69b3a2", "Y" = "#404080"))
+```
+
+#### Interpretacja wykresu pudełkowego
+
+1.  Pudełko reprezentuje rozstęp międzykwartylowy (IQR) od Q1 do Q3.
+2.  Linia wewnątrz pudełka to mediana (Q2).
+3.  Wąsy rozciągają się do najmniejszych i największych wartości w granicach 1,5 \* IQR.
+4.  Punkty poza wąsami są uznawane za wartości odstające.
+
+### Porównanie wyników
+
+| Miara                | Firma X | Firma Y |
+|----------------------|---------|---------|
+| Średnia              | 5,95    | 5,00    |
+| Mediana              | 4       | 5       |
+| Dominanta            | 3       | 4 i 5   |
+| Wariancja            | 61,21   | 1,79    |
+| Odchylenie standard. | 7,82    | 1,34    |
+| Q1                   | 3       | 4       |
+| Q3                   | 5       | 6       |
+
+#### Kluczowe obserwacje:
+
+1.  Tendencja centralna: Firma X ma wyższą średnią, ale niższą medianę niż Firma Y, co wskazuje na prawostronnie skośny rozkład dla Firmy X.\
+2.  Rozproszenie: Firma X wykazuje znacznie wyższą wariancję i odchylenie standardowe, sugerując większe dysproporcje w wynagrodzeniach.
+3.  Kształt rozkładu: Wynagrodzenia w Firmie Y są bardziej skupione, podczas gdy Firma X ma wartości ekstremalne (potencjalne wartości odstające), które znacząco wpływają na jej średnią i wariancję.
+4.  Kwartyle: Rozstęp międzykwartylowy (Q3 - Q1) Firmy Y jest nieznacznie większy, ale jej ogólny zakres jest znacznie mniejszy niż Firmy X.
+
+### Wnioski
+
+Ta analiza porównawcza ujawnia znaczące różnice w strukturach wynagrodzeń między dwiema firmami. Firma X wykazuje większą zmienność i potencjalną nierówność w swojej skali płac, podczas gdy Firma Y demonstruje bardziej spójny i wąsko rozłożony zakres wynagrodzeń.
+
+## Ćwiczenie 2. Porównanie Zmienności Wielkości Okręgów Wyborczych Między Krajami
+
+```{r setup_2, include=FALSE}
+library(tidyverse)
+library(knitr)
+options(digits = 4)
+```
+
+### Dane
+
+Mamy dane o wielkości okręgów wyborczych z dwóch krajów:
+
+```{r data}
+x <- c(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)  # Kraj wysoka zmienność
+y <- c(8, 9, 9, 10, 10, 11, 11, 12, 12, 13)  # Kraj niska zmienność
+
+kable(data.frame(
+  "Kraj X (Wysoka zm.)" = x,
+  "Kraj Y (Niska zm.)" = y
+))
+```
+
+### Miary Tendencji Centralnej
+
+#### Średnia Arytmetyczna
+
+Wzór: $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$
+
+##### Obliczenia dla Kraju X
+
+| Element | Wartość |
+|---------|---------|
+| 1       | 1       |
+| 2       | 3       |
+| 3       | 5       |
+| 4       | 7       |
+| 5       | 9       |
+| 6       | 11      |
+| 7       | 13      |
+| 8       | 15      |
+| 9       | 17      |
+| 10      | 19      |
+| Suma    | 100     |
+
+$\bar{x} = \frac{100}{10} = 10$
+
+```{r mean-x}
+mean_x <- mean(x)
+c("Ręcznie" = 10, "R" = mean_x)
+```
+
+##### Obliczenia dla Kraju Y
+
+| Element | Wartość |
+|---------|---------|
+| 1       | 8       |
+| 2       | 9       |
+| 3       | 9       |
+| 4       | 10      |
+| 5       | 10      |
+| 6       | 11      |
+| 7       | 11      |
+| 8       | 12      |
+| 9       | 12      |
+| 10      | 13      |
+| Suma    | 105     |
+
+$\bar{y} = \frac{105}{10} = 10,5$
+
+```{r mean-y}
+mean_y <- mean(y)
+c("Ręcznie" = 10.5, "R" = mean_y)
+```
+
+#### Mediana
+
+Mediana to wartość środkowa w uporządkowanym zbiorze danych.
+
+##### Obliczenia dla Kraju X
+
+Uporządkowane dane: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19
+
+Dla n = 10 (parzysta liczba obserwacji): Pozycje środkowe: 5 i 6 Wartości środkowe: 9 i 11
+
+Mediana = $\frac{9 + 11}{2} = 10$
+
+```{r median-x}
+median_x <- median(x)
+c("Ręcznie" = 10, "R" = median_x)
+```
+
+##### Obliczenia dla Kraju Y
+
+Uporządkowane dane: 8, 9, 9, 10, 10, 11, 11, 12, 12, 13
+
+Dla n = 10 (parzysta liczba obserwacji): Pozycje środkowe: 5 i 6 Wartości środkowe: 10 i 11
+
+Mediana = $\frac{10 + 11}{2} = 10,5$
+
+```{r median-y}
+median_y <- median(y)
+c("Ręcznie" = 10.5, "R" = median_y)
+```
+
+#### Dominanta
+
+##### Obliczenia dla Kraju X
+
+| Wartość | Częstość |
+|---------|----------|
+| 1       | 1        |
+| 3       | 1        |
+| 5       | 1        |
+| 7       | 1        |
+| 9       | 1        |
+| 11      | 1        |
+| 13      | 1        |
+| 15      | 1        |
+| 17      | 1        |
+| 19      | 1        |
+
+Wniosek: Brak dominanty (wszystkie wartości występują jednokrotnie)
+
+##### Obliczenia dla Kraju Y
+
+| Wartość | Częstość |
+|---------|----------|
+| 8       | 1        |
+| 9       | 2        |
+| 10      | 2        |
+| 11      | 2        |
+| 12      | 2        |
+| 13      | 1        |
+
+Wniosek: Cztery dominanty: 9, 10, 11, 12 (każda występuje dwukrotnie)
+
+```{r mode}
+# Tabele częstości
+table_x <- table(x)
+table_y <- table(y)
+
+list(
+  "Kraj X" = table_x,
+  "Kraj Y" = table_y
+)
+```
+
+#### Wariancja
+
+Wariancja mierzy średnie kwadratowe odchylenie od średniej.
+
+Wzór: $s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}$
+
+##### Obliczenia dla Kraju X
+
+| $x_i$ | $(x_i - \bar{x})$ | $(x_i - \bar{x})^2$ |
+|-------|-------------------|---------------------|
+| 1     | -9                | 81                  |
+| 3     | -7                | 49                  |
+| 5     | -5                | 25                  |
+| 7     | -3                | 9                   |
+| 9     | -1                | 1                   |
+| 11    | 1                 | 1                   |
+| 13    | 3                 | 9                   |
+| 15    | 5                 | 25                  |
+| 17    | 7                 | 49                  |
+| 19    | 9                 | 81                  |
+| Suma  |                   | 330                 |
+
+$s^2_X = \frac{330}{9} = 36,67$
+
+```{r var-x}
+var_x <- var(x)
+c("Ręcznie" = 36.67, "R" = var_x)
+```
+
+##### Obliczenia dla Kraju Y
+
+| $x_i$ | $(y_i - \bar{y})$ | $(y_i - \bar{y})^2$ |
+|-------|-------------------|---------------------|
+| 8     | -2,5              | 6,25                |
+| 9     | -1,5              | 2,25                |
+| 9     | -1,5              | 2,25                |
+| 10    | -0,5              | 0,25                |
+| 10    | -0,5              | 0,25                |
+| 11    | 0,5               | 0,25                |
+| 11    | 0,5               | 0,25                |
+| 12    | 1,5               | 2,25                |
+| 12    | 1,5               | 2,25                |
+| 13    | 2,5               | 6,25                |
+| Suma  |                   | 22,5                |
+
+$s^2_Y = \frac{22,5}{9} = 2,5$
+
+```{r var-y}
+var_y <- var(y)
+c("Ręcznie" = 2.5, "R" = var_y)
+```
+
+#### Odchylenie Standardowe
+
+Odchylenie standardowe to pierwiastek kwadratowy z wariancji. Jest miarą zmienności wyrażoną w tych samych jednostkach co dane.
+
+Wzór: $s = \sqrt{s^2}$
+
+##### Obliczenia dla Kraju X
+
+Wykorzystujemy wcześniej obliczoną wariancję: $s^2_X = 36,67$
+
+Obliczamy pierwiastek: $s_X = \sqrt{36,67} \approx 6,06$
+
+| Krok            | Obliczenie     | Wynik |
+|-----------------|----------------|-------|
+| 1\. Wariancja   | $s^2_X$        | 36,67 |
+| 2\. Pierwiastek | $\sqrt{36,67}$ | 6,06  |
+
+```{r sd-x}
+sd_x <- sd(x)
+c("Ręcznie" = 6.06, "R" = sd_x)
+```
+
+##### Obliczenia dla Kraju Y
+
+Wykorzystujemy wcześniej obliczoną wariancję: $s^2_Y = 2,5$
+
+Obliczamy pierwiastek: $s_Y = \sqrt{2,5} \approx 1,58$
+
+| Krok            | Obliczenie   | Wynik |
+|-----------------|--------------|-------|
+| 1\. Wariancja   | $s^2_Y$      | 2,5   |
+| 2\. Pierwiastek | $\sqrt{2,5}$ | 1,58  |
+
+```{r sd-y}
+sd_y <- sd(y)
+c("Ręcznie" = 1.58, "R" = sd_y)
+```
+
+Interpretacja:
+
+-   Kraj X: Przeciętne odchylenie wielkości okręgu od średniej wynosi około 6 mandatów
+-   Kraj Y: Przeciętne odchylenie wielkości okręgu od średniej wynosi około 1,6 mandatu
+
+### Współczynnik Zmienności (CV)
+
+Współczynnik zmienności to stosunek odchylenia standardowego do średniej, wyrażony w procentach.
+
+Wzór: $CV = \frac{s}{\bar{x}} \times 100\%$
+
+#### Obliczenia dla Kraju X
+
+$CV_X = \frac{6,06}{10} \times 100\% = 60,6\%$
+
+| Składowa                     | Wartość |
+|------------------------------|---------|
+| Odchylenie standardowe ($s$) | 6,06    |
+| Średnia ($\bar{x}$)          | 10      |
+| CV                           | 60,6%   |
+
+```{r cv-x}
+cv_x <- sd(x) / mean(x) * 100
+c("Ręcznie" = 60.6, "R" = cv_x)
+```
+
+#### Obliczenia dla Kraju Y
+
+$CV_Y = \frac{1,58}{10,5} \times 100\% = 15,0\%$
+
+| Składowa                     | Wartość |
+|------------------------------|---------|
+| Odchylenie standardowe ($s$) | 1,58    |
+| Średnia ($\bar{x}$)          | 10,5    |
+| CV                           | 15,0%   |
+
+```{r cv-y}
+cv_y <- sd(y) / mean(y) * 100
+c("Ręcznie" = 15.0, "R" = cv_y)
+```
+
+### Kwartyle i Rozstęp Międzykwartylowy (IQR)
+
+#### Metody obliczania kwartyli
+
+Istnieją różne metody obliczania kwartyli. W naszych obliczeniach ręcznych zastosujemy metodę wyłączającą medianę:
+
+1.  Dzielimy szereg na dwie części względem mediany
+2.  Mediana nie jest uwzględniana w obliczeniach kwartyli
+3.  Dla każdej części obliczamy jej medianę - będzie to odpowiednio Q1 i Q3
+
+#### Obliczenia dla Kraju X
+
+Uporządkowane dane: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19
+
+Mediana = 10 (nie uwzględniamy w obliczeniach kwartyli)
+
+Dolna połowa: 1, 3, 5, 7, 9 Q1 = mediana dolnej połowy = 5
+
+Górna połowa: 11, 13, 15, 17, 19 Q3 = mediana górnej połowy = 15
+
+IQR = Q3 - Q1 = 15 - 5 = 10
+
+#### Obliczenia dla Kraju Y
+
+Uporządkowane dane: 8, 9, 9, 10, 10, 11, 11, 12, 12, 13
+
+Mediana = 10.5 (nie uwzględniamy w obliczeniach kwartyli)
+
+Dolna połowa: 8, 9, 9, 10, 10 Q1 = mediana dolnej połowy = 9
+
+Górna połowa: 11, 11, 12, 12, 13 Q3 = mediana górnej połowy = 12
+
+IQR = Q3 - Q1 = 12 - 9 = 3
+
+```{r quartiles-comparison}
+# Porównanie różnych metod obliczania kwartyli w R
+methods_comparison <- data.frame(
+  Metoda = c("Ręcznie (bez mediany)", 
+             "R type=1", "R type=2", "R type=7 (domyślna)"),
+  "Q1 Kraj X" = c(5, 
+                  quantile(x, 0.25, type=1),
+                  quantile(x, 0.25, type=2),
+                  quantile(x, 0.25, type=7)),
+  "Q3 Kraj X" = c(15,
+                  quantile(x, 0.75, type=1),
+                  quantile(x, 0.75, type=2),
+                  quantile(x, 0.75, type=7)),
+  "Q1 Kraj Y" = c(9,
+                  quantile(y, 0.25, type=1),
+                  quantile(y, 0.25, type=2),
+                  quantile(y, 0.25, type=7)),
+  "Q3 Kraj Y" = c(12,
+                  quantile(y, 0.75, type=1),
+                  quantile(y, 0.75, type=2),
+                  quantile(y, 0.75, type=7))
+)
+
+kable(methods_comparison, digits = 2,
+      caption = "Porównanie różnych metod obliczania kwartyli")
+```
+
+#### Wyjaśnienie różnic w metodach obliczania kwartyli
+
+1.  **Metoda ręczna (bez mediany)**:
+    -   Dzieli dane na dwie części
+    -   Nie uwzględnia mediany
+    -   Znajduje medianę każdej części
+2.  **R type=1**:
+    -   Metoda pierwsza w R
+    -   Używa pozycji całkowitych
+    -   Nie interpoluje
+3.  **R type=2**:
+    -   Metoda druga w R
+    -   Używa pozycji całkowitych
+    -   Interpoluje gdy pozycja nie jest całkowita
+4.  **R type=7 (domyślna)**:
+    -   Metoda domyślna w R
+    -   Używa quantile()\[5\] z SAS
+    -   Interpoluje według metody opisanej przez Hyndmana i Fana
+
+### Porównanie Wyników
+
+```{r summary-table}
+summary_df <- data.frame(
+  Miara = c("Średnia", "Mediana", "Dominanta", "Rozstęp", "Wariancja", 
+            "Odch. Stand.", "Q1", "Q3", "IQR", "CV (%)"),
+  "Kraj X" = c(10, 10, "brak", 18, 36.67, 6.06, 5, 15, 10, 60.6),
+  "Kraj Y" = c(10.5, 10.5, "9,10,11,12", 5, 2.5, 1.58, 9, 12, 3, 15.0)
+)
+
+kable(summary_df, 
+      caption = "Zestawienie wszystkich miar statystycznych",
+      align = c('l', 'r', 'r'))
+```
+
+### Porównanie za pomocą Wykresu Pudełkowego
+
+```{r boxplot, fig.width=10, fig.height=6}
+df_long <- data.frame(
+  kraj = rep(c("X", "Y"), each = 10),
+  wielkosc = c(x, y)
+)
+
+# Wykres podstawowy
+p <- ggplot(df_long, aes(x = kraj, y = wielkosc, fill = kraj)) +
+  geom_boxplot(outlier.shape = NA) +  # Wyłączamy domyślne punkty odstające
+  geom_jitter(width = 0.2, alpha = 0.5) +  # Dodajemy punkty z przezroczystością
+  scale_fill_manual(values = c("X" = "#FFA07A", "Y" = "#98FB98")) +
+  labs(
+    title = "Porównanie Zmienności Wielkości Okręgów Wyborczych",
+    subtitle = paste("CV: Kraj X =", round(cv_x, 1), "%, Kraj Y =", round(cv_y, 1), "%"),
+    x = "Kraj",
+    y = "Wielkość Okręgu"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+# Dodajemy adnotacje z kwartylami
+p + annotate(
+  "text", 
+  x = c(1, 1, 1, 2, 2, 2), 
+  y = c(max(x)+1, mean(x), min(x)-1, max(y)+1, mean(y), min(y)-1),
+  label = c(
+    paste("Q3 =", quantile(x, 0.75, type=1)),
+    paste("M =", median(x)),
+    paste("Q1 =", quantile(x, 0.25, type=1)),
+    paste("Q3 =", quantile(y, 0.75, type=1)),
+    paste("M =", median(y)),
+    paste("Q1 =", quantile(y, 0.25, type=1))
+  ),
+  size = 3
+)
+```
+
+### Uwagi Metodologiczne
+
+1.  **Obliczenia kwartyli**:
+    -   Zastosowana metoda wyłączająca medianę może dawać inne wyniki niż domyślne funkcje R
+    -   Różnice w metodach obliczeniowych nie wpływają na ogólne wnioski
+    -   Warto zawsze zaznaczyć stosowaną metodę w raportach
+2.  **Wizualizacja**:
+    -   Wykres pudełkowy skutecznie pokazuje różnice w rozkładach
+    -   Dodatkowe punkty pokazują rzeczywiste wartości
+    -   Adnotacje ułatwiają interpretację
+
+### Podsumowanie
+
+#### Porównanie Miar Statystycznych
+
+| Miara     | Kraj X | Kraj Y                   | Różnica względna  |
+|-----------|--------|--------------------------|-------------------|
+| Średnia   | 10,0   | 10,5                     | Podobna           |
+| Mediana   | 10,0   | 10,5                     | Podobna           |
+| Dominanta | Brak   | Wielokrotna (9,10,11,12) | \-                |
+| Rozstęp   | 18     | 5                        | 3,6× większy w X  |
+| Wariancja | 36,67  | 2,5                      | 14,7× większa w X |
+| IQR       | 10     | 3                        | 3,3× większy w X  |
+| CV        | 60,6%  | 15,0%                    | 4,0× większy w X  |
+
+#### Charakterystyka Rozkładów
+
+**Kraj X**:
+
+-   Rozkład równomierny
+-   Brak dominującej wielkości okręgu (brak dominanty)
+-   Szeroki zakres: od 1 do 19 mandatów
+-   Wysoka zmienność (CV = 60,6%)
+-   Równomierne rozłożenie wartości w zakresie
+
+**Kraj Y**:
+
+-   Rozkład skupiony
+-   Wiele typowych wielkości (cztery dominanty)
+-   Wąski zakres: od 8 do 13 mandatów
+-   Niska zmienność (CV = 15,0%)
+-   Wartości skoncentrowane wokół średniej
+
+#### Interpretacja Wykresu Pudełkowego
+
+Wizualizacja w formie wykresu pudełkowego pokazuje:
+
+**Elementy Struktury**:
+
+-   Pudełko: Pokazuje rozstęp międzykwartylowy (IQR)
+-   Dolna krawędź: Pierwszy kwartyl (Q1)
+-   Górna krawędź: Trzeci kwartyl (Q3)
+-   Linia wewnętrzna: Mediana (Q2)
+-   Wąsy: Rozciągają się do ±1,5 IQR - Punkty: Pojedyncze wielkości okręgów
+
+**Główne Wnioski Wizualne**:
+
+1.  **Rozmiar Pudełka**:
+
+-   Kraj X: Duże pudełko wskazuje na szeroki rozrzut środkowych 50%
+-   Kraj Y: Małe pudełko pokazuje skupienie wartości środkowych
+
+2.  **Długość Wąsów**:
+
+    -   Kraj X: Długie wąsy wskazują na szeroki rozkład całkowity
+    -   Kraj Y: Krótkie wąsy pokazują ograniczony rozrzut
+
+3.  **Rozkład Punktów**:
+
+    -   Kraj X: Punkty szeroko rozproszone
+    -   Kraj Y: Punkty gęsto skupione
+
+#### Kluczowe Obserwacje
+
+1.  **Tendencja Centralna**:
+
+    -   Podobne średnie wielkości okręgów
+    -   Różne wzorce rozkładu
+    -   Odmienne podejścia do standaryzacji
+
+2.  **Miary Zmienności**:
+
+    -   Wszystkie miary pokazują 3-15 razy większą zmienność w Kraju X
+    -   Spójny wzorzec w różnych miarach statystycznych
+    -   Systematyczna różnica w projekcie okręgów
+
+3.  **Projekt Systemu**:
+
+    -   Kraj X: Elastyczne, zróżnicowane podejście
+    -   Kraj Y: Ustandaryzowane, jednolite podejście
+    -   Różne filozoficzne podejścia do reprezentacji
+
+4.  **Implikacje Reprezentatywności**:
+
+    -   Kraj X: Zmienna proporcja wyborców do przedstawicieli
+    -   Kraj Y: Bardziej spójne poziomy reprezentacji
+    -   Różne podejścia do reprezentacji demokratycznej
+
+Analiza ta pokazuje fundamentalne różnice w projektowaniu systemów wyborczych między dwoma krajami, gdzie Kraj X przyjmuje bardziej zróżnicowane podejście, a Kraj Y utrzymuje większą jednolitość w wielkości okręgów wyborczych.
+
+## Zrozumienie Wykresów Pudełkowych na Przykładzie Danych o Długości Życia
+
+```{r}
+#| message: false
+library(tidyverse)
+library(gapminder)
+
+# Przygotowanie danych
+data_2007 <- gapminder %>%
+  filter(year == 2007)
+```
+
+## Wprowadzenie do Wykresów Pudełkowych
+
+Wykres pudełkowy (ang. box-and-whisker plot) przedstawia pięć kluczowych statystyk opisowych danych:
+
+-   **Mediana**: Środkowa linia w pudełku (50. percentyl)
+-   **Pierwszy kwartyl (Q1)**: Dolna krawędź pudełka (25. percentyl)
+-   **Trzeci kwartyl (Q3)**: Górna krawędź pudełka (75. percentyl)
+-   **Rozstęp międzykwartylowy (IQR)**: Wysokość pudełka (Q3 - Q1)
+-   **Wąsy**: Rozciągają się do najbardziej skrajnych wartości niebędących obserwacjami odstającymi (metoda Tukeya: 1.5 × IQR)
+-   **Obserwacje odstające**: Pojedyncze punkty poza wąsami
+
+### Wizualizacja Długości Życia
+
+```{r}
+#| fig.height: 16
+#| fig.width: 10
+ggplot(data_2007, aes(x = reorder(continent, lifeExp, FUN = median), y = lifeExp)) +
+  geom_boxplot(fill = "lightblue", alpha = 0.7, outlier.shape = 24, 
+               outlier.fill = "red", outlier.alpha = 0.6, outlier.size = 4) +
+  geom_jitter(width = 0.2, alpha = 0.4, color = "darkblue") +
+  labs(title = "Długość Życia według Kontynentów (2007)",
+       subtitle = "Pojedyncze punkty pokazują surowe dane; czerwone punkty oznaczają wartości odstające",
+       x = "Kontynent",
+       y = "Długość życia (w latach)") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10)
+  ) +
+  scale_y_continuous(breaks = seq(40, 85, by = 5))
+```
+
+## Analiza Danych
+
+### Mediana i Rozkład
+
+Odpowiedz Prawda lub Fałsz:
+
+1.  50% krajów afrykańskich ma długość życia poniżej 52 lat
+2.  Mediana długości życia w Europie wynosi około 78 lat
+3.  Ponad 75% krajów Oceanii ma długość życia powyżej 75 lat
+4.  25% krajów azjatyckich ma długość życia poniżej 68 lat
+5.  Środkowe 50% długości życia w Europie mieści się między 76 a 80 lat
+
+### Rozrzut i Zmienność
+
+Odpowiedz Prawda lub Fałsz:
+
+1.  Azja wykazuje największy rozrzut (IQR) w długości życia
+2.  Europa ma najmniejszy IQR wśród wszystkich kontynentów
+3.  Zmienność długości życia w Afryce jest większa niż w obu Amerykach
+4.  Oceania wykazuje najmniejszą zmienność w długości życia
+5.  Wąsy dla Azji rozciągają się w przybliżeniu od 58 do 82 lat (z wyłączeniem wartości odstających)
+
+### Wartości Odstające i Ekstrema
+
+Odpowiedz Prawda lub Fałsz:
+
+1.  Afryka ma dwa kraje z wyjątkowo niską długością życia
+2.  W rozkładzie dla Oceanii nie ma wartości odstających
+3.  Azja ma kilka niskich wartości odstających (poniżej 55 lat)
+
+## Zmiany w Czasie
+
+```{r}
+#| fig.height: 8
+#| fig.width: 12
+time_comparison <- gapminder %>%
+  filter(year %in% c(1957, 2007)) %>%
+  mutate(year = factor(year))
+
+ggplot(time_comparison, aes(x = continent, y = lifeExp, fill = year)) +
+  geom_boxplot(alpha = 0.7, position = "dodge", outlier.shape = 21,
+               outlier.alpha = 0.6) +
+  labs(title = "Długość Życia: 1957 vs 2007",
+       subtitle = "Porównanie zmian rozkładu na przestrzeni 50 lat",
+       x = "Kontynent",
+       y = "Długość życia (w latach)",
+       fill = "Rok") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10)
+  ) +
+  scale_fill_brewer(palette = "Set2") +
+  scale_y_continuous(breaks = seq(30, 85, by = 5))
+```
+
+### Pytania dotyczące Zmian w Czasie
+
+Odpowiedz Prawda lub Fałsz:
+
+1.  Mediana długości życia wzrosła na wszystkich kontynentach między 1957 a 2007 rokiem
+2.  Zmienność długości życia (IQR) zmniejszyła się na większości kontynentów w czasie
+3.  Afryka wykazała najmniejszą poprawę mediany długości życia
+4.  Rozrzut długości życia w Azji znacząco się zmniejszył od 1957 do 2007 roku
+5.  Oceania utrzymała najwyższą medianę długości życia w obu okresach
+
+### Podsumowanie Statystyczne
+
+```{r}
+# Obliczenie statystyk opisowych
+summary_stats <- gapminder %>%
+  filter(year %in% c(1957, 2007)) %>%
+  group_by(continent, year) %>%
+  summarise(
+    mediana = median(lifeExp),
+    q1 = quantile(lifeExp, 0.25),
+    q3 = quantile(lifeExp, 0.75),
+    iqr = IQR(lifeExp),
+    min = min(lifeExp),
+    max = max(lifeExp),
+    liczba_odstających = sum(lifeExp < (q1 - 1.5 * iqr) | lifeExp > (q3 + 1.5 * iqr))
+  ) %>%
+  arrange(continent, year)
+
+knitr::kable(summary_stats, digits = 1,
+             caption = "Statystyki Opisowe według Kontynentu i Roku")
+```
+
+## Najważniejsze Wnioski
+
+1.  **Centrum Rozkładu**:
+    -   Mediana pokazuje typową długość życia
+    -   Zmiany mediany odzwierciedlają ogólną poprawę
+2.  **Rozrzut i Zmienność**:
+    -   IQR (wysokość pudełka) wskazuje na rozproszenie danych
+    -   Szersze pudełka sugerują większe nierówności w długości życia
+3.  **Wartości Odstające i Ekstrema**:
+    -   Wartości odstające często reprezentują kraje o wyjątkowej sytuacji
+4.  **Porównanie w Czasie**:
+    -   Pokazuje zarówno bezwzględną poprawę, jak i zmiany w wariancji
+    -   Uwydatnia utrzymujące się różnice regionalne
+    -   Ujawnia różne tempo postępu na poszczególnych kontynentach
+
+## Statistical Summary
+
+```{r}
+# Calculate summary statistics
+summary_stats <- gapminder %>%
+  filter(year %in% c(1957, 2007)) %>%
+  group_by(continent, year) %>%
+  summarise(
+    median = median(lifeExp),
+    q1 = quantile(lifeExp, 0.25),
+    q3 = quantile(lifeExp, 0.75),
+    iqr = IQR(lifeExp),
+    min = min(lifeExp),
+    max = max(lifeExp),
+    n_outliers = sum(lifeExp < (q1 - 1.5 * iqr) | lifeExp > (q3 + 1.5 * iqr))
+  ) %>%
+  arrange(continent, year)
+
+knitr::kable(summary_stats, digits = 1,
+             caption = "Summary Statistics by Continent and Year")
+```
+
+## Appendix: Tabele Podsumowujące Typy Danych i Odpowiednie Miary Statystyczne
+
+### Zalety i Wady Różnych Miar Statystycznych
+
+#### Miary Tendencji Centralnej
+
+| Miara | Zalety | Wady | Zastosowanie do |
+|----|----|----|----|
+| Średnia | \- Wykorzystuje wszystkie punkty danych<br>- Pozwala na dalsze obliczenia statystyczne<br>- Idealna dla danych o rozkładzie normalnym | \- Wrażliwa na wartości odstające<br>- Nieodpowiednia dla rozkładów skośnych<br>- Bez znaczenia dla danych nominalnych | Interwałowe, Ilorazowe, niektóre Dyskretne, Ciągłe |
+| Mediana | \- Niewrażliwa na wartości odstające<br>- Dobra dla rozkładów skośnych<br>- Może być stosowana do danych porządkowych | \- Ignoruje rzeczywiste wartości większości punktów danych<br>- Mniej użyteczna do dalszych analiz statystycznych | Porządkowe, Interwałowe, Ilorazowe, Dyskretne, Ciągłe |
+| Moda | \- Może być stosowana do każdego typu danych<br>- Dobra do znajdowania najczęstszej kategorii | \- Może nie być unikalna (rozkłady multimodalne)<br>- Nieprzydatna do wielu typów analiz<br>- Ignoruje wielkość różnic między wartościami | Wszystkie typy |
+
+#### Miary Zmienności
+
+| Miara | Zalety | Wady | Zastosowanie do |
+|----|----|----|----|
+| Zakres | \- Prosty do obliczenia i zrozumienia<br>- Daje szybki obraz rozproszenia danych | \- Bardzo wrażliwy na wartości odstające<br>- Ignoruje wszystkie dane między ekstremami<br>- Nieprzydatny do dalszych analiz statystycznych | Porządkowe, Interwałowe, Ilorazowe, Dyskretne, Ciągłe |
+| Rozstęp międzykwartylowy (IQR) | \- Niewrażliwy na wartości odstające<br>- Dobry dla rozkładów skośnych | \- Ignoruje 50% danych<br>- Mniej intuicyjny niż zakres | Porządkowe, Interwałowe, Ilorazowe, Dyskretne, Ciągłe |
+| Wariancja | \- Wykorzystuje wszystkie punkty danych<br>- Podstawa wielu procedur statystycznych | \- Wrażliwa na wartości odstające<br>- Jednostki są podniesione do kwadratu (mniej intuicyjne) | Interwałowe, Ilorazowe, niektóre Dyskretne, Ciągłe |
+| Odchylenie standardowe | \- Wykorzystuje wszystkie punkty danych<br>- Te same jednostki co oryginalne dane<br>- Szeroko stosowane i zrozumiałe | \- Wrażliwe na wartości odstające<br>- Zakłada w przybliżeniu rozkład normalny dla interpretacji | Interwałowe, Ilorazowe, niektóre Dyskretne, Ciągłe |
+| Współczynnik zmienności | \- Pozwala na porównanie między zbiorami danych o różnych jednostkach lub średnich | \- Może być mylący, gdy średnie są bliskie zeru<br>- Bez znaczenia dla danych z wartościami ujemnymi | Ilorazowe, niektóre Interwałowe |
+
+#### Miary Korelacji/Asocjacji
+
+| Miara | Zalety | Wady | Zastosowanie do |
+|----|----|----|----|
+| r Pearsona | \- Mierzy zależność liniową<br>- Szeroko stosowany i zrozumiały | \- Zakłada rozkład normalny<br>- Wrażliwy na wartości odstające<br>- Uchwytuje tylko zależności liniowe | Interwałowe, Ilorazowe, Ciągłe |
+| Rho Spearmana | \- Może być stosowany do danych porządkowych<br>- Uchwytuje zależności monotoniczne<br>- Mniej wrażliwy na wartości odstające | \- Traci informacje przez konwersję na rangi<br>- Może pominąć niektóre typy zależności | Porządkowe, Interwałowe, Ilorazowe |
+| Tau Kendalla | \- Może być stosowany do danych porządkowych<br>- Bardziej odporny niż Spearman dla małych próbek<br>- Ma ładną interpretację (prawdopodobieństwo zgodności) | \- Traci informacje, biorąc pod uwagę tylko porządek<br>- Bardziej intensywny obliczeniowo | Porządkowe, Interwałowe, Ilorazowe |
+| Chi-kwadrat | \- Może być stosowany do danych nominalnych<br>- Testuje niezależność zmiennych kategorycznych | \- Wymaga dużych rozmiarów próbek<br>- Wrażliwy na rozmiar próbki<br>- Nie mierzy siły asocjacji | Nominalne, Porządkowe |
+| V Craméra | \- Może być stosowany do danych nominalnych<br>- Dostarcza miarę siły asocjacji<br>- Znormalizowany do zakresu \[0,1\] | \- Interpretacja może być subiektywna<br>- Może przeszacować asocjację w małych próbkach | Nominalne, Porządkowe |
+
+::: callout-note
+### Statistical Measures Applicability / Zastosowanie miar statystycznych
+
+| Measure (EN) | Miara (PL) | Nominal | Ordinal | Interval | Ratio |
+|----|----|:--:|:--:|:--:|:--:|
+| **Central Tendency / Tendencja centralna:** |  |  |  |  |  |
+| Mode | Dominanta | ✓ | ✓ | ✓ | ✓ |
+| Median | Mediana | \- | ✓ | ✓ | ✓ |
+| Arithmetic Mean | Średnia arytmetyczna | \- | \- | ✓\* | ✓ |
+| Geometric Mean | Średnia geometryczna | \- | \- | \- | ✓ |
+| Harmonic Mean | Średnia harmoniczna | \- | \- | \- | ✓ |
+| **Dispersion / Rozproszenie:** |  |  |  |  |  |
+| Range | Rozstęp | \- | ✓ | ✓ | ✓ |
+| Interquartile Range | Rozstęp międzykwartylowy | \- | ✓ | ✓ | ✓ |
+| Mean Absolute Deviation | Średnie odchylenie bezwzględne | \- | \- | ✓ | ✓ |
+| Variance | Wariancja | \- | \- | ✓\* | ✓ |
+| Standard Deviation | Odchylenie standardowe | \- | \- | ✓\* | ✓ |
+| Coefficient of Variation | Współczynnik zmienności | \- | \- | \- | ✓ |
+| **Association / Współzależność:** |  |  |  |  |  |
+| Chi-square | Chi-kwadrat | ✓ | ✓ | ✓ | ✓ |
+| Spearman Correlation | Korelacja Spearmana | \- | ✓ | ✓ | ✓ |
+| Kendall's Tau | Tau Kendalla | \- | ✓ | ✓ | ✓ |
+| Pearson Correlation | Korelacja Pearsona | \- | \- | ✓\* | ✓ |
+| Covariance | Kowariancja | \- | \- | ✓\* | ✓ |
+
+\* Theoretically problematic but commonly used in practice / Teoretycznie problematyczne, ale powszechnie stosowane w praktyce
+
+### Notes / Uwagi:
+
+1.  Measurement Scales / Skale pomiarowe:
+
+-   **Nominal**: Categories without order / Kategorie bez uporządkowania
+-   **Ordinal**: Ordered categories / Kategorie uporządkowane
+-   **Interval**: Equal intervals, arbitrary zero / Równe interwały, umowne zero
+-   **Ratio**: Equal intervals, absolute zero / Równe interwały, absolutne zero
+
+2.  Practical Considerations / Aspekty praktyczne:
+
+-   Some measures marked with ✓\* are commonly used for interval data despite theoretical issues / Niektóre miary oznaczone ✓\* są powszechnie stosowane dla danych przedziałowych pomimo problemów teoretycznych
+-   Choice of measure should consider both theoretical appropriateness and practical utility / Wybór miary powinien uwzględniać zarówno poprawność teoretyczną jak i użyteczność praktyczną
+-   More restrictive scales (ratio) allow all measures from less restrictive scales / Bardziej restrykcyjne skale (ilorazowe) pozwalają na wszystkie miary z mniej restrykcyjnych skal
+:::
