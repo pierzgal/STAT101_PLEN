@@ -101,42 +101,45 @@ gridExtra::grid.arrange(p1, p2, p3, p4, ncol = 2)
 
 Analiza Zależności między Zmiennymi:
 
-1.  **Dodatnia Korelacja Liniowa** (Dostęp do Opieki Zdrowotnej a Długość Życia)
+1. **Dodatnia Korelacja Liniowa** (Dostęp do Opieki Zdrowotnej a Długość Życia)
 
 Dane wykazują dodatnią zależność liniową między dostępem do opieki zdrowotnej a oczekiwaną długością życia. Analiza statystyczna wskazuje, że wzrost dostępności opieki zdrowotnej o 10 punktów procentowych koreluje z wydłużeniem oczekiwanej długości życia o około 2,5 roku. Zależność ta utrzymuje istotność statystyczną w całym obserwowanym zakresie.
 
-2.  **Ujemna Korelacja Liniowa** (Użytkowanie Urządzeń Cyfrowych a Jakość Snu)
+2. **Ujemna Korelacja Liniowa** (Użytkowanie Urządzeń Cyfrowych a Jakość Snu)
 
 Analiza ujawnia odwrotną zależność między czasem spędzonym przed ekranami urządzeń cyfrowych a wskaźnikami jakości snu. Dane wskazują, że każda dodatkowa godzina użytkowania urządzeń koreluje z mierzalnym spadkiem wskaźników jakości snu, wykazując spójną negatywną zależność liniową.
 
-3.  **Brak Korelacji** (Infrastruktura a Wskaźniki Ekonomiczne (np. GDP per capita in PLN))
+3. **Brak Korelacji** (Infrastruktura a Wskaźniki Ekonomiczne (np. GDP per capita in PLN))
 
 Zależność między gęstością infrastruktury a wskaźnikami ekonomicznymi (np. GDP per capita in PLN) nie wykazuje statystycznie istotnej korelacji. Ten brak korelacji sugeruje, że zmienne te funkcjonują niezależnie w ramach obserwowanych parametrów, wskazując na obecność innych czynników determinujących, nieuwzględnionych w tej analizie.
 
-4.  **Zależność Nieliniowa** (Wielkość Zespołu a Produktywność)
+4. **Zależność Nieliniowa** (Wielkość Zespołu a Produktywność)
 
 Zależność między wielkością zespołu a produktywnością wykazuje charakterystykę krzywoliniową. Dane wskazują na istnienie optymalnego przedziału liczebności zespołu, przy czym produktywność maleje zarówno poniżej, jak i powyżej tego przedziału. Pokazuje to, jak ważne jest uwzględnianie wzorców nieliniowych w badaniach organizacyjnych.
 
+
 Aspekty Metodologiczne:
 
-1.  **Istotność Statystyczna**: Obserwowane zależności wymagają weryfikacji pod kątem istotności statystycznej przed wyciągnięciem wniosków.
+1. **Istotność Statystyczna**: Obserwowane zależności wymagają weryfikacji pod kątem istotności statystycznej przed wyciągnięciem wniosków.
 
-2.  **Niezależność Zmiennych**: Założenie o niezależności zmiennych wymaga weryfikacji poprzez odpowiednie testy statystyczne.
+2. **Niezależność Zmiennych**: Założenie o niezależności zmiennych wymaga weryfikacji poprzez odpowiednie testy statystyczne.
 
-3.  **Zmienne Zakłócające**: Analizy muszą uwzględniać potencjalne zmienne zakłócające, które mogą wpływać na obserwowane zależności.
+3. **Zmienne Zakłócające**: Analizy muszą uwzględniać potencjalne zmienne zakłócające, które mogą wpływać na obserwowane zależności.
 
-4.  **Przyczynowość**: Wzorce korelacji nie implikują koniecznie związków przyczynowych; ustalenie przyczynowości wymaga zastosowania dodatkowych metod badawczych.
+4. **Przyczynowość**: Wzorce korelacji nie implikują koniecznie związków przyczynowych; ustalenie przyczynowości wymaga zastosowania dodatkowych metod badawczych.
+
 
 Zastosowania Badawcze:
 
 Zrozumienie tych wzorców zależności ma istotne znaczenie dla:
 
--   Projektowania i metodologii badań
--   Procedur analizy statystycznej
--   Rozwoju i testowania teorii
+- Projektowania i metodologii badań
+- Procedur analizy statystycznej
+- Rozwoju i testowania teorii
 
 Krytyczna ocena tych zależności umożliwia bardziej rzetelne projektowanie badań i formułowanie wiarygodnych wniosków w naukach społecznych.
 :::
+
 
 ```{r setup_2, include=FALSE}
 library(ggplot2)
@@ -146,7 +149,7 @@ set.seed(123)
 ```
 
 ::: callout-warning
-## Rozróżnienie między Korelacją a Przyczynowością \[Zob. np. https://www.tylervigen.com/spurious-correlations\]
+## Rozróżnienie między Korelacją a Przyczynowością [Zob. np. https://www.tylervigen.com/spurious-correlations]
 
 ![https://x.com/EUFIC/status/1324667630238814209?prefetchTimestamp=1732463940216](stat_imgs/EmIodcqXEAMRW83.jpeg)
 
@@ -188,7 +191,7 @@ ggplot(dane_sezonowe, aes(x = sprzedaz_lodow, y = wskaznik_przestepczosci)) +
   theme(plot.title = element_text(face = "bold"))
 ```
 
-Ta wizualizacja przedstawia klasyczny przykład zmiennej zakłócającej w analizie statystycznej. Pozorna korelacja między sprzedażą lodów a wskaźnikiem przestępczości (r = 0,85, p \< 0,001) pokazuje, jak wahania sezonowe mogą tworzyć mylące zależności statystyczne. Korelacja wynika ze wspólnego czynnika przyczynowego: sezonowych zmian temperatury, które niezależnie wpływają na obie zmienne poprzez odrębne mechanizmy.
+Ta wizualizacja przedstawia klasyczny przykład zmiennej zakłócającej w analizie statystycznej. Pozorna korelacja między sprzedażą lodów a wskaźnikiem przestępczości (r = 0,85, p < 0,001) pokazuje, jak wahania sezonowe mogą tworzyć mylące zależności statystyczne. Korelacja wynika ze wspólnego czynnika przyczynowego: sezonowych zmian temperatury, które niezależnie wpływają na obie zmienne poprzez odrębne mechanizmy.
 
 ### Trendy Czasowe i Pozorne Związki
 
@@ -221,7 +224,7 @@ ggplot(dane_technologiczne, aes(x = uzycie_ie, y = wskaznik_zabojstw)) +
   theme(plot.title = element_text(face = "bold"))
 ```
 
-Ta druga analiza ilustruje błąd korelacji czasowej, gdzie dwa niezależnie malejące trendy tworzą sztuczny związek statystyczny. Pomimo silnego współczynnika korelacji (r = 0,91, p \< 0,001), nie istnieje żaden wiarygodny mechanizm przyczynowy łączący te zmienne.
+Ta druga analiza ilustruje błąd korelacji czasowej, gdzie dwa niezależnie malejące trendy tworzą sztuczny związek statystyczny. Pomimo silnego współczynnika korelacji (r = 0,91, p < 0,001), nie istnieje żaden wiarygodny mechanizm przyczynowy łączący te zmienne.
 
 ### Mechanizmy Powstawania Pozornych Korelacji
 
@@ -259,26 +262,29 @@ Ten quasi-eksperymentalny projekt wykorzystuje naturalnie występujące progi do
 
 Przy ocenie wyników korelacyjnych należy wziąć pod uwagę następujące ramy analityczne:
 
-1.  Wiarygodność Teoretyczna: Zbadanie, czy istnieje logiczny mechanizm, poprzez który jedna zmienna mogłaby wpływać na drugą.
+1. Wiarygodność Teoretyczna: Zbadanie, czy istnieje logiczny mechanizm, poprzez który jedna zmienna mogłaby wpływać na drugą.
 
-2.  Pierwszeństwo Czasowe: Weryfikacja, czy proponowana przyczyna poprzedza skutek w czasie.
+2. Pierwszeństwo Czasowe: Weryfikacja, czy proponowana przyczyna poprzedza skutek w czasie.
 
-3.  Zależność Dawka-Odpowiedź: Ocena, czy zmiany w wielkości proponowanej przyczyny odpowiadają proporcjonalnym zmianom w skutku.
+3. Zależność Dawka-Odpowiedź: Ocena, czy zmiany w wielkości proponowanej przyczyny odpowiadają proporcjonalnym zmianom w skutku.
 
-4.  Spójność: Ocena, czy zależność utrzymuje się w różnych kontekstach i populacjach.
+4. Spójność: Ocena, czy zależność utrzymuje się w różnych kontekstach i populacjach.
 
-5.  Alternatywne Wyjaśnienia: Systematyczne rozważanie i testowanie alternatywnych wyjaśnień zaobserwowanej korelacji.
+5. Alternatywne Wyjaśnienia: Systematyczne rozważanie i testowanie alternatywnych wyjaśnień zaobserwowanej korelacji.
+
 
 Pamiętaj: Korelacja statystyczna stanowi warunek konieczny, ale niewystarczający do ustalenia przyczynowości.
 :::
+
 
 ### Kowariancja
 
 Kowariancja mierzy, jak dwie zmienne są powiązane (zmieniają się razem).
 
-**Wzór:** $cov(X,Y) = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{n - 1}$
+**Wzór:**
+$cov(X,Y) = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{n - 1}$
 
-::: callout-note
+::: {.callout-note}
 ## Od Kowariancji do Różnych Miar Korelacji
 
 ```{r}
@@ -324,83 +330,77 @@ ggplot(all_data, aes(x = x, y = y)) +
 ```
 
 ### Pojęcie Korelacji
-
 Korelacja to szerokie pojęcie opisujące, jak zmienne są ze sobą powiązane. Jak widać na wykresach, zależności te mogą przybierać różne formy.
 
 ### Rozpoczynając od Kowariancji
-
 Kowariancja jest podstawową miarą wspólnej zmienności zmiennych:
 
 $$Cov(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1}$$
 
 Informuje nas o tym:
 
--   Czy zmienne zmieniają się w tym samym kierunku (kowariancja dodatnia)
--   Czy zmieniają się w przeciwnych kierunkach (kowariancja ujemna)
--   Czy brak wyraźnego wzorca liniowego (kowariancja bliska zeru)
+- Czy zmienne zmieniają się w tym samym kierunku (kowariancja dodatnia)
+- Czy zmieniają się w przeciwnych kierunkach (kowariancja ujemna)
+- Czy brak wyraźnego wzorca liniowego (kowariancja bliska zeru)
 
 Jednak kowariancja ma ograniczenie: jej wartość zależy od jednostek pomiaru. Na przykład:
 
--   Wzrost w metrach vs waga w kg daje jedną wartość kowariancji
--   Wzrost w centymetrach vs waga w kg daje inną wartość
--   Ta sama zależność, różne skale!
+- Wzrost w metrach vs waga w kg daje jedną wartość kowariancji
+- Wzrost w centymetrach vs waga w kg daje inną wartość
+- Ta sama zależność, różne skale!
 
 ### Standaryzacja i Miary Korelacji
+1. Współczynnik korelacji Pearsona standaryzuje kowariancję:
+$$r = \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}$$
+- Eliminuje zależność od jednostek
+- Zawsze między -1 a 1
+- Mierzy zależności liniowe
 
-1.  Współczynnik korelacji Pearsona standaryzuje kowariancję: $$r = \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}$$
+2. Współczynnik korelacji rangowej Spearmana:
 
--   Eliminuje zależność od jednostek
--   Zawsze między -1 a 1
--   Mierzy zależności liniowe
-
-2.  Współczynnik korelacji rangowej Spearmana:
-
--   Bazuje na rangach zamiast surowych wartości
--   Wychwytuje zależności monotoniczne (także nieliniowe)
--   Również przyjmuje wartości od -1 do 1
+- Bazuje na rangach zamiast surowych wartości
+- Wychwytuje zależności monotoniczne (także nieliniowe)
+- Również przyjmuje wartości od -1 do 1
 
 ### Kluczowe Wnioski
 
-1.  Kowariancja pokazuje wspólną zmienność
-2.  Miary korelacji dają standaryzowane wartości
-3.  Wybór miary korelacji zależy od:
-    -   Spodziewanego typu zależności
-    -   Charakteru danych
-    -   Pytania badawczego
-4.  Zawsze wizualizuj dane
+1. Kowariancja pokazuje wspólną zmienność
+2. Miary korelacji dają standaryzowane wartości
+3. Wybór miary korelacji zależy od:
+   - Spodziewanego typu zależności
+   - Charakteru danych
+   - Pytania badawczego
+4. Zawsze wizualizuj dane
 :::
 
-::: callout-note
+
+::: {.callout-note}
 ## Rangi: Pozycje w Uporządkowanym Ciągu
 
 Rangi to po prostu numery pozycji w uporządkowanym zbiorze danych:
 
 ### Jak Wyznaczyć Rangi?
 
-1.  Porządkujemy dane od najmniejszej do największej wartości
+1. Porządkujemy dane od najmniejszej do największej wartości
+2. Przypisujemy kolejne liczby naturalne:
 
-2.  Przypisujemy kolejne liczby naturalne:
-
-    -   Najmniejsza wartość → ranga 1
-    -   Kolejne wartości → kolejne rangi
-    -   Największa wartość → ranga n (liczba obserwacji)
-    -   Dla remisów → średnia rang
+   - Najmniejsza wartość → ranga 1
+   - Kolejne wartości → kolejne rangi
+   - Największa wartość → ranga n (liczba obserwacji)
+   - Dla remisów → średnia rang
 
 ### Przykład
-
 Mamy 5 studentów o wzroście:
-
-```         
+```
 Wzrost:   165, 182, 170, 168, 175
 Rangi:     1,   5,   3,   2,   4
 ```
-
 Dla danych z remisami (np. oceny):
-
-```         
+```
 Oceny:     2,   3,   3,   4,   5
 Rangi:     1,  2.5, 2.5,  4,   5
 ```
+
 :::
 
 **Przykład Ręcznego Obliczenia:**
@@ -411,7 +411,7 @@ Obliczmy kowariancję dla dwóch zmiennych:
 -   y: 2, 4, 5, 4, 5
 
 | Krok | Opis | Obliczenie |
-|-------------------|-------------------|----------------------------------|
+|-------------------|-------------------|-----------------------------------|
 | 1 | Oblicz średnie | $\bar{x} = 3, \bar{y} = 4$ |
 | 2 | Oblicz $(x_i - \bar{x})(y_i - \bar{y})$ dla każdej pary | $(-2)(-2) = 4$ |
 |  |  | $(-1)(0) = 0$ |
@@ -429,7 +429,8 @@ y <- c(2, 4, 5, 4, 5)
 cov(x, y)
 ```
 
-**Interpretacja:** - Dodatnia kowariancja (1,5) wskazuje, że x i y mają tendencję do wzrostu razem.
+**Interpretacja:** - Dodatnia kowariancja (1,5) wskazuje, że x i y mają
+tendencję do wzrostu razem.
 
 **Zalety:**
 
@@ -438,21 +439,24 @@ cov(x, y)
 
 **Wady:**
 
--   Zależna od skali, co utrudnia porównywanie między różnymi parami zmiennych
+-   Zależna od skali, co utrudnia porównywanie między różnymi parami
+    zmiennych
 -   Nie dostarcza informacji o sile związku
 
 ### Korelacja Pearsona
 
-Korelacja Pearsona mierzy siłę i kierunek liniowego związku między dwiema zmiennymi ciągłymi.
+Korelacja Pearsona mierzy siłę i kierunek liniowego związku między
+dwiema zmiennymi ciągłymi.
 
-**Wzór:** $r = \frac{cov(X,Y)}{s_X s_Y} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}$
+**Wzór:**
+$r = \frac{cov(X,Y)}{s_X s_Y} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}$
 
 **Przykład Ręcznego Obliczenia:**
 
 Używając tych samych danych co wyżej:
 
 | Krok | Opis | Obliczenie |
-|-------------------|-------------------|----------------------------------|
+|-------------------|-------------------|-----------------------------------|
 | 1 | Oblicz kowariancję | (Z poprzedniego obliczenia) 1,5 |
 | 2 | Oblicz odchylenia standardowe | $s_X = \sqrt{\frac{10}{4}} = 1,58, s_Y = \sqrt{\frac{6}{4}} = 1,22$ |
 | 3 | Podziel kowariancję przez iloczyn odchyleń standardowych | $1,5 / (1,58 * 1,22) = 0,7746$ |
@@ -463,7 +467,8 @@ Używając tych samych danych co wyżej:
 cor(x, y, method = "pearson")
 ```
 
-**Interpretacja:** - Współczynnik korelacji 0,7746 wskazuje na silny dodatni związek liniowy między x i y.
+**Interpretacja:** - Współczynnik korelacji 0,7746 wskazuje na silny
+dodatni związek liniowy między x i y.
 
 **Zalety:**
 
@@ -479,9 +484,11 @@ cor(x, y, method = "pearson")
 
 ### Korelacja Spearmana
 
-Korelacja Spearmana mierzy siłę i kierunek monotonicznego związku między dwiema zmiennymi, które mogą być ciągłe lub porządkowe.
+Korelacja Spearmana mierzy siłę i kierunek monotonicznego związku między
+dwiema zmiennymi, które mogą być ciągłe lub porządkowe.
 
-**Wzór:** $\rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}$, gdzie $d_i$ to różnica między rangami.
+**Wzór:** $\rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}$, gdzie $d_i$ to
+różnica między rangami.
 
 **Przykład Ręcznego Obliczenia:**
 
@@ -507,7 +514,8 @@ y <- c(1, 3, 2, 5, 4)
 cor(x, y, method = "spearman")
 ```
 
-**Interpretacja:** - Korelacja Spearmana 0,8 wskazuje na silny dodatni związek monotoniczny między x i y.
+**Interpretacja:** - Korelacja Spearmana 0,8 wskazuje na silny dodatni
+związek monotoniczny między x i y.
 
 **Zalety:**
 
@@ -517,16 +525,20 @@ cor(x, y, method = "spearman")
 
 **Wady:**
 
--   Mniej odporna niż korelacja Pearsona do wykrywania związków liniowych w normalnie rozłożonych danych
+-   Mniej odporna niż korelacja Pearsona do wykrywania związków
+    liniowych w normalnie rozłożonych danych
 -   Nie dostarcza informacji o kształcie związku poza monotonicznością
 
 ### Tabela Krzyżowa
 
-Tabela krzyżowa (tabela kontyngencji) pokazuje związek między dwiema zmiennymi kategorycznymi.
+Tabela krzyżowa (tabela kontyngencji) pokazuje związek między dwiema
+zmiennymi kategorycznymi.
 
 **Przykład:**
 
-Stwórzmy tabelę krzyżową dla dwóch zmiennych: - Poziom wykształcenia: Średnie, Wyższe, Podyplomowe - Status zatrudnienia: Zatrudniony, Bezrobotny
+Stwórzmy tabelę krzyżową dla dwóch zmiennych: - Poziom wykształcenia:
+Średnie, Wyższe, Podyplomowe - Status zatrudnienia: Zatrudniony,
+Bezrobotny
 
 ```{r}
 wyksztalcenie <- factor(c("Średnie", "Wyższe", "Podyplomowe", "Średnie", "Wyższe", "Podyplomowe", "Średnie", "Wyższe", "Podyplomowe"))
@@ -537,14 +549,18 @@ table(wyksztalcenie, zatrudnienie)
 
 **Interpretacja:**
 
--   Ta tabela pokazuje liczbę osób w każdej kombinacji poziomu wykształcenia i statusu zatrudnienia.
--   Na przykład, możemy zobaczyć, ilu absolwentów szkół średnich jest zatrudnionych, a ilu bezrobotnych.
+-   Ta tabela pokazuje liczbę osób w każdej kombinacji poziomu
+    wykształcenia i statusu zatrudnienia.
+-   Na przykład, możemy zobaczyć, ilu absolwentów szkół średnich jest
+    zatrudnionych, a ilu bezrobotnych.
 
 **Zalety:**
 
--   Zapewnia jasną wizualną reprezentację związku między zmiennymi kategorycznymi
+-   Zapewnia jasną wizualną reprezentację związku między zmiennymi
+    kategorycznymi
 -   Łatwa do zrozumienia i interpretacji
--   Podstawa dla wielu testów statystycznych (np. test chi-kwadrat niezależności)
+-   Podstawa dla wielu testów statystycznych (np. test chi-kwadrat
+    niezależności)
 
 **Wady:**
 
@@ -569,28 +585,40 @@ Przy wyborze statystyki dwuwymiarowej należy wziąć pod uwagę:
 
 3.  Obecność wartości odstających:
 
-    -   Jeśli wartości odstające są problemem, korelacja Spearmana jest bardziej odporna
+    -   Jeśli wartości odstające są problemem, korelacja Spearmana jest
+        bardziej odporna
 
 4.  Rozkład:
 
-    -   Dla normalnie rozłożonych danych korelacja Pearsona jest najbardziej odporna (robust)
+    -   Dla normalnie rozłożonych danych korelacja Pearsona jest
+        najbardziej odporna (robust)
     -   Dla rozkładów "nienormalnych" rozważ korelację Spearmana
 
 5.  Wielkość próby:
 
-    -   Dla bardzo małych prób metody nieparametryczne, takie jak korelacja Spearmana, mogą być preferowane
+    -   Dla bardzo małych prób metody nieparametryczne, takie jak
+        korelacja Spearmana, mogą być preferowane
 
-Pamiętaj, że często wartościowe jest użycie wielu miar i wizualizacji (takich jak wykresy rozrzutu), aby uzyskać kompleksowe zrozumienie związku między zmiennymi.
+Pamiętaj, że często wartościowe jest użycie wielu miar i wizualizacji
+(takich jak wykresy rozrzutu), aby uzyskać kompleksowe zrozumienie
+związku między zmiennymi.
 
-## Wprowadzenie do Podstawowej Statystyki Wielowymiarowej (\*)
 
-Statystyki wielowymiarowe obejmują analizę związków między trzema lub więcej zmiennymi jednocześnie. Ta sekcja wprowadzi niektóre podstawowe koncepcje i techniki analizy wielowymiarowej, koncentrując się na metodach opartych na korelacji.
+
+## Wprowadzenie do Podstawowej Statystyki Wielowymiarowej (*)
+
+Statystyki wielowymiarowe obejmują analizę związków między trzema lub
+więcej zmiennymi jednocześnie. Ta sekcja wprowadzi niektóre podstawowe
+koncepcje i techniki analizy wielowymiarowej, koncentrując się na
+metodach opartych na korelacji.
 
 ### Macierz Korelacji
 
-Macierz korelacji to tabela pokazująca korelacje parami dla kilku zmiennych. Jest to podstawowe narzędzie w analizie wielowymiarowej.
+Macierz korelacji to tabela pokazująca korelacje parami dla kilku
+zmiennych. Jest to podstawowe narzędzie w analizie wielowymiarowej.
 
-**Przykład:** Stwórzmy macierz korelacji dla czterech zmiennych: wzrost, waga, wiek i dochód.
+**Przykład:** Stwórzmy macierz korelacji dla czterech zmiennych: wzrost,
+waga, wiek i dochód.
 
 ```{r}
 set.seed(123)  # Dla powtarzalności
@@ -605,13 +633,17 @@ macierz_kor <- cor(dane)
 print(macierz_kor)
 ```
 
-**Interpretacja:** - Każda komórka pokazuje korelację między dwiema zmiennymi. - Przekątna zawsze wynosi 1 (korelacja zmiennej z samą sobą). - Szukaj silnych korelacji (bliskich 1 lub -1), aby zidentyfikować potencjalne związki.
+**Interpretacja:** - Każda komórka pokazuje korelację między dwiema
+zmiennymi. - Przekątna zawsze wynosi 1 (korelacja zmiennej z samą
+sobą). - Szukaj silnych korelacji (bliskich 1 lub -1), aby
+zidentyfikować potencjalne związki.
 
 ### Wizualizacja Związków Wielowymiarowych
 
 #### Macierz Wykresów Rozrzutu
 
-Macierz wykresów rozrzutu pokazuje parami związki między wieloma zmiennymi.
+Macierz wykresów rozrzutu pokazuje parami związki między wieloma
+zmiennymi.
 
 ```{r}
 pairs(dane)
@@ -635,13 +667,16 @@ corrplot(macierz_kor, method = "color")
 **Interpretacja:**
 
 -   Intensywność koloru i rozmiar kół wskazują na siłę korelacji.
--   Niebieskie kolory zazwyczaj wskazują na dodatnie korelacje, czerwone na ujemne.
+-   Niebieskie kolory zazwyczaj wskazują na dodatnie korelacje, czerwone
+    na ujemne.
 
 ### Korelacja Cząstkowa
 
-Korelacja cząstkowa mierzy związek między dwiema zmiennymi przy kontrolowaniu jednej lub więcej innych zmiennych.
+Korelacja cząstkowa mierzy związek między dwiema zmiennymi przy
+kontrolowaniu jednej lub więcej innych zmiennych.
 
-**Przykład:** Obliczmy korelację cząstkową między wzrostem a wagą, kontrolując wiek.
+**Przykład:** Obliczmy korelację cząstkową między wzrostem a wagą,
+kontrolując wiek.
 
 ```{r}
 library(ppcor)
@@ -651,11 +686,13 @@ pcor.test(dane$wzrost, dane$waga, dane$wiek)
 **Interpretacja:**
 
 -   Porównaj to z prostą korelacją między wzrostem a wagą.
--   Znacząca zmiana może wskazywać, że wiek odgrywa rolę w związku między wzrostem a wagą.
+-   Znacząca zmiana może wskazywać, że wiek odgrywa rolę w związku
+    między wzrostem a wagą.
 
 ### Korelacja Wielokrotna
 
-Korelacja wielokrotna mierzy siłę związku między zmienną zależną a wieloma zmiennymi niezależnymi.
+Korelacja wielokrotna mierzy siłę związku między zmienną zależną a
+wieloma zmiennymi niezależnymi.
 
 **Przykład:** Przewidźmy wagę na podstawie wzrostu i wieku.
 
@@ -667,14 +704,18 @@ print(paste("Współczynnik korelacji wielokrotnej:", R))
 
 **Interpretacja:**
 
--   R waha się od 0 do 1, przy czym wyższe wartości wskazują na silniejsze związki.
--   R² (R-kwadrat) reprezentuje proporcję wariancji w zmiennej zależnej wyjaśnioną przez zmienne niezależne.
+-   R waha się od 0 do 1, przy czym wyższe wartości wskazują na
+    silniejsze związki.
+-   R² (R-kwadrat) reprezentuje proporcję wariancji w zmiennej zależnej
+    wyjaśnioną przez zmienne niezależne.
 
 ### Analiza Czynnikowa
 
-Analiza czynnikowa to technika używana do zredukowania wielu zmiennych do mniejszej liczby czynników leżących u podstaw.
+Analiza czynnikowa to technika używana do zredukowania wielu zmiennych
+do mniejszej liczby czynników leżących u podstaw.
 
-**Przykład:** Wykonajmy prostą analizę czynnikową na naszym zbiorze danych.
+**Przykład:** Wykonajmy prostą analizę czynnikową na naszym zbiorze
+danych.
 
 ```{r}
 library(psych)
@@ -685,23 +726,33 @@ print(wynik_fa$loadings, cutoff = 0.3)
 **Interpretacja:**
 
 -   Spójrz, które zmienne ładują się wysoko na każdy czynnik.
--   Spróbuj zinterpretować, co każdy czynnik może reprezentować na podstawie zmiennych, które się na niego ładują.
+-   Spróbuj zinterpretować, co każdy czynnik może reprezentować na
+    podstawie zmiennych, które się na niego ładują.
 
 ### Uwagi dotyczące Analizy Wielowymiarowej
 
-1.  **Wielkość próby**: Techniki wielowymiarowe często wymagają większych prób dla stabilnych wyników.
+1.  **Wielkość próby**: Techniki wielowymiarowe często wymagają
+    większych prób dla stabilnych wyników.
 
-2.  **Współliniowość**: Wysokie korelacje między zmiennymi niezależnymi mogą powodować problemy w niektórych analizach.
+2.  **Współliniowość**: Wysokie korelacje między zmiennymi niezależnymi
+    mogą powodować problemy w niektórych analizach.
 
-3.  **Wartości odstające**: Wielowymiarowe wartości odstające mogą mieć silny wpływ na wyniki.
+3.  **Wartości odstające**: Wielowymiarowe wartości odstające mogą mieć
+    silny wpływ na wyniki.
 
-4.  **Założenia**: Wiele technik zakłada wielowymiarową normalność i liniowe związki.
+4.  **Założenia**: Wiele technik zakłada wielowymiarową normalność i
+    liniowe związki.
 
-5.  **Złożoność interpretacji**: Wraz ze wzrostem liczby zmiennych interpretacja może stać się bardziej wyzwająca.
+5.  **Złożoność interpretacji**: Wraz ze wzrostem liczby zmiennych
+    interpretacja może stać się bardziej wyzwająca.
 
 ### Podsumowanie
 
-To wprowadzenie do statystyki wielowymiarowej opiera się na koncepcji korelacji, aby badać związki między wieloma zmiennymi. Techniki te zapewniają potężne narzędzia do zrozumienia złożonych zbiorów danych, ale wymagają również starannego rozważenia założeń i ograniczeń. W miarę postępu w Twojej podróży statystycznej napotkasz bardziej zaawansowane techniki wielowymiarowe, takie jak MANOVA, analiza dyskryminacyjna i modelowanie równań strukturalnych.
+To wprowadzenie do statystyki wielowymiarowej opiera się na koncepcji
+korelacji, aby badać związki między wieloma zmiennymi. Techniki te
+zapewniają potężne narzędzia do zrozumienia złożonych zbiorów danych,
+ale wymagają również starannego rozważenia założeń i ograniczeń. W miarę postępu w Twojej podróży statystycznej napotkasz bardziej zaawansowane techniki wielowymiarowe, takie jak MANOVA, analiza dyskryminacyjna i modelowanie równań strukturalnych.
+
 
 ```{r}
 library(tidyverse)
@@ -714,14 +765,14 @@ library(gridExtra)
 
 Analiza regresji jest fundamentalnym narzędziem statystycznym, które pomaga nam zrozumieć relacje między zmiennymi. Zanim zagłębimy się w formuły i szczegóły techniczne, zrozummy, na jakie pytania może odpowiedzieć regresja:
 
--   Jak każdy dodatkowy rok edukacji wpływa na czyjeś wynagrodzenie?
--   Jaka jest zależność między wydatkami na reklamę a sprzedażą?
--   Jak temperatura wpływa na zużycie energii?
--   Czy liczba godzin nauki przewiduje wyniki egzaminów?
+- Jak każdy dodatkowy rok edukacji wpływa na czyjeś wynagrodzenie?
+- Jaka jest zależność między wydatkami na reklamę a sprzedażą?
+- Jak temperatura wpływa na zużycie energii?
+- Czy liczba godzin nauki przewiduje wyniki egzaminów?
 
 Te pytania mają wspólną strukturę: wszystkie badają, jak zmiany jednej zmiennej wiążą się ze zmianami innej.
 
-::: callout-note
+::: {.callout-note}
 ## Model Regresji Liniowej (MNK): Szybki Start
 
 ```{r}
@@ -775,14 +826,12 @@ ggplot(data, aes(x = x, y = y)) +
 ```
 
 ### Koncepcja Modelu
-
 Regresja MNK (Metoda Najmniejszych Kwadratów) to model statystyczny opisujący związek między zmiennymi. Dwa kluczowe założenia definiują ten model:
 
-1.  Związek można opisać linią prostą (liniowość)
-2.  Błędy w naszych przewidywaniach nie są systematycznie powiązane ze zmienną x (ścisła egzogeniczność)
+1. Związek można opisać linią prostą (liniowość)
+2. Błędy w naszych przewidywaniach nie są systematycznie powiązane ze zmienną x (ścisła egzogeniczność)
 
 ### Przykład: Edukacja i Wynagrodzenia
-
 Rozważmy badanie wpływu edukacji (x) na wynagrodzenia (y). Powiedzmy, że szacujemy:
 
 $$wynagrodzenia = \beta_0 + \beta_1 \cdot edukacja + \epsilon$$
@@ -795,15 +844,15 @@ Kiedy analizujemy zależności między zmiennymi, takimi jak poziom wykształcen
 
 Spójrzmy na nasz wykres poziomów wykształcenia i wynagrodzeń. Każdy punkt reprezentuje rzeczywiste dane - poziom wykształcenia danej osoby i odpowiadające mu wynagrodzenie. Naszym celem jest znalezienie pojedynczej linii, która najdokładniej uchwyci podstawową zależność między tymi zmiennymi.
 
-Dla każdej obserwacji $i$ możemy wyrazić tę relację jako:
+Dla każdej obserwacji $$i$$ możemy wyrazić tę relację jako:
 
 $$y_i = \beta_0 + \beta_1x_i + \epsilon_i$$
 
 Gdzie:
 
--   $y_i$ to rzeczywiste zaobserwowane wynagrodzenie
--   $\hat{y_i} = \beta_0 + \beta_1x_i$ to przewidywane wynagrodzenie
--   $\epsilon_i = y_i - \hat{y_i}$ to składnik błędu (reszta)
+- $y_i$ to rzeczywiste zaobserwowane wynagrodzenie
+- $\hat{y_i} = \beta_0 + \beta_1x_i$ to przewidywane wynagrodzenie
+- $\epsilon_i = y_i - \hat{y_i}$ to składnik błędu (reszta)
 
 Metoda OLS znajduje optymalne wartości dla $\beta_0$ i $\beta_1$ poprzez minimalizację sumy kwadratów błędów:
 
@@ -811,15 +860,14 @@ $$\min_{\beta_0, \beta_1} \sum \epsilon_i^2 = \min_{\beta_0, \beta_1} \sum(y_i -
 
 Analizując naszą wizualizację:
 
--   Rozproszone punkty pokazują rzeczywiste obserwacje $(x_i, y_i)$
--   Pomarańczowa linia reprezentuje dopasowane wartości $\hat{y_i}$, które minimalizują $\sum \epsilon_i^2$
--   Niebieska i zielona linia przedstawiają alternatywne dopasowania o większych sumach kwadratów błędów
--   Pionowe odległości od każdego punktu do tych linii reprezentują błędy $\epsilon_i$
+- Rozproszone punkty pokazują rzeczywiste obserwacje $(x_i, y_i)$
+- Pomarańczowa linia reprezentuje dopasowane wartości $\hat{y_i}$, które minimalizują $\sum \epsilon_i^2$
+- Niebieska i zielona linia przedstawiają alternatywne dopasowania o większych sumach kwadratów błędów
+- Pionowe odległości od każdego punktu do tych linii reprezentują błędy $\epsilon_i$
 
 Rozwiązanie OLS dostarcza nam estymatorów $\hat{\beta_0}$ i $\hat{\beta_1}$, które minimalizują całkowity błąd kwadratowy, dając nam najdokładniejszą liniową reprezentację zależności między poziomem wykształcenia a wynagrodzeniem na podstawie dostępnych danych.
 
 ### Znalezienie Najlepszej Linii
-
 Rozwiązanie tego problemu minimalizacji daje nam:
 
 $$\hat{\beta}_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = \frac{cov(X, Y)}{var(X)}$$
@@ -828,31 +876,34 @@ $$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$$
 
 ### Kluczowe Punkty
 
-1.  MNK znajduje linię, która minimalizuje kwadraty błędów predykcji
-2.  Ta linia jest "najlepsza" pod względem dopasowania, ale może nie ujmować prawdziwych relacji, jeśli pominięto ważne zmienne
-3.  W przykładzie edukacja-wynagrodzenia, pominięcie zdolności oznacza, że przypisujemy cały wzrost wynagrodzeń samej edukacji
+1. MNK znajduje linię, która minimalizuje kwadraty błędów predykcji
+2. Ta linia jest "najlepsza" pod względem dopasowania, ale może nie ujmować prawdziwych relacji, jeśli pominięto ważne zmienne
+3. W przykładzie edukacja-wynagrodzenia, pominięcie zdolności oznacza, że przypisujemy cały wzrost wynagrodzeń samej edukacji
 :::
 
 ### Podstawowe Pojęcia i Terminologia
 
 Zanim zagłębimy się w matematykę, ustalmy kluczowe terminy:
 
--   **Zmienna Zależna (Y)**:
-    -   Wynik, który chcemy zrozumieć lub przewidzieć
-    -   Nazywana również: zmienna odpowiedzi, zmienna docelowa
-    -   Przykłady: wynagrodzenie, sprzedaż, wyniki egzaminów
--   **Zmienna Niezależna (X)**:
-    -   Zmienna, która naszym zdaniem wpływa na Y
-    -   Nazywana również: predyktor, zmienna objaśniająca, regresor
-    -   Przykłady: lata edukacji, budżet reklamowy, godziny nauki
--   **Parametry Populacji (**$\beta$):
-    -   Prawdziwe podstawowe zależności, które chcemy zrozumieć
-    -   Zazwyczaj nieznane w praktyce
-    -   Przykłady: $\beta_0$ (prawdziwy wyraz wolny), $\beta_1$ (prawdziwe nachylenie)
--   **Oszacowania Parametrów (**$\hat{\beta}$):
-    -   Nasze najlepsze przypuszczenia dotyczące prawdziwych parametrów na podstawie danych
-    -   Obliczane na podstawie danych próby
-    -   Przykłady: $\hat{\beta}_0$ (oszacowany wyraz wolny), $\hat{\beta}_1$ (oszacowane nachylenie)
+- **Zmienna Zależna (Y)**:
+  - Wynik, który chcemy zrozumieć lub przewidzieć
+  - Nazywana również: zmienna odpowiedzi, zmienna docelowa
+  - Przykłady: wynagrodzenie, sprzedaż, wyniki egzaminów
+
+- **Zmienna Niezależna (X)**:
+  - Zmienna, która naszym zdaniem wpływa na Y
+  - Nazywana również: predyktor, zmienna objaśniająca, regresor
+  - Przykłady: lata edukacji, budżet reklamowy, godziny nauki
+
+- **Parametry Populacji ($\beta$)**:
+  - Prawdziwe podstawowe zależności, które chcemy zrozumieć
+  - Zazwyczaj nieznane w praktyce
+  - Przykłady: $\beta_0$ (prawdziwy wyraz wolny), $\beta_1$ (prawdziwe nachylenie)
+
+- **Oszacowania Parametrów ($\hat{\beta}$)**:
+  - Nasze najlepsze przypuszczenia dotyczące prawdziwych parametrów na podstawie danych
+  - Obliczane na podstawie danych próby
+  - Przykłady: $\hat{\beta}_0$ (oszacowany wyraz wolny), $\hat{\beta}_1$ (oszacowane nachylenie)
 
 ### Główna Idea
 
@@ -883,7 +934,11 @@ ggplot(data, aes(x = x, y = y)) +
   theme(plot.title = element_text(face = "bold"))
 ```
 
-Ten wykres pokazuje istotę regresji: - Każdy punkt reprezentuje obserwację (X, Y) - Linia reprezentuje nasze najlepsze przypuszczenie dotyczące zależności - Rozproszenie punktów wokół linii pokazuje niepewność
+Ten wykres pokazuje istotę regresji:
+- Każdy punkt reprezentuje obserwację (X, Y)
+- Linia reprezentuje nasze najlepsze przypuszczenie dotyczące zależności
+- Rozproszenie punktów wokół linii pokazuje niepewność
+
 
 ## Model Regresji Liniowej
 
@@ -895,9 +950,9 @@ $$Y = \beta_0 + \beta_1X + \varepsilon$$
 
 gdzie:
 
--   $\beta_0$ to prawdziwy wyraz wolny populacji
--   $\beta_1$ to prawdziwe nachylenie populacji
--   $\varepsilon$ to składnik losowy błędu
+- $\beta_0$ to prawdziwy wyraz wolny populacji
+- $\beta_1$ to prawdziwe nachylenie populacji
+- $\varepsilon$ to składnik losowy błędu
 
 W praktyce pracujemy z danymi próby, aby oszacować tę zależność:
 
@@ -950,7 +1005,10 @@ ggplot() +
   theme(legend.position = "bottom")
 ```
 
-Ta wizualizacja pokazuje: - Prawdziwą linię populacyjną (czarną), którą próbujemy odkryć - Różne oszacowania próbkowe (linie przerywane) oparte na różnych próbach - Jak oszacowania próbkowe różnią się wokół prawdziwej zależności
+Ta wizualizacja pokazuje:
+- Prawdziwą linię populacyjną (czarną), którą próbujemy odkryć
+- Różne oszacowania próbkowe (linie przerywane) oparte na różnych próbach
+- Jak oszacowania próbkowe różnią się wokół prawdziwej zależności
 
 ## Kluczowe Założenia Regresji Liniowej
 
@@ -962,9 +1020,9 @@ $$E[\varepsilon|X] = 0$$
 
 Oznacza to:
 
-1.  Wartość oczekiwana składnika błędu warunkowego względem X wynosi zero
-2.  X nie zawiera informacji o przeciętnym błędzie
-3.  Nie ma systematycznych wzorców w tym, jak nasze przewidywania są błędne
+1. Wartość oczekiwana składnika błędu warunkowego względem X wynosi zero
+2. X nie zawiera informacji o przeciętnym błędzie
+3. Nie ma systematycznych wzorców w tym, jak nasze przewidywania są błędne
 
 Zobaczmy wizualizację sytuacji, gdy to założenie jest spełnione i gdy nie jest:
 
@@ -1074,10 +1132,10 @@ ggplot(data_relationships, aes(x = x, y = y)) +
 
 Gdy założenie liniowości jest naruszone:
 
-1.  Transformacja zmiennych:
-    -   Transformacja logarytmiczna: dla zależności wykładniczych
-    -   Pierwiastek kwadratowy: dla umiarkowanej nieliniowości
-    -   Transformacje potęgowe: dla bardziej złożonych zależności
+1. Transformacja zmiennych:
+   - Transformacja logarytmiczna: dla zależności wykładniczych
+   - Pierwiastek kwadratowy: dla umiarkowanej nieliniowości
+   - Transformacje potęgowe: dla bardziej złożonych zależności
 
 ```{r}
 #| label: fig-transformations
@@ -1163,9 +1221,9 @@ $$\underbrace{\sum_{i=1}^n (Y_i - \bar{Y})^2}_{SST} = \underbrace{\sum_{i=1}^n (
 
 gdzie:
 
--   SST (Całkowita Suma Kwadratów): Całkowita zmienność Y
--   SSR (Regresyjna Suma Kwadratów): Zmienność wyjaśniona przez regresję
--   SSE (Suma Kwadratów Błędów): Zmienność niewyjaśniona
+- SST (Całkowita Suma Kwadratów): Całkowita zmienność Y
+- SSR (Regresyjna Suma Kwadratów): Zmienność wyjaśniona przez regresję
+- SSE (Suma Kwadratów Błędów): Zmienność niewyjaśniona
 
 Zobaczmy wizualizację tej dekompozycji:
 
@@ -1219,13 +1277,17 @@ print(p_main)
 cat(sprintf("\nR² = %.3f\nOznacza to, że %.1f%% wariancji w Y jest wyjaśnione przez X\n", r2, r2*100))
 ```
 
+
 ### Miary Dopasowania
 
-1.  **R-kwadrat (**$R^2$): $$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
+1. **R-kwadrat ($R^2$)**:
+   $$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
 
-2.  **Pierwiastek Błędu Średniokwadratowego (RMSE)**: $$RMSE = \sqrt{\frac{SSE}{n}}$$
+2. **Pierwiastek Błędu Średniokwadratowego (RMSE)**:
+   $$RMSE = \sqrt{\frac{SSE}{n}}$$
 
-3.  **Średni Błąd Bezwzględny (MAE)**: $$MAE = \frac{1}{n}\sum_{i=1}^n |Y_i - \hat{Y}_i|$$
+3. **Średni Błąd Bezwzględny (MAE)**:
+   $$MAE = \frac{1}{n}\sum_{i=1}^n |Y_i - \hat{Y}_i|$$
 
 Zobaczmy obliczenie i wizualizację tych miar:
 
@@ -1266,35 +1328,40 @@ plot(model)
 
 Interpretacja każdego wykresu:
 
-1.  **Reszty vs. Wartości Dopasowane**:
-    -   Sprawdza założenie liniowości
-    -   Szukamy wzorców/trendów
-    -   Oczekujemy losowego rozrzutu wokół zera
-2.  **Wykres Kwantyl-Kwantyl**:
-    -   Sprawdza normalność reszt
-    -   Punkty powinny układać się wzdłuż linii przekątnej
-    -   Odchylenia na końcach są często akceptowalne
-3.  **Skala-Położenie**:
-    -   Sprawdza homoskedastyczność
-    -   Oczekujemy linii poziomej z losowym rozrzutem
-    -   Pomaga wykryć zmienną wariancję
-4.  **Reszty vs. Wpływ**:
-    -   Identyfikuje punkty wpływowe
-    -   Szukamy punktów poza liniami odległości Cooka
-    -   Pomaga zidentyfikować problematyczne obserwacje
+1. **Reszty vs. Wartości Dopasowane**:
+   - Sprawdza założenie liniowości
+   - Szukamy wzorców/trendów
+   - Oczekujemy losowego rozrzutu wokół zera
 
-::: callout-important
+2. **Wykres Kwantyl-Kwantyl**:
+   - Sprawdza normalność reszt
+   - Punkty powinny układać się wzdłuż linii przekątnej
+   - Odchylenia na końcach są często akceptowalne
+
+3. **Skala-Położenie**:
+   - Sprawdza homoskedastyczność
+   - Oczekujemy linii poziomej z losowym rozrzutem
+   - Pomaga wykryć zmienną wariancję
+
+4. **Reszty vs. Wpływ**:
+   - Identyfikuje punkty wpływowe
+   - Szukamy punktów poza liniami odległości Cooka
+   - Pomaga zidentyfikować problematyczne obserwacje
+
+
+
+::: {.callout-important}
 ## Intuicyjne zrozumienie Metody Najmniejszych Kwadratów (MNK)
 
 ### Podstawowy Problem
 
 Zacznijmy od rzeczywistego scenariusza: chcemy zrozumieć, jak czas nauki wpływa na wyniki egzaminu. Zbieramy dane z Twojej klasy, gdzie:
 
--   Każdy student zapisuje swoje godziny nauki ($x$)
--   Oraz swój końcowy wynik egzaminu ($y$)
--   Więc student 1 mógł się uczyć $x_1 = 3$ godziny i uzyskać $y_1 = 75$ punktów
--   Student 2 mógł się uczyć $x_2 = 5$ godzin i uzyskać $y_2 = 82$ punkty
--   I tak dalej dla wszystkich $n$ studentów w klasie
+- Każdy student zapisuje swoje godziny nauki ($x$)
+- Oraz swój końcowy wynik egzaminu ($y$)
+- Więc student 1 mógł się uczyć $x_1 = 3$ godziny i uzyskać $y_1 = 75$ punktów
+- Student 2 mógł się uczyć $x_2 = 5$ godzin i uzyskać $y_2 = 82$ punkty
+- I tak dalej dla wszystkich $n$ studentów w klasie
 
 Naszym celem jest znalezienie prostej, która najlepiej opisuje tę zależność. Próbujemy oszacować prawdziwą zależność (której nigdy nie znamy dokładnie) używając naszej próby danych. Przeanalizujmy to krok po kroku.
 
@@ -1326,9 +1393,9 @@ $y = \hat{\beta}_0 + \hat{\beta}_1x$
 
 Gdzie:
 
--   $\hat{\beta}_0$ to nasza estymata wyrazu wolnego (przewidywany wynik dla zero godzin nauki)
--   $\hat{\beta}_1$ to nasza estymata nachylenia (ile punktów zyskujemy za każdą dodatkową godzinę nauki)
--   Daszki (\^) wskazują, że są to nasze estymaty prawdziwych (nieznanych) parametrów $\beta_0$ i $\beta_1$
+- $\hat{\beta}_0$ to nasza estymata wyrazu wolnego (przewidywany wynik dla zero godzin nauki)
+- $\hat{\beta}_1$ to nasza estymata nachylenia (ile punktów zyskujemy za każdą dodatkową godzinę nauki)
+- Daszki (^) wskazują, że są to nasze estymaty prawdziwych (nieznanych) parametrów $\beta_0$ i $\beta_1$
 
 Spójrzmy na trzy możliwe proste przechodzące przez nasze dane:
 
@@ -1351,9 +1418,9 @@ ggplot(dane, aes(x = godziny_nauki, y = wyniki_egzaminu)) +
 
 Tu zaczyna się magia MNK. Dla każdego studenta w naszych danych:
 
-1.  Patrzymy na jego rzeczywisty wynik egzaminu ($y_i$)
-2.  Obliczamy przewidywany wynik używając naszej prostej ($\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1x_i$)
-3.  Różnica między nimi nazywana jest resztą:
+1. Patrzymy na jego rzeczywisty wynik egzaminu ($y_i$)
+2. Obliczamy przewidywany wynik używając naszej prostej ($\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1x_i$)
+3. Różnica między nimi nazywana jest resztą:
 
 $\text{reszta}_i = y_i - \hat{y}_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
 
@@ -1381,13 +1448,19 @@ Pomarańczowe pionowe linie pokazują, jak bardzo nasze przewidywania odbiegają
 
 To kluczowa koncepcja! Przeanalizujmy to na prostym przykładzie:
 
-Wyobraź sobie, że mamy tylko dwóch studentów: 1. Ala: Przewidywane 80, rzeczywisty wynik 85 (reszta = +5) 2. Bob: Przewidywane 90, rzeczywisty wynik 85 (reszta = -5)
+Wyobraź sobie, że mamy tylko dwóch studentów:
+1. Ala: Przewidywane 80, rzeczywisty wynik 85 (reszta = +5)
+2. Bob: Przewidywane 90, rzeczywisty wynik 85 (reszta = -5)
 
-Jeśli po prostu dodamy te reszty: $(+5) + (-5) = 0$
+Jeśli po prostu dodamy te reszty:
+$(+5) + (-5) = 0$
 
 To sugerowałoby, że nasza prosta jest idealna (całkowity błąd = 0), ale wiemy, że tak nie jest! Oba przewidywania były nietrafne o 5 punktów.
 
-Rozwiązanie: Podnosimy reszty do kwadratu przed dodaniem: - Kwadrat reszty Ali: $(+5)^2 = 25$ - Kwadrat reszty Boba: $(-5)^2 = 25$ - Całkowity błąd kwadratowy: $25 + 25 = 50$
+Rozwiązanie: Podnosimy reszty do kwadratu przed dodaniem:
+- Kwadrat reszty Ali: $(+5)^2 = 25$
+- Kwadrat reszty Boba: $(-5)^2 = 25$
+- Całkowity błąd kwadratowy: $25 + 25 = 50$
 
 To daje nam znacznie lepszą miarę tego, jak bardzo nasze przewidywania są błędne!
 
@@ -1399,9 +1472,9 @@ $SKR = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
 
 Ten wzór może wyglądać groźnie, ale oznacza po prostu:
 
-1.  Weź resztę każdego studenta
-2.  Podnieś ją do kwadratu
-3.  Dodaj wszystkie te kwadraty reszt
+1. Weź resztę każdego studenta
+2. Podnieś ją do kwadratu
+3. Dodaj wszystkie te kwadraty reszt
 
 Im mniejsza ta suma, tym lepiej nasza prosta pasuje do danych!
 
@@ -1434,16 +1507,17 @@ ggplot(dane, aes(x = godziny_nauki, y = wyniki_egzaminu)) +
 
 Przeanalizujmy nazwę:
 
--   "Kwadratów": Podnosimy reszty do kwadratu
--   "Najmniejszych": Chcemy najmniejszej możliwej sumy
--   "Zwykłych" (w angielskim "Ordinary"): To podstawowa wersja (istnieją bardziej zaawansowane warianty!)
+- "Kwadratów": Podnosimy reszty do kwadratu
+- "Najmniejszych": Chcemy najmniejszej możliwej sumy
+- "Zwykłych" (w angielskim "Ordinary"): To podstawowa wersja (istnieją bardziej zaawansowane warianty!)
 
 Prosta MNK ma kilka przyjemnych właściwości:
 
-1.  Średnia wszystkich reszt równa się zero
-2.  Prosta zawsze przechodzi przez punkt ($\bar{x}$, $\bar{y}$) - średnie godziny nauki i średni wynik
-3.  Małe zmiany w danych prowadzą do małych zmian w prostej (jest "stabilna")
-4.  Nasze estymaty $\hat{\beta}_0$ i $\hat{\beta}_1$ są najlepszymi możliwymi estymatorami prawdziwych parametrów $\beta_0$ i $\beta_1$ przy pewnych założeniach
+1. Średnia wszystkich reszt równa się zero
+2. Prosta zawsze przechodzi przez punkt ($\bar{x}$, $\bar{y}$) - średnie godziny nauki i średni wynik
+3. Małe zmiany w danych prowadzą do małych zmian w prostej (jest "stabilna")
+4. Nasze estymaty $\hat{\beta}_0$ i $\hat{\beta}_1$ są najlepszymi możliwymi estymatorami prawdziwych parametrów $\beta_0$ i $\beta_1$ przy pewnych założeniach
+
 
 **Eksperymentuj z różnymi prostymi i zobacz, jak zmienia się całkowity błąd kwadratowy**:
 
@@ -1471,27 +1545,27 @@ Czy potrafisz znaleźć prostą, która daje najmniejszą sumę kwadratów reszt
 
 ### Ważne uwagi
 
-1.  Oznaczenie z daszkiem ($\hat{\beta}_0$, $\hat{\beta}_1$) przypomina nam, że estymujemy prawdziwą zależność z naszej próby. Nigdy nie znamy prawdziwych $\beta_0$ i $\beta_1$ - możemy je tylko oszacować z naszych danych.
+1. Oznaczenie z daszkiem ($\hat{\beta}_0$, $\hat{\beta}_1$) przypomina nam, że estymujemy prawdziwą zależność z naszej próby. Nigdy nie znamy prawdziwych $\beta_0$ i $\beta_1$ - możemy je tylko oszacować z naszych danych.
 
-2.  MNK daje nam najlepsze możliwe estymaty, gdy spełnione są pewne warunki (jak losowo pobrana próba i rzeczywiście liniowa zależność).
+2. MNK daje nam najlepsze możliwe estymaty, gdy spełnione są pewne warunki (jak losowo pobrana próba i rzeczywiście liniowa zależność).
 
-3.  Powyższe narzędzie interaktywne pomaga zrozumieć to, co MNK robi automatycznie: znajduje wartości $\hat{\beta}_0$ i $\hat{\beta}_1$, które dają nam najmniejszą możliwą sumę kwadratów reszt.
+3. Powyższe narzędzie interaktywne pomaga zrozumieć to, co MNK robi automatycznie: znajduje wartości $\hat{\beta}_0$ i $\hat{\beta}_1$, które dają nam najmniejszą możliwą sumę kwadratów reszt.
 :::
 
-::: callout-warning
+::: {.callout-warning}
 ## Formalne wyprowadzenie estymatorów MNK
 
 ### Założenia wstępne
 
 Chcemy znaleźć prostą $y = \hat{\beta}_0 + \hat{\beta}_1x$, która minimalizuje sumę kwadratów reszt. Wyprowadźmy to krok po kroku:
 
-1.  Najpierw zapisujemy funkcję, którą chcemy zminimalizować:
+1. Najpierw zapisujemy funkcję, którą chcemy zminimalizować:
 
-    $SKR = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
+   $SKR = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
 
-2.  Aby znaleźć minimum, musimy obliczyć pochodne cząstkowe względem $\hat{\beta}_0$ i $\hat{\beta}_1$ oraz przyrównać je do zera:
+2. Aby znaleźć minimum, musimy obliczyć pochodne cząstkowe względem $\hat{\beta}_0$ i $\hat{\beta}_1$ oraz przyrównać je do zera:
 
-    $\frac{\partial SKR}{\partial \hat{\beta}_0} = 0$ oraz $\frac{\partial SKR}{\partial \hat{\beta}_1} = 0$
+   $\frac{\partial SKR}{\partial \hat{\beta}_0} = 0$ oraz $\frac{\partial SKR}{\partial \hat{\beta}_1} = 0$
 
 ### Krok 1: Znalezienie $\hat{\beta}_0$
 
@@ -1549,16 +1623,16 @@ $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$
 
 Zrozummy, co oznaczają te wzory:
 
-1.  Estymator nachylenia $\hat{\beta}_1$:
+1. Estymator nachylenia $\hat{\beta}_1$:
 
-    -   Licznik: Mierzy, jak $x$ i $y$ zmieniają się razem (kowariancja)
-    -   Mianownik: Mierzy, jak bardzo zmienia się $x$ (wariancja)
-    -   Więc $\hat{\beta}_1$ jest zasadniczo stosunkiem kowariancji do wariancji
+   - Licznik: Mierzy, jak $x$ i $y$ zmieniają się razem (kowariancja)
+   - Mianownik: Mierzy, jak bardzo zmienia się $x$ (wariancja)
+   - Więc $\hat{\beta}_1$ jest zasadniczo stosunkiem kowariancji do wariancji
 
-2.  Estymator wyrazu wolnego $\hat{\beta}_0$:
+2. Estymator wyrazu wolnego $\hat{\beta}_0$:
 
-    -   Zapewnia, że prosta przechodzi przez punkt $(\bar{x}, \bar{y})$
-    -   Dostosowuje wysokość prostej na podstawie nachylenia
+   - Zapewnia, że prosta przechodzi przez punkt $(\bar{x}, \bar{y})$
+   - Dostosowuje wysokość prostej na podstawie nachylenia
 
 ### Weryfikacja: Drugie pochodne
 
@@ -1619,20 +1693,21 @@ Powyższy wykres pokazuje, jak działają estymatory MNK z odchyleniami od śred
 
 ### Ważne uwagi
 
-1.  Wyprowadzone estymatory są BLUE (Best Linear Unbiased Estimators - Najlepsze Liniowe Nieobciążone Estymatory) przy spełnieniu założeń Gaussa-Markowa.
+1. Wyprowadzone estymatory są BLUE (Best Linear Unbiased Estimators - Najlepsze Liniowe Nieobciążone Estymatory) przy spełnieniu założeń Gaussa-Markowa.
 
-2.  Założenia te obejmują:
+2. Założenia te obejmują:
 
-    -   Liniowość zależności
-    -   Losowość próby
-    -   Brak współliniowości idealnej
-    -   Homoskedastyczność (stała wariancja reszt)
-    -   Niezależność obserwacji
+   - Liniowość zależności
+   - Losowość próby
+   - Brak współliniowości idealnej
+   - Homoskedastyczność (stała wariancja reszt)
+   - Niezależność obserwacji
 
-3.  Metoda ta minimalizuje sumę kwadratów reszt w kierunku pionowym (odchylenia w $y$), a nie prostopadłym do prostej.
+3. Metoda ta minimalizuje sumę kwadratów reszt w kierunku pionowym (odchylenia w $y$), a nie prostopadłym do prostej.
 :::
 
-::: callout-important
+
+:::: {.callout-important}
 ## Dekompozycja Wariancji w Regresji Liniowej: Intuicyjny Przewodnik
 
 ### Szerszy Kontekst: Dlaczego To Jest Ważne?
@@ -1643,17 +1718,16 @@ Wyobraź sobie, że próbujesz przewidzieć ceny domów. Najprostszym przypuszcz
 
 #### Krok 1: Zaczynając od Średniej
 
--   Naszą podstawową prognozą jest średnia ($\bar{y}$)
--   Traktuj to jako nasze "nieświadome przypuszczenie"
--   Dla każdego domu przewidywalibyśmy tę samą cenę (średnią)
--   To tworzy nasze podstawowe błędy
+- Naszą podstawową prognozą jest średnia ($\bar{y}$)
+- Traktuj to jako nasze "nieświadome przypuszczenie"
+- Dla każdego domu przewidywalibyśmy tę samą cenę (średnią)
+- To tworzy nasze podstawowe błędy
 
 #### Krok 2: Wykorzystanie Dodatkowych Informacji
-
--   Włączamy informacje z naszego predyktora (X)
--   Teraz możemy tworzyć różne prognozy dla różnych domów
--   Każda prognoza ($\hat{y}_i$) jest dostosowana na podstawie X
--   To tworzy nasze nowe, miejmy nadzieję mniejsze, błędy
+- Włączamy informacje z naszego predyktora (X)
+- Teraz możemy tworzyć różne prognozy dla różnych domów
+- Każda prognoza ($\hat{y}_i$) jest dostosowana na podstawie X
+- To tworzy nasze nowe, miejmy nadzieję mniejsze, błędy
 
 ### Wizualizacja Dekompozycji Wariancji
 
@@ -1772,23 +1846,26 @@ combined_plot <- (p1 / p2) +
 combined_plot
 ```
 
+
 ### Zrozumienie Trzech Rodzajów Wariancji
 
-1.  **Wariancja Całkowita (SST)**
-    -   Pytanie: "Jak bardzo obserwacje różnią się od średniej?"
-    -   Wzór: $SST = \sum(y_i - \bar{y})^2$
-    -   Wizualizacja: Fioletowe punkty na wykresie
-    -   Intuicja: "Rozrzut" naszych danych wokół średniej
-2.  **Wariancja Wyjaśniona (SSR)**
-    -   Pytanie: "Ile wariancji wyjaśnił nasz model?"
-    -   Wzór: $SSR = \sum(\hat{y}_i - \bar{y})^2$
-    -   Wizualizacja: Zielone przerywane linie na wykresie
-    -   Intuicja: Poprawa, którą uzyskaliśmy dzięki użyciu X
-3.  **Wariancja Niewyjaśniona (SSE)**
-    -   Pytanie: "Jaka wariancja pozostaje niewyjaśniona?"
-    -   Wzór: $SSE = \sum(y_i - \hat{y}_i)^2$
-    -   Wizualizacja: Pomarańczowe przerywane linie na wykresie
-    -   Intuicja: Błędy pozostające po użyciu X
+1. **Wariancja Całkowita (SST)** 
+   - Pytanie: "Jak bardzo obserwacje różnią się od średniej?"
+   - Wzór: $SST = \sum(y_i - \bar{y})^2$
+   - Wizualizacja: Fioletowe punkty na wykresie
+   - Intuicja: "Rozrzut" naszych danych wokół średniej
+
+2. **Wariancja Wyjaśniona (SSR)**
+   - Pytanie: "Ile wariancji wyjaśnił nasz model?"
+   - Wzór: $SSR = \sum(\hat{y}_i - \bar{y})^2$
+   - Wizualizacja: Zielone przerywane linie na wykresie
+   - Intuicja: Poprawa, którą uzyskaliśmy dzięki użyciu X
+
+3. **Wariancja Niewyjaśniona (SSE)**
+   - Pytanie: "Jaka wariancja pozostaje niewyjaśniona?"
+   - Wzór: $SSE = \sum(y_i - \hat{y}_i)^2$
+   - Wizualizacja: Pomarańczowe przerywane linie na wykresie
+   - Intuicja: Błędy pozostające po użyciu X
 
 ### R² Wyjaśnione
 
@@ -1797,90 +1874,127 @@ $$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
 Myśl o R² jako o odpowiedzi na pytanie: "Jaki procent pierwotnej wariancji Y możemy wyjaśnić używając X?"
 
 #### Intuicyjne Przykłady:
-
--   R² = 0,80: Użycie X wyeliminowało 80% naszych błędów predykcji
--   R² = 0,25: Użycie X wyeliminowało 25% naszych błędów predykcji
--   R² = 0,00: Użycie X wcale nie pomogło
+- R² = 0,80: Użycie X wyeliminowało 80% naszych błędów predykcji
+- R² = 0,25: Użycie X wyeliminowało 25% naszych błędów predykcji
+- R² = 0,00: Użycie X wcale nie pomogło
 
 ### Kiedy Zachować Ostrożność
 
-1.  **Wysoki R² To Nie Wszystko**
-    -   Wysoki R² może wskazywać na przeuczenie
-    -   Zawsze sprawdzaj, czy twój model ma praktyczny sens
-    -   Weź pod uwagę kontekst swojej dziedziny
-2.  **Niski R² Nie Zawsze Jest Zły**
-    -   W niektórych dziedzinach R² = 0,30 może być imponujący
-    -   Nauki społeczne często mają niższe wartości R²
-    -   Skup się na znaczeniu praktycznym
-3.  **Wielkość Próby Ma Znaczenie**
-    -   Używaj skorygowanego R² dla regresji wielorakiej: $R^2_{adj} = 1 - \frac{SSE/(n-p)}{SST/(n-1)}$
-    -   Penalizuje dodawanie niepotrzebnych predyktorów
+1. **Wysoki R² To Nie Wszystko**
+   - Wysoki R² może wskazywać na przeuczenie
+   - Zawsze sprawdzaj, czy twój model ma praktyczny sens
+   - Weź pod uwagę kontekst swojej dziedziny
+
+2. **Niski R² Nie Zawsze Jest Zły**
+   - W niektórych dziedzinach R² = 0,30 może być imponujący
+   - Nauki społeczne często mają niższe wartości R²
+   - Skup się na znaczeniu praktycznym
+
+3. **Wielkość Próby Ma Znaczenie**
+   - Używaj skorygowanego R² dla regresji wielorakiej:
+   $R^2_{adj} = 1 - \frac{SSE/(n-p)}{SST/(n-1)}$
+   - Penalizuje dodawanie niepotrzebnych predyktorów
 
 ### Praktyczne Wskazówki do Analizy
 
-1.  **Inspekcja Wizualna**
-    -   Zawsze wizualizuj swoje dane
-    -   Szukaj wzorców w resztach
-    -   Sprawdzaj punkty wpływowe
-2.  **Uwzględnienie Kontekstu**
-    -   Co jest "dobrym" R² w twojej dziedzinie?
-    -   Jaki jest praktyczny wpływ twoich błędów?
-    -   Czy twoje predyktory są znaczące?
-3.  **Diagnostyka Modelu**
-    -   Sprawdź normalność reszt
-    -   Szukaj heteroskedastyczności
-    -   Badaj punkty wpływowe
+1. **Inspekcja Wizualna**
+   - Zawsze wizualizuj swoje dane
+   - Szukaj wzorców w resztach
+   - Sprawdzaj punkty wpływowe
+
+2. **Uwzględnienie Kontekstu**
+   - Co jest "dobrym" R² w twojej dziedzinie?
+   - Jaki jest praktyczny wpływ twoich błędów?
+   - Czy twoje predyktory są znaczące?
+
+3. **Diagnostyka Modelu**
+   - Sprawdź normalność reszt
+   - Szukaj heteroskedastyczności
+   - Badaj punkty wpływowe
 
 ### Kluczowe Wnioski
 
-1.  Dekompozycja wariancji pomaga zrozumieć poprawę predykcji
-2.  R² określa ilościowo proporcję wyjaśnionej wariancji
-3.  Zrozumienie wizualne jest kluczowe dla interpretacji
-4.  Kontekst jest ważniejszy niż bezwzględne wartości R²
-5.  Zawsze łącz R² z innymi narzędziami diagnostycznymi
+1. Dekompozycja wariancji pomaga zrozumieć poprawę predykcji
+2. R² określa ilościowo proporcję wyjaśnionej wariancji
+3. Zrozumienie wizualne jest kluczowe dla interpretacji
+4. Kontekst jest ważniejszy niż bezwzględne wartości R²
+5. Zawsze łącz R² z innymi narzędziami diagnostycznymi
 :::
 
-::: callout-note
+
+::: {.callout-note}
 ### Zrozumienie Endogeniczności
 
 Pomyśl o endogeniczności jako o "problemie ukrytych zależności" w twojej analizie. To jak próba rozwiązania układanki, gdzie niektóre elementy wpływają na siebie nawzajem w sposób, którego nie możesz bezpośrednio zobaczyć. W języku technicznym endogeniczność występuje, gdy zmienna objaśniająca w modelu regresji jest skorelowana ze składnikiem losowym.
 
-1.  Błąd Pominiętej Zmiennej (OVB)
+1. Błąd Pominiętej Zmiennej (OVB)
 
 Wyobraź sobie, że próbujesz zrozumieć, dlaczego niektóre rośliny rosną wyżej niż inne, i mierzysz tylko ilość wody, którą otrzymują. Ale zapomniałeś o świetle słonecznym, które wpływa zarówno na to, ile wody roślina potrzebuje, JAK I na to, jak wysoko urośnie!
 
-**Przykład z Życia: Edukacja i Dochód** \* Co widzimy: Więcej edukacji → Wyższy dochód \* Co możemy przeoczyć: Naturalny talent/zdolności - Wpływa na to, jak długo ludzie się uczą - Wpływa na to, ile mogą zarabiać \* Rezultat: Możemy przeszacować wpływ edukacji
+**Przykład z Życia: Edukacja i Dochód**
+* Co widzimy: Więcej edukacji → Wyższy dochód
+* Co możemy przeoczyć: Naturalny talent/zdolności
+  - Wpływa na to, jak długo ludzie się uczą
+  - Wpływa na to, ile mogą zarabiać
+* Rezultat: Możemy przeszacować wpływ edukacji
 
-**Matematyka za tym stojąca** (nie martw się, to pomoże zwizualizować!): \* Prawdziwy obraz: $y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \epsilon_i$ \* Co faktycznie szacujemy: $y_i = \beta_0 + \beta_1x_i + u_i$ \* Pomyśl o tym jak o przepisie: Jeśli zapomnisz ważnego składnika (z), twoje końcowe danie (y) nie wyjdzie zgodnie z oczekiwaniami!
+**Matematyka za tym stojąca** (nie martw się, to pomoże zwizualizować!):
+* Prawdziwy obraz: $y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \epsilon_i$
+* Co faktycznie szacujemy: $y_i = \beta_0 + \beta_1x_i + u_i$
+* Pomyśl o tym jak o przepisie: Jeśli zapomnisz ważnego składnika (z), twoje końcowe danie (y) nie wyjdzie zgodnie z oczekiwaniami!
 
-2.  Symultaniczność (Odwrotna Przyczynowość)
+2. Symultaniczność (Odwrotna Przyczynowość)
 
 Pamiętasz problem jajka i kury? Czasami dwie rzeczy wpływają na siebie jednocześnie. Oto kilka przykładów, które możesz napotkać:
 
-**a) Zagadka Godzin Nauki** \* Czy lepsze oceny prowadzą do dłuższej nauki? \* Czy dłuższa nauka prowadzi do lepszych ocen? \* W rzeczywistości... obie odpowiedzi! Wzajemnie na siebie wpływają
+**a) Zagadka Godzin Nauki**
+* Czy lepsze oceny prowadzą do dłuższej nauki?
+* Czy dłuższa nauka prowadzi do lepszych ocen?
+* W rzeczywistości... obie odpowiedzi! Wzajemnie na siebie wpływają
 
-**b) Efekt Mediów Społecznościowych** \* Więcej obserwujących → Więcej postów \* Więcej postów → Więcej obserwujących \* To ciągły cykl!
+**b) Efekt Mediów Społecznościowych**
+* Więcej obserwujących → Więcej postów
+* Więcej postów → Więcej obserwujących
+* To ciągły cykl!
 
-**c) Cykl Ćwiczenia-Energia** \* Więcej ćwiczeń → Więcej energii \* Więcej energii → Większa chęć do ćwiczeń \* Pomyśl o tym jak o dwóch przyjaciołach pchających się nawzajem na huśtawkach!
+**c) Cykl Ćwiczenia-Energia**
+* Więcej ćwiczeń → Więcej energii
+* Więcej energii → Większa chęć do ćwiczeń
+* Pomyśl o tym jak o dwóch przyjaciołach pchających się nawzajem na huśtawkach!
 
-3.  Błąd Pomiaru
+3. Błąd Pomiaru
 
 Wyobraź sobie próbę zmierzenia swojego wzrostu stojąc na nierównej podłodze - twoje pomiary nie będą całkiem dokładne! Oto jak to się przejawia w rzeczywistości:
 
-**Przykłady, Które Rozpoznasz:** \* Samodzielnie Raportowany Czas Nauki - "Uczę się 5 godzin dziennie" może w rzeczywistości oznaczać 3-4 godziny - Utrudnia poznanie prawdziwego wpływu na oceny \* Śledzenie w Aplikacji Fitness - Aplikacja pokazuje, że spaliłeś 500 kalorii - W rzeczywistości może to być 400 lub 600 - Wpływa na analizę wpływu ćwiczeń
+**Przykłady, Które Rozpoznasz:**
+* Samodzielnie Raportowany Czas Nauki
+  - "Uczę się 5 godzin dziennie" może w rzeczywistości oznaczać 3-4 godziny
+  - Utrudnia poznanie prawdziwego wpływu na oceny
+* Śledzenie w Aplikacji Fitness
+  - Aplikacja pokazuje, że spaliłeś 500 kalorii
+  - W rzeczywistości może to być 400 lub 600
+  - Wpływa na analizę wpływu ćwiczeń
 
 #### Jak Wykryć Te Problemy we Własnych Badaniach?
 
-**1. W przypadku Pominiętych Zmiennych, Zapytaj:** \* Co jeszcze mogłoby wpływać na obie zmienne? \* Czy nie pomijam oczywistych czynników? \* Co powiedzieliby rodzice/przyjaciele, że ma na to wpływ?
+**1. W przypadku Pominiętych Zmiennych, Zapytaj:**
+* Co jeszcze mogłoby wpływać na obie zmienne?
+* Czy nie pomijam oczywistych czynników?
+* Co powiedzieliby rodzice/przyjaciele, że ma na to wpływ?
 
-**2. W przypadku Symultaniczności, Rozważ:** \* Czy A może powodować B, czy B może powodować A? \* Czy mogą na siebie wpływać? \* Co wydarzyło się najpierw? (jeśli można to określić)
+**2. W przypadku Symultaniczności, Rozważ:**
+* Czy A może powodować B, czy B może powodować A?
+* Czy mogą na siebie wpływać?
+* Co wydarzyło się najpierw? (jeśli można to określić)
 
-**3. W przypadku Błędu Pomiaru, Pomyśl:** \* Jak dokładne są moje pomiary? \* Czy ludzie prawdopodobnie podają prawdziwe informacje? \* Co może powodować problemy z pomiarem?
+**3. W przypadku Błędu Pomiaru, Pomyśl:**
+* Jak dokładne są moje pomiary?
+* Czy ludzie prawdopodobnie podają prawdziwe informacje?
+* Co może powodować problemy z pomiarem?
 
 **Proste Rozwiązania**
 
 **1. Dla Pominiętych Zmiennych:**
-
 ```{r}
 # Zamiast:
 # simple_model <- lm(grades ~ study_hours)
@@ -1889,42 +2003,54 @@ Wyobraź sobie próbę zmierzenia swojego wzrostu stojąc na nierównej podłodz
 # better_model <- lm(grades ~ study_hours + sleep_hours + stress_level + prior_knowledge)
 ```
 
-**2. Dla Symultaniczności:** \* Szukaj "zewnętrznych" czynników, które wpływają tylko na jedną zmienną \* Rozważ opóźnienia czasowe \* Wykorzystuj eksperymenty naturalne, gdy to możliwe
+**2. Dla Symultaniczności:**
+* Szukaj "zewnętrznych" czynników, które wpływają tylko na jedną zmienną
+* Rozważ opóźnienia czasowe
+* Wykorzystuj eksperymenty naturalne, gdy to możliwe
 
-**3. Dla Błędu Pomiaru:** \* Wykorzystuj wielokrotne pomiary \* Znajdź bardziej wiarygodne źródła danych \* Uznaj niepewność w swoich wnioskach
+**3. Dla Błędu Pomiaru:**
+* Wykorzystuj wielokrotne pomiary
+* Znajdź bardziej wiarygodne źródła danych
+* Uznaj niepewność w swoich wnioskach
 
 #### Kluczowe Wnioski
 
-1.  **Rzeczywistość Jest Złożona**
-    -   Większość relacji nie jest prostym A → B
-    -   Szukaj ukrytych czynników
-    -   Rozważ dwukierunkowe zależności
-2.  **Zawsze Pytaj**
-    -   "Co pomijam?"
-    -   "Czy te pominięte zmienne mogą na siebie wpływać?"
-    -   "Jak dobrze mierzę te zmienne?"
-3.  **Podczas Pisania Prac**
-    -   Omów potencjalną endogeniczność
-    -   Wyjaśnij, jak się do niej odniosłeś
-    -   Bądź szczery odnośnie ograniczeń
+1. **Rzeczywistość Jest Złożona**
+   * Większość relacji nie jest prostym A → B
+   * Szukaj ukrytych czynników
+   * Rozważ dwukierunkowe zależności
+
+2. **Zawsze Pytaj**
+   * "Co pomijam?"
+   * "Czy te pominięte zmienne mogą na siebie wpływać?"
+   * "Jak dobrze mierzę te zmienne?"
+
+3. **Podczas Pisania Prac**
+   * Omów potencjalną endogeniczność
+   * Wyjaśnij, jak się do niej odniosłeś
+   * Bądź szczery odnośnie ograniczeń
 
 ## Zalecana Literatura
 
-1.  "Mastering Metrics" autorstwa Angrist & Pischke
-2.  "Naked Statistics" autorstwa Charles Wheelan
+1. "Mastering Metrics" autorstwa Angrist & Pischke
+2. "Naked Statistics" autorstwa Charles Wheelan
 
 Pamiętaj: W rzeczywistym świecie relacje są zwykle bardziej złożone, niż się początkowo wydaje. Gdy znajdziesz połączenie między A i B, zawsze zadaj sobie pytanie, co jeszcze może może wpływać na zmienne A i B!
 :::
 
-## Regresja Wieloraka (\*)
+
+
+## Regresja Wieloraka (*)
 
 ### Rozszerzenie do Wielu Predyktorów
 
 Model regresji wielorakiej rozszerza nasz prosty model o kilka predyktorów:
 
-Model Populacyjny: $$Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_kX_k + \varepsilon$$
+Model Populacyjny:
+$$Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_kX_k + \varepsilon$$
 
-Oszacowanie Próbkowe: $$\hat{Y} = \hat{\beta}_0 + \hat{\beta}_1X_1 + \hat{\beta}_2X_2 + ... + \hat{\beta}_kX_k$$
+Oszacowanie Próbkowe:
+$$\hat{Y} = \hat{\beta}_0 + \hat{\beta}_1X_1 + \hat{\beta}_2X_2 + ... + \hat{\beta}_kX_k$$
 
 Stwórzmy przykład z wieloma predyktorami:
 
@@ -2120,7 +2246,7 @@ ggplot(data_poly, aes(x = X, y = Y)) +
 
 ### Proces Budowy Modelu
 
-1.  **Eksploracja Danych**
+1. **Eksploracja Danych**
 
 ```{r}
 #| label: data-exploration
@@ -2145,7 +2271,7 @@ ggpairs(data_example) +
        subtitle = "Macierz korelacji i rozkłady")
 ```
 
-2.  **Wybór Zmiennych**
+2. **Wybór Zmiennych**
 
 ```{r}
 #| label: variable-selection
@@ -2173,7 +2299,7 @@ knitr::kable(models_comparison, digits = 3,
 
 ### Typowe Pułapki i Rozwiązania
 
-1.  **Wartości Odstające i Punkty Wpływowe**
+1. **Wartości Odstające i Punkty Wpływowe**
 
 ```{r}
 #| label: outliers
@@ -2210,7 +2336,7 @@ ggplot() +
   scale_color_manual(values = c("blue", "red"))
 ```
 
-2.  **Wzorce Brakujących Danych**
+2. **Wzorce Brakujących Danych**
 
 ```{r}
 #| label: missing-data
@@ -2230,7 +2356,7 @@ vis_miss(data_missing) +
   labs(title = "Wzorce Brakujących Danych")
 ```
 
-3.  **Heteroskedastyczność**
+3. **Heteroskedastyczność**
 
 ```{r}
 #| label: heteroscedasticity
@@ -2330,27 +2456,28 @@ kable(results, digits = 3,
 
 ### Kluczowe Wnioski
 
-1.  Zawsze zaczynaj od eksploracyjnej analizy danych
-2.  Sprawdzaj założenia przed interpretacją wyników
-3.  Bądź świadomy typowych pułapek:
-    -   Wartości odstające
-    -   Brakujące dane
-    -   Współliniowość
-    -   Heteroskedastyczność
-4.  Waliduj swój model używając:
-    -   Wykresów diagnostycznych
-    -   Walidacji krzyżowej
-    -   Analizy reszt
-5.  Prezentuj wyniki jasno i kompletnie
+1. Zawsze zaczynaj od eksploracyjnej analizy danych
+2. Sprawdzaj założenia przed interpretacją wyników
+3. Bądź świadomy typowych pułapek:
+   - Wartości odstające
+   - Brakujące dane
+   - Współliniowość
+   - Heteroskedastyczność
+4. Waliduj swój model używając:
+   - Wykresów diagnostycznych
+   - Walidacji krzyżowej
+   - Analizy reszt
+5. Prezentuj wyniki jasno i kompletnie
 
 ### Literatura Uzupełniająca {.unnumbered}
 
 Dla głębszego zrozumienia:
 
--   Wooldridge, J.M. "Wprowadzenie do Ekonometrii: Współczesne Ujęcie"
--   Fox, J. "Analiza Regresji Stosowana i Uogólnione Modele Liniowe"
--   Angrist, J.D. i Pischke, J.S. "W Większości Nieszkodliwa Ekonometria"
--   Stock & Watson "Wprowadzenie do Ekonometrii"
+- Wooldridge, J.M. "Wprowadzenie do Ekonometrii: Współczesne Ujęcie"
+- Fox, J. "Analiza Regresji Stosowana i Uogólnione Modele Liniowe"
+- Angrist, J.D. i Pischke, J.S. "W Większości Nieszkodliwa Ekonometria"
+- Stock & Watson "Wprowadzenie do Ekonometrii"
+
 
 ## Dodatek A.1: Obliczanie Kowariancji oraz Korelacji Pearsona i Spearmana - przykład z obliczeniami
 
@@ -2358,62 +2485,69 @@ Dane dotyczące wielkości okręgu wyborczego ($\text{DM}$) i indeksu Gallaghera
 
 | $\text{DM}$ ($X$) | Gallagher ($Y$) |
 |-------------------|-----------------|
-| 2                 | 18,2            |
-| 3                 | 16,7            |
-| 4                 | 15,8            |
-| 5                 | 15,3            |
-| 6                 | 15,0            |
-| 7                 | 14,8            |
-| 8                 | 14,7            |
-| 9                 | 14,6            |
-| 10                | 14,55           |
-| 11                | 14,52           |
+| 2                 | 18,2           |
+| 3                 | 16,7           |
+| 4                 | 15,8           |
+| 5                 | 15,3           |
+| 6                 | 15,0           |
+| 7                 | 14,8           |
+| 8                 | 14,7           |
+| 9                 | 14,6           |
+| 10                | 14,55          |
+| 11                | 14,52          |
 
 ### Krok 1: Obliczanie Podstawowych Statystyk
 
 Obliczanie średnich:
 
-Dla $\text{DM}$ ($X$): $$\bar{X} = \frac{\sum_{i=1}^n X_i}{n}$$
+Dla $\text{DM}$ ($X$): 
+$$\bar{X} = \frac{\sum_{i=1}^n X_i}{n}$$
 
 Szczegółowe obliczenia:
 
-$$2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 = 65$$ $$\bar{x} = \frac{65}{10} = 6,5$$
+$$2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 = 65$$
+$$\bar{x} = \frac{65}{10} = 6,5$$
 
-Dla indeksu Gallaghera ($Y$): $$\bar{Y} = \frac{\sum_{i=1}^n Y_i}{n}$$
+Dla indeksu Gallaghera ($Y$): 
+$$\bar{Y} = \frac{\sum_{i=1}^n Y_i}{n}$$
 
 Szczegółowe obliczenia:
 
-$$18,2 + 16,7 + 15,8 + 15,3 + 15,0 + 14,8 + 14,7 + 14,6 + 14,55 + 14,52 = 154,17$$ $$\bar{y} = \frac{154,17}{10} = 15,417$$
+$$18,2 + 16,7 + 15,8 + 15,3 + 15,0 + 14,8 + 14,7 + 14,6 + 14,55 + 14,52 = 154,17$$
+$$\bar{y} = \frac{154,17}{10} = 15,417$$
 
 ### Krok 2: Szczegółowe Obliczenia Kowariancji
 
 Pełna tabela robocza ze wszystkimi obliczeniami:
 
 | $i$ | $X_i$ | $Y_i$ | $(X_i - \bar{X})$ | $(Y_i - \bar{Y})$ | $(X_i - \bar{X})(Y_i - \bar{Y})$ | $(X_i - \bar{X})^2$ | $(Y_i - \bar{Y})^2$ |
-|---------|---------|---------|---------|---------|----------|---------|---------|
-| 1 | 2 | 18,2 | $-4,5$ | 2,783 | $-12,5235$ | 20,25 | 7,7451 |
-| 2 | 3 | 16,7 | $-3,5$ | 1,283 | $-4,4905$ | 12,25 | 1,6461 |
-| 3 | 4 | 15,8 | $-2,5$ | 0,383 | $-0,9575$ | 6,25 | 0,1467 |
-| 4 | 5 | 15,3 | $-1,5$ | $-0,117$ | 0,1755 | 2,25 | 0,0137 |
-| 5 | 6 | 15,0 | $-0,5$ | $-0,417$ | 0,2085 | 0,25 | 0,1739 |
-| 6 | 7 | 14,8 | 0,5 | $-0,617$ | $-0,3085$ | 0,25 | 0,3807 |
-| 7 | 8 | 14,7 | 1,5 | $-0,717$ | $-1,0755$ | 2,25 | 0,5141 |
-| 8 | 9 | 14,6 | 2,5 | $-0,817$ | $-2,0425$ | 6,25 | 0,6675 |
-| 9 | 10 | 14,55 | 3,5 | $-0,867$ | $-3,0345$ | 12,25 | 0,7517 |
-| 10 | 11 | 14,52 | 4,5 | $-0,897$ | $-4,0365$ | 20,25 | 0,8047 |
-| Suma | 65 | 154,17 | 0 | 0 | $-28,085$ | 82,5 | 12,8442 |
+|-----|-------|-------|-------------------|-------------------|-----------------------------------|---------------------|---------------------|
+| 1   | 2     | 18,2  | $-4,5$           | 2,783             | $-12,5235$                       | 20,25               | 7,7451              |
+| 2   | 3     | 16,7  | $-3,5$           | 1,283             | $-4,4905$                        | 12,25               | 1,6461              |
+| 3   | 4     | 15,8  | $-2,5$           | 0,383             | $-0,9575$                        | 6,25                | 0,1467              |
+| 4   | 5     | 15,3  | $-1,5$           | $-0,117$          | 0,1755                           | 2,25                | 0,0137              |
+| 5   | 6     | 15,0  | $-0,5$           | $-0,417$          | 0,2085                           | 0,25                | 0,1739              |
+| 6   | 7     | 14,8  | 0,5              | $-0,617$          | $-0,3085$                        | 0,25                | 0,3807              |
+| 7   | 8     | 14,7  | 1,5              | $-0,717$          | $-1,0755$                        | 2,25                | 0,5141              |
+| 8   | 9     | 14,6  | 2,5              | $-0,817$          | $-2,0425$                        | 6,25                | 0,6675              |
+| 9   | 10    | 14,55 | 3,5              | $-0,867$          | $-3,0345$                        | 12,25               | 0,7517              |
+| 10  | 11    | 14,52 | 4,5              | $-0,897$          | $-4,0365$                        | 20,25               | 0,8047              |
+| Suma| 65    | 154,17| 0                | 0                 | $-28,085$                        | 82,5                | 12,8442             |
 
-Obliczanie kowariancji: $$\text{Cov}(X,Y) = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
+Obliczanie kowariancji:
+$$\text{Cov}(X,Y) = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
 
 $$\text{Cov}(X,Y) = \frac{-28,085}{9} = -3,120556$$
 
 ### Krok 3: Obliczanie Odchylenia Standardowego
 
-Dla $\text{DM}$ ($X$): $$\sigma_X = \sqrt{\frac{\sum_{i=1}^n (X_i - \bar{X})^2}{n-1}}$$
+Dla $\text{DM}$ ($X$):
+$$\sigma_X = \sqrt{\frac{\sum_{i=1}^n (X_i - \bar{X})^2}{n-1}}$$
 
 $$\sigma_x = \sqrt{\frac{82,5}{9}} = \sqrt{9,1667} = 3,026582$$
 
-Dla Gallaghera ($Y$): $$\sigma_Y = \sqrt{\frac{\sum_{i=1}^n (Y_i - \bar{Y})^2}{n-1}}$$
+Dla Gallaghera ($Y$):
+$$\sigma_Y = \sqrt{\frac{\sum_{i=1}^n (Y_i - \bar{Y})^2}{n-1}}$$
 
 $$\sigma_y = \sqrt{\frac{12,8442}{9}} = \sqrt{1,4271} = 1,194612$$
 
@@ -2427,21 +2561,22 @@ $$r = \frac{-3,120556}{3,026582 \times 1,194612} = \frac{-3,120556}{3,615752} = 
 
 Pełna tabela rangowa ze wszystkimi obliczeniami:
 
-| $i$  | $X_i$ | $Y_i$ | Ranga $X_i$ | Ranga $Y_i$ | $d_i$ | $d_i^2$ |
-|------|-------|-------|-------------|-------------|-------|---------|
-| 1    | 2     | 18,2  | 1           | 10          | $-9$  | 81      |
-| 2    | 3     | 16,7  | 2           | 9           | $-7$  | 49      |
-| 3    | 4     | 15,8  | 3           | 8           | $-5$  | 25      |
-| 4    | 5     | 15,3  | 4           | 7           | $-3$  | 9       |
-| 5    | 6     | 15,0  | 5           | 6           | $-1$  | 1       |
-| 6    | 7     | 14,8  | 6           | 5           | 1     | 1       |
-| 7    | 8     | 14,7  | 7           | 4           | 3     | 9       |
-| 8    | 9     | 14,6  | 8           | 3           | 5     | 25      |
-| 9    | 10    | 14,55 | 9           | 2           | 7     | 49      |
-| 10   | 11    | 14,52 | 10          | 1           | 9     | 81      |
-| Suma |       |       |             |             |       | 330     |
+| $i$ | $X_i$ | $Y_i$ | Ranga $X_i$ | Ranga $Y_i$ | $d_i$ | $d_i^2$ |
+|-----|-------|-------|-------------|-------------|--------|----------|
+| 1   | 2     | 18,2  | 1           | 10          | $-9$   | 81       |
+| 2   | 3     | 16,7  | 2           | 9           | $-7$   | 49       |
+| 3   | 4     | 15,8  | 3           | 8           | $-5$   | 25       |
+| 4   | 5     | 15,3  | 4           | 7           | $-3$   | 9        |
+| 5   | 6     | 15,0  | 5           | 6           | $-1$   | 1        |
+| 6   | 7     | 14,8  | 6           | 5           | 1      | 1        |
+| 7   | 8     | 14,7  | 7           | 4           | 3      | 9        |
+| 8   | 9     | 14,6  | 8           | 3           | 5      | 25       |
+| 9   | 10    | 14,55 | 9           | 2           | 7      | 49       |
+| 10  | 11    | 14,52 | 10          | 1           | 9      | 81       |
+| Suma|       |       |             |             |        | 330      |
 
-Obliczanie korelacji Spearmana: $$\rho = 1 - \frac{6\sum d_i^2}{n(n^2-1)}$$
+Obliczanie korelacji Spearmana:
+$$\rho = 1 - \frac{6\sum d_i^2}{n(n^2-1)}$$
 
 $$\rho = 1 - \frac{6 \times 330}{10(100 - 1)} = 1 - \frac{1980}{990} = 1 - 2 = -1$$
 
@@ -2480,6 +2615,7 @@ ggplot(data, aes(x = DM, y = GH)) +
   theme_minimal()
 ```
 
+
 ### Estymacja OLS i Miary Dopasowania Modelu
 
 ### Krok 1: Obliczanie Estymatorów OLS
@@ -2496,6 +2632,7 @@ Obliczanie nachylenia ($\hat{\beta_1}$):
 $\hat{\beta_1} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{\sum(X_i - \bar{X})^2}$
 
 $$\hat{\beta_1} = -28,085 ÷ 82,5 = -0,3404$$
+
 
 Obliczanie wyrazu wolnego ($\hat{\beta_0}$): $\hat{\beta_0} = \bar{Y} - \hat{\beta_1}\bar{X}$
 
@@ -2561,7 +2698,8 @@ Weryfikacja dekompozycji: $SST = SSR + SSE$
 12,8442 = 9,5524 + 3,2832 (w granicach błędu zaokrąglenia)
 ```
 
-Obliczanie współczynnika determinacji R-kwadrat: $R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$
+Obliczanie współczynnika determinacji R-kwadrat:
+$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$
 
 ```         
 R² = 9,5524 ÷ 12,8442
@@ -2635,7 +2773,8 @@ Najpierw obliczamy logarytmy naturalne zmiennych:
 Szacujemy trzy alternatywne specyfikacje:
 
 1.  Model log-liniowy: $\ln(Y_i) = \beta_0 + \beta_1 X_i + \epsilon_i$
-2.  Model liniowo-logarytmiczny: $Y_i = \beta_0 + \beta_1\ln(X_i) + \epsilon_i$
+2.  Model liniowo-logarytmiczny:
+    $Y_i = \beta_0 + \beta_1\ln(X_i) + \epsilon_i$
 3.  Model log-log: $\ln(Y_i) = \beta_0 + \beta_1\ln(X_i) + \epsilon_i$
 
 ```{r}
@@ -2699,7 +2838,8 @@ grid.arrange(p1, p2, p3, p4, ncol = 2)
 
 ### Krok 4: Analiza Reszt dla Najlepszego Modelu
 
-Na podstawie wartości R-kwadrat, analiza reszt dla najlepiej dopasowanego modelu:
+Na podstawie wartości R-kwadrat, analiza reszt dla najlepiej
+dopasowanego modelu:
 
 ```{r}
 # Wykresy reszt dla najlepszego modelu
@@ -2715,7 +2855,9 @@ Współczynniki modelu liniowo-logarytmicznego:
 summary(model_linearlog)
 ```
 
-Interpretacja: - $\hat{\beta_0}$ reprezentuje oczekiwany Indeks Gallaghera, gdy ln(DM) = 0 (czyli gdy DM = 1) - $\hat{\beta_1}$ reprezentuje zmianę Indeksu Gallaghera związaną z jednostkowym wzrostem ln(DM)
+Interpretacja: - $\hat{\beta_0}$ reprezentuje oczekiwany Indeks Gallaghera,
+gdy ln(DM) = 0 (czyli gdy DM = 1) - $\hat{\beta_1}$ reprezentuje zmianę
+Indeksu Gallaghera związaną z jednostkowym wzrostem ln(DM)
 
 ### Krok 6: Predykcje Modelu
 
@@ -2734,7 +2876,9 @@ ggplot(data, aes(x = log_DM, y = GH)) +
 
 ### Krok 7: Analiza Elastyczności
 
-Dla modelu log-log współczynniki bezpośrednio reprezentują elastyczności. Obliczenie średniej elastyczności dla modelu liniowo-logarytmicznego:
+Dla modelu log-log współczynniki bezpośrednio reprezentują
+elastyczności. Obliczenie średniej elastyczności dla modelu
+liniowo-logarytmicznego:
 
 ```{r}
 # Obliczenie elastyczności przy wartościach średnich
@@ -2745,7 +2889,8 @@ elastycznosc <- beta1 * (1/mean_GH)
 elastycznosc
 ```
 
-Wartość ta reprezentuje procentową zmianę Indeksu Gallaghera przy jednoprocentowej zmianie Wielkości Okręgu.
+Wartość ta reprezentuje procentową zmianę Indeksu Gallaghera przy
+jednoprocentowej zmianie Wielkości Okręgu.
 
 ## Dodatek A.2: Porównanie Popularnych Miar Korelacji: Pearson, Spearman i Kendall
 
@@ -2813,7 +2958,8 @@ $$ \tau = \frac{\text{liczba par zgodnych} - \text{liczba par niezgodnych}}{\fra
 | (3,5)      | 5,8       | 4,7       | +3        | +3        | Z     |
 | (4,5)      | 3,8       | 4,7       | +5        | +3        | Z     |
 
-Liczba par zgodnych = 8 Liczba par niezgodnych = 2 $$ \tau = \frac{8-2}{10} = 0,74 $$
+Liczba par zgodnych = 8 Liczba par niezgodnych = 2
+$$ \tau = \frac{8-2}{10} = 0,74 $$
 
 ### Weryfikacja w R
 
@@ -2830,9 +2976,11 @@ cat("Kendall:", round(cor(dane$x, dane$y, method="kendall"), 2), "\n")
     -   Wskazuje na bardzo silny liniowy związek między zmiennymi
 2.  **Korelacja Spearmana (ρ = 0,82)**
     -   Również silna dodatnia korelacja
-    -   Nieco niższa niż Pearsona, co sugeruje pewne odchylenia od monotoniczności
+    -   Nieco niższa niż Pearsona, co sugeruje pewne odchylenia od
+        monotoniczności
 3.  **Tau Kendalla (τ = 0,74)**
-    -   Najniższa z trzech wartości, ale wciąż wskazuje na silną zależność
+    -   Najniższa z trzech wartości, ale wciąż wskazuje na silną
+        zależność
     -   Bardziej odporna na wartości odstające
 
 ### Porównanie Miar
@@ -2843,7 +2991,8 @@ cat("Kendall:", round(cor(dane$x, dane$y, method="kendall"), 2), "\n")
     -   Kendall (0,74) - najbardziej konserwatywna miara
 2.  **Praktyczne zastosowanie:**
     -   Wszystkie miary potwierdzają silną dodatnią zależność
-    -   Różnice między miarami wskazują na nieznaczne odchylenia od idealnej liniowości
+    -   Różnice między miarami wskazują na nieznaczne odchylenia od
+        idealnej liniowości
     -   Kendall daje najbardziej ostrożną ocenę siły związku
 
 ## Appendix B.
@@ -2856,7 +3005,7 @@ cat("Kendall:", round(cor(dane$x, dane$y, method="kendall"), 2), "\n")
 
 **Background**
 
-In preparation for the 2024 municipal elections, the Amsterdam Electoral Commission conducted research on voter participation patterns across different city neighborhoods. A key question emerged:
+In preparation for the 2024 municipal elections, the Amsterdam Electoral Commission conducted research on voter participation patterns across different city neighborhoods. A key question emerged: 
 
 Does economic prosperity of a neighborhood correlate with civic engagement, specifically voter turnout?
 
@@ -2926,7 +3075,11 @@ $$s_{XY} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
 
 Products of deviations:
 
-$$(-0.2 \times -2.2) = 0.44$$ $$(-5.2 \times -6.2) = 32.24$$ $$(5.8 \times 7.8) = 45.24$$ $$(-10.2 \times -12.2) = 124.44$$ $$(9.8 \times 12.8) = 125.44$$
+$$(-0.2 \times -2.2) = 0.44$$
+$$(-5.2 \times -6.2) = 32.24$$
+$$(5.8 \times 7.8) = 45.24$$
+$$(-10.2 \times -12.2) = 124.44$$
+$$(9.8 \times 12.8) = 125.44$$
 
 $$s_{XY} = \frac{327.8}{4} = 81.95$$
 
@@ -2958,8 +3111,8 @@ $$\hat{\beta_0} = \bar{Y} - \hat{\beta_1}\bar{X}$$
 
 Step by step:
 
-1.  $$1.2571429 \times 50.2 = 63.1085714$$
-2.  $$\hat{\beta_0} = 62.2 - 63.1085714 = -0.9085714$$
+1. $$1.2571429 \times 50.2 = 63.1085714$$
+2. $$\hat{\beta_0} = 62.2 - 63.1085714 = -0.9085714$$
 
 ```{r}
 #| echo: true
@@ -2979,31 +3132,42 @@ For $X = 50$:
 
 $$
 \hat{Y} = -0.9085714 + 1.2571429 \times (50)
-$$ $$\hat{Y} = -0.9085714 + 62.857145$$ $$\hat{Y} = 61.9485736$$
+$$
+$$\hat{Y} = -0.9085714 + 62.857145$$
+$$\hat{Y} = 61.9485736$$
 
 For $X = 45$:
 
 $$
 \hat{Y} = -0.9085714 + 1.2571429 \times (45)
-$$ $$\hat{Y} = -0.9085714 + 56.5714305$$ $$\hat{Y} = 55.6535591$$
+$$
+$$\hat{Y} = -0.9085714 + 56.5714305$$
+$$\hat{Y} = 55.6535591$$
 
 For $X = 56$:
 
 $$
 \hat{Y} = -0.9085714 + 1.2571429 \times (56)
-$$ $$\hat{Y} = -0.9085714 + 70.4200024$$ $$\hat{Y} = 69.5114310$$
+$$
+$$\hat{Y} = -0.9085714 + 70.4200024$$
+$$\hat{Y} = 69.5114310$$
 
 For $X = 40$:
 
 $$
 \hat{Y} = -0.9085714 + 1.2571429 \times (40)
-$$ $$\hat{Y} = -0.9085714 + 50.2657160$$ $$\hat{Y} = 49.3571446$$
+$$
+$$\hat{Y} = -0.9085714 + 50.2657160$$
+$$\hat{Y} = 49.3571446$$
 
 For $X = 60$:
 
 $$
 \hat{Y} = -0.9085714 + 1.2571429 \times (60)
-$$ $$\hat{Y} = -0.9085714 + 75.4285740$$ $$\hat{Y} = 74.5200026$$
+$$
+$$\hat{Y} = -0.9085714 + 75.4285740$$
+$$\hat{Y} = 74.5200026$$
+
 
 ```{r}
 #| echo: true
@@ -3021,7 +3185,11 @@ data.frame(
 
 $$SST = \sum(Y_i - \bar{Y})^2 \text{ where } \bar{Y} = 62.2$$
 
-$$(60 - 62.2)^2 = (-2.2)^2 = 4.84$$ $$(56 - 62.2)^2 = (-6.2)^2 = 38.44$$ $$(70 - 62.2)^2 = (7.8)^2 = 60.84$$ $$(50 - 62.2)^2 = (-12.2)^2 = 148.84$$ $$(75 - 62.2)^2 = (12.8)^2 = 163.84$$
+$$(60 - 62.2)^2 = (-2.2)^2 = 4.84$$
+$$(56 - 62.2)^2 = (-6.2)^2 = 38.44$$
+$$(70 - 62.2)^2 = (7.8)^2 = 60.84$$
+$$(50 - 62.2)^2 = (-12.2)^2 = 148.84$$
+$$(75 - 62.2)^2 = (12.8)^2 = 163.84$$
 
 $$SST = 4.84 + 38.44 + 60.84 + 148.84 + 163.84 = 416.8$$
 
@@ -3029,7 +3197,11 @@ $$SST = 4.84 + 38.44 + 60.84 + 148.84 + 163.84 = 416.8$$
 
 $$SSR = \sum(\hat{Y}_i - \bar{Y})^2$$
 
-$$(61.9485736 - 62.2)^2 = (-0.2514264)^2 = 0.0632151$$ $$(55.6535591 - 62.2)^2 = (-6.5464409)^2 = 42.8558689$$ $$(69.5114310 - 62.2)^2 = (7.3114310)^2 = 53.4570178$$ $$(49.3571446 - 62.2)^2 = (-12.8428554)^2 = 164.9389370$$ $$(74.5200026 - 62.2)^2 = (12.3200026)^2 = 151.7824640$$
+$$(61.9485736 - 62.2)^2 = (-0.2514264)^2 = 0.0632151$$
+$$(55.6535591 - 62.2)^2 = (-6.5464409)^2 = 42.8558689$$
+$$(69.5114310 - 62.2)^2 = (7.3114310)^2 = 53.4570178$$
+$$(49.3571446 - 62.2)^2 = (-12.8428554)^2 = 164.9389370$$
+$$(74.5200026 - 62.2)^2 = (12.3200026)^2 = 151.7824640$$
 
 $$SSR = 413.0975028$$
 
@@ -3037,13 +3209,18 @@ $$SSR = 413.0975028$$
 
 $$SSE = \sum(Y_i - \hat{Y}_i)^2$$
 
-$$(60 - 61.9485736)^2 = (-1.9485736)^2 = 3.7969384$$ $$(56 - 55.6535591)^2 = (0.3464409)^2 = 0.1200212$$ $$(70 - 69.5114310)^2 = (0.4885690)^2 = 0.2387198$$ $$(50 - 49.3571446)^2 = (0.6428554)^2 = 0.4132631$$ $$(75 - 74.5200026)^2 = (0.4799974)^2 = 0.2303975$$
+$$(60 - 61.9485736)^2 = (-1.9485736)^2 = 3.7969384$$
+$$(56 - 55.6535591)^2 = (0.3464409)^2 = 0.1200212$$
+$$(70 - 69.5114310)^2 = (0.4885690)^2 = 0.2387198$$
+$$(50 - 49.3571446)^2 = (0.6428554)^2 = 0.4132631$$
+$$(75 - 74.5200026)^2 = (0.4799974)^2 = 0.2303975$$
 
 $$SSE = 4.7024972$$
 
 **Step 5: Verify decomposition**
 
-$$SST = SSR + SSE$$ $$416.8 = 413.0975028 + 4.7024972$$
+$$SST = SSR + SSE$$
+$$416.8 = 413.0975028 + 4.7024972$$
 
 **Step 6: Calculate R-squared**
 
@@ -3082,20 +3259,23 @@ ggplot(df, aes(x = income, y = turnout)) +
 
 The analysis shows:
 
-1.  A very strong positive correlation ($r = 0.994$) between income and voter turnout
+1. A very strong positive correlation ($r = 0.994$) between income and voter turnout
 
-2.  The regression equation $$\hat{Y} = -0.9085714 + 1.2571429X$$ indicates that:
+2. The regression equation $$\hat{Y} = -0.9085714 + 1.2571429X$$ indicates that:
 
-    -   For each €1,000 increase in income, turnout increases by about 1.26 percentage points
-    -   The intercept ($-0.9086$) has little practical meaning as income is never zero
+   - For each €1,000 increase in income, turnout increases by about 1.26 percentage points
+   - The intercept ($-0.9086$) has little practical meaning as income is never zero
 
-3.  The R-squared of 0.9916 indicates that 99.16% of the variance in turnout is explained by income
+3. The R-squared of 0.9916 indicates that 99.16% of the variance in turnout is explained by income
+
 
 ## Anxiety Levels and Cognitive Performance: A Laboratory Study
 
 ### Data and Context
 
-In a psychology experiment, researchers measured the relationship between anxiety levels (measured by galvanic skin response, GSR) and cognitive performance (score on a working memory task).
+In a psychology experiment, researchers measured the relationship
+between anxiety levels (measured by galvanic skin response, GSR) and
+cognitive performance (score on a working memory task).
 
 ```{r}
 #| echo: true
@@ -3110,7 +3290,8 @@ summary(model)
 
 ### Descriptive Statistics
 
-**Means:** $$\bar{X} = \frac{2.1 + 3.4 + 4.2 + 5.1 + 5.8 + 6.4 + 7.2 + 8.0}{8} = \frac{42.2}{8} = 5.275$$
+**Means:**
+$$\bar{X} = \frac{2.1 + 3.4 + 4.2 + 5.1 + 5.8 + 6.4 + 7.2 + 8.0}{8} = \frac{42.2}{8} = 5.275$$
 
 $$\bar{Y} = \frac{92 + 88 + 84 + 78 + 74 + 70 + 65 + 62}{8} = \frac{613}{8} = 76.625$$
 
@@ -3125,14 +3306,14 @@ mean(performance)
 
 Deviations for X:
 
--   $(2.1 - 5.275) = -3.175$
--   $(3.4 - 5.275) = -1.875$
--   $(4.2 - 5.275) = -1.075$
--   $(5.1 - 5.275) = -0.175$
--   $(5.8 - 5.275) = 0.525$
--   $(6.4 - 5.275) = 1.125$
--   $(7.2 - 5.275) = 1.925$
--   $(8.0 - 5.275) = 2.725$
+- $(2.1 - 5.275) = -3.175$
+- $(3.4 - 5.275) = -1.875$
+- $(4.2 - 5.275) = -1.075$
+- $(5.1 - 5.275) = -0.175$
+- $(5.8 - 5.275) = 0.525$
+- $(6.4 - 5.275) = 1.125$
+- $(7.2 - 5.275) = 1.925$
+- $(8.0 - 5.275) = 2.725$
 
 Squared deviations:
 
@@ -3156,7 +3337,8 @@ var(performance)
 
 ### Covariance and Correlation
 
-**Covariance:** $$s_{XY} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
+**Covariance:**
+$$s_{XY} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
 
 Products of deviations:
 
@@ -3186,7 +3368,8 @@ $$s_{XY} = \frac{-149.375}{7} = -21.33929$$
 cov(anxiety, performance)
 ```
 
-**Correlation:** $$r_{XY} = \frac{s_{XY}}{\sqrt{s^2_X}\sqrt{s^2_Y}} = \frac{-21.33929}{\sqrt{3.922143}\sqrt{117.4803}} = -0.9932$$
+**Correlation:**
+$$r_{XY} = \frac{s_{XY}}{\sqrt{s^2_X}\sqrt{s^2_Y}} = \frac{-21.33929}{\sqrt{3.922143}\sqrt{117.4803}} = -0.9932$$
 
 ```{r}
 #| echo: true
@@ -3196,12 +3379,13 @@ cor(anxiety, performance)
 
 ### OLS Regression $(\hat{Y} = \hat{\beta_0} + \hat{\beta_1}X)$
 
-**Slope coefficient:** $$\hat{\beta_1} = \frac{s_{XY}}{s^2_X} = \frac{-21.33929}{3.922143} = -5.4407$$
+**Slope coefficient:**
+$$\hat{\beta_1} = \frac{s_{XY}}{s^2_X} = \frac{-21.33929}{3.922143} = -5.4407$$
 
 **Intercept:** $$\hat{\beta_0} = \bar{Y} - \hat{\beta_1}\bar{X}$$ Steps:
 
-1.  $-5.4407 × 5.275 = -28.6997$
-2.  $\hat{\beta_0} = 76.625 - (-28.6997) = 105.3247$
+1. $-5.4407 × 5.275 = -28.6997$
+2. $\hat{\beta_0} = 76.625 - (-28.6997) = 105.3247$
 
 ```{r}
 #| echo: true
@@ -3211,7 +3395,8 @@ coef(model)
 
 ### 4. R-squared Calculation
 
-**Step 1: Calculate predicted values** $(\hat{Y})$: $$\hat{Y} = 105.3247 - 5.4407X$$
+**Step 1: Calculate predicted values** $(\hat{Y})$:
+$$\hat{Y} = 105.3247 - 5.4407X$$
 
 ```{r}
 #| echo: true
@@ -3233,7 +3418,8 @@ $SSR = \sum(\hat{Y}_i - \bar{Y})^2 = 816.3094$
 
 $SSE = \sum(Y_i - \hat{Y}_i)^2 = 6.0526$
 
-**R-squared:** $$R^2 = \frac{SSR}{SST} = \frac{816.3094}{822.362} = 0.9926$$
+**R-squared:**
+$$R^2 = \frac{SSR}{SST} = \frac{816.3094}{822.362} = 0.9926$$
 
 ```{r}
 #| echo: true
@@ -3261,11 +3447,15 @@ ggplot(data.frame(anxiety, performance), aes(x = anxiety, y = performance)) +
 
 ### Interpretation
 
-1.  Strong negative correlation (r = -0.993) between anxiety and cognitive performance
-2.  For each unit increase in GSR (anxiety), performance decreases by approximately 5.44 points
+1.  Strong negative correlation (r = -0.993) between anxiety and
+    cognitive performance
+2.  For each unit increase in GSR (anxiety), performance decreases by
+    approximately 5.44 points
 3.  The model explains 99.26% of the variance in performance scores
-4.  The relationship appears to be strongly linear, suggesting a reliable anxiety-performance relationship
-5.  The high intercept (105.32) represents the theoretical maximum performance at zero anxiety
+4.  The relationship appears to be strongly linear, suggesting a
+    reliable anxiety-performance relationship
+5.  The high intercept (105.32) represents the theoretical maximum
+    performance at zero anxiety
 
 ### Study Limitations
 
@@ -3273,6 +3463,7 @@ ggplot(data.frame(anxiety, performance), aes(x = anxiety, y = performance)) +
 2.  Possible other confounding variables
 3.  Limited range of anxiety levels
 4.  Cross-sectional rather than longitudinal data
+
 
 ## District Magnitude and Electoral Disproportionality: A Comparative Analysis
 
@@ -3309,7 +3500,8 @@ summary(model)
 
 ### Descriptive Statistics
 
-**Means:** $$\bar{X} = \frac{3 + 5 + 7 + 10 + 12 + 15}{6} = \frac{52}{6} = 8.6667$$
+**Means:**
+$$\bar{X} = \frac{3 + 5 + 7 + 10 + 12 + 15}{6} = \frac{52}{6} = 8.6667$$
 
 $$\bar{Y} = \frac{9.0 + 7.8 + 9.2 + 4.1 + 2.5 + 1.7}{6} = \frac{34.3}{6} = 5.7167$$
 
@@ -3352,7 +3544,8 @@ var(gallagher)
 
 ### Covariance and Correlation
 
-**Covariance:** $$s_{XY} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
+**Covariance:**
+$$s_{XY} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
 
 Products of deviations:
 
@@ -3373,7 +3566,8 @@ $$s_{XY} = \frac{-70.3670}{5} = -14.0734$$
 cov(magnitude, gallagher)
 ```
 
-**Correlation:** $$r_{XY} = \frac{s_{XY}}{\sqrt{s^2_X}\sqrt{s^2_Y}} = \frac{-14.0734}{\sqrt{20.2666}\sqrt{11.2697}} = -0.9279$$
+**Correlation:**
+$$r_{XY} = \frac{s_{XY}}{\sqrt{s^2_X}\sqrt{s^2_Y}} = \frac{-14.0734}{\sqrt{20.2666}\sqrt{11.2697}} = -0.9279$$
 
 ```{r}
 #| echo: true
@@ -3383,12 +3577,13 @@ cor(magnitude, gallagher)
 
 ### OLS Regression $(\hat{Y} = \hat{\beta_0} + \hat{\beta_1}X)$
 
-**Slope coefficient:** $$\hat{\beta_1} = \frac{s_{XY}}{s^2_X} = \frac{-14.0734}{20.2666} = -0.6944$$
+**Slope coefficient:**
+$$\hat{\beta_1} = \frac{s_{XY}}{s^2_X} = \frac{-14.0734}{20.2666} = -0.6944$$
 
 **Intercept:** $$\hat{\beta_0} = \bar{Y} - \hat{\beta_1}\bar{X}$$ Steps:
 
-1.  $-0.6944 × 8.6667 = -6.0181$
-2.  $\hat{\beta_0} = 5.7167 - (-6.0181) = 11.7348$
+1. $-0.6944 × 8.6667 = -6.0181$
+2. $\hat{\beta_0} = 5.7167 - (-6.0181) = 11.7348$
 
 ```{r}
 #| echo: true
@@ -3414,9 +3609,12 @@ data.frame(
 )
 ```
 
-**Step 2: Sum of Squares** $SST = \sum(Y_i - \bar{Y})^2 = 56.3483$ $SSR = \sum(\hat{Y}_i - \bar{Y})^2 = 48.5271$ $SSE = \sum(Y_i - \hat{Y}_i)^2 = 7.8212$
+**Step 2: Sum of Squares** $SST = \sum(Y_i - \bar{Y})^2 = 56.3483$
+$SSR = \sum(\hat{Y}_i - \bar{Y})^2 = 48.5271$
+$SSE = \sum(Y_i - \hat{Y}_i)^2 = 7.8212$
 
-**R-squared:** $$R^2 = \frac{SSR}{SST} = \frac{48.5271}{56.3483} = 0.8612$$
+**R-squared:**
+$$R^2 = \frac{SSR}{SST} = \frac{48.5271}{56.3483} = 0.8612$$
 
 ```{r}
 #| echo: true
@@ -3491,27 +3689,39 @@ ggplot() +
     -   The estimated intercept very closely approximates the true value
 3.  **Visual Patterns**
     -   The lines are nearly parallel, showing good slope recovery
-    -   Points scatter around both lines due to the random error term (ε)
-    -   The small sample size (n=6) leads to some imprecision in estimation
-    -   The estimated line (blue) provides a good approximation of the true DGP (red dashed)
+    -   Points scatter around both lines due to the random error term
+        (ε)
+    -   The small sample size (n=6) leads to some imprecision in
+        estimation
+    -   The estimated line (blue) provides a good approximation of the
+        true DGP (red dashed)
 4.  **Impact of Random Error**
-    -   The scatter of points around the true DGP line reflects the N(0,1) error term
-    -   This noise leads to the slight differences in estimated parameters
-    -   With a larger sample, we would expect even closer convergence to true parameters
+    -   The scatter of points around the true DGP line reflects the
+        N(0,1) error term
+    -   This noise leads to the slight differences in estimated
+        parameters
+    -   With a larger sample, we would expect even closer convergence to
+        true parameters
 
 ### Interpretation
 
-1.  Strong negative correlation (r = -0.93) between district magnitude and electoral disproportionality
-2.  For each unit increase in district magnitude, the Gallagher index decreases by approximately 0.69 points
+1.  Strong negative correlation (r = -0.93) between district magnitude
+    and electoral disproportionality
+2.  For each unit increase in district magnitude, the Gallagher index
+    decreases by approximately 0.69 points
 3.  The model explains 86.12% of the variance in disproportionality
 4.  The relationship appears strongly linear with moderate scatter
-5.  The intercept (11.73) represents the expected disproportionality in a hypothetical single-member district system
+5.  The intercept (11.73) represents the expected disproportionality in
+    a hypothetical single-member district system
 
 ### Study Context
 
--   Data represents simulated observations from a DGP with moderate noise
--   Sample shows how increasing district magnitude tends to reduce disproportionality
--   Random component reflects other institutional and political factors affecting disproportionality
+-   Data represents simulated observations from a DGP with moderate
+    noise
+-   Sample shows how increasing district magnitude tends to reduce
+    disproportionality
+-   Random component reflects other institutional and political factors
+    affecting disproportionality
 
 ### Limitations
 
