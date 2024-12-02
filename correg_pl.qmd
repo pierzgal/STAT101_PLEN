@@ -844,7 +844,7 @@ Kiedy analizujemy zależności między zmiennymi, takimi jak poziom wykształcen
 
 Spójrzmy na nasz wykres poziomów wykształcenia i wynagrodzeń. Każdy punkt reprezentuje rzeczywiste dane - poziom wykształcenia danej osoby i odpowiadające mu wynagrodzenie. Naszym celem jest znalezienie pojedynczej linii, która najdokładniej uchwyci podstawową zależność między tymi zmiennymi.
 
-Dla każdej obserwacji $$i$$ możemy wyrazić tę relację jako:
+Dla każdej obserwacji $i$ możemy wyrazić tę relację jako:
 
 $$y_i = \beta_0 + \beta_1x_i + \epsilon_i$$
 
@@ -865,7 +865,7 @@ Analizując naszą wizualizację:
 - Niebieska i zielona linia przedstawiają alternatywne dopasowania o większych sumach kwadratów błędów
 - Pionowe odległości od każdego punktu do tych linii reprezentują błędy $\epsilon_i$
 
-Rozwiązanie OLS dostarcza nam estymatorów $\hat{\beta_0}$ i $\hat{\beta_1}$, które minimalizują całkowity błąd kwadratowy, dając nam najdokładniejszą liniową reprezentację zależności między poziomem wykształcenia a wynagrodzeniem na podstawie dostępnych danych.
+Rozwiązanie OLS dostarcza nam estymatorów $\hat{\beta_0}$ i $\hat{\beta_1}$ nieznanych parametrów $\beta_0$ i $\beta_1$, które minimalizują całkowity błąd kwadratowy, dając nam najdokładniejszą liniową reprezentację zależności między poziomem wykształcenia a wynagrodzeniem na podstawie dostępnych danych.
 
 ### Znalezienie Najlepszej Linii
 Rozwiązanie tego problemu minimalizacji daje nam:
@@ -935,6 +935,7 @@ ggplot(data, aes(x = x, y = y)) +
 ```
 
 Ten wykres pokazuje istotę regresji:
+
 - Każdy punkt reprezentuje obserwację (X, Y)
 - Linia reprezentuje nasze najlepsze przypuszczenie dotyczące zależności
 - Rozproszenie punktów wokół linii pokazuje niepewność
@@ -942,7 +943,7 @@ Ten wykres pokazuje istotę regresji:
 
 ## Model Regresji Liniowej
 
-### Model Populacyjny vs. Oszacowania Próby
+### Model Populacyjny vs. Oszacowania z Próby
 
 W teorii istnieje prawdziwa zależność populacyjna:
 
@@ -1006,6 +1007,7 @@ ggplot() +
 ```
 
 Ta wizualizacja pokazuje:
+
 - Prawdziwą linię populacyjną (czarną), którą próbujemy odkryć
 - Różne oszacowania próbkowe (linie przerywane) oparte na różnych próbach
 - Jak oszacowania próbkowe różnią się wokół prawdziwej zależności
@@ -1170,186 +1172,6 @@ p2 <- ggplot(data_trans, aes(x = x, y = log_y)) +
 gridExtra::grid.arrange(p1, p2, ncol = 2)
 ```
 
-## Metody Estymacji
-
-### Metoda Najmniejszych Kwadratów (OLS)
-
-OLS znajduje $\hat{\beta}_0$ i $\hat{\beta}_1$ minimalizując sumę kwadratów reszt:
-
-$$\min_{\hat{\beta}_0, \hat{\beta}_1} \sum_{i=1}^n (Y_i - \hat{\beta}_0 - \hat{\beta}_1X_i)^2$$
-
-Rozwiązania to:
-
-$$\hat{\beta}_1 = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2}$$
-
-$$\hat{\beta}_0 = \bar{Y} - \hat{\beta}_1\bar{X}$$
-
-Zobaczmy wizualizację działania OLS:
-
-```{r}
-#| label: fig-ols
-#| fig-cap: "OLS Minimalizująca Kwadraty Reszt"
-
-# Generate sample data
-set.seed(103)
-x_sample <- seq(1, 10, by = 1)
-y_sample <- 2 + 3*x_sample + rnorm(length(x_sample), 0, 2)
-data_sample <- data.frame(x = x_sample, y = y_sample)
-
-# Fit model
-model_sample <- lm(y ~ x, data = data_sample)
-data_sample$predicted <- predict(model_sample)
-
-# Plot
-ggplot(data_sample, aes(x = x, y = y)) +
-  geom_point(color = "blue") +
-  geom_line(aes(y = predicted), color = "red") +
-  geom_segment(aes(xend = x, y = y, yend = predicted), 
-              color = "green", linetype = "dashed") +
-  theme_minimal() +
-  labs(title = "Regresja OLS z Resztami",
-       subtitle = "Niebieskie punkty: dane\nCzerwona linia: dopasowanie OLS\nZielone linie przerywane: reszty")
-```
-
-## Ocena Dopasowania Modelu
-
-### Dekompozycja Wariancji
-
-Całkowita zmienność Y może być rozłożona na komponenty wyjaśnione i niewyjaśnione:
-
-$$\underbrace{\sum_{i=1}^n (Y_i - \bar{Y})^2}_{SST} = \underbrace{\sum_{i=1}^n (\hat{Y}_i - \bar{Y})^2}_{SSR} + \underbrace{\sum_{i=1}^n (Y_i - \hat{Y}_i)^2}_{SSE}$$
-
-gdzie:
-
-- SST (Całkowita Suma Kwadratów): Całkowita zmienność Y
-- SSR (Regresyjna Suma Kwadratów): Zmienność wyjaśniona przez regresję
-- SSE (Suma Kwadratów Błędów): Zmienność niewyjaśniona
-
-Zobaczmy wizualizację tej dekompozycji:
-
-```{r}
-#| label: fig-decomposition
-#| fig-cap: "Dekompozycja Wariancji w Regresji Liniowej"
-
-# Generate sample data
-set.seed(104)
-x <- seq(1, 10, by = 0.5)
-y <- 2 + 3*x + rnorm(length(x), 0, 2)
-df <- data.frame(x = x, y = y)
-
-# Fit model
-model <- lm(y ~ x, data = df)
-df$predicted <- predict(model)
-df$residuals <- residuals(model)
-df$mean_y <- mean(df$y)
-
-# Calculate components for one point
-point_index <- 10
-example_point <- df[point_index, ]
-
-# Create main plot
-p_main <- ggplot(df, aes(x = x)) +
-  geom_point(aes(y = y), color = "blue") +
-  geom_line(aes(y = predicted), color = "red") +
-  geom_hline(yintercept = mean(df$y), linetype = "dashed") +
-  # Total deviation
-  geom_segment(data = example_point,
-               aes(x = x, y = mean_y, xend = x, yend = y),
-               color = "purple", size = 1, alpha = 0.5) +
-  # Explained deviation
-  geom_segment(data = example_point,
-               aes(x = x, y = mean_y, xend = x, yend = predicted),
-               color = "green", size = 1, alpha = 0.5) +
-  # Unexplained deviation
-  geom_segment(data = example_point,
-               aes(x = x, y = predicted, xend = x, yend = y),
-               color = "orange", size = 1, alpha = 0.5) +
-  theme_minimal() +
-  labs(title = "Dekompozycja Wariancji",
-       subtitle = "Fioletowy: Całkowite odchylenie (Yi - Ȳ)\nZielony: Wyjaśnione (Ŷi - Ȳ)\nPomarańczowy: Niewyjaśnione (Yi - Ŷi)")
-
-# Calculate R-squared
-summary_stats <- glance(model)
-r2 <- round(summary_stats$r.squared, 3)
-
-# Add R-squared to plot
-print(p_main)
-cat(sprintf("\nR² = %.3f\nOznacza to, że %.1f%% wariancji w Y jest wyjaśnione przez X\n", r2, r2*100))
-```
-
-
-### Miary Dopasowania
-
-1. **R-kwadrat ($R^2$)**:
-   $$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
-
-2. **Pierwiastek Błędu Średniokwadratowego (RMSE)**:
-   $$RMSE = \sqrt{\frac{SSE}{n}}$$
-
-3. **Średni Błąd Bezwzględny (MAE)**:
-   $$MAE = \frac{1}{n}\sum_{i=1}^n |Y_i - \hat{Y}_i|$$
-
-Zobaczmy obliczenie i wizualizację tych miar:
-
-```{r}
-#| label: fig-fit-measures
-#| fig-cap: "Różne Miary Dopasowania Modelu"
-
-# Calculate measures
-rmse <- sqrt(mean(residuals(model)^2))
-mae <- mean(abs(residuals(model)))
-
-# Create residual plot with different measures
-ggplot(df, aes(x = predicted, y = residuals)) +
-  geom_point() +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
-  geom_hline(yintercept = c(rmse, -rmse), linetype = "dotted", color = "blue") +
-  geom_hline(yintercept = c(mae, -mae), linetype = "dotted", color = "green") +
-  theme_minimal() +
-  labs(title = "Wykres Reszt z Miarami Błędu",
-       subtitle = sprintf("RMSE = %.2f (niebieskie linie)\nMAE = %.2f (zielone linie)", 
-                         rmse, mae))
-```
-
-## Wykresy Diagnostyczne
-
-### Analiza Reszt
-
-Cztery kluczowe wykresy diagnostyczne:
-
-```{r}
-#| label: fig-diagnostics
-#| fig-cap: "Kluczowe Wykresy Diagnostyczne dla Regresji Liniowej"
-
-# Create diagnostic plots
-par(mfrow = c(2, 2))
-plot(model)
-```
-
-Interpretacja każdego wykresu:
-
-1. **Reszty vs. Wartości Dopasowane**:
-   - Sprawdza założenie liniowości
-   - Szukamy wzorców/trendów
-   - Oczekujemy losowego rozrzutu wokół zera
-
-2. **Wykres Kwantyl-Kwantyl**:
-   - Sprawdza normalność reszt
-   - Punkty powinny układać się wzdłuż linii przekątnej
-   - Odchylenia na końcach są często akceptowalne
-
-3. **Skala-Położenie**:
-   - Sprawdza homoskedastyczność
-   - Oczekujemy linii poziomej z losowym rozrzutem
-   - Pomaga wykryć zmienną wariancję
-
-4. **Reszty vs. Wpływ**:
-   - Identyfikuje punkty wpływowe
-   - Szukamy punktów poza liniami odległości Cooka
-   - Pomaga zidentyfikować problematyczne obserwacje
-
-
-
 ::: {.callout-important}
 ## Intuicyjne zrozumienie Metody Najmniejszych Kwadratów (MNK)
 
@@ -1416,7 +1238,7 @@ ggplot(dane, aes(x = godziny_nauki, y = wyniki_egzaminu)) +
 
 ### Zrozumienie błędów przewidywania (reszt)
 
-Tu zaczyna się magia MNK. Dla każdego studenta w naszych danych:
+Dla każdego studenta w naszych danych:
 
 1. Patrzymy na jego rzeczywisty wynik egzaminu ($y_i$)
 2. Obliczamy przewidywany wynik używając naszej prostej ($\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1x_i$)
@@ -1444,11 +1266,13 @@ ggplot(dane, aes(x = godziny_nauki, y = wyniki_egzaminu)) +
 
 Pomarańczowe pionowe linie pokazują, jak bardzo nasze przewidywania odbiegają od rzeczywistości dla każdego studenta. Niektóre przewidywania są za wysokie (dodatnie reszty), inne za niskie (ujemne reszty).
 
+
 ### Dlaczego podnosimy reszty do kwadratu?
 
 To kluczowa koncepcja! Przeanalizujmy to na prostym przykładzie:
 
 Wyobraź sobie, że mamy tylko dwóch studentów:
+
 1. Ala: Przewidywane 80, rzeczywisty wynik 85 (reszta = +5)
 2. Bob: Przewidywane 90, rzeczywisty wynik 85 (reszta = -5)
 
@@ -1458,17 +1282,18 @@ $(+5) + (-5) = 0$
 To sugerowałoby, że nasza prosta jest idealna (całkowity błąd = 0), ale wiemy, że tak nie jest! Oba przewidywania były nietrafne o 5 punktów.
 
 Rozwiązanie: Podnosimy reszty do kwadratu przed dodaniem:
+
 - Kwadrat reszty Ali: $(+5)^2 = 25$
 - Kwadrat reszty Boba: $(-5)^2 = 25$
 - Całkowity błąd kwadratowy: $25 + 25 = 50$
 
 To daje nam znacznie lepszą miarę tego, jak bardzo nasze przewidywania są błędne!
 
-### Suma kwadratów reszt (SKR)
+### Suma kwadratów reszt (SSE)
 
 Dla wszystkich studentów razem obliczamy:
 
-$SKR = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
+$SSE = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
 
 Ten wzór może wyglądać groźnie, ale oznacza po prostu:
 
@@ -1519,30 +1344,6 @@ Prosta MNK ma kilka przyjemnych właściwości:
 4. Nasze estymaty $\hat{\beta}_0$ i $\hat{\beta}_1$ są najlepszymi możliwymi estymatorami prawdziwych parametrów $\beta_0$ i $\beta_1$ przy pewnych założeniach
 
 
-**Eksperymentuj z różnymi prostymi i zobacz, jak zmienia się całkowity błąd kwadratowy**:
-
-```{r}
-#| eval: false
-library(manipulate)
-
-manipulate(
-  {
-    przewidywania <- b0 + b1 * dane$godziny_nauki
-    skr <- sum((dane$wyniki_egzaminu - przewidywania)^2)
-    
-    ggplot(dane, aes(x = godziny_nauki, y = wyniki_egzaminu)) +
-      geom_point(color = "blue", alpha = 0.6) +
-      geom_abline(slope = b1, intercept = b0, color = "red") +
-      labs(title = paste("Całkowity błąd kwadratowy =", round(skr, 1))) +
-      theme_minimal()
-  },
-  b0 = slider(40, 80, initial = 60, label = "Wyraz wolny (β̂₀)"),
-  b1 = slider(0, 10, initial = 5, label = "Nachylenie (β̂₁)")
-)
-```
-
-Czy potrafisz znaleźć prostą, która daje najmniejszą sumę kwadratów reszt? To właśnie prosta MNK!
-
 ### Ważne uwagi
 
 1. Oznaczenie z daszkiem ($\hat{\beta}_0$, $\hat{\beta}_1$) przypomina nam, że estymujemy prawdziwą zależność z naszej próby. Nigdy nie znamy prawdziwych $\beta_0$ i $\beta_1$ - możemy je tylko oszacować z naszych danych.
@@ -1551,6 +1352,49 @@ Czy potrafisz znaleźć prostą, która daje najmniejszą sumę kwadratów reszt
 
 3. Powyższe narzędzie interaktywne pomaga zrozumieć to, co MNK robi automatycznie: znajduje wartości $\hat{\beta}_0$ i $\hat{\beta}_1$, które dają nam najmniejszą możliwą sumę kwadratów reszt.
 :::
+
+## Ocena Dopasowania Modelu
+
+### Dekompozycja Wariancji
+
+Całkowita zmienność Y może być rozłożona na komponenty wyjaśnione i niewyjaśnione:
+
+$$\underbrace{\sum_{i=1}^n (Y_i - \bar{Y})^2}_{SST} = \underbrace{\sum_{i=1}^n (\hat{Y}_i - \bar{Y})^2}_{SSR} + \underbrace{\sum_{i=1}^n (Y_i - \hat{Y}_i)^2}_{SSE}$$
+
+gdzie:
+
+- SST (Całkowita Suma Kwadratów): Całkowita zmienność Y
+- SSR (Regresyjna Suma Kwadratów): Zmienność wyjaśniona przez regresję
+- SSE (Suma Kwadratów Błędów): Zmienność niewyjaśniona
+
+
+### Trzy Komponenty Wariancji
+1. **Wariancja Całkowita (SST - Suma Kwadratów Całkowita)**
+   - Pytanie: "Jak bardzo obserwacje różnią się od średniej?"
+   - Wzór: $SST = \sum(y_i - \bar{y})^2$
+   - Intuicja: "Rozrzut" naszych danych wokół ich średniej
+2. **Wariancja Wyjaśniona (SSR - Suma Kwadratów Regresji)**
+   - Pytanie: "Ile wariancji wyjaśnił nasz model?"
+   - Wzór: $SSR = \sum(\hat{y}_i - \bar{y})^2$
+   - Intuicja: Poprawa, którą uzyskaliśmy dzięki użyciu X
+3. **Wariancja Niewyjaśniona (SSE - Suma Kwadratów Błędów)**
+   - Pytanie: "Jaka wariancja pozostaje niewyjaśniona?"
+   - Wzór: $SSE = \sum(y_i - \hat{y}_i)^2$
+   - Intuicja: Błędy, które pozostają po użyciu X
+
+
+### Miary Dopasowania
+
+1. **R-kwadrat ($R^2$)**:
+   $$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
+
+2. **Pierwiastek Błędu Średniokwadratowego (RMSE)**:
+   $$RMSE = \sqrt{\frac{SSE}{n}}$$
+
+3. **Średni Błąd Bezwzględny (MAE)**:
+   $$MAE = \frac{1}{n}\sum_{i=1}^n |Y_i - \hat{Y}_i|$$
+
+
 
 ::: {.callout-warning}
 ## Formalne wyprowadzenie estymatorów MNK
@@ -1561,21 +1405,21 @@ Chcemy znaleźć prostą $y = \hat{\beta}_0 + \hat{\beta}_1x$, która minimalizu
 
 1. Najpierw zapisujemy funkcję, którą chcemy zminimalizować:
 
-   $SKR = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
+   $SSE = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
 
 2. Aby znaleźć minimum, musimy obliczyć pochodne cząstkowe względem $\hat{\beta}_0$ i $\hat{\beta}_1$ oraz przyrównać je do zera:
 
-   $\frac{\partial SKR}{\partial \hat{\beta}_0} = 0$ oraz $\frac{\partial SKR}{\partial \hat{\beta}_1} = 0$
+   $\frac{\partial SSE}{\partial \hat{\beta}_0} = 0$ oraz $\frac{\partial SSE}{\partial \hat{\beta}_1} = 0$
 
 ### Krok 1: Znalezienie $\hat{\beta}_0$
 
 Obliczmy pochodną cząstkową względem $\hat{\beta}_0$:
 
-$\frac{\partial SKR}{\partial \hat{\beta}_0} = \frac{\partial}{\partial \hat{\beta}_0} \sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)^2$
+$\frac{\partial SSE}{\partial \hat{\beta}_0} = \frac{\partial}{\partial \hat{\beta}_0} \sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)^2$
 
 Korzystając z reguły łańcuchowej:
 
-$\frac{\partial SKR}{\partial \hat{\beta}_0} = \sum_{i=1}^n 2(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)(-1) = 0$
+$\frac{\partial SSE}{\partial \hat{\beta}_0} = \sum_{i=1}^n 2(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)(-1) = 0$
 
 Upraszczając:
 
@@ -1593,11 +1437,11 @@ Gdzie $\bar{y}$ i $\bar{x}$ to średnie z próby.
 
 Teraz obliczamy pochodną cząstkową względem $\hat{\beta}_1$:
 
-$\frac{\partial SKR}{\partial \hat{\beta}_1} = \frac{\partial}{\partial \hat{\beta}_1} \sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)^2$
+$\frac{\partial SSE}{\partial \hat{\beta}_1} = \frac{\partial}{\partial \hat{\beta}_1} \sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)^2$
 
 Korzystając z reguły łańcuchowej:
 
-$\frac{\partial SKR}{\partial \hat{\beta}_1} = \sum_{i=1}^n 2(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)(-x_i) = 0$
+$\frac{\partial SSE}{\partial \hat{\beta}_1} = \sum_{i=1}^n 2(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)(-x_i) = 0$
 
 Upraszczając:
 
@@ -1638,9 +1482,9 @@ Zrozummy, co oznaczają te wzory:
 
 Aby potwierdzić, że znaleźliśmy minimum (a nie maksimum), sprawdzamy drugie pochodne:
 
-$\frac{\partial^2 SKR}{\partial \hat{\beta}_0^2} = 2n > 0$
+$\frac{\partial^2 SSE}{\partial \hat{\beta}_0^2} = 2n > 0$
 
-$\frac{\partial^2 SKR}{\partial \hat{\beta}_1^2} = 2\sum_{i=1}^n x_i^2 > 0$
+$\frac{\partial^2 SSE}{\partial \hat{\beta}_1^2} = 2\sum_{i=1}^n x_i^2 > 0$
 
 Ponieważ obie drugie pochodne są dodatnie, rzeczywiście znaleźliśmy minimum.
 
@@ -1923,7 +1767,7 @@ Myśl o R² jako o odpowiedzi na pytanie: "Jaki procent pierwotnej wariancji Y m
 
 
 ::: {.callout-note}
-### Zrozumienie Endogeniczności
+## Endogeniczność
 
 Pomyśl o endogeniczności jako o "problemie ukrytych zależności" w twojej analizie. To jak próba rozwiązania układanki, gdzie niektóre elementy wpływają na siebie nawzajem w sposób, którego nie możesz bezpośrednio zobaczyć. W języku technicznym endogeniczność występuje, gdy zmienna objaśniająca w modelu regresji jest skorelowana ze składnikiem losowym.
 
@@ -1932,13 +1776,15 @@ Pomyśl o endogeniczności jako o "problemie ukrytych zależności" w twojej ana
 Wyobraź sobie, że próbujesz zrozumieć, dlaczego niektóre rośliny rosną wyżej niż inne, i mierzysz tylko ilość wody, którą otrzymują. Ale zapomniałeś o świetle słonecznym, które wpływa zarówno na to, ile wody roślina potrzebuje, JAK I na to, jak wysoko urośnie!
 
 **Przykład z Życia: Edukacja i Dochód**
+
 * Co widzimy: Więcej edukacji → Wyższy dochód
 * Co możemy przeoczyć: Naturalny talent/zdolności
   - Wpływa na to, jak długo ludzie się uczą
   - Wpływa na to, ile mogą zarabiać
 * Rezultat: Możemy przeszacować wpływ edukacji
 
-**Matematyka za tym stojąca** (nie martw się, to pomoże zwizualizować!):
+**Matematyka za tym stojąca**:
+
 * Prawdziwy obraz: $y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \epsilon_i$
 * Co faktycznie szacujemy: $y_i = \beta_0 + \beta_1x_i + u_i$
 * Pomyśl o tym jak o przepisie: Jeśli zapomnisz ważnego składnika (z), twoje końcowe danie (y) nie wyjdzie zgodnie z oczekiwaniami!
@@ -1948,16 +1794,19 @@ Wyobraź sobie, że próbujesz zrozumieć, dlaczego niektóre rośliny rosną wy
 Pamiętasz problem jajka i kury? Czasami dwie rzeczy wpływają na siebie jednocześnie. Oto kilka przykładów, które możesz napotkać:
 
 **a) Zagadka Godzin Nauki**
+
 * Czy lepsze oceny prowadzą do dłuższej nauki?
 * Czy dłuższa nauka prowadzi do lepszych ocen?
 * W rzeczywistości... obie odpowiedzi! Wzajemnie na siebie wpływają
 
 **b) Efekt Mediów Społecznościowych**
+
 * Więcej obserwujących → Więcej postów
 * Więcej postów → Więcej obserwujących
 * To ciągły cykl!
 
 **c) Cykl Ćwiczenia-Energia**
+
 * Więcej ćwiczeń → Więcej energii
 * Więcej energii → Większa chęć do ćwiczeń
 * Pomyśl o tym jak o dwóch przyjaciołach pchających się nawzajem na huśtawkach!
@@ -1967,6 +1816,7 @@ Pamiętasz problem jajka i kury? Czasami dwie rzeczy wpływają na siebie jednoc
 Wyobraź sobie próbę zmierzenia swojego wzrostu stojąc na nierównej podłodze - twoje pomiary nie będą całkiem dokładne! Oto jak to się przejawia w rzeczywistości:
 
 **Przykłady, Które Rozpoznasz:**
+
 * Samodzielnie Raportowany Czas Nauki
   - "Uczę się 5 godzin dziennie" może w rzeczywistości oznaczać 3-4 godziny
   - Utrudnia poznanie prawdziwego wpływu na oceny
@@ -1978,16 +1828,19 @@ Wyobraź sobie próbę zmierzenia swojego wzrostu stojąc na nierównej podłodz
 #### Jak Wykryć Te Problemy we Własnych Badaniach?
 
 **1. W przypadku Pominiętych Zmiennych, Zapytaj:**
+
 * Co jeszcze mogłoby wpływać na obie zmienne?
 * Czy nie pomijam oczywistych czynników?
 * Co powiedzieliby rodzice/przyjaciele, że ma na to wpływ?
 
 **2. W przypadku Symultaniczności, Rozważ:**
+
 * Czy A może powodować B, czy B może powodować A?
 * Czy mogą na siebie wpływać?
 * Co wydarzyło się najpierw? (jeśli można to określić)
 
 **3. W przypadku Błędu Pomiaru, Pomyśl:**
+
 * Jak dokładne są moje pomiary?
 * Czy ludzie prawdopodobnie podają prawdziwe informacje?
 * Co może powodować problemy z pomiarem?
@@ -2004,11 +1857,13 @@ Wyobraź sobie próbę zmierzenia swojego wzrostu stojąc na nierównej podłodz
 ```
 
 **2. Dla Symultaniczności:**
+
 * Szukaj "zewnętrznych" czynników, które wpływają tylko na jedną zmienną
 * Rozważ opóźnienia czasowe
 * Wykorzystuj eksperymenty naturalne, gdy to możliwe
 
 **3. Dla Błędu Pomiaru:**
+
 * Wykorzystuj wielokrotne pomiary
 * Znajdź bardziej wiarygodne źródła danych
 * Uznaj niepewność w swoich wnioskach
@@ -2016,21 +1871,24 @@ Wyobraź sobie próbę zmierzenia swojego wzrostu stojąc na nierównej podłodz
 #### Kluczowe Wnioski
 
 1. **Rzeczywistość Jest Złożona**
+
    * Większość relacji nie jest prostym A → B
    * Szukaj ukrytych czynników
    * Rozważ dwukierunkowe zależności
 
 2. **Zawsze Pytaj**
+
    * "Co pomijam?"
    * "Czy te pominięte zmienne mogą na siebie wpływać?"
    * "Jak dobrze mierzę te zmienne?"
 
 3. **Podczas Pisania Prac**
+
    * Omów potencjalną endogeniczność
    * Wyjaśnij, jak się do niej odniosłeś
    * Bądź szczery odnośnie ograniczeń
 
-## Zalecana Literatura
+**Zalecana Literatura**
 
 1. "Mastering Metrics" autorstwa Angrist & Pischke
 2. "Naked Statistics" autorstwa Charles Wheelan
@@ -2479,7 +2337,7 @@ Dla głębszego zrozumienia:
 - Stock & Watson "Wprowadzenie do Ekonometrii"
 
 
-## Dodatek A.1: Obliczanie Kowariancji oraz Korelacji Pearsona i Spearmana - przykład z obliczeniami
+## Dodatek A.1: Obliczanie Kowariancji, Korelacji Pearsona i Spearmana, oraz modelowanie OLS - przykład z obliczeniami
 
 Dane dotyczące wielkości okręgu wyborczego ($\text{DM}$) i indeksu Gallaghera:
 

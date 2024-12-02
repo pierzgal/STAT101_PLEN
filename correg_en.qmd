@@ -879,7 +879,7 @@ Looking at our visualization:
 - The blue and green lines represent alternative fits with larger total squared errors
 - The vertical distances from each point to these lines represent the errors $\epsilon_i$
 
-The OLS solution provides us with estimates $\hat{\beta_0}$ and $\hat{\beta_1}$ that minimize the total squared error, giving us the most accurate linear representation of the relationship between education and wages based on our available data.
+The OLS solution provides us with parameter estimates $\hat{\beta_0}$ and $\hat{\beta_1}$ that minimize the total squared error, giving us the most accurate linear representation of the relationship between education and wages based on our available data.
 
 
 ### Finding the Best Line
@@ -951,9 +951,11 @@ ggplot(data, aes(x = x, y = y)) +
 ```
 
 This plot shows the essence of regression:
+
 - Each point represents an observation (X, Y)
 - The line represents our best guess at the relationship
 - The spread of points around the line shows the uncertainty
+
 
 ## The Linear Regression Model
 
@@ -1021,6 +1023,7 @@ ggplot() +
 ```
 
 This visualization shows:
+
 - The true population line (black) we're trying to discover
 - Different sample estimates (dashed lines) based on different samples
 - How sample estimates vary around the true relationship
@@ -1185,271 +1188,8 @@ p2 <- ggplot(data_trans, aes(x = x, y = log_y)) +
 gridExtra::grid.arrange(p1, p2, ncol = 2)
 ```
 
-## Estimation Methods
-
-### Ordinary Least Squares (OLS)
-
-OLS finds $\hat{\beta}_0$ and $\hat{\beta}_1$ by minimizing the sum of squared residuals:
-
-$$\min_{\hat{\beta}_0, \hat{\beta}_1} \sum_{i=1}^n (Y_i - \hat{\beta}_0 - \hat{\beta}_1X_i)^2$$
-
-The solutions are:
-
-$$\hat{\beta}_1 = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2}$$
-
-$$\hat{\beta}_0 = \bar{Y} - \hat{\beta}_1\bar{X}$$
-
-Let's visualize how OLS works:
-
-```{r}
-#| label: fig-ols
-#| fig-cap: "OLS Minimizing Square Residuals"
-
-# Generate sample data
-set.seed(103)
-x_sample <- seq(1, 10, by = 1)
-y_sample <- 2 + 3*x_sample + rnorm(length(x_sample), 0, 2)
-data_sample <- data.frame(x = x_sample, y = y_sample)
-
-# Fit model
-model_sample <- lm(y ~ x, data = data_sample)
-data_sample$predicted <- predict(model_sample)
-
-# Plot
-ggplot(data_sample, aes(x = x, y = y)) +
-  geom_point(color = "blue") +
-  geom_line(aes(y = predicted), color = "red") +
-  geom_segment(aes(xend = x, y = y, yend = predicted), 
-              color = "green", linetype = "dashed") +
-  theme_minimal() +
-  labs(title = "OLS Regression with Residuals",
-       subtitle = "Blue points: data\nRed line: OLS fit\nGreen dashed lines: residuals")
-```
-
-
-## Assessing Model Fit
-
-### Decomposition of Variance
-
-The total variability in Y can be broken down into explained and unexplained components:
-
-$$\underbrace{\sum_{i=1}^n (Y_i - \bar{Y})^2}_{SST} = \underbrace{\sum_{i=1}^n (\hat{Y}_i - \bar{Y})^2}_{SSR} + \underbrace{\sum_{i=1}^n (Y_i - \hat{Y}_i)^2}_{SSE}$$
-
-where:
-
-- SST (Total Sum of Squares): Total variation in Y
-- SSR (Regression Sum of Squares): Variation explained by regression
-- SSE (Error Sum of Squares): Unexplained variation
-
-Let's visualize this decomposition:
-
-```{r}
-#| label: fig-decomposition
-#| fig-cap: "Variance Decomposition in Linear Regression"
-
-# Generate sample data
-set.seed(104)
-x <- seq(1, 10, by = 0.5)
-y <- 2 + 3*x + rnorm(length(x), 0, 2)
-df <- data.frame(x = x, y = y)
-
-# Fit model
-model <- lm(y ~ x, data = df)
-df$predicted <- predict(model)
-df$residuals <- residuals(model)
-df$mean_y <- mean(df$y)
-
-# Calculate components for one point
-point_index <- 10
-example_point <- df[point_index, ]
-
-# Create main plot
-p_main <- ggplot(df, aes(x = x)) +
-  geom_point(aes(y = y), color = "blue") +
-  geom_line(aes(y = predicted), color = "red") +
-  geom_hline(yintercept = mean(df$y), linetype = "dashed") +
-  # Total deviation
-  geom_segment(data = example_point,
-               aes(x = x, y = mean_y, xend = x, yend = y),
-               color = "purple", size = 1, alpha = 0.5) +
-  # Explained deviation
-  geom_segment(data = example_point,
-               aes(x = x, y = mean_y, xend = x, yend = predicted),
-               color = "green", size = 1, alpha = 0.5) +
-  # Unexplained deviation
-  geom_segment(data = example_point,
-               aes(x = x, y = predicted, xend = x, yend = y),
-               color = "orange", size = 1, alpha = 0.5) +
-  theme_minimal() +
-  labs(title = "Decomposition of Variance",
-       subtitle = "Purple: Total deviation (Yi - Ȳ)\nGreen: Explained (Ŷi - Ȳ)\nOrange: Unexplained (Yi - Ŷi)")
-
-# Calculate R-squared
-summary_stats <- glance(model)
-r2 <- round(summary_stats$r.squared, 3)
-
-# Add R-squared to plot
-print(p_main)
-cat(sprintf("\nR² = %.3f\nThis means %.1f%% of the variance in Y is explained by X\n", r2, r2*100))
-```
-
-### Understanding the Three Types of Variation
-
-1. **Total Variation (SST)** 
-   - Question: "How much do observations vary from the mean?"
-   - Formula: $$SST = \sum(y_i - \bar{y})^2$$
-   - Visual: Purple dashed lines in the plot
-   - Intuition: The "spread" of our data around its average
-
-2. **Explained Variation (SSR)**
-   - Question: "How much of the variation did our model explain?"
-   - Formula: $$SSR = \sum(\hat{y}_i - \bar{y})^2$$
-   - Visual: Green dashed lines in the plot
-   - Intuition: The improvement we gained by using X
-
-3. **Unexplained Variation (SSE)**
-   - Question: "What variation remains unexplained?"
-   - Formula: $$SSE = \sum(y_i - \hat{y}_i)^2$$
-   - Visual: Red dashed lines in the plot
-   - Intuition: The errors that remain after using X
-
-### R² Demystified
-
-$$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
-
-Think of R² as answering the question: "What percentage of the original variation in Y can we explain using X?"
-
-#### Intuitive Examples:
-- R² = 0.80: Using X eliminated 80% of our prediction errors
-- R² = 0.25: Using X eliminated 25% of our prediction errors
-- R² = 0.00: Using X didn't help at all
-
-### When to Be Cautious
-
-1. **High R² Isn't Everything**
-   - A high R² might indicate overfitting
-   - Always check if your model makes practical sense
-   - Consider the context of your field
-
-2. **Low R² Isn't Always Bad**
-   - In some fields, R² = 0.30 might be impressive
-   - Social sciences often have lower R² values
-   - Focus on practical significance
-
-3. **Sample Size Matters**
-   - Use adjusted R² for multiple regression:
-   $$R^2_{adj} = 1 - \frac{SSE/(n-p)}{SST/(n-1)}$$
-   - Penalizes for adding unnecessary predictors
-
-### Practical Tips for Analysis
-
-1. **Visual Inspection**
-   - Always plot your data
-   - Look for patterns in residuals
-   - Check for influential points
-
-2. **Context Consideration**
-   - What's a "good" R² in your field?
-   - What's the practical impact of your errors?
-   - Are your predictors meaningful?
-
-3. **Model Diagnostics**
-   - Check residual normality
-   - Look for heteroscedasticity
-   - Examine influential points
-
-### Key Takeaways
-
-1. Variance decomposition helps us understand prediction improvement
-2. R² quantifies the proportion of variance explained
-3. Visual understanding is crucial for interpretation
-4. Context matters more than absolute R² values
-5. Always combine R² with other diagnostic tools
-
-### Further Reading
-
-- For deeper understanding of vector spaces and projections
-- For multiple regression extensions
-- For robust regression alternatives
-- For non-linear relationships
-:::
-
-
-### Measures of Fit
-
-1. **R-squared ($R^2$)**:
-   $$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
-
-2. **Root Mean Square Error (RMSE)**:
-   $$RMSE = \sqrt{\frac{SSE}{n}}$$
-
-3. **Mean Absolute Error (MAE)**:
-   $$MAE = \frac{1}{n}\sum_{i=1}^n |Y_i - \hat{Y}_i|$$
-
-Let's calculate and visualize these measures:
-
-```{r}
-#| label: fig-fit-measures
-#| fig-cap: "Different Measures of Model Fit"
-
-# Calculate measures
-rmse <- sqrt(mean(residuals(model)^2))
-mae <- mean(abs(residuals(model)))
-
-# Create residual plot with different measures
-ggplot(df, aes(x = predicted, y = residuals)) +
-  geom_point() +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
-  geom_hline(yintercept = c(rmse, -rmse), linetype = "dotted", color = "blue") +
-  geom_hline(yintercept = c(mae, -mae), linetype = "dotted", color = "green") +
-  theme_minimal() +
-  labs(title = "Residual Plot with Error Measures",
-       subtitle = sprintf("RMSE = %.2f (blue lines)\nMAE = %.2f (green lines)", 
-                         rmse, mae))
-```
-
-
-## Diagnostic Plots
-
-### Residual Analysis
-
-Four key diagnostic plots:
-
-```{r}
-#| label: fig-diagnostics
-#| fig-cap: "Key Diagnostic Plots for Linear Regression"
-
-# Create diagnostic plots
-par(mfrow = c(2, 2))
-plot(model)
-```
-
-Let's interpret each plot:
-
-1. **Residuals vs. Fitted**:
-   - Checks linearity assumption
-   - Look for patterns/trends
-   - Want random scatter around zero
-
-2. **Normal Q-Q Plot**:
-   - Checks normality of residuals
-   - Points should follow diagonal line
-   - Deviations at tails often acceptable
-
-3. **Scale-Location**:
-   - Checks homoscedasticity
-   - Want horizontal line with random scatter
-   - Helps detect changing variance
-
-4. **Residuals vs. Leverage**:
-   - Identifies influential points
-   - Look for points outside Cook's distance lines
-   - Helps identify problematic observations
-
-
-
 ::: {.callout-important}
-## Understanding Ordinary Least Squares (OLS) Intuitively
+## Understanding Ordinary Least Squares (OLS) Regression Model Intuitively
 
 ### The Basic Problem
 
@@ -1619,30 +1359,6 @@ The OLS line has some nice properties:
 4. Our estimates $\hat{\beta}_0$ and $\hat{\beta}_1$ are the best possible estimates of the true parameters $\beta_0$ and $\beta_1$ under certain conditions
 
 
-**Experiment with different lines and see how the total squared error changes**:
-
-```{r}
-#| eval: false
-library(manipulate)
-
-manipulate(
-  {
-    predictions <- b0 + b1 * data$study_hours
-    ssr <- sum((data$exam_scores - predictions)^2)
-    
-    ggplot(data, aes(x = study_hours, y = exam_scores)) +
-      geom_point(color = "blue", alpha = 0.6) +
-      geom_abline(slope = b1, intercept = b0, color = "red") +
-      labs(title = paste("Total Squared Error =", round(ssr, 1))) +
-      theme_minimal()
-  },
-  b0 = slider(40, 80, initial = 60, label = "Intercept (β̂₀)"),
-  b1 = slider(0, 10, initial = 5, label = "Slope (β̂₁)")
-)
-```
-
-Can you find the line that gives the smallest total squared error? That's the OLS line!
-
 ### Important Notes
 
 1. The hat notation ($\hat{\beta}_0$, $\hat{\beta}_1$) reminds us that we're estimating the true relationship from our sample. We never know the true $\beta_0$ and $\beta_1$ - we can only estimate them from our data.
@@ -1651,6 +1367,101 @@ Can you find the line that gives the smallest total squared error? That's the OL
 
 3. The interactive tool above helps you understand what OLS does automatically: it finds the values of $\hat{\beta}_0$ and $\hat{\beta}_1$ that give us the smallest possible sum of squared residuals.
 :::
+
+## Assessing Model Fit
+
+### Decomposition of Variance
+
+The total variability in Y can be broken down into explained and unexplained components:
+
+$$\underbrace{\sum_{i=1}^n (Y_i - \bar{Y})^2}_{SST} = \underbrace{\sum_{i=1}^n (\hat{Y}_i - \bar{Y})^2}_{SSR} + \underbrace{\sum_{i=1}^n (Y_i - \hat{Y}_i)^2}_{SSE}$$
+
+where:
+
+- SST (Total Sum of Squares): Total variation in Y
+- SSR (Regression Sum of Squares): Variation explained by regression
+- SSE (Error Sum of Squares): Unexplained variation
+
+
+### Understanding the Three Types of Variation
+
+1. **Total Variation (SST)** 
+   - Question: "How much do observations vary from the mean?"
+   - Formula: $SST = \sum(y_i - \bar{y})^2$
+   - Intuition: The "spread" of our data around its average
+
+2. **Explained Variation (SSR)**
+   - Question: "How much of the variation did our model explain?"
+   - Formula: $SSR = \sum(\hat{y}_i - \bar{y})^2$
+   - Intuition: The improvement we gained by using X
+
+3. **Unexplained Variation (SSE)**
+   - Question: "What variation remains unexplained?"
+   - Formula: $SSE = \sum(y_i - \hat{y}_i)^2$
+   - Intuition: The errors that remain after using X
+
+
+### R² Demystified
+
+$$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
+
+Think of R² as answering the question: "What percentage of the original variation in Y can we explain using X?"
+
+#### Intuitive Examples:
+- R² = 0.80: Using X eliminated 80% of our prediction errors
+- R² = 0.25: Using X eliminated 25% of our prediction errors
+- R² = 0.00: Using X didn't help at all
+
+### When to Be Cautious
+
+1. **High R² Isn't Everything**
+   - A high R² might indicate overfitting
+   - Always check if your model makes practical sense
+   - Consider the context of your field
+
+2. **Low R² Isn't Always Bad**
+   - In some fields, R² = 0.30 might be impressive
+   - Social sciences often have lower R² values
+   - Focus on practical significance
+
+
+### Practical Tips for Analysis
+
+1. **Visual Inspection**
+   - Always plot your data
+   - Look for patterns in residuals
+   - Check for influential points
+
+2. **Context Consideration**
+   - What's a "good" R² in your field?
+   - What's the practical impact of your errors?
+   - Are your predictors meaningful?
+
+3. **Model Diagnostics**
+   - Check residual normality
+   - Look for heteroscedasticity
+   - Examine influential points
+
+### Key Takeaways
+
+1. Variance decomposition helps us understand prediction improvement
+2. R² quantifies the proportion of variance explained
+3. Visual understanding is crucial for interpretation
+4. Context matters more than absolute R² values
+5. Always combine R² with other diagnostic tools
+
+
+### Measures of Fit
+
+1. **R-squared ($R^2$)**:
+   $$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
+
+2. **Root Mean Square Error (RMSE)**:
+   $$RMSE = \sqrt{\frac{SSE}{n}}$$
+
+3. **Mean Absolute Error (MAE)**:
+   $$MAE = \frac{1}{n}\sum_{i=1}^n |Y_i - \hat{Y}_i|$$
+
 
 
 ::: {.callout-warning}
@@ -2034,13 +1845,15 @@ Think of endogeneity as a "hidden relationship problem" in your analysis. It's l
 Think of it like trying to understand why some plants grow taller than others, and you only measure the amount of water they receive. But you forgot about sunlight, which affects both how much water the plant needs AND how tall it grows!
 
 **Real-Life Example: Education and Income**
+
 * What we see: More education → Higher income
 * What we might miss: Natural talent/ability
   - Affects how long people stay in school
   - Affects how much they can earn
 * Result: We might overestimate how much education helps
 
-**The Math Behind It** (don't worry, this helps visualize!):
+**The Math Behind It**:
+
 * True picture: $y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \epsilon_i$  
 * What we actually estimate: $y_i = \beta_0 + \beta_1x_i + u_i$  
 * Think of it like a recipe: If you forget an important ingredient (z), your final dish (y) won't turn out as expected!
@@ -2050,16 +1863,19 @@ Think of it like trying to understand why some plants grow taller than others, a
 Remember the chicken and egg problem? Sometimes two things affect each other at the same time. Here are some examples you might encounter:
 
 **a) The Study Hours Puzzle**
+
 * Do better grades lead to studying more?
 * Or does studying more lead to better grades?
 * Actually... both! They affect each other
 
 **b) The Social Media Effect**
+
 * More followers → More posts
 * More posts → More followers
 * It's a continuous cycle!
 
 **c) The Exercise-Energy Cycle**
+
 * More exercise → More energy
 * More energy → More likely to exercise
 * Think of it like two friends pushing each other on swings!
@@ -2069,6 +1885,7 @@ Remember the chicken and egg problem? Sometimes two things affect each other at 
 Imagine trying to measure your height while standing on an uneven floor - your measurements won't be quite right! Here's how this shows up in real life:
 
 **Examples You'll Recognize:**
+
 * Self-Reported Study Time
   - "I study 5 hours a day" might really mean 3-4 hours
   - Makes it hard to know true impact on grades
@@ -2081,16 +1898,19 @@ Imagine trying to measure your height while standing on an uneven floor - your m
 #### How to Spot These Problems in Your Own Research?
 
 **1. For Omitted Variables, Ask:**
+
 * What else could affect both variables?
 * Am I missing any obvious factors?
 * What would my parents/friends say influences this?
 
 **2. For Simultaneity, Consider:**
+
 * Could A cause B, or could B cause A?
 * Might they affect each other?
 * What happened first? (if you can tell)
 
 **3. For Measurement Error, Think:**
+
 * How accurate are my measurements?
 * Are people likely to report truthfully?
 * What might cause measurement problems?
@@ -2107,11 +1927,13 @@ Imagine trying to measure your height while standing on an uneven floor - your m
 ```
 
 **2. For Simultaneity:**
+
 * Look for "external" factors that affect only one variable
 * Consider time lags
 * Use natural experiments when possible
 
 **3. For Measurement Error:**
+
 * Use multiple measurements
 * Find more reliable data sources
 * Acknowledge uncertainty in your conclusions
@@ -2119,22 +1941,25 @@ Imagine trying to measure your height while standing on an uneven floor - your m
 #### Key Takeaways for Students
 
 1. **Reality is Complex**
+
    * Most relationships aren't simple A → B
    * Look for hidden factors
    * Consider two-way relationships
 
 2. **Always Ask**
+
    * "What am I missing?"
    * "Could these affect each other?"
    * "How well am I measuring things?"
 
 3. **When Writing Papers**
+
    * Discuss potential endogeneity
    * Explain how you addressed it
    * Be honest about limitations
 
 
-## Recommended Reading
+### Recommended Reading
 
 1. "Mastering Metrics" by Angrist & Pischke
 2. "Naked Statistics" by Charles Wheelan
@@ -2700,7 +2525,7 @@ cor(data$anxiety_level, data$cognitive_performance, method = "spearman")
         between two things."
 
 
-## Appendix A.2: Calculating Covariance, Pearson, and Spearman Correlation - worked example
+## Appendix A.2: Calculating Covariance, Pearson, Spearman Correlation, and OLS - worked example
 
 Given data on Electoral District Magnitude ($\text{DM}$) and Gallagher index:
 
