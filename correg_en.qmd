@@ -875,7 +875,7 @@ $$\min_{\beta_0, \beta_1} \sum \epsilon_i^2 = \min_{\beta_0, \beta_1} \sum(y_i -
 Looking at our visualization:
 
 - The scattered points show our actual observations $(x_i, y_i)$
-- The orange line represents our fitted values $\hat{y_i}$ that minimize $\sum \epsilon_i^2$
+- The red line represents our fitted values $\hat{y_i}$ that minimize $\sum \epsilon_i^2$
 - The blue and green lines represent alternative fits with larger total squared errors
 - The vertical distances from each point to these lines represent the errors $\epsilon_i$
 
@@ -899,7 +899,7 @@ $$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$$
 
 ### Basic Concepts and Terminology
 
-Before we dive into the mathematics, let's establish our key terms:
+Let's establish our key terms:
 
 - **Dependent Variable (Y)**: 
   - The outcome we want to understand or predict
@@ -978,6 +978,7 @@ $$\hat{Y} = \hat{\beta}_0 + \hat{\beta}_1X$$
 Let's visualize the difference between population and sample relationships:
 
 ```{r}
+#| fig.height: 10
 #| label: fig-pop-vs-sample
 #| fig-cap: "Population vs. Sample Regression Lines"
 
@@ -1189,14 +1190,13 @@ gridExtra::grid.arrange(p1, p2, ncol = 2)
 ```
 
 ::: {.callout-important}
-## Understanding Ordinary Least Squares (OLS) Regression Model Intuitively
+## Understanding Ordinary Least Squares (OLS) Intuitively
 
 ### The Basic Problem
 
 Let's start with a real-world scenario: understanding how study time affects exam performance. We collect data from your class where:
 
-- Each student records their study hours ($x$)
-- And their final exam score ($y$)
+- Each student records their study hours ($x$), and their final exam score ($y$)
 - So student 1 might have studied $x_1 = 3$ hours and scored $y_1 = 75$ points
 - Student 2 might have studied $x_2 = 5$ hours and scored $y_2 = 82$ points
 - And so on for all $n$ students in the class
@@ -1304,19 +1304,40 @@ Solution: Square the residuals before adding them:
 
 This gives us a much better measure of how wrong our predictions are! 
 
-### The Complete Picture: Sum of Squared Residuals (SSR)
 
-For all students combined, we calculate:
+### Sum of Squared Errors (SSE)
 
-$SSR = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
+The Sum of Squared Errors (SSE) represents a fundamental measure of fit in linear regression modeling. We can express it mathematically as:
 
-This formula might look scary, but it just means:
+$$SSE = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$$
 
-1. Take each student's residual
-2. Square it
-3. Add up all these squared residuals
+where:
 
-The smaller this sum, the better our line fits the data!
+- $y_i$ represents the actual value of the dependent variable for the i-th observation
+- $\hat{\beta}_0$ represents the estimated intercept (Y-axis intersection point)
+- $\hat{\beta}_1$ represents the estimated slope coefficient
+- $x_i$ represents the value of the independent variable for the i-th observation
+
+The process of calculating SSE follows these methodical steps:
+
+1. For each observation, we calculate the difference between the actual value ($y_i$) and the value predicted by our model ($\hat{\beta}_0 + \hat{\beta}_1x_i$). This difference is termed the residual.
+
+2. We square each residual, which produces several important effects:
+
+- All values become positive, eliminating the possibility of negative and positive errors canceling each other out
+- Larger errors receive proportionally greater weight than smaller ones
+- The units of measurement become squared
+
+3. We sum all these squared residuals, producing a single number that represents the model's total error.
+
+**The interpretation of SSE is straightforward: a smaller SSE indicates better model fit to the empirical data.**
+
+An SSE value of 0 would indicate perfect fit, where all points lie exactly on the regression line. However, in practice, such perfect fit rarely occurs and might actually indicate a problematic overfit of the model.
+
+SSE serves as the foundation for calculating other important measures of model fit quality, such as the coefficient of determination (R²) and the standard error of estimate. It provides a quantitative basis for comparing different models and assessing the accuracy of our predictions.
+
+Understanding SSE is crucial for model evaluation and refinement, as it helps identify how well our model captures the underlying patterns in our data while avoiding the pitfalls of both underfitting and overfitting.
+
 
 ```{r}
 # Compare good vs bad fit
@@ -1356,17 +1377,15 @@ The OLS line has some nice properties:
 1. The mean of all residuals equals zero
 2. The line always passes through the point ($\bar{x}$, $\bar{y}$) - the average study hours and average score
 3. Small changes in the data lead to small changes in the line (it's "stable")
-4. Our estimates $\hat{\beta}_0$ and $\hat{\beta}_1$ are the best possible estimates of the true parameters $\beta_0$ and $\beta_1$ under certain conditions
-
+4. Our estimates $\hat{\beta}_0$ and $\hat{\beta}_1$ are the best possible estimates of the true parameters $\beta_0$ and $\beta_1$
 
 ### Important Notes
 
 1. The hat notation ($\hat{\beta}_0$, $\hat{\beta}_1$) reminds us that we're estimating the true relationship from our sample. We never know the true $\beta_0$ and $\beta_1$ - we can only estimate them from our data.
 
 2. OLS gives us the best possible estimates when certain conditions are met (like having randomly sampled data and a truly linear relationship).
-
-3. The interactive tool above helps you understand what OLS does automatically: it finds the values of $\hat{\beta}_0$ and $\hat{\beta}_1$ that give us the smallest possible sum of squared residuals.
 :::
+
 
 ## Assessing Model Fit
 
@@ -1399,230 +1418,6 @@ where:
    - Question: "What variation remains unexplained?"
    - Formula: $SSE = \sum(y_i - \hat{y}_i)^2$
    - Intuition: The errors that remain after using X
-
-
-### R² Demystified
-
-$$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
-
-Think of R² as answering the question: "What percentage of the original variation in Y can we explain using X?"
-
-#### Intuitive Examples:
-- R² = 0.80: Using X eliminated 80% of our prediction errors
-- R² = 0.25: Using X eliminated 25% of our prediction errors
-- R² = 0.00: Using X didn't help at all
-
-### When to Be Cautious
-
-1. **High R² Isn't Everything**
-   - A high R² might indicate overfitting
-   - Always check if your model makes practical sense
-   - Consider the context of your field
-
-2. **Low R² Isn't Always Bad**
-   - In some fields, R² = 0.30 might be impressive
-   - Social sciences often have lower R² values
-   - Focus on practical significance
-
-
-### Practical Tips for Analysis
-
-1. **Visual Inspection**
-   - Always plot your data
-   - Look for patterns in residuals
-   - Check for influential points
-
-2. **Context Consideration**
-   - What's a "good" R² in your field?
-   - What's the practical impact of your errors?
-   - Are your predictors meaningful?
-
-3. **Model Diagnostics**
-   - Check residual normality
-   - Look for heteroscedasticity
-   - Examine influential points
-
-### Key Takeaways
-
-1. Variance decomposition helps us understand prediction improvement
-2. R² quantifies the proportion of variance explained
-3. Visual understanding is crucial for interpretation
-4. Context matters more than absolute R² values
-5. Always combine R² with other diagnostic tools
-
-
-### Measures of Fit
-
-1. **R-squared ($R^2$)**:
-   $$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
-
-2. **Root Mean Square Error (RMSE)**:
-   $$RMSE = \sqrt{\frac{SSE}{n}}$$
-
-3. **Mean Absolute Error (MAE)**:
-   $$MAE = \frac{1}{n}\sum_{i=1}^n |Y_i - \hat{Y}_i|$$
-
-
-
-::: {.callout-warning}
-## Formal Derivation of OLS Estimators: Step-by-Step Approach
-
-### Initial Setup
-
-We seek to minimize the sum of squared residuals:
-
-$SSR = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
-
-Let's break this into manageable pieces:
-
-1. Each residual is: $e_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
-2. We square each residual: $e_i^2 = (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
-3. Sum them all: $SSR = \sum_{i=1}^n e_i^2$
-
-### Chain Rule Review
-
-Before proceeding, let's recall the chain rule. For a composite function $f(g(x))$:
-
-$\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)$
-
-In our case, we're dealing with the square function $f(u) = u^2$, where:
-
-- $f'(u) = 2u$
-- $u = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
-
-### Step 1: Finding $\hat{\beta}_0$ Using First Derivative
-
-Let's take the partial derivative with respect to $\hat{\beta}_0$ step by step:
-
-1. Start with one term of the sum:
-
-   $\frac{\partial}{\partial \hat{\beta}_0}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
-
-2. Apply chain rule:
-
-   - Outer function: $f(u) = u^2$, so $f'(u) = 2u$
-   - Inner function: $g(\hat{\beta}_0) = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
-   - Inner derivative: $g'(\hat{\beta}_0) = -1$
-
-3. Therefore, for each term:
-   $\frac{\partial}{\partial \hat{\beta}_0}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2 = 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-1)$
-
-4. Now sum all terms and set to zero:
-   $\sum_{i=1}^n 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-1) = 0$
-
-5. Simplify:
-   $-2\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i) = 0$
-
-6. Remove the -2:
-   $\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i) = 0$
-
-7. Expand the sum:
-   $\sum_{i=1}^n y_i - n\hat{\beta}_0 - \hat{\beta}_1\sum_{i=1}^n x_i = 0$
-
-8. Solve for $\hat{\beta}_0$:
-   $n\hat{\beta}_0 = \sum_{i=1}^n y_i - \hat{\beta}_1\sum_{i=1}^n x_i$
-   
-   $\hat{\beta}_0 = \frac{\sum_{i=1}^n y_i}{n} - \hat{\beta}_1\frac{\sum_{i=1}^n x_i}{n}$
-   
-   $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$
-
-### Step 2: Finding $\hat{\beta}_1$ Using First Derivative
-
-Now let's find $\hat{\beta}_1$ with the same careful approach:
-
-1. For one term:
-   $\frac{\partial}{\partial \hat{\beta}_1}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
-
-2. Apply chain rule:
-
-   - Outer function: $f(u) = u^2$, so $f'(u) = 2u$
-   - Inner function: $g(\hat{\beta}_1) = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
-   - Inner derivative: $g'(\hat{\beta}_1) = -x_i$
-
-3. Therefore:
-   $\frac{\partial}{\partial \hat{\beta}_1}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2 = 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-x_i)$
-
-4. Sum all terms and set to zero:
-   $\sum_{i=1}^n 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-x_i) = 0$
-
-5. Simplify:
-   $-2\sum_{i=1}^n x_i(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i) = 0$
-
-6. Substitute $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$:
-   $-2\sum_{i=1}^n x_i(y_i - (\bar{y} - \hat{\beta}_1\bar{x}) - \hat{\beta}_1x_i) = 0$
-
-7. Expand:
-   $-2\sum_{i=1}^n x_i(y_i - \bar{y} + \hat{\beta}_1\bar{x} - \hat{\beta}_1x_i) = 0$
-
-8. Distribute $x_i$:
-   $-2\sum_{i=1}^n (x_iy_i - x_i\bar{y} + x_i\hat{\beta}_1\bar{x} - x_i^2\hat{\beta}_1) = 0$
-
-9. Collect terms with $\hat{\beta}_1$:
-   $\sum_{i=1}^n (x_i^2\hat{\beta}_1 - x_i\hat{\beta}_1\bar{x}) = \sum_{i=1}^n (x_iy_i - x_i\bar{y})$
-
-10. Factor out $\hat{\beta}_1$:
-    $\hat{\beta}_1\sum_{i=1}^n (x_i^2 - x_i\bar{x}) = \sum_{i=1}^n (x_iy_i - x_i\bar{y})$
-
-11. Final form:
-    $\hat{\beta}_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}$
-
-### Step 3: Verifying We Have a Minimum
-
-To confirm these critical points are minima, we check the second derivatives:
-
-1. Second derivative with respect to $\hat{\beta}_0$:
-   $\frac{\partial^2 SSR}{\partial \hat{\beta}_0^2} = \frac{\partial}{\partial \hat{\beta}_0}(-2\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)) = 2n > 0$
-
-2. Second derivative with respect to $\hat{\beta}_1$:
-   $\frac{\partial^2 SSR}{\partial \hat{\beta}_1^2} = \frac{\partial}{\partial \hat{\beta}_1}(-2\sum_{i=1}^n x_i(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)) = 2\sum_{i=1}^n x_i^2 > 0$
-
-3. Cross partial derivatives:
-   $\frac{\partial^2 SSR}{\partial \hat{\beta}_0\partial \hat{\beta}_1} = \frac{\partial^2 SSR}{\partial \hat{\beta}_1\partial \hat{\beta}_0} = 2\sum_{i=1}^n x_i$
-
-4. The Hessian matrix is positive definite:
-   $\mathbf{H} = \begin{bmatrix} 2n & 2\sum x_i \\ 2\sum x_i & 2\sum x_i^2 \end{bmatrix}$
-
-This confirms we have found a minimum.
-
-### Visualizing the Process
-
-```{r}
-#| warning: false
-#| message: false
-library(tidyverse)
-
-# Create sample data
-set.seed(123)
-x <- runif(20, 1, 8)
-y <- 2 + 3 * x + rnorm(20, 0, 1)
-data <- data.frame(x = x, y = y)
-
-# Calculate means
-x_mean <- mean(x)
-y_mean <- mean(y)
-
-# Create visualization
-ggplot(data, aes(x = x, y = y)) +
-  geom_point(color = "blue", alpha = 0.6) +
-  geom_smooth(method = "lm", se = FALSE, color = "red") +
-  geom_hline(yintercept = y_mean, linetype = "dashed", color = "gray") +
-  geom_vline(xintercept = x_mean, linetype = "dashed", color = "gray") +
-  geom_segment(aes(xend = x, yend = y_mean), color = "green", alpha = 0.3) +
-  geom_segment(aes(yend = y, xend = x_mean), color = "purple", alpha = 0.3) +
-  labs(title = "Understanding the OLS Derivation",
-       subtitle = "Green: y deviations, Purple: x deviations\nTheir product forms the numerator of β̂₁",
-       x = "x", y = "y") +
-  theme_minimal()
-```
-
-### Key Insights
-
-1. The chain rule is crucial in deriving both estimators
-2. $\hat{\beta}_0$ ensures the line goes through $(\bar{x}, \bar{y})$
-3. $\hat{\beta}_1$ is a ratio of covariance to variance
-4. The second derivatives confirm we've found a minimum
-5. The entire process relies on calculus to find the optimal values that minimize the sum of squared residuals
-:::
 
 
 ::: {.callout-note}
@@ -1820,20 +1615,234 @@ Think of $R^2$ as answering: "What percentage of the original variation in the d
    - Check residuals for normality.
    - Look for **heteroscedasticity** (changing variability of errors).
    - Watch for **influential data points** that affect the model’s accuracy.
+:::
+
+
+### R² Demystified
+
+$$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
+
+Think of R² as answering the question: "What percentage of the original variation in Y can we explain using X?"
+
+#### Intuitive Examples:
+- R² = 0.80: Using X eliminated 80% of our prediction errors
+- R² = 0.25: Using X eliminated 25% of our prediction errors
+- R² = 0.00: Using X didn't help at all
+
+### When to Be Cautious
+
+1. **High R² Isn't Everything**
+   - A high R² might indicate overfitting
+   - Always check if your model makes practical sense
+   - Consider the context of your field
+
+2. **Low R² Isn't Always Bad**
+   - In some fields, R² = 0.30 might be impressive
+   - Social sciences often have lower R² values
+   - Focus on practical significance
+
+
+### Practical Tips for Analysis
+
+1. **Visual Inspection**
+   - Always plot your data
+   - Look for patterns in residuals
+   - Check for influential points
+
+2. **Context Consideration**
+   - What's a "good" R² in your field?
+   - What's the practical impact of your errors?
+   - Are your predictors meaningful?
+
+3. **Model Diagnostics**
+   - Check residual normality
+   - Look for heteroscedasticity
+   - Examine influential points
 
 ### Key Takeaways
 
-1. Variance decomposition explains how prediction improves with more information.
-2. $R^2$ shows how much of the total variation is explained by the model.
-3. **Visualizing data** is key to understanding regression performance.
-4. Context is more important than just looking at $R^2$ values.
-5. Always use **diagnostic tools** along with $R^2$ to evaluate your model’s quality.
+1. Variance decomposition helps us understand prediction improvement
+2. R² quantifies the proportion of variance explained
+3. Visual understanding is crucial for interpretation
+4. Context matters more than absolute R² values
+5. Always combine R² with other diagnostic tools
 
-### Further Reading
-- Explore advanced topics like **vector spaces** and **projections**.
-- Learn about **multiple regression** techniques and **robust methods**.
-- Understand **non-linear relationships** in regression models.
+
+### Measures of Fit
+
+1. **R-squared ($R^2$)**:
+   $$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
+
+2. **Root Mean Square Error (RMSE)**:
+   $$RMSE = \sqrt{\frac{SSE}{n}}$$
+
+3. **Mean Absolute Error (MAE)**:
+   $$MAE = \frac{1}{n}\sum_{i=1}^n |Y_i - \hat{Y}_i|$$
+
+
+
+::: {.callout-warning}
+## Formal Derivation of OLS Estimators: Step-by-Step Approach
+
+### Initial Setup
+
+We seek to minimize the sum of squared residuals:
+
+$SSR = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
+
+Let's break this into manageable pieces:
+
+1. Each residual is: $e_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
+2. We square each residual: $e_i^2 = (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
+3. Sum them all: $SSR = \sum_{i=1}^n e_i^2$
+
+### Chain Rule Review
+
+Before proceeding, let's recall the chain rule. For a composite function $f(g(x))$:
+
+$\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)$
+
+In our case, we're dealing with the square function $f(u) = u^2$, where:
+
+- $f'(u) = 2u$
+- $u = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
+
+### Step 1: Finding $\hat{\beta}_0$ Using First Derivative
+
+Let's take the partial derivative with respect to $\hat{\beta}_0$ step by step:
+
+1. Start with one term of the sum:
+
+   $\frac{\partial}{\partial \hat{\beta}_0}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
+
+2. Apply chain rule:
+
+   - Outer function: $f(u) = u^2$, so $f'(u) = 2u$
+   - Inner function: $g(\hat{\beta}_0) = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
+   - Inner derivative: $g'(\hat{\beta}_0) = -1$
+
+3. Therefore, for each term:
+   $\frac{\partial}{\partial \hat{\beta}_0}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2 = 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-1)$
+
+4. Now sum all terms and set to zero:
+   $\sum_{i=1}^n 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-1) = 0$
+
+5. Simplify:
+   $-2\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i) = 0$
+
+6. Remove the -2:
+   $\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i) = 0$
+
+7. Expand the sum:
+   $\sum_{i=1}^n y_i - n\hat{\beta}_0 - \hat{\beta}_1\sum_{i=1}^n x_i = 0$
+
+8. Solve for $\hat{\beta}_0$:
+   $n\hat{\beta}_0 = \sum_{i=1}^n y_i - \hat{\beta}_1\sum_{i=1}^n x_i$
+   
+   $\hat{\beta}_0 = \frac{\sum_{i=1}^n y_i}{n} - \hat{\beta}_1\frac{\sum_{i=1}^n x_i}{n}$
+   
+   $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$
+
+
+### Step 2: Finding $\hat{\beta}_1$ Using First Derivative
+
+Now let's find $\hat{\beta}_1$ with the same careful approach:
+
+1. For one term:
+   $\frac{\partial}{\partial \hat{\beta}_1}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
+
+2. Apply chain rule:
+
+   - Outer function: $f(u) = u^2$, so $f'(u) = 2u$
+   - Inner function: $g(\hat{\beta}_1) = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
+   - Inner derivative: $g'(\hat{\beta}_1) = -x_i$
+
+3. Therefore:
+   $\frac{\partial}{\partial \hat{\beta}_1}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2 = 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-x_i)$
+
+4. Sum all terms and set to zero:
+   $\sum_{i=1}^n 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-x_i) = 0$
+
+5. Simplify:
+   $-2\sum_{i=1}^n x_i(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i) = 0$
+
+6. Substitute $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$:
+   $-2\sum_{i=1}^n x_i(y_i - (\bar{y} - \hat{\beta}_1\bar{x}) - \hat{\beta}_1x_i) = 0$
+
+7. Expand:
+   $-2\sum_{i=1}^n x_i(y_i - \bar{y} + \hat{\beta}_1\bar{x} - \hat{\beta}_1x_i) = 0$
+
+8. Distribute $x_i$:
+   $-2\sum_{i=1}^n (x_iy_i - x_i\bar{y} + x_i\hat{\beta}_1\bar{x} - x_i^2\hat{\beta}_1) = 0$
+
+9. Collect terms with $\hat{\beta}_1$:
+   $\sum_{i=1}^n (x_i^2\hat{\beta}_1 - x_i\hat{\beta}_1\bar{x}) = \sum_{i=1}^n (x_iy_i - x_i\bar{y})$
+
+10. Factor out $\hat{\beta}_1$:
+    $\hat{\beta}_1\sum_{i=1}^n (x_i^2 - x_i\bar{x}) = \sum_{i=1}^n (x_iy_i - x_i\bar{y})$
+
+11. Final form:
+    $\hat{\beta}_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}$
+
+### Step 3: Verifying We Have a Minimum
+
+To confirm these critical points are minima, we check the second derivatives:
+
+1. Second derivative with respect to $\hat{\beta}_0$:
+   $\frac{\partial^2 SSR}{\partial \hat{\beta}_0^2} = \frac{\partial}{\partial \hat{\beta}_0}(-2\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)) = 2n > 0$
+
+2. Second derivative with respect to $\hat{\beta}_1$:
+   $\frac{\partial^2 SSR}{\partial \hat{\beta}_1^2} = \frac{\partial}{\partial \hat{\beta}_1}(-2\sum_{i=1}^n x_i(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)) = 2\sum_{i=1}^n x_i^2 > 0$
+
+3. Cross partial derivatives:
+   $\frac{\partial^2 SSR}{\partial \hat{\beta}_0\partial \hat{\beta}_1} = \frac{\partial^2 SSR}{\partial \hat{\beta}_1\partial \hat{\beta}_0} = 2\sum_{i=1}^n x_i$
+
+4. The Hessian matrix is positive definite:
+   $\mathbf{H} = \begin{bmatrix} 2n & 2\sum x_i \\ 2\sum x_i & 2\sum x_i^2 \end{bmatrix}$
+
+This confirms we have found a minimum.
+
+### Visualizing the Process
+
+```{r}
+#| warning: false
+#| message: false
+library(tidyverse)
+
+# Create sample data
+set.seed(123)
+x <- runif(20, 1, 8)
+y <- 2 + 3 * x + rnorm(20, 0, 1)
+data <- data.frame(x = x, y = y)
+
+# Calculate means
+x_mean <- mean(x)
+y_mean <- mean(y)
+
+# Create visualization
+ggplot(data, aes(x = x, y = y)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  geom_hline(yintercept = y_mean, linetype = "dashed", color = "gray") +
+  geom_vline(xintercept = x_mean, linetype = "dashed", color = "gray") +
+  geom_segment(aes(xend = x, yend = y_mean), color = "green", alpha = 0.3) +
+  geom_segment(aes(yend = y, xend = x_mean), color = "purple", alpha = 0.3) +
+  labs(title = "Understanding the OLS Derivation",
+       subtitle = "Green: y deviations, Purple: x deviations\nTheir product forms the numerator of β̂₁",
+       x = "x", y = "y") +
+  theme_minimal()
+```
+
+### Key Insights
+
+1. The chain rule is crucial in deriving both estimators
+2. $\hat{\beta}_0$ ensures the line goes through $(\bar{x}, \bar{y})$
+3. $\hat{\beta}_1$ is a ratio of covariance to variance
+4. The second derivatives confirm we've found a minimum
+5. The entire process relies on calculus to find the optimal values that minimize the sum of squared residuals
 :::
+
+
 
 ::: {.callout-note}
 ### Understanding Endogeneity
