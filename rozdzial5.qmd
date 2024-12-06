@@ -172,7 +172,7 @@ ggplot(dane_bimodalne, aes(x)) +
 ```
 
 | Distribution | Key Properties | Social Examples |
-|----|----|----|
+|----------------------|------------------------|---------------------------|
 | Normal | Symmetric, bell-shaped, most values near mean | Height, IQ scores, standardized test scores |
 | Uniform | Equal probability across range | Birth dates in year, arrival times in hour |
 | Bimodal | Two peaks, suggests subgroups | Age in college towns, polarized opinions |
@@ -352,7 +352,7 @@ W tym przewodniku omówimy, jak różne miary opisowe są dotknięte przez warto
 ## Symbole Stosowane w Statystyce - podsumowanie
 
 | Miara | Parametr Populacji | Statystyka z Próby | Alternatywne Oznaczenia | Uwagi |
-|----|----|----|----|----|
+|---------------|---------------|---------------|---------------|---------------|
 | Liczebność | $N$ | $n$ | \- | Całkowita liczba obserwacji |
 | Średnia | $\mu$ | $\bar{x}$ | $E(X)$, $M$ | $E(X)$ stosowane w rachunku prawdopodobieństwa |
 | Wariancja | $\sigma^2$ | $s^2$ | $\text{Var}(X)$, $V(X)$ | Kwadrat odchyleń od średniej |
@@ -689,7 +689,7 @@ Jest to standardowa forma średniej ważonej, gdzie wagi mogą być dowolnymi li
 **Przykład Obliczeń Ręcznych:** Obliczmy średnią ważoną dla zbioru danych: 2, 4, 5, 7 z wagami 1, 2, 3, 1
 
 | Krok | Opis | Obliczenie |
-|----|----|----|
+|------------------|---------------------------|---------------------------|
 | 1 | Pomnóż każdą wartość przez jej wagę | (2 \* 1) + (4 \* 2) + (5 \* 3) + (7 \* 1) = 2 + 8 + 15 + 7 = 32 |
 | 2 | Zsumuj wagi | 1 + 2 + 3 + 1 = 7 |
 | 3 | Podziel wynik z kroku 1 przez wynik z kroku 2 | 32 / 7 = 4.57 |
@@ -713,7 +713,7 @@ W tym przypadku wagi są ułamkami sumującymi się do 1, reprezentującymi prop
 Obliczmy średnią ważoną dla zbioru danych: 2, 4, 5, 7 z wagami znormalizowanymi 0.1, 0.3, 0.4, 0.2
 
 | Krok | Opis | Obliczenie |
-|----|----|----|
+|------------------|---------------------------|---------------------------|
 | 1 | Pomnóż każdą wartość przez jej wagę | (2 \* 0.1) + (4 \* 0.3) + (5 \* 0.4) + (7 \* 0.2) |
 | 2 | Zsumuj wyniki | 0.2 + 1.2 + 2.0 + 1.4 = 4.8 |
 
@@ -1060,7 +1060,7 @@ Wariancja = $\frac{16 + 4 + 0 + 4 + 16}{4} = 10$
 Używając zbioru danych: 2, 4, 4, 5, 5, 7, 9
 
 | Krok | Opis | Obliczenie |
-|----|----|----|
+|-------------------|-------------------|----------------------------------|
 | 1 | Oblicz średnią | $\bar{x} = 5,14$ |
 | 2 | Odejmij średnią od każdej obserwacji i podnieś wynik do kwadratu | $(2 - 5,14)^2 = 9,86$ |
 |  |  | $(4 - 5,14)^2 = 1,30$ |
@@ -1183,7 +1183,7 @@ Współczynnik zmienności to odchylenie standardowe podzielone przez średnią 
 Dla zbioru danych: 2, 4, 4, 5, 5, 7, 9
 
 | Krok | Opis | Obliczenia |
-|----|----|----|
+|-------------------|-------------------|----------------------------------|
 | 1 | Oblicz średnią arytmetyczną | $\bar{x} = 5,14$ |
 | 2 | Oblicz odchylenie standardowe | $s = 2,27$ |
 | 3 | Podziel s przez średnią i pomnóż przez 100 | $(2,27 / 5,14) * 100 = 44,16\%$ |
@@ -2634,7 +2634,7 @@ knitr::kable(summary_stats, digits = 1,
 #### Miary Tendencji Centralnej
 
 | Miara | Zalety | Wady | Zastosowanie do |
-|----|----|----|----|
+|-----------------|-----------------|-----------------|---------------------|
 | Średnia | \- Wykorzystuje wszystkie punkty danych<br>- Pozwala na dalsze obliczenia statystyczne<br>- Idealna dla danych o rozkładzie normalnym | \- Wrażliwa na wartości odstające<br>- Nieodpowiednia dla rozkładów skośnych<br>- Bez znaczenia dla danych nominalnych | Interwałowe, Ilorazowe, niektóre Dyskretne, Ciągłe |
 | Mediana | \- Niewrażliwa na wartości odstające<br>- Dobra dla rozkładów skośnych<br>- Może być stosowana do danych porządkowych | \- Ignoruje rzeczywiste wartości większości punktów danych<br>- Mniej użyteczna do dalszych analiz statystycznych | Porządkowe, Interwałowe, Ilorazowe, Dyskretne, Ciągłe |
 | Moda | \- Może być stosowana do każdego typu danych<br>- Dobra do znajdowania najczęstszej kategorii | \- Może nie być unikalna (rozkłady multimodalne)<br>- Nieprzydatna do wielu typów analiz<br>- Ignoruje wielkość różnic między wartościami | Wszystkie typy |
@@ -2642,7 +2642,7 @@ knitr::kable(summary_stats, digits = 1,
 #### Miary Zmienności
 
 | Miara | Zalety | Wady | Zastosowanie do |
-|----|----|----|----|
+|-----------------|-----------------|-----------------|---------------------|
 | Zakres | \- Prosty do obliczenia i zrozumienia<br>- Daje szybki obraz rozproszenia danych | \- Bardzo wrażliwy na wartości odstające<br>- Ignoruje wszystkie dane między ekstremami<br>- Nieprzydatny do dalszych analiz statystycznych | Porządkowe, Interwałowe, Ilorazowe, Dyskretne, Ciągłe |
 | Rozstęp międzykwartylowy (IQR) | \- Niewrażliwy na wartości odstające<br>- Dobry dla rozkładów skośnych | \- Ignoruje 50% danych<br>- Mniej intuicyjny niż zakres | Porządkowe, Interwałowe, Ilorazowe, Dyskretne, Ciągłe |
 | Wariancja | \- Wykorzystuje wszystkie punkty danych<br>- Podstawa wielu procedur statystycznych | \- Wrażliwa na wartości odstające<br>- Jednostki są podniesione do kwadratu (mniej intuicyjne) | Interwałowe, Ilorazowe, niektóre Dyskretne, Ciągłe |
@@ -2652,7 +2652,7 @@ knitr::kable(summary_stats, digits = 1,
 #### Miary Korelacji/Asocjacji
 
 | Miara | Zalety | Wady | Zastosowanie do |
-|----|----|----|----|
+|-----------------|-----------------|-----------------|---------------------|
 | r Pearsona | \- Mierzy zależność liniową<br>- Szeroko stosowany i zrozumiały | \- Zakłada rozkład normalny<br>- Wrażliwy na wartości odstające<br>- Uchwytuje tylko zależności liniowe | Interwałowe, Ilorazowe, Ciągłe |
 | Rho Spearmana | \- Może być stosowany do danych porządkowych<br>- Uchwytuje zależności monotoniczne<br>- Mniej wrażliwy na wartości odstające | \- Traci informacje przez konwersję na rangi<br>- Może pominąć niektóre typy zależności | Porządkowe, Interwałowe, Ilorazowe |
 | Tau Kendalla | \- Może być stosowany do danych porządkowych<br>- Bardziej odporny niż Spearman dla małych próbek<br>- Ma ładną interpretację (prawdopodobieństwo zgodności) | \- Traci informacje, biorąc pod uwagę tylko porządek<br>- Bardziej intensywny obliczeniowo | Porządkowe, Interwałowe, Ilorazowe |
@@ -2663,7 +2663,7 @@ knitr::kable(summary_stats, digits = 1,
 ### Statistical Measures Applicability / Zastosowanie miar statystycznych
 
 | Measure (EN) | Miara (PL) | Nominal | Ordinal | Interval | Ratio |
-|----|----|:--:|:--:|:--:|:--:|
+|------------|------------|:----------:|:----------:|:----------:|:----------:|
 | **Central Tendency / Tendencja centralna:** |  |  |  |  |  |
 | Mode | Dominanta | ✓ | ✓ | ✓ | ✓ |
 | Median | Mediana | \- | ✓ | ✓ | ✓ |
