@@ -213,6 +213,32 @@ cat("Kendall's Tau:", round(cor(data$stress_level, data$cognitive_performance, m
 ```
 
 
+## Example 4: Electoral District Magnitude vs. LH Index
+
+```{r}
+DM <- c(3, 4, 5, 6, 7, 8)
+LHI <- c(15.5, 14.25, 13.5, 13.5, 13, 12.75)
+
+DM <- c(3, 4, 5, 6, 7, 8)
+LHI <- c(15.5, 12.25, 11.5, 11.5, 11, 10.75)
+
+cat("Covariance:", round(cov(DM, LHI), 2), "\n")
+cat("Pearson Correlation:", round(cor(DM, LHI, method = "pearson"), 2), "\n")
+cat("Spearman Correlation:", round(cor(DM, LHI, method = "spearman"), 2), "\n")
+
+data <- data.frame(DM = DM, LHI = LHI)
+
+ggplot(data, aes(x = DM, y = LHI)) +
+  geom_point(size = 3, color = "blue") +
+  geom_smooth(method = "loess", se = FALSE, color = "red", linetype = "dashed") +
+  labs(x = "Electoral District Magnitude (DM)", y = "LHI Index",
+       title = "Relationship between Electoral District Magnitude and LHI Index") +
+  theme_minimal()
+
+ols1 <- lm(LHI ~ DM, data = data)
+summary(ols1)
+```
+
 
 # Probability and Inference
 
@@ -228,8 +254,6 @@ prob <- sum(dbinom(8:10, 10, 0.5))
 cat("P(X >= 8) for X ~ Binomial(10, 0.5):", round(prob, 4), "\n")
 ```
 
-
-
 # Regression analysis - introductory examples
 
 ```{r}
@@ -241,7 +265,6 @@ data <- data.frame(x1, y1)
 model.1 <- lm(y1 ~ x1)
 summary(model.1)
 ```
-
 
 ## Example: Loosemore-Hanby Index vs. District Magnitude
 
@@ -298,7 +321,6 @@ ggplot(data, aes(x = DM, y = GHI)) +
 model_gh <- lm(GHI ~ DM, data = data)
 summary(model_gh)
 ```
-
 
 ## Additional Examples
 
@@ -452,12 +474,11 @@ predict(model, new_voter, type = "response")
 
 In this logistic regression example:
 
-1. We created synthetic data for voter characteristics and voting behavior.
-2. We explored the data using summary statistics and a contingency table.
-3. We prepared the data by converting the education variable to a factor.
-4. We fit a logistic regression model to predict voting behavior based on age, income, and education.
-5. We interpreted the model results using the summary output.
-6. Finally, we made a prediction for a new voter using the fitted model.
+1.  We created synthetic data for voter characteristics and voting behavior.
+2.  We explored the data using summary statistics and a contingency table.
+3.  We prepared the data by converting the education variable to a factor.
+4.  We fit a logistic regression model to predict voting behavior based on age, income, and education.
+5.  We interpreted the model results using the summary output.
+6.  Finally, we made a prediction for a new voter using the fitted model.
 
 This example demonstrates how logistic regression can be used in political science to analyze and predict voting behavior based on demographic factors.
-

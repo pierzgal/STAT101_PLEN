@@ -2,8 +2,7 @@
 
 ## Bivariate Statistics - introduction
 
-Bivariate statistics describe the relationship between two variables.
-We'll explore several measures, starting with covariance.
+Bivariate statistics describe the relationship between two variables. We'll explore several measures, starting with covariance.
 
 ```{r setup, include=FALSE}
 library(ggplot2)
@@ -102,41 +101,40 @@ gridExtra::grid.arrange(p1, p2, p3, p4, ncol = 2)
 
 Analysis of Variable Relationships:
 
-1. **Positive Linear Correlation** (Healthcare Access and Life Expectancy)
+1.  **Positive Linear Correlation** (Healthcare Access and Life Expectancy)
 
 The data demonstrates a positive linear relationship between healthcare access and life expectancy. Statistical analysis indicates that a 10-percentage-point increase in healthcare access corresponds to approximately 2.5 years of additional life expectancy. This relationship maintains statistical significance across the observed range.
 
-2. **Negative Linear Correlation** (Digital Device Usage and Sleep Quality)
+2.  **Negative Linear Correlation** (Digital Device Usage and Sleep Quality)
 
 The analysis reveals an inverse relationship between daily device usage and sleep quality metrics. The data indicates that each additional hour of device usage correlates with a measurable decrease in sleep quality scores, demonstrating a consistent negative linear relationship.
 
-3. **Absence of Correlation** (Infrastructure and Economic Indicators (e.g. GDP per capita in PLN))
+3.  **Absence of Correlation** (Infrastructure and Economic Indicators (e.g. GDP per capita in PLN))
 
 The relationship between infrastructure density and economic indicators like GDP per capita in PLN shows no statistically significant correlation. This absence of correlation suggests that these variables operate independently within the observed parameters, indicating the presence of other determining factors not captured in this analysis.
 
-4. **Non-linear Relationship** (Team Size and Productivity)
+4.  **Non-linear Relationship** (Team Size and Productivity)
 
 The relationship between team size and productivity follows a curvilinear pattern. The data shows an optimal range for team size, with productivity declining both below and above this range. This demonstrates the importance of considering non-linear patterns in organizational research.
 
-
 Methodological Considerations:
 
-1. **Statistical Significance**: Observed relationships must be evaluated for statistical significance before drawing conclusions.
+1.  **Statistical Significance**: Observed relationships must be evaluated for statistical significance before drawing conclusions.
 
-2. **Variable Independence**: The assumption of variable independence requires verification through appropriate statistical tests.
+2.  **Variable Independence**: The assumption of variable independence requires verification through appropriate statistical tests.
 
-3. **Confounding Variables**: Analyses must account for potential confounding variables that may influence observed relationships.
+3.  **Confounding Variables**: Analyses must account for potential confounding variables that may influence observed relationships.
 
-4. **Causality**: Correlation patterns do not necessarily imply causal relationships; additional research methods are required to establish causation.
+4.  **Causality**: Correlation patterns do not necessarily imply causal relationships; additional research methods are required to establish causation.
 
 Research Applications:
 
 The understanding of these relationship patterns has significant implications for:
 
-- Research design and methodology
-- Statistical analysis procedures
-- Policy implementation and evaluation
-- Theory development and testing
+-   Research design and methodology
+-   Statistical analysis procedures
+-   Policy implementation and evaluation
+-   Theory development and testing
 
 Critical evaluation of these relationships enables more robust research design and more reliable conclusions in social science research.
 :::
@@ -149,7 +147,7 @@ set.seed(123)
 ```
 
 ::: callout-warning
-## The Critical Distinction Between Correlation and Causation [See e.g. https://www.tylervigen.com/spurious-correlations]
+## The Critical Distinction Between Correlation and Causation \[See e.g. https://www.tylervigen.com/spurious-correlations\]
 
 ![https://x.com/EUFIC/status/1324667630238814209?prefetchTimestamp=1732463940216](stat_imgs/EmIodcqXEAMRW83.jpeg)
 
@@ -192,7 +190,7 @@ ggplot(seasonal_data, aes(x = ice_cream, y = crime_rate)) +
   theme(plot.title = element_text(face = "bold"))
 ```
 
-This visualization demonstrates a classic example of confounding in statistical analysis. The apparent correlation between ice cream sales and crime rates (r = 0.85, p < 0.001) exemplifies how seasonal variation can create misleading statistical relationships. The correlation emerges from a common causal factor: seasonal temperature variations that independently influence both variables through distinct mechanisms.
+This visualization demonstrates a classic example of confounding in statistical analysis. The apparent correlation between ice cream sales and crime rates (r = 0.85, p \< 0.001) exemplifies how seasonal variation can create misleading statistical relationships. The correlation emerges from a common causal factor: seasonal temperature variations that independently influence both variables through distinct mechanisms.
 
 ### Temporal Trends and Spurious Associations
 
@@ -225,7 +223,7 @@ ggplot(tech_data, aes(x = ie_usage, y = murder_rate)) +
   theme(plot.title = element_text(face = "bold"))
 ```
 
-This second analysis illustrates temporal correlation bias, where two independently declining trends create an artificial statistical association. Despite the strong correlation coefficient (r = 0.91, p < 0.001), there is no plausible causal mechanism linking these variables.
+This second analysis illustrates temporal correlation bias, where two independently declining trends create an artificial statistical association. Despite the strong correlation coefficient (r = 0.91, p \< 0.001), there is no plausible causal mechanism linking these variables.
 
 ### Understanding Mechanisms of Spurious Correlation
 
@@ -243,7 +241,6 @@ When variables exhibit strong temporal trends, they may show correlation simply 
 
 This occurs when the direction of causality is ambiguous or bidirectional. For example, economic growth and investment rates may exhibit simultaneous causality, as each variable potentially influences the other through complex feedback mechanisms.
 
-
 ### Statistical Methods for Causal Inference
 
 Modern statistical approaches offer several techniques for moving beyond simple correlation toward causal inference, e.g.:
@@ -260,35 +257,30 @@ This statistical technique uses a variable that affects the outcome only through
 
 This quasi-experimental design exploits naturally occurring thresholds to approximate randomized experiments, providing evidence for causal relationships.
 
-
 ### Critical Framework for Correlation Analysis
 
 When evaluating correlational findings, consider the following analytical framework:
 
-1. Theoretical Plausibility: Examine whether there exists a logical mechanism through which one variable could influence the other.
+1.  Theoretical Plausibility: Examine whether there exists a logical mechanism through which one variable could influence the other.
 
-2. Temporal Precedence: Verify that the proposed cause precedes the effect in time.
+2.  Temporal Precedence: Verify that the proposed cause precedes the effect in time.
 
-3. Dose-Response Relationship: Assess whether changes in the magnitude of the proposed cause correspond to proportional changes in the effect.
+3.  Dose-Response Relationship: Assess whether changes in the magnitude of the proposed cause correspond to proportional changes in the effect.
 
-4. Consistency: Evaluate whether the relationship holds across different contexts and populations.
+4.  Consistency: Evaluate whether the relationship holds across different contexts and populations.
 
-5. Alternative Explanations: Systematically consider and test alternative explanations for the observed correlation.
-
+5.  Alternative Explanations: Systematically consider and test alternative explanations for the observed correlation.
 
 Remember: The path from correlation to causation requires careful experimental design, robust statistical methodology, and systematic consideration of alternative explanations. Statistical correlation represents a necessary but insufficient condition for establishing causality.
 :::
-
-
 
 ### Covariance
 
 Covariance measures how two variables vary together.
 
-**Formula:**
-$cov(X,Y) = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{n - 1}$
+**Formula:** $cov(X,Y) = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{n - 1}$
 
-::: {.callout-note}
+::: callout-note
 ## From Covariance to Different Correlation Measures
 
 ```{r}
@@ -334,75 +326,80 @@ ggplot(all_data, aes(x = x, y = y)) +
 ```
 
 ### The Concept of Correlation
+
 Correlation is a broad concept that describes how variables are related to each other. This relationship can take many forms, as shown in our plots.
 
 ### Starting with Covariance
+
 Covariance is the fundamental measure of how variables move together:
 
 $$Cov(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1}$$
 
 It tells us:
 
-- If variables tend to move in the same direction (positive covariance)
-- If they move in opposite directions (negative covariance)
-- If they don't have a clear linear pattern (covariance near zero)
+-   If variables tend to move in the same direction (positive covariance)
+-   If they move in opposite directions (negative covariance)
+-   If they don't have a clear linear pattern (covariance near zero)
 
 However, covariance has a limitation: its value depends on the units of measurement. For example:
 
-- Height in meters vs. weight in kg gives one covariance value
-- Height in centimeters vs. weight in kg gives a different value
-- Same relationship, different scales!
+-   Height in meters vs. weight in kg gives one covariance value
+-   Height in centimeters vs. weight in kg gives a different value
+-   Same relationship, different scales!
 
 ### Standardizing to Get Correlation Measures
 
-1. Pearson's correlation coefficient standardizes covariance:
-$$r = \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}$$
-- Removes unit dependency
-- Always between -1 and 1
-- Measures linear relationships
+1.  Pearson's correlation coefficient standardizes covariance: $$r = \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}$$
 
-2. Spearman's rank correlation:
+-   Removes unit dependency
+-   Always between -1 and 1
+-   Measures linear relationships
 
-- Based on ranks rather than raw values
-- Captures monotonic relationships (even nonlinear ones)
-- Also ranges from -1 to 1
+2.  Spearman's rank correlation:
 
+-   Based on ranks rather than raw values
+-   Captures monotonic relationships (even nonlinear ones)
+-   Also ranges from -1 to 1
 
 ### Key Points
 
-1. Start with covariance to understand joint movement
-2. Use correlation coefficients for standardized measures
-3. Choose your correlation measure based on:
-   - Type of relationship you expect
-   - Nature of your data
-   - Research question
-4. Always visualize your data
+1.  Start with covariance to understand joint movement
+2.  Use correlation coefficients for standardized measures
+3.  Choose your correlation measure based on:
+    -   Type of relationship you expect
+    -   Nature of your data
+    -   Research question
+4.  Always visualize your data
 :::
 
-
-::: {.callout-note}
+::: callout-note
 ## Ranks: Positions in an Ordered Sequence
 
 Ranks are simply position numbers in an ordered dataset:
 
 ### How to Determine Ranks?
 
-1. Order data from smallest to largest value
-2. Assign consecutive natural numbers:
+1.  Order data from smallest to largest value
 
-   - Smallest value → rank 1
-   - Subsequent values → subsequent ranks
-   - Largest value → rank n (number of observations)
-   - For ties → average of ranks
+2.  Assign consecutive natural numbers:
+
+    -   Smallest value → rank 1
+    -   Subsequent values → subsequent ranks
+    -   Largest value → rank n (number of observations)
+    -   For ties → average of ranks
 
 ### Example
+
 We have 5 students with heights:
-```
+
+```         
 Height:    165, 182, 170, 168, 175
 Ranks:      1,   5,   3,   2,   4
 ```
+
 For data with ties (e.g., grades):
-```
+
+```         
 Grades:     2,   3,   3,   4,   5
 Ranks:      1,  2.5, 2.5,  4,   5
 ```
@@ -416,7 +413,7 @@ Let's calculate the covariance for two variables:
 -   y: 2, 4, 5, 4, 5
 
 | Step | Description | Calculation |
-|-----------------|----------------------------|----------------------------|
+|------------------|---------------------------|---------------------------|
 | 1 | Calculate means | $\bar{x} = 3, \bar{y} = 4$ |
 | 2 | Calculate $(x_i - \bar{x})(y_i - \bar{y})$ for each pair | $(-2)(-2) = 4$ |
 |  |  | $(-1)(0) = 0$ |
@@ -434,8 +431,7 @@ y <- c(2, 4, 5, 4, 5)
 cov(x, y)
 ```
 
-**Interpretation:** - The positive covariance (1.5) indicates that x and
-y tend to increase together.
+**Interpretation:** - The positive covariance (1.5) indicates that x and y tend to increase together.
 
 **Pros:**
 
@@ -444,24 +440,21 @@ y tend to increase together.
 
 **Cons:**
 
--   Scale-dependent, making it difficult to compare across different
-    variable pairs
+-   Scale-dependent, making it difficult to compare across different variable pairs
 -   Doesn't provide information about the strength of the relationship
 
 ### Pearson Correlation
 
-Pearson correlation measures the strength and direction of the linear
-relationship between two continuous variables.
+Pearson correlation measures the strength and direction of the linear relationship between two continuous variables.
 
-**Formula:**
-$r = \frac{cov(X,Y)}{s_X s_Y} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}$
+**Formula:** $r = \frac{cov(X,Y)}{s_X s_Y} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}$
 
 **Manual Calculation Example:**
 
 Using the same data as above:
 
 | Step | Description | Calculation |
-|-----------------|----------------------------|----------------------------|
+|------------------|---------------------------|---------------------------|
 | 1 | Calculate covariance | (From previous calculation) 1.5 |
 | 2 | Calculate standard deviations | $s_X = \sqrt{\frac{10}{4}} = 1.58, s_Y = \sqrt{\frac{6}{4}} = 1.22$ |
 | 3 | Divide covariance by product of standard deviations | $1.5 / (1.58 * 1.22) = 0.7746$ |
@@ -472,8 +465,7 @@ Using the same data as above:
 cor(x, y, method = "pearson")
 ```
 
-**Interpretation:** - The correlation coefficient of 0.7746 indicates a
-strong positive linear relationship between x and y.
+**Interpretation:** - The correlation coefficient of 0.7746 indicates a strong positive linear relationship between x and y.
 
 **Pros:**
 
@@ -489,12 +481,9 @@ strong positive linear relationship between x and y.
 
 ### Spearman Correlation
 
-Spearman correlation measures the strength and direction of the
-monotonic relationship between two variables, which can be continuous or
-ordinal.
+Spearman correlation measures the strength and direction of the monotonic relationship between two variables, which can be continuous or ordinal.
 
-**Formula:** $\rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}$, where $d_i$
-is the difference between ranks.
+**Formula:** $\rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}$, where $d_i$ is the difference between ranks.
 
 **Manual Calculation Example:**
 
@@ -520,8 +509,7 @@ y <- c(1, 3, 2, 5, 4)
 cor(x, y, method = "spearman")
 ```
 
-**Interpretation:** - The Spearman correlation of 0.8 indicates a strong
-positive monotonic relationship between x and y.
+**Interpretation:** - The Spearman correlation of 0.8 indicates a strong positive monotonic relationship between x and y.
 
 **Pros:**
 
@@ -531,20 +519,16 @@ positive monotonic relationship between x and y.
 
 **Cons:**
 
--   Less powerful than Pearson for detecting linear relationships in
-    normally distributed data
--   Doesn't provide information about the shape of the relationship
-    beyond monotonicity
+-   Less powerful than Pearson for detecting linear relationships in normally distributed data
+-   Doesn't provide information about the shape of the relationship beyond monotonicity
 
 ### Cross-tabulation
 
-Cross-tabulation (contingency table) shows the relationship between two
-categorical variables.
+Cross-tabulation (contingency table) shows the relationship between two categorical variables.
 
 **Example:**
 
-Let's create a cross-tabulation of two variables: - Education level:
-High School, College, Graduate - Employment status: Employed, Unemployed
+Let's create a cross-tabulation of two variables: - Education level: High School, College, Graduate - Employment status: Employed, Unemployed
 
 ```{r}
 education <- factor(c("High School", "College", "Graduate", "High School", "College", "Graduate", "High School", "College", "Graduate"))
@@ -555,18 +539,14 @@ table(education, employment)
 
 **Interpretation:**
 
--   This table shows the count of individuals in each combination of
-    education level and employment status.
--   For example, we can see how many high school graduates are employed
-    versus unemployed.
+-   This table shows the count of individuals in each combination of education level and employment status.
+-   For example, we can see how many high school graduates are employed versus unemployed.
 
 **Pros:**
 
--   Provides a clear visual representation of the relationship between
-    categorical variables
+-   Provides a clear visual representation of the relationship between categorical variables
 -   Easy to understand and interpret
--   Basis for many statistical tests (e.g., chi-square test of
-    independence)
+-   Basis for many statistical tests (e.g., chi-square test of independence)
 
 **Cons:**
 
@@ -595,35 +575,24 @@ When deciding which bivariate statistic to use, consider:
 
 4.  Distribution:
 
-    -   For normally distributed data, Pearson correlation is most
-        powerful
+    -   For normally distributed data, Pearson correlation is most powerful
     -   For non-normal distributions, consider Spearman correlation
 
 5.  Sample size:
 
-    -   For very small samples, non-parametric methods like Spearman
-        correlation might be preferred
+    -   For very small samples, non-parametric methods like Spearman correlation might be preferred
 
-Remember, it's often valuable to use multiple measures and
-visualizations (like scatter plots) to get a comprehensive understanding
-of the relationship between variables.
+Remember, it's often valuable to use multiple measures and visualizations (like scatter plots) to get a comprehensive understanding of the relationship between variables.
 
+## Introduction to Elementary Multivariate Statistics (\*)
 
-
-## Introduction to Elementary Multivariate Statistics (*)
-
-Multivariate statistics involve the analysis of relationships among
-three or more variables simultaneously. This section will introduce some
-basic concepts and techniques in multivariate analysis, with a focus on
-correlation-based methods.
+Multivariate statistics involve the analysis of relationships among three or more variables simultaneously. This section will introduce some basic concepts and techniques in multivariate analysis, with a focus on correlation-based methods.
 
 ### Correlation Matrix
 
-A correlation matrix is a table showing the pairwise correlations of
-several variables. It's a fundamental tool in multivariate analysis.
+A correlation matrix is a table showing the pairwise correlations of several variables. It's a fundamental tool in multivariate analysis.
 
-**Example:** Let's create a correlation matrix for four variables:
-height, weight, age, and income.
+**Example:** Let's create a correlation matrix for four variables: height, weight, age, and income.
 
 ```{r}
 set.seed(123)  # For reproducibility
@@ -642,15 +611,13 @@ print(cor_matrix)
 
 -   Each cell shows the correlation between two variables.
 -   The diagonal is always 1 (correlation of a variable with itself).
--   Look for strong correlations (close to 1 or -1) to identify
-    potential relationships.
+-   Look for strong correlations (close to 1 or -1) to identify potential relationships.
 
 ### Visualizing Multivariate Relationships
 
 #### Scatterplot Matrix
 
-A scatterplot matrix shows pairwise relationships between multiple
-variables.
+A scatterplot matrix shows pairwise relationships between multiple variables.
 
 ```{r}
 pairs(data)
@@ -664,8 +631,7 @@ pairs(data)
 
 #### Correlation Plot
 
-A correlation plot provides a visual representation of the correlation
-matrix.
+A correlation plot provides a visual representation of the correlation matrix.
 
 ```{r}
 library(corrplot)
@@ -674,18 +640,14 @@ corrplot(cor_matrix, method = "color")
 
 **Interpretation:**
 
--   Color intensity and size of the circles indicate the strength of
-    correlation.
--   Blue colors typically indicate positive correlations, red colors
-    indicate negative correlations.
+-   Color intensity and size of the circles indicate the strength of correlation.
+-   Blue colors typically indicate positive correlations, red colors indicate negative correlations.
 
 ### Partial Correlation
 
-Partial correlation measures the relationship between two variables
-while controlling for one or more other variables.
+Partial correlation measures the relationship between two variables while controlling for one or more other variables.
 
-**Example:** Let's calculate the partial correlation between height and
-weight, controlling for age.
+**Example:** Let's calculate the partial correlation between height and weight, controlling for age.
 
 ```{r}
 library(ppcor)
@@ -695,13 +657,11 @@ pcor.test(data$height, data$weight, data$age)
 **Interpretation:**
 
 -   Compare this to the simple correlation between height and weight.
--   A significant change might indicate that age plays a role in the
-    height-weight relationship.
+-   A significant change might indicate that age plays a role in the height-weight relationship.
 
 ### Multiple Correlation
 
-Multiple correlation measures the strength of the relationship between a
-dependent variable and multiple independent variables.
+Multiple correlation measures the strength of the relationship between a dependent variable and multiple independent variables.
 
 **Example:** Let's predict weight using height and age.
 
@@ -713,15 +673,12 @@ print(paste("Multiple correlation coefficient:", R))
 
 **Interpretation:**
 
--   R ranges from 0 to 1, with higher values indicating stronger
-    relationships.
--   R² (R-squared) represents the proportion of variance in the
-    dependent variable explained by the independent variables.
+-   R ranges from 0 to 1, with higher values indicating stronger relationships.
+-   R² (R-squared) represents the proportion of variance in the dependent variable explained by the independent variables.
 
 ### Factor Analysis
 
-Factor analysis is a technique used to reduce many variables to a
-smaller number of underlying factors.
+Factor analysis is a technique used to reduce many variables to a smaller number of underlying factors.
 
 **Example:** Let's perform a simple factor analysis on our dataset.
 
@@ -734,37 +691,23 @@ print(fa_result$loadings, cutoff = 0.3)
 **Interpretation:**
 
 -   Look at which variables load highly on each factor.
--   Try to interpret what each factor might represent based on the
-    variables that load on it.
+-   Try to interpret what each factor might represent based on the variables that load on it.
 
 ### Considerations in Multivariate Analysis
 
-1.  **Sample Size**: Multivariate techniques often require larger sample
-    sizes for stable results.
+1.  **Sample Size**: Multivariate techniques often require larger sample sizes for stable results.
 
-2.  **Multicollinearity**: High correlations among independent variables
-    can cause issues in some analyses.
+2.  **Multicollinearity**: High correlations among independent variables can cause issues in some analyses.
 
-3.  **Outliers**: Multivariate outliers can have a strong influence on
-    results.
+3.  **Outliers**: Multivariate outliers can have a strong influence on results.
 
-4.  **Assumptions**: Many techniques assume multivariate normality and
-    linear relationships.
+4.  **Assumptions**: Many techniques assume multivariate normality and linear relationships.
 
-5.  **Interpretation Complexity**: As the number of variables increases,
-    interpretation can become more challenging.
+5.  **Interpretation Complexity**: As the number of variables increases, interpretation can become more challenging.
 
 ### Conclusion
 
-This introduction to multivariate statistics builds upon the concept of
-correlation to explore relationships among multiple variables. These
-techniques provide powerful tools for understanding complex datasets,
-but they also require careful consideration of assumptions and
-limitations. As you progress in your statistical journey, you'll
-encounter more advanced multivariate techniques such as MANOVA,
-discriminant analysis, and structural equation modeling.
-
-
+This introduction to multivariate statistics builds upon the concept of correlation to explore relationships among multiple variables. These techniques provide powerful tools for understanding complex datasets, but they also require careful consideration of assumptions and limitations. As you progress in your statistical journey, you'll encounter more advanced multivariate techniques such as MANOVA, discriminant analysis, and structural equation modeling.
 
 ```{r}
 library(tidyverse)
@@ -775,19 +718,129 @@ library(gridExtra)
 
 ## Introduction to Regression Analysis
 
+Regression analysis is a fundamental statistical method that examines and models the relationship between variables to understand how changes in one or more independent variables influence a dependent variable.
+
+**The Core Concept**
+
+At its heart, regression analysis helps us answer questions about cause and effect, prediction, and forecasting. For example, a business might use regression analysis to understand how advertising spending affects sales, or how employee training hours impact productivity.
+
+**How Regression Analysis Works**
+
+The process begins by collecting data about the variables of interest. The analysis then fits a mathematical model—typically a line or curve—that best represents the relationship between these variables. This model allows us to:
+
+- Identify the strength and direction of relationships between variables
+- Make predictions about future outcomes
+- Understand which factors have the most significant impact on our results
+
+### Regression as a Stochastic Model
+
+In mathematical modeling, we encounter two fundamental approaches to describing relationships between variables:
+
+- deterministic models,
+- stochastic models.
+
+#### Deterministic vs. Stochastic Models
+
+A deterministic model assumes a precise, fixed relationship between inputs and outputs. In such models, if we know the inputs, we can calculate the exact output with certainty. Consider the classic physics equation for distance:
+
+$$\text{Distance} = \text{Speed} × \text{Time}$$
+
+Given specific values for speed and time, this equation will always yield the same distance. There is no room for variation in the outcome.
+
+In contrast, regression analysis embraces the presence of natural variation in data. The fundamental structure of a regression model is:
+
+$$Y = f(X) + \epsilon$$
+
+Where:
+
+- $Y$ represents the outcome we wish to predict
+- $f(X)$ represents the systematic relationship between our predictors (X) and the outcome
+- $\epsilon$ represents the random variation that naturally occurs in real-world data
+
+#### The Nature of Stochastic Models in Regression
+
+The inclusion of the error term $\epsilon$ acknowledges that real relationships between variables are rarely perfect. For example, when studying how study time affects test scores, many factors contribute to the final outcome:
+
+The systematic part $f(X)$ captures the general trend: more study time tends to lead to higher scores.
+
+The error term $\epsilon$ accounts for all other influences:
+
+- Different learning styles
+- Study environment
+- Physical and mental state during the test
+- Quality of study materials
+
+#### Mathematical Framework
+
+In its simplest form, linear regression can be expressed as:
+
+$$Y = \beta_0 + \beta_1X + \epsilon$$
+
+Where:
+
+- $\beta_0$ represents the baseline value (when X = 0)
+- $\beta_1$ represents the change in Y for each unit increase in X
+- $\epsilon$ represents the natural variation around this relationship
+
+#### Practical Implications
+
+Understanding regression as a stochastic model has important practical implications:
+
+1. Predictions: We recognize that our predictions will have some natural variation around them. Rather than claiming an exact outcome, we acknowledge a range of plausible values.
+
+2. Model Evaluation: We assess models by how well they capture both the general trend and the typical amount of variation in the data.
+
+3. Decision Making: Understanding the natural variation in our predictions helps us make more realistic plans and decisions.
+
+**Real-World Applications**
+
+Consider predicting house prices based on square footage. A deterministic model might say:
+"A 2000 sq ft house will sell for exactly $300,000"
+
+A regression model instead recognizes that:
+
+- There's a general relationship between size and price
+- But many other factors affect the final price
+- Similar houses might sell for somewhat different prices
+- Our predictions should reflect this natural variation
+
+**Conclusion**
+
+The stochastic nature of regression analysis provides a more realistic framework for understanding real-world relationships between variables. By explicitly accounting for natural variation, regression analysis helps us:
+
+- Make more realistic predictions
+- Better understand the limitations of our models
+- Make more informed decisions
+
+
 ### Why Study Regression?
 
 Regression analysis is a fundamental statistical tool that helps us understand relationships between variables. Before diving into formulas and technical details, let's understand what questions regression can help us answer:
 
-- How much does each additional year of education affect someone's salary?
-- What is the relationship between advertising spending and sales?
-- How does temperature affect energy consumption?
-- Do study hours predict exam scores?
+-   How much does each additional year of education affect someone's salary?
+-   What is the relationship between advertising spending and sales?
+-   How does temperature affect energy consumption?
+-   Do study hours predict exam scores?
 
 These questions share a common structure: they all explore how changes in one variable relate to changes in another.
 
-::: {.callout-note}
+::: callout-note
 ## Understanding Linear Regression (OLS): Quickstart guide
+
+### The Model Concept
+
+OLS regression is a statistical model that describes the relationship between variables. Two key assumptions define this model:
+
+1.  The relationship can be described by a straight line (linearity)
+2.  The errors in our predictions are not systematically related to our x-variable (strict exogeneity)
+
+### Example: Education and Wages
+
+Consider studying the effect of education (x) on wages (y). Let's say we estimate:
+
+$$wages = \beta_0 + \beta_1 \cdot education + \epsilon$$
+
+The error term $\epsilon$ contains all other factors affecting wages. Strict exogeneity is violated if we omit an important variable like "ability" that affects both education and wages. Why? Because more able people tend to get more education AND higher wages, making our estimate of education's effect biased upward.
 
 ```{r}
 library(ggplot2)
@@ -839,34 +892,19 @@ ggplot(data, aes(x = x, y = y)) +
 
 ```
 
-### The Model Concept
-OLS regression is a statistical model that describes the relationship between variables. Two key assumptions define this model:
-
-1. The relationship can be described by a straight line (linearity)
-2. The errors in our predictions are not systematically related to our x-variable (strict exogeneity)
-
-### Example: Education and Wages
-Consider studying the effect of education (x) on wages (y). Let's say we estimate:
-
-$$wages = \beta_0 + \beta_1 \cdot education + \epsilon$$
-
-The error term $\epsilon$ contains all other factors affecting wages. Strict exogeneity is violated if we omit an important variable like "ability" that affects both education and wages. Why? Because more able people tend to get more education AND higher wages, making our estimate of education's effect biased upward.
-
-
 ### The Optimization Problem: Understanding OLS
 
 When we analyze relationships between variables like education and wages, we need a systematic method to find the line that best represents this relationship in our data. Ordinary Least Squares (OLS) provides this method through a clear mathematical approach.
 
 Consider our plot of education levels and wages. Each point represents actual data - one person's years of education and their corresponding wage. Our goal is to find a single line that most accurately captures the underlying relationship between these variables.
 
-For any given observation $i$, we can express this relationship as:
-$$y_i = \beta_0 + \beta_1x_i + \epsilon_i$$
+For any given observation $i$, we can express this relationship as: $$y_i = \beta_0 + \beta_1x_i + \epsilon_i$$
 
 Where:
 
-- $y_i$ is the actual observed wage
-- $\hat{y_i} = \beta_0 + \beta_1x_i$ is our predicted wage
-- $\epsilon_i = y_i - \hat{y_i}$ is the error term (or residual)
+-   $y_i$ is the actual observed wage
+-   $\hat{y_i} = \beta_0 + \beta_1x_i$ is our predicted wage
+-   $\epsilon_i = y_i - \hat{y_i}$ is the error term (or residual)
 
 OLS finds the optimal values for $\beta_0$ and $\beta_1$ by minimizing the sum of squared errors:
 
@@ -874,15 +912,15 @@ $$\min_{\beta_0, \beta_1} \sum \epsilon_i^2 = \min_{\beta_0, \beta_1} \sum(y_i -
 
 Looking at our visualization:
 
-- The scattered points show our actual observations $(x_i, y_i)$
-- The red line represents our fitted values $\hat{y_i}$ that minimize $\sum \epsilon_i^2$
-- The blue and green lines represent alternative fits with larger total squared errors
-- The vertical distances from each point to these lines represent the errors $\epsilon_i$
+-   The scattered points show our actual observations $(x_i, y_i)$
+-   The red line represents our fitted values $\hat{y_i}$ that minimize $\sum \epsilon_i^2$
+-   The blue and green lines represent alternative fits with larger total squared errors
+-   The vertical distances from each point to these lines represent the errors $\epsilon_i$
 
 The OLS solution provides us with parameter estimates $\hat{\beta_0}$ and $\hat{\beta_1}$ that minimize the total squared error, giving us the most accurate linear representation of the relationship between education and wages based on our available data.
 
-
 ### Finding the Best Line
+
 The solution to this minimization gives us:
 
 $$\hat{\beta}_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = \frac{cov(X, Y)}{var(X)}$$
@@ -891,35 +929,31 @@ $$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$$
 
 ### Key Points
 
-1. OLS finds the line that minimizes squared prediction errors
-2. This line is "best" in terms of fit, but might not capture true relationships if important variables are omitted
-3. In the education-wages example, omitting ability means we attribute all the wage increase to education alone
+1.  OLS finds the line that minimizes squared prediction errors
+2.  This line is "best" in terms of fit, but might not capture true relationships if important variables are omitted
+3.  In the education-wages example, omitting ability means we attribute all the wage increase to education alone
 :::
-
 
 ### Basic Concepts and Terminology
 
 Let's establish our key terms:
 
-- **Dependent Variable (Y)**: 
-  - The outcome we want to understand or predict
-  - Also called: response variable, target variable
-  - Examples: salary, sales, exam scores
-
-- **Independent Variable (X)**: 
-  - The variable we think influences Y
-  - Also called: predictor, explanatory variable, regressor
-  - Examples: years of education, advertising budget, study hours
-
-- **Population Parameters ($\beta$)**:
-  - The true underlying relationships we want to understand
-  - Usually unknown in practice
-  - Examples: $\beta_0$ (true intercept), $\beta_1$ (true slope)
-
-- **Parameter Estimates ($\hat{\beta}$)**:
-  - Our best guesses of the true parameters based on data
-  - Calculated from sample data
-  - Examples: $\hat{\beta}_0$ (estimated intercept), $\hat{\beta}_1$ (estimated slope)
+-   **Dependent Variable (Y)**:
+    -   The outcome we want to understand or predict
+    -   Also called: response variable, target variable
+    -   Examples: salary, sales, exam scores
+-   **Independent Variable (X)**:
+    -   The variable we think influences Y
+    -   Also called: predictor, explanatory variable, regressor
+    -   Examples: years of education, advertising budget, study hours
+-   **Population Parameters (**$\beta$):
+    -   The true underlying relationships we want to understand
+    -   Usually unknown in practice
+    -   Examples: $\beta_0$ (true intercept), $\beta_1$ (true slope)
+-   **Parameter Estimates (**$\hat{\beta}$):
+    -   Our best guesses of the true parameters based on data
+    -   Calculated from sample data
+    -   Examples: $\hat{\beta}_0$ (estimated intercept), $\hat{\beta}_1$ (estimated slope)
 
 ### The Core Idea
 
@@ -952,10 +986,9 @@ ggplot(data, aes(x = x, y = y)) +
 
 This plot shows the essence of regression:
 
-- Each point represents an observation (X, Y)
-- The line represents our best guess at the relationship
-- The spread of points around the line shows the uncertainty
-
+-   Each point represents an observation (X, Y)
+-   The line represents our best guess at the relationship
+-   The spread of points around the line shows the uncertainty
 
 ## The Linear Regression Model
 
@@ -967,9 +1000,9 @@ $$Y = \beta_0 + \beta_1X + \varepsilon$$
 
 where:
 
-- $\beta_0$ is the true population intercept
-- $\beta_1$ is the true population slope
-- $\varepsilon$ is the random error term
+-   $\beta_0$ is the true population intercept
+-   $\beta_1$ is the true population slope
+-   $\varepsilon$ is the random error term
 
 In practice, we work with sample data to estimate this relationship:
 
@@ -1025,9 +1058,9 @@ ggplot() +
 
 This visualization shows:
 
-- The true population line (black) we're trying to discover
-- Different sample estimates (dashed lines) based on different samples
-- How sample estimates vary around the true relationship
+-   The true population line (black) we're trying to discover
+-   Different sample estimates (dashed lines) based on different samples
+-   How sample estimates vary around the true relationship
 
 ## Key Assumptions of Linear Regression
 
@@ -1039,9 +1072,9 @@ $$E[\varepsilon|X] = 0$$
 
 This means:
 
-1. The error term has zero mean conditional on X
-2. X contains no information about the average error
-3. There are no systematic patterns in how our predictions are wrong
+1.  The error term has zero mean conditional on X
+2.  X contains no information about the average error
+3.  There are no systematic patterns in how our predictions are wrong
 
 Let's visualize when this assumption holds and when it doesn't:
 
@@ -1151,10 +1184,10 @@ ggplot(data_relationships, aes(x = x, y = y)) +
 
 When linearity is violated:
 
-1. Transform variables:
-   - Log transformation: for exponential relationships
-   - Square root: for moderate nonlinearity
-   - Power transformations: for more complex relationships
+1.  Transform variables:
+    -   Log transformation: for exponential relationships
+    -   Square root: for moderate nonlinearity
+    -   Power transformations: for more complex relationships
 
 ```{r}
 #| label: fig-transformations
@@ -1189,17 +1222,17 @@ p2 <- ggplot(data_trans, aes(x = x, y = log_y)) +
 gridExtra::grid.arrange(p1, p2, ncol = 2)
 ```
 
-::: {.callout-important}
+::: callout-important
 ## Understanding Ordinary Least Squares (OLS) Intuitively
 
 ### The Basic Problem
 
 Let's start with a real-world scenario: understanding how study time affects exam performance. We collect data from your class where:
 
-- Each student records their study hours ($x$), and their final exam score ($y$)
-- So student 1 might have studied $x_1 = 3$ hours and scored $y_1 = 75$ points
-- Student 2 might have studied $x_2 = 5$ hours and scored $y_2 = 82$ points
-- And so on for all $n$ students in the class
+-   Each student records their study hours ($x$), and their final exam score ($y$)
+-   So student 1 might have studied $x_1 = 3$ hours and scored $y_1 = 75$ points
+-   Student 2 might have studied $x_2 = 5$ hours and scored $y_2 = 82$ points
+-   And so on for all $n$ students in the class
 
 Our goal is to find a straight line that best describes this relationship. We're trying to estimate the true relationship (which we never know exactly) using our sample of data. Let's explore this step by step.
 
@@ -1231,9 +1264,9 @@ $y = \hat{\beta}_0 + \hat{\beta}_1x$
 
 Where:
 
-- $\hat{\beta}_0$ is our estimate of the y-intercept (the predicted score for zero study hours)
-- $\hat{\beta}_1$ is our estimate of the slope (how many points you gain per extra hour of study)
-- The hats (^) indicate these are our estimates of the true (unknown) parameters $\beta_0$ and $\beta_1$
+-   $\hat{\beta}_0$ is our estimate of the y-intercept (the predicted score for zero study hours)
+-   $\hat{\beta}_1$ is our estimate of the slope (how many points you gain per extra hour of study)
+-   The hats (\^) indicate these are our estimates of the true (unknown) parameters $\beta_0$ and $\beta_1$
 
 Let's look at three possible lines through our data:
 
@@ -1256,9 +1289,9 @@ ggplot(data, aes(x = study_hours, y = exam_scores)) +
 
 Here's where the magic of OLS begins. For each student in our data:
 
-1. We look at their actual exam score ($y_i$)
-2. We calculate their predicted score using our line ($\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1x_i$)
-3. The difference between these is called a residual:
+1.  We look at their actual exam score ($y_i$)
+2.  We calculate their predicted score using our line ($\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1x_i$)
+3.  The difference between these is called a residual:
 
 $\text{residual}_i = y_i - \hat{y}_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
 
@@ -1288,22 +1321,20 @@ This is a crucial concept! Let's walk through it with a simple example:
 
 Imagine we have just two students:
 
-1. Alice: Predicted 80, actual score 85 (residual = +5)
-2. Bob: Predicted 90, actual score 85 (residual = -5)
+1.  Alice: Predicted 80, actual score 85 (residual = +5)
+2.  Bob: Predicted 90, actual score 85 (residual = -5)
 
-If we just add these residuals:
-$(+5) + (-5) = 0$
+If we just add these residuals: $(+5) + (-5) = 0$
 
 This would suggest our line is perfect (total error = 0), but we know it's not! Both predictions were off by 5 points.
 
 Solution: Square the residuals before adding them:
 
-- Alice's squared residual: $(+5)^2 = 25$
-- Bob's squared residual: $(-5)^2 = 25$
-- Total squared error: $25 + 25 = 50$
+-   Alice's squared residual: $(+5)^2 = 25$
+-   Bob's squared residual: $(-5)^2 = 25$
+-   Total squared error: $25 + 25 = 50$
 
-This gives us a much better measure of how wrong our predictions are! 
-
+This gives us a much better measure of how wrong our predictions are!
 
 ### Sum of Squared Errors (SSE)
 
@@ -1313,22 +1344,22 @@ $$SSE = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$$
 
 where:
 
-- $y_i$ represents the actual value of the dependent variable for the i-th observation
-- $\hat{\beta}_0$ represents the estimated intercept (Y-axis intersection point)
-- $\hat{\beta}_1$ represents the estimated slope coefficient
-- $x_i$ represents the value of the independent variable for the i-th observation
+-   $y_i$ represents the actual value of the dependent variable for the i-th observation
+-   $\hat{\beta}_0$ represents the estimated intercept (Y-axis intersection point)
+-   $\hat{\beta}_1$ represents the estimated slope coefficient
+-   $x_i$ represents the value of the independent variable for the i-th observation
 
 The process of calculating SSE follows these methodical steps:
 
-1. For each observation, we calculate the difference between the actual value ($y_i$) and the value predicted by our model ($\hat{\beta}_0 + \hat{\beta}_1x_i$). This difference is termed the residual.
+1.  For each observation, we calculate the difference between the actual value ($y_i$) and the value predicted by our model ($\hat{\beta}_0 + \hat{\beta}_1x_i$). This difference is termed the residual.
 
-2. We square each residual, which produces several important effects:
+2.  We square each residual, which produces several important effects:
 
-- All values become positive, eliminating the possibility of negative and positive errors canceling each other out
-- Larger errors receive proportionally greater weight than smaller ones
-- The units of measurement become squared
+-   All values become positive, eliminating the possibility of negative and positive errors canceling each other out
+-   Larger errors receive proportionally greater weight than smaller ones
+-   The units of measurement become squared
 
-3. We sum all these squared residuals, producing a single number that represents the model's total error.
+3.  We sum all these squared residuals, producing a single number that represents the model's total error.
 
 **The interpretation of SSE is straightforward: a smaller SSE indicates better model fit to the empirical data.**
 
@@ -1337,7 +1368,6 @@ An SSE value of 0 would indicate perfect fit, where all points lie exactly on th
 SSE serves as the foundation for calculating other important measures of model fit quality, such as the coefficient of determination (R²) and the standard error of estimate. It provides a quantitative basis for comparing different models and assessing the accuracy of our predictions.
 
 Understanding SSE is crucial for model evaluation and refinement, as it helps identify how well our model captures the underlying patterns in our data while avoiding the pitfalls of both underfitting and overfitting.
-
 
 ```{r}
 # Compare good vs bad fit
@@ -1368,24 +1398,23 @@ ggplot(data, aes(x = study_hours, y = exam_scores)) +
 
 Let's break down the name:
 
-- "Squares": We square the residuals
-- "Least": We want the smallest possible total
-- "Ordinary": This is the basic version (there are fancier versions!)
+-   "Squares": We square the residuals
+-   "Least": We want the smallest possible total
+-   "Ordinary": This is the basic version (there are fancier versions!)
 
 The OLS line has some nice properties:
 
-1. The mean of all residuals equals zero
-2. The line always passes through the point ($\bar{x}$, $\bar{y}$) - the average study hours and average score
-3. Small changes in the data lead to small changes in the line (it's "stable")
-4. Our estimates $\hat{\beta}_0$ and $\hat{\beta}_1$ are the best possible estimates of the true parameters $\beta_0$ and $\beta_1$
+1.  The mean of all residuals equals zero
+2.  The line always passes through the point ($\bar{x}$, $\bar{y}$) - the average study hours and average score
+3.  Small changes in the data lead to small changes in the line (it's "stable")
+4.  Our estimates $\hat{\beta}_0$ and $\hat{\beta}_1$ are the best possible estimates of the true parameters $\beta_0$ and $\beta_1$
 
 ### Important Notes
 
-1. The hat notation ($\hat{\beta}_0$, $\hat{\beta}_1$) reminds us that we're estimating the true relationship from our sample. We never know the true $\beta_0$ and $\beta_1$ - we can only estimate them from our data.
+1.  The hat notation ($\hat{\beta}_0$, $\hat{\beta}_1$) reminds us that we're estimating the true relationship from our sample. We never know the true $\beta_0$ and $\beta_1$ - we can only estimate them from our data.
 
-2. OLS gives us the best possible estimates when certain conditions are met (like having randomly sampled data and a truly linear relationship).
+2.  OLS gives us the best possible estimates when certain conditions are met (like having randomly sampled data and a truly linear relationship).
 :::
-
 
 ## Assessing Model Fit
 
@@ -1397,49 +1426,70 @@ $$\underbrace{\sum_{i=1}^n (Y_i - \bar{Y})^2}_{SST} = \underbrace{\sum_{i=1}^n (
 
 where:
 
-- SST (Total Sum of Squares): Total variation in Y
-- SSR (Regression Sum of Squares): Variation explained by regression
-- SSE (Error Sum of Squares): Unexplained variation
-
+-   SST (Total Sum of Squares): Total variation in Y
+-   SSR (Regression Sum of Squares): Variation explained by regression
+-   SSE (Error Sum of Squares): Unexplained variation
 
 ### Understanding the Three Types of Variation
 
-1. **Total Variation (SST)** 
-   - Question: "How much do observations vary from the mean?"
-   - Formula: $SST = \sum(y_i - \bar{y})^2$
-   - Intuition: The "spread" of our data around its average
+1.  **Total Variation (SST)**
+    -   Question: "How much do observations vary from the mean?"
+    -   Formula: $SST = \sum(y_i - \bar{y})^2$
+    -   Intuition: The "spread" of our data around its average
+2.  **Explained Variation (SSR)**
+    -   Question: "How much of the variation did our model explain?"
+    -   Formula: $SSR = \sum(\hat{y}_i - \bar{y})^2$
+    -   Intuition: The improvement we gained by using X
+3.  **Unexplained Variation (SSE)**
+    -   Question: "What variation remains unexplained?"
+    -   Formula: $SSE = \sum(y_i - \hat{y}_i)^2$
+    -   Intuition: The errors that remain after using X
 
-2. **Explained Variation (SSR)**
-   - Question: "How much of the variation did our model explain?"
-   - Formula: $SSR = \sum(\hat{y}_i - \bar{y})^2$
-   - Intuition: The improvement we gained by using X
-
-3. **Unexplained Variation (SSE)**
-   - Question: "What variation remains unexplained?"
-   - Formula: $SSE = \sum(y_i - \hat{y}_i)^2$
-   - Intuition: The errors that remain after using X
-
-
-::: {.callout-note}
+::: callout-note
 ## Understanding Variance Decomposition in Linear Regression
 
-### Why It Matters: Improving Predictions with Extra Information
+### Why It Matters: Understanding Prediction Improvement Through Additional Variables
 
-Imagine you're trying to predict house prices. A simple way to make predictions is by using the average price of all houses. But what if you know additional details, like the size of the house? Would that help improve your predictions? **Variance decomposition** helps us measure exactly how much better our predictions are when we include more information, like house size.
+In statistical analysis and modeling, we frequently encounter situations where we must assess the value of incorporating additional predictor variables. Consider the domain of real estate valuation: While one could estimate property values using the market-wide average price, incorporating specific property characteristics, such as square footage, can substantially enhance prediction accuracy. **Variance decomposition** provides a rigorous framework for quantifying the incremental improvement in predictive accuracy when we incorporate such additional variables.
 
-### The Process: From a Simple Guess to a Smarter Prediction
+### The Analytical Process: From Baseline to Enhanced Predictions
 
-#### Step 1: Starting with the Average
-- **What’s our first guess?** The mean of all house prices ($\bar{y}$).
-- Think of this as your "uninformed guess."
-- For every house, we predict the same price (the average), which leads to our **baseline errors**.
+#### Initial Estimation: The Unconditional Mean
 
-#### Step 2: Using Extra Information
-- We now use additional information (like house size, $X$) to refine our predictions.
-- This allows us to make **different predictions** for each house.
-- The errors we make after including this information are usually smaller.
+The analytical process begins with the simplest possible predictor: the mean of all observed values ($\bar{y}$). This represents our initial estimation in the absence of any predictor variables. When we employ this method, we assign the same value—the overall mean—to each observation, resulting in what we term **baseline deviations**.
 
-### Visualizing Variance Decomposition
+#### Enhanced Prediction: Incorporating Predictor Variables
+
+By introducing predictor variables (denoted as $X$ in our figure), we refine our initial estimates. This enhancement enables us to generate distinct predictions for each observation, typically resulting in substantially reduced prediction errors, as illustrated in the figure below.
+
+### Components of Statistical Variation
+
+Our figure illustrates three fundamental components of variation:
+
+1.  **Total Sum of Squares (SST)**
+
+    -   **Statistical Inquiry:** What is the aggregate deviation of observations from their mean?
+    -   **Mathematical Expression:** $SST = \sum(y_i - \bar{y})^2$
+    -   **Graphical Representation:** Depicted by the purple vertical lines in the figure
+    -   **Statistical Interpretation:** Represents the total variability present in the observed data prior to any modeling
+
+2.  **Regression Sum of Squares (SSR)**
+
+    -   **Statistical Inquiry:** What proportion of variation does our model successfully capture?
+    -   **Mathematical Expression:** $SSR = \sum(\hat{y}_i - \bar{y})^2$
+    -   **Graphical Representation:** Illustrated by the green dashed lines in the figure
+    -   **Statistical Interpretation:** Quantifies the reduction in uncertainty achieved through the incorporation of predictor variables
+
+3.  **Error Sum of Squares (SSE)**
+
+    -   **Statistical Inquiry:** What residual variation persists after model implementation?
+    -   **Mathematical Expression:** $SSE = \sum(y_i - \hat{y}_i)^2$
+    -   **Graphical Representation:** Shown by the orange dashed lines in the figure
+    -   **Statistical Interpretation:** Represents the remaining unexplained variation after accounting for all predictor variables
+
+This decomposition provides a formal framework for assessing the effectiveness of our predictive model and the value of including additional variables.
+
+#### Visualizing Variance Decomposition
 
 ```{r}
 #| fig.width: 12
@@ -1556,26 +1606,6 @@ combined_plot <- (p1 / p2) +
 combined_plot
 ```
 
-### Breaking Down the Types of Variation
-
-1. **Total Variation (SST)**  
-   - **Question:** How much do the data points vary from the mean?
-   - **Formula:** $SST = \sum(y_i - \bar{y})^2$
-   - **Visual:** Purple points in the plot
-   - **Intuition:** This is the overall "spread" of the data around its average.
-
-2. **Explained Variation (SSR)**  
-   - **Question:** How much of the variation can our model explain?
-   - **Formula:** $SSR = \sum(\hat{y}_i - \bar{y})^2$
-   - **Visual:** Green dashed lines in the plot
-   - **Intuition:** This is the improvement we get from including additional information (like house size).
-
-3. **Unexplained Variation (SSE)**  
-   - **Question:** How much variation is left unexplained after using the model?
-   - **Formula:** $SSE = \sum(y_i - \hat{y}_i)^2$
-   - **Visual:** Orange dashed lines in the plot
-   - **Intuition:** These are the errors remaining after our model has made predictions.
-
 ### What is R²?
 
 $R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$
@@ -1583,40 +1613,36 @@ $R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$
 Think of $R^2$ as answering: "What percentage of the original variation in the data can we explain using our model?"
 
 #### Examples of $R^2$ Values:
-- **$R^2 = 0.80$**: Our model explains 80% of the variation in house prices.
-- **$R^2 = 0.25$**: Our model explains 25% of the variation (a weaker model).
-- **$R^2 = 0.00$**: Our model explains none of the variation (not helpful).
+
+-   $R^2 = 0.80$: Our model explains 80% of the variation in house prices.
+-   $R^2 = 0.25$: Our model explains 25% of the variation (a weaker model).
+-   $R^2 = 0.00$: Our model explains none of the variation (not helpful).
 
 ### Important Things to Remember About R²
 
-1. **High $R^2$ Isn’t Always Good**
-   - A very high $R^2$ could suggest **overfitting**. Your model might be too complex, capturing noise rather than real patterns.
-   - Always **interpret $R^2$ in the context** of your data.
-
-2. **Low $R^2$ Isn’t Always Bad**
-   - In some fields (like social sciences), a low $R^2$ can still be useful.
-   - Focus on **practical significance**, not just the $R^2$ value.
-
-3. **Consider Sample Size**
-   - For multiple regression models, use **adjusted $R^2$** to account for the number of predictors.
-   - Formula: $R^2_{adj} = 1 - \frac{SSE/(n-p)}{SST/(n-1)}$
+1.  **High** $R^2$ Isn’t Always Good
+    -   A very high $R^2$ could suggest **overfitting**. Your model might be too complex, capturing noise rather than real patterns.
+    -   Always **interpret** $R^2$ in the context of your data.
+2.  **Low** $R^2$ Isn’t Always Bad
+    -   In some fields (like social sciences), a low $R^2$ can still be useful.
+    -   Focus on **practical significance**, not just the $R^2$ value.
+3.  **Consider Sample Size**
+    -   For multiple regression models, use **adjusted** $R^2$ to account for the number of predictors.
+    -   Formula: $R^2_{adj} = 1 - \frac{SSE/(n-p)}{SST/(n-1)}$
 
 ### Tips for Effective Analysis
 
-1. **Visualize the Data**  
-   - Plot your data and residuals to spot patterns.
-   - **Check for influential points** that could skew your results.
-
-2. **Understand Your Field’s Context**  
-   - What’s considered a good $R^2$ value in your field?
-   - What’s the **practical impact** of the errors you're seeing?
-
-3. **Run Diagnostics**  
-   - Check residuals for normality.
-   - Look for **heteroscedasticity** (changing variability of errors).
-   - Watch for **influential data points** that affect the model’s accuracy.
+1.  **Visualize the Data**
+    -   Plot your data and residuals to spot patterns.
+    -   **Check for influential points** that could skew your results.
+2.  **Understand Your Field’s Context**
+    -   What’s considered a good $R^2$ value in your field?
+    -   What’s the **practical impact** of the errors you're seeing?
+3.  **Run Diagnostics**
+    -   Check residuals for normality.
+    -   Look for **heteroscedasticity** (changing variability of errors).
+    -   Watch for **influential data points** that affect the model’s accuracy.
 :::
-
 
 ### R² Demystified
 
@@ -1625,76 +1651,67 @@ $$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
 Think of R² as answering the question: "What percentage of the original variation in Y can we explain using X?"
 
 #### Intuitive Examples:
-- R² = 0.80: Using X eliminated 80% of our prediction errors
-- R² = 0.25: Using X eliminated 25% of our prediction errors
-- R² = 0.00: Using X didn't help at all
+
+-   R² = 0.80: Using X eliminated 80% of our prediction errors
+-   R² = 0.25: Using X eliminated 25% of our prediction errors
+-   R² = 0.00: Using X didn't help at all
 
 ### When to Be Cautious
 
-1. **High R² Isn't Everything**
-   - A high R² might indicate overfitting
-   - Always check if your model makes practical sense
-   - Consider the context of your field
-
-2. **Low R² Isn't Always Bad**
-   - In some fields, R² = 0.30 might be impressive
-   - Social sciences often have lower R² values
-   - Focus on practical significance
-
+1.  **High R² Isn't Everything**
+    -   A high R² might indicate overfitting
+    -   Always check if your model makes practical sense
+    -   Consider the context of your field
+2.  **Low R² Isn't Always Bad**
+    -   In some fields, R² = 0.30 might be impressive
+    -   Social sciences often have lower R² values
+    -   Focus on practical significance
 
 ### Practical Tips for Analysis
 
-1. **Visual Inspection**
-   - Always plot your data
-   - Look for patterns in residuals
-   - Check for influential points
-
-2. **Context Consideration**
-   - What's a "good" R² in your field?
-   - What's the practical impact of your errors?
-   - Are your predictors meaningful?
-
-3. **Model Diagnostics**
-   - Check residual normality
-   - Look for heteroscedasticity
-   - Examine influential points
+1.  **Visual Inspection**
+    -   Always plot your data
+    -   Look for patterns in residuals
+    -   Check for influential points
+2.  **Context Consideration**
+    -   What's a "good" R² in your field?
+    -   What's the practical impact of your errors?
+    -   Are your predictors meaningful?
+3.  **Model Diagnostics**
+    -   Check residual normality
+    -   Look for heteroscedasticity
+    -   Examine influential points
 
 ### Key Takeaways
 
-1. Variance decomposition helps us understand prediction improvement
-2. R² quantifies the proportion of variance explained
-3. Visual understanding is crucial for interpretation
-4. Context matters more than absolute R² values
-5. Always combine R² with other diagnostic tools
-
+1.  Variance decomposition helps us understand prediction improvement
+2.  R² quantifies the proportion of variance explained
+3.  Visual understanding is crucial for interpretation
+4.  Context matters more than absolute R² values
+5.  Always combine R² with other diagnostic tools
 
 ### Measures of Fit
 
-1. **R-squared ($R^2$)**:
-   $$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
+1.  **R-squared (**$R^2$): $$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
 
-2. **Root Mean Square Error (RMSE)**:
-   $$RMSE = \sqrt{\frac{SSE}{n}}$$
+2.  **Root Mean Square Error (RMSE)**: $$RMSE = \sqrt{\frac{SSE}{n}}$$
 
-3. **Mean Absolute Error (MAE)**:
-   $$MAE = \frac{1}{n}\sum_{i=1}^n |Y_i - \hat{Y}_i|$$
+3.  **Mean Absolute Error (MAE)**: $$MAE = \frac{1}{n}\sum_{i=1}^n |Y_i - \hat{Y}_i|$$
 
-
-
-::: {.callout-warning}
+::: callout-warning
 ## Formal Derivation of OLS Estimators: Step-by-Step Approach
 
 ### Initial Setup
 
-We seek to minimize the sum of squared residuals:
+We seek to minimize the sum of squared residuals (errors):
 
-$SSR = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
+$SSE = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
 
 Let's break this into manageable pieces:
 
-1. Each residual is: $e_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
-2. We square each residual: $e_i^2 = (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
-3. Sum them all: $SSR = \sum_{i=1}^n e_i^2$
+1.  Each residual is: $e_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
+2.  We square each residual: $e_i^2 = (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
+3.  Sum them all: $SSE = \sum_{i=1}^n e_i^2$
 
 ### Chain Rule Review
 
@@ -1704,101 +1721,80 @@ $\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)$
 
 In our case, we're dealing with the square function $f(u) = u^2$, where:
 
-- $f'(u) = 2u$
-- $u = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
+-   $f'(u) = 2u$
+-   $u = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
 
 ### Step 1: Finding $\hat{\beta}_0$ Using First Derivative
 
 Let's take the partial derivative with respect to $\hat{\beta}_0$ step by step:
 
-1. Start with one term of the sum:
+1.  Start with one term of the sum:
 
-   $\frac{\partial}{\partial \hat{\beta}_0}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
+    $\frac{\partial}{\partial \hat{\beta}_0}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
 
-2. Apply chain rule:
+2.  Apply chain rule:
 
-   - Outer function: $f(u) = u^2$, so $f'(u) = 2u$
-   - Inner function: $g(\hat{\beta}_0) = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
-   - Inner derivative: $g'(\hat{\beta}_0) = -1$
+    -   Outer function: $f(u) = u^2$, so $f'(u) = 2u$
+    -   Inner function: $g(\hat{\beta}_0) = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
+    -   Inner derivative: $g'(\hat{\beta}_0) = -1$
 
-3. Therefore, for each term:
-   $\frac{\partial}{\partial \hat{\beta}_0}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2 = 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-1)$
+3.  Therefore, for each term: $\frac{\partial}{\partial \hat{\beta}_0}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2 = 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-1)$
 
-4. Now sum all terms and set to zero:
-   $\sum_{i=1}^n 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-1) = 0$
+4.  Now sum all terms and set to zero: $\sum_{i=1}^n 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-1) = 0$
 
-5. Simplify:
-   $-2\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i) = 0$
+5.  Simplify: $-2\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i) = 0$
 
-6. Remove the -2:
-   $\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i) = 0$
+6.  Remove the -2: $\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i) = 0$
 
-7. Expand the sum:
-   $\sum_{i=1}^n y_i - n\hat{\beta}_0 - \hat{\beta}_1\sum_{i=1}^n x_i = 0$
+7.  Expand the sum: $\sum_{i=1}^n y_i - n\hat{\beta}_0 - \hat{\beta}_1\sum_{i=1}^n x_i = 0$
 
-8. Solve for $\hat{\beta}_0$:
-   $n\hat{\beta}_0 = \sum_{i=1}^n y_i - \hat{\beta}_1\sum_{i=1}^n x_i$
-   
-   $\hat{\beta}_0 = \frac{\sum_{i=1}^n y_i}{n} - \hat{\beta}_1\frac{\sum_{i=1}^n x_i}{n}$
-   
-   $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$
+8.  Solve for $\hat{\beta}_0$: $n\hat{\beta}_0 = \sum_{i=1}^n y_i - \hat{\beta}_1\sum_{i=1}^n x_i$
 
+    $\hat{\beta}_0 = \frac{\sum_{i=1}^n y_i}{n} - \hat{\beta}_1\frac{\sum_{i=1}^n x_i}{n}$
+
+    $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$
 
 ### Step 2: Finding $\hat{\beta}_1$ Using First Derivative
 
 Now let's find $\hat{\beta}_1$ with the same careful approach:
 
-1. For one term:
-   $\frac{\partial}{\partial \hat{\beta}_1}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
+1.  For one term: $\frac{\partial}{\partial \hat{\beta}_1}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2$
 
-2. Apply chain rule:
+2.  Apply chain rule:
 
-   - Outer function: $f(u) = u^2$, so $f'(u) = 2u$
-   - Inner function: $g(\hat{\beta}_1) = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
-   - Inner derivative: $g'(\hat{\beta}_1) = -x_i$
+    -   Outer function: $f(u) = u^2$, so $f'(u) = 2u$
+    -   Inner function: $g(\hat{\beta}_1) = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)$
+    -   Inner derivative: $g'(\hat{\beta}_1) = -x_i$
 
-3. Therefore:
-   $\frac{\partial}{\partial \hat{\beta}_1}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2 = 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-x_i)$
+3.  Therefore: $\frac{\partial}{\partial \hat{\beta}_1}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2 = 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-x_i)$
 
-4. Sum all terms and set to zero:
-   $\sum_{i=1}^n 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-x_i) = 0$
+4.  Sum all terms and set to zero: $\sum_{i=1}^n 2(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))(-x_i) = 0$
 
-5. Simplify:
-   $-2\sum_{i=1}^n x_i(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i) = 0$
+5.  Simplify: $-2\sum_{i=1}^n x_i(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i) = 0$
 
-6. Substitute $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$:
-   $-2\sum_{i=1}^n x_i(y_i - (\bar{y} - \hat{\beta}_1\bar{x}) - \hat{\beta}_1x_i) = 0$
+6.  Substitute $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$: $-2\sum_{i=1}^n x_i(y_i - (\bar{y} - \hat{\beta}_1\bar{x}) - \hat{\beta}_1x_i) = 0$
 
-7. Expand:
-   $-2\sum_{i=1}^n x_i(y_i - \bar{y} + \hat{\beta}_1\bar{x} - \hat{\beta}_1x_i) = 0$
+7.  Expand: $-2\sum_{i=1}^n x_i(y_i - \bar{y} + \hat{\beta}_1\bar{x} - \hat{\beta}_1x_i) = 0$
 
-8. Distribute $x_i$:
-   $-2\sum_{i=1}^n (x_iy_i - x_i\bar{y} + x_i\hat{\beta}_1\bar{x} - x_i^2\hat{\beta}_1) = 0$
+8.  Distribute $x_i$: $-2\sum_{i=1}^n (x_iy_i - x_i\bar{y} + x_i\hat{\beta}_1\bar{x} - x_i^2\hat{\beta}_1) = 0$
 
-9. Collect terms with $\hat{\beta}_1$:
-   $\sum_{i=1}^n (x_i^2\hat{\beta}_1 - x_i\hat{\beta}_1\bar{x}) = \sum_{i=1}^n (x_iy_i - x_i\bar{y})$
+9.  Collect terms with $\hat{\beta}_1$: $\sum_{i=1}^n (x_i^2\hat{\beta}_1 - x_i\hat{\beta}_1\bar{x}) = \sum_{i=1}^n (x_iy_i - x_i\bar{y})$
 
-10. Factor out $\hat{\beta}_1$:
-    $\hat{\beta}_1\sum_{i=1}^n (x_i^2 - x_i\bar{x}) = \sum_{i=1}^n (x_iy_i - x_i\bar{y})$
+10. Factor out $\hat{\beta}_1$: $\hat{\beta}_1\sum_{i=1}^n (x_i^2 - x_i\bar{x}) = \sum_{i=1}^n (x_iy_i - x_i\bar{y})$
 
-11. Final form:
-    $\hat{\beta}_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}$
+11. Final form: $\hat{\beta}_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}$
 
 ### Step 3: Verifying We Have a Minimum
 
 To confirm these critical points are minima, we check the second derivatives:
 
-1. Second derivative with respect to $\hat{\beta}_0$:
-   $\frac{\partial^2 SSR}{\partial \hat{\beta}_0^2} = \frac{\partial}{\partial \hat{\beta}_0}(-2\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)) = 2n > 0$
+1.  Second derivative with respect to $\hat{\beta}_0$: $\frac{\partial^2 SSE}{\partial \hat{\beta}_0^2} = \frac{\partial}{\partial \hat{\beta}_0}(-2\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)) = 2n > 0$
 
-2. Second derivative with respect to $\hat{\beta}_1$:
-   $\frac{\partial^2 SSR}{\partial \hat{\beta}_1^2} = \frac{\partial}{\partial \hat{\beta}_1}(-2\sum_{i=1}^n x_i(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)) = 2\sum_{i=1}^n x_i^2 > 0$
+2.  Second derivative with respect to $\hat{\beta}_1$: $\frac{\partial^2 SSE}{\partial \hat{\beta}_1^2} = \frac{\partial}{\partial \hat{\beta}_1}(-2\sum_{i=1}^n x_i(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)) = 2\sum_{i=1}^n x_i^2 > 0$
 
-3. Cross partial derivatives:
-   $\frac{\partial^2 SSR}{\partial \hat{\beta}_0\partial \hat{\beta}_1} = \frac{\partial^2 SSR}{\partial \hat{\beta}_1\partial \hat{\beta}_0} = 2\sum_{i=1}^n x_i$
+3.  Cross partial derivatives: $\frac{\partial^2 SSE}{\partial \hat{\beta}_0\partial \hat{\beta}_1} = \frac{\partial^2 SSE}{\partial \hat{\beta}_1\partial \hat{\beta}_0} = 2\sum_{i=1}^n x_i$
 
-4. The Hessian matrix is positive definite:
-   $\mathbf{H} = \begin{bmatrix} 2n & 2\sum x_i \\ 2\sum x_i & 2\sum x_i^2 \end{bmatrix}$
+4.  The Hessian matrix is positive definite: $\mathbf{H} = \begin{bmatrix} 2n & 2\sum x_i \\ 2\sum x_i & 2\sum x_i^2 \end{bmatrix}$
 
 This confirms we have found a minimum.
 
@@ -1835,159 +1831,103 @@ ggplot(data, aes(x = x, y = y)) +
 
 ### Key Insights
 
-1. The chain rule is crucial in deriving both estimators
-2. $\hat{\beta}_0$ ensures the line goes through $(\bar{x}, \bar{y})$
-3. $\hat{\beta}_1$ is a ratio of covariance to variance
-4. The second derivatives confirm we've found a minimum
-5. The entire process relies on calculus to find the optimal values that minimize the sum of squared residuals
+1.  The chain rule is crucial in deriving both estimators
+2.  $\hat{\beta}_0$ ensures the line goes through $(\bar{x}, \bar{y})$
+3.  $\hat{\beta}_1$ is a ratio of covariance to variance
+4.  The second derivatives confirm we've found a minimum
+5.  The entire process relies on calculus to find the optimal values that minimize the sum of squared residuals
 :::
 
+::: callout-note
+## Understanding Endogeneity in Regression
 
+Endogeneity is a critical concept in statistical analysis that occurs when an explanatory variable in a regression model is correlated with the error term. This creates challenges for accurately understanding cause-and-effect relationships in research. Let's examine the three main types of endogeneity and how they affect research outcomes.
 
-::: {.callout-note}
-### Understanding Endogeneity
+### 1. Omitted Variable Bias (OVB)
 
-Think of endogeneity as a "hidden relationship problem" in your analysis. It's like trying to solve a puzzle while some pieces are affecting each other in ways you can't see directly. In technical terms, endogeneity occurs when an explanatory variable in a regression model is correlated with the error term, but let's understand this intuitively!
+Omitted Variable Bias occurs when an important variable that affects both the dependent and independent variables is left out of the analysis. This omission leads to incorrect conclusions about the relationship between the variables we're studying.
 
-1. Omitted Variable Bias (OVB)
+Consider a study examining the relationship between education and income:
 
-Think of it like trying to understand why some plants grow taller than others, and you only measure the amount of water they receive. But you forgot about sunlight, which affects both how much water the plant needs AND how tall it grows!
+**Example: Education and Income**
+The observed relationship shows that more education correlates with higher income. However, an individual's inherent abilities affect both their educational attainment and their earning potential. Without accounting for ability, we may overestimate education's direct effect on income.
 
-**Real-Life Example: Education and Income**
+The statistical representation shows why this matters:
 
-* What we see: More education → Higher income
-* What we might miss: Natural talent/ability
-  - Affects how long people stay in school
-  - Affects how much they can earn
-* Result: We might overestimate how much education helps
+$y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \epsilon_i$ (Complete model)
 
-**The Math Behind It**:
+$y_i = \beta_0 + \beta_1x_i + u_i$ (Incomplete model)
 
-* True picture: $y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \epsilon_i$  
-* What we actually estimate: $y_i = \beta_0 + \beta_1x_i + u_i$  
-* Think of it like a recipe: If you forget an important ingredient (z), your final dish (y) won't turn out as expected!
+When we omit an important variable, our estimates of the remaining relationships become biased and unreliable.
 
-2. Simultaneity (Reverse Causation)
+### 2. Simultaneity
 
-Remember the chicken and egg problem? Sometimes two things affect each other at the same time. Here are some examples you might encounter:
+Simultaneity occurs when two variables simultaneously influence each other, making it difficult to determine the direction of causation. This creates a feedback loop that complicates statistical analysis.
 
-**a) The Study Hours Puzzle**
+**Common Examples of Simultaneity:**
 
-* Do better grades lead to studying more?
-* Or does studying more lead to better grades?
-* Actually... both! They affect each other
+Academic Performance and Study Habits represent a clear case of simultaneity. Academic performance influences how much time students dedicate to studying, while study time affects academic performance. This two-way relationship makes it challenging to measure the isolated effect of either variable.
 
-**b) The Social Media Effect**
+Market Dynamics provide another example. Prices influence demand, while demand influences prices. This concurrent relationship requires special analytical approaches to understand the true relationships.
 
-* More followers → More posts
-* More posts → More followers
-* It's a continuous cycle!
+### 3. Measurement Error
 
-**c) The Exercise-Energy Cycle**
+Measurement error occurs when we cannot accurately measure our variables of interest. This imprecision can significantly impact our analysis and conclusions.
 
-* More exercise → More energy
-* More energy → More likely to exercise
-* Think of it like two friends pushing each other on swings!
+**Common Sources of Measurement Error:**
 
-3. Measurement Error
+Self-Reported Data presents a significant challenge. When participants report their own behaviors or characteristics, such as study time, the reported values often differ from actual values. This discrepancy affects our ability to measure true relationships.
 
-Imagine trying to measure your height while standing on an uneven floor - your measurements won't be quite right! Here's how this shows up in real life:
+Technical Limitations also contribute to measurement error through imprecise measuring tools, inconsistent measurement conditions, and recording or data entry errors.
 
-**Examples You'll Recognize:**
+### Addressing Endogeneity in Research
 
-* Self-Reported Study Time
-  - "I study 5 hours a day" might really mean 3-4 hours
-  - Makes it hard to know true impact on grades
-* Fitness App Tracking
-  - App says you burned 500 calories
-  - Actually might be 400 or 600
-  - Affects analysis of exercise impact
-  
+#### Identification Strategies
 
-#### How to Spot These Problems in Your Own Research?
-
-**1. For Omitted Variables, Ask:**
-
-* What else could affect both variables?
-* Am I missing any obvious factors?
-* What would my parents/friends say influences this?
-
-**2. For Simultaneity, Consider:**
-
-* Could A cause B, or could B cause A?
-* Might they affect each other?
-* What happened first? (if you can tell)
-
-**3. For Measurement Error, Think:**
-
-* How accurate are my measurements?
-* Are people likely to report truthfully?
-* What might cause measurement problems?
-
-**Simple Solutions**
-
-**1. For Omitted Variables:**
 ```{r}
-# Instead of:
-# simple_model <- lm(grades ~ study_hours)
+#| eval: false
+#| echo: true
 
-# Try:
-# better_model <- lm(grades ~ study_hours + sleep_hours + stress_level + prior_knowledge)
+# Example of controlling for omitted variables
+model_simple <- lm(income ~ education, data = df)
+model_full <- lm(income ~ education + ability + experience + region, data = df)
+
+# Compare coefficients
+summary(model_simple)
+summary(model_full)
 ```
 
-**2. For Simultaneity:**
+1. Include Additional Variables: Collect data on potentially important omitted variables and include relevant control variables in your analysis. For example, including measures of ability when studying education's effect on income.
 
-* Look for "external" factors that affect only one variable
-* Consider time lags
-* Use natural experiments when possible
+2. Use Panel Data: Collect data across multiple time periods to control for unobserved fixed characteristics and analyze changes over time.
 
-**3. For Measurement Error:**
+3. Instrumental Variables: Find variables that affect your independent variable but not your dependent variable to isolate the relationship of interest.
 
-* Use multiple measurements
-* Find more reliable data sources
-* Acknowledge uncertainty in your conclusions
+#### Improving Measurement
 
-#### Key Takeaways for Students
+1. Multiple Measurements: Take several measurements of key variables, use averaging to reduce random error, and compare different measurement methods.
 
-1. **Reality is Complex**
+2. Better Data Collection: Use validated measurement instruments, implement quality control procedures, and document potential sources of error.
 
-   * Most relationships aren't simple A → B
-   * Look for hidden factors
-   * Consider two-way relationships
+### Best Practices for Researchers
 
-2. **Always Ask**
+Research Design fundamentally shapes your ability to address endogeneity. Plan for potential endogeneity issues before collecting data, include measures for potentially important control variables, and consider using multiple measurement approaches.
 
-   * "What am I missing?"
-   * "Could these affect each other?"
-   * "How well am I measuring things?"
+Analysis should include testing for endogeneity when possible, using appropriate statistical methods for your specific situation, and documenting assumptions and limitations.
 
-3. **When Writing Papers**
-
-   * Discuss potential endogeneity
-   * Explain how you addressed it
-   * Be honest about limitations
-
-
-### Recommended Reading
-
-1. "Mastering Metrics" by Angrist & Pischke
-2. "Naked Statistics" by Charles Wheelan
-
-Remember: In the real world, relationships are usually more complex than they first appear. When you find a connection between A and B, always ask what else might be going on behind the scenes!
+Reporting must clearly describe potential endogeneity concerns, explain how you addressed these issues, and discuss implications for your conclusions.
 :::
 
 
-## Multiple Regression (*)
+## Multiple Regression (\*)
 
 ### Extending to Multiple Predictors
 
 The multiple regression model extends our simple model to include several predictors:
 
-Population Model:
-$$Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_kX_k + \varepsilon$$
+Population Model: $$Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_kX_k + \varepsilon$$
 
-Sample Estimation:
-$$\hat{Y} = \hat{\beta}_0 + \hat{\beta}_1X_1 + \hat{\beta}_2X_2 + ... + \hat{\beta}_kX_k$$
+Sample Estimation: $$\hat{Y} = \hat{\beta}_0 + \hat{\beta}_1X_1 + \hat{\beta}_2X_2 + ... + \hat{\beta}_kX_k$$
 
 Let's create an example with multiple predictors:
 
@@ -2103,6 +2043,7 @@ ggplot(data_collinear, aes(x = X1, y = X2)) +
                        round(cor(X1_new, X2_new), 3)))
 ```
 
+
 ## Advanced Topics
 
 ### Interaction Terms
@@ -2179,12 +2120,11 @@ ggplot(data_poly, aes(x = X, y = Y)) +
        color = "Model Type")
 ```
 
-
 ## Practical Guidelines for Regression Analysis
 
 ### Model Building Process
 
-1. **Data Exploration**
+1.  **Data Exploration**
 
 ```{r}
 #| label: data-exploration
@@ -2209,7 +2149,7 @@ ggpairs(data_example) +
        subtitle = "Correlation matrix and distributions")
 ```
 
-2. **Variable Selection**
+2.  **Variable Selection**
 
 ```{r}
 #| label: variable-selection
@@ -2237,7 +2177,7 @@ knitr::kable(models_comparison, digits = 3,
 
 ### Common Pitfalls and Solutions
 
-1. **Outliers and Influential Points**
+1.  **Outliers and Influential Points**
 
 ```{r}
 #| label: outliers
@@ -2274,7 +2214,7 @@ ggplot() +
   scale_color_manual(values = c("blue", "red"))
 ```
 
-2. **Missing Data Patterns**
+2.  **Missing Data Patterns**
 
 ```{r}
 #| label: missing-data
@@ -2294,7 +2234,7 @@ vis_miss(data_missing) +
   labs(title = "Missing Data Patterns")
 ```
 
-3. **Heteroscedasticity**
+3.  **Heteroscedasticity**
 
 ```{r}
 #| label: heteroscedasticity
@@ -2330,7 +2270,7 @@ grid.arrange(p1, p2, ncol = 2)
 
 ### Best Practices
 
-1. **Model Validation**
+1.  **Model Validation**
 
 ```{r}
 #| label: model-validation
@@ -2371,7 +2311,7 @@ ggplot(data_validation, aes(x = Actual, y = Predicted)) +
                          rmse, mae, r2))
 ```
 
-2. **Reporting Results**
+2.  **Reporting Results**
 
 Example of a professional regression results table:
 
@@ -2394,28 +2334,358 @@ kable(results, digits = 3,
 
 ### Key Takeaways
 
-1. Always start with exploratory data analysis
-2. Check assumptions before interpreting results
-3. Be aware of common pitfalls:
-   - Outliers
-   - Missing data
-   - Multicollinearity
-   - Heteroscedasticity
-4. Validate your model using:
-   - Diagnostic plots
-   - Cross-validation
-   - Residual analysis
-5. Report results clearly and completely
+1.  Always start with exploratory data analysis
+2.  Check assumptions before interpreting results
+3.  Be aware of common pitfalls:
+    -   Outliers
+    -   Missing data
+    -   Multicollinearity
+    -   Heteroscedasticity
+4.  Validate your model using:
+    -   Diagnostic plots
+    -   Cross-validation
+    -   Residual analysis
+5.  Report results clearly and completely
 
 ### Further Reading {.unnumbered}
 
 For deeper understanding:
 
-- Wooldridge, J.M. "Introductory Econometrics: A Modern Approach"
-- Fox, J. "Applied Regression Analysis and Generalized Linear Models"
-- Angrist, J.D. and Pischke, J.S. "Mostly Harmless Econometrics"
-- Stock & Watson "Introduction to Econometrics"
+-   Wooldridge, J.M. "Introductory Econometrics: A Modern Approach"
+-   Angrist, J.D. and Pischke, J.S. "Mostly Harmless Econometrics"
+-   Stock & Watson "Introduction to Econometrics"
 
+
+
+::: callout-important
+## Understanding Ordinary Least Squares (OLS) Regression: A Student's Guide
+
+Regression analysis is a fundamental statistical method that examines and models the relationship between variables to understand how changes in one or more independent variables influence a dependent variable.
+
+At its heart, regression analysis helps us answer questions about cause and effect, prediction, and forecasting. For example, a business might use regression analysis to understand how advertising spending affects sales, or how employee training hours impact productivity.
+
+### Regression as a Stochastic Model
+
+In mathematical modelling, we encounter two fundamental approaches to describing relationships between variables:
+
+- deterministic models,
+- stochastic models.
+
+#### Deterministic vs. Stochastic Models
+
+A deterministic model assumes a precise, fixed relationship between inputs and outputs. In such models, if we know the inputs, we can calculate the exact output with certainty. Consider the classic physics equation for distance:
+
+$$\text{Distance} = \text{Speed} × \text{Time}$$
+
+Given specific values for speed and time, this equation will always yield the same distance. There is no room for variation in the outcome.
+
+In contrast, regression analysis embraces the presence of natural variation in data. The fundamental structure of a regression model is:
+
+$$Y = f(X) + \epsilon$$
+
+Where:
+
+- $Y$ represents the outcome we wish to predict
+- $f(X)$ represents the systematic relationship between our predictors (X) and the outcome
+- $\epsilon$ represents the random variation that naturally occurs in real-world data
+
+
+### What is Simple Linear Regression?
+
+Consider the relationship between **study hours** (predictor) and **exam scores** (outcome/response variable). Simple linear regression creates an optimal straight line through data points to model this relationship. This line serves two purposes: making predictions and quantifying the relationship between variables.
+
+The mathematical relationship is expressed as:
+
+$$ Y_i = \beta_0 + \beta_1X_i + \epsilon_i $$
+
+Using our study hours example to illustrate each component:
+
+-   $Y_i$ represents the dependent variable (exam scores)
+-   $X_i$ represents the independent variable (study hours)
+-   $\beta_0$ represents the intercept - the expected exam score at zero study hours
+-   $\beta_1$ represents the slope - the change in exam score per additional study hour
+-   $\epsilon_i$ represents the error term, accounting for unobserved factors
+
+Our goal is to find estimates $\hat{\beta}_0$ and $\hat{\beta}_1$ that best approximate the true parameters $\beta_0$ and $\beta_1$. The fitted regression line is then expressed as:
+
+$$ \hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1X_i $$
+
+### The Ordinary Least Squares (OLS) Method
+
+The "Ordinary Least Squares" method determines optimal values for $\hat{\beta}_0$ and $\hat{\beta}_1$ through a methodical process. While modern statistical software performs these calculations automatically, understanding the underlying process is crucial:
+
+1.  Begin with an initial estimate for the regression line
+
+    -   Typically, we start with the horizontal line at $\bar{Y}$ (mean of Y)
+    -   This serves as our baseline, representing no relationship between X and Y
+
+2.  Calculate the vertical distances (residuals) from each observed point to this line
+
+    -   These residuals $\hat{\epsilon}_i = e_i = Y_i - \hat{Y}_i$ represent our prediction errors
+    -   A positive residual means our line underestimates the true value
+    -   A negative residual means our line overestimates the true value
+
+3.  Square these distances to:
+
+    -   Ensure positive and negative deviations don't offset each other
+    -   Assign greater weight to larger deviations
+
+4.  Sum all squared distances to obtain the Sum of Squared Errors (SSE)
+
+    -   $SSE = \sum(Y_i - \hat{Y}_i)^2$
+    -   This represents the total squared deviation of observed values from our predicted values
+
+5.  Systematically adjust the slope and intercept of the line to minimize SSE:
+
+    -   The process involves gradually modifying the slope and position of the line while observing how the sum of squared deviations (SSE) changes \[formally, this requires concepts from differential calculus\]
+    -   When SSE stops decreasing with subsequent small changes in line parameters, this indicates the optimal fit has been found
+    -   This point corresponds to the minimum possible value of SSE, meaning the best fit of the line to the data
+
+More formally, OLS finds the optimal values for $\beta_0$ and $\beta_1$ by minimizing the sum of squared errors:
+
+$$\min_{\beta_0, \beta_1} \sum \epsilon_i^2 = \min_{\beta_0, \beta_1} \sum(y_i - \hat{y_i})^2 = \min_{\beta_0, \beta_1} \sum(y_i - (\beta_0 + \beta_1x_i))^2$$ The solution to this minimization gives us:
+
+$$\hat{\beta}_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = \frac{cov(X, Y)}{var(X)}$$
+
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$$
+
+```{r}
+#| fig-width: 8
+#| fig-height: 6
+#| echo: false
+#| warning: false
+#| message: false
+
+library(ggplot2)
+library(gridExtra)
+
+# Generate sample data for our example
+set.seed(123)
+x <- seq(1, 10, length.out = 50)
+y <- 2 + 3*x + rnorm(50, 0, 2)
+data <- data.frame(x = x, y = y)
+
+# Create three plots showing the OLS progression
+# Plot 1: Initial mean line
+p1 <- ggplot(data, aes(x = x, y = y)) +
+  geom_point() +
+  geom_hline(yintercept = mean(y), color = "red") +
+  labs(title = "Step 1: Initial Line (Mean of Y)",
+       x = "Study Hours", y = "Exam Score") +
+  theme_minimal()
+
+# Plot 2: Show residuals
+p2 <- ggplot(data, aes(x = x, y = y)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  geom_segment(aes(xend = x, yend = fitted(lm(y ~ x))), 
+              alpha = 0.2, color = "red") +
+  labs(title = "Step 2: Calculate Residuals",
+       x = "Study Hours", y = "Exam Score") +
+  theme_minimal()
+
+# Plot 3: Final OLS line
+p3 <- ggplot(data, aes(x = x, y = y)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(title = "Step 3: Final OLS Line",
+       x = "Study Hours", y = "Exam Score") +
+  theme_minimal()
+
+# Arrange plots in a grid
+grid.arrange(p1, p2, p3, ncol = 2)
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(ggplot2)
+library(dplyr)
+
+# Generate sample data
+set.seed(123)
+n <- 20
+x <- seq(1, 10, length.out = n)
+y <- 2 + 1.5 * x + rnorm(n, sd = 1.5)
+data <- data.frame(x = x, y = y)
+
+# Calculate OLS parameters
+beta1 <- cov(x, y) / var(x)
+beta0 <- mean(y) - beta1 * mean(x)
+
+# Create alternative lines
+lines_data <- data.frame(
+  intercept = c(beta0, beta0 + 1, beta0 - 1),
+  slope = c(beta1, beta1 + 0.3, beta1 - 0.3),
+  line_type = c("Best fit (OLS)", "Suboptimal 1", "Suboptimal 2")
+)
+
+# Create the plot
+ggplot(data, aes(x = x, y = y)) +
+  geom_point(size = 3, alpha = 0.6) +
+  geom_abline(data = lines_data,
+              aes(intercept = intercept, 
+                  slope = slope,
+                  color = line_type,
+                  linetype = line_type),
+              size = 1) +
+  scale_color_manual(values = c("Best fit (OLS)" = "#FF4500",
+                               "Suboptimal 1" = "#4169E1",
+                               "Suboptimal 2" = "#228B22")) +
+  labs(title = "Finding the Best-Fitting Line",
+       subtitle = "Orange line minimizes the sum of squared errors",
+       x = "X Variable",
+       y = "Y Variable",
+       color = "Line Type",
+       linetype = "Line Type") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    legend.position = "bottom",
+    panel.grid.minor = element_blank()
+  )
+
+```
+
+### Parameter Estimation
+
+The formulas for estimating the parameters employ fundamental statistical measures:
+
+$$ \hat{\beta}_1 = \frac{Cov(X,Y)}{Var(X)} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{\sum(X_i - \bar{X})^2} $$
+
+This formula comprises two essential statistical concepts:
+
+-   Covariance ($Cov$) quantifies the joint movement of X and Y
+-   Variance ($Var$) measures the dispersion of X values around their mean
+-   $\bar{X}$ and $\bar{Y}$ represent the means of X and Y respectively
+
+After calculating $\hat{\beta}_1$, we determine $\hat{\beta}_0$:
+
+$$ \hat{\beta}_0 = \bar{Y} - \hat{\beta}_1\bar{X} $$
+
+This ensures the regression line intersects the point of means ($\bar{X}$, $\bar{Y}$).
+
+
+### Understanding Variation in Regression Analysis
+
+In regression analysis, we decompose the variation in our data into distinct components to understand how well our model explains the outcome variable. Let's examine each component of variation in detail.
+
+#### Overview of Variation Components
+
+The total Sum of Squares (SST) represents all variation present in our outcome variable. The Regression Sum of Squares (SSR) captures the variation explained by our model. The Error Sum of Squares (SSE) represents the remaining unexplained variation. Let's examine each in detail.
+
+#### Total Sum of Squares (SST)
+
+Think of total variation (SST) as capturing the full range of differences in our data before we try to explain anything. It measures how much each observation differs from the overall average, giving us a baseline for how much variation exists to be explained.
+
+SST measures the total variation in our outcome variable by calculating how much each observation deviates from the overall mean:
+
+$$ SST = \sum(y_i - \bar{y})^2 $$
+
+In this formula, $y_i$ represents each individual observation, and $\bar{y}$ represents the mean of all observations. The squared differences capture the total spread of our data around its average value.
+
+To make this concrete, imagine measuring the heights of everyone in a city. Some people are much taller than average, others shorter, and SST captures these differences. Each squared term $(y_i - \bar{y})^2$ represents how much one person's height differs from the city's average, and we sum up all these differences.
+
+#### Regression Sum of Squares (SSR)
+
+Once we introduce explanatory variables (like genetics, nutrition, or age), we can predict heights more accurately.
+The explained variation (SSR) measures how much better our predictions become using these variables.
+
+SSR quantifies how much variation our model explains through its predictor variables:
+
+$$ SSR = \sum(\hat{y}_i - \bar{y})^2 $$
+
+Here, $\hat{y}_i$ represents our model's predicted values. This formula measures how far our predictions deviate from the mean, representing the variation captured by our model.
+
+#### Error Sum of Squares (SSE)
+
+SSE measures the variation that remains unexplained by our model:
+
+$$ SSE = \sum(y_i - \hat{y}_i)^2 $$
+
+This formula calculates the differences between actual values ($y_i$) and predicted values ($\hat{y}_i$), showing us how much variation our model failed to explain.
+
+In our height example, these might be variations due to factors we didn't or couldn't measure, like specific environmental conditions or measurement errors.
+
+#### The Fundamental Relationship
+
+These three components are related through a key equation:
+
+$$ SST = SSR + SSE $$
+
+This equation shows that the total variation (SST) equals the sum of explained variation (SSR) and unexplained variation (SSE). This relationship forms the basis for measuring model performance.
+
+#### Coefficient of Determination (R²)
+
+The R² statistic, derived from these components, tells us the proportion of variation our model explains:
+
+$$ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST} $$
+
+When R² equals 0.75, it indicates our model explains 75% of the variation in the outcome variable. The remaining 25% represents unexplained variation.
+
+#### Important Considerations
+
+Understanding these components helps us:
+
+1. Evaluate model performance through the proportion of explained variation
+2. Identify how much variation remains unexplained
+3. Make informed decisions about model improvement
+4. Compare different models' explanatory power
+
+
+```{r}
+#| fig-width: 8
+#| fig-height: 4
+#| echo: false
+
+# Fit the model for decomposition visualization
+model <- lm(y ~ x, data = data)
+
+# Create data for visualization
+decomp_data <- data.frame(
+  x = x,
+  y = y,
+  y_hat = fitted(model),
+  y_bar = mean(y)
+)
+
+# Create decomposition plot
+ggplot(decomp_data, aes(x = x)) +
+  geom_point(aes(y = y)) +
+  geom_line(aes(y = y_hat), color = "blue") +
+  geom_segment(aes(xend = x, y = y, yend = y_hat), 
+              color = "red", alpha = 0.3) +
+  geom_segment(aes(xend = x, y = y_hat, yend = y_bar), 
+              color = "green", alpha = 0.3) +
+  geom_hline(yintercept = mean(y), linetype = "dashed") +
+  labs(title = "Variance Decomposition",
+       subtitle = "Red: Residuals (SSE) | Green: Explained Variation (SSR)",
+       x = "Study Hours", y = "Exam Score") +
+  theme_minimal()
+```
+
+### The Coefficient of Determination ($R^2$)
+
+$R^2$ serves as a measure of model fit, representing the proportion of variance explained by our regression:
+
+$$ R^2 = \frac{SSR}{SST} = \frac{SSR}{SSR + SSE} = 1 - \frac{SSE}{SST} $$
+
+To interpret $R^2$:
+
+-   An $R^2$ of 0.75 indicates the model explains 75% of variance (e.g. in exam scores)
+-   An $R^2$ of 0.20 suggests predictors (e.g. study hours) account for 20% of score variation
+-   An $R^2$ of 1.00 represents perfect prediction (rarely observed in practice)
+-   An $R^2$ of 0.00 indicates no explanatory power
+
+Note: A lower $R^2$ value does not necessarily indicate an inferior model - it may simply reflect the complexity of the relationship being studied.
+
+### Key Takeaway
+
+Linear regression establishes relationships between variables by identifying the optimal linear fit through data points. This optimization occurs through the minimization of squared residuals. The coefficient of determination ($R^2$) then quantifies the model's explanatory power by comparing explained variation to total variation in our data.
+:::
 
 ## Appendix A.1: Understanding Correlation Measures: A Self-Study Tutorial (Using Stress Level and Cognitive Performance Data)
 
@@ -2440,7 +2710,7 @@ data <- data.frame(
 #### Step 2: Calculate Deviations and Products
 
 | i | $x_i$ | $y_i$ | $(x_i - \bar{x})$ | $(y_i - \bar{y})$ | $(x_i - \bar{x})(y_i - \bar{y})$ |
-|-----------|-----------|-----------|-----------|-----------|--------------------|
+|------------|------------|------------|------------|------------|-------------|
 | 1 | 8 | 85 | -1.17 | 12.17 | -14.24 |
 | 2 | 5 | 90 | -4.17 | 17.17 | -71.60 |
 | 3 | 11 | 62 | 1.83 | -10.83 | -19.82 |
@@ -2470,7 +2740,7 @@ $$ \text{Cov}(X,Y) = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{n-1} = \frac{-21
 #### Step 2: Calculate Standard Deviations
 
 | Measure | Formula | Calculation | Result |
-|-----------------|-----------------|----------------------|-----------------|
+|-----------------|-----------------|---------------------|-----------------|
 | $s_x$ | $\sqrt{\frac{\sum (x_i - \bar{x})^2}{n-1}}$ | $\sqrt{\frac{50.84}{5}}$ | 3.19 |
 | $s_y$ | $\sqrt{\frac{\sum (y_i - \bar{y})^2}{n-1}}$ | $\sqrt{\frac{990.84}{5}}$ | 14.08 |
 
@@ -2506,103 +2776,84 @@ cor(data$anxiety_level, data$cognitive_performance, method = "spearman")
 
 ### Interpretation
 
-1.  The strong negative Pearson correlation (r = -0.95) indicates a very
-    strong negative linear relationship between anxiety level and
-    cognitive performance.
+1.  The strong negative Pearson correlation (r = -0.95) indicates a very strong negative linear relationship between anxiety level and cognitive performance.
 
-2.  The strong positive Spearman correlation (ρ = 0.94) shows that the
-    relationship is also strongly monotonic.
+2.  The strong positive Spearman correlation (ρ = 0.94) shows that the relationship is also strongly monotonic.
 
-3.  The difference between Pearson and Spearman correlations suggests
-    that while there is a strong relationship, it might not be perfectly
-    linear.
+3.  The difference between Pearson and Spearman correlations suggests that while there is a strong relationship, it might not be perfectly linear.
 
 ### Exercise
 
 1.  Verify each calculation step in the tables above.
 2.  Try calculating these measures with a modified dataset:
-    -   Add one outlier and observe how it affects both correlation
-        coefficients
+    -   Add one outlier and observe how it affects both correlation coefficients
     -   Change one pair of values and recalculate
-
-### References
-
-1.  Understanding Correlation:
-    -   Pearson, K. (1895). "Notes on regression and inheritance in the
-        case of two parents."
-    -   Spearman, C. (1904). "The proof and measurement of association
-        between two things."
 
 
 ## Appendix A.2: Calculating Covariance, Pearson, Spearman Correlation, and OLS - worked example
 
-Given data on Electoral District Magnitude ($\text{DM}$) and Gallagher index:
+A political science student is investigating the relationship between district magnitude (DM) and Gallagher's disproportionality index (GH) in parliamentary elections across 10 randomly selected democracies.
+
+Data on electoral district magnitudes ($\text{DM}$) and Gallagher index:
 
 | $\text{DM}$ ($X$) | Gallagher ($Y$) |
 |-------------------|-----------------|
-| 2                 | 18.2           |
-| 3                 | 16.7           |
-| 4                 | 15.8           |
-| 5                 | 15.3           |
-| 6                 | 15.0           |
-| 7                 | 14.8           |
-| 8                 | 14.7           |
-| 9                 | 14.6           |
-| 10                | 14.55          |
-| 11                | 14.52          |
+| 2                 | 18.2            |
+| 3                 | 16.7            |
+| 4                 | 15.8            |
+| 5                 | 15.3            |
+| 6                 | 15.0            |
+| 7                 | 14.8            |
+| 8                 | 14.7            |
+| 9                 | 14.6            |
+| 10                | 14.55           |
+| 11                | 14.52           |
 
 ### Step 1: Calculate Basic Statistics
 
 Calculation of means:
 
-For $\text{DM}$ ($X$): 
-$$\bar{X} = \frac{\sum_{i=1}^n X_i}{n}$$
+For $\text{DM}$ ($X$): $$\bar{X} = \frac{\sum_{i=1}^n X_i}{n}$$
 
 Detailed calculation:
 
-$$2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 = 65$$
-$$\bar{x} = \frac{65}{10} = 6.5$$
+$$2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 = 65$$ $$\bar{x} = \frac{65}{10} = 6.5$$
 
-For Gallagher index ($Y$): 
-$$\bar{Y} = \frac{\sum_{i=1}^n Y_i}{n}$$
+For Gallagher index ($Y$): $$\bar{Y} = \frac{\sum_{i=1}^n Y_i}{n}$$
 
 Detailed calculation:
 
-$$18.2 + 16.7 + 15.8 + 15.3 + 15.0 + 14.8 + 14.7 + 14.6 + 14.55 + 14.52 = 154.17$$
-$$\bar{y} = \frac{154.17}{10} = 15.417$$
+$$18.2 + 16.7 + 15.8 + 15.3 + 15.0 + 14.8 + 14.7 + 14.6 + 14.55 + 14.52 = 154.17$$ $$\bar{y} = \frac{154.17}{10} = 15.417$$
 
 ### Step 2: Detailed Covariance Calculations
 
 Complete working table showing all calculations:
 
 | $i$ | $X_i$ | $Y_i$ | $(X_i - \bar{X})$ | $(Y_i - \bar{Y})$ | $(X_i - \bar{X})(Y_i - \bar{Y})$ | $(X_i - \bar{X})^2$ | $(Y_i - \bar{Y})^2$ |
-|-----|-------|-------|-------------------|-------------------|-----------------------------------|---------------------|---------------------|
-| 1   | 2     | 18.2  | $-4.5$           | 2.783             | $-12.5235$                       | 20.25               | 7.7451              |
-| 2   | 3     | 16.7  | $-3.5$           | 1.283             | $-4.4905$                        | 12.25               | 1.6461              |
-| 3   | 4     | 15.8  | $-2.5$           | 0.383             | $-0.9575$                        | 6.25                | 0.1467              |
-| 4   | 5     | 15.3  | $-1.5$           | $-0.117$          | 0.1755                           | 2.25                | 0.0137              |
-| 5   | 6     | 15.0  | $-0.5$           | $-0.417$          | 0.2085                           | 0.25                | 0.1739              |
-| 6   | 7     | 14.8  | 0.5              | $-0.617$          | $-0.3085$                        | 0.25                | 0.3807              |
-| 7   | 8     | 14.7  | 1.5              | $-0.717$          | $-1.0755$                        | 2.25                | 0.5141              |
-| 8   | 9     | 14.6  | 2.5              | $-0.817$          | $-2.0425$                        | 6.25                | 0.6675              |
-| 9   | 10    | 14.55 | 3.5              | $-0.867$          | $-3.0345$                        | 12.25               | 0.7517              |
-| 10  | 11    | 14.52 | 4.5              | $-0.897$          | $-4.0365$                        | 20.25               | 0.8047              |
-| Sum | 65    | 154.17| 0                | 0                 | $-28.085$                        | 82.5                | 12.8442             |
+|---------|---------|---------|---------|---------|----------|---------|---------|
+| 1 | 2 | 18.2 | $-4.5$ | 2.783 | $-12.5235$ | 20.25 | 7.7451 |
+| 2 | 3 | 16.7 | $-3.5$ | 1.283 | $-4.4905$ | 12.25 | 1.6461 |
+| 3 | 4 | 15.8 | $-2.5$ | 0.383 | $-0.9575$ | 6.25 | 0.1467 |
+| 4 | 5 | 15.3 | $-1.5$ | $-0.117$ | 0.1755 | 2.25 | 0.0137 |
+| 5 | 6 | 15.0 | $-0.5$ | $-0.417$ | 0.2085 | 0.25 | 0.1739 |
+| 6 | 7 | 14.8 | 0.5 | $-0.617$ | $-0.3085$ | 0.25 | 0.3807 |
+| 7 | 8 | 14.7 | 1.5 | $-0.717$ | $-1.0755$ | 2.25 | 0.5141 |
+| 8 | 9 | 14.6 | 2.5 | $-0.817$ | $-2.0425$ | 6.25 | 0.6675 |
+| 9 | 10 | 14.55 | 3.5 | $-0.867$ | $-3.0345$ | 12.25 | 0.7517 |
+| 10 | 11 | 14.52 | 4.5 | $-0.897$ | $-4.0365$ | 20.25 | 0.8047 |
+| Sum | 65 | 154.17 | 0 | 0 | $-28.085$ | 82.5 | 12.8442 |
 
-Covariance calculation:
-$$\text{Cov}(X,Y) = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
+Covariance calculation: $$\text{Cov}(X,Y) = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
 
 $$\text{Cov}(X,Y) = \frac{-28.085}{9} = -3.120556$$
 
 ### Step 3: Standard Deviation Calculations
 
-For $\text{DM}$ ($X$):
-$$\sigma_X = \sqrt{\frac{\sum_{i=1}^n (X_i - \bar{X})^2}{n-1}}$$
+For $\text{DM}$ ($X$): $$\sigma_X = \sqrt{\frac{\sum_{i=1}^n (X_i - \bar{X})^2}{n-1}}$$
 
 $$\sigma_x = \sqrt{\frac{82.5}{9}} = \sqrt{9.1667} = 3.026582$$
 
-For Gallagher ($Y$):
-$$\sigma_Y = \sqrt{\frac{\sum_{i=1}^n (Y_i - \bar{Y})^2}{n-1}}$$
+For Gallagher ($Y$): $$\sigma_Y = \sqrt{\frac{\sum_{i=1}^n (Y_i - \bar{Y})^2}{n-1}}$$
 
 $$\sigma_y = \sqrt{\frac{12.8442}{9}} = \sqrt{1.4271} = 1.194612$$
 
@@ -2617,21 +2868,20 @@ $$r = \frac{-3.120556}{3.026582 \times 1.194612} = \frac{-3.120556}{3.615752} = 
 Complete ranking table with all calculations:
 
 | $i$ | $X_i$ | $Y_i$ | Rank $X_i$ | Rank $Y_i$ | $d_i$ | $d_i^2$ |
-|-----|-------|-------|------------|------------|--------|----------|
-| 1   | 2     | 18.2  | 1          | 10         | $-9$   | 81       |
-| 2   | 3     | 16.7  | 2          | 9          | $-7$   | 49       |
-| 3   | 4     | 15.8  | 3          | 8          | $-5$   | 25       |
-| 4   | 5     | 15.3  | 4          | 7          | $-3$   | 9        |
-| 5   | 6     | 15.0  | 5          | 6          | $-1$   | 1        |
-| 6   | 7     | 14.8  | 6          | 5          | 1      | 1        |
-| 7   | 8     | 14.7  | 7          | 4          | 3      | 9        |
-| 8   | 9     | 14.6  | 8          | 3          | 5      | 25       |
-| 9   | 10    | 14.55 | 9          | 2          | 7      | 49       |
-| 10  | 11    | 14.52 | 10         | 1          | 9      | 81       |
-| Sum |       |       |            |            |        | 330      |
+|-----|-------|-------|------------|------------|-------|---------|
+| 1   | 2     | 18.2  | 1          | 10         | $-9$  | 81      |
+| 2   | 3     | 16.7  | 2          | 9          | $-7$  | 49      |
+| 3   | 4     | 15.8  | 3          | 8          | $-5$  | 25      |
+| 4   | 5     | 15.3  | 4          | 7          | $-3$  | 9       |
+| 5   | 6     | 15.0  | 5          | 6          | $-1$  | 1       |
+| 6   | 7     | 14.8  | 6          | 5          | 1     | 1       |
+| 7   | 8     | 14.7  | 7          | 4          | 3     | 9       |
+| 8   | 9     | 14.6  | 8          | 3          | 5     | 25      |
+| 9   | 10    | 14.55 | 9          | 2          | 7     | 49      |
+| 10  | 11    | 14.52 | 10         | 1          | 9     | 81      |
+| Sum |       |       |            |            |       | 330     |
 
-Spearman correlation calculation:
-$$\rho = 1 - \frac{6\sum d_i^2}{n(n^2-1)}$$
+Spearman correlation calculation: $$\rho = 1 - \frac{6\sum d_i^2}{n(n^2-1)}$$
 
 $$\rho = 1 - \frac{6 \times 330}{10(100 - 1)} = 1 - \frac{1980}{990} = 1 - 2 = -1$$
 
@@ -2674,12 +2924,14 @@ ggplot(data, aes(x = DM, y = GH)) +
 
 ### Step 1: Calculate OLS Estimates
 
-Using previously calculated values: -
-$\sum(X_i - \bar{X})(Y_i - \bar{Y}) = -28.085$ -
-$\sum(X_i - \bar{X})^2 = 82.5$ - $\bar{X} = 6.5$ - $\bar{Y} = 15.417$
+Using previously calculated values:
 
-Calculate slope ($\hat{\beta_1}$):
-$\hat{\beta_1} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{\sum(X_i - \bar{X})^2}$
+-   $\sum(X_i - \bar{X})(Y_i - \bar{Y}) = -28.085$
+-   $\sum(X_i - \bar{X})^2 = 82.5$
+- $\bar{X} = 6.5$
+- $\bar{Y} = 15.417$
+
+Calculate slope ($\hat{\beta_1}$): $\hat{\beta_1} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{\sum(X_i - \bar{X})^2}$
 
 $$\hat{\beta_1} = -28,085 ÷ 82,5 = -0,3404$$
 
@@ -2690,7 +2942,6 @@ $$\hat{\beta_0} = 15,417 - (-0,3404 × 6,5)
    = 17,6296$$
 
 Therefore, the OLS regression equation is: $\hat{Y} = 17.6296 - 0.3404X$
-
 
 ### Step 2: Calculate Fitted Values and Residuals
 
@@ -2825,7 +3076,6 @@ We estimate three alternative specifications:
 2.  Linear-log model: $Y_i = \beta_0 + \beta_1\ln(X_i) + \epsilon_i$
 3.  Log-log model: $\ln(Y_i) = \beta_0 + \beta_1\ln(X_i) + \epsilon_i$
 
-
 ```{r}
 # Create transformed variables
 data$log_DM <- log(data$DM)
@@ -2903,9 +3153,7 @@ The linear-log model coefficients:
 summary(model_linearlog)
 ```
 
-Interpretation: - $\hat{\beta_0}$ represents the expected Gallagher Index when
-ln(DM) = 0 (i.e., when DM = 1) - $\hat{\beta_1}$ represents the change in
-Gallagher Index associated with a one-unit increase in ln(DM)
+Interpretation: - $\hat{\beta_0}$ represents the expected Gallagher Index when ln(DM) = 0 (i.e., when DM = 1) - $\hat{\beta_1}$ represents the change in Gallagher Index associated with a one-unit increase in ln(DM)
 
 ### Step 6: Model Predictions
 
@@ -2924,8 +3172,7 @@ ggplot(data, aes(x = log_DM, y = GH)) +
 
 ### Step 7: Elasticity Analysis
 
-For the log-log model, coefficients represent elasticities directly.
-Calculate average elasticity for the linear-log model:
+For the log-log model, coefficients represent elasticities directly. Calculate average elasticity for the linear-log model:
 
 ```{r}
 # Calculate elasticity at means
@@ -2936,8 +3183,7 @@ elasticity <- beta1 * (1/mean_GH)
 elasticity
 ```
 
-This represents the percentage change in the Gallagher Index for a 1%
-change in District Magnitude.
+This represents the percentage change in the Gallagher Index for a 1% change in District Magnitude.
 
 ## Appendix A.3: Understanding Pearson, Spearman, and Kendall
 
@@ -2957,7 +3203,7 @@ $$ r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \
 #### Step-by-Step Calculations:
 
 | i | $x_i$ | $y_i$ | $x_i - \bar{x}$ | $y_i - \bar{y}$ | $(x_i - \bar{x})(y_i - \bar{y})$ | $(x_i - \bar{x})^2$ | $(y_i - \bar{y})^2$ |
-|---------|---------|---------|---------|---------|----------|---------|---------|
+|---------|---------|---------|---------|---------|---------|---------|---------|
 | 1 | 2 | 3 | -2.4 | -1.6 | 3.84 | 5.76 | 2.56 |
 | 2 | 4 | 5 | -0.4 | 0.4 | -0.16 | 0.16 | 0.16 |
 | 3 | 5 | 4 | 0.6 | -0.6 | -0.36 | 0.36 | 0.36 |
@@ -3005,8 +3251,7 @@ $$ \tau = \frac{\text{number of concordant pairs} - \text{number of discordant p
 | (3,5)      | 5,8       | 4,7       | +3        | +3        | C      |
 | (4,5)      | 3,8       | 4,7       | +5        | +3        | C      |
 
-Number of concordant pairs = 8 Number of discordant pairs = 2
-$$ \tau = \frac{8-2}{10} = 0.74 $$
+Number of concordant pairs = 8 Number of discordant pairs = 2 $$ \tau = \frac{8-2}{10} = 0.74 $$
 
 ### Verification in R
 
@@ -3023,11 +3268,9 @@ cat("Kendall:", round(cor(data$x, data$y, method="kendall"), 2), "\n")
     -   Indicates a very strong linear relationship between variables
 2.  **Spearman Correlation (ρ = 0.82)**
     -   Also strong positive correlation
-    -   Slightly lower than Pearson's, suggesting some deviations from
-        monotonicity
+    -   Slightly lower than Pearson's, suggesting some deviations from monotonicity
 3.  **Kendall's Tau (τ = 0.74)**
-    -   Lowest of the three values, but still indicates strong
-        association
+    -   Lowest of the three values, but still indicates strong association
     -   More robust to outliers
 
 ### Comparison of Measures
@@ -3038,10 +3281,8 @@ cat("Kendall:", round(cor(data$x, data$y, method="kendall"), 2), "\n")
     -   Kendall (0.74) - most conservative measure
 2.  **Practical Application:**
     -   All measures confirm strong positive association
-    -   Differences between measures indicate slight deviations from
-        perfect linearity
-    -   Kendall provides the most conservative estimate of relationship
-        strength
+    -   Differences between measures indicate slight deviations from perfect linearity
+    -   Kendall provides the most conservative estimate of relationship strength
 
 ### Exercises
 
@@ -3064,35 +3305,25 @@ cat("Kendall:", round(cor(data$x, data$y, method="kendall"), 2), "\n")
     -   Most robust to outliers
     -   Best for small samples and tied ranks
 
-
 ## Appendix B: Bias in OLS Estimation with Endogenous Regressors
 
-In this tutorial, we will explore the bias in Ordinary Least Squares
-(OLS) estimation when the error term is correlated with the explanatory
-variable, a situation known as endogeneity. We will first derive the
-bias mathematically and then illustrate it using a simulated dataset in
-R.
+In this tutorial, we will explore the bias in Ordinary Least Squares (OLS) estimation when the error term is correlated with the explanatory variable, a situation known as endogeneity. We will first derive the bias mathematically and then illustrate it using a simulated dataset in R.
 
 ## Theoretical Derivation
 
-Consider a data generating process (DGP) where the true relationship
-between $x$ and $y$ is:
+Consider a data generating process (DGP) where the true relationship between $x$ and $y$ is:
 
 $$ y = 2x + e $$
 
-However, there is an endogeneity problem because the error term $e$ is
-correlated with $x$ in the following way:
+However, there is an endogeneity problem because the error term $e$ is correlated with $x$ in the following way:
 
 $$ e = 1x + u $$
 
 where $u$ is an independent error term.
 
-If we estimate the simple linear model
-$y = \hat{\beta_0} + \hat{\beta_1}x + \varepsilon$ using OLS, the OLS estimator of
-$\hat{\beta_1}$ will be biased due to the endogeneity issue.
+If we estimate the simple linear model $y = \hat{\beta_0} + \hat{\beta_1}x + \varepsilon$ using OLS, the OLS estimator of $\hat{\beta_1}$ will be biased due to the endogeneity issue.
 
-To understand the bias, let's derive the expected value of the OLS
-estimator $\hat{\beta}_1$:
+To understand the bias, let's derive the expected value of the OLS estimator $\hat{\beta}_1$:
 
 \begin{align*}
 E[\hat{\beta}_1] &= E[(X'X)^{-1}X'y] \\
@@ -3101,11 +3332,7 @@ E[\hat{\beta}_1] &= E[(X'X)^{-1}X'y] \\
                  &= 3 + E[(X'X)^{-1}X'u]
 \end{align*}
 
-If the error term $u$ is uncorrelated with $x$, then
-$E[(X'X)^{-1}X'u] = 0$, and the OLS estimator would be unbiased:
-$E[\hat{\beta}_1] = 3$. However, in this case, the original error term
-$e$ is correlated with $x$, so $u$ is also likely to be correlated with
-$x$.
+If the error term $u$ is uncorrelated with $x$, then $E[(X'X)^{-1}X'u] = 0$, and the OLS estimator would be unbiased: $E[\hat{\beta}_1] = 3$. However, in this case, the original error term $e$ is correlated with $x$, so $u$ is also likely to be correlated with $x$.
 
 Assuming $E[(X'X)^{-1}X'u] \neq 0$, the OLS estimator will be biased:
 
@@ -3115,18 +3342,11 @@ Assuming $E[(X'X)^{-1}X'u] \neq 0$, the OLS estimator will be biased:
                            &= 1 + E[(X'X)^{-1}X'u]
 \end{align*}
 
-The direction and magnitude of the bias will depend on the correlation
-between $x$ and $u$. If $x$ and $u$ are positively correlated, the bias
-will be positive, and the OLS estimator will overestimate the true
-coefficient. Conversely, if $x$ and $u$ are negatively correlated, the
-bias will be negative, and the OLS estimator will underestimate the true
-coefficient.
+The direction and magnitude of the bias will depend on the correlation between $x$ and $u$. If $x$ and $u$ are positively correlated, the bias will be positive, and the OLS estimator will overestimate the true coefficient. Conversely, if $x$ and $u$ are negatively correlated, the bias will be negative, and the OLS estimator will underestimate the true coefficient.
 
 ## Simulation in R
 
-Let's create a simple dataset with 10 observations where $x$ is in the
-interval 1:10, and generate $y$ values based on the given DGP:
-$y = 2x + e$, where $e = 1x + u$, and $u$ is a random error term.
+Let's create a simple dataset with 10 observations where $x$ is in the interval 1:10, and generate $y$ values based on the given DGP: $y = 2x + e$, where $e = 1x + u$, and $u$ is a random error term.
 
 ```{r}
 set.seed(123)  # for reproducibility
@@ -3146,17 +3366,13 @@ model <- lm(y ~ x, data = data)
 summary(model)
 ```
 
-In this example, the true relationship is $y = 2x + e$, where
-$e = 1x + u$. However, when we estimate the OLS model, we get:
+In this example, the true relationship is $y = 2x + e$, where $e = 1x + u$. However, when we estimate the OLS model, we get:
 
 $$ \hat{y} = 0.18376 + 3.05874x $$
 
-The estimated coefficient for $x$ is 3.05874, which is biased upward
-from the true value of 2. This bias is due to the correlation between
-the error term $e$ and the explanatory variable $x$.
+The estimated coefficient for $x$ is 3.05874, which is biased upward from the true value of 2. This bias is due to the correlation between the error term $e$ and the explanatory variable $x$.
 
-To visualize the bias using ggplot2, we can plot the true relationship
-($y = 2x$) and the estimated OLS relationship:
+To visualize the bias using ggplot2, we can plot the true relationship ($y = 2x$) and the estimated OLS relationship:
 
 ```{r}
 library(ggplot2)
@@ -3172,20 +3388,11 @@ ggplot(data, aes(x = x, y = y)) +
                      labels = c("True", "OLS"))
 ```
 
-The plot will show that the estimated OLS line (red) is steeper than the
-true relationship line (blue), illustrating the upward bias in the
-estimated coefficient.
+The plot will show that the estimated OLS line (red) is steeper than the true relationship line (blue), illustrating the upward bias in the estimated coefficient.
 
 ## Conclusion
 
-In summary, when the error term is correlated with the explanatory
-variable (endogeneity), the OLS estimator will be biased. The direction
-and magnitude of the bias depend on the nature of the correlation
-between the error term and the explanatory variable. This tutorial
-demonstrated the bias both mathematically and through a simulated
-example in R, using ggplot2 for visualization.
-
-
+In summary, when the error term is correlated with the explanatory variable (endogeneity), the OLS estimator will be biased. The direction and magnitude of the bias depend on the nature of the correlation between the error term and the explanatory variable. This tutorial demonstrated the bias both mathematically and through a simulated example in R, using ggplot2 for visualization.
 
 ## Appendix C. Worked Examples
 
@@ -3193,7 +3400,7 @@ example in R, using ggplot2 for visualization.
 
 **Background**
 
-In preparation for the 2024 municipal elections, the Amsterdam Electoral Commission conducted research on voter participation patterns across different city neighborhoods. A key question emerged: 
+In preparation for the 2024 municipal elections, the Amsterdam Electoral Commission conducted research on voter participation patterns across different city neighborhoods. A key question emerged:
 
 Does economic prosperity of a neighborhood correlate with civic engagement, specifically voter turnout?
 
@@ -3263,11 +3470,7 @@ $$s_{XY} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
 
 Products of deviations:
 
-$$(-0.2 \times -2.2) = 0.44$$
-$$(-5.2 \times -6.2) = 32.24$$
-$$(5.8 \times 7.8) = 45.24$$
-$$(-10.2 \times -12.2) = 124.44$$
-$$(9.8 \times 12.8) = 125.44$$
+$$(-0.2 \times -2.2) = 0.44$$ $$(-5.2 \times -6.2) = 32.24$$ $$(5.8 \times 7.8) = 45.24$$ $$(-10.2 \times -12.2) = 124.44$$ $$(9.8 \times 12.8) = 125.44$$
 
 $$s_{XY} = \frac{327.8}{4} = 81.95$$
 
@@ -3299,8 +3502,8 @@ $$\hat{\beta_0} = \bar{Y} - \hat{\beta_1}\bar{X}$$
 
 Step by step:
 
-1. $$1.2571429 \times 50.2 = 63.1085714$$
-2. $$\hat{\beta_0} = 62.2 - 63.1085714 = -0.9085714$$
+1.  $$1.2571429 \times 50.2 = 63.1085714$$
+2.  $$\hat{\beta_0} = 62.2 - 63.1085714 = -0.9085714$$
 
 ```{r}
 #| echo: true
@@ -3320,42 +3523,31 @@ For $X = 50$:
 
 $$
 \hat{Y} = -0.9085714 + 1.2571429 \times (50)
-$$
-$$\hat{Y} = -0.9085714 + 62.857145$$
-$$\hat{Y} = 61.9485736$$
+$$ $$\hat{Y} = -0.9085714 + 62.857145$$ $$\hat{Y} = 61.9485736$$
 
 For $X = 45$:
 
 $$
 \hat{Y} = -0.9085714 + 1.2571429 \times (45)
-$$
-$$\hat{Y} = -0.9085714 + 56.5714305$$
-$$\hat{Y} = 55.6535591$$
+$$ $$\hat{Y} = -0.9085714 + 56.5714305$$ $$\hat{Y} = 55.6535591$$
 
 For $X = 56$:
 
 $$
 \hat{Y} = -0.9085714 + 1.2571429 \times (56)
-$$
-$$\hat{Y} = -0.9085714 + 70.4200024$$
-$$\hat{Y} = 69.5114310$$
+$$ $$\hat{Y} = -0.9085714 + 70.4200024$$ $$\hat{Y} = 69.5114310$$
 
 For $X = 40$:
 
 $$
 \hat{Y} = -0.9085714 + 1.2571429 \times (40)
-$$
-$$\hat{Y} = -0.9085714 + 50.2657160$$
-$$\hat{Y} = 49.3571446$$
+$$ $$\hat{Y} = -0.9085714 + 50.2657160$$ $$\hat{Y} = 49.3571446$$
 
 For $X = 60$:
 
 $$
 \hat{Y} = -0.9085714 + 1.2571429 \times (60)
-$$
-$$\hat{Y} = -0.9085714 + 75.4285740$$
-$$\hat{Y} = 74.5200026$$
-
+$$ $$\hat{Y} = -0.9085714 + 75.4285740$$ $$\hat{Y} = 74.5200026$$
 
 ```{r}
 #| echo: true
@@ -3373,11 +3565,7 @@ data.frame(
 
 $$SST = \sum(Y_i - \bar{Y})^2 \text{ where } \bar{Y} = 62.2$$
 
-$$(60 - 62.2)^2 = (-2.2)^2 = 4.84$$
-$$(56 - 62.2)^2 = (-6.2)^2 = 38.44$$
-$$(70 - 62.2)^2 = (7.8)^2 = 60.84$$
-$$(50 - 62.2)^2 = (-12.2)^2 = 148.84$$
-$$(75 - 62.2)^2 = (12.8)^2 = 163.84$$
+$$(60 - 62.2)^2 = (-2.2)^2 = 4.84$$ $$(56 - 62.2)^2 = (-6.2)^2 = 38.44$$ $$(70 - 62.2)^2 = (7.8)^2 = 60.84$$ $$(50 - 62.2)^2 = (-12.2)^2 = 148.84$$ $$(75 - 62.2)^2 = (12.8)^2 = 163.84$$
 
 $$SST = 4.84 + 38.44 + 60.84 + 148.84 + 163.84 = 416.8$$
 
@@ -3385,11 +3573,7 @@ $$SST = 4.84 + 38.44 + 60.84 + 148.84 + 163.84 = 416.8$$
 
 $$SSR = \sum(\hat{Y}_i - \bar{Y})^2$$
 
-$$(61.9485736 - 62.2)^2 = (-0.2514264)^2 = 0.0632151$$
-$$(55.6535591 - 62.2)^2 = (-6.5464409)^2 = 42.8558689$$
-$$(69.5114310 - 62.2)^2 = (7.3114310)^2 = 53.4570178$$
-$$(49.3571446 - 62.2)^2 = (-12.8428554)^2 = 164.9389370$$
-$$(74.5200026 - 62.2)^2 = (12.3200026)^2 = 151.7824640$$
+$$(61.9485736 - 62.2)^2 = (-0.2514264)^2 = 0.0632151$$ $$(55.6535591 - 62.2)^2 = (-6.5464409)^2 = 42.8558689$$ $$(69.5114310 - 62.2)^2 = (7.3114310)^2 = 53.4570178$$ $$(49.3571446 - 62.2)^2 = (-12.8428554)^2 = 164.9389370$$ $$(74.5200026 - 62.2)^2 = (12.3200026)^2 = 151.7824640$$
 
 $$SSR = 413.0975028$$
 
@@ -3397,18 +3581,13 @@ $$SSR = 413.0975028$$
 
 $$SSE = \sum(Y_i - \hat{Y}_i)^2$$
 
-$$(60 - 61.9485736)^2 = (-1.9485736)^2 = 3.7969384$$
-$$(56 - 55.6535591)^2 = (0.3464409)^2 = 0.1200212$$
-$$(70 - 69.5114310)^2 = (0.4885690)^2 = 0.2387198$$
-$$(50 - 49.3571446)^2 = (0.6428554)^2 = 0.4132631$$
-$$(75 - 74.5200026)^2 = (0.4799974)^2 = 0.2303975$$
+$$(60 - 61.9485736)^2 = (-1.9485736)^2 = 3.7969384$$ $$(56 - 55.6535591)^2 = (0.3464409)^2 = 0.1200212$$ $$(70 - 69.5114310)^2 = (0.4885690)^2 = 0.2387198$$ $$(50 - 49.3571446)^2 = (0.6428554)^2 = 0.4132631$$ $$(75 - 74.5200026)^2 = (0.4799974)^2 = 0.2303975$$
 
 $$SSE = 4.7024972$$
 
 **Step 5: Verify decomposition**
 
-$$SST = SSR + SSE$$
-$$416.8 = 413.0975028 + 4.7024972$$
+$$SST = SSR + SSE$$ $$416.8 = 413.0975028 + 4.7024972$$
 
 **Step 6: Calculate R-squared**
 
@@ -3447,23 +3626,20 @@ ggplot(df, aes(x = income, y = turnout)) +
 
 The analysis shows:
 
-1. A very strong positive correlation ($r = 0.994$) between income and voter turnout
+1.  A very strong positive correlation ($r = 0.994$) between income and voter turnout
 
-2. The regression equation $$\hat{Y} = -0.9085714 + 1.2571429X$$ indicates that:
+2.  The regression equation $$\hat{Y} = -0.9085714 + 1.2571429X$$ indicates that:
 
-   - For each €1,000 increase in income, turnout increases by about 1.26 percentage points
-   - The intercept ($-0.9086$) has little practical meaning as income is never zero
+    -   For each €1,000 increase in income, turnout increases by about 1.26 percentage points
+    -   The intercept ($-0.9086$) has little practical meaning as income is never zero
 
-3. The R-squared of 0.9916 indicates that 99.16% of the variance in turnout is explained by income
-
+3.  The R-squared of 0.9916 indicates that 99.16% of the variance in turnout is explained by income
 
 ## Anxiety Levels and Cognitive Performance: A Laboratory Study
 
 ### Data and Context
 
-In a psychology experiment, researchers measured the relationship
-between anxiety levels (measured by galvanic skin response, GSR) and
-cognitive performance (score on a working memory task).
+In a psychology experiment, researchers measured the relationship between anxiety levels (measured by galvanic skin response, GSR) and cognitive performance (score on a working memory task).
 
 ```{r}
 #| echo: true
@@ -3478,8 +3654,7 @@ summary(model)
 
 ### Descriptive Statistics
 
-**Means:**
-$$\bar{X} = \frac{2.1 + 3.4 + 4.2 + 5.1 + 5.8 + 6.4 + 7.2 + 8.0}{8} = \frac{42.2}{8} = 5.275$$
+**Means:** $$\bar{X} = \frac{2.1 + 3.4 + 4.2 + 5.1 + 5.8 + 6.4 + 7.2 + 8.0}{8} = \frac{42.2}{8} = 5.275$$
 
 $$\bar{Y} = \frac{92 + 88 + 84 + 78 + 74 + 70 + 65 + 62}{8} = \frac{613}{8} = 76.625$$
 
@@ -3494,14 +3669,14 @@ mean(performance)
 
 Deviations for X:
 
-- $(2.1 - 5.275) = -3.175$
-- $(3.4 - 5.275) = -1.875$
-- $(4.2 - 5.275) = -1.075$
-- $(5.1 - 5.275) = -0.175$
-- $(5.8 - 5.275) = 0.525$
-- $(6.4 - 5.275) = 1.125$
-- $(7.2 - 5.275) = 1.925$
-- $(8.0 - 5.275) = 2.725$
+-   $(2.1 - 5.275) = -3.175$
+-   $(3.4 - 5.275) = -1.875$
+-   $(4.2 - 5.275) = -1.075$
+-   $(5.1 - 5.275) = -0.175$
+-   $(5.8 - 5.275) = 0.525$
+-   $(6.4 - 5.275) = 1.125$
+-   $(7.2 - 5.275) = 1.925$
+-   $(8.0 - 5.275) = 2.725$
 
 Squared deviations:
 
@@ -3509,7 +3684,6 @@ $$10.08063 + 3.51563 + 1.15563 + 0.03063 + 0.27563 + 1.26563 + 3.70563 +
 7.42563 = 27.45500$$
 
 $$s^2_X = \frac{27.45500}{7} = 3.922143$$
-
 
 Similarly for Y: Deviations:
 
@@ -3526,8 +3700,7 @@ var(performance)
 
 ### Covariance and Correlation
 
-**Covariance:**
-$$s_{XY} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
+**Covariance:** $$s_{XY} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
 
 Products of deviations:
 
@@ -3549,7 +3722,6 @@ $$(2.725 × -14.625) = -39.853125$$
 
 Sum $= -149.375$
 
-
 $$s_{XY} = \frac{-149.375}{7} = -21.33929$$
 
 ```{r}
@@ -3558,8 +3730,7 @@ $$s_{XY} = \frac{-149.375}{7} = -21.33929$$
 cov(anxiety, performance)
 ```
 
-**Correlation:**
-$$r_{XY} = \frac{s_{XY}}{\sqrt{s^2_X}\sqrt{s^2_Y}} = \frac{-21.33929}{\sqrt{3.922143}\sqrt{117.4803}} = -0.9932$$
+**Correlation:** $$r_{XY} = \frac{s_{XY}}{\sqrt{s^2_X}\sqrt{s^2_Y}} = \frac{-21.33929}{\sqrt{3.922143}\sqrt{117.4803}} = -0.9932$$
 
 ```{r}
 #| echo: true
@@ -3569,13 +3740,12 @@ cor(anxiety, performance)
 
 ### OLS Regression $(\hat{Y} = \hat{\beta_0} + \hat{\beta_1}X)$
 
-**Slope coefficient:**
-$$\hat{\beta_1} = \frac{s_{XY}}{s^2_X} = \frac{-21.33929}{3.922143} = -5.4407$$
+**Slope coefficient:** $$\hat{\beta_1} = \frac{s_{XY}}{s^2_X} = \frac{-21.33929}{3.922143} = -5.4407$$
 
 **Intercept:** $$\hat{\beta_0} = \bar{Y} - \hat{\beta_1}\bar{X}$$ Steps:
 
-1. $-5.4407 × 5.275 = -28.6997$
-2. $\hat{\beta_0} = 76.625 - (-28.6997) = 105.3247$
+1.  $-5.4407 × 5.275 = -28.6997$
+2.  $\hat{\beta_0} = 76.625 - (-28.6997) = 105.3247$
 
 ```{r}
 #| echo: true
@@ -3585,8 +3755,7 @@ coef(model)
 
 ### 4. R-squared Calculation
 
-**Step 1: Calculate predicted values** $(\hat{Y})$:
-$$\hat{Y} = 105.3247 - 5.4407X$$
+**Step 1: Calculate predicted values** $(\hat{Y})$: $$\hat{Y} = 105.3247 - 5.4407X$$
 
 ```{r}
 #| echo: true
@@ -3608,8 +3777,7 @@ $SSR = \sum(\hat{Y}_i - \bar{Y})^2 = 816.3094$
 
 $SSE = \sum(Y_i - \hat{Y}_i)^2 = 6.0526$
 
-**R-squared:**
-$$R^2 = \frac{SSR}{SST} = \frac{816.3094}{822.362} = 0.9926$$
+**R-squared:** $$R^2 = \frac{SSR}{SST} = \frac{816.3094}{822.362} = 0.9926$$
 
 ```{r}
 #| echo: true
@@ -3637,15 +3805,11 @@ ggplot(data.frame(anxiety, performance), aes(x = anxiety, y = performance)) +
 
 ### Interpretation
 
-1.  Strong negative correlation (r = -0.993) between anxiety and
-    cognitive performance
-2.  For each unit increase in GSR (anxiety), performance decreases by
-    approximately 5.44 points
+1.  Strong negative correlation (r = -0.993) between anxiety and cognitive performance
+2.  For each unit increase in GSR (anxiety), performance decreases by approximately 5.44 points
 3.  The model explains 99.26% of the variance in performance scores
-4.  The relationship appears to be strongly linear, suggesting a
-    reliable anxiety-performance relationship
-5.  The high intercept (105.32) represents the theoretical maximum
-    performance at zero anxiety
+4.  The relationship appears to be strongly linear, suggesting a reliable anxiety-performance relationship
+5.  The high intercept (105.32) represents the theoretical maximum performance at zero anxiety
 
 ### Study Limitations
 
@@ -3653,7 +3817,6 @@ ggplot(data.frame(anxiety, performance), aes(x = anxiety, y = performance)) +
 2.  Possible other confounding variables
 3.  Limited range of anxiety levels
 4.  Cross-sectional rather than longitudinal data
-
 
 ## District Magnitude and Electoral Disproportionality: A Comparative Analysis
 
@@ -3690,8 +3853,7 @@ summary(model)
 
 ### Descriptive Statistics
 
-**Means:**
-$$\bar{X} = \frac{3 + 5 + 7 + 10 + 12 + 15}{6} = \frac{52}{6} = 8.6667$$
+**Means:** $$\bar{X} = \frac{3 + 5 + 7 + 10 + 12 + 15}{6} = \frac{52}{6} = 8.6667$$
 
 $$\bar{Y} = \frac{9.0 + 7.8 + 9.2 + 4.1 + 2.5 + 1.7}{6} = \frac{34.3}{6} = 5.7167$$
 
@@ -3734,8 +3896,7 @@ var(gallagher)
 
 ### Covariance and Correlation
 
-**Covariance:**
-$$s_{XY} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
+**Covariance:** $$s_{XY} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
 
 Products of deviations:
 
@@ -3756,8 +3917,7 @@ $$s_{XY} = \frac{-70.3670}{5} = -14.0734$$
 cov(magnitude, gallagher)
 ```
 
-**Correlation:**
-$$r_{XY} = \frac{s_{XY}}{\sqrt{s^2_X}\sqrt{s^2_Y}} = \frac{-14.0734}{\sqrt{20.2666}\sqrt{11.2697}} = -0.9279$$
+**Correlation:** $$r_{XY} = \frac{s_{XY}}{\sqrt{s^2_X}\sqrt{s^2_Y}} = \frac{-14.0734}{\sqrt{20.2666}\sqrt{11.2697}} = -0.9279$$
 
 ```{r}
 #| echo: true
@@ -3767,13 +3927,12 @@ cor(magnitude, gallagher)
 
 ### OLS Regression $(\hat{Y} = \hat{\beta_0} + \hat{\beta_1}X)$
 
-**Slope coefficient:**
-$$\hat{\beta_1} = \frac{s_{XY}}{s^2_X} = \frac{-14.0734}{20.2666} = -0.6944$$
+**Slope coefficient:** $$\hat{\beta_1} = \frac{s_{XY}}{s^2_X} = \frac{-14.0734}{20.2666} = -0.6944$$
 
 **Intercept:** $$\hat{\beta_0} = \bar{Y} - \hat{\beta_1}\bar{X}$$ Steps:
 
-1. $-0.6944 × 8.6667 = -6.0181$
-2. $\hat{\beta_0} = 5.7167 - (-6.0181) = 11.7348$
+1.  $-0.6944 × 8.6667 = -6.0181$
+2.  $\hat{\beta_0} = 5.7167 - (-6.0181) = 11.7348$
 
 ```{r}
 #| echo: true
@@ -3799,12 +3958,9 @@ data.frame(
 )
 ```
 
-**Step 2: Sum of Squares** $SST = \sum(Y_i - \bar{Y})^2 = 56.3483$
-$SSR = \sum(\hat{Y}_i - \bar{Y})^2 = 48.5271$
-$SSE = \sum(Y_i - \hat{Y}_i)^2 = 7.8212$
+**Step 2: Sum of Squares** $SST = \sum(Y_i - \bar{Y})^2 = 56.3483$ $SSR = \sum(\hat{Y}_i - \bar{Y})^2 = 48.5271$ $SSE = \sum(Y_i - \hat{Y}_i)^2 = 7.8212$
 
-**R-squared:**
-$$R^2 = \frac{SSR}{SST} = \frac{48.5271}{56.3483} = 0.8612$$
+**R-squared:** $$R^2 = \frac{SSR}{SST} = \frac{48.5271}{56.3483} = 0.8612$$
 
 ```{r}
 #| echo: true
@@ -3879,39 +4035,27 @@ ggplot() +
     -   The estimated intercept very closely approximates the true value
 3.  **Visual Patterns**
     -   The lines are nearly parallel, showing good slope recovery
-    -   Points scatter around both lines due to the random error term
-        (ε)
-    -   The small sample size (n=6) leads to some imprecision in
-        estimation
-    -   The estimated line (blue) provides a good approximation of the
-        true DGP (red dashed)
+    -   Points scatter around both lines due to the random error term (ε)
+    -   The small sample size (n=6) leads to some imprecision in estimation
+    -   The estimated line (blue) provides a good approximation of the true DGP (red dashed)
 4.  **Impact of Random Error**
-    -   The scatter of points around the true DGP line reflects the
-        N(0,1) error term
-    -   This noise leads to the slight differences in estimated
-        parameters
-    -   With a larger sample, we would expect even closer convergence to
-        true parameters
+    -   The scatter of points around the true DGP line reflects the N(0,1) error term
+    -   This noise leads to the slight differences in estimated parameters
+    -   With a larger sample, we would expect even closer convergence to true parameters
 
 ### Interpretation
 
-1.  Strong negative correlation (r = -0.93) between district magnitude
-    and electoral disproportionality
-2.  For each unit increase in district magnitude, the Gallagher index
-    decreases by approximately 0.69 points
+1.  Strong negative correlation (r = -0.93) between district magnitude and electoral disproportionality
+2.  For each unit increase in district magnitude, the Gallagher index decreases by approximately 0.69 points
 3.  The model explains 86.12% of the variance in disproportionality
 4.  The relationship appears strongly linear with moderate scatter
-5.  The intercept (11.73) represents the expected disproportionality in
-    a hypothetical single-member district system
+5.  The intercept (11.73) represents the expected disproportionality in a hypothetical single-member district system
 
 ### Study Context
 
--   Data represents simulated observations from a DGP with moderate
-    noise
--   Sample shows how increasing district magnitude tends to reduce
-    disproportionality
--   Random component reflects other institutional and political factors
-    affecting disproportionality
+-   Data represents simulated observations from a DGP with moderate noise
+-   Sample shows how increasing district magnitude tends to reduce disproportionality
+-   Random component reflects other institutional and political factors affecting disproportionality
 
 ### Limitations
 
