@@ -292,7 +292,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./probability_en.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to (Discrete) Probability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -349,9 +349,10 @@ window.Quarto = {
   </ul></li>
   <li><a href="#introduction-to-regression-analysis" id="toc-introduction-to-regression-analysis" class="nav-link" data-scroll-target="#introduction-to-regression-analysis"><span class="header-section-number">15.3</span> Introduction to Regression Analysis</a>
   <ul class="collapse">
-  <li><a href="#why-study-regression" id="toc-why-study-regression" class="nav-link" data-scroll-target="#why-study-regression"><span class="header-section-number">15.3.1</span> Why Study Regression?</a></li>
-  <li><a href="#basic-concepts-and-terminology" id="toc-basic-concepts-and-terminology" class="nav-link" data-scroll-target="#basic-concepts-and-terminology"><span class="header-section-number">15.3.7</span> Basic Concepts and Terminology</a></li>
-  <li><a href="#the-core-idea" id="toc-the-core-idea" class="nav-link" data-scroll-target="#the-core-idea"><span class="header-section-number">15.3.8</span> The Core Idea</a></li>
+  <li><a href="#regression-as-a-stochastic-model" id="toc-regression-as-a-stochastic-model" class="nav-link" data-scroll-target="#regression-as-a-stochastic-model"><span class="header-section-number">15.3.1</span> Regression as a Stochastic Model</a></li>
+  <li><a href="#why-study-regression" id="toc-why-study-regression" class="nav-link" data-scroll-target="#why-study-regression"><span class="header-section-number">15.3.2</span> Why Study Regression?</a></li>
+  <li><a href="#basic-concepts-and-terminology" id="toc-basic-concepts-and-terminology" class="nav-link" data-scroll-target="#basic-concepts-and-terminology"><span class="header-section-number">15.3.8</span> Basic Concepts and Terminology</a></li>
+  <li><a href="#the-core-idea" id="toc-the-core-idea" class="nav-link" data-scroll-target="#the-core-idea"><span class="header-section-number">15.3.9</span> The Core Idea</a></li>
   </ul></li>
   <li><a href="#the-linear-regression-model" id="toc-the-linear-regression-model" class="nav-link" data-scroll-target="#the-linear-regression-model"><span class="header-section-number">15.4</span> The Linear Regression Model</a>
   <ul class="collapse">
@@ -367,11 +368,11 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#decomposition-of-variance" id="toc-decomposition-of-variance" class="nav-link" data-scroll-target="#decomposition-of-variance"><span class="header-section-number">15.6.1</span> Decomposition of Variance</a></li>
   <li><a href="#understanding-the-three-types-of-variation" id="toc-understanding-the-three-types-of-variation" class="nav-link" data-scroll-target="#understanding-the-three-types-of-variation"><span class="header-section-number">15.6.2</span> Understanding the Three Types of Variation</a></li>
-  <li><a href="#r²-demystified" id="toc-r²-demystified" class="nav-link" data-scroll-target="#r²-demystified"><span class="header-section-number">15.6.10</span> R² Demystified</a></li>
-  <li><a href="#when-to-be-cautious" id="toc-when-to-be-cautious" class="nav-link" data-scroll-target="#when-to-be-cautious"><span class="header-section-number">15.6.11</span> When to Be Cautious</a></li>
-  <li><a href="#practical-tips-for-analysis" id="toc-practical-tips-for-analysis" class="nav-link" data-scroll-target="#practical-tips-for-analysis"><span class="header-section-number">15.6.12</span> Practical Tips for Analysis</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">15.6.13</span> Key Takeaways</a></li>
-  <li><a href="#measures-of-fit" id="toc-measures-of-fit" class="nav-link" data-scroll-target="#measures-of-fit"><span class="header-section-number">15.6.14</span> Measures of Fit</a></li>
+  <li><a href="#r²-demystified" id="toc-r²-demystified" class="nav-link" data-scroll-target="#r²-demystified"><span class="header-section-number">15.6.9</span> R² Demystified</a></li>
+  <li><a href="#when-to-be-cautious" id="toc-when-to-be-cautious" class="nav-link" data-scroll-target="#when-to-be-cautious"><span class="header-section-number">15.6.10</span> When to Be Cautious</a></li>
+  <li><a href="#practical-tips-for-analysis" id="toc-practical-tips-for-analysis" class="nav-link" data-scroll-target="#practical-tips-for-analysis"><span class="header-section-number">15.6.11</span> Practical Tips for Analysis</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">15.6.12</span> Key Takeaways</a></li>
+  <li><a href="#measures-of-fit" id="toc-measures-of-fit" class="nav-link" data-scroll-target="#measures-of-fit"><span class="header-section-number">15.6.13</span> Measures of Fit</a></li>
   </ul></li>
   <li><a href="#multiple-regression" id="toc-multiple-regression" class="nav-link" data-scroll-target="#multiple-regression"><span class="header-section-number">15.7</span> Multiple Regression (*)</a>
   <ul class="collapse">
@@ -404,7 +405,6 @@ window.Quarto = {
   <li><a href="#verification-using-r" id="toc-verification-using-r" class="nav-link" data-scroll-target="#verification-using-r"><span class="header-section-number">15.11.5</span> Verification using R</a></li>
   <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">15.11.6</span> Interpretation</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">15.11.7</span> Exercise</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">15.11.8</span> References</a></li>
   </ul></li>
   <li><a href="#appendix-a.2-calculating-covariance-pearson-spearman-correlation-and-ols---worked-example" id="toc-appendix-a.2-calculating-covariance-pearson-spearman-correlation-and-ols---worked-example" class="nav-link" data-scroll-target="#appendix-a.2-calculating-covariance-pearson-spearman-correlation-and-ols---worked-example"><span class="header-section-number">15.12</span> Appendix A.2: Calculating Covariance, Pearson, Spearman Correlation, and OLS - worked example</a>
   <ul class="collapse">
@@ -816,9 +816,9 @@ Ranks:      1,  2.5, 2.5,  4,   5</code></pre>
 </ul>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 38%">
-<col style="width: 38%">
+<col style="width: 25%">
+<col style="width: 37%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -899,9 +899,9 @@ Ranks:      1,  2.5, 2.5,  4,   5</code></pre>
 <p>Using the same data as above:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 38%">
-<col style="width: 38%">
+<col style="width: 25%">
+<col style="width: 37%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1280,8 +1280,88 @@ Cumulative Var 0.336 0.671</code></pre>
 </section>
 <section id="introduction-to-regression-analysis" class="level2" data-number="15.3">
 <h2 data-number="15.3" class="anchored" data-anchor-id="introduction-to-regression-analysis"><span class="header-section-number">15.3</span> Introduction to Regression Analysis</h2>
-<section id="why-study-regression" class="level3" data-number="15.3.1">
-<h3 data-number="15.3.1" class="anchored" data-anchor-id="why-study-regression"><span class="header-section-number">15.3.1</span> Why Study Regression?</h3>
+<p>Regression analysis is a fundamental statistical method that examines and models the relationship between variables to understand how changes in one or more independent variables influence a dependent variable.</p>
+<p><strong>The Core Concept</strong></p>
+<p>At its heart, regression analysis helps us answer questions about cause and effect, prediction, and forecasting. For example, a business might use regression analysis to understand how advertising spending affects sales, or how employee training hours impact productivity.</p>
+<p><strong>How Regression Analysis Works</strong></p>
+<p>The process begins by collecting data about the variables of interest. The analysis then fits a mathematical model—typically a line or curve—that best represents the relationship between these variables. This model allows us to:</p>
+<ul>
+<li>Identify the strength and direction of relationships between variables</li>
+<li>Make predictions about future outcomes</li>
+<li>Understand which factors have the most significant impact on our results</li>
+</ul>
+<section id="regression-as-a-stochastic-model" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="regression-as-a-stochastic-model"><span class="header-section-number">15.3.1</span> Regression as a Stochastic Model</h3>
+<p>In mathematical modeling, we encounter two fundamental approaches to describing relationships between variables:</p>
+<ul>
+<li>deterministic models,</li>
+<li>stochastic models.</li>
+</ul>
+<section id="deterministic-vs.-stochastic-models" class="level4" data-number="15.3.1.1">
+<h4 data-number="15.3.1.1" class="anchored" data-anchor-id="deterministic-vs.-stochastic-models"><span class="header-section-number">15.3.1.1</span> Deterministic vs.&nbsp;Stochastic Models</h4>
+<p>A deterministic model assumes a precise, fixed relationship between inputs and outputs. In such models, if we know the inputs, we can calculate the exact output with certainty. Consider the classic physics equation for distance:</p>
+<p><span class="math display">\text{Distance} = \text{Speed} × \text{Time}</span></p>
+<p>Given specific values for speed and time, this equation will always yield the same distance. There is no room for variation in the outcome.</p>
+<p>In contrast, regression analysis embraces the presence of natural variation in data. The fundamental structure of a regression model is:</p>
+<p><span class="math display">Y = f(X) + \epsilon</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">Y</span> represents the outcome we wish to predict</li>
+<li><span class="math inline">f(X)</span> represents the systematic relationship between our predictors (X) and the outcome</li>
+<li><span class="math inline">\epsilon</span> represents the random variation that naturally occurs in real-world data</li>
+</ul>
+</section>
+<section id="the-nature-of-stochastic-models-in-regression" class="level4" data-number="15.3.1.2">
+<h4 data-number="15.3.1.2" class="anchored" data-anchor-id="the-nature-of-stochastic-models-in-regression"><span class="header-section-number">15.3.1.2</span> The Nature of Stochastic Models in Regression</h4>
+<p>The inclusion of the error term <span class="math inline">\epsilon</span> acknowledges that real relationships between variables are rarely perfect. For example, when studying how study time affects test scores, many factors contribute to the final outcome:</p>
+<p>The systematic part <span class="math inline">f(X)</span> captures the general trend: more study time tends to lead to higher scores.</p>
+<p>The error term <span class="math inline">\epsilon</span> accounts for all other influences:</p>
+<ul>
+<li>Different learning styles</li>
+<li>Study environment</li>
+<li>Physical and mental state during the test</li>
+<li>Quality of study materials</li>
+</ul>
+</section>
+<section id="mathematical-framework" class="level4" data-number="15.3.1.3">
+<h4 data-number="15.3.1.3" class="anchored" data-anchor-id="mathematical-framework"><span class="header-section-number">15.3.1.3</span> Mathematical Framework</h4>
+<p>In its simplest form, linear regression can be expressed as:</p>
+<p><span class="math display">Y = \beta_0 + \beta_1X + \epsilon</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\beta_0</span> represents the baseline value (when X = 0)</li>
+<li><span class="math inline">\beta_1</span> represents the change in Y for each unit increase in X</li>
+<li><span class="math inline">\epsilon</span> represents the natural variation around this relationship</li>
+</ul>
+</section>
+<section id="practical-implications" class="level4" data-number="15.3.1.4">
+<h4 data-number="15.3.1.4" class="anchored" data-anchor-id="practical-implications"><span class="header-section-number">15.3.1.4</span> Practical Implications</h4>
+<p>Understanding regression as a stochastic model has important practical implications:</p>
+<ol type="1">
+<li><p>Predictions: We recognize that our predictions will have some natural variation around them. Rather than claiming an exact outcome, we acknowledge a range of plausible values.</p></li>
+<li><p>Model Evaluation: We assess models by how well they capture both the general trend and the typical amount of variation in the data.</p></li>
+<li><p>Decision Making: Understanding the natural variation in our predictions helps us make more realistic plans and decisions.</p></li>
+</ol>
+<p><strong>Real-World Applications</strong></p>
+<p>Consider predicting house prices based on square footage. A deterministic model might say: “A 2000 sq ft house will sell for exactly $300,000”</p>
+<p>A regression model instead recognizes that:</p>
+<ul>
+<li>There’s a general relationship between size and price</li>
+<li>But many other factors affect the final price</li>
+<li>Similar houses might sell for somewhat different prices</li>
+<li>Our predictions should reflect this natural variation</li>
+</ul>
+<p><strong>Conclusion</strong></p>
+<p>The stochastic nature of regression analysis provides a more realistic framework for understanding real-world relationships between variables. By explicitly accounting for natural variation, regression analysis helps us:</p>
+<ul>
+<li>Make more realistic predictions</li>
+<li>Better understand the limitations of our models</li>
+<li>Make more informed decisions</li>
+</ul>
+</section>
+</section>
+<section id="why-study-regression" class="level3" data-number="15.3.2">
+<h3 data-number="15.3.2" class="anchored" data-anchor-id="why-study-regression"><span class="header-section-number">15.3.2</span> Why Study Regression?</h3>
 <p>Regression analysis is a fundamental statistical tool that helps us understand relationships between variables. Before diving into formulas and technical details, let’s understand what questions regression can help us answer:</p>
 <ul>
 <li>How much does each additional year of education affect someone’s salary?</li>
@@ -1300,6 +1380,19 @@ Understanding Linear Regression (OLS): Quickstart guide
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<section id="the-model-concept" class="level3" data-number="15.3.3">
+<h3 data-number="15.3.3" class="anchored" data-anchor-id="the-model-concept"><span class="header-section-number">15.3.3</span> The Model Concept</h3>
+<p>OLS regression is a statistical model that describes the relationship between variables. Two key assumptions define this model:</p>
+<ol type="1">
+<li>The relationship can be described by a straight line (linearity)</li>
+<li>The errors in our predictions are not systematically related to our x-variable (strict exogeneity)</li>
+</ol>
+</section>
+<section id="example-education-and-wages" class="level3" data-number="15.3.4">
+<h3 data-number="15.3.4" class="anchored" data-anchor-id="example-education-and-wages"><span class="header-section-number">15.3.4</span> Example: Education and Wages</h3>
+<p>Consider studying the effect of education (x) on wages (y). Let’s say we estimate:</p>
+<p><span class="math display">wages = \beta_0 + \beta_1 \cdot education + \epsilon</span></p>
+<p>The error term <span class="math inline">\epsilon</span> contains all other factors affecting wages. Strict exogeneity is violated if we omit an important variable like “ability” that affects both education and wages. Why? Because more able people tend to get more education AND higher wages, making our estimate of education’s effect biased upward.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -1359,22 +1452,9 @@ Understanding Linear Regression (OLS): Quickstart guide
 </div>
 </div>
 </div>
-<section id="the-model-concept" class="level3" data-number="15.3.2">
-<h3 data-number="15.3.2" class="anchored" data-anchor-id="the-model-concept"><span class="header-section-number">15.3.2</span> The Model Concept</h3>
-<p>OLS regression is a statistical model that describes the relationship between variables. Two key assumptions define this model:</p>
-<ol type="1">
-<li>The relationship can be described by a straight line (linearity)</li>
-<li>The errors in our predictions are not systematically related to our x-variable (strict exogeneity)</li>
-</ol>
 </section>
-<section id="example-education-and-wages" class="level3" data-number="15.3.3">
-<h3 data-number="15.3.3" class="anchored" data-anchor-id="example-education-and-wages"><span class="header-section-number">15.3.3</span> Example: Education and Wages</h3>
-<p>Consider studying the effect of education (x) on wages (y). Let’s say we estimate:</p>
-<p><span class="math display">wages = \beta_0 + \beta_1 \cdot education + \epsilon</span></p>
-<p>The error term <span class="math inline">\epsilon</span> contains all other factors affecting wages. Strict exogeneity is violated if we omit an important variable like “ability” that affects both education and wages. Why? Because more able people tend to get more education AND higher wages, making our estimate of education’s effect biased upward.</p>
-</section>
-<section id="the-optimization-problem-understanding-ols" class="level3" data-number="15.3.4">
-<h3 data-number="15.3.4" class="anchored" data-anchor-id="the-optimization-problem-understanding-ols"><span class="header-section-number">15.3.4</span> The Optimization Problem: Understanding OLS</h3>
+<section id="the-optimization-problem-understanding-ols" class="level3" data-number="15.3.5">
+<h3 data-number="15.3.5" class="anchored" data-anchor-id="the-optimization-problem-understanding-ols"><span class="header-section-number">15.3.5</span> The Optimization Problem: Understanding OLS</h3>
 <p>When we analyze relationships between variables like education and wages, we need a systematic method to find the line that best represents this relationship in our data. Ordinary Least Squares (OLS) provides this method through a clear mathematical approach.</p>
 <p>Consider our plot of education levels and wages. Each point represents actual data - one person’s years of education and their corresponding wage. Our goal is to find a single line that most accurately captures the underlying relationship between these variables.</p>
 <p>For any given observation <span class="math inline">i</span>, we can express this relationship as: <span class="math display">y_i = \beta_0 + \beta_1x_i + \epsilon_i</span></p>
@@ -1395,14 +1475,14 @@ Understanding Linear Regression (OLS): Quickstart guide
 </ul>
 <p>The OLS solution provides us with parameter estimates <span class="math inline">\hat{\beta_0}</span> and <span class="math inline">\hat{\beta_1}</span> that minimize the total squared error, giving us the most accurate linear representation of the relationship between education and wages based on our available data.</p>
 </section>
-<section id="finding-the-best-line" class="level3" data-number="15.3.5">
-<h3 data-number="15.3.5" class="anchored" data-anchor-id="finding-the-best-line"><span class="header-section-number">15.3.5</span> Finding the Best Line</h3>
+<section id="finding-the-best-line" class="level3" data-number="15.3.6">
+<h3 data-number="15.3.6" class="anchored" data-anchor-id="finding-the-best-line"><span class="header-section-number">15.3.6</span> Finding the Best Line</h3>
 <p>The solution to this minimization gives us:</p>
 <p><span class="math display">\hat{\beta}_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = \frac{cov(X, Y)}{var(X)}</span></p>
 <p><span class="math display">\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}</span></p>
 </section>
-<section id="key-points-1" class="level3" data-number="15.3.6">
-<h3 data-number="15.3.6" class="anchored" data-anchor-id="key-points-1"><span class="header-section-number">15.3.6</span> Key Points</h3>
+<section id="key-points-1" class="level3" data-number="15.3.7">
+<h3 data-number="15.3.7" class="anchored" data-anchor-id="key-points-1"><span class="header-section-number">15.3.7</span> Key Points</h3>
 <ol type="1">
 <li>OLS finds the line that minimizes squared prediction errors</li>
 <li>This line is “best” in terms of fit, but might not capture true relationships if important variables are omitted</li>
@@ -1412,8 +1492,8 @@ Understanding Linear Regression (OLS): Quickstart guide
 </div>
 </div>
 </section>
-<section id="basic-concepts-and-terminology" class="level3" data-number="15.3.7">
-<h3 data-number="15.3.7" class="anchored" data-anchor-id="basic-concepts-and-terminology"><span class="header-section-number">15.3.7</span> Basic Concepts and Terminology</h3>
+<section id="basic-concepts-and-terminology" class="level3" data-number="15.3.8">
+<h3 data-number="15.3.8" class="anchored" data-anchor-id="basic-concepts-and-terminology"><span class="header-section-number">15.3.8</span> Basic Concepts and Terminology</h3>
 <p>Let’s establish our key terms:</p>
 <ul>
 <li><strong>Dependent Variable (Y)</strong>:
@@ -1428,13 +1508,13 @@ Understanding Linear Regression (OLS): Quickstart guide
 <li>Also called: predictor, explanatory variable, regressor</li>
 <li>Examples: years of education, advertising budget, study hours</li>
 </ul></li>
-<li><strong>Population Parameters (<span class="math inline">\beta</span>)</strong>:
+<li><strong>Population Parameters (</strong><span class="math inline">\beta</span>):
 <ul>
 <li>The true underlying relationships we want to understand</li>
 <li>Usually unknown in practice</li>
 <li>Examples: <span class="math inline">\beta_0</span> (true intercept), <span class="math inline">\beta_1</span> (true slope)</li>
 </ul></li>
-<li><strong>Parameter Estimates (<span class="math inline">\hat{\beta}</span>)</strong>:
+<li><strong>Parameter Estimates (</strong><span class="math inline">\hat{\beta}</span>):
 <ul>
 <li>Our best guesses of the true parameters based on data</li>
 <li>Calculated from sample data</li>
@@ -1442,8 +1522,8 @@ Understanding Linear Regression (OLS): Quickstart guide
 </ul></li>
 </ul>
 </section>
-<section id="the-core-idea" class="level3" data-number="15.3.8">
-<h3 data-number="15.3.8" class="anchored" data-anchor-id="the-core-idea"><span class="header-section-number">15.3.8</span> The Core Idea</h3>
+<section id="the-core-idea" class="level3" data-number="15.3.9">
+<h3 data-number="15.3.9" class="anchored" data-anchor-id="the-core-idea"><span class="header-section-number">15.3.9</span> The Core Idea</h3>
 <p>Let’s visualize what regression does with a simple example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate some example data</span></span>
@@ -2040,31 +2120,50 @@ Understanding Variance Decomposition in Linear Regression
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<section id="why-it-matters-improving-predictions-with-extra-information" class="level3" data-number="15.6.3">
-<h3 data-number="15.6.3" class="anchored" data-anchor-id="why-it-matters-improving-predictions-with-extra-information"><span class="header-section-number">15.6.3</span> Why It Matters: Improving Predictions with Extra Information</h3>
-<p>Imagine you’re trying to predict house prices. A simple way to make predictions is by using the average price of all houses. But what if you know additional details, like the size of the house? Would that help improve your predictions? <strong>Variance decomposition</strong> helps us measure exactly how much better our predictions are when we include more information, like house size.</p>
+<section id="why-it-matters-understanding-prediction-improvement-through-additional-variables" class="level3" data-number="15.6.3">
+<h3 data-number="15.6.3" class="anchored" data-anchor-id="why-it-matters-understanding-prediction-improvement-through-additional-variables"><span class="header-section-number">15.6.3</span> Why It Matters: Understanding Prediction Improvement Through Additional Variables</h3>
+<p>In statistical analysis and modeling, we frequently encounter situations where we must assess the value of incorporating additional predictor variables. Consider the domain of real estate valuation: While one could estimate property values using the market-wide average price, incorporating specific property characteristics, such as square footage, can substantially enhance prediction accuracy. <strong>Variance decomposition</strong> provides a rigorous framework for quantifying the incremental improvement in predictive accuracy when we incorporate such additional variables.</p>
 </section>
-<section id="the-process-from-a-simple-guess-to-a-smarter-prediction" class="level3" data-number="15.6.4">
-<h3 data-number="15.6.4" class="anchored" data-anchor-id="the-process-from-a-simple-guess-to-a-smarter-prediction"><span class="header-section-number">15.6.4</span> The Process: From a Simple Guess to a Smarter Prediction</h3>
-<section id="step-1-starting-with-the-average" class="level4" data-number="15.6.4.1">
-<h4 data-number="15.6.4.1" class="anchored" data-anchor-id="step-1-starting-with-the-average"><span class="header-section-number">15.6.4.1</span> Step 1: Starting with the Average</h4>
+<section id="the-analytical-process-from-baseline-to-enhanced-predictions" class="level3" data-number="15.6.4">
+<h3 data-number="15.6.4" class="anchored" data-anchor-id="the-analytical-process-from-baseline-to-enhanced-predictions"><span class="header-section-number">15.6.4</span> The Analytical Process: From Baseline to Enhanced Predictions</h3>
+<section id="initial-estimation-the-unconditional-mean" class="level4" data-number="15.6.4.1">
+<h4 data-number="15.6.4.1" class="anchored" data-anchor-id="initial-estimation-the-unconditional-mean"><span class="header-section-number">15.6.4.1</span> Initial Estimation: The Unconditional Mean</h4>
+<p>The analytical process begins with the simplest possible predictor: the mean of all observed values (<span class="math inline">\bar{y}</span>). This represents our initial estimation in the absence of any predictor variables. When we employ this method, we assign the same value—the overall mean—to each observation, resulting in what we term <strong>baseline deviations</strong>.</p>
+</section>
+<section id="enhanced-prediction-incorporating-predictor-variables" class="level4" data-number="15.6.4.2">
+<h4 data-number="15.6.4.2" class="anchored" data-anchor-id="enhanced-prediction-incorporating-predictor-variables"><span class="header-section-number">15.6.4.2</span> Enhanced Prediction: Incorporating Predictor Variables</h4>
+<p>By introducing predictor variables (denoted as <span class="math inline">X</span> in our figure), we refine our initial estimates. This enhancement enables us to generate distinct predictions for each observation, typically resulting in substantially reduced prediction errors, as illustrated in the figure below.</p>
+</section>
+</section>
+<section id="components-of-statistical-variation" class="level3" data-number="15.6.5">
+<h3 data-number="15.6.5" class="anchored" data-anchor-id="components-of-statistical-variation"><span class="header-section-number">15.6.5</span> Components of Statistical Variation</h3>
+<p>Our figure illustrates three fundamental components of variation:</p>
+<ol type="1">
+<li><p><strong>Total Sum of Squares (SST)</strong></p>
 <ul>
-<li><strong>What’s our first guess?</strong> The mean of all house prices (<span class="math inline">\bar{y}</span>).</li>
-<li>Think of this as your “uninformed guess.”</li>
-<li>For every house, we predict the same price (the average), which leads to our <strong>baseline errors</strong>.</li>
-</ul>
-</section>
-<section id="step-2-using-extra-information" class="level4" data-number="15.6.4.2">
-<h4 data-number="15.6.4.2" class="anchored" data-anchor-id="step-2-using-extra-information"><span class="header-section-number">15.6.4.2</span> Step 2: Using Extra Information</h4>
+<li><strong>Statistical Inquiry:</strong> What is the aggregate deviation of observations from their mean?</li>
+<li><strong>Mathematical Expression:</strong> <span class="math inline">SST = \sum(y_i - \bar{y})^2</span></li>
+<li><strong>Graphical Representation:</strong> Depicted by the purple vertical lines in the figure</li>
+<li><strong>Statistical Interpretation:</strong> Represents the total variability present in the observed data prior to any modeling</li>
+</ul></li>
+<li><p><strong>Regression Sum of Squares (SSR)</strong></p>
 <ul>
-<li>We now use additional information (like house size, <span class="math inline">X</span>) to refine our predictions.</li>
-<li>This allows us to make <strong>different predictions</strong> for each house.</li>
-<li>The errors we make after including this information are usually smaller.</li>
-</ul>
-</section>
-</section>
-<section id="visualizing-variance-decomposition" class="level3" data-number="15.6.5">
-<h3 data-number="15.6.5" class="anchored" data-anchor-id="visualizing-variance-decomposition"><span class="header-section-number">15.6.5</span> Visualizing Variance Decomposition</h3>
+<li><strong>Statistical Inquiry:</strong> What proportion of variation does our model successfully capture?</li>
+<li><strong>Mathematical Expression:</strong> <span class="math inline">SSR = \sum(\hat{y}_i - \bar{y})^2</span></li>
+<li><strong>Graphical Representation:</strong> Illustrated by the green dashed lines in the figure</li>
+<li><strong>Statistical Interpretation:</strong> Quantifies the reduction in uncertainty achieved through the incorporation of predictor variables</li>
+</ul></li>
+<li><p><strong>Error Sum of Squares (SSE)</strong></p>
+<ul>
+<li><strong>Statistical Inquiry:</strong> What residual variation persists after model implementation?</li>
+<li><strong>Mathematical Expression:</strong> <span class="math inline">SSE = \sum(y_i - \hat{y}_i)^2</span></li>
+<li><strong>Graphical Representation:</strong> Shown by the orange dashed lines in the figure</li>
+<li><strong>Statistical Interpretation:</strong> Represents the remaining unexplained variation after accounting for all predictor variables</li>
+</ul></li>
+</ol>
+<p>This decomposition provides a formal framework for assessing the effectiveness of our predictive model and the value of including additional variables.</p>
+<section id="visualizing-variance-decomposition" class="level4" data-number="15.6.5.1">
+<h4 data-number="15.6.5.1" class="anchored" data-anchor-id="visualizing-variance-decomposition"><span class="header-section-number">15.6.5.1</span> Visualizing Variance Decomposition</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -2196,67 +2295,42 @@ Attaching package: 'patchwork'</code></pre>
 </div>
 </div>
 </section>
-<section id="breaking-down-the-types-of-variation" class="level3" data-number="15.6.6">
-<h3 data-number="15.6.6" class="anchored" data-anchor-id="breaking-down-the-types-of-variation"><span class="header-section-number">15.6.6</span> Breaking Down the Types of Variation</h3>
-<ol type="1">
-<li><strong>Total Variation (SST)</strong>
-<ul>
-<li><strong>Question:</strong> How much do the data points vary from the mean?</li>
-<li><strong>Formula:</strong> <span class="math inline">SST = \sum(y_i - \bar{y})^2</span></li>
-<li><strong>Visual:</strong> Purple points in the plot</li>
-<li><strong>Intuition:</strong> This is the overall “spread” of the data around its average.</li>
-</ul></li>
-<li><strong>Explained Variation (SSR)</strong>
-<ul>
-<li><strong>Question:</strong> How much of the variation can our model explain?</li>
-<li><strong>Formula:</strong> <span class="math inline">SSR = \sum(\hat{y}_i - \bar{y})^2</span></li>
-<li><strong>Visual:</strong> Green dashed lines in the plot</li>
-<li><strong>Intuition:</strong> This is the improvement we get from including additional information (like house size).</li>
-</ul></li>
-<li><strong>Unexplained Variation (SSE)</strong>
-<ul>
-<li><strong>Question:</strong> How much variation is left unexplained after using the model?</li>
-<li><strong>Formula:</strong> <span class="math inline">SSE = \sum(y_i - \hat{y}_i)^2</span></li>
-<li><strong>Visual:</strong> Orange dashed lines in the plot</li>
-<li><strong>Intuition:</strong> These are the errors remaining after our model has made predictions.</li>
-</ul></li>
-</ol>
 </section>
-<section id="what-is-r²" class="level3" data-number="15.6.7">
-<h3 data-number="15.6.7" class="anchored" data-anchor-id="what-is-r²"><span class="header-section-number">15.6.7</span> What is R²?</h3>
+<section id="what-is-r²" class="level3" data-number="15.6.6">
+<h3 data-number="15.6.6" class="anchored" data-anchor-id="what-is-r²"><span class="header-section-number">15.6.6</span> What is R²?</h3>
 <p><span class="math inline">R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}</span></p>
 <p>Think of <span class="math inline">R^2</span> as answering: “What percentage of the original variation in the data can we explain using our model?”</p>
-<section id="examples-of-r2-values" class="level4" data-number="15.6.7.1">
-<h4 data-number="15.6.7.1" class="anchored" data-anchor-id="examples-of-r2-values"><span class="header-section-number">15.6.7.1</span> Examples of <span class="math inline">R^2</span> Values:</h4>
+<section id="examples-of-r2-values" class="level4" data-number="15.6.6.1">
+<h4 data-number="15.6.6.1" class="anchored" data-anchor-id="examples-of-r2-values"><span class="header-section-number">15.6.6.1</span> Examples of <span class="math inline">R^2</span> Values:</h4>
 <ul>
-<li><strong><span class="math inline">R^2 = 0.80</span></strong>: Our model explains 80% of the variation in house prices.</li>
-<li><strong><span class="math inline">R^2 = 0.25</span></strong>: Our model explains 25% of the variation (a weaker model).</li>
-<li><strong><span class="math inline">R^2 = 0.00</span></strong>: Our model explains none of the variation (not helpful).</li>
+<li><span class="math inline">R^2 = 0.80</span>: Our model explains 80% of the variation in house prices.</li>
+<li><span class="math inline">R^2 = 0.25</span>: Our model explains 25% of the variation (a weaker model).</li>
+<li><span class="math inline">R^2 = 0.00</span>: Our model explains none of the variation (not helpful).</li>
 </ul>
 </section>
 </section>
-<section id="important-things-to-remember-about-r²" class="level3" data-number="15.6.8">
-<h3 data-number="15.6.8" class="anchored" data-anchor-id="important-things-to-remember-about-r²"><span class="header-section-number">15.6.8</span> Important Things to Remember About R²</h3>
+<section id="important-things-to-remember-about-r²" class="level3" data-number="15.6.7">
+<h3 data-number="15.6.7" class="anchored" data-anchor-id="important-things-to-remember-about-r²"><span class="header-section-number">15.6.7</span> Important Things to Remember About R²</h3>
 <ol type="1">
-<li><strong>High <span class="math inline">R^2</span> Isn’t Always Good</strong>
+<li><strong>High</strong> <span class="math inline">R^2</span> Isn’t Always Good
 <ul>
 <li>A very high <span class="math inline">R^2</span> could suggest <strong>overfitting</strong>. Your model might be too complex, capturing noise rather than real patterns.</li>
-<li>Always <strong>interpret <span class="math inline">R^2</span> in the context</strong> of your data.</li>
+<li>Always <strong>interpret</strong> <span class="math inline">R^2</span> in the context of your data.</li>
 </ul></li>
-<li><strong>Low <span class="math inline">R^2</span> Isn’t Always Bad</strong>
+<li><strong>Low</strong> <span class="math inline">R^2</span> Isn’t Always Bad
 <ul>
 <li>In some fields (like social sciences), a low <span class="math inline">R^2</span> can still be useful.</li>
 <li>Focus on <strong>practical significance</strong>, not just the <span class="math inline">R^2</span> value.</li>
 </ul></li>
 <li><strong>Consider Sample Size</strong>
 <ul>
-<li>For multiple regression models, use <strong>adjusted <span class="math inline">R^2</span></strong> to account for the number of predictors.</li>
+<li>For multiple regression models, use <strong>adjusted</strong> <span class="math inline">R^2</span> to account for the number of predictors.</li>
 <li>Formula: <span class="math inline">R^2_{adj} = 1 - \frac{SSE/(n-p)}{SST/(n-1)}</span></li>
 </ul></li>
 </ol>
 </section>
-<section id="tips-for-effective-analysis" class="level3" data-number="15.6.9">
-<h3 data-number="15.6.9" class="anchored" data-anchor-id="tips-for-effective-analysis"><span class="header-section-number">15.6.9</span> Tips for Effective Analysis</h3>
+<section id="tips-for-effective-analysis" class="level3" data-number="15.6.8">
+<h3 data-number="15.6.8" class="anchored" data-anchor-id="tips-for-effective-analysis"><span class="header-section-number">15.6.8</span> Tips for Effective Analysis</h3>
 <ol type="1">
 <li><strong>Visualize the Data</strong>
 <ul>
@@ -2279,12 +2353,12 @@ Attaching package: 'patchwork'</code></pre>
 </div>
 </div>
 </section>
-<section id="r²-demystified" class="level3" data-number="15.6.10">
-<h3 data-number="15.6.10" class="anchored" data-anchor-id="r²-demystified"><span class="header-section-number">15.6.10</span> R² Demystified</h3>
+<section id="r²-demystified" class="level3" data-number="15.6.9">
+<h3 data-number="15.6.9" class="anchored" data-anchor-id="r²-demystified"><span class="header-section-number">15.6.9</span> R² Demystified</h3>
 <p><span class="math display">R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}</span></p>
 <p>Think of R² as answering the question: “What percentage of the original variation in Y can we explain using X?”</p>
-<section id="intuitive-examples" class="level4" data-number="15.6.10.1">
-<h4 data-number="15.6.10.1" class="anchored" data-anchor-id="intuitive-examples"><span class="header-section-number">15.6.10.1</span> Intuitive Examples:</h4>
+<section id="intuitive-examples" class="level4" data-number="15.6.9.1">
+<h4 data-number="15.6.9.1" class="anchored" data-anchor-id="intuitive-examples"><span class="header-section-number">15.6.9.1</span> Intuitive Examples:</h4>
 <ul>
 <li>R² = 0.80: Using X eliminated 80% of our prediction errors</li>
 <li>R² = 0.25: Using X eliminated 25% of our prediction errors</li>
@@ -2292,8 +2366,8 @@ Attaching package: 'patchwork'</code></pre>
 </ul>
 </section>
 </section>
-<section id="when-to-be-cautious" class="level3" data-number="15.6.11">
-<h3 data-number="15.6.11" class="anchored" data-anchor-id="when-to-be-cautious"><span class="header-section-number">15.6.11</span> When to Be Cautious</h3>
+<section id="when-to-be-cautious" class="level3" data-number="15.6.10">
+<h3 data-number="15.6.10" class="anchored" data-anchor-id="when-to-be-cautious"><span class="header-section-number">15.6.10</span> When to Be Cautious</h3>
 <ol type="1">
 <li><strong>High R² Isn’t Everything</strong>
 <ul>
@@ -2309,8 +2383,8 @@ Attaching package: 'patchwork'</code></pre>
 </ul></li>
 </ol>
 </section>
-<section id="practical-tips-for-analysis" class="level3" data-number="15.6.12">
-<h3 data-number="15.6.12" class="anchored" data-anchor-id="practical-tips-for-analysis"><span class="header-section-number">15.6.12</span> Practical Tips for Analysis</h3>
+<section id="practical-tips-for-analysis" class="level3" data-number="15.6.11">
+<h3 data-number="15.6.11" class="anchored" data-anchor-id="practical-tips-for-analysis"><span class="header-section-number">15.6.11</span> Practical Tips for Analysis</h3>
 <ol type="1">
 <li><strong>Visual Inspection</strong>
 <ul>
@@ -2332,8 +2406,8 @@ Attaching package: 'patchwork'</code></pre>
 </ul></li>
 </ol>
 </section>
-<section id="key-takeaways" class="level3" data-number="15.6.13">
-<h3 data-number="15.6.13" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">15.6.13</span> Key Takeaways</h3>
+<section id="key-takeaways" class="level3" data-number="15.6.12">
+<h3 data-number="15.6.12" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">15.6.12</span> Key Takeaways</h3>
 <ol type="1">
 <li>Variance decomposition helps us understand prediction improvement</li>
 <li>R² quantifies the proportion of variance explained</li>
@@ -2342,10 +2416,10 @@ Attaching package: 'patchwork'</code></pre>
 <li>Always combine R² with other diagnostic tools</li>
 </ol>
 </section>
-<section id="measures-of-fit" class="level3" data-number="15.6.14">
-<h3 data-number="15.6.14" class="anchored" data-anchor-id="measures-of-fit"><span class="header-section-number">15.6.14</span> Measures of Fit</h3>
+<section id="measures-of-fit" class="level3" data-number="15.6.13">
+<h3 data-number="15.6.13" class="anchored" data-anchor-id="measures-of-fit"><span class="header-section-number">15.6.13</span> Measures of Fit</h3>
 <ol type="1">
-<li><p><strong>R-squared (<span class="math inline">R^2</span>)</strong>: <span class="math display">R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}</span></p></li>
+<li><p><strong>R-squared (</strong><span class="math inline">R^2</span>): <span class="math display">R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}</span></p></li>
 <li><p><strong>Root Mean Square Error (RMSE)</strong>: <span class="math display">RMSE = \sqrt{\frac{SSE}{n}}</span></p></li>
 <li><p><strong>Mean Absolute Error (MAE)</strong>: <span class="math display">MAE = \frac{1}{n}\sum_{i=1}^n |Y_i - \hat{Y}_i|</span></p></li>
 </ol>
@@ -2359,19 +2433,19 @@ Formal Derivation of OLS Estimators: Step-by-Step Approach
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<section id="initial-setup" class="level3" data-number="15.6.15">
-<h3 data-number="15.6.15" class="anchored" data-anchor-id="initial-setup"><span class="header-section-number">15.6.15</span> Initial Setup</h3>
-<p>We seek to minimize the sum of squared residuals:</p>
-<p><span class="math inline">SSR = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2</span></p>
+<section id="initial-setup" class="level3" data-number="15.6.14">
+<h3 data-number="15.6.14" class="anchored" data-anchor-id="initial-setup"><span class="header-section-number">15.6.14</span> Initial Setup</h3>
+<p>We seek to minimize the sum of squared residuals (errors):</p>
+<p><span class="math inline">SSE = \sum_{i=1}^n (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2</span></p>
 <p>Let’s break this into manageable pieces:</p>
 <ol type="1">
 <li>Each residual is: <span class="math inline">e_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)</span></li>
 <li>We square each residual: <span class="math inline">e_i^2 = (y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2</span></li>
-<li>Sum them all: <span class="math inline">SSR = \sum_{i=1}^n e_i^2</span></li>
+<li>Sum them all: <span class="math inline">SSE = \sum_{i=1}^n e_i^2</span></li>
 </ol>
 </section>
-<section id="chain-rule-review" class="level3" data-number="15.6.16">
-<h3 data-number="15.6.16" class="anchored" data-anchor-id="chain-rule-review"><span class="header-section-number">15.6.16</span> Chain Rule Review</h3>
+<section id="chain-rule-review" class="level3" data-number="15.6.15">
+<h3 data-number="15.6.15" class="anchored" data-anchor-id="chain-rule-review"><span class="header-section-number">15.6.15</span> Chain Rule Review</h3>
 <p>Before proceeding, let’s recall the chain rule. For a composite function <span class="math inline">f(g(x))</span>:</p>
 <p><span class="math inline">\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)</span></p>
 <p>In our case, we’re dealing with the square function <span class="math inline">f(u) = u^2</span>, where:</p>
@@ -2380,8 +2454,8 @@ Formal Derivation of OLS Estimators: Step-by-Step Approach
 <li><span class="math inline">u = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i)</span></li>
 </ul>
 </section>
-<section id="step-1-finding-hatbeta_0-using-first-derivative" class="level3" data-number="15.6.17">
-<h3 data-number="15.6.17" class="anchored" data-anchor-id="step-1-finding-hatbeta_0-using-first-derivative"><span class="header-section-number">15.6.17</span> Step 1: Finding <span class="math inline">\hat{\beta}_0</span> Using First Derivative</h3>
+<section id="step-1-finding-hatbeta_0-using-first-derivative" class="level3" data-number="15.6.16">
+<h3 data-number="15.6.16" class="anchored" data-anchor-id="step-1-finding-hatbeta_0-using-first-derivative"><span class="header-section-number">15.6.16</span> Step 1: Finding <span class="math inline">\hat{\beta}_0</span> Using First Derivative</h3>
 <p>Let’s take the partial derivative with respect to <span class="math inline">\hat{\beta}_0</span> step by step:</p>
 <ol type="1">
 <li><p>Start with one term of the sum:</p>
@@ -2402,8 +2476,8 @@ Formal Derivation of OLS Estimators: Step-by-Step Approach
 <p><span class="math inline">\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}</span></p></li>
 </ol>
 </section>
-<section id="step-2-finding-hatbeta_1-using-first-derivative" class="level3" data-number="15.6.18">
-<h3 data-number="15.6.18" class="anchored" data-anchor-id="step-2-finding-hatbeta_1-using-first-derivative"><span class="header-section-number">15.6.18</span> Step 2: Finding <span class="math inline">\hat{\beta}_1</span> Using First Derivative</h3>
+<section id="step-2-finding-hatbeta_1-using-first-derivative" class="level3" data-number="15.6.17">
+<h3 data-number="15.6.17" class="anchored" data-anchor-id="step-2-finding-hatbeta_1-using-first-derivative"><span class="header-section-number">15.6.17</span> Step 2: Finding <span class="math inline">\hat{\beta}_1</span> Using First Derivative</h3>
 <p>Now let’s find <span class="math inline">\hat{\beta}_1</span> with the same careful approach:</p>
 <ol type="1">
 <li><p>For one term: <span class="math inline">\frac{\partial}{\partial \hat{\beta}_1}(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i))^2</span></p></li>
@@ -2424,19 +2498,19 @@ Formal Derivation of OLS Estimators: Step-by-Step Approach
 <li><p>Final form: <span class="math inline">\hat{\beta}_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}</span></p></li>
 </ol>
 </section>
-<section id="step-3-verifying-we-have-a-minimum" class="level3" data-number="15.6.19">
-<h3 data-number="15.6.19" class="anchored" data-anchor-id="step-3-verifying-we-have-a-minimum"><span class="header-section-number">15.6.19</span> Step 3: Verifying We Have a Minimum</h3>
+<section id="step-3-verifying-we-have-a-minimum" class="level3" data-number="15.6.18">
+<h3 data-number="15.6.18" class="anchored" data-anchor-id="step-3-verifying-we-have-a-minimum"><span class="header-section-number">15.6.18</span> Step 3: Verifying We Have a Minimum</h3>
 <p>To confirm these critical points are minima, we check the second derivatives:</p>
 <ol type="1">
-<li><p>Second derivative with respect to <span class="math inline">\hat{\beta}_0</span>: <span class="math inline">\frac{\partial^2 SSR}{\partial \hat{\beta}_0^2} = \frac{\partial}{\partial \hat{\beta}_0}(-2\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)) = 2n &gt; 0</span></p></li>
-<li><p>Second derivative with respect to <span class="math inline">\hat{\beta}_1</span>: <span class="math inline">\frac{\partial^2 SSR}{\partial \hat{\beta}_1^2} = \frac{\partial}{\partial \hat{\beta}_1}(-2\sum_{i=1}^n x_i(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)) = 2\sum_{i=1}^n x_i^2 &gt; 0</span></p></li>
-<li><p>Cross partial derivatives: <span class="math inline">\frac{\partial^2 SSR}{\partial \hat{\beta}_0\partial \hat{\beta}_1} = \frac{\partial^2 SSR}{\partial \hat{\beta}_1\partial \hat{\beta}_0} = 2\sum_{i=1}^n x_i</span></p></li>
+<li><p>Second derivative with respect to <span class="math inline">\hat{\beta}_0</span>: <span class="math inline">\frac{\partial^2 SSE}{\partial \hat{\beta}_0^2} = \frac{\partial}{\partial \hat{\beta}_0}(-2\sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)) = 2n &gt; 0</span></p></li>
+<li><p>Second derivative with respect to <span class="math inline">\hat{\beta}_1</span>: <span class="math inline">\frac{\partial^2 SSE}{\partial \hat{\beta}_1^2} = \frac{\partial}{\partial \hat{\beta}_1}(-2\sum_{i=1}^n x_i(y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)) = 2\sum_{i=1}^n x_i^2 &gt; 0</span></p></li>
+<li><p>Cross partial derivatives: <span class="math inline">\frac{\partial^2 SSE}{\partial \hat{\beta}_0\partial \hat{\beta}_1} = \frac{\partial^2 SSE}{\partial \hat{\beta}_1\partial \hat{\beta}_0} = 2\sum_{i=1}^n x_i</span></p></li>
 <li><p>The Hessian matrix is positive definite: <span class="math inline">\mathbf{H} = \begin{bmatrix} 2n &amp; 2\sum x_i \\ 2\sum x_i &amp; 2\sum x_i^2 \end{bmatrix}</span></p></li>
 </ol>
 <p>This confirms we have found a minimum.</p>
 </section>
-<section id="visualizing-the-process" class="level3" data-number="15.6.20">
-<h3 data-number="15.6.20" class="anchored" data-anchor-id="visualizing-the-process"><span class="header-section-number">15.6.20</span> Visualizing the Process</h3>
+<section id="visualizing-the-process" class="level3" data-number="15.6.19">
+<h3 data-number="15.6.19" class="anchored" data-anchor-id="visualizing-the-process"><span class="header-section-number">15.6.19</span> Visualizing the Process</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2471,8 +2545,8 @@ Formal Derivation of OLS Estimators: Step-by-Step Approach
 </div>
 </div>
 </section>
-<section id="key-insights" class="level3" data-number="15.6.21">
-<h3 data-number="15.6.21" class="anchored" data-anchor-id="key-insights"><span class="header-section-number">15.6.21</span> Key Insights</h3>
+<section id="key-insights" class="level3" data-number="15.6.20">
+<h3 data-number="15.6.20" class="anchored" data-anchor-id="key-insights"><span class="header-section-number">15.6.20</span> Key Insights</h3>
 <ol type="1">
 <li>The chain rule is crucial in deriving both estimators</li>
 <li><span class="math inline">\hat{\beta}_0</span> ensures the line goes through <span class="math inline">(\bar{x}, \bar{y})</span></li>
@@ -2489,145 +2563,67 @@ Formal Derivation of OLS Estimators: Step-by-Step Approach
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Understanding Endogeneity
+Understanding Endogeneity in Regression
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Think of endogeneity as a “hidden relationship problem” in your analysis. It’s like trying to solve a puzzle while some pieces are affecting each other in ways you can’t see directly. In technical terms, endogeneity occurs when an explanatory variable in a regression model is correlated with the error term, but let’s understand this intuitively!</p>
-<ol type="1">
-<li>Omitted Variable Bias (OVB)</li>
-</ol>
-<p>Think of it like trying to understand why some plants grow taller than others, and you only measure the amount of water they receive. But you forgot about sunlight, which affects both how much water the plant needs AND how tall it grows!</p>
-<p><strong>Real-Life Example: Education and Income</strong></p>
-<ul>
-<li>What we see: More education → Higher income</li>
-<li>What we might miss: Natural talent/ability
-<ul>
-<li>Affects how long people stay in school</li>
-<li>Affects how much they can earn</li>
-</ul></li>
-<li>Result: We might overestimate how much education helps</li>
-</ul>
-<p><strong>The Math Behind It</strong>:</p>
-<ul>
-<li>True picture: <span class="math inline">y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \epsilon_i</span><br>
-</li>
-<li>What we actually estimate: <span class="math inline">y_i = \beta_0 + \beta_1x_i + u_i</span><br>
-</li>
-<li>Think of it like a recipe: If you forget an important ingredient (z), your final dish (y) won’t turn out as expected!</li>
-</ul>
-<ol start="2" type="1">
-<li>Simultaneity (Reverse Causation)</li>
-</ol>
-<p>Remember the chicken and egg problem? Sometimes two things affect each other at the same time. Here are some examples you might encounter:</p>
-<p><strong>a) The Study Hours Puzzle</strong></p>
-<ul>
-<li>Do better grades lead to studying more?</li>
-<li>Or does studying more lead to better grades?</li>
-<li>Actually… both! They affect each other</li>
-</ul>
-<p><strong>b) The Social Media Effect</strong></p>
-<ul>
-<li>More followers → More posts</li>
-<li>More posts → More followers</li>
-<li>It’s a continuous cycle!</li>
-</ul>
-<p><strong>c) The Exercise-Energy Cycle</strong></p>
-<ul>
-<li>More exercise → More energy</li>
-<li>More energy → More likely to exercise</li>
-<li>Think of it like two friends pushing each other on swings!</li>
-</ul>
-<ol start="3" type="1">
-<li>Measurement Error</li>
-</ol>
-<p>Imagine trying to measure your height while standing on an uneven floor - your measurements won’t be quite right! Here’s how this shows up in real life:</p>
-<p><strong>Examples You’ll Recognize:</strong></p>
-<ul>
-<li>Self-Reported Study Time
-<ul>
-<li>“I study 5 hours a day” might really mean 3-4 hours</li>
-<li>Makes it hard to know true impact on grades</li>
-</ul></li>
-<li>Fitness App Tracking
-<ul>
-<li>App says you burned 500 calories</li>
-<li>Actually might be 400 or 600</li>
-<li>Affects analysis of exercise impact</li>
-</ul></li>
-</ul>
-<section id="how-to-spot-these-problems-in-your-own-research" class="level4" data-number="15.6.21.1">
-<h4 data-number="15.6.21.1" class="anchored" data-anchor-id="how-to-spot-these-problems-in-your-own-research"><span class="header-section-number">15.6.21.1</span> How to Spot These Problems in Your Own Research?</h4>
-<p><strong>1. For Omitted Variables, Ask:</strong></p>
-<ul>
-<li>What else could affect both variables?</li>
-<li>Am I missing any obvious factors?</li>
-<li>What would my parents/friends say influences this?</li>
-</ul>
-<p><strong>2. For Simultaneity, Consider:</strong></p>
-<ul>
-<li>Could A cause B, or could B cause A?</li>
-<li>Might they affect each other?</li>
-<li>What happened first? (if you can tell)</li>
-</ul>
-<p><strong>3. For Measurement Error, Think:</strong></p>
-<ul>
-<li>How accurate are my measurements?</li>
-<li>Are people likely to report truthfully?</li>
-<li>What might cause measurement problems?</li>
-</ul>
-<p><strong>Simple Solutions</strong></p>
-<p><strong>1. For Omitted Variables:</strong></p>
+<p>Endogeneity is a critical concept in statistical analysis that occurs when an explanatory variable in a regression model is correlated with the error term. This creates challenges for accurately understanding cause-and-effect relationships in research. Let’s examine the three main types of endogeneity and how they affect research outcomes.</p>
+<section id="omitted-variable-bias-ovb" class="level3" data-number="15.6.21">
+<h3 data-number="15.6.21" class="anchored" data-anchor-id="omitted-variable-bias-ovb"><span class="header-section-number">15.6.21</span> 1. Omitted Variable Bias (OVB)</h3>
+<p>Omitted Variable Bias occurs when an important variable that affects both the dependent and independent variables is left out of the analysis. This omission leads to incorrect conclusions about the relationship between the variables we’re studying.</p>
+<p>Consider a study examining the relationship between education and income:</p>
+<p><strong>Example: Education and Income</strong> The observed relationship shows that more education correlates with higher income. However, an individual’s inherent abilities affect both their educational attainment and their earning potential. Without accounting for ability, we may overestimate education’s direct effect on income.</p>
+<p>The statistical representation shows why this matters:</p>
+<p><span class="math inline">y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \epsilon_i</span> (Complete model)</p>
+<p><span class="math inline">y_i = \beta_0 + \beta_1x_i + u_i</span> (Incomplete model)</p>
+<p>When we omit an important variable, our estimates of the remaining relationships become biased and unreliable.</p>
+</section>
+<section id="simultaneity" class="level3" data-number="15.6.22">
+<h3 data-number="15.6.22" class="anchored" data-anchor-id="simultaneity"><span class="header-section-number">15.6.22</span> 2. Simultaneity</h3>
+<p>Simultaneity occurs when two variables simultaneously influence each other, making it difficult to determine the direction of causation. This creates a feedback loop that complicates statistical analysis.</p>
+<p><strong>Common Examples of Simultaneity:</strong></p>
+<p>Academic Performance and Study Habits represent a clear case of simultaneity. Academic performance influences how much time students dedicate to studying, while study time affects academic performance. This two-way relationship makes it challenging to measure the isolated effect of either variable.</p>
+<p>Market Dynamics provide another example. Prices influence demand, while demand influences prices. This concurrent relationship requires special analytical approaches to understand the true relationships.</p>
+</section>
+<section id="measurement-error" class="level3" data-number="15.6.23">
+<h3 data-number="15.6.23" class="anchored" data-anchor-id="measurement-error"><span class="header-section-number">15.6.23</span> 3. Measurement Error</h3>
+<p>Measurement error occurs when we cannot accurately measure our variables of interest. This imprecision can significantly impact our analysis and conclusions.</p>
+<p><strong>Common Sources of Measurement Error:</strong></p>
+<p>Self-Reported Data presents a significant challenge. When participants report their own behaviors or characteristics, such as study time, the reported values often differ from actual values. This discrepancy affects our ability to measure true relationships.</p>
+<p>Technical Limitations also contribute to measurement error through imprecise measuring tools, inconsistent measurement conditions, and recording or data entry errors.</p>
+</section>
+<section id="addressing-endogeneity-in-research" class="level3" data-number="15.6.24">
+<h3 data-number="15.6.24" class="anchored" data-anchor-id="addressing-endogeneity-in-research"><span class="header-section-number">15.6.24</span> Addressing Endogeneity in Research</h3>
+<section id="identification-strategies" class="level4" data-number="15.6.24.1">
+<h4 data-number="15.6.24.1" class="anchored" data-anchor-id="identification-strategies"><span class="header-section-number">15.6.24.1</span> Identification Strategies</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of:</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="co"># simple_model &lt;- lm(grades ~ study_hours)</span></span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Try:</span></span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="co"># better_model &lt;- lm(grades ~ study_hours + sleep_hours + stress_level + prior_knowledge)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of controlling for omitted variables</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>model_simple <span class="ot">&lt;-</span> <span class="fu">lm</span>(income <span class="sc">~</span> education, <span class="at">data =</span> df)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>model_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(income <span class="sc">~</span> education <span class="sc">+</span> ability <span class="sc">+</span> experience <span class="sc">+</span> region, <span class="at">data =</span> df)</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare coefficients</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_simple)</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>2. For Simultaneity:</strong></p>
-<ul>
-<li>Look for “external” factors that affect only one variable</li>
-<li>Consider time lags</li>
-<li>Use natural experiments when possible</li>
-</ul>
-<p><strong>3. For Measurement Error:</strong></p>
-<ul>
-<li>Use multiple measurements</li>
-<li>Find more reliable data sources</li>
-<li>Acknowledge uncertainty in your conclusions</li>
-</ul>
-</section>
-<section id="key-takeaways-for-students" class="level4" data-number="15.6.21.2">
-<h4 data-number="15.6.21.2" class="anchored" data-anchor-id="key-takeaways-for-students"><span class="header-section-number">15.6.21.2</span> Key Takeaways for Students</h4>
 <ol type="1">
-<li><p><strong>Reality is Complex</strong></p>
-<ul>
-<li>Most relationships aren’t simple A → B</li>
-<li>Look for hidden factors</li>
-<li>Consider two-way relationships</li>
-</ul></li>
-<li><p><strong>Always Ask</strong></p>
-<ul>
-<li>“What am I missing?”</li>
-<li>“Could these affect each other?”</li>
-<li>“How well am I measuring things?”</li>
-</ul></li>
-<li><p><strong>When Writing Papers</strong></p>
-<ul>
-<li>Discuss potential endogeneity</li>
-<li>Explain how you addressed it</li>
-<li>Be honest about limitations</li>
-</ul></li>
+<li><p>Include Additional Variables: Collect data on potentially important omitted variables and include relevant control variables in your analysis. For example, including measures of ability when studying education’s effect on income.</p></li>
+<li><p>Use Panel Data: Collect data across multiple time periods to control for unobserved fixed characteristics and analyze changes over time.</p></li>
+<li><p>Instrumental Variables: Find variables that affect your independent variable but not your dependent variable to isolate the relationship of interest.</p></li>
 </ol>
 </section>
-<section id="recommended-reading" class="level3" data-number="15.6.22">
-<h3 data-number="15.6.22" class="anchored" data-anchor-id="recommended-reading"><span class="header-section-number">15.6.22</span> Recommended Reading</h3>
+<section id="improving-measurement" class="level4" data-number="15.6.24.2">
+<h4 data-number="15.6.24.2" class="anchored" data-anchor-id="improving-measurement"><span class="header-section-number">15.6.24.2</span> Improving Measurement</h4>
 <ol type="1">
-<li>“Mastering Metrics” by Angrist &amp; Pischke</li>
-<li>“Naked Statistics” by Charles Wheelan</li>
+<li><p>Multiple Measurements: Take several measurements of key variables, use averaging to reduce random error, and compare different measurement methods.</p></li>
+<li><p>Better Data Collection: Use validated measurement instruments, implement quality control procedures, and document potential sources of error.</p></li>
 </ol>
-<p>Remember: In the real world, relationships are usually more complex than they first appear. When you find a connection between A and B, always ask what else might be going on behind the scenes!</p>
+</section>
+</section>
+<section id="best-practices-for-researchers" class="level3" data-number="15.6.25">
+<h3 data-number="15.6.25" class="anchored" data-anchor-id="best-practices-for-researchers"><span class="header-section-number">15.6.25</span> Best Practices for Researchers</h3>
+<p>Research Design fundamentally shapes your ability to address endogeneity. Plan for potential endogeneity issues before collecting data, include measures for potentially important control variables, and consider using multiple measurement approaches.</p>
+<p>Analysis should include testing for endogeneity when possible, using appropriate statistical methods for your specific situation, and documenting assumptions and limitations.</p>
+<p>Reporting must clearly describe potential endogeneity concerns, explain how you addressed these issues, and discuss implications for your conclusions.</p>
 </section>
 </div>
 </div>
@@ -3262,10 +3258,208 @@ Attaching package: 'kableExtra'</code></pre>
 <p>For deeper understanding:</p>
 <ul>
 <li>Wooldridge, J.M. “Introductory Econometrics: A Modern Approach”</li>
-<li>Fox, J. “Applied Regression Analysis and Generalized Linear Models”</li>
 <li>Angrist, J.D. and Pischke, J.S. “Mostly Harmless Econometrics”</li>
 <li>Stock &amp; Watson “Introduction to Econometrics”</li>
 </ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Understanding Ordinary Least Squares (OLS) Regression: A Student’s Guide
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Regression analysis is a fundamental statistical method that examines and models the relationship between variables to understand how changes in one or more independent variables influence a dependent variable.</p>
+<p>At its heart, regression analysis helps us answer questions about cause and effect, prediction, and forecasting. For example, a business might use regression analysis to understand how advertising spending affects sales, or how employee training hours impact productivity.</p>
+<section id="regression-as-a-stochastic-model-1" class="level3" data-number="15.10.2">
+<h3 data-number="15.10.2" class="anchored" data-anchor-id="regression-as-a-stochastic-model-1"><span class="header-section-number">15.10.2</span> Regression as a Stochastic Model</h3>
+<p>In mathematical modelling, we encounter two fundamental approaches to describing relationships between variables:</p>
+<ul>
+<li>deterministic models,</li>
+<li>stochastic models.</li>
+</ul>
+<section id="deterministic-vs.-stochastic-models-1" class="level4" data-number="15.10.2.1">
+<h4 data-number="15.10.2.1" class="anchored" data-anchor-id="deterministic-vs.-stochastic-models-1"><span class="header-section-number">15.10.2.1</span> Deterministic vs.&nbsp;Stochastic Models</h4>
+<p>A deterministic model assumes a precise, fixed relationship between inputs and outputs. In such models, if we know the inputs, we can calculate the exact output with certainty. Consider the classic physics equation for distance:</p>
+<p><span class="math display">\text{Distance} = \text{Speed} × \text{Time}</span></p>
+<p>Given specific values for speed and time, this equation will always yield the same distance. There is no room for variation in the outcome.</p>
+<p>In contrast, regression analysis embraces the presence of natural variation in data. The fundamental structure of a regression model is:</p>
+<p><span class="math display">Y = f(X) + \epsilon</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">Y</span> represents the outcome we wish to predict</li>
+<li><span class="math inline">f(X)</span> represents the systematic relationship between our predictors (X) and the outcome</li>
+<li><span class="math inline">\epsilon</span> represents the random variation that naturally occurs in real-world data</li>
+</ul>
+</section>
+</section>
+<section id="what-is-simple-linear-regression" class="level3" data-number="15.10.3">
+<h3 data-number="15.10.3" class="anchored" data-anchor-id="what-is-simple-linear-regression"><span class="header-section-number">15.10.3</span> What is Simple Linear Regression?</h3>
+<p>Consider the relationship between <strong>study hours</strong> (predictor) and <strong>exam scores</strong> (outcome/response variable). Simple linear regression creates an optimal straight line through data points to model this relationship. This line serves two purposes: making predictions and quantifying the relationship between variables.</p>
+<p>The mathematical relationship is expressed as:</p>
+<p><span class="math display"> Y_i = \beta_0 + \beta_1X_i + \epsilon_i </span></p>
+<p>Using our study hours example to illustrate each component:</p>
+<ul>
+<li><span class="math inline">Y_i</span> represents the dependent variable (exam scores)</li>
+<li><span class="math inline">X_i</span> represents the independent variable (study hours)</li>
+<li><span class="math inline">\beta_0</span> represents the intercept - the expected exam score at zero study hours</li>
+<li><span class="math inline">\beta_1</span> represents the slope - the change in exam score per additional study hour</li>
+<li><span class="math inline">\epsilon_i</span> represents the error term, accounting for unobserved factors</li>
+</ul>
+<p>Our goal is to find estimates <span class="math inline">\hat{\beta}_0</span> and <span class="math inline">\hat{\beta}_1</span> that best approximate the true parameters <span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span>. The fitted regression line is then expressed as:</p>
+<p><span class="math display"> \hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1X_i </span></p>
+</section>
+<section id="the-ordinary-least-squares-ols-method" class="level3" data-number="15.10.4">
+<h3 data-number="15.10.4" class="anchored" data-anchor-id="the-ordinary-least-squares-ols-method"><span class="header-section-number">15.10.4</span> The Ordinary Least Squares (OLS) Method</h3>
+<p>The “Ordinary Least Squares” method determines optimal values for <span class="math inline">\hat{\beta}_0</span> and <span class="math inline">\hat{\beta}_1</span> through a methodical process. While modern statistical software performs these calculations automatically, understanding the underlying process is crucial:</p>
+<ol type="1">
+<li><p>Begin with an initial estimate for the regression line</p>
+<ul>
+<li>Typically, we start with the horizontal line at <span class="math inline">\bar{Y}</span> (mean of Y)</li>
+<li>This serves as our baseline, representing no relationship between X and Y</li>
+</ul></li>
+<li><p>Calculate the vertical distances (residuals) from each observed point to this line</p>
+<ul>
+<li>These residuals <span class="math inline">\hat{\epsilon}_i = e_i = Y_i - \hat{Y}_i</span> represent our prediction errors</li>
+<li>A positive residual means our line underestimates the true value</li>
+<li>A negative residual means our line overestimates the true value</li>
+</ul></li>
+<li><p>Square these distances to:</p>
+<ul>
+<li>Ensure positive and negative deviations don’t offset each other</li>
+<li>Assign greater weight to larger deviations</li>
+</ul></li>
+<li><p>Sum all squared distances to obtain the Sum of Squared Errors (SSE)</p>
+<ul>
+<li><span class="math inline">SSE = \sum(Y_i - \hat{Y}_i)^2</span></li>
+<li>This represents the total squared deviation of observed values from our predicted values</li>
+</ul></li>
+<li><p>Systematically adjust the slope and intercept of the line to minimize SSE:</p>
+<ul>
+<li>The process involves gradually modifying the slope and position of the line while observing how the sum of squared deviations (SSE) changes [formally, this requires concepts from differential calculus]</li>
+<li>When SSE stops decreasing with subsequent small changes in line parameters, this indicates the optimal fit has been found</li>
+<li>This point corresponds to the minimum possible value of SSE, meaning the best fit of the line to the data</li>
+</ul></li>
+</ol>
+<p>More formally, OLS finds the optimal values for <span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span> by minimizing the sum of squared errors:</p>
+<p><span class="math display">\min_{\beta_0, \beta_1} \sum \epsilon_i^2 = \min_{\beta_0, \beta_1} \sum(y_i - \hat{y_i})^2 = \min_{\beta_0, \beta_1} \sum(y_i - (\beta_0 + \beta_1x_i))^2</span> The solution to this minimization gives us:</p>
+<p><span class="math display">\hat{\beta}_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = \frac{cov(X, Y)}{var(X)}</span></p>
+<p><span class="math display">\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="correg_en_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="correg_en_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="parameter-estimation" class="level3" data-number="15.10.5">
+<h3 data-number="15.10.5" class="anchored" data-anchor-id="parameter-estimation"><span class="header-section-number">15.10.5</span> Parameter Estimation</h3>
+<p>The formulas for estimating the parameters employ fundamental statistical measures:</p>
+<p><span class="math display"> \hat{\beta}_1 = \frac{Cov(X,Y)}{Var(X)} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{\sum(X_i - \bar{X})^2} </span></p>
+<p>This formula comprises two essential statistical concepts:</p>
+<ul>
+<li>Covariance (<span class="math inline">Cov</span>) quantifies the joint movement of X and Y</li>
+<li>Variance (<span class="math inline">Var</span>) measures the dispersion of X values around their mean</li>
+<li><span class="math inline">\bar{X}</span> and <span class="math inline">\bar{Y}</span> represent the means of X and Y respectively</li>
+</ul>
+<p>After calculating <span class="math inline">\hat{\beta}_1</span>, we determine <span class="math inline">\hat{\beta}_0</span>:</p>
+<p><span class="math display"> \hat{\beta}_0 = \bar{Y} - \hat{\beta}_1\bar{X} </span></p>
+<p>This ensures the regression line intersects the point of means (<span class="math inline">\bar{X}</span>, <span class="math inline">\bar{Y}</span>).</p>
+</section>
+<section id="understanding-variation-in-regression-analysis" class="level3" data-number="15.10.6">
+<h3 data-number="15.10.6" class="anchored" data-anchor-id="understanding-variation-in-regression-analysis"><span class="header-section-number">15.10.6</span> Understanding Variation in Regression Analysis</h3>
+<p>In regression analysis, we decompose the variation in our data into distinct components to understand how well our model explains the outcome variable. Let’s examine each component of variation in detail.</p>
+<section id="overview-of-variation-components" class="level4" data-number="15.10.6.1">
+<h4 data-number="15.10.6.1" class="anchored" data-anchor-id="overview-of-variation-components"><span class="header-section-number">15.10.6.1</span> Overview of Variation Components</h4>
+<p>The total Sum of Squares (SST) represents all variation present in our outcome variable. The Regression Sum of Squares (SSR) captures the variation explained by our model. The Error Sum of Squares (SSE) represents the remaining unexplained variation. Let’s examine each in detail.</p>
+</section>
+<section id="total-sum-of-squares-sst" class="level4" data-number="15.10.6.2">
+<h4 data-number="15.10.6.2" class="anchored" data-anchor-id="total-sum-of-squares-sst"><span class="header-section-number">15.10.6.2</span> Total Sum of Squares (SST)</h4>
+<p>Think of total variation (SST) as capturing the full range of differences in our data before we try to explain anything. It measures how much each observation differs from the overall average, giving us a baseline for how much variation exists to be explained.</p>
+<p>SST measures the total variation in our outcome variable by calculating how much each observation deviates from the overall mean:</p>
+<p><span class="math display"> SST = \sum(y_i - \bar{y})^2 </span></p>
+<p>In this formula, <span class="math inline">y_i</span> represents each individual observation, and <span class="math inline">\bar{y}</span> represents the mean of all observations. The squared differences capture the total spread of our data around its average value.</p>
+<p>To make this concrete, imagine measuring the heights of everyone in a city. Some people are much taller than average, others shorter, and SST captures these differences. Each squared term <span class="math inline">(y_i - \bar{y})^2</span> represents how much one person’s height differs from the city’s average, and we sum up all these differences.</p>
+</section>
+<section id="regression-sum-of-squares-ssr" class="level4" data-number="15.10.6.3">
+<h4 data-number="15.10.6.3" class="anchored" data-anchor-id="regression-sum-of-squares-ssr"><span class="header-section-number">15.10.6.3</span> Regression Sum of Squares (SSR)</h4>
+<p>Once we introduce explanatory variables (like genetics, nutrition, or age), we can predict heights more accurately. The explained variation (SSR) measures how much better our predictions become using these variables.</p>
+<p>SSR quantifies how much variation our model explains through its predictor variables:</p>
+<p><span class="math display"> SSR = \sum(\hat{y}_i - \bar{y})^2 </span></p>
+<p>Here, <span class="math inline">\hat{y}_i</span> represents our model’s predicted values. This formula measures how far our predictions deviate from the mean, representing the variation captured by our model.</p>
+</section>
+<section id="error-sum-of-squares-sse" class="level4" data-number="15.10.6.4">
+<h4 data-number="15.10.6.4" class="anchored" data-anchor-id="error-sum-of-squares-sse"><span class="header-section-number">15.10.6.4</span> Error Sum of Squares (SSE)</h4>
+<p>SSE measures the variation that remains unexplained by our model:</p>
+<p><span class="math display"> SSE = \sum(y_i - \hat{y}_i)^2 </span></p>
+<p>This formula calculates the differences between actual values (<span class="math inline">y_i</span>) and predicted values (<span class="math inline">\hat{y}_i</span>), showing us how much variation our model failed to explain.</p>
+<p>In our height example, these might be variations due to factors we didn’t or couldn’t measure, like specific environmental conditions or measurement errors.</p>
+</section>
+<section id="the-fundamental-relationship" class="level4" data-number="15.10.6.5">
+<h4 data-number="15.10.6.5" class="anchored" data-anchor-id="the-fundamental-relationship"><span class="header-section-number">15.10.6.5</span> The Fundamental Relationship</h4>
+<p>These three components are related through a key equation:</p>
+<p><span class="math display"> SST = SSR + SSE </span></p>
+<p>This equation shows that the total variation (SST) equals the sum of explained variation (SSR) and unexplained variation (SSE). This relationship forms the basis for measuring model performance.</p>
+</section>
+<section id="coefficient-of-determination-r²" class="level4" data-number="15.10.6.6">
+<h4 data-number="15.10.6.6" class="anchored" data-anchor-id="coefficient-of-determination-r²"><span class="header-section-number">15.10.6.6</span> Coefficient of Determination (R²)</h4>
+<p>The R² statistic, derived from these components, tells us the proportion of variation our model explains:</p>
+<p><span class="math display"> R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST} </span></p>
+<p>When R² equals 0.75, it indicates our model explains 75% of the variation in the outcome variable. The remaining 25% represents unexplained variation.</p>
+</section>
+<section id="important-considerations" class="level4" data-number="15.10.6.7">
+<h4 data-number="15.10.6.7" class="anchored" data-anchor-id="important-considerations"><span class="header-section-number">15.10.6.7</span> Important Considerations</h4>
+<p>Understanding these components helps us:</p>
+<ol type="1">
+<li>Evaluate model performance through the proportion of explained variation</li>
+<li>Identify how much variation remains unexplained</li>
+<li>Make informed decisions about model improvement</li>
+<li>Compare different models’ explanatory power</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="correg_en_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="the-coefficient-of-determination-r2" class="level3" data-number="15.10.7">
+<h3 data-number="15.10.7" class="anchored" data-anchor-id="the-coefficient-of-determination-r2"><span class="header-section-number">15.10.7</span> The Coefficient of Determination (<span class="math inline">R^2</span>)</h3>
+<p><span class="math inline">R^2</span> serves as a measure of model fit, representing the proportion of variance explained by our regression:</p>
+<p><span class="math display"> R^2 = \frac{SSR}{SST} = \frac{SSR}{SSR + SSE} = 1 - \frac{SSE}{SST} </span></p>
+<p>To interpret <span class="math inline">R^2</span>:</p>
+<ul>
+<li>An <span class="math inline">R^2</span> of 0.75 indicates the model explains 75% of variance (e.g.&nbsp;in exam scores)</li>
+<li>An <span class="math inline">R^2</span> of 0.20 suggests predictors (e.g.&nbsp;study hours) account for 20% of score variation</li>
+<li>An <span class="math inline">R^2</span> of 1.00 represents perfect prediction (rarely observed in practice)</li>
+<li>An <span class="math inline">R^2</span> of 0.00 indicates no explanatory power</li>
+</ul>
+<p>Note: A lower <span class="math inline">R^2</span> value does not necessarily indicate an inferior model - it may simply reflect the complexity of the relationship being studied.</p>
+</section>
+<section id="key-takeaway" class="level3" data-number="15.10.8">
+<h3 data-number="15.10.8" class="anchored" data-anchor-id="key-takeaway"><span class="header-section-number">15.10.8</span> Key Takeaway</h3>
+<p>Linear regression establishes relationships between variables by identifying the optimal linear fit through data points. This optimization occurs through the minimization of squared residuals. The coefficient of determination (<span class="math inline">R^2</span>) then quantifies the model’s explanatory power by comparing explained variation to total variation in our data.</p>
+</section>
+</div>
+</div>
 </section>
 </section>
 <section id="appendix-a.1-understanding-correlation-measures-a-self-study-tutorial-using-stress-level-and-cognitive-performance-data" class="level2" data-number="15.11">
@@ -3314,12 +3508,12 @@ Attaching package: 'kableExtra'</code></pre>
 <h4 data-number="15.11.2.2" class="anchored" data-anchor-id="step-2-calculate-deviations-and-products"><span class="header-section-number">15.11.2.2</span> Step 2: Calculate Deviations and Products</h4>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 26%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 17%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -3476,7 +3670,7 @@ Attaching package: 'kableExtra'</code></pre>
 <colgroup>
 <col style="width: 23%">
 <col style="width: 23%">
-<col style="width: 30%">
+<col style="width: 29%">
 <col style="width: 23%">
 </colgroup>
 <thead>
@@ -3629,20 +3823,11 @@ Attaching package: 'kableExtra'</code></pre>
 </ul></li>
 </ol>
 </section>
-<section id="references" class="level3" data-number="15.11.8">
-<h3 data-number="15.11.8" class="anchored" data-anchor-id="references"><span class="header-section-number">15.11.8</span> References</h3>
-<ol type="1">
-<li>Understanding Correlation:
-<ul>
-<li>Pearson, K. (1895). “Notes on regression and inheritance in the case of two parents.”</li>
-<li>Spearman, C. (1904). “The proof and measurement of association between two things.”</li>
-</ul></li>
-</ol>
-</section>
 </section>
 <section id="appendix-a.2-calculating-covariance-pearson-spearman-correlation-and-ols---worked-example" class="level2" data-number="15.12">
 <h2 data-number="15.12" class="anchored" data-anchor-id="appendix-a.2-calculating-covariance-pearson-spearman-correlation-and-ols---worked-example"><span class="header-section-number">15.12</span> Appendix A.2: Calculating Covariance, Pearson, Spearman Correlation, and OLS - worked example</h2>
-<p>Given data on Electoral District Magnitude (<span class="math inline">\text{DM}</span>) and Gallagher index:</p>
+<p>A political science student is investigating the relationship between district magnitude (DM) and Gallagher’s disproportionality index (GH) in parliamentary elections across 10 randomly selected democracies.</p>
+<p>Data on electoral district magnitudes (<span class="math inline">\text{DM}</span>) and Gallagher index:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -3708,14 +3893,14 @@ Attaching package: 'kableExtra'</code></pre>
 <p>Complete working table showing all calculations:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 3%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 26%">
-<col style="width: 15%">
-<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 12%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -4024,7 +4209,7 @@ Attaching package: 'kableExtra'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_en_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_en_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4035,7 +4220,13 @@ Attaching package: 'kableExtra'</code></pre>
 </section>
 <section id="step-1-calculate-ols-estimates" class="level3" data-number="15.12.9">
 <h3 data-number="15.12.9" class="anchored" data-anchor-id="step-1-calculate-ols-estimates"><span class="header-section-number">15.12.9</span> Step 1: Calculate OLS Estimates</h3>
-<p>Using previously calculated values: - <span class="math inline">\sum(X_i - \bar{X})(Y_i - \bar{Y}) = -28.085</span> - <span class="math inline">\sum(X_i - \bar{X})^2 = 82.5</span> - <span class="math inline">\bar{X} = 6.5</span> - <span class="math inline">\bar{Y} = 15.417</span></p>
+<p>Using previously calculated values:</p>
+<ul>
+<li><span class="math inline">\sum(X_i - \bar{X})(Y_i - \bar{Y}) = -28.085</span></li>
+<li><span class="math inline">\sum(X_i - \bar{X})^2 = 82.5</span></li>
+<li><span class="math inline">\bar{X} = 6.5</span></li>
+<li><span class="math inline">\bar{Y} = 15.417</span></li>
+</ul>
 <p>Calculate slope (<span class="math inline">\hat{\beta_1}</span>): <span class="math inline">\hat{\beta_1} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{\sum(X_i - \bar{X})^2}</span></p>
 <p><span class="math display">\hat{\beta_1} = -28,085 ÷ 82,5 = -0,3404</span></p>
 <p>Calculate intercept (<span class="math inline">\hat{\beta_0}</span>): <span class="math inline">\hat{\beta_0} = \bar{Y} - \hat{\beta_1}\bar{X}</span></p>
@@ -4254,7 +4445,7 @@ F-statistic:  23.3 on 1 and 8 DF,  p-value: 0.00131</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_en_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_en_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4279,7 +4470,7 @@ F-statistic:  23.3 on 1 and 8 DF,  p-value: 0.00131</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_en_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_en_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4456,7 +4647,7 @@ F-statistic:  23.3 on 1 and 8 DF,  p-value: 0.00131</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_en_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_en_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4472,7 +4663,7 @@ F-statistic:  23.3 on 1 and 8 DF,  p-value: 0.00131</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_en_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_en_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4525,7 +4716,7 @@ F-statistic: 85.19 on 1 and 8 DF,  p-value: 1.539e-05</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_en_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_en_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4572,7 +4763,7 @@ F-statistic: 85.19 on 1 and 8 DF,  p-value: 1.539e-05</code></pre>
 <col style="width: 12%">
 <col style="width: 12%">
 <col style="width: 12%">
-<col style="width: 13%">
+<col style="width: 12%">
 <col style="width: 12%">
 <col style="width: 12%">
 </colgroup>
@@ -5007,7 +5198,7 @@ F-statistic: 736.3 on 1 and 8 DF,  p-value: 3.666e-09</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_en_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_en_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -5233,7 +5424,7 @@ F-statistic: 258.2 on 1 and 3 DF,  p-value: 0.0005243</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_en_files/figure-html/unnamed-chunk-66-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_en_files/figure-html/unnamed-chunk-69-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -5435,7 +5626,7 @@ F-statistic: 531.9 on 1 and 6 DF,  p-value: 4.355e-07</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_en_files/figure-html/unnamed-chunk-75-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_en_files/figure-html/unnamed-chunk-78-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -5698,7 +5889,7 @@ F-statistic: 26.11 on 1 and 4 DF,  p-value: 0.006934</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_en_files/figure-html/unnamed-chunk-84-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_en_files/figure-html/unnamed-chunk-87-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

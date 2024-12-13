@@ -292,7 +292,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./probability_en.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to (Discrete) Probability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -349,8 +349,9 @@ window.Quarto = {
   </ul></li>
   <li><a href="#wprowadzenie-do-analizy-regresji" id="toc-wprowadzenie-do-analizy-regresji" class="nav-link" data-scroll-target="#wprowadzenie-do-analizy-regresji"><span class="header-section-number">16.3</span> Wprowadzenie do Analizy Regresji</a>
   <ul class="collapse">
-  <li><a href="#podstawowe-pojęcia-i-terminologia" id="toc-podstawowe-pojęcia-i-terminologia" class="nav-link" data-scroll-target="#podstawowe-pojęcia-i-terminologia"><span class="header-section-number">16.3.6</span> Podstawowe Pojęcia i Terminologia</a></li>
-  <li><a href="#główna-idea" id="toc-główna-idea" class="nav-link" data-scroll-target="#główna-idea"><span class="header-section-number">16.3.7</span> Główna Idea</a></li>
+  <li><a href="#regresja-jako-model-stochastyczny" id="toc-regresja-jako-model-stochastyczny" class="nav-link" data-scroll-target="#regresja-jako-model-stochastyczny"><span class="header-section-number">16.3.1</span> Regresja jako Model Stochastyczny</a></li>
+  <li><a href="#podstawowe-pojęcia-i-terminologia" id="toc-podstawowe-pojęcia-i-terminologia" class="nav-link" data-scroll-target="#podstawowe-pojęcia-i-terminologia"><span class="header-section-number">16.3.7</span> Podstawowe Pojęcia i Terminologia</a></li>
+  <li><a href="#główna-idea" id="toc-główna-idea" class="nav-link" data-scroll-target="#główna-idea"><span class="header-section-number">16.3.8</span> Główna Idea</a></li>
   </ul></li>
   <li><a href="#model-regresji-liniowej" id="toc-model-regresji-liniowej" class="nav-link" data-scroll-target="#model-regresji-liniowej"><span class="header-section-number">16.4</span> Model Regresji Liniowej</a>
   <ul class="collapse">
@@ -395,7 +396,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#podsumowanie-1" id="toc-podsumowanie-1" class="nav-link" data-scroll-target="#podsumowanie-1"><span class="header-section-number">16.11</span> Podsumowanie</a>
   <ul class="collapse">
-  <li><a href="#kluczowe-wnioski-4" id="toc-kluczowe-wnioski-4" class="nav-link" data-scroll-target="#kluczowe-wnioski-4"><span class="header-section-number">16.11.1</span> Kluczowe Wnioski</a></li>
+  <li><a href="#kluczowe-wnioski-3" id="toc-kluczowe-wnioski-3" class="nav-link" data-scroll-target="#kluczowe-wnioski-3"><span class="header-section-number">16.11.1</span> Kluczowe Wnioski</a></li>
   <li><a href="#literatura-uzupełniająca" id="toc-literatura-uzupełniająca" class="nav-link" data-scroll-target="#literatura-uzupełniająca">Literatura Uzupełniająca</a></li>
   </ul></li>
   <li><a href="#dodatek-a.1-obliczanie-kowariancji-korelacji-pearsona-i-spearmana-oraz-modelowanie-ols---przykład-z-obliczeniami" id="toc-dodatek-a.1-obliczanie-kowariancji-korelacji-pearsona-i-spearmana-oraz-modelowanie-ols---przykład-z-obliczeniami" class="nav-link" data-scroll-target="#dodatek-a.1-obliczanie-kowariancji-korelacji-pearsona-i-spearmana-oraz-modelowanie-ols---przykład-z-obliczeniami"><span class="header-section-number">16.12</span> Dodatek A.1: Obliczanie Kowariancji, Korelacji Pearsona i Spearmana, oraz modelowanie OLS - przykład z obliczeniami</a>
@@ -1261,14 +1262,77 @@ Cumulative Var 0.336 0.671</code></pre>
 </section>
 <section id="wprowadzenie-do-analizy-regresji" class="level2" data-number="16.3">
 <h2 data-number="16.3" class="anchored" data-anchor-id="wprowadzenie-do-analizy-regresji"><span class="header-section-number">16.3</span> Wprowadzenie do Analizy Regresji</h2>
-<p>Analiza regresji jest fundamentalnym narzędziem statystycznym, które pomaga nam zrozumieć relacje między zmiennymi. Zanim zagłębimy się w formuły i szczegóły techniczne, zrozummy, na jakie pytania może odpowiedzieć regresja:</p>
+<p>Analiza regresji to metoda statystyczna, która bada i modeluje zależności między zmiennymi w celu zrozumienia, jak zmiany w jednej lub kilku zmiennych niezależnych wpływają na zmienną zależną.</p>
+<p>W swojej istocie analiza regresji pomaga odpowiedzieć na pytania dotyczące przyczyny i skutku, przewidywania oraz prognozowania. Na przykład, przedsiębiorstwo może wykorzystać analizę regresji do zrozumienia, jak wydatki na reklamę wpływają na sprzedaż lub jak liczba godzin szkoleń pracowników przekłada się na produktywność.</p>
+<p>Proces rozpoczyna się od zbierania danych o interesujących nas zmiennych. Następnie analiza dopasowuje model matematyczny - zazwyczaj linię lub krzywą - który najlepiej reprezentuje zależność między tymi zmiennymi. Model ten pozwala:</p>
 <ul>
-<li>Jak każdy dodatkowy rok edukacji wpływa na czyjeś wynagrodzenie?</li>
-<li>Jaka jest zależność między wydatkami na reklamę a sprzedażą?</li>
-<li>Jak temperatura wpływa na zużycie energii?</li>
-<li>Czy liczba godzin nauki przewiduje wyniki egzaminów?</li>
+<li>Określić siłę i kierunek zależności między zmiennymi</li>
+<li>Dokonywać przewidywań dotyczących przyszłych wyników</li>
+<li>Zrozumieć, które czynniki mają największy wpływ na nasze rezultaty</li>
 </ul>
-<p>Te pytania mają wspólną strukturę: wszystkie badają, jak zmiany jednej zmiennej wiążą się ze zmianami innej.</p>
+<section id="regresja-jako-model-stochastyczny" class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="regresja-jako-model-stochastyczny"><span class="header-section-number">16.3.1</span> Regresja jako Model Stochastyczny</h3>
+<p>W modelowaniu matematycznym spotykamy dwa podstawowe podejścia do opisywania relacji między zmiennymi:</p>
+<ul>
+<li>modele deterministyczne,</li>
+<li>modele stochastyczne.</li>
+</ul>
+<section id="modele-deterministyczne-a-stochastyczne" class="level4" data-number="16.3.1.1">
+<h4 data-number="16.3.1.1" class="anchored" data-anchor-id="modele-deterministyczne-a-stochastyczne"><span class="header-section-number">16.3.1.1</span> Modele Deterministyczne a Stochastyczne</h4>
+<p>Model deterministyczny zakłada precyzyjną, ustaloną relację między danymi wejściowymi a wyjściowymi. W takich modelach, znając dane wejściowe, możemy z całkowitą pewnością obliczyć dokładny wynik. Weźmy pod uwagę klasyczne równanie fizyczne dotyczące drogi:</p>
+<p><span class="math display">\text{Droga} = \text{Prędkość} × \text{Czas}</span></p>
+<p>Przy określonych wartościach prędkości i czasu, równanie to zawsze da tę samą drogę. Nie ma tu miejsca na jakąkolwiek zmienność wyniku.</p>
+<p>W przeciwieństwie do tego, analiza regresji uwzględnia naturalną zmienność danych. Podstawowa struktura modelu regresji to:</p>
+<p><span class="math display">Y = f(X) + \epsilon</span></p>
+<p>Gdzie:</p>
+<ul>
+<li><span class="math inline">Y</span> reprezentuje wynik, który chcemy przewidzieć</li>
+<li><span class="math inline">f(X)</span> reprezentuje systematyczną relację między naszymi predyktorami (X) a wynikiem</li>
+<li><span class="math inline">\epsilon</span> reprezentuje losową zmienność naturalnie występującą w rzeczywistych danych</li>
+</ul>
+</section>
+<section id="natura-modeli-stochastycznych-w-regresji" class="level4" data-number="16.3.1.2">
+<h4 data-number="16.3.1.2" class="anchored" data-anchor-id="natura-modeli-stochastycznych-w-regresji"><span class="header-section-number">16.3.1.2</span> Natura Modeli Stochastycznych w Regresji</h4>
+<p>Włączenie składnika błędu <span class="math inline">\epsilon</span> uznaje, że rzeczywiste relacje między zmiennymi rzadko są idealne. Na przykład, badając wpływ czasu nauki na wyniki testów, wiele czynników przyczynia się do końcowego rezultatu:</p>
+<p>Część systematyczna <span class="math inline">f(X)</span> wychwytuje ogólną tendencję: więcej czasu nauki zazwyczaj prowadzi do wyższych wyników.</p>
+<p>Składnik błędu <span class="math inline">\epsilon</span> uwzględnia wszystkie inne czynniki:</p>
+<ul>
+<li>Różne style uczenia się</li>
+<li>Środowisko nauki</li>
+<li>Stan fizyczny i psychiczny podczas testu</li>
+<li>Jakość materiałów dydaktycznych</li>
+</ul>
+</section>
+<section id="struktura-matematyczna" class="level4" data-number="16.3.1.3">
+<h4 data-number="16.3.1.3" class="anchored" data-anchor-id="struktura-matematyczna"><span class="header-section-number">16.3.1.3</span> Struktura Matematyczna</h4>
+<p>W swojej najprostszej formie regresja liniowa może być wyrażona jako:</p>
+<p><span class="math display">Y = \beta_0 + \beta_1X + \epsilon</span></p>
+<p>Gdzie:</p>
+<ul>
+<li><span class="math inline">\beta_0</span> reprezentuje wartość bazową (gdy X = 0)</li>
+<li><span class="math inline">\beta_1</span> reprezentuje zmianę Y dla każdej jednostkowej zmiany X</li>
+<li><span class="math inline">\epsilon</span> reprezentuje naturalną zmienność wokół tej relacji</li>
+</ul>
+</section>
+<section id="implikacje-praktyczne" class="level4" data-number="16.3.1.4">
+<h4 data-number="16.3.1.4" class="anchored"><span class="header-section-number">16.3.1.4</span> Implikacje Praktyczne</h4>
+<p>Zrozumienie regresji jako modelu stochastycznego ma istotne implikacje praktyczne:</p>
+<ol type="1">
+<li><p>Przewidywania: Uznajemy, że nasze przewidywania będą charakteryzować się pewną naturalną zmiennością. Zamiast twierdzić, że wynik będzie dokładny, uznajemy zakres prawdopodobnych wartości.</p></li>
+<li><p>Ocena Modelu: Oceniamy modele na podstawie tego, jak dobrze ujmują zarówno ogólną tendencję, jak i typową wielkość zmienności w danych.</p></li>
+<li><p>Podejmowanie Decyzji: Zrozumienie naturalnej zmienności w naszych przewidywaniach pomaga nam podejmować bardziej realistyczne plany i decyzje.</p></li>
+</ol>
+<p><strong>Zastosowania w Rzeczywistości</strong></p>
+<p>Rozważmy przewidywanie cen domów na podstawie metrażu. Model deterministyczny mógłby stwierdzić: “Dom o powierzchni 186 metrów kwadratowych będzie kosztować dokładnie 1 200 000 złotych”</p>
+<p>Model regresji natomiast uznaje, że:</p>
+<ul>
+<li>Istnieje ogólna relacja między wielkością a ceną</li>
+<li>Ale wiele innych czynników wpływa na końcową cenę</li>
+<li>Podobne domy mogą być sprzedawane po nieco różnych cenach</li>
+<li>Nasze przewidywania powinny odzwierciedlać tę naturalną zmienność</li>
+</ul>
+<p><strong>Podsumowanie</strong></p>
+<p>Stochastyczna natura analizy regresji zapewnia bardziej realistyczne ramy do zrozumienia rzeczywistych relacji między zmiennymi.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1279,6 +1343,19 @@ Model Regresji Liniowej (MNK): Szybki Start
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<section id="koncepcja-modelu" class="level3" data-number="16.3.2">
+<h3 data-number="16.3.2" class="anchored" data-anchor-id="koncepcja-modelu"><span class="header-section-number">16.3.2</span> Koncepcja Modelu</h3>
+<p>Regresja MNK (Metoda Najmniejszych Kwadratów) to model statystyczny opisujący związek między zmiennymi. Dwa kluczowe założenia definiują ten model:</p>
+<ol type="1">
+<li>Związek można opisać linią prostą (liniowość)</li>
+<li>Błędy w naszych przewidywaniach nie są systematycznie powiązane ze zmienną x (ścisła egzogeniczność)</li>
+</ol>
+</section>
+<section id="przykład-edukacja-i-wynagrodzenia" class="level3" data-number="16.3.3">
+<h3 data-number="16.3.3" class="anchored" data-anchor-id="przykład-edukacja-i-wynagrodzenia"><span class="header-section-number">16.3.3</span> Przykład: Edukacja i Wynagrodzenia</h3>
+<p>Rozważmy badanie wpływu edukacji (x) na wynagrodzenia (y). Powiedzmy, że szacujemy:</p>
+<p><span class="math display">wynagrodzenia = \beta_0 + \beta_1 \cdot edukacja + \epsilon</span></p>
+<p>Składnik błędu <span class="math inline">\epsilon</span> zawiera wszystkie inne czynniki wpływające na wynagrodzenia. Ścisła egzogeniczność jest naruszona, jeśli pominiemy ważną zmienną, jak “zdolności”, która wpływa zarówno na edukację, jak i wynagrodzenia. Dlaczego? Ponieważ bardziej zdolni ludzie mają tendencję do zdobywania lepszego wykształcenia I wyższych wynagrodzeń, co powoduje zawyżenie szacowanego efektu edukacji.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -1338,22 +1415,9 @@ Model Regresji Liniowej (MNK): Szybki Start
 </div>
 </div>
 </div>
-<section id="koncepcja-modelu" class="level3" data-number="16.3.1">
-<h3 data-number="16.3.1" class="anchored" data-anchor-id="koncepcja-modelu"><span class="header-section-number">16.3.1</span> Koncepcja Modelu</h3>
-<p>Regresja MNK (Metoda Najmniejszych Kwadratów) to model statystyczny opisujący związek między zmiennymi. Dwa kluczowe założenia definiują ten model:</p>
-<ol type="1">
-<li>Związek można opisać linią prostą (liniowość)</li>
-<li>Błędy w naszych przewidywaniach nie są systematycznie powiązane ze zmienną x (ścisła egzogeniczność)</li>
-</ol>
 </section>
-<section id="przykład-edukacja-i-wynagrodzenia" class="level3" data-number="16.3.2">
-<h3 data-number="16.3.2" class="anchored" data-anchor-id="przykład-edukacja-i-wynagrodzenia"><span class="header-section-number">16.3.2</span> Przykład: Edukacja i Wynagrodzenia</h3>
-<p>Rozważmy badanie wpływu edukacji (x) na wynagrodzenia (y). Powiedzmy, że szacujemy:</p>
-<p><span class="math display">wynagrodzenia = \beta_0 + \beta_1 \cdot edukacja + \epsilon</span></p>
-<p>Składnik błędu <span class="math inline">\epsilon</span> zawiera wszystkie inne czynniki wpływające na wynagrodzenia. Ścisła egzogeniczność jest naruszona, jeśli pominiemy ważną zmienną, jak “zdolności”, która wpływa zarówno na edukację, jak i wynagrodzenia. Dlaczego? Ponieważ bardziej zdolni ludzie mają tendencję do zdobywania lepszego wykształcenia I wyższych wynagrodzeń, co powoduje zawyżenie szacowanego efektu edukacji.</p>
-</section>
-<section id="problem-optymalizacji-metoda-najmniejszych-kwadratów-ols" class="level3" data-number="16.3.3">
-<h3 data-number="16.3.3" class="anchored" data-anchor-id="problem-optymalizacji-metoda-najmniejszych-kwadratów-ols"><span class="header-section-number">16.3.3</span> Problem Optymalizacji: Metoda Najmniejszych Kwadratów (OLS)</h3>
+<section id="problem-optymalizacji-metoda-najmniejszych-kwadratów-ols" class="level3" data-number="16.3.4">
+<h3 data-number="16.3.4" class="anchored" data-anchor-id="problem-optymalizacji-metoda-najmniejszych-kwadratów-ols"><span class="header-section-number">16.3.4</span> Problem Optymalizacji: Metoda Najmniejszych Kwadratów (OLS)</h3>
 <p>Kiedy analizujemy zależności między zmiennymi, takimi jak poziom wykształcenia a wynagrodzenie, potrzebujemy systematycznej metody znalezienia linii, która najlepiej odzwierciedla tę relację w naszych danych. Metoda Najmniejszych Kwadratów (OLS - Ordinary Least Squares) dostarcza nam takiego rozwiązania poprzez precyzyjne podejście matematyczne.</p>
 <p>Spójrzmy na nasz wykres poziomów wykształcenia i wynagrodzeń. Każdy punkt reprezentuje rzeczywiste dane - poziom wykształcenia danej osoby i odpowiadające mu wynagrodzenie. Naszym celem jest znalezienie pojedynczej linii, która najdokładniej uchwyci podstawową zależność między tymi zmiennymi.</p>
 <p>Dla każdej obserwacji <span class="math inline">i</span> możemy wyrazić tę relację jako:</p>
@@ -1375,14 +1439,14 @@ Model Regresji Liniowej (MNK): Szybki Start
 </ul>
 <p>Rozwiązanie OLS dostarcza nam estymatorów <span class="math inline">\hat{\beta_0}</span> i <span class="math inline">\hat{\beta_1}</span> nieznanych parametrów <span class="math inline">\beta_0</span> i <span class="math inline">\beta_1</span>, które minimalizują całkowity błąd kwadratowy, dając nam najdokładniejszą liniową reprezentację zależności między poziomem wykształcenia a wynagrodzeniem na podstawie dostępnych danych.</p>
 </section>
-<section id="znalezienie-najlepszej-linii" class="level3" data-number="16.3.4">
-<h3 data-number="16.3.4" class="anchored" data-anchor-id="znalezienie-najlepszej-linii"><span class="header-section-number">16.3.4</span> Znalezienie Najlepszej Linii</h3>
+<section id="znalezienie-najlepszej-linii" class="level3" data-number="16.3.5">
+<h3 data-number="16.3.5" class="anchored" data-anchor-id="znalezienie-najlepszej-linii"><span class="header-section-number">16.3.5</span> Znalezienie Najlepszej Linii</h3>
 <p>Rozwiązanie tego problemu minimalizacji daje nam:</p>
 <p><span class="math display">\hat{\beta}_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = \frac{cov(X, Y)}{var(X)}</span></p>
 <p><span class="math display">\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}</span></p>
 </section>
-<section id="kluczowe-punkty" class="level3" data-number="16.3.5">
-<h3 data-number="16.3.5" class="anchored" data-anchor-id="kluczowe-punkty"><span class="header-section-number">16.3.5</span> Kluczowe Punkty</h3>
+<section id="kluczowe-punkty" class="level3" data-number="16.3.6">
+<h3 data-number="16.3.6" class="anchored" data-anchor-id="kluczowe-punkty"><span class="header-section-number">16.3.6</span> Kluczowe Punkty</h3>
 <ol type="1">
 <li>MNK znajduje linię, która minimalizuje kwadraty błędów predykcji</li>
 <li>Ta linia jest “najlepsza” pod względem dopasowania, ale może nie ujmować prawdziwych relacji, jeśli pominięto ważne zmienne</li>
@@ -1391,8 +1455,10 @@ Model Regresji Liniowej (MNK): Szybki Start
 </section>
 </div>
 </div>
-<section id="podstawowe-pojęcia-i-terminologia" class="level3" data-number="16.3.6">
-<h3 data-number="16.3.6" class="anchored" data-anchor-id="podstawowe-pojęcia-i-terminologia"><span class="header-section-number">16.3.6</span> Podstawowe Pojęcia i Terminologia</h3>
+</section>
+</section>
+<section id="podstawowe-pojęcia-i-terminologia" class="level3" data-number="16.3.7">
+<h3 data-number="16.3.7" class="anchored" data-anchor-id="podstawowe-pojęcia-i-terminologia"><span class="header-section-number">16.3.7</span> Podstawowe Pojęcia i Terminologia</h3>
 <p>Ustalmy kluczowe terminy:</p>
 <ul>
 <li><strong>Zmienna Zależna (Y)</strong>:
@@ -1421,8 +1487,8 @@ Model Regresji Liniowej (MNK): Szybki Start
 </ul></li>
 </ul>
 </section>
-<section id="główna-idea" class="level3" data-number="16.3.7">
-<h3 data-number="16.3.7" class="anchored" data-anchor-id="główna-idea"><span class="header-section-number">16.3.7</span> Główna Idea</h3>
+<section id="główna-idea" class="level3" data-number="16.3.8">
+<h3 data-number="16.3.8" class="anchored" data-anchor-id="główna-idea"><span class="header-section-number">16.3.8</span> Główna Idea</h3>
 <p>Zobaczmy na przykładzie, co robi regresja:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate some example data</span></span>
@@ -2082,37 +2148,53 @@ Intuicyjne zrozumienie Metody Najmniejszych Kwadratów (MNK)
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Dekompozycja Wariancji w Regresji Liniowej: Intuicyjny Przewodnik
+Dekompozycja Wariancji w Regresji Liniowej
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<section id="szerszy-kontekst-dlaczego-to-jest-ważne" class="level3" data-number="16.6.8">
-<h3 data-number="16.6.8" class="anchored" data-anchor-id="szerszy-kontekst-dlaczego-to-jest-ważne"><span class="header-section-number">16.6.8</span> Szerszy Kontekst: Dlaczego To Jest Ważne?</h3>
-<p>Wyobraź sobie, że próbujesz przewidzieć ceny domów. Najprostszym przypuszczeniem byłoby użycie średniej ceny wszystkich domów. Ale co jeśli znamy również wielkość każdego domu? Czy ta informacja pomoże nam w lepszym prognozowaniu? Dekompozycja wariancji pomaga nam dokładnie określić, o ile lepsze stają się nasze prognozy, gdy wykorzystujemy dodatkowe informacje.</p>
+<section id="dlaczego-to-jest-ważne-zrozumienie-poprawy-prognoz-poprzez-dodatkowe-informacje" class="level3" data-number="16.6.8">
+<h3 data-number="16.6.8" class="anchored" data-anchor-id="dlaczego-to-jest-ważne-zrozumienie-poprawy-prognoz-poprzez-dodatkowe-informacje"><span class="header-section-number">16.6.8</span> Dlaczego To Jest Ważne: Zrozumienie Poprawy Prognoz Poprzez Dodatkowe Informacje</h3>
+<p>Rozważmy wyzwanie związane z przewidywaniem cen nieruchomości na rynku mieszkaniowym. Na najbardziej podstawowym poziomie można oszacować cenę dowolnego domu, używając średniej ceny rynkowej. Jednakże takie podejście pomija potencjalnie wartościowe informacje. Gdy uwzględnimy dodatkowe zmienne, takie jak powierzchnia użytkowa, lokalizacja czy liczba sypialni, nasze prognozy zazwyczaj stają się bardziej precyzyjne. <strong>Dekompozycja wariancji</strong> dostarcza matematycznych ram do dokładnego określenia, o ile poprawia się trafność prognoz, gdy włączamy takie dodatkowe informacje.</p>
 </section>
-<section id="główna-koncepcja-od-prostych-do-inteligentnych-prognoz" class="level3" data-number="16.6.9">
-<h3 data-number="16.6.9" class="anchored" data-anchor-id="główna-koncepcja-od-prostych-do-inteligentnych-prognoz"><span class="header-section-number">16.6.9</span> Główna Koncepcja: Od Prostych do Inteligentnych Prognoz</h3>
-<section id="krok-1-zaczynając-od-średniej" class="level4" data-number="16.6.9.1">
-<h4 data-number="16.6.9.1" class="anchored" data-anchor-id="krok-1-zaczynając-od-średniej"><span class="header-section-number">16.6.9.1</span> Krok 1: Zaczynając od Średniej</h4>
+<section id="udoskonalenie-estymacji" class="level3" data-number="16.6.9">
+<h3 data-number="16.6.9" class="anchored" data-anchor-id="udoskonalenie-estymacji"><span class="header-section-number">16.6.9</span> Udoskonalenie Estymacji</h3>
+<section id="podejście-początkowe-uniwersalna-średnia" class="level4" data-number="16.6.9.1">
+<h4 data-number="16.6.9.1" class="anchored" data-anchor-id="podejście-początkowe-uniwersalna-średnia"><span class="header-section-number">16.6.9.1</span> Podejście Początkowe: Uniwersalna Średnia</h4>
+<p>Nasza podróż rozpoczyna się od najprostszej możliwej prognozy: średniej wszystkich cen domów (<span class="math inline">\bar{y}</span>). Stanowi to nasz punkt wyjścia – prognozę dokonaną bez żadnych szczególnych informacji o poszczególnych nieruchomościach. Choć podejście to zapewnia rozsądny punkt odniesienia, traktuje każdy dom identycznie, prowadząc do tzw. <strong>błędów bazowych</strong>. Błędy te powstają właśnie dlatego, że ignorujemy unikalne cechy każdej nieruchomości.</p>
+</section>
+<section id="podejście-zaawansowane-włączenie-informacji-szczegółowych" class="level4" data-number="16.6.9.2">
+<h4 data-number="16.6.9.2" class="anchored" data-anchor-id="podejście-zaawansowane-włączenie-informacji-szczegółowych"><span class="header-section-number">16.6.9.2</span> Podejście Zaawansowane: Włączenie Informacji Szczegółowych</h4>
+<p>Gdy wprowadzamy charakterystyki specyficzne dla nieruchomości (oznaczone jako <span class="math inline">X</span>), takie jak powierzchnia użytkowa, możemy udoskonalić nasze prognozy. To udoskonalenie pozwala nam różnicować między nieruchomościami, tworząc spersonalizowane prognozy odzwierciedlające indywidualne cechy domów. Wynikające z tego błędy prognoz zazwyczaj maleją, demonstrując wartość włączenia dodatkowych informacji.</p>
+</section>
+</section>
+<section id="zrozumienie-komponentów-wariancji" class="level3" data-number="16.6.10">
+<h3 data-number="16.6.10" class="anchored" data-anchor-id="zrozumienie-komponentów-wariancji"><span class="header-section-number">16.6.10</span> Zrozumienie Komponentów Wariancji</h3>
+<ol type="1">
+<li><strong>Wariancja Całkowita (SST)</strong> Wariancja całkowita określa ogólną zmienność cen domów wokół średniej rynkowej.
 <ul>
-<li>Naszą podstawową prognozą jest średnia (<span class="math inline">\bar{y}</span>)</li>
-<li>Traktuj to jako nasze “nieświadome przypuszczenie”</li>
-<li>Dla każdego domu przewidywalibyśmy tę samą cenę (średnią)</li>
-<li>To tworzy nasze podstawowe błędy</li>
-</ul>
-</section>
-<section id="krok-2-wykorzystanie-dodatkowych-informacji" class="level4" data-number="16.6.9.2">
-<h4 data-number="16.6.9.2" class="anchored" data-anchor-id="krok-2-wykorzystanie-dodatkowych-informacji"><span class="header-section-number">16.6.9.2</span> Krok 2: Wykorzystanie Dodatkowych Informacji</h4>
+<li><strong>Wyrażenie Matematyczne:</strong> <span class="math inline">SST = \sum(y_i - \bar{y})^2</span></li>
+<li><strong>Reprezentacja Wizualna:</strong> Zobrazowana przez fioletowe pionowe linie na wykresie, pokazujące odległość każdej rzeczywistej ceny domu od średniej ogólnej</li>
+<li><strong>Ramy Koncepcyjne:</strong> Można to rozumieć jako pomiar tego, jak bardzo ceny domów różnią się od siebie na rynku</li>
+<li><strong>Interpretacja Praktyczna:</strong> Większe SST wskazuje na bardziej zróżnicowany rynek mieszkaniowy z większą zmiennością cen</li>
+</ul></li>
+<li><strong>Wariancja Wyjaśniona (SSR)</strong> Ten komponent reprezentuje część zmienności cen, którą nasz model skutecznie wychwytuje poprzez uwzględnione zmienne.
 <ul>
-<li>Włączamy informacje z naszego predyktora (X)</li>
-<li>Teraz możemy tworzyć różne prognozy dla różnych domów</li>
-<li>Każda prognoza (<span class="math inline">\hat{y}_i</span>) jest dostosowana na podstawie X</li>
-<li>To tworzy nasze nowe, miejmy nadzieję mniejsze, błędy</li>
-</ul>
-</section>
-</section>
-<section id="wizualizacja-dekompozycji-wariancji" class="level3" data-number="16.6.10">
-<h3 data-number="16.6.10" class="anchored" data-anchor-id="wizualizacja-dekompozycji-wariancji"><span class="header-section-number">16.6.10</span> Wizualizacja Dekompozycji Wariancji</h3>
+<li><strong>Wyrażenie Matematyczne:</strong> <span class="math inline">SSR = \sum(\hat{y}_i - \bar{y})^2</span></li>
+<li><strong>Reprezentacja Wizualna:</strong> Pokazana przez zielone przerywane linie, reprezentujące jak bardzo prognozy naszego modelu odbiegają od średniej</li>
+<li><strong>Ramy Koncepcyjne:</strong> Mierzy to, o ile lepsze stają się nasze prognozy, gdy uwzględniamy szczególne cechy domów</li>
+<li><strong>Interpretacja Praktyczna:</strong> Większe SSR w stosunku do SST wskazuje, że wybrane przez nas zmienne (jak powierzchnia użytkowa) silnie wpływają na ceny domów</li>
+</ul></li>
+<li><strong>Wariancja Niewyjaśniona (SSE)</strong> Reprezentuje pozostałą zmienność cen, której nasz model nie może wyjaśnić przy użyciu uwzględnionych zmiennych.
+<ul>
+<li><strong>Wyrażenie Matematyczne:</strong> <span class="math inline">SSE = \sum(y_i - \hat{y}_i)^2</span></li>
+<li><strong>Reprezentacja Wizualna:</strong> Zobrazowana przez pomarańczowe przerywane linie, pokazujące pozostałe błędy między naszymi prognozami a rzeczywistymi cenami</li>
+<li><strong>Ramy Koncepcyjne:</strong> Są to błędy prognoz, które utrzymują się nawet po uwzględnieniu wszystkich wybranych zmiennych</li>
+<li><strong>Interpretacja Praktyczna:</strong> Mniejsze SSE sugeruje, że nasz model wychwytuje większość głównych czynników wpływających na cenę</li>
+</ul></li>
+</ol>
+<p>Piękno tej dekompozycji tkwi w jej matematycznej kompletności: SST = SSR + SSE. Ta zależność mówi nam, że cała zmienność cen musi być albo wyjaśniona przez nasz model (SSR), albo pozostać niewyjaśniona (SSE), dostarczając kompleksowych ram do zrozumienia poprawy prognoz. Kolorowe linie na wykresie stanowią wizualne potwierdzenie tej zależności, pomagając zrozumieć, jak te komponenty współdziałają w praktyce.</p>
+<section id="wizualizacja-dekompozycji-wariancji" class="level4" data-number="16.6.10.1">
+<h4 data-number="16.6.10.1" class="anchored" data-anchor-id="wizualizacja-dekompozycji-wariancji"><span class="header-section-number">16.6.10.1</span> Wizualizacja Dekompozycji Wariancji</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -2244,38 +2326,13 @@ Attaching package: 'patchwork'</code></pre>
 </div>
 </div>
 </section>
-<section id="zrozumienie-trzech-rodzajów-wariancji" class="level3" data-number="16.6.11">
-<h3 data-number="16.6.11" class="anchored" data-anchor-id="zrozumienie-trzech-rodzajów-wariancji"><span class="header-section-number">16.6.11</span> Zrozumienie Trzech Rodzajów Wariancji</h3>
-<ol type="1">
-<li><strong>Wariancja Całkowita (SST)</strong>
-<ul>
-<li>Pytanie: “Jak bardzo obserwacje różnią się od średniej?”</li>
-<li>Wzór: <span class="math inline">SST = \sum(y_i - \bar{y})^2</span></li>
-<li>Wizualizacja: Fioletowe punkty na wykresie</li>
-<li>Intuicja: “Rozrzut” naszych danych wokół średniej</li>
-</ul></li>
-<li><strong>Wariancja Wyjaśniona (SSR)</strong>
-<ul>
-<li>Pytanie: “Ile wariancji wyjaśnił nasz model?”</li>
-<li>Wzór: <span class="math inline">SSR = \sum(\hat{y}_i - \bar{y})^2</span></li>
-<li>Wizualizacja: Zielone przerywane linie na wykresie</li>
-<li>Intuicja: Poprawa, którą uzyskaliśmy dzięki użyciu X</li>
-</ul></li>
-<li><strong>Wariancja Niewyjaśniona (SSE)</strong>
-<ul>
-<li>Pytanie: “Jaka wariancja pozostaje niewyjaśniona?”</li>
-<li>Wzór: <span class="math inline">SSE = \sum(y_i - \hat{y}_i)^2</span></li>
-<li>Wizualizacja: Pomarańczowe przerywane linie na wykresie</li>
-<li>Intuicja: Błędy pozostające po użyciu X</li>
-</ul></li>
-</ol>
 </section>
-<section id="r²-wyjaśnione" class="level3" data-number="16.6.12">
-<h3 data-number="16.6.12" class="anchored" data-anchor-id="r²-wyjaśnione"><span class="header-section-number">16.6.12</span> R² Wyjaśnione</h3>
+<section id="r²-wyjaśnione" class="level3" data-number="16.6.11">
+<h3 data-number="16.6.11" class="anchored" data-anchor-id="r²-wyjaśnione"><span class="header-section-number">16.6.11</span> R² Wyjaśnione</h3>
 <p><span class="math display">R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}</span></p>
 <p>Myśl o R² jako o odpowiedzi na pytanie: “Jaki procent pierwotnej wariancji Y możemy wyjaśnić używając X?”</p>
-<section id="intuicyjne-przykłady-1" class="level4" data-number="16.6.12.1">
-<h4 data-number="16.6.12.1" class="anchored" data-anchor-id="intuicyjne-przykłady-1"><span class="header-section-number">16.6.12.1</span> Intuicyjne Przykłady:</h4>
+<section id="intuicyjne-przykłady-1" class="level4" data-number="16.6.11.1">
+<h4 data-number="16.6.11.1" class="anchored" data-anchor-id="intuicyjne-przykłady-1"><span class="header-section-number">16.6.11.1</span> Intuicyjne Przykłady:</h4>
 <ul>
 <li>R² = 0,80: Użycie X wyeliminowało 80% naszych błędów predykcji</li>
 <li>R² = 0,25: Użycie X wyeliminowało 25% naszych błędów predykcji</li>
@@ -2283,8 +2340,8 @@ Attaching package: 'patchwork'</code></pre>
 </ul>
 </section>
 </section>
-<section id="kiedy-zachować-ostrożność-1" class="level3" data-number="16.6.13">
-<h3 data-number="16.6.13" class="anchored" data-anchor-id="kiedy-zachować-ostrożność-1"><span class="header-section-number">16.6.13</span> Kiedy Zachować Ostrożność</h3>
+<section id="kiedy-zachować-ostrożność-1" class="level3" data-number="16.6.12">
+<h3 data-number="16.6.12" class="anchored" data-anchor-id="kiedy-zachować-ostrożność-1"><span class="header-section-number">16.6.12</span> Kiedy Zachować Ostrożność</h3>
 <ol type="1">
 <li><strong>Wysoki R² To Nie Wszystko</strong>
 <ul>
@@ -2305,8 +2362,8 @@ Attaching package: 'patchwork'</code></pre>
 </ul></li>
 </ol>
 </section>
-<section id="praktyczne-wskazówki-do-analizy-1" class="level3" data-number="16.6.14">
-<h3 data-number="16.6.14" class="anchored" data-anchor-id="praktyczne-wskazówki-do-analizy-1"><span class="header-section-number">16.6.14</span> Praktyczne Wskazówki do Analizy</h3>
+<section id="praktyczne-wskazówki-do-analizy-1" class="level3" data-number="16.6.13">
+<h3 data-number="16.6.13" class="anchored" data-anchor-id="praktyczne-wskazówki-do-analizy-1"><span class="header-section-number">16.6.13</span> Praktyczne Wskazówki do Analizy</h3>
 <ol type="1">
 <li><strong>Inspekcja Wizualna</strong>
 <ul>
@@ -2328,8 +2385,8 @@ Attaching package: 'patchwork'</code></pre>
 </ul></li>
 </ol>
 </section>
-<section id="kluczowe-wnioski-2" class="level3" data-number="16.6.15">
-<h3 data-number="16.6.15" class="anchored" data-anchor-id="kluczowe-wnioski-2"><span class="header-section-number">16.6.15</span> Kluczowe Wnioski</h3>
+<section id="kluczowe-wnioski-2" class="level3" data-number="16.6.14">
+<h3 data-number="16.6.14" class="anchored" data-anchor-id="kluczowe-wnioski-2"><span class="header-section-number">16.6.14</span> Kluczowe Wnioski</h3>
 <ol type="1">
 <li>Dekompozycja wariancji pomaga zrozumieć poprawę predykcji</li>
 <li>R² określa ilościowo proporcję wyjaśnionej wariancji</li>
@@ -2350,8 +2407,8 @@ Formalne wyprowadzenie estymatorów MNK
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<section id="założenia-wstępne" class="level3" data-number="16.6.16">
-<h3 data-number="16.6.16" class="anchored" data-anchor-id="założenia-wstępne"><span class="header-section-number">16.6.16</span> Założenia wstępne</h3>
+<section id="założenia-wstępne" class="level3" data-number="16.6.15">
+<h3 data-number="16.6.15" class="anchored" data-anchor-id="założenia-wstępne"><span class="header-section-number">16.6.15</span> Założenia wstępne</h3>
 <p>Chcemy znaleźć prostą <span class="math inline">y = \hat{\beta}_0 + \hat{\beta}_1x</span>, która minimalizuje sumę kwadratów reszt. Wyprowadźmy to krok po kroku:</p>
 <ol type="1">
 <li><p>Najpierw zapisujemy funkcję, którą chcemy zminimalizować:</p>
@@ -2360,8 +2417,8 @@ Formalne wyprowadzenie estymatorów MNK
 <p><span class="math inline">\frac{\partial SSE}{\partial \hat{\beta}_0} = 0</span> oraz <span class="math inline">\frac{\partial SSE}{\partial \hat{\beta}_1} = 0</span></p></li>
 </ol>
 </section>
-<section id="krok-1-znalezienie-hatbeta_0" class="level3" data-number="16.6.17">
-<h3 data-number="16.6.17" class="anchored" data-anchor-id="krok-1-znalezienie-hatbeta_0"><span class="header-section-number">16.6.17</span> Krok 1: Znalezienie <span class="math inline">\hat{\beta}_0</span></h3>
+<section id="krok-1-znalezienie-hatbeta_0" class="level3" data-number="16.6.16">
+<h3 data-number="16.6.16" class="anchored" data-anchor-id="krok-1-znalezienie-hatbeta_0"><span class="header-section-number">16.6.16</span> Krok 1: Znalezienie <span class="math inline">\hat{\beta}_0</span></h3>
 <p>Obliczmy pochodną cząstkową względem <span class="math inline">\hat{\beta}_0</span>:</p>
 <p><span class="math inline">\frac{\partial SSE}{\partial \hat{\beta}_0} = \frac{\partial}{\partial \hat{\beta}_0} \sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)^2</span></p>
 <p>Korzystając z reguły łańcuchowej:</p>
@@ -2373,8 +2430,8 @@ Formalne wyprowadzenie estymatorów MNK
 <p><span class="math inline">\hat{\beta}_0 = \frac{\sum_{i=1}^n y_i}{n} - \hat{\beta}_1\frac{\sum_{i=1}^n x_i}{n} = \bar{y} - \hat{\beta}_1\bar{x}</span></p>
 <p>Gdzie <span class="math inline">\bar{y}</span> i <span class="math inline">\bar{x}</span> to średnie z próby.</p>
 </section>
-<section id="krok-2-znalezienie-hatbeta_1" class="level3" data-number="16.6.18">
-<h3 data-number="16.6.18" class="anchored" data-anchor-id="krok-2-znalezienie-hatbeta_1"><span class="header-section-number">16.6.18</span> Krok 2: Znalezienie <span class="math inline">\hat{\beta}_1</span></h3>
+<section id="krok-2-znalezienie-hatbeta_1" class="level3" data-number="16.6.17">
+<h3 data-number="16.6.17" class="anchored" data-anchor-id="krok-2-znalezienie-hatbeta_1"><span class="header-section-number">16.6.17</span> Krok 2: Znalezienie <span class="math inline">\hat{\beta}_1</span></h3>
 <p>Teraz obliczamy pochodną cząstkową względem <span class="math inline">\hat{\beta}_1</span>:</p>
 <p><span class="math inline">\frac{\partial SSE}{\partial \hat{\beta}_1} = \frac{\partial}{\partial \hat{\beta}_1} \sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1x_i)^2</span></p>
 <p>Korzystając z reguły łańcuchowej:</p>
@@ -2387,8 +2444,8 @@ Formalne wyprowadzenie estymatorów MNK
 <p>Po przekształceniach algebraicznych (rozwinięciu i zgrupowaniu wyrazów):</p>
 <p><span class="math inline">\hat{\beta}_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}</span></p>
 </section>
-<section id="wyniki-końcowe" class="level3" data-number="16.6.19">
-<h3 data-number="16.6.19" class="anchored" data-anchor-id="wyniki-końcowe"><span class="header-section-number">16.6.19</span> Wyniki końcowe</h3>
+<section id="wyniki-końcowe" class="level3" data-number="16.6.18">
+<h3 data-number="16.6.18" class="anchored" data-anchor-id="wyniki-końcowe"><span class="header-section-number">16.6.18</span> Wyniki końcowe</h3>
 <p>Wyprowadziliśmy estymatory MNK:</p>
 <p><span class="math inline">\hat{\beta}_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}</span></p>
 <p><span class="math inline">\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}</span></p>
@@ -2407,15 +2464,15 @@ Formalne wyprowadzenie estymatorów MNK
 </ul></li>
 </ol>
 </section>
-<section id="weryfikacja-drugie-pochodne" class="level3" data-number="16.6.20">
-<h3 data-number="16.6.20" class="anchored" data-anchor-id="weryfikacja-drugie-pochodne"><span class="header-section-number">16.6.20</span> Weryfikacja: Drugie pochodne</h3>
+<section id="weryfikacja-drugie-pochodne" class="level3" data-number="16.6.19">
+<h3 data-number="16.6.19" class="anchored" data-anchor-id="weryfikacja-drugie-pochodne"><span class="header-section-number">16.6.19</span> Weryfikacja: Drugie pochodne</h3>
 <p>Aby potwierdzić, że znaleźliśmy minimum (a nie maksimum), sprawdzamy drugie pochodne:</p>
 <p><span class="math inline">\frac{\partial^2 SSE}{\partial \hat{\beta}_0^2} = 2n &gt; 0</span></p>
 <p><span class="math inline">\frac{\partial^2 SSE}{\partial \hat{\beta}_1^2} = 2\sum_{i=1}^n x_i^2 &gt; 0</span></p>
 <p>Ponieważ obie drugie pochodne są dodatnie, rzeczywiście znaleźliśmy minimum.</p>
 </section>
-<section id="postać-macierzowa-temat-zaawansowany-opcjonalny" class="level3" data-number="16.6.21">
-<h3 data-number="16.6.21" class="anchored" data-anchor-id="postać-macierzowa-temat-zaawansowany-opcjonalny"><span class="header-section-number">16.6.21</span> Postać macierzowa (Temat zaawansowany, opcjonalny)</h3>
+<section id="postać-macierzowa-temat-zaawansowany-opcjonalny" class="level3" data-number="16.6.20">
+<h3 data-number="16.6.20" class="anchored" data-anchor-id="postać-macierzowa-temat-zaawansowany-opcjonalny"><span class="header-section-number">16.6.20</span> Postać macierzowa (Temat zaawansowany, opcjonalny)</h3>
 <p>Dla osób znających algebrę liniową, możemy zapisać to zwięźlej:</p>
 <p><span class="math inline">\mathbf{X} = \begin{bmatrix} 1 &amp; x_1 \\ 1 &amp; x_2 \\ \vdots &amp; \vdots \\ 1 &amp; x_n \end{bmatrix}</span></p>
 <p><span class="math inline">\mathbf{y} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}</span></p>
@@ -2423,8 +2480,8 @@ Formalne wyprowadzenie estymatorów MNK
 <p><span class="math inline">\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{y}</span></p>
 <p>To daje nam zarówno <span class="math inline">\hat{\beta}_0</span> jak i <span class="math inline">\hat{\beta}_1</span> w jednym eleganckim wyrażeniu.</p>
 </section>
-<section id="wizualizacja-wyprowadzenia" class="level3" data-number="16.6.22">
-<h3 data-number="16.6.22" class="anchored" data-anchor-id="wizualizacja-wyprowadzenia"><span class="header-section-number">16.6.22</span> Wizualizacja wyprowadzenia</h3>
+<section id="wizualizacja-wyprowadzenia" class="level3" data-number="16.6.21">
+<h3 data-number="16.6.21" class="anchored" data-anchor-id="wizualizacja-wyprowadzenia"><span class="header-section-number">16.6.21</span> Wizualizacja wyprowadzenia</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2460,8 +2517,8 @@ Formalne wyprowadzenie estymatorów MNK
 </div>
 <p>Powyższy wykres pokazuje, jak działają estymatory MNK z odchyleniami od średnich. Iloczyn tych odchyleń (zielone × fioletowe) dla każdego punktu, zsumowany i znormalizowany, daje nam nasz estymator nachylenia <span class="math inline">\hat{\beta}_1</span>.</p>
 </section>
-<section id="ważne-uwagi-1" class="level3" data-number="16.6.23">
-<h3 data-number="16.6.23" class="anchored" data-anchor-id="ważne-uwagi-1"><span class="header-section-number">16.6.23</span> Ważne uwagi</h3>
+<section id="ważne-uwagi-1" class="level3" data-number="16.6.22">
+<h3 data-number="16.6.22" class="anchored" data-anchor-id="ważne-uwagi-1"><span class="header-section-number">16.6.22</span> Ważne uwagi</h3>
 <ol type="1">
 <li><p>Wyprowadzone estymatory są BLUE (Best Linear Unbiased Estimators - Najlepsze Liniowe Nieobciążone Estymatory) przy spełnieniu założeń Gaussa-Markowa.</p></li>
 <li><p>Założenia te obejmują:</p>
@@ -2483,141 +2540,67 @@ Formalne wyprowadzenie estymatorów MNK
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Endogeniczność
+Endogeniczność w Regresji
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Pomyśl o endogeniczności jako o “problemie ukrytych zależności” w twojej analizie. To jak próba rozwiązania układanki, gdzie niektóre elementy wpływają na siebie nawzajem w sposób, którego nie możesz bezpośrednio zobaczyć. W języku technicznym endogeniczność występuje, gdy zmienna objaśniająca w modelu regresji jest skorelowana ze składnikiem losowym.</p>
-<ol type="1">
-<li>Błąd Pominiętej Zmiennej (OVB)</li>
-</ol>
-<p>Wyobraź sobie, że próbujesz zrozumieć, dlaczego niektóre rośliny rosną wyżej niż inne, i mierzysz tylko ilość wody, którą otrzymują. Ale zapomniałeś o świetle słonecznym, które wpływa zarówno na to, ile wody roślina potrzebuje, JAK I na to, jak wysoko urośnie!</p>
-<p><strong>Przykład z Życia: Edukacja i Dochód</strong></p>
-<ul>
-<li>Co widzimy: Więcej edukacji → Wyższy dochód</li>
-<li>Co możemy przeoczyć: Naturalny talent/zdolności
-<ul>
-<li>Wpływa na to, jak długo ludzie się uczą</li>
-<li>Wpływa na to, ile mogą zarabiać</li>
-</ul></li>
-<li>Rezultat: Możemy przeszacować wpływ edukacji</li>
-</ul>
-<p><strong>Matematyka za tym stojąca</strong>:</p>
-<ul>
-<li>Prawdziwy obraz: <span class="math inline">y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \epsilon_i</span></li>
-<li>Co faktycznie szacujemy: <span class="math inline">y_i = \beta_0 + \beta_1x_i + u_i</span></li>
-<li>Pomyśl o tym jak o przepisie: Jeśli zapomnisz ważnego składnika (z), twoje końcowe danie (y) nie wyjdzie zgodnie z oczekiwaniami!</li>
-</ul>
-<ol start="2" type="1">
-<li>Symultaniczność (Odwrotna Przyczynowość)</li>
-</ol>
-<p>Pamiętasz problem jajka i kury? Czasami dwie rzeczy wpływają na siebie jednocześnie. Oto kilka przykładów, które możesz napotkać:</p>
-<p><strong>a) Zagadka Godzin Nauki</strong></p>
-<ul>
-<li>Czy lepsze oceny prowadzą do dłuższej nauki?</li>
-<li>Czy dłuższa nauka prowadzi do lepszych ocen?</li>
-<li>W rzeczywistości… obie odpowiedzi! Wzajemnie na siebie wpływają</li>
-</ul>
-<p><strong>b) Efekt Mediów Społecznościowych</strong></p>
-<ul>
-<li>Więcej obserwujących → Więcej postów</li>
-<li>Więcej postów → Więcej obserwujących</li>
-<li>To ciągły cykl!</li>
-</ul>
-<p><strong>c) Cykl Ćwiczenia-Energia</strong></p>
-<ul>
-<li>Więcej ćwiczeń → Więcej energii</li>
-<li>Więcej energii → Większa chęć do ćwiczeń</li>
-<li>Pomyśl o tym jak o dwóch przyjaciołach pchających się nawzajem na huśtawkach!</li>
-</ul>
-<ol start="3" type="1">
-<li>Błąd Pomiaru</li>
-</ol>
-<p>Wyobraź sobie próbę zmierzenia swojego wzrostu stojąc na nierównej podłodze - twoje pomiary nie będą całkiem dokładne! Oto jak to się przejawia w rzeczywistości:</p>
-<p><strong>Przykłady, Które Rozpoznasz:</strong></p>
-<ul>
-<li>Samodzielnie Raportowany Czas Nauki
-<ul>
-<li>“Uczę się 5 godzin dziennie” może w rzeczywistości oznaczać 3-4 godziny</li>
-<li>Utrudnia poznanie prawdziwego wpływu na oceny</li>
-</ul></li>
-<li>Śledzenie w Aplikacji Fitness
-<ul>
-<li>Aplikacja pokazuje, że spaliłeś 500 kalorii</li>
-<li>W rzeczywistości może to być 400 lub 600</li>
-<li>Wpływa na analizę wpływu ćwiczeń</li>
-</ul></li>
-</ul>
-<section id="jak-wykryć-te-problemy-we-własnych-badaniach" class="level4" data-number="16.6.23.1">
-<h4 data-number="16.6.23.1" class="anchored" data-anchor-id="jak-wykryć-te-problemy-we-własnych-badaniach"><span class="header-section-number">16.6.23.1</span> Jak Wykryć Te Problemy we Własnych Badaniach?</h4>
-<p><strong>1. W przypadku Pominiętych Zmiennych, Zapytaj:</strong></p>
-<ul>
-<li>Co jeszcze mogłoby wpływać na obie zmienne?</li>
-<li>Czy nie pomijam oczywistych czynników?</li>
-<li>Co powiedzieliby rodzice/przyjaciele, że ma na to wpływ?</li>
-</ul>
-<p><strong>2. W przypadku Symultaniczności, Rozważ:</strong></p>
-<ul>
-<li>Czy A może powodować B, czy B może powodować A?</li>
-<li>Czy mogą na siebie wpływać?</li>
-<li>Co wydarzyło się najpierw? (jeśli można to określić)</li>
-</ul>
-<p><strong>3. W przypadku Błędu Pomiaru, Pomyśl:</strong></p>
-<ul>
-<li>Jak dokładne są moje pomiary?</li>
-<li>Czy ludzie prawdopodobnie podają prawdziwe informacje?</li>
-<li>Co może powodować problemy z pomiarem?</li>
-</ul>
-<p><strong>Proste Rozwiązania</strong></p>
-<p><strong>1. Dla Pominiętych Zmiennych:</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zamiast:</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="co"># simple_model &lt;- lm(grades ~ study_hours)</span></span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Spróbuj:</span></span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="co"># better_model &lt;- lm(grades ~ study_hours + sleep_hours + stress_level + prior_knowledge)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>2. Dla Symultaniczności:</strong></p>
-<ul>
-<li>Szukaj “zewnętrznych” czynników, które wpływają tylko na jedną zmienną</li>
-<li>Rozważ opóźnienia czasowe</li>
-<li>Wykorzystuj eksperymenty naturalne, gdy to możliwe</li>
-</ul>
-<p><strong>3. Dla Błędu Pomiaru:</strong></p>
-<ul>
-<li>Wykorzystuj wielokrotne pomiary</li>
-<li>Znajdź bardziej wiarygodne źródła danych</li>
-<li>Uznaj niepewność w swoich wnioskach</li>
-</ul>
+<p>Endogeniczność to kluczowe pojęcie w analizie statystycznej, występujące gdy zmienna objaśniająca w modelu regresji jest skorelowana ze składnikiem resztowym. Stwarza to wyzwania w dokładnym zrozumieniu związków przyczynowo-skutkowych w badaniach. Przyjrzyjmy się trzem głównym typom endogeniczności i ich wpływowi na wyniki badań.</p>
+<section id="obciążenie-zmiennej-pominiętej-ovb" class="level3" data-number="16.6.23">
+<h3 data-number="16.6.23" class="anchored" data-anchor-id="obciążenie-zmiennej-pominiętej-ovb"><span class="header-section-number">16.6.23</span> 1. Obciążenie Zmiennej Pominiętej (OVB)</h3>
+<p>Obciążenie zmiennej pominiętej występuje, gdy ważna zmienna wpływająca zarówno na zmienną zależną, jak i niezależną, zostaje pominięta w analizie. To pominięcie prowadzi do błędnych wniosków o relacji między badanymi zmiennymi.</p>
+<p>Rozważmy badanie związku między wykształceniem a dochodami:</p>
+<p><strong>Przykład: Wykształcenie i Dochody</strong> Obserwowana relacja pokazuje, że wyższe wykształcenie koreluje z wyższymi dochodami. Jednak naturalne zdolności jednostki wpływają zarówno na poziom wykształcenia, jak i na potencjał zarobkowy. Bez uwzględnienia zdolności możemy przeszacować bezpośredni wpływ edukacji na dochody.</p>
+<p>Reprezentacja statystyczna pokazuje, dlaczego to jest istotne:</p>
+<p><span class="math inline">y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \epsilon_i</span> (Model pełny)</p>
+<p><span class="math inline">y_i = \beta_0 + \beta_1x_i + u_i</span> (Model niepełny)</p>
+<p>Gdy pomijamy istotną zmienną, nasze oszacowania pozostałych relacji stają się obciążone i niewiarygodne.</p>
 </section>
-<section id="kluczowe-wnioski-3" class="level4" data-number="16.6.23.2">
-<h4 data-number="16.6.23.2" class="anchored" data-anchor-id="kluczowe-wnioski-3"><span class="header-section-number">16.6.23.2</span> Kluczowe Wnioski</h4>
+<section id="jednoczesność" class="level3" data-number="16.6.24">
+<h3 data-number="16.6.24" class="anchored" data-anchor-id="jednoczesność"><span class="header-section-number">16.6.24</span> 2. Jednoczesność</h3>
+<p>Jednoczesność występuje, gdy dwie zmienne wzajemnie na siebie wpływają, co utrudnia określenie kierunku przyczynowości. Tworzy to pętlę sprzężenia zwrotnego komplikującą analizę statystyczną.</p>
+<p><strong>Typowe Przykłady Jednoczesności:</strong></p>
+<p>Wyniki w nauce i nawyki uczenia się stanowią wyraźny przypadek jednoczesności. Wyniki akademickie wpływają na ilość czasu, który studenci poświęcają na naukę, podczas gdy czas nauki wpływa na wyniki akademickie. Ta dwukierunkowa relacja utrudnia pomiar izolowanego wpływu każdej zmiennej.</p>
+<p>Dynamika rynkowa dostarcza kolejnego przykładu. Ceny wpływają na popyt, podczas gdy popyt wpływa na ceny. Ta równoczesna relacja wymaga specjalnych podejść analitycznych.</p>
+</section>
+<section id="błąd-pomiaru" class="level3" data-number="16.6.25">
+<h3 data-number="16.6.25" class="anchored" data-anchor-id="błąd-pomiaru"><span class="header-section-number">16.6.25</span> 3. Błąd Pomiaru</h3>
+<p>Błąd pomiaru występuje, gdy nie możemy dokładnie zmierzyć naszych zmiennych. Ta niedokładność może znacząco wpłynąć na naszą analizę i wnioski.</p>
+<p><strong>Typowe Źródła Błędu Pomiaru:</strong></p>
+<p>Dane samodzielnie raportowane stanowią znaczące wyzwanie. Gdy uczestnicy raportują własne zachowania lub cechy, na przykład czas nauki, zgłaszane wartości często różnią się od rzeczywistych. Ta rozbieżność wpływa na naszą zdolność do pomiaru prawdziwych relacji.</p>
+<p>Ograniczenia techniczne również przyczyniają się do błędu pomiaru poprzez niedokładne narzędzia pomiarowe, niespójne warunki pomiaru oraz błędy zapisu lub wprowadzania danych.</p>
+</section>
+<section id="rozwiązywanie-problemu-endogeniczności-w-badaniach" class="level3" data-number="16.6.26">
+<h3 data-number="16.6.26" class="anchored" data-anchor-id="rozwiązywanie-problemu-endogeniczności-w-badaniach"><span class="header-section-number">16.6.26</span> Rozwiązywanie Problemu Endogeniczności w Badaniach</h3>
+<section id="strategie-identyfikacji" class="level4" data-number="16.6.26.1">
+<h4 data-number="16.6.26.1" class="anchored" data-anchor-id="strategie-identyfikacji"><span class="header-section-number">16.6.26.1</span> Strategie Identyfikacji</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Przykład kontrolowania zmiennych pominiętych</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>model_prosty <span class="ot">&lt;-</span> <span class="fu">lm</span>(dochod <span class="sc">~</span> wyksztalcenie, <span class="at">data =</span> df)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>model_pelny <span class="ot">&lt;-</span> <span class="fu">lm</span>(dochod <span class="sc">~</span> wyksztalcenie <span class="sc">+</span> zdolnosci <span class="sc">+</span> doswiadczenie <span class="sc">+</span> region, <span class="at">data =</span> df)</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Porównanie współczynników</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_prosty)</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_pelny)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ol type="1">
-<li><p><strong>Rzeczywistość Jest Złożona</strong></p>
-<ul>
-<li>Większość relacji nie jest prostym A → B</li>
-<li>Szukaj ukrytych czynników</li>
-<li>Rozważ dwukierunkowe zależności</li>
-</ul></li>
-<li><p><strong>Zawsze Pytaj</strong></p>
-<ul>
-<li>“Co pomijam?”</li>
-<li>“Czy te pominięte zmienne mogą na siebie wpływać?”</li>
-<li>“Jak dobrze mierzę te zmienne?”</li>
-</ul></li>
-<li><p><strong>Podczas Pisania Prac</strong></p>
-<ul>
-<li>Omów potencjalną endogeniczność</li>
-<li>Wyjaśnij, jak się do niej odniosłeś</li>
-<li>Bądź szczery odnośnie ograniczeń</li>
-</ul></li>
+<li><p>Włączenie Dodatkowych Zmiennych: Zbieranie danych o potencjalnie ważnych pominiętych zmiennych i uwzględnianie odpowiednich zmiennych kontrolnych w analizie. Na przykład, uwzględnienie miar zdolności przy badaniu wpływu edukacji na dochody.</p></li>
+<li><p>Wykorzystanie Danych Panelowych: Zbieranie danych w wielu okresach czasu w celu kontrolowania nieobserwowanych stałych charakterystyk i analizy zmian w czasie.</p></li>
+<li><p>Zmienne Instrumentalne: Znalezienie zmiennych, które wpływają na zmienną niezależną, ale nie na zależną, aby wyizolować badaną relację.</p></li>
 </ol>
-<p><strong>Zalecana Literatura</strong></p>
+</section>
+<section id="poprawa-pomiaru" class="level4" data-number="16.6.26.2">
+<h4 data-number="16.6.26.2" class="anchored" data-anchor-id="poprawa-pomiaru"><span class="header-section-number">16.6.26.2</span> Poprawa Pomiaru</h4>
 <ol type="1">
-<li>“Mastering Metrics” autorstwa Angrist &amp; Pischke</li>
-<li>“Naked Statistics” autorstwa Charles Wheelan</li>
+<li><p>Wielokrotne Pomiary: Wykonywanie kilku pomiarów kluczowych zmiennych, używanie uśredniania do redukcji błędu losowego i porównywanie różnych metod pomiaru.</p></li>
+<li><p>Lepsza Metoda Zbierania Danych: Używanie zwalidowanych instrumentów pomiarowych, wdrażanie procedur kontroli jakości i dokumentowanie potencjalnych źródeł błędu.</p></li>
 </ol>
-<p>Pamiętaj: W rzeczywistym świecie relacje są zwykle bardziej złożone, niż się początkowo wydaje. Gdy znajdziesz połączenie między A i B, zawsze zadaj sobie pytanie, co jeszcze może może wpływać na zmienne A i B!</p>
+</section>
+</section>
+<section id="najlepsze-praktyki-dla-badaczy" class="level3" data-number="16.6.27">
+<h3 data-number="16.6.27" class="anchored" data-anchor-id="najlepsze-praktyki-dla-badaczy"><span class="header-section-number">16.6.27</span> Najlepsze Praktyki dla Badaczy</h3>
+<p>Projekt badania fundamentalnie kształtuje możliwość rozwiązania problemu endogeniczności. Należy planować potencjalne problemy endogeniczności przed zbieraniem danych, uwzględniać miary potencjalnie ważnych zmiennych kontrolnych i rozważać wykorzystanie wielu podejść pomiarowych.</p>
+<p>Analiza powinna obejmować testowanie endogeniczności gdy to możliwe, stosowanie odpowiednich metod statystycznych dla konkretnej sytuacji i dokumentowanie założeń oraz ograniczeń.</p>
+<p>Raportowanie musi jasno opisywać potencjalne problemy endogeniczności, wyjaśniać jak zostały one rozwiązane i omawiać implikacje dla wniosków.</p>
 </section>
 </div>
 </div>
@@ -3226,8 +3209,8 @@ Attaching package: 'kableExtra'</code></pre>
 </section>
 <section id="podsumowanie-1" class="level2" data-number="16.11">
 <h2 data-number="16.11" class="anchored" data-anchor-id="podsumowanie-1"><span class="header-section-number">16.11</span> Podsumowanie</h2>
-<section id="kluczowe-wnioski-4" class="level3" data-number="16.11.1">
-<h3 data-number="16.11.1" class="anchored" data-anchor-id="kluczowe-wnioski-4"><span class="header-section-number">16.11.1</span> Kluczowe Wnioski</h3>
+<section id="kluczowe-wnioski-3" class="level3" data-number="16.11.1">
+<h3 data-number="16.11.1" class="anchored" data-anchor-id="kluczowe-wnioski-3"><span class="header-section-number">16.11.1</span> Kluczowe Wnioski</h3>
 <ol type="1">
 <li>Zawsze zaczynaj od eksploracyjnej analizy danych</li>
 <li>Sprawdzaj założenia przed interpretacją wyników</li>
@@ -3256,10 +3239,207 @@ Attaching package: 'kableExtra'</code></pre>
 <li>Angrist, J.D. i Pischke, J.S. “W Większości Nieszkodliwa Ekonometria”</li>
 <li>Stock &amp; Watson “Wprowadzenie do Ekonometrii”</li>
 </ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zrozumienie Regresji Metodą Najmniejszych Kwadratów (OLS): Podsumowanie dla Studentów
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Analiza regresji to podstawowa metoda statystyczna, która bada i modeluje zależności między zmiennymi w celu zrozumienia, jak zmiany w jednej lub kilku zmiennych niezależnych wpływają na zmienną zależną.</p>
+<p>W swojej istocie analiza regresji pomaga odpowiedzieć na pytania dotyczące przyczyny i skutku, przewidywania oraz prognozowania. Na przykład, przedsiębiorstwo może wykorzystać analizę regresji do zrozumienia, jak wydatki na reklamę wpływają na sprzedaż lub jak liczba godzin szkoleń pracowników przekłada się na produktywność.</p>
+<section id="regresja-jako-model-stochastyczny-1" class="level3" data-number="16.11.2">
+<h3 data-number="16.11.2" class="anchored" data-anchor-id="regresja-jako-model-stochastyczny-1"><span class="header-section-number">16.11.2</span> Regresja jako Model Stochastyczny</h3>
+<p>W modelowaniu matematycznym spotykamy dwa podstawowe podejścia do opisywania relacji między zmiennymi:</p>
+<ul>
+<li>modele deterministyczne,</li>
+<li>modele stochastyczne.</li>
+</ul>
+<section id="modele-deterministyczne-a-stochastyczne-1" class="level4" data-number="16.11.2.1">
+<h4 data-number="16.11.2.1" class="anchored" data-anchor-id="modele-deterministyczne-a-stochastyczne-1"><span class="header-section-number">16.11.2.1</span> Modele Deterministyczne a Stochastyczne</h4>
+<p>Model deterministyczny zakłada precyzyjną, ustaloną relację między danymi wejściowymi a wyjściowymi. W takich modelach, znając dane wejściowe, możemy z całkowitą pewnością obliczyć dokładny wynik. Weźmy pod uwagę klasyczne równanie fizyczne dotyczące drogi:</p>
+<p><span class="math display">\text{Droga} = \text{Prędkość} × \text{Czas}</span></p>
+<p>Przy określonych wartościach prędkości i czasu, równanie to zawsze da tę samą drogę. Nie ma tu miejsca na jakąkolwiek zmienność wyniku.</p>
+<p>W przeciwieństwie do tego, analiza regresji uwzględnia naturalną zmienność danych. Podstawowa struktura modelu regresji to:</p>
+<p><span class="math display">Y = f(X) + \epsilon</span></p>
+<p>Gdzie:</p>
+<ul>
+<li><span class="math inline">Y</span> reprezentuje wynik, który chcemy przewidzieć</li>
+<li><span class="math inline">f(X)</span> reprezentuje systematyczną relację między naszymi predyktorami (X) a wynikiem</li>
+<li><span class="math inline">\epsilon</span> reprezentuje losową zmienność naturalnie występującą w rzeczywistych danych</li>
+</ul>
+</section>
+</section>
+<section id="czym-jest-prosta-regresja-liniowa" class="level3" data-number="16.11.3">
+<h3 data-number="16.11.3" class="anchored" data-anchor-id="czym-jest-prosta-regresja-liniowa"><span class="header-section-number">16.11.3</span> Czym jest Prosta Regresja Liniowa?</h3>
+<p>Rozważmy związek między <strong>czasem poświęconym na naukę</strong> (predyktor, zmienna niezależna) a <strong>wynikami egzaminów</strong> (zmienna objaśniana, outcome/response variable). Prosta regresja liniowa tworzy optymalną linię prostą przechodzącą przez punkty danych, modelującą tę relację. Linia ta służy dwóm celom: prognozowaniu oraz kwantyfikacji związku między zmiennymi.</p>
+<p>Zależność matematyczna jest wyrażona jako:</p>
+<p><span class="math display"> Y_i = \beta_0 + \beta_1X_i + \epsilon_i </span></p>
+<p>Używając naszego przykładu z czasem nauki do zilustrowania każdego składnika:</p>
+<ul>
+<li><span class="math inline">Y_i</span> reprezentuje zmienną zależną (wyniki egzaminów)</li>
+<li><span class="math inline">X_i</span> reprezentuje zmienną niezależną (godziny nauki)</li>
+<li><span class="math inline">\beta_0</span> reprezentuje wyraz wolny - oczekiwany wynik egzaminu przy zerowym czasie nauki</li>
+<li><span class="math inline">\beta_1</span> reprezentuje nachylenie - zmianę wyniku egzaminu na każdą dodatkową godzinę nauki</li>
+<li><span class="math inline">\epsilon_i</span> reprezentuje składnik błędu, uwzględniający nieobserwowane czynniki</li>
+</ul>
+<p>Naszym celem jest znalezienie oszacowań <span class="math inline">\hat{\beta}_0</span> i <span class="math inline">\hat{\beta}_1</span>, które najlepiej przybliżają prawdziwe parametry <span class="math inline">\beta_0</span> i <span class="math inline">\beta_1</span>. Dopasowana linia regresji jest wtedy wyrażona jako:</p>
+<p><span class="math display"> \hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1X_i </span></p>
+</section>
+<section id="metoda-najmniejszych-kwadratów-mnkols" class="level3" data-number="16.11.4">
+<h3 data-number="16.11.4" class="anchored" data-anchor-id="metoda-najmniejszych-kwadratów-mnkols"><span class="header-section-number">16.11.4</span> Metoda Najmniejszych Kwadratów (MNK/OLS)</h3>
+<p>Metoda “Najmniejszych Kwadratów” określa optymalne wartości dla <span class="math inline">\hat{\beta}_0</span> i <span class="math inline">\hat{\beta}_1</span> poprzez metodyczny proces. Choć współczesne oprogramowanie statystyczne wykonuje te obliczenia automatycznie, zrozumienie podstawowego procesu jest kluczowe:</p>
+<ol type="1">
+<li>Rozpocznij od wstępnego oszacowania linii regresji
+<ul>
+<li>Zazwyczaj zaczynamy od linii poziomej na poziomie <span class="math inline">\bar{Y}</span> (średnia Y)</li>
+<li>Służy to jako punkt odniesienia, reprezentujący brak związku między X a Y</li>
+</ul></li>
+<li>Oblicz odległości pionowe (reszty) od każdego obserwowanego punktu do tej linii
+<ul>
+<li>Te reszty <span class="math inline">\hat{\epsilon}_i = e_i = Y_i - \hat{Y}_i</span> reprezentują nasze błędy predykcji</li>
+<li>Dodatnia reszta oznacza, że nasza linia niedoszacowuje prawdziwej wartości</li>
+<li>Ujemna reszta oznacza, że nasza linia przeszacowuje prawdziwą wartość</li>
+</ul></li>
+<li>Podnieś te odległości do kwadratu, aby:
+<ul>
+<li>Zapewnić, że dodatnie i ujemne odchylenia się nie znoszą</li>
+<li>Przypisać większą wagę większym odchyleniom</li>
+</ul></li>
+<li>Zsumuj wszystkie kwadraty odległości, aby otrzymać Sumę Kwadratów Błędów (SSE)
+<ul>
+<li><span class="math inline">SSE = \sum(Y_i - \hat{Y}_i)^2</span></li>
+<li>Reprezentuje to całkowite kwadratowe odchylenie obserwowanych wartości od naszych przewidywanych wartości</li>
+</ul></li>
+<li>Systematycznie dostosowuj nachylenie i wyraz wolny linii, aby zminimalizować SSE:</li>
+</ol>
+<ul>
+<li>Proces polega na stopniowym modyfikowaniu nachylenia i położenia linii, obserwując jak zmienia się suma kwadratów odchyłek (SSE) [formalnie wymaga to zastosowania pojęć z rachunku różniczkowego]</li>
+<li>Gdy SSE przestaje się zmniejszać przy kolejnych niewielkich zmianach parametrów linii, oznacza to znalezienie optymalnego dopasowania</li>
+<li>To miejsce odpowiada najmniejszej możliwej wartości SSE, czyli najlepszemu dopasowaniu linii do danych</li>
+</ul>
+<p>Bardziej formalnie, MNK (Metoda Najmniejszych Kwadratów) znajduje optymalne wartości dla <span class="math inline">\beta_0</span> i <span class="math inline">\beta_1</span> poprzez minimalizację sumy kwadratów błędów:</p>
+<p><span class="math display">\min_{\beta_0, \beta_1} \sum \epsilon_i^2 = \min_{\beta_0, \beta_1} \sum(y_i - \hat{y_i})^2 = \min_{\beta_0, \beta_1} \sum(y_i - (\beta_0 + \beta_1x_i))^2</span></p>
+<p>Rozwiązanie tego problemu minimalizacji daje nam:</p>
+<p><span class="math display">\hat{\beta}_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = \frac{cov(X, Y)}{var(X)}</span> <span class="math display">\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}</span></p>
+<p>Warto zauważyć, że w powyższych wzorach <span class="math inline">\hat{\beta}_1</span> reprezentuje nachylenie linii regresji i jest wyrażone jako stosunek kowariancji zmiennych X i Y do wariancji zmiennej X. Natomiast <span class="math inline">\hat{\beta}_0</span> to wyraz wolny (punkt przecięcia z osią Y), który możemy obliczyć używając średnich wartości zmiennych X i Y oraz już oszacowanego nachylenia. Symbol <span class="math inline">\bar{x}</span> oznacza średnią wartość zmiennej X, a <span class="math inline">\bar{y}</span> średnią wartość zmiennej Y.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="correg_pl_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="correg_pl_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="estymacja-parametrów" class="level3" data-number="16.11.5">
+<h3 data-number="16.11.5" class="anchored" data-anchor-id="estymacja-parametrów"><span class="header-section-number">16.11.5</span> Estymacja Parametrów</h3>
+<p>Formuły do oszacowania parametrów wykorzystują podstawowe miary statystyczne:</p>
+<p><span class="math display"> \hat{\beta}_1 = \frac{Cov(X,Y)}{Var(X)} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{\sum(X_i - \bar{X})^2} </span></p>
+<p>Ta formuła zawiera dwa istotne pojęcia statystyczne:</p>
+<ul>
+<li>Kowariancja (<span class="math inline">Cov</span>) kwantyfikuje wspólny ruch X i Y</li>
+<li>Wariancja (<span class="math inline">Var</span>) mierzy rozproszenie wartości X wokół ich średniej</li>
+<li><span class="math inline">\bar{X}</span> i <span class="math inline">\bar{Y}</span> reprezentują odpowiednio średnie X i Y</li>
+</ul>
+<p>Po obliczeniu <span class="math inline">\hat{\beta}_1</span> określamy <span class="math inline">\hat{\beta}_0</span>:</p>
+<p><span class="math display"> \hat{\beta}_0 = \bar{Y} - \hat{\beta}_1\bar{X} </span></p>
+<p>Zapewnia to, że linia regresji przechodzi przez punkt średnich (<span class="math inline">\bar{X}</span>, <span class="math inline">\bar{Y}</span>).</p>
+</section>
+<section id="dekompozycja-wariancji-w-regresji" class="level3" data-number="16.11.6">
+<h3 data-number="16.11.6" class="anchored" data-anchor-id="dekompozycja-wariancji-w-regresji"><span class="header-section-number">16.11.6</span> Dekompozycja Wariancji w Regresji</h3>
+<p>W analizie regresji rozkładamy wariancję w naszych danych na odrębne składniki, aby zrozumieć, jak dobrze nasz model wyjaśnia zmienną zależną. Przyjrzyjmy się każdemu składnikowi wariancji szczegółowo.</p>
+<section id="przegląd-składników-wariancji" class="level4" data-number="16.11.6.1">
+<h4 data-number="16.11.6.1" class="anchored" data-anchor-id="przegląd-składników-wariancji"><span class="header-section-number">16.11.6.1</span> Przegląd Składników Wariancji</h4>
+<p>Całkowita Suma Kwadratów (SST, z ang. Total Sum of Squares) reprezentuje całkowitą zmienność obecną w naszej zmiennej zależnej. Regresyjna Suma Kwadratów (SSR, z ang. Regression Sum of Squares) obejmuje zmienność wyjaśnioną przez nasz model. Resztowa Suma Kwadratów (SSE, z ang. Error Sum of Squares) przedstawia pozostałą, niewyjaśnioną zmienność. Przeanalizujmy każdy z tych elementów.</p>
+</section>
+<section id="całkowita-suma-kwadratów-sst" class="level4" data-number="16.11.6.2">
+<h4 data-number="16.11.6.2" class="anchored" data-anchor-id="całkowita-suma-kwadratów-sst"><span class="header-section-number">16.11.6.2</span> Całkowita Suma Kwadratów (SST)</h4>
+<p>SST mierzy całkowitą zmienność w zmiennej zależnej, obliczając, jak bardzo każda obserwacja odbiega od średniej ogólnej:</p>
+<p><span class="math display"> SST = \sum(y_i - \bar{y})^2 </span></p>
+<p>W tym wzorze <span class="math inline">y_i</span> reprezentuje każdą pojedynczą obserwację, a <span class="math inline">\bar{y}</span> reprezentuje średnią wszystkich obserwacji. Kwadraty różnic ujmują całkowitą rozpiętość naszych danych wokół ich wartości średniej.</p>
+</section>
+<section id="regresyjna-suma-kwadratów-ssr" class="level4" data-number="16.11.6.3">
+<h4 data-number="16.11.6.3" class="anchored" data-anchor-id="regresyjna-suma-kwadratów-ssr"><span class="header-section-number">16.11.6.3</span> Regresyjna Suma Kwadratów (SSR)</h4>
+<p>SSR określa ilościowo zmienność, którą nasz model wyjaśnia poprzez zmienne objaśniające:</p>
+<p><span class="math display"> SSR = \sum(\hat{y}_i - \bar{y})^2 </span></p>
+<p>Tutaj <span class="math inline">\hat{y}_i</span> reprezentuje wartości przewidywane przez nasz model. Ten wzór mierzy, jak daleko nasze przewidywania odbiegają od średniej, reprezentując zmienność uchwyconą przez nasz model.</p>
+</section>
+<section id="resztowa-suma-kwadratów-sse" class="level4" data-number="16.11.6.4">
+<h4 data-number="16.11.6.4" class="anchored" data-anchor-id="resztowa-suma-kwadratów-sse"><span class="header-section-number">16.11.6.4</span> Resztowa Suma Kwadratów (SSE)</h4>
+<p>SSE mierzy zmienność, która pozostaje niewyjaśniona przez nasz model:</p>
+<p><span class="math display"> SSE = \sum(y_i - \hat{y}_i)^2 </span></p>
+<p>Ten wzór oblicza różnice między wartościami rzeczywistymi (<span class="math inline">y_i</span>) a wartościami przewidywanymi (<span class="math inline">\hat{y}_i</span>), pokazując nam, ile zmienności nasz model nie zdołał wyjaśnić.</p>
+</section>
+<section id="podstawowa-zależność" class="level4" data-number="16.11.6.5">
+<h4 data-number="16.11.6.5" class="anchored" data-anchor-id="podstawowa-zależność"><span class="header-section-number">16.11.6.5</span> Podstawowa Zależność</h4>
+<p>Te trzy składniki są powiązane poprzez kluczowe równanie:</p>
+<p><span class="math display"> SST = SSR + SSE </span></p>
+<p>To równanie pokazuje, że całkowita zmienność (SST) równa się sumie zmienności wyjaśnionej (SSR) i niewyjaśnionej (SSE). Ta zależność stanowi podstawę do pomiaru wydajności modelu.</p>
+</section>
+<section id="współczynnik-determinacji-r²" class="level4" data-number="16.11.6.6">
+<h4 data-number="16.11.6.6" class="anchored" data-anchor-id="współczynnik-determinacji-r²"><span class="header-section-number">16.11.6.6</span> Współczynnik Determinacji (R²)</h4>
+<p>Statystyka R², wyprowadzona z tych składników, mówi nam, jaką proporcję zmienności wyjaśnia nasz model:</p>
+<p><span class="math display"> R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST} </span></p>
+<p>Gdy R² równa się 0,75, oznacza to, że nasz model wyjaśnia 75% zmienności w zmiennej zależnej. Pozostałe 25% reprezentuje zmienność niewyjaśnioną.</p>
+</section>
+<section id="istotne-aspekty" class="level4" data-number="16.11.6.7">
+<h4 data-number="16.11.6.7" class="anchored" data-anchor-id="istotne-aspekty"><span class="header-section-number">16.11.6.7</span> Istotne Aspekty</h4>
+<p>Zrozumienie tych składników pomaga nam:</p>
+<ol type="1">
+<li>Ocenić wydajność modelu poprzez proporcję wyjaśnionej zmienności</li>
+<li>Zidentyfikować, ile zmienności pozostaje niewyjaśnione</li>
+<li>Podejmować decyzje dotyczące ulepszania modelu</li>
+<li>Porównywać moc wyjaśniającą różnych modeli</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="correg_pl_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="współczynnik-determinacji-r2" class="level3" data-number="16.11.7">
+<h3 data-number="16.11.7" class="anchored" data-anchor-id="współczynnik-determinacji-r2"><span class="header-section-number">16.11.7</span> Współczynnik Determinacji (<span class="math inline">R^2</span>)</h3>
+<p><span class="math inline">R^2</span> służy jako miara dopasowania modelu, reprezentująca proporcję wariancji wyjaśnionej przez naszą regresję:</p>
+<p><span class="math display"> R^2 = \frac{SSR}{SST} = \frac{SSR}{SSR + SSE} = 1 - \frac{SSE}{SST} </span></p>
+<p>Aby zinterpretować <span class="math inline">R^2</span>:</p>
+<ul>
+<li><span class="math inline">R^2</span> równe 0,75 wskazuje, że model wyjaśnia 75% wariancji (np. wyników egzaminów)</li>
+<li><span class="math inline">R^2</span> równe 0,20 sugeruje, że predyktory (np. godziny nauki) odpowiadają za 20% zmienności wyników</li>
+<li><span class="math inline">R^2</span> równe 1,00 reprezentuje doskonałą predykcję (rzadko obserwowane w praktyce)</li>
+<li><span class="math inline">R^2</span> równe 0,00 wskazuje na brak mocy wyjaśniającej</li>
+</ul>
+<p>Uwaga: Niższa wartość <span class="math inline">R^2</span> niekoniecznie oznacza gorszy model - może po prostu odzwierciedlać złożoność badanej relacji.</p>
+</section>
+<section id="kluczowy-wniosek" class="level3" data-number="16.11.8">
+<h3 data-number="16.11.8" class="anchored" data-anchor-id="kluczowy-wniosek"><span class="header-section-number">16.11.8</span> Kluczowy Wniosek</h3>
+<p>Regresja liniowa ustala relacje między zmiennymi poprzez identyfikację optymalnego dopasowania liniowego przez punkty danych. Ta optymalizacja zachodzi poprzez minimalizację kwadratów reszt. Współczynnik determinacji (<span class="math inline">R^2</span>) kwantyfikuje następnie moc wyjaśniającą modelu poprzez porównanie wyjaśnionej zmienności z całkowitą zmiennością w naszych danych.</p>
+</section>
+</div>
+</div>
 </section>
 </section>
 <section id="dodatek-a.1-obliczanie-kowariancji-korelacji-pearsona-i-spearmana-oraz-modelowanie-ols---przykład-z-obliczeniami" class="level2" data-number="16.12">
 <h2 data-number="16.12" class="anchored" data-anchor-id="dodatek-a.1-obliczanie-kowariancji-korelacji-pearsona-i-spearmana-oraz-modelowanie-ols---przykład-z-obliczeniami"><span class="header-section-number">16.12</span> Dodatek A.1: Obliczanie Kowariancji, Korelacji Pearsona i Spearmana, oraz modelowanie OLS - przykład z obliczeniami</h2>
+<p>Studentka politologii bada związek między wielkością okręgu wyborczego (DM) a wskaźnikiem dysproporcjonalności Gallaghera (GH) w wyborach parlamentarnych w 10 losowo wybranych demokracjach.</p>
 <p>Dane dotyczące wielkości okręgu wyborczego (<span class="math inline">\text{DM}</span>) i indeksu Gallaghera:</p>
 <table class="caption-top table">
 <thead>
@@ -3642,7 +3822,7 @@ Attaching package: 'kableExtra'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_pl_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_pl_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -3879,7 +4059,7 @@ F-statistic:  23.3 on 1 and 8 DF,  p-value: 0.00131</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_pl_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_pl_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -3904,7 +4084,7 @@ F-statistic:  23.3 on 1 and 8 DF,  p-value: 0.00131</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_pl_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_pl_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4081,7 +4261,7 @@ F-statistic:  23.3 on 1 and 8 DF,  p-value: 0.00131</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_pl_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_pl_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4097,7 +4277,7 @@ F-statistic:  23.3 on 1 and 8 DF,  p-value: 0.00131</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_pl_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_pl_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4150,7 +4330,7 @@ F-statistic: 85.19 on 1 and 8 DF,  p-value: 1.539e-05</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_pl_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_pl_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4733,7 +4913,7 @@ F-statistic: 258.2 on 1 and 3 DF,  p-value: 0.0005243</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_pl_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_pl_files/figure-html/unnamed-chunk-65-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4935,7 +5115,7 @@ F-statistic: 531.9 on 1 and 6 DF,  p-value: 4.355e-07</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_pl_files/figure-html/unnamed-chunk-71-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_pl_files/figure-html/unnamed-chunk-74-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -5198,7 +5378,7 @@ F-statistic: 26.11 on 1 and 4 DF,  p-value: 0.006934</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correg_pl_files/figure-html/unnamed-chunk-80-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="correg_pl_files/figure-html/unnamed-chunk-83-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -5693,8 +5873,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./probability_en.html" class="pagination-link" aria-label="Introduction to Probability">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Probability</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./probability_en.html" class="pagination-link" aria-label="Introduction to (Discrete) Probability">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to (Discrete) Probability</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

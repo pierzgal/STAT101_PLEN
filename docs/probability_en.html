@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>17&nbsp; Introduction to Probability – Social Data Analysis: An Introduction (Wprowadzenie do analizy danych społecznych)</title>
+<title>17&nbsp; Introduction to (Discrete) Probability – Social Data Analysis: An Introduction (Wprowadzenie do analizy danych społecznych)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,7 +68,53 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability_en.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Probability</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability_en.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to (Discrete) Probability</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -211,7 +257,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./probability_en.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to (Discrete) Probability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -243,15 +289,93 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#fundamental-concepts" id="toc-fundamental-concepts" class="nav-link active" data-scroll-target="#fundamental-concepts"><span class="header-section-number">17.1</span> Fundamental Concepts</a>
+  <ul class="collapse">
+  <li><a href="#random-experiments-and-outcomes" id="toc-random-experiments-and-outcomes" class="nav-link" data-scroll-target="#random-experiments-and-outcomes"><span class="header-section-number">17.1.1</span> Random Experiments and Outcomes</a></li>
+  <li><a href="#sample-space" id="toc-sample-space" class="nav-link" data-scroll-target="#sample-space"><span class="header-section-number">17.1.2</span> Sample Space</a></li>
+  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events"><span class="header-section-number">17.1.3</span> Events</a></li>
+  </ul></li>
+  <li><a href="#why-focus-on-discrete-probability" id="toc-why-focus-on-discrete-probability" class="nav-link" data-scroll-target="#why-focus-on-discrete-probability"><span class="header-section-number">17.2</span> Why Focus on Discrete Probability?</a></li>
+  <li><a href="#key-questions-before-calculating-probabilities" id="toc-key-questions-before-calculating-probabilities" class="nav-link" data-scroll-target="#key-questions-before-calculating-probabilities"><span class="header-section-number">17.3</span> Key Questions Before Calculating Probabilities</a>
+  <ul class="collapse">
+  <li><a href="#does-order-matter" id="toc-does-order-matter" class="nav-link" data-scroll-target="#does-order-matter"><span class="header-section-number">17.3.1</span> 1. Does Order Matter?</a></li>
+  <li><a href="#is-sampling-with-or-without-replacement" id="toc-is-sampling-with-or-without-replacement" class="nav-link" data-scroll-target="#is-sampling-with-or-without-replacement"><span class="header-section-number">17.3.2</span> 2. Is Sampling With or Without Replacement?</a></li>
+  </ul></li>
+  <li><a href="#foundations-set-theory-and-power-sets" id="toc-foundations-set-theory-and-power-sets" class="nav-link" data-scroll-target="#foundations-set-theory-and-power-sets"><span class="header-section-number">17.4</span> Foundations: Set Theory and Power Sets</a>
+  <ul class="collapse">
+  <li><a href="#understanding-outcomes-vs-events" id="toc-understanding-outcomes-vs-events" class="nav-link" data-scroll-target="#understanding-outcomes-vs-events"><span class="header-section-number">17.4.1</span> Understanding Outcomes vs Events</a></li>
+  <li><a href="#understanding-set-relations-elements-vs-subsets" id="toc-understanding-set-relations-elements-vs-subsets" class="nav-link" data-scroll-target="#understanding-set-relations-elements-vs-subsets"><span class="header-section-number">17.4.2</span> Understanding Set Relations: Elements vs Subsets</a></li>
+  <li><a href="#classical-naive-probability" id="toc-classical-naive-probability" class="nav-link" data-scroll-target="#classical-naive-probability"><span class="header-section-number">17.4.3</span> Classical (Naive) Probability</a></li>
+  <li><a href="#basic-set-concepts" id="toc-basic-set-concepts" class="nav-link" data-scroll-target="#basic-set-concepts"><span class="header-section-number">17.4.4</span> Basic Set Concepts</a></li>
+  <li><a href="#set-operations" id="toc-set-operations" class="nav-link" data-scroll-target="#set-operations"><span class="header-section-number">17.4.5</span> Set Operations</a></li>
+  </ul></li>
+  <li><a href="#sample-space-and-events" id="toc-sample-space-and-events" class="nav-link" data-scroll-target="#sample-space-and-events"><span class="header-section-number">17.5</span> Sample Space and Events</a>
+  <ul class="collapse">
+  <li><a href="#example-single-ball-draw" id="toc-example-single-ball-draw" class="nav-link" data-scroll-target="#example-single-ball-draw"><span class="header-section-number">17.5.1</span> Example: Single Ball Draw</a></li>
+  </ul></li>
+  <li><a href="#probability-measure-function" id="toc-probability-measure-function" class="nav-link" data-scroll-target="#probability-measure-function"><span class="header-section-number">17.6</span> Probability Measure Function</a>
+  <ul class="collapse">
+  <li><a href="#understanding-through-the-urn-example" id="toc-understanding-through-the-urn-example" class="nav-link" data-scroll-target="#understanding-through-the-urn-example"><span class="header-section-number">17.6.1</span> Understanding Through the Urn Example</a></li>
+  </ul></li>
+  <li><a href="#sequential-events-and-tree-diagrams" id="toc-sequential-events-and-tree-diagrams" class="nav-link" data-scroll-target="#sequential-events-and-tree-diagrams"><span class="header-section-number">17.7</span> Sequential Events and Tree Diagrams</a>
+  <ul class="collapse">
+  <li><a href="#example-1-drawing-two-balls-without-replacement" id="toc-example-1-drawing-two-balls-without-replacement" class="nav-link" data-scroll-target="#example-1-drawing-two-balls-without-replacement"><span class="header-section-number">17.7.1</span> Example 1: Drawing Two Balls Without Replacement</a></li>
+  <li><a href="#example-2-drawing-with-replacement" id="toc-example-2-drawing-with-replacement" class="nav-link" data-scroll-target="#example-2-drawing-with-replacement"><span class="header-section-number">17.7.2</span> Example 2: Drawing With Replacement</a></li>
+  </ul></li>
+  <li><a href="#the-four-types-of-counting-problems" id="toc-the-four-types-of-counting-problems" class="nav-link" data-scroll-target="#the-four-types-of-counting-problems"><span class="header-section-number">17.8</span> The Four Types of Counting Problems</a>
+  <ul class="collapse">
+  <li><a href="#order-matters-with-replacement" id="toc-order-matters-with-replacement" class="nav-link" data-scroll-target="#order-matters-with-replacement"><span class="header-section-number">17.8.1</span> 1. Order Matters, With Replacement</a></li>
+  <li><a href="#order-matters-without-replacement" id="toc-order-matters-without-replacement" class="nav-link" data-scroll-target="#order-matters-without-replacement"><span class="header-section-number">17.8.2</span> 2. Order Matters, Without Replacement</a></li>
+  <li><a href="#order-doesnt-matter-with-replacement" id="toc-order-doesnt-matter-with-replacement" class="nav-link" data-scroll-target="#order-doesnt-matter-with-replacement"><span class="header-section-number">17.8.3</span> 3. Order Doesn’t Matter, With Replacement</a></li>
+  <li><a href="#order-doesnt-matter-without-replacement" id="toc-order-doesnt-matter-without-replacement" class="nav-link" data-scroll-target="#order-doesnt-matter-without-replacement"><span class="header-section-number">17.8.4</span> 4. Order Doesn’t Matter, Without Replacement</a></li>
+  </ul></li>
+  <li><a href="#example-the-4-red-and-3-black-balls-problem" id="toc-example-the-4-red-and-3-black-balls-problem" class="nav-link" data-scroll-target="#example-the-4-red-and-3-black-balls-problem"><span class="header-section-number">17.9</span> Example: The 4 Red and 3 Black Balls Problem</a>
+  <ul class="collapse">
+  <li><a href="#method-1-using-counting-rules" id="toc-method-1-using-counting-rules" class="nav-link" data-scroll-target="#method-1-using-counting-rules"><span class="header-section-number">17.9.1</span> Method 1: Using Counting Rules</a></li>
+  <li><a href="#method-2-tree-diagram-approach" id="toc-method-2-tree-diagram-approach" class="nav-link" data-scroll-target="#method-2-tree-diagram-approach"><span class="header-section-number">17.9.2</span> Method 2: Tree Diagram Approach</a></li>
+  <li><a href="#method-3-grid-diagram-and-sample-space" id="toc-method-3-grid-diagram-and-sample-space" class="nav-link" data-scroll-target="#method-3-grid-diagram-and-sample-space"><span class="header-section-number">17.9.3</span> Method 3: Grid Diagram and Sample Space</a></li>
+  <li><a href="#comparing-the-methods" id="toc-comparing-the-methods" class="nav-link" data-scroll-target="#comparing-the-methods"><span class="header-section-number">17.9.4</span> Comparing the Methods</a></li>
+  </ul></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems"><span class="header-section-number">17.10</span> Practice Problems</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">17.11</span> Key Takeaways</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">18</span> Next Steps</a>
+  <ul class="collapse">
+  <li><a href="#advanced-counting-in-probability-a-student-guide" id="toc-advanced-counting-in-probability-a-student-guide" class="nav-link" data-scroll-target="#advanced-counting-in-probability-a-student-guide"><span class="header-section-number">18.1</span> Advanced Counting in Probability: A Student Guide</a>
+  <ul class="collapse">
+  <li><a href="#poker-hands-a-window-into-complex-counting" id="toc-poker-hands-a-window-into-complex-counting" class="nav-link" data-scroll-target="#poker-hands-a-window-into-complex-counting"><span class="header-section-number">18.1.1</span> Poker Hands: A Window into Complex Counting</a></li>
+  <li><a href="#understanding-our-sample-space" id="toc-understanding-our-sample-space" class="nav-link" data-scroll-target="#understanding-our-sample-space"><span class="header-section-number">18.1.2</span> Understanding Our Sample Space</a></li>
+  <li><a href="#understanding-two-pairs-a-careful-counting-approach" id="toc-understanding-two-pairs-a-careful-counting-approach" class="nav-link" data-scroll-target="#understanding-two-pairs-a-careful-counting-approach"><span class="header-section-number">18.1.3</span> Understanding Two Pairs: A Careful Counting Approach</a></li>
+  <li><a href="#understanding-full-house-a-different-counting-challenge" id="toc-understanding-full-house-a-different-counting-challenge" class="nav-link" data-scroll-target="#understanding-full-house-a-different-counting-challenge"><span class="header-section-number">18.1.4</span> Understanding Full House: A Different Counting Challenge</a></li>
+  <li><a href="#the-birthday-problem-a-beautiful-probability-surprise" id="toc-the-birthday-problem-a-beautiful-probability-surprise" class="nav-link" data-scroll-target="#the-birthday-problem-a-beautiful-probability-surprise"><span class="header-section-number">18.1.5</span> The Birthday Problem: A Beautiful Probability Surprise</a></li>
+  <li><a href="#lottery-mathematics-putting-it-all-together" id="toc-lottery-mathematics-putting-it-all-together" class="nav-link" data-scroll-target="#lottery-mathematics-putting-it-all-together"><span class="header-section-number">18.1.6</span> Lottery Mathematics: Putting It All Together</a></li>
+  <li><a href="#alternative-approaches-to-poker-hand-probabilities" id="toc-alternative-approaches-to-poker-hand-probabilities" class="nav-link" data-scroll-target="#alternative-approaches-to-poker-hand-probabilities"><span class="header-section-number">18.1.7</span> Alternative Approaches to Poker Hand Probabilities</a></li>
+  </ul></li>
+  <li><a href="#advanced-counting-in-probability-a-student-guide-1" id="toc-advanced-counting-in-probability-a-student-guide-1" class="nav-link" data-scroll-target="#advanced-counting-in-probability-a-student-guide-1"><span class="header-section-number">18.2</span> Advanced Counting in Probability: A Student Guide</a>
+  <ul class="collapse">
+  <li><a href="#poker-hands-a-window-into-complex-counting-1" id="toc-poker-hands-a-window-into-complex-counting-1" class="nav-link" data-scroll-target="#poker-hands-a-window-into-complex-counting-1"><span class="header-section-number">18.2.1</span> Poker Hands: A Window into Complex Counting</a></li>
+  <li><a href="#understanding-our-sample-space-1" id="toc-understanding-our-sample-space-1" class="nav-link" data-scroll-target="#understanding-our-sample-space-1"><span class="header-section-number">18.2.2</span> Understanding Our Sample Space</a></li>
+  <li><a href="#understanding-two-pairs-a-careful-counting-approach-1" id="toc-understanding-two-pairs-a-careful-counting-approach-1" class="nav-link" data-scroll-target="#understanding-two-pairs-a-careful-counting-approach-1"><span class="header-section-number">18.2.3</span> Understanding Two Pairs: A Careful Counting Approach</a></li>
+  <li><a href="#understanding-full-house-a-different-counting-challenge-1" id="toc-understanding-full-house-a-different-counting-challenge-1" class="nav-link" data-scroll-target="#understanding-full-house-a-different-counting-challenge-1"><span class="header-section-number">18.2.4</span> Understanding Full House: A Different Counting Challenge</a></li>
+  <li><a href="#the-birthday-problem-a-beautiful-probability-surprise-1" id="toc-the-birthday-problem-a-beautiful-probability-surprise-1" class="nav-link" data-scroll-target="#the-birthday-problem-a-beautiful-probability-surprise-1"><span class="header-section-number">18.2.5</span> The Birthday Problem: A Beautiful Probability Surprise</a></li>
+  <li><a href="#lottery-mathematics-putting-it-all-together-1" id="toc-lottery-mathematics-putting-it-all-together-1" class="nav-link" data-scroll-target="#lottery-mathematics-putting-it-all-together-1"><span class="header-section-number">18.2.6</span> Lottery Mathematics: Putting It All Together</a></li>
+  <li><a href="#alternative-approaches-to-poker-hand-probabilities-1" id="toc-alternative-approaches-to-poker-hand-probabilities-1" class="nav-link" data-scroll-target="#alternative-approaches-to-poker-hand-probabilities-1"><span class="header-section-number">18.2.7</span> Alternative Approaches to Poker Hand Probabilities</a></li>
+  <li><a href="#occupancy-problems-and-statistical-physics" id="toc-occupancy-problems-and-statistical-physics" class="nav-link" data-scroll-target="#occupancy-problems-and-statistical-physics"><span class="header-section-number">18.2.8</span> Occupancy Problems and Statistical Physics</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Probability</span></h1>
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to (Discrete) Probability</span></h1>
 </div>
 
 
@@ -268,8 +392,1139 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="fundamental-concepts" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="fundamental-concepts"><span class="header-section-number">17.1</span> Fundamental Concepts</h2>
+<p>Before we dive into probability theory, let’s establish some foundational concepts that we’ll use throughout this course:</p>
+<section id="random-experiments-and-outcomes" class="level3" data-number="17.1.1">
+<h3 data-number="17.1.1" class="anchored" data-anchor-id="random-experiments-and-outcomes"><span class="header-section-number">17.1.1</span> Random Experiments and Outcomes</h3>
+<p>A random experiment is any procedure that meets these criteria:</p>
+<ol type="1">
+<li>It can be repeated under identical conditions</li>
+<li>All possible results can be described in advance</li>
+<li>The specific result cannot be predicted with certainty</li>
+</ol>
+<p>For example, rolling a die is a random experiment because:</p>
+<ul>
+<li>We can roll the die many times under the same conditions</li>
+<li>We know all possible results (1 through 6) before rolling</li>
+<li>We cannot predict exactly which number will appear on any given roll</li>
+</ul>
+<p>An outcome is a single possible result of a random experiment. When we roll a die, getting a 3 is an outcome. When we flip a coin, getting heads is an outcome. Each outcome represents the finest level of detail we care about in our experiment.</p>
+</section>
+<section id="sample-space" class="level3" data-number="17.1.2">
+<h3 data-number="17.1.2" class="anchored" data-anchor-id="sample-space"><span class="header-section-number">17.1.2</span> Sample Space</h3>
+<p>The sample space, typically denoted by Ω or S, is the collection of all possible outcomes of a random experiment. For example:</p>
+<ul>
+<li>For a coin flip: S = {heads, tails}</li>
+<li>For a die roll: S = {1, 2, 3, 4, 5, 6}</li>
+<li>For drawing a card: S = {ace of hearts, two of hearts, …, king of spades}</li>
+</ul>
+<p>The sample space should be:</p>
+<ol type="1">
+<li>Exhaustive (includes all possible outcomes)</li>
+<li>Mutually exclusive (outcomes cannot overlap)</li>
+</ol>
+</section>
+<section id="events" class="level3" data-number="17.1.3">
+<h3 data-number="17.1.3" class="anchored" data-anchor-id="events"><span class="header-section-number">17.1.3</span> Events</h3>
+<p>An event is a set of outcomes that we’re interested in. While an outcome is a single result, an event can contain multiple outcomes. For instance:</p>
+<ul>
+<li>When rolling a die, “getting an even number” is an event containing the outcomes {2, 4, 6}</li>
+<li>When drawing a card, “getting a heart” is an event containing thirteen outcomes</li>
+<li>When flipping two coins, “getting at least one head” is an event containing three outcomes {HH, HT, TH}</li>
+</ul>
+<p>Events are subsets of the sample space, and we can perform set operations on them. These operations often parallel familiar arithmetic concepts:</p>
+<p>Union (<span class="math inline">A \cup B</span>) is like addition - it combines events <span class="math inline">A</span> and <span class="math inline">B</span>, giving us all outcomes that occur in either <span class="math inline">A</span> OR <span class="math inline">B</span> (or both). Just as <span class="math inline">2 + 3</span> includes all units from both numbers, <span class="math inline">A \cup B</span> includes all outcomes from both sets. However, just as we’re careful not to double-count when adding, we must be careful not to double-count outcomes that appear in both events.</p>
+<p>Intersection (<span class="math inline">A \cap B</span>) is like multiplication - it gives us outcomes that occur in both <span class="math inline">A</span> AND <span class="math inline">B</span> simultaneously. Think of multiplication as finding the overlap: when we multiply <span class="math inline">2 \times 3</span>, we’re essentially adding 2 three times. Similarly, <span class="math inline">A \cap B</span> finds where our events overlap.</p>
+<p>Complement (<span class="math inline">A^c</span> or <span class="math inline">A'</span>) is like negation - it gives us everything that’s NOT in <span class="math inline">A</span>. Just as <span class="math inline">-2</span> is the opposite of 2 on a number line, <span class="math inline">A^c</span> contains all outcomes in the sample space that aren’t in <span class="math inline">A</span>.</p>
+<p>Let’s see these concepts in action with a die roll:</p>
+<ul>
+<li>Event <span class="math inline">A</span>: “rolling an even number” = <span class="math inline">\{2, 4, 6\}</span></li>
+<li>Event <span class="math inline">B</span>: “rolling a number greater than 4” = <span class="math inline">\{5, 6\}</span></li>
+<li><span class="math inline">A \cup B = \{2, 4, 5, 6\}</span> (like adding, but we only count 6 once!)</li>
+<li><span class="math inline">A \cap B = \{6\}</span> (the only number that satisfies both conditions)</li>
+<li><span class="math inline">A^c = \{1, 3, 5\}</span> (all numbers that aren’t even)</li>
+</ul>
+</section>
+</section>
+<section id="why-focus-on-discrete-probability" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="why-focus-on-discrete-probability"><span class="header-section-number">17.2</span> Why Focus on Discrete Probability?</h2>
+<p>When we say a probability problem is “discrete,” we mean we’re dealing with situations where:</p>
+<ol type="1">
+<li><p>We can count the number of possible outcomes</p></li>
+<li><p>Each outcome is separate and distinct from others</p></li>
+<li><p>We can list all possible outcomes in our sample space</p></li>
+</ol>
+<p>For example, when we:</p>
+<ul>
+<li><p>Draw balls from an urn</p></li>
+<li><p>Flip coins or roll dice</p></li>
+<li><p>Count successes in a sequence of trials</p></li>
+<li><p>Select items from a group</p></li>
+</ul>
+<p>This approach is particularly valuable because:</p>
+<ol type="1">
+<li><p>It allows us to build strong intuition about probability without requiring calculus</p></li>
+<li><p>It directly connects to many real-world applications in statistics</p></li>
+<li><p>It provides the foundation for understanding the binomial distribution, which we’ll use later for hypothesis testing</p></li>
+</ol>
+</section>
+<section id="key-questions-before-calculating-probabilities" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="key-questions-before-calculating-probabilities"><span class="header-section-number">17.3</span> Key Questions Before Calculating Probabilities</h2>
+<p>Before we can correctly calculate probabilities in any discrete scenario, we must answer two fundamental questions:</p>
+<section id="does-order-matter" class="level3" data-number="17.3.1">
+<h3 data-number="17.3.1" class="anchored" data-anchor-id="does-order-matter"><span class="header-section-number">17.3.1</span> 1. Does Order Matter?</h3>
+<p>The importance of order fundamentally changes how we count outcomes. Consider selecting two cards from a deck:</p>
+<ul>
+<li>If we’re playing poker, order doesn’t matter - getting an ace and then a king is the same hand as getting a king and then an ace.</li>
+<li>If we’re performing a magic trick where we need specific cards in sequence, order matters - getting an ace then a king is different from getting a king then an ace.</li>
+</ul>
+<p>When order matters, we’re dealing with permutations. When order doesn’t matter, we’re dealing with combinations. This distinction dramatically affects the number of possible outcomes and, consequently, our probability calculations.</p>
+</section>
+<section id="is-sampling-with-or-without-replacement" class="level3" data-number="17.3.2">
+<h3 data-number="17.3.2" class="anchored" data-anchor-id="is-sampling-with-or-without-replacement"><span class="header-section-number">17.3.2</span> 2. Is Sampling With or Without Replacement?</h3>
+<p>After selecting an item, do we put it back before the next selection? This question fundamentally changes the probability structure:</p>
+<ul>
+<li>With replacement: Each selection has the same probability distribution as the first selection. Drawing a red ball and replacing it means the probability of drawing red on the next try remains unchanged.</li>
+<li>Without replacement: Each selection changes the probability distribution for subsequent selections. Drawing a red ball and not replacing it means there are fewer red balls available for the next draw.</li>
+</ul>
+<p>These sampling schemes lead to different probability models:</p>
+<ul>
+<li>With replacement leads to independent events and often simpler calculations</li>
+<li>Without replacement leads to dependent events and requires conditional probability</li>
+</ul>
+<p>Understanding these two questions helps us:</p>
+<ol type="1">
+<li>Choose the correct counting method (permutations vs combinations)</li>
+<li>Determine whether we can treat events as independent</li>
+<li>Decide whether we need to use conditional probability</li>
+</ol>
+</section>
+</section>
+<section id="foundations-set-theory-and-power-sets" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="foundations-set-theory-and-power-sets"><span class="header-section-number">17.4</span> Foundations: Set Theory and Power Sets</h2>
+<p>Before we can understand probability, we need to grasp some fundamental concepts from set theory. A set is simply a collection of distinct objects. The power set of a set, denoted as <span class="math inline">\mathcal{P}(S)</span> or <span class="math inline">2^S</span>, is the set of all possible subsets of S, including the empty set and S itself. This concept is crucial in probability theory because it helps us understand the relationship between the sample space (all possible outcomes) and the event space (all possible events we might want to consider).</p>
+<p>Let’s explore this with a simple example. Consider flipping a single coin where: <span class="math inline">S = \{H, T\}</span> (our sample space)</p>
+<p>The power set would be:</p>
+<p><span class="math inline">\mathcal{P}(S) = \{\emptyset, \{H\}, \{T\}, \{H,T\}\}</span></p>
+<p>Each element in the power set represents a possible event. For instance:</p>
+<ul>
+<li><span class="math inline">\emptyset</span>: The impossible event (e.g., the coin landing neither heads nor tails)</li>
+<li><span class="math inline">\{H\}</span>: The event of getting heads</li>
+<li><span class="math inline">\{T\}</span>: The event of getting tails</li>
+<li><span class="math inline">\{H,T\}</span>: The certain event (the coin must land either heads or tails)</li>
+</ul>
+<p>For a set with <span class="math inline">n</span> elements, its power set will have <span class="math inline">2^n</span> elements. This is because for each element, we have two choices: include it or not include it in a subset.</p>
+<section id="understanding-outcomes-vs-events" class="level3" data-number="17.4.1">
+<h3 data-number="17.4.1" class="anchored" data-anchor-id="understanding-outcomes-vs-events"><span class="header-section-number">17.4.1</span> Understanding Outcomes vs Events</h3>
+<p>There’s an important distinction between outcomes (also called simple events) and events:</p>
+<ol type="1">
+<li><p>An outcome or simple event is a single, indivisible result of an experiment. For example, getting heads on a single coin flip is an outcome.</p></li>
+<li><p>An event is a set of outcomes - it can contain one outcome, multiple outcomes, or even no outcomes (the empty set). For example, “getting at least one head when flipping two coins” is an event containing multiple outcomes.</p></li>
+</ol>
+<p>Let’s illustrate this with two coin flips where:</p>
+<p><span class="math inline">S = \{HH, HT, TH, TT\}</span> (our sample space)</p>
+<p>The power set (all possible events) would contain <span class="math inline">2^4 = 16</span> events:</p>
+<ul>
+<li><span class="math inline">\emptyset</span> (impossible event)</li>
+<li>Single outcomes: <span class="math inline">\{HH\}</span>, <span class="math inline">\{HT\}</span>, <span class="math inline">\{TH\}</span>, <span class="math inline">\{TT\}</span></li>
+<li>Pairs of outcomes: <span class="math inline">\{HH,HT\}</span>, <span class="math inline">\{HH,TH\}</span>, <span class="math inline">\{HH,TT\}</span>, <span class="math inline">\{HT,TH\}</span>, <span class="math inline">\{HT,TT\}</span>, <span class="math inline">\{TH,TT\}</span></li>
+<li>Triples: <span class="math inline">\{HH,HT,TH\}</span>, <span class="math inline">\{HH,HT,TT\}</span>, <span class="math inline">\{HH,TH,TT\}</span>, <span class="math inline">\{HT,TH,TT\}</span></li>
+<li>Complete sample space: <span class="math inline">\{HH,HT,TH,TT\}</span></li>
+</ul>
+</section>
+<section id="understanding-set-relations-elements-vs-subsets" class="level3" data-number="17.4.2">
+<h3 data-number="17.4.2" class="anchored" data-anchor-id="understanding-set-relations-elements-vs-subsets"><span class="header-section-number">17.4.2</span> Understanding Set Relations: Elements vs Subsets</h3>
+<p>One of the most foundational distinctions in set theory – and one that often creates confusion for new students – is the difference between an element belonging to a set and one set being a subset of another. Let’s explore this critical distinction through everyday analogies and probability examples.</p>
+<section id="the-belongs-to-relationship-in" class="level4" data-number="17.4.2.1">
+<h4 data-number="17.4.2.1" class="anchored" data-anchor-id="the-belongs-to-relationship-in"><span class="header-section-number">17.4.2.1</span> The “Belongs To” Relationship (<span class="math inline">\in</span>)</h4>
+<p>When we say an element belongs to a set (written as <span class="math inline">x \in A</span>), we’re describing membership of a single item in a collection. Think of a classroom: each individual student belongs to (is a member of) the class. They are elements of the set “class.”</p>
+<p>Consider a deck of cards and let <span class="math inline">H</span> be the set of all hearts:</p>
+<p><span class="math inline">H = \{2♥, 3♥, 4♥, 5♥, 6♥, 7♥, 8♥, 9♥, 10♥, J♥, Q♥, K♥, A♥\}</span></p>
+<p>We can say:</p>
+<ul>
+<li><span class="math inline">A♥ \in H</span> (true, because the ace of hearts is one of the hearts)</li>
+<li><span class="math inline">K♠ \notin H</span> (false, because the king of spades is not a heart)</li>
+<li><span class="math inline">\{A♥\} \notin H</span> (false, this is a set containing the ace of hearts, not the card itself)</li>
+</ul>
+</section>
+<section id="the-is-contained-in-relationship-subseteq" class="level4" data-number="17.4.2.2">
+<h4 data-number="17.4.2.2" class="anchored" data-anchor-id="the-is-contained-in-relationship-subseteq"><span class="header-section-number">17.4.2.2</span> The “Is Contained In” Relationship (<span class="math inline">\subseteq</span>)</h4>
+<p>A subset relationship (written as <span class="math inline">A \subseteq B</span>) describes when one set is entirely contained within another set. Every element of the smaller set must appear in the larger set. Think of Russian nesting dolls – each smaller doll fits completely inside the larger ones.</p>
+<p>Let’s look at some sets of cards:</p>
+<p><span class="math inline">H</span> = all hearts <span class="math inline">F</span> = face cards of hearts = <span class="math inline">\{J♥, Q♥, K♥\}</span> <span class="math inline">R</span> = red cards</p>
+<p>These sets demonstrate important subset relationships:</p>
+<p><span class="math inline">F \subseteq H</span> is true because every heart face card is also a heart. Similarly, <span class="math inline">H \subseteq R</span> is true because all hearts are red cards. An interesting case is <span class="math inline">\{A♥\} \subseteq H</span>, which is true because the set containing just the ace of hearts is contained within the set of all hearts.</p>
+</section>
+<section id="why-this-matters-in-probability" class="level4" data-number="17.4.2.3">
+<h4 data-number="17.4.2.3" class="anchored" data-anchor-id="why-this-matters-in-probability"><span class="header-section-number">17.4.2.3</span> Why This Matters in Probability</h4>
+<p>This distinction becomes crucial when working with events in probability. Consider rolling a die. We can define our sample space and events:</p>
+<p><span class="math inline">S = \{1, 2, 3, 4, 5, 6\}</span> represents our sample space <span class="math inline">E = \{2, 4, 6\}</span> represents the event of rolling an even number <span class="math inline">F = \{6\}</span> represents the event of rolling a six</p>
+<p>We use these relations differently in probability contexts: When discussing outcomes: <span class="math inline">6 \in E</span> tells us “6 is one of the possible even rolls” When discussing events: <span class="math inline">F \subseteq E</span> tells us “the event of rolling a six is contained within the event of rolling an even number”</p>
+<p>Here’s a helpful rule of thumb for working with probability: use <span class="math inline">\in</span> when checking if a specific outcome belongs to an event, and use <span class="math inline">\subseteq</span> when comparing one event to another event. This distinction helps us understand the structure of our probability space and apply probability rules correctly.</p>
+<p>This becomes especially important in three key areas of probability theory. First, when defining events as collections of outcomes, we need to be clear about whether we’re talking about individual outcomes or sets of outcomes. Second, when working with compound events through unions and intersections, understanding subset relationships helps us calculate probabilities correctly. Third, when applying probability rules to nested events, the subset relationship gives us important inequalities.</p>
+<p>For example, if <span class="math inline">A \subseteq B</span>, then <span class="math inline">P(A) \leq P(B)</span>. This makes intuitive sense – the probability of a more specific event cannot exceed the probability of a more general event that contains it. Understanding the distinction between membership and subset relationships helps us see why this must be true.</p>
+</section>
+</section>
+<section id="classical-naive-probability" class="level3" data-number="17.4.3">
+<h3 data-number="17.4.3" class="anchored" data-anchor-id="classical-naive-probability"><span class="header-section-number">17.4.3</span> Classical (Naive) Probability</h3>
+<p>The classical or naive definition of probability provides a simple way to calculate probabilities when:</p>
+<ol type="1">
+<li>The sample space is finite (we can count all possible outcomes)</li>
+<li>All outcomes are equally likely to occur (uniform probability measure)</li>
+</ol>
+<p>Under these conditions, the probability of an event E is:</p>
+<p><span class="math inline">P(E) = \frac{\text{number of favorable outcomes}}{\text{total number of possible outcomes}} = \frac{|E|}{|S|}</span></p>
+<p>This is why we often start teaching probability with examples like fair coins, fair dice, and well-shuffled decks of cards - they satisfy both conditions. However, it’s important to understand that many real-world situations don’t meet these criteria, which is why we need more sophisticated probability concepts.</p>
+<p>For example, when flipping two coins:</p>
+<ul>
+<li>P(getting exactly one head) = <span class="math inline">\frac{|\{HT,TH\}|}{|\{HH,HT,TH,TT\}|} = \frac{2}{4} = 0.5</span></li>
+<li>P(getting at least one head) = <span class="math inline">\frac{|\{HH,HT,TH\}|}{|\{HH,HT,TH,TT\}|} = \frac{3}{4} = 0.75</span></li>
+</ul>
+<p>This classical definition, while simple, serves as a foundation for understanding more complex probability concepts. Let’s now explore these ideas further with set operations.</p>
+</section>
+<section id="basic-set-concepts" class="level3" data-number="17.4.4">
+<h3 data-number="17.4.4" class="anchored" data-anchor-id="basic-set-concepts"><span class="header-section-number">17.4.4</span> Basic Set Concepts</h3>
+<p>A set can be defined by:</p>
+<ul>
+<li><p>Listing all elements: <span class="math inline">A = \{1, 2, 3\}</span></p></li>
+<li><p>Describing a property: <span class="math inline">B = \{\text{x | x is a positive integer less than 4}\}</span></p></li>
+</ul>
+<p>The empty set <span class="math inline">\emptyset</span> contains no elements.</p>
+</section>
+<section id="set-operations" class="level3" data-number="17.4.5">
+<h3 data-number="17.4.5" class="anchored" data-anchor-id="set-operations"><span class="header-section-number">17.4.5</span> Set Operations</h3>
+<p>Given two sets <span class="math inline">A</span> and <span class="math inline">B</span>:</p>
+<ol type="1">
+<li><p>Union (<span class="math inline">A \cup B</span>): Elements in either A OR B (or both)</p></li>
+<li><p>Intersection (<span class="math inline">A \cap B</span>): Elements in BOTH A AND B</p></li>
+<li><p>Complement (<span class="math inline">A^c</span>): Elements NOT in A</p></li>
+<li><p>Difference (<span class="math inline">A \setminus B</span>): Elements in A but NOT in B</p></li>
+</ol>
+<p>These operations follow important laws like:</p>
+<p><span class="math display">(A \cup B)^c = A^c \cap B^c</span> (DeMorgan’s Law)</p>
+<p><span class="math display">(A \cup (B \cap C) = (A \cup B) \cap (A \cup C)</span> (Distributive Law)</p>
+</section>
+</section>
+<section id="sample-space-and-events" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="sample-space-and-events"><span class="header-section-number">17.5</span> Sample Space and Events</h2>
+<p>The sample space (<span class="math inline">\Omega</span>) contains all possible outcomes of an experiment. An event is a subset of the sample space. Let’s understand this through concrete examples.</p>
+<section id="example-single-ball-draw" class="level3" data-number="17.5.1">
+<h3 data-number="17.5.1" class="anchored" data-anchor-id="example-single-ball-draw"><span class="header-section-number">17.5.1</span> Example: Single Ball Draw</h3>
+<p>Consider an urn with 3 green and 2 red balls. For drawing one ball:</p>
+<ul>
+<li><p>Sample space: <span class="math inline">\Omega = \{G_1, G_2, G_3, R_1, R_2\}</span></p></li>
+<li><p>Event “draw green”: <span class="math inline">A = \{G_1, G_2, G_3\}</span></p></li>
+<li><p>Event “draw red”: <span class="math inline">B = \{R_1, R_2\}</span></p></li>
+</ul>
+<p>Note that <span class="math inline">A \cup B = \Omega</span> and <span class="math inline">A \cap B = \emptyset</span> (these events are mutually exclusive and exhaustive).</p>
+</section>
+</section>
+<section id="probability-measure-function" class="level2" data-number="17.6">
+<h2 data-number="17.6" class="anchored" data-anchor-id="probability-measure-function"><span class="header-section-number">17.6</span> Probability Measure Function</h2>
+<p>A probability measure <span class="math inline">P</span> assigns numbers to events following these axioms:</p>
+<ol type="1">
+<li><p><span class="math inline">P(A) \geq 0</span> for any event <span class="math inline">A</span> (non-negativity)</p></li>
+<li><p><span class="math inline">P(\Omega) = 1</span> (normalization)</p></li>
+<li><p>For disjoint events: <span class="math inline">P(A \cup B) = P(A) + P(B)</span> (additivity)</p></li>
+</ol>
+<section id="understanding-through-the-urn-example" class="level3" data-number="17.6.1">
+<h3 data-number="17.6.1" class="anchored" data-anchor-id="understanding-through-the-urn-example"><span class="header-section-number">17.6.1</span> Understanding Through the Urn Example</h3>
+<p>In our urn with 3 green and 2 red balls:</p>
+<ul>
+<li><p><span class="math inline">P(\text{green}) = \frac{3}{5}</span></p></li>
+<li><p><span class="math inline">P(\text{red}) = \frac{2}{5}</span></p></li>
+<li><p><span class="math inline">P(\text{green}) + P(\text{red}) = 1</span></p></li>
+</ul>
+</section>
+</section>
+<section id="sequential-events-and-tree-diagrams" class="level2" data-number="17.7">
+<h2 data-number="17.7" class="anchored" data-anchor-id="sequential-events-and-tree-diagrams"><span class="header-section-number">17.7</span> Sequential Events and Tree Diagrams</h2>
+<p>Tree diagrams are powerful tools for visualizing sequential events. Each branch represents a possible outcome, and probabilities multiply along paths. Let’s explore this through detailed examples.</p>
+<section id="example-1-drawing-two-balls-without-replacement" class="level3" data-number="17.7.1">
+<h3 data-number="17.7.1" class="anchored" data-anchor-id="example-1-drawing-two-balls-without-replacement"><span class="header-section-number">17.7.1</span> Example 1: Drawing Two Balls Without Replacement</h3>
+<p>Consider drawing two balls from an urn containing 3 green and 2 red balls. Let’s analyze all scenarios systematically.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[Start] --&gt; B[First: Green 3/5]
+    A --&gt; C[First: Red 2/5]
+    B --&gt; D[Second: Green 2/4]
+    B --&gt; E[Second: Red 2/4]
+    C --&gt; F[Second: Green 3/4]
+    C --&gt; G[Second: Red 1/4]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Let’s solve for different scenarios:</p>
+<ol type="1">
+<li><p>First red, then green (order matters):</p>
+<p><span class="math inline">P(R \text{ then } G) = \frac{2}{5} \cdot \frac{3}{4} = \frac{6}{20} = 0.3</span></p></li>
+<li><p>Different colors (order doesn’t matter):</p>
+<p><span class="math inline">P(\text{different colors}) = P(R \text{ then } G) + P(G \text{ then } R)</span></p>
+<p><span class="math inline">= \frac{2}{5} \cdot \frac{3}{4} + \frac{3}{5} \cdot \frac{2}{4} = \frac{6}{20} + \frac{6}{20} = \frac{12}{20} = 0.6</span></p></li>
+</ol>
+</section>
+<section id="example-2-drawing-with-replacement" class="level3" data-number="17.7.2">
+<h3 data-number="17.7.2" class="anchored" data-anchor-id="example-2-drawing-with-replacement"><span class="header-section-number">17.7.2</span> Example 2: Drawing With Replacement</h3>
+<p>When we replace the first ball before drawing the second, the probabilities for the second draw remain unchanged:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[Start] --&gt; B[First: Green 3/5]
+    A --&gt; C[First: Red 2/5]
+    B --&gt; D[Second: Green 3/5]
+    B --&gt; E[Second: Red 2/5]
+    C --&gt; F[Second: Green 3/5]
+    C --&gt; G[Second: Red 2/5]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Now:</p>
+<ol type="1">
+<li><p>First red, then green:</p>
+<p><span class="math inline">P(R \text{ then } G) = \frac{2}{5} \cdot \frac{3}{5} = \frac{6}{25} = 0.24</span></p></li>
+<li><p>Different colors:</p>
+<p><span class="math inline">P(\text{different colors}) = \frac{2}{5} \cdot \frac{3}{5} + \frac{3}{5} \cdot \frac{2}{5} = \frac{12}{25} = 0.48</span></p></li>
+</ol>
+</section>
+</section>
+<section id="the-four-types-of-counting-problems" class="level2" data-number="17.8">
+<h2 data-number="17.8" class="anchored" data-anchor-id="the-four-types-of-counting-problems"><span class="header-section-number">17.8</span> The Four Types of Counting Problems</h2>
+<p>When we count possibilities in probability problems, we need to think about two important questions:</p>
+<ol type="1">
+<li>Does the order of our selections matter? (Like picking a phone PIN where 1234 is different from 4321)</li>
+<li>Can we reuse items we’ve already selected? (Like picking letters where we can reuse them, versus picking students where we can’t pick the same person twice)</li>
+</ol>
+<p>Let’s explore each type of counting using a simple example: We have an urn with 5 colored balls (Red, Blue, Green, Yellow, and Purple), and we’ll make 2 draws. For each scenario, we’ll think about what makes sense in real life and how to count correctly.</p>
+<section id="order-matters-with-replacement" class="level3" data-number="17.8.1">
+<h3 data-number="17.8.1" class="anchored" data-anchor-id="order-matters-with-replacement"><span class="header-section-number">17.8.1</span> 1. Order Matters, With Replacement</h3>
+<p>Think about picking a two-digit code where you can use any digit twice. This is similar to drawing a ball, writing down its color, putting it back, and drawing again.</p>
+<p>For the first draw:</p>
+<ul>
+<li>We can choose any of the 5 balls</li>
+<li>After putting it back, we again have all 5 balls for our second draw</li>
+<li>So for each first choice, we have 5 second choices</li>
+</ul>
+<p>Let’s count systematically:</p>
+<ul>
+<li>If we pick Red first: we can then pick R,B,G,Y,or P (5 possibilities)</li>
+<li>If we pick Blue first: we can then pick R,B,G,Y,or P (5 possibilities)</li>
+<li>And so on for Green, Yellow, and Purple</li>
+</ul>
+<p>Total outcomes: <span class="math inline">5 \times 5 = 5^2 = 25</span> possibilities The formula is <span class="math inline">n^r</span> where:</p>
+<ul>
+<li><span class="math inline">n</span> is how many options we have (5 balls)</li>
+<li><span class="math inline">r</span> is how many selections we make (2 draws)</li>
+</ul>
+</section>
+<section id="order-matters-without-replacement" class="level3" data-number="17.8.2">
+<h3 data-number="17.8.2" class="anchored" data-anchor-id="order-matters-without-replacement"><span class="header-section-number">17.8.2</span> 2. Order Matters, Without Replacement</h3>
+<p>Now imagine picking two students to do tasks in order - the first student will present today, the second tomorrow. We can’t pick the same student twice!</p>
+<p>For our balls:</p>
+<ul>
+<li>First draw: we can choose any of the 5 balls</li>
+<li>Second draw: we only have 4 balls left</li>
+<li>If we pick Red first: we can then pick B,G,Y,or P (4 possibilities)</li>
+<li>If we pick Blue first: we can then pick R,G,Y,or P (4 possibilities)</li>
+<li>And so on…</li>
+</ul>
+<p>Total outcomes: <span class="math inline">5 \times 4 = 20</span> possibilities The formula is <span class="math inline">P(n,r) = \frac{n!}{(n-r)!}</span></p>
+</section>
+<section id="order-doesnt-matter-with-replacement" class="level3" data-number="17.8.3">
+<h3 data-number="17.8.3" class="anchored" data-anchor-id="order-doesnt-matter-with-replacement"><span class="header-section-number">17.8.3</span> 3. Order Doesn’t Matter, With Replacement</h3>
+<p>Imagine picking your two favorite colors - you can pick the same color twice, and it doesn’t matter which you say first.</p>
+<p>This is tricky! Here’s why:</p>
+<ul>
+<li>If we pick Red and then Blue, this is the same as picking Blue and then Red</li>
+<li>But picking Red twice is still just one outcome</li>
+</ul>
+<p>We need to be careful not to count the same outcome twice. The formula <span class="math inline">\binom{n+r-1}{r}</span> helps us avoid this overcounting.</p>
+<p>In our example:</p>
+<ul>
+<li>Total outcomes: <span class="math inline">\binom{5+2-1}{2} = \binom{6}{2} = 15</span> possibilities</li>
+<li>This correctly counts (Red,Blue) and (Blue,Red) as one outcome</li>
+</ul>
+</section>
+<section id="order-doesnt-matter-without-replacement" class="level3" data-number="17.8.4">
+<h3 data-number="17.8.4" class="anchored" data-anchor-id="order-doesnt-matter-without-replacement"><span class="header-section-number">17.8.4</span> 4. Order Doesn’t Matter, Without Replacement</h3>
+<p>Think about picking two students to be on a team - it doesn’t matter who you pick first, and you can’t pick the same person twice.</p>
+<p>For our balls:</p>
+<ul>
+<li>We’re just picking 2 balls out of 5</li>
+<li>(Red,Blue) and (Blue,Red) count as the same outcome</li>
+<li>The formula <span class="math inline">\binom{n}{r} = \frac{n!}{r!(n-r)!}</span> gives us the right count</li>
+<li>Total outcomes: <span class="math inline">\binom{5}{2} = 10</span> possibilities</li>
+</ul>
+</section>
+</section>
+<section id="example-the-4-red-and-3-black-balls-problem" class="level2" data-number="17.9">
+<h2 data-number="17.9" class="anchored" data-anchor-id="example-the-4-red-and-3-black-balls-problem"><span class="header-section-number">17.9</span> Example: The 4 Red and 3 Black Balls Problem</h2>
+<p>Let’s solve a real problem using what we learned. We have:</p>
+<ul>
+<li>4 red balls (let’s call them R₁, R₂, R₃, R₄)</li>
+<li>3 black balls (B₁, B₂, B₃)</li>
+<li>We’ll draw 2 balls without replacement</li>
+<li>Order doesn’t matter (like picking team members)</li>
+</ul>
+<p>We want to find three probabilities:</p>
+<ol type="1">
+<li>Getting two red balls</li>
+<li>Getting two black balls</li>
+<li>Getting one of each color</li>
+</ol>
+<section id="method-1-using-counting-rules" class="level3" data-number="17.9.1">
+<h3 data-number="17.9.1" class="anchored" data-anchor-id="method-1-using-counting-rules"><span class="header-section-number">17.9.1</span> Method 1: Using Counting Rules</h3>
+<p>First, let’s count the total possible outcomes:</p>
+<ul>
+<li>We’re picking 2 balls from 7 total balls, order doesn’t matter</li>
+<li>Total outcomes = <span class="math inline">\binom{7}{2} = \frac{7!}{2!(7-2)!} = \frac{7 \times 6}{2 \times 1} = 21</span></li>
+</ul>
+<p>Now let’s find each probability:</p>
+<section id="two-red-balls" class="level4" data-number="17.9.1.1">
+<h4 data-number="17.9.1.1" class="anchored" data-anchor-id="two-red-balls"><span class="header-section-number">17.9.1.1</span> 1. Two Red Balls</h4>
+<ul>
+<li>We need to pick 2 red balls from 4 red balls</li>
+<li>This is like picking 2 team members from 4 people</li>
+<li>Number of ways = <span class="math inline">\binom{4}{2} = \frac{4 \times 3}{2 \times 1} = 6</span></li>
+<li>Probability = <span class="math inline">\frac{6}{21}</span></li>
+</ul>
+</section>
+<section id="two-black-balls" class="level4" data-number="17.9.1.2">
+<h4 data-number="17.9.1.2" class="anchored" data-anchor-id="two-black-balls"><span class="header-section-number">17.9.1.2</span> 2. Two Black Balls</h4>
+<ul>
+<li>Similarly, we need to pick 2 black balls from 3 black balls</li>
+<li>Number of ways = <span class="math inline">\binom{3}{2} = \frac{3 \times 2}{2 \times 1} = 3</span></li>
+<li>Probability = <span class="math inline">\frac{3}{21}</span></li>
+</ul>
+</section>
+<section id="one-red-and-one-black" class="level4" data-number="17.9.1.3">
+<h4 data-number="17.9.1.3" class="anchored" data-anchor-id="one-red-and-one-black"><span class="header-section-number">17.9.1.3</span> 3. One Red and One Black</h4>
+<ul>
+<li>We need:
+<ul>
+<li>One red ball (we have 4 to choose from)</li>
+<li>One black ball (we have 3 to choose from)</li>
+</ul></li>
+<li>Number of ways = <span class="math inline">4 \times 3 = 12</span></li>
+<li>Probability = <span class="math inline">\frac{12}{21}</span></li>
+</ul>
+<p>Let’s verify our work:</p>
+<ul>
+<li>All probabilities should add to 1</li>
+<li><span class="math inline">\frac{6}{21} + \frac{3}{21} + \frac{12}{21} = \frac{21}{21} = 1</span> ✓</li>
+</ul>
+<p>This matches what we expect - every time we draw two balls, we must get either:</p>
+<ul>
+<li>Two red balls</li>
+<li>Two black balls</li>
+<li>One of each color</li>
+</ul>
+<p>Understanding how to count correctly helps us solve these probability problems systematically and avoid common mistakes like counting the same outcome multiple times.</p>
+</section>
+</section>
+<section id="method-2-tree-diagram-approach" class="level3" data-number="17.9.2">
+<h3 data-number="17.9.2" class="anchored" data-anchor-id="method-2-tree-diagram-approach"><span class="header-section-number">17.9.2</span> Method 2: Tree Diagram Approach</h3>
+<p>The tree diagram helps us visualize the sequential nature of the draws:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[Start] --&gt; B[First: Red 4/7]
+    A --&gt; C[First: Black 3/7]
+    B --&gt; D[Second: Red 3/6]
+    B --&gt; E[Second: Black 3/6]
+    C --&gt; F[Second: Red 4/6]
+    C --&gt; G[Second: Black 2/6]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Using the tree diagram:</p>
+<ol type="1">
+<li><p>P(both red) = <span class="math inline">\frac{4}{7} \cdot \frac{3}{6} = \frac{12}{42} = \frac{6}{21}</span></p></li>
+<li><p>P(red then black) = <span class="math inline">\frac{4}{7} \cdot \frac{3}{6} = \frac{12}{42}</span></p></li>
+<li><p>P(multi-colored) = P(red then black) + P(black then red)</p>
+<p>= <span class="math inline">\frac{4}{7} \cdot \frac{3}{6} + \frac{3}{7} \cdot \frac{4}{6} = \frac{24}{42}</span></p></li>
+</ol>
+</section>
+<section id="method-3-grid-diagram-and-sample-space" class="level3" data-number="17.9.3">
+<h3 data-number="17.9.3" class="anchored" data-anchor-id="method-3-grid-diagram-and-sample-space"><span class="header-section-number">17.9.3</span> Method 3: Grid Diagram and Sample Space</h3>
+<p>Let’s visualize the entire sample space using a grid where each cell represents selecting two balls in order:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>First Draw →</th>
+<th>R₁</th>
+<th>R₂</th>
+<th>R₃</th>
+<th>R₄</th>
+<th>B₁</th>
+<th>B₂</th>
+<th>B₃</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Second Draw ↓</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>R₁</td>
+<td>X</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+</tr>
+<tr class="odd">
+<td>R₂</td>
+<td>⚫</td>
+<td>X</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+</tr>
+<tr class="even">
+<td>R₃</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>X</td>
+<td>⚫</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+</tr>
+<tr class="odd">
+<td>R₄</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>X</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+</tr>
+<tr class="even">
+<td>B₁</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>X</td>
+<td>⚫</td>
+<td>⚫</td>
+</tr>
+<tr class="odd">
+<td>B₂</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚫</td>
+<td>X</td>
+<td>⚫</td>
+</tr>
+<tr class="even">
+<td>B₃</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<p>Where:</p>
+<ul>
+<li><p>X: Impossible (same ball twice)</p></li>
+<li><p>⚫: Both red or both black</p></li>
+<li><p>⚪: Multi-colored outcome</p></li>
+</ul>
+<p>From this grid:</p>
+<ol type="1">
+<li><p>Both red = 12 outcomes (⚫ in upper-left quadrant)</p></li>
+<li><p>Red then black = 12 outcomes (⚪ in upper-right)</p></li>
+<li><p>Total possible outcomes = 42 (remove diagonal X’s)</p></li>
+</ol>
+<p>Therefore:</p>
+<ul>
+<li><p>P(both red) = <span class="math inline">\frac{12}{42} = \frac{6}{21}</span></p></li>
+<li><p>P(red then black) = <span class="math inline">\frac{12}{42} = \frac{2}{7}</span></p></li>
+<li><p>P(multi-colored) = <span class="math inline">\frac{24}{42} = \frac{4}{7}</span></p></li>
+</ul>
+</section>
+<section id="comparing-the-methods" class="level3" data-number="17.9.4">
+<h3 data-number="17.9.4" class="anchored" data-anchor-id="comparing-the-methods"><span class="header-section-number">17.9.4</span> Comparing the Methods</h3>
+<p>Each method highlights different aspects of the problem:</p>
+<ol type="1">
+<li><p>Counting Rules:</p>
+<ul>
+<li><p>Most efficient for calculation</p></li>
+<li><p>Helps understand combinations and arrangements</p></li>
+<li><p>May obscure the actual outcomes</p></li>
+</ul></li>
+<li><p>Tree Diagram:</p>
+<ul>
+<li><p>Shows sequential nature of draws</p></li>
+<li><p>Makes conditional probability clear</p></li>
+<li><p>Visualizes how probabilities combine</p></li>
+<li><p>Good for checking intuition</p></li>
+</ul></li>
+<li><p>Grid Diagram:</p>
+<ul>
+<li><p>Shows entire sample space explicitly</p></li>
+<li><p>Makes it clear why diagonal is impossible</p></li>
+<li><p>Helps visualize groups of outcomes</p></li>
+<li><p>Demonstrates why we divide by total possibilities</p></li>
+<li><p>Shows symmetry in the problem</p></li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="practice-problems" class="level2" data-number="17.10">
+<h2 data-number="17.10" class="anchored" data-anchor-id="practice-problems"><span class="header-section-number">17.10</span> Practice Problems</h2>
+<ol type="1">
+<li><p>An urn contains 5 white and 4 black balls. Three balls are drawn with replacement. Find the probability that:</p>
+<ol type="a">
+<li><p>All are white</p></li>
+<li><p>Exactly two are white</p></li>
+<li><p>At least two are white</p></li>
+</ol></li>
+<li><p>From a standard deck of 52 cards, two cards are drawn without replacement. Find the probability of:</p>
+<ol type="a">
+<li><p>Both being aces</p></li>
+<li><p>Getting a pair (same rank)</p></li>
+<li><p>Getting two cards of the same suit</p></li>
+</ol></li>
+</ol>
+</section>
+<section id="key-takeaways" class="level2" data-number="17.11">
+<h2 data-number="17.11" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">17.11</span> Key Takeaways</h2>
+<ol type="1">
+<li><p>The tree diagram method works because it:</p>
+<ul>
+<li><p>Visually represents the sample space</p></li>
+<li><p>Shows how probabilities combine multiplicatively for independent events</p></li>
+<li><p>Helps identify all possible outcomes systematically</p></li>
+</ul></li>
+<li><p>When solving probability problems:</p>
+<ul>
+<li><p>First identify if order matters</p></li>
+<li><p>Determine if sampling is with or without replacement</p></li>
+<li><p>Choose the appropriate counting method</p></li>
+<li><p>Calculate both favorable and total outcomes carefully</p></li>
+</ul></li>
+</ol>
+</section>
+<section id="next-steps" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> Next Steps</h1>
+<p>This introduction prepares you for more advanced topics:</p>
+<ul>
+<li><p>Conditional probability</p></li>
+<li><p>Independence</p></li>
+<li><p>Random variables</p></li>
+<li><p>Probability distributions</p></li>
+</ul>
+<p>Understanding these foundational concepts is crucial for grasping statistical inference and data analysis methods.</p>
+<section id="advanced-counting-in-probability-a-student-guide" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="advanced-counting-in-probability-a-student-guide"><span class="header-section-number">18.1</span> Advanced Counting in Probability: A Student Guide</h2>
+<section id="poker-hands-a-window-into-complex-counting" class="level3" data-number="18.1.1">
+<h3 data-number="18.1.1" class="anchored" data-anchor-id="poker-hands-a-window-into-complex-counting"><span class="header-section-number">18.1.1</span> Poker Hands: A Window into Complex Counting</h3>
+<p>Poker hands provide some of the most interesting examples for understanding counting in probability. They’re perfect for learning because they combine multiple counting principles and help us understand common pitfalls. Let’s explore these concepts step by step.</p>
+</section>
+<section id="understanding-our-sample-space" class="level3" data-number="18.1.2">
+<h3 data-number="18.1.2" class="anchored" data-anchor-id="understanding-our-sample-space"><span class="header-section-number">18.1.2</span> Understanding Our Sample Space</h3>
+<p>Before we dive into specific hands, let’s understand what we’re working with. A poker hand consists of 5 cards drawn from a standard 52-card deck. Understanding the sample space is crucial because it forms the foundation of all our probability calculations.</p>
+<p>The total number of possible poker hands represents how many different ways we can select 5 cards from 52 cards, where the order doesn’t matter (getting ace-king-queen is the same hand as getting king-queen-ace), we can’t reuse cards (we can’t have the ace of spades twice in our hand), and we must take exactly 5 cards (not more, not less).</p>
+<p>This means we’re dealing with combinations. Let’s calculate this step by step:</p>
+<p><span class="math inline">\binom{52}{5} = \frac{52!}{5!(52-5)!} = \frac{52!}{5!(47)!} = \frac{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48}{5 \cdot 4 \cdot 3 \cdot 2 \cdot 1} = 2,598,960</span></p>
+<p>This number, 2,598,960, will be our denominator for calculating the probability of any specific poker hand.</p>
+</section>
+<section id="understanding-two-pairs-a-careful-counting-approach" class="level3" data-number="18.1.3">
+<h3 data-number="18.1.3" class="anchored" data-anchor-id="understanding-two-pairs-a-careful-counting-approach"><span class="header-section-number">18.1.3</span> Understanding Two Pairs: A Careful Counting Approach</h3>
+<p>Two pairs is one of the most interesting hands for understanding counting principles. To get two pairs, we need:</p>
+<ul>
+<li>Two cards of one rank</li>
+<li>Two cards of another rank</li>
+<li>One card of a third rank (the kicker)</li>
+</ul>
+<p>Let’s build this hand step by step, being careful to understand each choice we make:</p>
+<p>First, let’s select our ranks. We might think we should just choose two ranks from 13 for our pairs using <span class="math inline">\binom{13}{2}</span>, but this approach hides some important subtleties. Instead, let’s think about the actual process of constructing the hand:</p>
+<ol type="1">
+<li>We have 13 possible ranks for our first pair</li>
+<li>After choosing the first pair’s rank, we have 12 ranks left for our second pair</li>
+<li>After choosing both pair ranks, we have 11 ranks left for our kicker</li>
+</ol>
+<p>For each rank we’ve chosen, we need to select specific cards:</p>
+<ol type="1">
+<li>For our first pair: we choose 2 cards from the 4 available cards of that rank: <span class="math inline">\binom{4}{2} = 6</span> ways</li>
+<li>For our second pair: again <span class="math inline">\binom{4}{2} = 6</span> ways</li>
+<li>For our kicker: we choose 1 card from 4: <span class="math inline">\binom{4}{1} = 4</span> ways</li>
+</ol>
+<p>Now, here’s where many students get confused: Does it matter which pair we count “first” and which we count “second”? The answer reveals a deep truth about counting in probability.</p>
+<p>Let’s use a concrete example. Suppose we want two pairs with Aces and Kings, and a Two as our kicker. We could:</p>
+<ol type="1">
+<li>Choose Aces as our first pair, then Kings as our second pair</li>
+<li>Choose Kings as our first pair, then Aces as our second pair</li>
+</ol>
+<p>These lead to the exact same hand type, but we need to count both paths to this hand because they represent different ways of constructing it. It’s similar to how we can make a sandwich by putting either cheese slice on first - the order of construction matters for counting all possibilities, even though the final sandwich is the same.</p>
+<p>This is why our final formula multiplies all these independent choices:</p>
+<p><span class="math inline">13</span> (first pair rank) × <span class="math inline">12</span> (second pair rank) × <span class="math inline">11</span> (kicker rank) × <span class="math inline">\binom{4}{2}</span> (first pair cards) × <span class="math inline">\binom{4}{2}</span> (second pair cards) × <span class="math inline">\binom{4}{1}</span> (kicker card)</p>
+<p>Each term represents a separate decision we make in constructing the hand. While the order of these decisions doesn’t affect the final hand we get, we need to account for all possible ways to arrive at each hand to get the correct total.</p>
+<p>Let’s calculate the total probability:</p>
+<p><span class="math inline">P(\text{two pairs}) = \frac{13 \cdot 12 \cdot 11 \cdot \binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}}{2,598,960} = \frac{123,552}{2,598,960} \approx 0.0475</span></p>
+<p>This means about 4.75% of all possible poker hands are two pairs.</p>
+</section>
+<section id="understanding-full-house-a-different-counting-challenge" class="level3" data-number="18.1.4">
+<h3 data-number="18.1.4" class="anchored" data-anchor-id="understanding-full-house-a-different-counting-challenge"><span class="header-section-number">18.1.4</span> Understanding Full House: A Different Counting Challenge</h3>
+<p>A full house gives us a perfect contrast to two pairs. While both hands involve multiple cards of the same rank, the counting process reveals important differences in how we approach probability problems.</p>
+<p>In a full house, we need:</p>
+<ul>
+<li>Three cards of one rank (called “three of a kind”)</li>
+<li>Two cards of another rank (a pair)</li>
+</ul>
+<p>Let’s think about why counting a full house is different from counting two pairs. With two pairs, we had to be careful about the order of selecting our pairs. With a full house, we have a natural order: we must choose our three of a kind first (because it’s distinct from the pair), then choose our pair.</p>
+<p>Let’s count step by step:</p>
+<ol type="1">
+<li>For the three of a kind:
+<ul>
+<li>Choose the rank: 13 possible ranks</li>
+<li>Choose which three cards of that rank: <span class="math inline">\binom{4}{3} = 4</span> ways</li>
+</ul></li>
+<li>For the pair:
+<ul>
+<li>Choose the rank: 12 remaining ranks</li>
+<li>Choose which two cards of that rank: <span class="math inline">\binom{4}{2} = 6</span> ways</li>
+</ul></li>
+</ol>
+<p>Multiplying these together:</p>
+<p><span class="math inline">13</span> (three of a kind rank) × <span class="math inline">\binom{4}{3}</span> (specific three cards) × <span class="math inline">12</span> (pair rank) × <span class="math inline">\binom{4}{2}</span> (specific pair cards)</p>
+<p><span class="math inline">= 13 \cdot 4 \cdot 12 \cdot 6 = 3,744</span></p>
+<p>Therefore:</p>
+<p><span class="math inline">P(\text{full house}) = \frac{3,744}{2,598,960} \approx 0.0014</span></p>
+<p>About 0.14% of all poker hands are full houses, making them significantly rarer than two pairs (4.75%). This makes intuitive sense - it’s harder to get three of the same rank plus a pair than to get two pairs plus a kicker.</p>
+</section>
+<section id="the-birthday-problem-a-beautiful-probability-surprise" class="level3" data-number="18.1.5">
+<h3 data-number="18.1.5" class="anchored" data-anchor-id="the-birthday-problem-a-beautiful-probability-surprise"><span class="header-section-number">18.1.5</span> The Birthday Problem: A Beautiful Probability Surprise</h3>
+<p>The birthday problem provides a fascinating connection to our poker probability work, while teaching us something profound about the nature of counting. The classic question is: “How many people need to be in a room for there to be a 50% chance that at least two share a birthday?”</p>
+<p>Most people guess around 183 (half of 365), but the actual answer is just 23 people! Let’s understand why this connects to our previous counting work and why the answer is so surprising.</p>
+<p>First, let’s think about what makes this problem different from our poker calculations:</p>
+<ol type="1">
+<li>In poker, we were looking for specific combinations (like two pairs)</li>
+<li>In the birthday problem, we’re looking for any match at all</li>
+</ol>
+<p>This is similar to the difference between asking: - “What’s the probability of drawing the ace of spades and king of hearts specifically?” - “What’s the probability of drawing any two cards of different ranks?”</p>
+<p>The second question has many more ways to succeed.</p>
+<p>Let’s solve the birthday problem step by step:</p>
+<ol type="1">
+<li>First, it’s easier to calculate the probability of no matches</li>
+<li>Then we can subtract from 1 to get the probability of at least one match</li>
+</ol>
+<p>For 23 people, we calculate no matches like this:</p>
+<ul>
+<li>First person can have any birthday: <span class="math inline">\frac{365}{365}</span></li>
+<li>Second person needs a different birthday: <span class="math inline">\frac{364}{365}</span></li>
+<li>Third person needs a different birthday: <span class="math inline">\frac{363}{365}</span> And so on until person 23.</li>
+</ul>
+<p>This gives us:</p>
+<p><span class="math inline">P(\text{no matches}) = \frac{365}{365} \cdot \frac{364}{365} \cdot \frac{363}{365} \cdot ... \cdot \frac{343}{365}</span></p>
+<p><span class="math inline">= \frac{365!}{(365-23)! \cdot 365^{23}} \approx 0.492</span></p>
+<p>Therefore:</p>
+<p><span class="math inline">P(\text{at least one match}) = 1 - 0.492 \approx 0.508</span></p>
+<p>This teaches us something profound about probability: when we’re looking for any match among many possibilities (like in the birthday problem), we often get much higher probabilities than when we’re looking for specific matches (like in poker hands).</p>
+</section>
+<section id="lottery-mathematics-putting-it-all-together" class="level3" data-number="18.1.6">
+<h3 data-number="18.1.6" class="anchored" data-anchor-id="lottery-mathematics-putting-it-all-together"><span class="header-section-number">18.1.6</span> Lottery Mathematics: Putting It All Together</h3>
+<p>Let’s apply everything we’ve learned to understand lottery probabilities. Consider a typical “6/49” lottery where players choose 6 numbers from 1-49. This gives us a perfect opportunity to apply our counting principles in a real-world context.</p>
+<p>The fundamental question is: What’s the probability of winning the jackpot (matching all 6 numbers)?</p>
+<p>This is a combination problem because: - Order doesn’t matter (matching 1-2-3-4-5-6 is the same as matching 6-5-4-3-2-1) - We can’t use the same number twice - We need exactly 6 numbers</p>
+<p>Therefore:</p>
+<p><span class="math inline">P(\text{jackpot}) = \frac{1}{\binom{49}{6}} = \frac{1}{13,983,816}</span></p>
+<p>This tiny probability (about 0.0000000715) shows why lottery wins are so rare. But modern lotteries have multiple prize tiers, which gives us a chance to explore more interesting probability calculations.</p>
+<p>Consider matching 5 numbers plus a bonus number. For this, we need to: 1. Match 5 of the 6 winning numbers: <span class="math inline">\binom{6}{5}</span> ways to choose which 5 2. Match 1 of the remaining 43 numbers with the bonus: <span class="math inline">\binom{43}{1}</span> ways</p>
+<p>Therefore:</p>
+<p><span class="math inline">P(\text{5 + bonus}) = \frac{\binom{6}{5} \cdot \binom{43}{1}}{\binom{49}{6}} = \frac{6 \cdot 43}{13,983,816} \approx 0.0000184</span></p>
+<p>This shows us how breaking down complex probability problems into simpler parts helps us solve them systematically.</p>
+</section>
+<section id="alternative-approaches-to-poker-hand-probabilities" class="level3" data-number="18.1.7">
+<h3 data-number="18.1.7" class="anchored" data-anchor-id="alternative-approaches-to-poker-hand-probabilities"><span class="header-section-number">18.1.7</span> Alternative Approaches to Poker Hand Probabilities</h3>
+<p>Understanding different ways to calculate the same probability deepens our insight into counting principles. Let’s explore several methods for finding the probabilities of two pairs and full house, seeing how each approach highlights different aspects of the problem.</p>
+<section id="multiple-paths-to-two-pairs-probability" class="level4" data-number="18.1.7.1">
+<h4 data-number="18.1.7.1" class="anchored" data-anchor-id="multiple-paths-to-two-pairs-probability"><span class="header-section-number">18.1.7.1</span> Multiple Paths to Two Pairs Probability</h4>
+<p>Let’s start with two pairs. We’ve seen one method, but there are several valid approaches:</p>
+<p>Method 1: Sequential Selection (Our Original Approach) We build the hand step by step:</p>
+<ol type="1">
+<li>Choose first pair’s rank: 13 ways</li>
+<li>Choose second pair’s rank: 12 ways</li>
+<li>Choose kicker’s rank: 11 ways</li>
+<li>Choose specific cards for first pair: <span class="math inline">\binom{4}{2}</span> ways</li>
+<li>Choose specific cards for second pair: <span class="math inline">\binom{4}{2}</span> ways</li>
+<li>Choose specific card for kicker: <span class="math inline">\binom{4}{1}</span> ways</li>
+</ol>
+<p>This gives us: <span class="math inline">P(\text{two pairs}) = \frac{13 \cdot 12 \cdot 11 \cdot \binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}}{2,598,960}</span></p>
+<p>Method 2: Complementary Counting We can find two pairs probability by subtracting the probability of all other possible hands from 1. However, this is more complex than direct counting because we need to know the probabilities of all other poker hands. Still, it serves as a good verification:</p>
+<p><span class="math inline">P(\text{two pairs}) = 1 - P(\text{high card}) - P(\text{one pair}) - P(\text{three of a kind}) - P(\text{straight}) - P(\text{flush}) - P(\text{full house}) - P(\text{four of a kind}) - P(\text{straight flush})</span></p>
+<p>Method 3: Using Permutations with Adjustment We can use permutations and then adjust for overcounting:</p>
+<ol type="1">
+<li>Choose an ordered arrangement of two ranks for pairs: <span class="math inline">P(13,2) = 13 \cdot 12</span></li>
+<li>Choose kicker rank: 11 ways</li>
+<li>Choose specific cards for pairs and kicker: <span class="math inline">\binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}</span></li>
+<li>Divide by 2 to account for the fact that the order of pairs doesn’t matter</li>
+</ol>
+<p>This gives: <span class="math inline">P(\text{two pairs}) = \frac{P(13,2) \cdot 11 \cdot \binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}}{2 \cdot 2,598,960}</span></p>
+<p>Method 4: Combination-Based Approach with Multiplication Principle We can separate rank selection from card selection:</p>
+<ol type="1">
+<li>First, select three ranks: <span class="math inline">\binom{13}{3}</span> ways</li>
+<li>From these three ranks, designate two for pairs and one for kicker: <span class="math inline">\binom{3}{2}</span> ways</li>
+<li>For each pair rank, select two cards: <span class="math inline">\binom{4}{2} \cdot \binom{4}{2}</span> ways</li>
+<li>For the kicker rank, select one card: <span class="math inline">\binom{4}{1}</span> ways</li>
+</ol>
+<p>This gives us: <span class="math inline">P(\text{two pairs}) = \frac{\binom{13}{3} \cdot \binom{3}{2} \cdot \binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}}{2,598,960}</span></p>
+</section>
+<section id="alternative-approaches-to-full-house-probability" class="level4" data-number="18.1.7.2">
+<h4 data-number="18.1.7.2" class="anchored" data-anchor-id="alternative-approaches-to-full-house-probability"><span class="header-section-number">18.1.7.2</span> Alternative Approaches to Full House Probability</h4>
+<p>The full house probability can also be calculated in several ways:</p>
+<p>Method 1: Direct Sequential Selection (Our Original Approach) 1. Choose rank for three of a kind: 13 ways 2. Choose specific three cards: <span class="math inline">\binom{4}{3}</span> ways 3. Choose rank for pair: 12 ways 4. Choose specific two cards: <span class="math inline">\binom{4}{2}</span> ways</p>
+<p>Leading to: <span class="math inline">P(\text{full house}) = \frac{13 \cdot \binom{4}{3} \cdot 12 \cdot \binom{4}{2}}{2,598,960}</span></p>
+<p>Method 2: Using Combinations with Distribution We can think about it as: 1. Choose two ranks from 13: <span class="math inline">\binom{13}{2}</span> ways 2. Designate which rank gets three cards: 2 ways (since either rank could be the three of a kind) 3. Choose specific cards: <span class="math inline">\binom{4}{3} \cdot \binom{4}{2}</span> ways</p>
+<p>This gives: <span class="math inline">P(\text{full house}) = \frac{\binom{13}{2} \cdot 2 \cdot \binom{4}{3} \cdot \binom{4}{2}}{2,598,960}</span></p>
+<p>Method 3: Using the Multiplication Principle with Sets Think about constructing the hand as selecting two sets of cards:</p>
+<ol type="1">
+<li>First set: three cards of the same rank from 13 ranks
+<ul>
+<li>Choose rank: 13 ways</li>
+<li>Choose three cards: <span class="math inline">\binom{4}{3}</span> ways</li>
+</ul></li>
+<li>Second set: two cards of the same rank from 12 remaining ranks
+<ul>
+<li>Choose rank: 12 ways</li>
+<li>Choose two cards: <span class="math inline">\binom{4}{2}</span> ways</li>
+</ul></li>
+</ol>
+<p>This yields the same result: <span class="math inline">P(\text{full house}) = \frac{13 \cdot \binom{4}{3} \cdot 12 \cdot \binom{4}{2}}{2,598,960}</span></p>
+<p>Each method illuminates different aspects of the counting process:</p>
+<ul>
+<li>Sequential selection helps us understand the step-by-step construction of hands</li>
+<li>Combination-based approaches highlight the underlying structure of the selections</li>
+<li>Permutation-based methods with adjustment show how overcounting can be handled systematically</li>
+</ul>
+<p>The fact that all these methods yield the same result serves as a powerful verification tool. When solving complex probability problems, being able to approach the solution in multiple ways not only confirms our answer but also deepens our understanding of the underlying counting principles.</p>
+</section>
+</section>
+</section>
+<section id="advanced-counting-in-probability-a-student-guide-1" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="advanced-counting-in-probability-a-student-guide-1"><span class="header-section-number">18.2</span> Advanced Counting in Probability: A Student Guide</h2>
+<section id="poker-hands-a-window-into-complex-counting-1" class="level3" data-number="18.2.1">
+<h3 data-number="18.2.1" class="anchored" data-anchor-id="poker-hands-a-window-into-complex-counting-1"><span class="header-section-number">18.2.1</span> Poker Hands: A Window into Complex Counting</h3>
+<p>Poker hands provide some of the most interesting examples for understanding counting in probability. They’re perfect for learning because they combine multiple counting principles and help us understand common pitfalls. Let’s explore these concepts step by step.</p>
+</section>
+<section id="understanding-our-sample-space-1" class="level3" data-number="18.2.2">
+<h3 data-number="18.2.2" class="anchored" data-anchor-id="understanding-our-sample-space-1"><span class="header-section-number">18.2.2</span> Understanding Our Sample Space</h3>
+<p>Before we dive into specific hands, let’s understand what we’re working with. A poker hand consists of 5 cards drawn from a standard 52-card deck. Understanding the sample space is crucial because it forms the foundation of all our probability calculations.</p>
+<p>The total number of possible poker hands represents how many different ways we can select 5 cards from 52 cards, where the order doesn’t matter (getting ace-king-queen is the same hand as getting king-queen-ace), we can’t reuse cards (we can’t have the ace of spades twice in our hand), and we must take exactly 5 cards (not more, not less).</p>
+<p>This means we’re dealing with combinations. Let’s calculate this step by step:</p>
+<p><span class="math inline">\binom{52}{5} = \frac{52!}{5!(52-5)!} = \frac{52!}{5!(47)!} = \frac{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48}{5 \cdot 4 \cdot 3 \cdot 2 \cdot 1} = 2,598,960</span></p>
+<p>This number, 2,598,960, will be our denominator for calculating the probability of any specific poker hand.</p>
+</section>
+<section id="understanding-two-pairs-a-careful-counting-approach-1" class="level3" data-number="18.2.3">
+<h3 data-number="18.2.3" class="anchored" data-anchor-id="understanding-two-pairs-a-careful-counting-approach-1"><span class="header-section-number">18.2.3</span> Understanding Two Pairs: A Careful Counting Approach</h3>
+<p>Two pairs is one of the most interesting hands for understanding counting principles. To get two pairs, we need:</p>
+<ul>
+<li>Two cards of one rank</li>
+<li>Two cards of another rank</li>
+<li>One card of a third rank (the kicker)</li>
+</ul>
+<p>Let’s build this hand step by step, being careful to understand each choice we make:</p>
+<p>First, let’s select our ranks. We might think we should just choose two ranks from 13 for our pairs using <span class="math inline">\binom{13}{2}</span>, but this approach hides some important subtleties. Instead, let’s think about the actual process of constructing the hand:</p>
+<ol type="1">
+<li>We have 13 possible ranks for our first pair</li>
+<li>After choosing the first pair’s rank, we have 12 ranks left for our second pair</li>
+<li>After choosing both pair ranks, we have 11 ranks left for our kicker</li>
+</ol>
+<p>For each rank we’ve chosen, we need to select specific cards:</p>
+<ol type="1">
+<li>For our first pair: we choose 2 cards from the 4 available cards of that rank: <span class="math inline">\binom{4}{2} = 6</span> ways</li>
+<li>For our second pair: again <span class="math inline">\binom{4}{2} = 6</span> ways</li>
+<li>For our kicker: we choose 1 card from 4: <span class="math inline">\binom{4}{1} = 4</span> ways</li>
+</ol>
+<p>Now, here’s where many students get confused: Does it matter which pair we count “first” and which we count “second”? The answer reveals a deep truth about counting in probability.</p>
+<p>Let’s use a concrete example. Suppose we want two pairs with Aces and Kings, and a Two as our kicker. We could:</p>
+<ol type="1">
+<li>Choose Aces as our first pair, then Kings as our second pair</li>
+<li>Choose Kings as our first pair, then Aces as our second pair</li>
+</ol>
+<p>These lead to the exact same hand type, but we need to count both paths to this hand because they represent different ways of constructing it. It’s similar to how we can make a sandwich by putting either cheese slice on first - the order of construction matters for counting all possibilities, even though the final sandwich is the same.</p>
+<p>This is why our final formula multiplies all these independent choices:</p>
+<p><span class="math inline">13</span> (first pair rank) × <span class="math inline">12</span> (second pair rank) × <span class="math inline">11</span> (kicker rank) × <span class="math inline">\binom{4}{2}</span> (first pair cards) × <span class="math inline">\binom{4}{2}</span> (second pair cards) × <span class="math inline">\binom{4}{1}</span> (kicker card)</p>
+<p>Each term represents a separate decision we make in constructing the hand. While the order of these decisions doesn’t affect the final hand we get, we need to account for all possible ways to arrive at each hand to get the correct total.</p>
+<p>Let’s calculate the total probability:</p>
+<p><span class="math inline">P(\text{two pairs}) = \frac{13 \cdot 12 \cdot 11 \cdot \binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}}{2,598,960} = \frac{123,552}{2,598,960} \approx 0.0475</span></p>
+<p>This means about 4.75% of all possible poker hands are two pairs.</p>
+</section>
+<section id="understanding-full-house-a-different-counting-challenge-1" class="level3" data-number="18.2.4">
+<h3 data-number="18.2.4" class="anchored" data-anchor-id="understanding-full-house-a-different-counting-challenge-1"><span class="header-section-number">18.2.4</span> Understanding Full House: A Different Counting Challenge</h3>
+<p>A full house gives us a perfect contrast to two pairs. While both hands involve multiple cards of the same rank, the counting process reveals important differences in how we approach probability problems.</p>
+<p>In a full house, we need: - Three cards of one rank (called “three of a kind”) - Two cards of another rank (a pair)</p>
+<p>Let’s think about why counting a full house is different from counting two pairs. With two pairs, we had to be careful about the order of selecting our pairs. With a full house, we have a natural order: we must choose our three of a kind first (because it’s distinct from the pair), then choose our pair.</p>
+<p>Let’s count step by step:</p>
+<ol type="1">
+<li>For the three of a kind:
+<ul>
+<li>Choose the rank: 13 possible ranks</li>
+<li>Choose which three cards of that rank: <span class="math inline">\binom{4}{3} = 4</span> ways</li>
+</ul></li>
+<li>For the pair:
+<ul>
+<li>Choose the rank: 12 remaining ranks</li>
+<li>Choose which two cards of that rank: <span class="math inline">\binom{4}{2} = 6</span> ways</li>
+</ul></li>
+</ol>
+<p>Multiplying these together:</p>
+<p><span class="math inline">13</span> (three of a kind rank) × <span class="math inline">\binom{4}{3}</span> (specific three cards) × <span class="math inline">12</span> (pair rank) × <span class="math inline">\binom{4}{2}</span> (specific pair cards)</p>
+<p><span class="math inline">= 13 \cdot 4 \cdot 12 \cdot 6 = 3,744</span></p>
+<p>Therefore:</p>
+<p><span class="math inline">P(\text{full house}) = \frac{3,744}{2,598,960} \approx 0.0014</span></p>
+<p>About 0.14% of all poker hands are full houses, making them significantly rarer than two pairs (4.75%). This makes intuitive sense - it’s harder to get three of the same rank plus a pair than to get two pairs plus a kicker.</p>
+</section>
+<section id="the-birthday-problem-a-beautiful-probability-surprise-1" class="level3" data-number="18.2.5">
+<h3 data-number="18.2.5" class="anchored" data-anchor-id="the-birthday-problem-a-beautiful-probability-surprise-1"><span class="header-section-number">18.2.5</span> The Birthday Problem: A Beautiful Probability Surprise</h3>
+<p>The birthday problem provides a fascinating connection to our poker probability work, while teaching us something profound about the nature of counting. The classic question is: “How many people need to be in a room for there to be a 50% chance that at least two share a birthday?”</p>
+<p>Most people guess around 183 (half of 365), but the actual answer is just 23 people! Let’s understand why this connects to our previous counting work and why the answer is so surprising.</p>
+<p>First, let’s think about what makes this problem different from our poker calculations:</p>
+<ol type="1">
+<li>In poker, we were looking for specific combinations (like two pairs)</li>
+<li>In the birthday problem, we’re looking for any match at all</li>
+</ol>
+<p>This is similar to the difference between asking: - “What’s the probability of drawing the ace of spades and king of hearts specifically?” - “What’s the probability of drawing any two cards of different ranks?”</p>
+<p>The second question has many more ways to succeed.</p>
+<p>Let’s solve the birthday problem step by step:</p>
+<ol type="1">
+<li>First, it’s easier to calculate the probability of no matches</li>
+<li>Then we can subtract from 1 to get the probability of at least one match</li>
+</ol>
+<p>For 23 people, we calculate no matches like this: - First person can have any birthday: <span class="math inline">\frac{365}{365}</span> - Second person needs a different birthday: <span class="math inline">\frac{364}{365}</span> - Third person needs a different birthday: <span class="math inline">\frac{363}{365}</span> And so on until person 23.</p>
+<p>This gives us:</p>
+<p><span class="math inline">P(\text{no matches}) = \frac{365}{365} \cdot \frac{364}{365} \cdot \frac{363}{365} \cdot ... \cdot \frac{343}{365}</span></p>
+<p><span class="math inline">= \frac{365!}{(365-23)! \cdot 365^{23}} \approx 0.492</span></p>
+<p>Therefore:</p>
+<p><span class="math inline">P(\text{at least one match}) = 1 - 0.492 \approx 0.508</span></p>
+<p>This teaches us something profound about probability: when we’re looking for any match among many possibilities (like in the birthday problem), we often get much higher probabilities than when we’re looking for specific matches (like in poker hands).</p>
+</section>
+<section id="lottery-mathematics-putting-it-all-together-1" class="level3" data-number="18.2.6">
+<h3 data-number="18.2.6" class="anchored" data-anchor-id="lottery-mathematics-putting-it-all-together-1"><span class="header-section-number">18.2.6</span> Lottery Mathematics: Putting It All Together</h3>
+<p>Let’s apply everything we’ve learned to understand lottery probabilities. Consider a typical “6/49” lottery where players choose 6 numbers from 1-49. This gives us a perfect opportunity to apply our counting principles in a real-world context.</p>
+<p>The fundamental question is: What’s the probability of winning the jackpot (matching all 6 numbers)?</p>
+<p>This is a combination problem because: - Order doesn’t matter (matching 1-2-3-4-5-6 is the same as matching 6-5-4-3-2-1) - We can’t use the same number twice - We need exactly 6 numbers</p>
+<p>Therefore:</p>
+<p><span class="math inline">P(\text{jackpot}) = \frac{1}{\binom{49}{6}} = \frac{1}{13,983,816}</span></p>
+<p>This tiny probability (about 0.0000000715) shows why lottery wins are so rare. But modern lotteries have multiple prize tiers, which gives us a chance to explore more interesting probability calculations.</p>
+<p>Consider matching 5 numbers plus a bonus number. For this, we need to: 1. Match 5 of the 6 winning numbers: <span class="math inline">\binom{6}{5}</span> ways to choose which 5 2. Match 1 of the remaining 43 numbers with the bonus: <span class="math inline">\binom{43}{1}</span> ways</p>
+<p>Therefore:</p>
+<p><span class="math inline">P(\text{5 + bonus}) = \frac{\binom{6}{5} \cdot \binom{43}{1}}{\binom{49}{6}} = \frac{6 \cdot 43}{13,983,816} \approx 0.0000184</span></p>
+<p>This shows us how breaking down complex probability problems into simpler parts helps us solve them systematically.</p>
+</section>
+<section id="alternative-approaches-to-poker-hand-probabilities-1" class="level3" data-number="18.2.7">
+<h3 data-number="18.2.7" class="anchored" data-anchor-id="alternative-approaches-to-poker-hand-probabilities-1"><span class="header-section-number">18.2.7</span> Alternative Approaches to Poker Hand Probabilities</h3>
+<p>Understanding different ways to calculate the same probability deepens our insight into counting principles. Let’s explore several methods for finding the probabilities of two pairs and full house, seeing how each approach highlights different aspects of the problem.</p>
+<section id="multiple-paths-to-two-pairs-probability-1" class="level4" data-number="18.2.7.1">
+<h4 data-number="18.2.7.1" class="anchored" data-anchor-id="multiple-paths-to-two-pairs-probability-1"><span class="header-section-number">18.2.7.1</span> Multiple Paths to Two Pairs Probability</h4>
+<p>Let’s start with two pairs. We’ve seen one method, but there are several valid approaches:</p>
+<p>Method 1: Sequential Selection (Our Original Approach) We build the hand step by step: 1. Choose first pair’s rank: 13 ways 2. Choose second pair’s rank: 12 ways 3. Choose kicker’s rank: 11 ways 4. Choose specific cards for first pair: <span class="math inline">\binom{4}{2}</span> ways 5. Choose specific cards for second pair: <span class="math inline">\binom{4}{2}</span> ways 6. Choose specific card for kicker: <span class="math inline">\binom{4}{1}</span> ways</p>
+<p>This gives us: <span class="math inline">P(\text{two pairs}) = \frac{13 \cdot 12 \cdot 11 \cdot \binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}}{2,598,960}</span></p>
+<p>Method 2: Complementary Counting We can find two pairs probability by subtracting the probability of all other possible hands from 1. However, this is more complex than direct counting because we need to know the probabilities of all other poker hands. Still, it serves as a good verification:</p>
+<p><span class="math inline">P(\text{two pairs}) = 1 - P(\text{high card}) - P(\text{one pair}) - P(\text{three of a kind}) - P(\text{straight}) - P(\text{flush}) - P(\text{full house}) - P(\text{four of a kind}) - P(\text{straight flush})</span></p>
+<p>Method 3: Using Permutations with Adjustment We can use permutations and then adjust for overcounting:</p>
+<ol type="1">
+<li>Choose an ordered arrangement of two ranks for pairs: <span class="math inline">P(13,2) = 13 \cdot 12</span></li>
+<li>Choose kicker rank: 11 ways</li>
+<li>Choose specific cards for pairs and kicker: <span class="math inline">\binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}</span></li>
+<li>Divide by 2 to account for the fact that the order of pairs doesn’t matter</li>
+</ol>
+<p>This gives: <span class="math inline">P(\text{two pairs}) = \frac{P(13,2) \cdot 11 \cdot \binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}}{2 \cdot 2,598,960}</span></p>
+<p>Method 4: Combination-Based Approach with Multiplication Principle We can separate rank selection from card selection:</p>
+<ol type="1">
+<li>First, select three ranks: <span class="math inline">\binom{13}{3}</span> ways</li>
+<li>From these three ranks, designate two for pairs and one for kicker: <span class="math inline">\binom{3}{2}</span> ways</li>
+<li>For each pair rank, select two cards: <span class="math inline">\binom{4}{2} \cdot \binom{4}{2}</span> ways</li>
+<li>For the kicker rank, select one card: <span class="math inline">\binom{4}{1}</span> ways</li>
+</ol>
+<p>This gives us: <span class="math inline">P(\text{two pairs}) = \frac{\binom{13}{3} \cdot \binom{3}{2} \cdot \binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}}{2,598,960}</span></p>
+</section>
+<section id="alternative-approaches-to-full-house-probability-1" class="level4" data-number="18.2.7.2">
+<h4 data-number="18.2.7.2" class="anchored" data-anchor-id="alternative-approaches-to-full-house-probability-1"><span class="header-section-number">18.2.7.2</span> Alternative Approaches to Full House Probability</h4>
+<p>The full house probability can also be calculated in several ways:</p>
+<p>Method 1: Direct Sequential Selection (Our Original Approach) 1. Choose rank for three of a kind: 13 ways 2. Choose specific three cards: <span class="math inline">\binom{4}{3}</span> ways 3. Choose rank for pair: 12 ways 4. Choose specific two cards: <span class="math inline">\binom{4}{2}</span> ways</p>
+<p>Leading to: <span class="math inline">P(\text{full house}) = \frac{13 \cdot \binom{4}{3} \cdot 12 \cdot \binom{4}{2}}{2,598,960}</span></p>
+<p>Method 2: Using Combinations with Distribution We can think about it as: 1. Choose two ranks from 13: <span class="math inline">\binom{13}{2}</span> ways 2. Designate which rank gets three cards: 2 ways (since either rank could be the three of a kind) 3. Choose specific cards: <span class="math inline">\binom{4}{3} \cdot \binom{4}{2}</span> ways</p>
+<p>This gives: <span class="math inline">P(\text{full house}) = \frac{\binom{13}{2} \cdot 2 \cdot \binom{4}{3} \cdot \binom{4}{2}}{2,598,960}</span></p>
+<p>Method 3: Using the Multiplication Principle with Sets Think about constructing the hand as selecting two sets of cards: 1. First set: three cards of the same rank from 13 ranks - Choose rank: 13 ways - Choose three cards: <span class="math inline">\binom{4}{3}</span> ways 2. Second set: two cards of the same rank from 12 remaining ranks - Choose rank: 12 ways - Choose two cards: <span class="math inline">\binom{4}{2}</span> ways</p>
+<p>This yields the same result: <span class="math inline">P(\text{full house}) = \frac{13 \cdot \binom{4}{3} \cdot 12 \cdot \binom{4}{2}}{2,598,960}</span></p>
+<p>Each method illuminates different aspects of the counting process: - Sequential selection helps us understand the step-by-step construction of hands - Combination-based approaches highlight the underlying structure of the selections - Permutation-based methods with adjustment show how overcounting can be handled systematically</p>
+<p>The fact that all these methods yield the same result serves as a powerful verification tool. When solving complex probability problems, being able to approach the solution in multiple ways not only confirms our answer but also deepens our understanding of the underlying counting principles.</p>
+</section>
+</section>
+<section id="occupancy-problems-and-statistical-physics" class="level3" data-number="18.2.8">
+<h3 data-number="18.2.8" class="anchored" data-anchor-id="occupancy-problems-and-statistical-physics"><span class="header-section-number">18.2.8</span> Occupancy Problems and Statistical Physics</h3>
+<p>Understanding how objects can be distributed into containers forms the foundation for both probability theory and statistical mechanics. Let’s explore this connection, starting with basic counting principles and building up to physical applications.</p>
+<section id="the-basic-occupancy-problem" class="level4" data-number="18.2.8.1">
+<h4 data-number="18.2.8.1" class="anchored" data-anchor-id="the-basic-occupancy-problem"><span class="header-section-number">18.2.8.1</span> The Basic Occupancy Problem</h4>
+<p>Imagine we have <span class="math inline">n</span> identical balls and <span class="math inline">k</span> distinct boxes. How many ways can we distribute the balls? This simple question leads us to three fundamentally different scenarios that mirror important physical systems:</p>
+<ol type="1">
+<li>Unrestricted occupancy (Bose-Einstein statistics)
+<ul>
+<li>Each box can hold any number of balls</li>
+<li>The balls are indistinguishable</li>
+<li>Like photons in quantum states</li>
+</ul></li>
+<li>Maximum one per box (Fermi-Dirac statistics)
+<ul>
+<li>Each box can hold at most one ball</li>
+<li>The balls are indistinguishable</li>
+<li>Like electrons in atomic orbitals</li>
+</ul></li>
+<li>All arrangements count separately (Maxwell-Boltzmann statistics)
+<ul>
+<li>Each box can hold any number of balls</li>
+<li>The balls are distinguishable</li>
+<li>Like classical gas molecules</li>
+</ul></li>
+</ol>
+</section>
+<section id="stars-and-bars-understanding-unrestricted-occupancy" class="level4" data-number="18.2.8.2">
+<h4 data-number="18.2.8.2" class="anchored" data-anchor-id="stars-and-bars-understanding-unrestricted-occupancy"><span class="header-section-number">18.2.8.2</span> Stars and Bars: Understanding Unrestricted Occupancy</h4>
+<p>Let’s start with the Bose-Einstein case. The “stars and bars” method provides a beautiful way to visualize and count these arrangements.</p>
+<p>Imagine <span class="math inline">n=5</span> balls and <span class="math inline">k=3</span> boxes. We can represent any arrangement as a sequence of stars and bars: - Stars (*) represent balls - Bars (|) separate different boxes</p>
+<p>For example: - ** | ** | * represents 2 balls in first box, 2 in second, 1 in third - ***** | | represents all 5 balls in first box, none in others - | ***** | represents all 5 balls in middle box</p>
+<p>The key insight is that we need: - <span class="math inline">n</span> stars (one for each ball) - <span class="math inline">k-1</span> bars (to create <span class="math inline">k</span> sections)</p>
+<p>Therefore, we’re really just choosing positions for the <span class="math inline">k-1</span> bars among <span class="math inline">n+(k-1)</span> total positions. This gives us:</p>
+<p><span class="math inline">\text{Number of arrangements} = \binom{n+k-1}{k-1} = \binom{n+k-1}{n}</span></p>
+</section>
+<section id="from-counting-to-physics" class="level4" data-number="18.2.8.3">
+<h4 data-number="18.2.8.3" class="anchored" data-anchor-id="from-counting-to-physics"><span class="header-section-number">18.2.8.3</span> From Counting to Physics</h4>
+<p>Now let’s see how these counting principles reveal deep physical truths:</p>
+<ol type="1">
+<li><p>Bose-Einstein Statistics (Unrestricted, Indistinguishable)</p>
+<ul>
+<li>Think of photons in a laser</li>
+<li>Many particles can occupy same energy state</li>
+<li>Total arrangements: <span class="math inline">\binom{n+k-1}{k-1}</span></li>
+<li>Example: Light in a cavity</li>
+</ul></li>
+<li><p>Fermi-Dirac Statistics (Restricted, Indistinguishable)</p>
+<ul>
+<li>Think of electrons in atoms</li>
+<li>Maximum one particle per state</li>
+<li>Total arrangements: <span class="math inline">\binom{k}{n}</span> if <span class="math inline">n \leq k</span>, 0 otherwise</li>
+<li>Example: Electron configuration in atoms</li>
+</ul></li>
+<li><p>Maxwell-Boltzmann Statistics (Classical, Distinguishable)</p>
+<ul>
+<li>Think of gas molecules</li>
+<li>Particles are distinct</li>
+<li>Total arrangements: <span class="math inline">k^n</span></li>
+<li>Example: Air molecules in a room</li>
+</ul></li>
+</ol>
+</section>
+<section id="an-intuitive-bridge-to-physics" class="level4" data-number="18.2.8.4">
+<h4 data-number="18.2.8.4" class="anchored" data-anchor-id="an-intuitive-bridge-to-physics"><span class="header-section-number">18.2.8.4</span> An Intuitive Bridge to Physics</h4>
+<p>To understand why these statistics matter, consider three real scenarios:</p>
+<ol type="1">
+<li><p>Photons in a Laser (Bose-Einstein) Imagine shining a laser into a mirror cavity. Photons are happy to bunch together in the same quantum state - they’re “social particles.” This is why lasers can produce intense, coherent light.</p></li>
+<li><p>Electrons in an Atom (Fermi-Dirac) Electrons are “antisocial” - they refuse to share quantum states (Pauli exclusion principle). This explains atomic structure and why matter is mostly empty space.</p></li>
+<li><p>Gas Molecules in a Room (Maxwell-Boltzmann) Air molecules bounce around randomly, and we can tell them apart (in principle). This gives us the familiar gas laws and diffusion.</p></li>
+</ol>
+</section>
+<section id="the-power-of-the-star-and-bars-method" class="level4" data-number="18.2.8.5">
+<h4 data-number="18.2.8.5" class="anchored" data-anchor-id="the-power-of-the-star-and-bars-method"><span class="header-section-number">18.2.8.5</span> The Power of the Star and Bars Method</h4>
+<p>The stars and bars visualization helps us understand more complex problems. For instance, if we have restrictions on box occupancy:</p>
+<ol type="1">
+<li>At least one ball per box:
+<ul>
+<li>First put one ball in each box</li>
+<li>Then distribute remaining balls freely</li>
+<li>Formula: <span class="math inline">\binom{n-k+k-1}{k-1} = \binom{n-1}{k-1}</span></li>
+</ul></li>
+<li>Maximum capacity per box:
+<ul>
+<li>Use inclusion-exclusion principle</li>
+<li>Subtract arrangements that violate constraints</li>
+<li>More complex but same underlying principle</li>
+</ul></li>
+</ol>
+</section>
+<section id="connection-to-partition-problems" class="level4" data-number="18.2.8.6">
+<h4 data-number="18.2.8.6" class="anchored" data-anchor-id="connection-to-partition-problems"><span class="header-section-number">18.2.8.6</span> Connection to Partition Problems</h4>
+<p>This same framework helps us solve other important problems:</p>
+<ol type="1">
+<li>Integer Partitions How many ways can we write <span class="math inline">n</span> as a sum of positive integers?
+<ul>
+<li>Like distributing <span class="math inline">n</span> balls into unlimited boxes</li>
+<li>Each box represents a different term in the sum</li>
+</ul></li>
+<li>Compositions How many ways can we write <span class="math inline">n</span> as an ordered sum?
+<ul>
+<li>Like distinguishable boxes</li>
+<li>Order matters here</li>
+</ul></li>
+</ol>
+</section>
+<section id="physical-implications-and-applications" class="level4" data-number="18.2.8.7">
+<h4 data-number="18.2.8.7" class="anchored" data-anchor-id="physical-implications-and-applications"><span class="header-section-number">18.2.8.7</span> Physical Implications and Applications</h4>
+<p>Understanding these counting principles helps explain:</p>
+<ol type="1">
+<li>Why metals conduct electricity
+<ul>
+<li>Electrons follow Fermi-Dirac statistics</li>
+<li>Creates “bands” of allowed energies</li>
+</ul></li>
+<li>Why lasers work
+<ul>
+<li>Photons’ Bose-Einstein nature enables stimulated emission</li>
+<li>Many photons can occupy same state</li>
+</ul></li>
+<li>Why gases behave as they do
+<ul>
+<li>Maxwell-Boltzmann statistics gives velocity distribution</li>
+<li>Explains gas pressure and temperature</li>
+</ul></li>
+</ol>
+<p>This connection between simple counting and profound physical phenomena shows the deep unity of mathematics and physics. The same principles that help us count poker hands and lottery combinations govern the behavior of the universe at its most fundamental level.</p>
 
 
+</section>
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
