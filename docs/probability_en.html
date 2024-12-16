@@ -296,9 +296,11 @@ window.Quarto = {
   <ul>
   <li><a href="#fundamental-concepts" id="toc-fundamental-concepts" class="nav-link active" data-scroll-target="#fundamental-concepts"><span class="header-section-number">17.1</span> Fundamental Concepts</a>
   <ul class="collapse">
-  <li><a href="#random-experiments-and-outcomes" id="toc-random-experiments-and-outcomes" class="nav-link" data-scroll-target="#random-experiments-and-outcomes"><span class="header-section-number">17.1.1</span> Random Experiments and Outcomes</a></li>
-  <li><a href="#sample-space" id="toc-sample-space" class="nav-link" data-scroll-target="#sample-space"><span class="header-section-number">17.1.2</span> Sample Space</a></li>
-  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events"><span class="header-section-number">17.1.3</span> Events</a></li>
+  <li><a href="#basic-set-concepts" id="toc-basic-set-concepts" class="nav-link" data-scroll-target="#basic-set-concepts"><span class="header-section-number">17.1.1</span> Basic Set Concepts</a></li>
+  <li><a href="#set-operations" id="toc-set-operations" class="nav-link" data-scroll-target="#set-operations"><span class="header-section-number">17.1.2</span> Set Operations</a></li>
+  <li><a href="#random-experiments-and-outcomes" id="toc-random-experiments-and-outcomes" class="nav-link" data-scroll-target="#random-experiments-and-outcomes"><span class="header-section-number">17.1.3</span> Random Experiments and Outcomes</a></li>
+  <li><a href="#sample-space" id="toc-sample-space" class="nav-link" data-scroll-target="#sample-space"><span class="header-section-number">17.1.4</span> Sample Space</a></li>
+  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events"><span class="header-section-number">17.1.5</span> Events</a></li>
   </ul></li>
   <li><a href="#why-focus-on-discrete-probability" id="toc-why-focus-on-discrete-probability" class="nav-link" data-scroll-target="#why-focus-on-discrete-probability"><span class="header-section-number">17.2</span> Why Focus on Discrete Probability?</a></li>
   <li><a href="#key-questions-before-calculating-probabilities" id="toc-key-questions-before-calculating-probabilities" class="nav-link" data-scroll-target="#key-questions-before-calculating-probabilities"><span class="header-section-number">17.3</span> Key Questions Before Calculating Probabilities</a>
@@ -306,13 +308,11 @@ window.Quarto = {
   <li><a href="#does-order-matter" id="toc-does-order-matter" class="nav-link" data-scroll-target="#does-order-matter"><span class="header-section-number">17.3.1</span> 1. Does Order Matter?</a></li>
   <li><a href="#is-sampling-with-or-without-replacement" id="toc-is-sampling-with-or-without-replacement" class="nav-link" data-scroll-target="#is-sampling-with-or-without-replacement"><span class="header-section-number">17.3.2</span> 2. Is Sampling With or Without Replacement?</a></li>
   </ul></li>
-  <li><a href="#foundations-set-theory-and-power-sets" id="toc-foundations-set-theory-and-power-sets" class="nav-link" data-scroll-target="#foundations-set-theory-and-power-sets"><span class="header-section-number">17.4</span> Foundations: Set Theory and Power Sets</a>
+  <li><a href="#set-theory-and-power-sets-event-space" id="toc-set-theory-and-power-sets-event-space" class="nav-link" data-scroll-target="#set-theory-and-power-sets-event-space"><span class="header-section-number">17.4</span> Set Theory and Power Sets (Event Space)</a>
   <ul class="collapse">
   <li><a href="#understanding-outcomes-vs-events" id="toc-understanding-outcomes-vs-events" class="nav-link" data-scroll-target="#understanding-outcomes-vs-events"><span class="header-section-number">17.4.1</span> Understanding Outcomes vs Events</a></li>
   <li><a href="#understanding-set-relations-elements-vs-subsets" id="toc-understanding-set-relations-elements-vs-subsets" class="nav-link" data-scroll-target="#understanding-set-relations-elements-vs-subsets"><span class="header-section-number">17.4.2</span> Understanding Set Relations: Elements vs Subsets</a></li>
   <li><a href="#classical-naive-probability" id="toc-classical-naive-probability" class="nav-link" data-scroll-target="#classical-naive-probability"><span class="header-section-number">17.4.3</span> Classical (Naive) Probability</a></li>
-  <li><a href="#basic-set-concepts" id="toc-basic-set-concepts" class="nav-link" data-scroll-target="#basic-set-concepts"><span class="header-section-number">17.4.4</span> Basic Set Concepts</a></li>
-  <li><a href="#set-operations" id="toc-set-operations" class="nav-link" data-scroll-target="#set-operations"><span class="header-section-number">17.4.5</span> Set Operations</a></li>
   </ul></li>
   <li><a href="#sample-space-and-events" id="toc-sample-space-and-events" class="nav-link" data-scroll-target="#sample-space-and-events"><span class="header-section-number">17.5</span> Sample Space and Events</a>
   <ul class="collapse">
@@ -395,8 +395,31 @@ window.Quarto = {
 <section id="fundamental-concepts" class="level2" data-number="17.1">
 <h2 data-number="17.1" class="anchored" data-anchor-id="fundamental-concepts"><span class="header-section-number">17.1</span> Fundamental Concepts</h2>
 <p>Before we dive into probability theory, let’s establish some foundational concepts that we’ll use throughout this course:</p>
-<section id="random-experiments-and-outcomes" class="level3" data-number="17.1.1">
-<h3 data-number="17.1.1" class="anchored" data-anchor-id="random-experiments-and-outcomes"><span class="header-section-number">17.1.1</span> Random Experiments and Outcomes</h3>
+<section id="basic-set-concepts" class="level3" data-number="17.1.1">
+<h3 data-number="17.1.1" class="anchored" data-anchor-id="basic-set-concepts"><span class="header-section-number">17.1.1</span> Basic Set Concepts</h3>
+<p>Before we can understand probability, we need to grasp some fundamental concepts from set theory. A set is simply a collection of distinct objects.</p>
+<p>A set can be defined by:</p>
+<ul>
+<li><p>Listing all elements: <span class="math inline">A = \{1, 2, 3\}</span></p></li>
+<li><p>Describing a property: <span class="math inline">B = \{\text{x | x is a positive integer less than 4}\}</span></p></li>
+</ul>
+<p>The empty set <span class="math inline">\emptyset</span> contains no elements.</p>
+</section>
+<section id="set-operations" class="level3" data-number="17.1.2">
+<h3 data-number="17.1.2" class="anchored" data-anchor-id="set-operations"><span class="header-section-number">17.1.2</span> Set Operations</h3>
+<p>Given two sets <span class="math inline">A</span> and <span class="math inline">B</span>:</p>
+<ol type="1">
+<li><p>Union (<span class="math inline">A \cup B</span>): Elements in either A OR B (or both)</p></li>
+<li><p>Intersection (<span class="math inline">A \cap B</span>): Elements in BOTH A AND B</p></li>
+<li><p>Complement (<span class="math inline">A^c</span>): Elements NOT in A</p></li>
+<li><p>Difference (<span class="math inline">A \setminus B</span>): Elements in A but NOT in B</p></li>
+</ol>
+<p>These operations follow important laws like:</p>
+<p><span class="math display">(A \cup B)^c = A^c \cap B^c</span> (DeMorgan’s Law)</p>
+<p><span class="math display">(A \cup (B \cap C) = (A \cup B) \cap (A \cup C)</span> (Distributive Law)</p>
+</section>
+<section id="random-experiments-and-outcomes" class="level3" data-number="17.1.3">
+<h3 data-number="17.1.3" class="anchored" data-anchor-id="random-experiments-and-outcomes"><span class="header-section-number">17.1.3</span> Random Experiments and Outcomes</h3>
 <p>A random experiment is any procedure that meets these criteria:</p>
 <ol type="1">
 <li>It can be repeated under identical conditions</li>
@@ -411,8 +434,8 @@ window.Quarto = {
 </ul>
 <p>An outcome is a single possible result of a random experiment. When we roll a die, getting a 3 is an outcome. When we flip a coin, getting heads is an outcome. Each outcome represents the finest level of detail we care about in our experiment.</p>
 </section>
-<section id="sample-space" class="level3" data-number="17.1.2">
-<h3 data-number="17.1.2" class="anchored" data-anchor-id="sample-space"><span class="header-section-number">17.1.2</span> Sample Space</h3>
+<section id="sample-space" class="level3" data-number="17.1.4">
+<h3 data-number="17.1.4" class="anchored" data-anchor-id="sample-space"><span class="header-section-number">17.1.4</span> Sample Space</h3>
 <p>The sample space, typically denoted by Ω or S, is the collection of all possible outcomes of a random experiment. For example:</p>
 <ul>
 <li>For a coin flip: S = {heads, tails}</li>
@@ -425,26 +448,81 @@ window.Quarto = {
 <li>Mutually exclusive (outcomes cannot overlap)</li>
 </ol>
 </section>
-<section id="events" class="level3" data-number="17.1.3">
-<h3 data-number="17.1.3" class="anchored" data-anchor-id="events"><span class="header-section-number">17.1.3</span> Events</h3>
+<section id="events" class="level3" data-number="17.1.5">
+<h3 data-number="17.1.5" class="anchored" data-anchor-id="events"><span class="header-section-number">17.1.5</span> Events</h3>
 <p>An event is a set of outcomes that we’re interested in. While an outcome is a single result, an event can contain multiple outcomes. For instance:</p>
 <ul>
 <li>When rolling a die, “getting an even number” is an event containing the outcomes {2, 4, 6}</li>
 <li>When drawing a card, “getting a heart” is an event containing thirteen outcomes</li>
 <li>When flipping two coins, “getting at least one head” is an event containing three outcomes {HH, HT, TH}</li>
 </ul>
-<p>Events are subsets of the sample space, and we can perform set operations on them. These operations often parallel familiar arithmetic concepts:</p>
-<p>Union (<span class="math inline">A \cup B</span>) is like addition - it combines events <span class="math inline">A</span> and <span class="math inline">B</span>, giving us all outcomes that occur in either <span class="math inline">A</span> OR <span class="math inline">B</span> (or both). Just as <span class="math inline">2 + 3</span> includes all units from both numbers, <span class="math inline">A \cup B</span> includes all outcomes from both sets. However, just as we’re careful not to double-count when adding, we must be careful not to double-count outcomes that appear in both events.</p>
-<p>Intersection (<span class="math inline">A \cap B</span>) is like multiplication - it gives us outcomes that occur in both <span class="math inline">A</span> AND <span class="math inline">B</span> simultaneously. Think of multiplication as finding the overlap: when we multiply <span class="math inline">2 \times 3</span>, we’re essentially adding 2 three times. Similarly, <span class="math inline">A \cap B</span> finds where our events overlap.</p>
-<p>Complement (<span class="math inline">A^c</span> or <span class="math inline">A'</span>) is like negation - it gives us everything that’s NOT in <span class="math inline">A</span>. Just as <span class="math inline">-2</span> is the opposite of 2 on a number line, <span class="math inline">A^c</span> contains all outcomes in the sample space that aren’t in <span class="math inline">A</span>.</p>
-<p>Let’s see these concepts in action with a die roll:</p>
+<p>Events are subsets of the sample space, and we can perform set operations on them. Let’s understand these operations both conceptually and through their connection to probability calculations:</p>
+<p>Union (<span class="math inline">A \cup B</span>) represents combining events - it gives us all outcomes that occur in either <span class="math inline">A</span> OR <span class="math inline">B</span> (or both). Think of it like combining two groups of students: if we have a group of math club members and a group of chess club members, their union includes everyone who’s in either club (being careful not to count students in both clubs twice). When using tree diagrams, if we want the probability of getting either outcome A OR outcome B, we add the probabilities of the different paths that lead to these outcomes.</p>
+<p>Intersection (<span class="math inline">A \cap B</span>) finds shared outcomes - it gives us outcomes that occur in both <span class="math inline">A</span> AND <span class="math inline">B</span> simultaneously. Using our club analogy, the intersection would be students who are members of both the math club AND chess club. In tree diagrams, when we follow a path where both events A AND B occur, we multiply the probabilities along that path. This multiplication makes sense because each branch represents taking a portion of the previous outcomes - like taking half of a half to get a quarter.</p>
+<p>Complement (<span class="math inline">A^c</span> or <span class="math inline">A'</span>) gives us everything that’s NOT in <span class="math inline">A</span>. If <span class="math inline">A</span> represents math club members, <span class="math inline">A^c</span> would be all students who are not in the math club. In probability terms, if we know the probability of A, we can find the probability of “not A” by subtracting from 1.</p>
+<p>Let’s see these concepts in action:</p>
+<ol type="1">
+<li>With a single die roll:
 <ul>
 <li>Event <span class="math inline">A</span>: “rolling an even number” = <span class="math inline">\{2, 4, 6\}</span></li>
 <li>Event <span class="math inline">B</span>: “rolling a number greater than 4” = <span class="math inline">\{5, 6\}</span></li>
-<li><span class="math inline">A \cup B = \{2, 4, 5, 6\}</span> (like adding, but we only count 6 once!)</li>
-<li><span class="math inline">A \cap B = \{6\}</span> (the only number that satisfies both conditions)</li>
+<li><span class="math inline">A \cup B = \{2, 4, 5, 6\}</span> (all numbers that are either even OR greater than 4)</li>
+<li><span class="math inline">A \cap B = \{6\}</span> (the only number that is both even AND greater than 4)</li>
 <li><span class="math inline">A^c = \{1, 3, 5\}</span> (all numbers that aren’t even)</li>
-</ul>
+</ul></li>
+<li>With two coin flips:
+<ul>
+<li>To find P(getting at least one heads), we ADD the probabilities of all paths leading to HT, TH, or HH</li>
+<li>To find P(getting two heads), we MULTIPLY along the HH path: <span class="math inline">\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}</span>, because:
+<ul>
+<li>First H takes half of all possible outcomes</li>
+<li>Second H takes half of those first-H outcomes</li>
+<li>Just like taking half of a half gives you a quarter</li>
+</ul></li>
+</ul></li>
+</ol>
+<p>The key is understanding that in tree diagrams: - We MULTIPLY along a path because each branch takes a portion of the previous outcomes - We ADD different paths because they represent different ways to achieve our desired outcome</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    Start[Start] --&gt; H1[H]
+    Start --&gt; T1[T]
+    H1 --&gt; H2[H]
+    H1 --&gt; T2[T]
+    T1 --&gt; H3[H]
+    T1 --&gt; T3[T]
+    
+    H2 --&gt; HH([HH: 1/4])
+    T2 --&gt; HT([HT: 1/4])
+    H3 --&gt; TH([TH: 1/4])
+    T3 --&gt; TT([TT: 1/4])
+    
+    linkStyle 0,2,3 stroke:#1e88e5,stroke-width:2px
+    linkStyle 4,5 stroke:#ff5252,stroke-width:2px
+    linkStyle 1 stroke:#ff5252,stroke-width:2px
+    
+    style Start fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style H1 fill:#bbdefb,stroke:#1e88e5,stroke-width:2px
+    style T1 fill:#ffcdd2,stroke:#ff5252,stroke-width:2px
+    style H2 fill:#bbdefb,stroke:#1e88e5,stroke-width:2px
+    style T2 fill:#ffcdd2,stroke:#ff5252,stroke-width:2px
+    style H3 fill:#bbdefb,stroke:#1e88e5,stroke-width:2px
+    style T3 fill:#ffcdd2,stroke:#ff5252,stroke-width:2px
+    
+    style HH fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px
+    style HT fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px
+    style TH fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px
+    style TT fill:#ffebee,stroke:#ff5252,stroke-width:2px
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This diagram shows: - Blue paths and nodes represent Heads (H) - Red paths and nodes represent Tails (T) - Each branch splits the previous outcomes in half (probability 1/2) - Final outcomes (HH, HT, TH, TT) each have probability 1/4 - To find P(at least one H), we add HH + HT + TH = 3/4 - To find P(two H), we multiply along the HH path: 1/2 × 1/2 = 1/4</p>
 </section>
 </section>
 <section id="why-focus-on-discrete-probability" class="level2" data-number="17.2">
@@ -501,12 +579,12 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section id="foundations-set-theory-and-power-sets" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="foundations-set-theory-and-power-sets"><span class="header-section-number">17.4</span> Foundations: Set Theory and Power Sets</h2>
-<p>Before we can understand probability, we need to grasp some fundamental concepts from set theory. A set is simply a collection of distinct objects. The power set of a set, denoted as <span class="math inline">\mathcal{P}(S)</span> or <span class="math inline">2^S</span>, is the set of all possible subsets of S, including the empty set and S itself. This concept is crucial in probability theory because it helps us understand the relationship between the sample space (all possible outcomes) and the event space (all possible events we might want to consider).</p>
+<section id="set-theory-and-power-sets-event-space" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="set-theory-and-power-sets-event-space"><span class="header-section-number">17.4</span> Set Theory and Power Sets (Event Space)</h2>
+<p>The power set of a set, denoted as <span class="math inline">\mathcal{F}(S)</span> or <span class="math inline">2^S</span>, is the set of all possible subsets of S, including the empty set and S itself. This concept is crucial in probability theory because it helps us understand the relationship between the sample space (all possible outcomes) and the event space (all possible events we might want to consider).</p>
 <p>Let’s explore this with a simple example. Consider flipping a single coin where: <span class="math inline">S = \{H, T\}</span> (our sample space)</p>
 <p>The power set would be:</p>
-<p><span class="math inline">\mathcal{P}(S) = \{\emptyset, \{H\}, \{T\}, \{H,T\}\}</span></p>
+<p><span class="math inline">\mathcal{F}(S) = \{\emptyset, \{H\}, \{T\}, \{H,T\}\}</span></p>
 <p>Each element in the power set represents a possible event. For instance:</p>
 <ul>
 <li><span class="math inline">\emptyset</span>: The impossible event (e.g., the coin landing neither heads nor tails)</li>
@@ -582,28 +660,6 @@ window.Quarto = {
 <li>P(getting at least one head) = <span class="math inline">\frac{|\{HH,HT,TH\}|}{|\{HH,HT,TH,TT\}|} = \frac{3}{4} = 0.75</span></li>
 </ul>
 <p>This classical definition, while simple, serves as a foundation for understanding more complex probability concepts. Let’s now explore these ideas further with set operations.</p>
-</section>
-<section id="basic-set-concepts" class="level3" data-number="17.4.4">
-<h3 data-number="17.4.4" class="anchored" data-anchor-id="basic-set-concepts"><span class="header-section-number">17.4.4</span> Basic Set Concepts</h3>
-<p>A set can be defined by:</p>
-<ul>
-<li><p>Listing all elements: <span class="math inline">A = \{1, 2, 3\}</span></p></li>
-<li><p>Describing a property: <span class="math inline">B = \{\text{x | x is a positive integer less than 4}\}</span></p></li>
-</ul>
-<p>The empty set <span class="math inline">\emptyset</span> contains no elements.</p>
-</section>
-<section id="set-operations" class="level3" data-number="17.4.5">
-<h3 data-number="17.4.5" class="anchored" data-anchor-id="set-operations"><span class="header-section-number">17.4.5</span> Set Operations</h3>
-<p>Given two sets <span class="math inline">A</span> and <span class="math inline">B</span>:</p>
-<ol type="1">
-<li><p>Union (<span class="math inline">A \cup B</span>): Elements in either A OR B (or both)</p></li>
-<li><p>Intersection (<span class="math inline">A \cap B</span>): Elements in BOTH A AND B</p></li>
-<li><p>Complement (<span class="math inline">A^c</span>): Elements NOT in A</p></li>
-<li><p>Difference (<span class="math inline">A \setminus B</span>): Elements in A but NOT in B</p></li>
-</ol>
-<p>These operations follow important laws like:</p>
-<p><span class="math display">(A \cup B)^c = A^c \cap B^c</span> (DeMorgan’s Law)</p>
-<p><span class="math display">(A \cup (B \cap C) = (A \cup B) \cap (A \cup C)</span> (Distributive Law)</p>
 </section>
 </section>
 <section id="sample-space-and-events" class="level2" data-number="17.5">

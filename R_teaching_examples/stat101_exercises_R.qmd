@@ -219,8 +219,6 @@ cat("Kendall's Tau:", round(cor(data$stress_level, data$cognitive_performance, m
 DM <- c(3, 4, 5, 6, 7, 8)
 LHI <- c(15.5, 14.25, 13.5, 13.5, 13, 12.75)
 
-DM <- c(3, 4, 5, 6, 7, 8)
-LHI <- c(15.5, 12.25, 11.5, 11.5, 11, 10.75)
 
 cat("Covariance:", round(cov(DM, LHI), 2), "\n")
 cat("Pearson Correlation:", round(cor(DM, LHI, method = "pearson"), 2), "\n")
@@ -272,6 +270,9 @@ summary(model.1)
 DM <- c(4,10,3,8,7,4,6,2,7,14)
 LHI <- c(12,8,15,10,6,13,11,16,9,5)
 
+DM <- c(4,10,3,8,7,4)
+LHI <- c(12,8,15,10,6,13)
+
 cat("Variance of DM:", round(var(DM), 2), "\n")
 cat("Variance of LHI:", round(var(LHI), 2), "\n")
 cat("Standard Deviation of DM:", round(sd(DM), 2), "\n")
@@ -285,7 +286,7 @@ data <- data.frame(DM = DM, LHI = LHI)
 
 ggplot(data, aes(x = DM, y = LHI)) +
   geom_point(size = 3, color = "blue") +
-  geom_smooth(method = "loess", se = FALSE, color = "red", linetype = "dashed") +
+  geom_smooth(method = "lm", se = FALSE, color = "red", linetype = "dashed") +
   labs(x = "District Magnitude (DM)", y = "LH Index",
        title = "Relationship between District Magnitude and LH Index") +
   theme_minimal()
