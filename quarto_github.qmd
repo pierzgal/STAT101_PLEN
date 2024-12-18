@@ -490,8 +490,6 @@ git push origin main
     -   Ensure "main" and "/docs" are selected
     -   Wait a few minutes for changes to appear
 
-## Getting Help
-
 If you encounter issues:
 
 1.  **Check Error Messages**:
@@ -503,3 +501,144 @@ If you encounter issues:
     -   RStudio Community: https://community.rstudio.com
 
 Remember: Version control has a learning curve. Take your time, commit often, and don't hesitate to ask for help when needed.
+
+
+
+# Troubleshooting Guide: GitHub, RStudio, and Quarto Integration on Mac
+
+This guide addresses common issues when setting up and managing Git repositories for Quarto projects using RStudio on macOS.
+
+## Initial Setup
+
+### 1. Creating a Git Repository for Your R Project
+
+To initialize a Git repository for your R project, use the `usethis` package:
+
+```r
+usethis::use_git()
+```
+
+This command will:
+- Set the active project directory
+- Create a `.gitignore` file with common R-specific exclusions
+- Add important files like `.Rdata`, `.httr-oauth`, `.DS_Store`, and `.quarto` to `.gitignore`
+- Prompt you to commit initial files
+
+When prompted about committing files, select "I agree" (option 3) to proceed with the initial commit.
+
+### 2. Connecting to GitHub
+
+After initializing the local Git repository, connect it to GitHub using:
+
+```r
+usethis::use_github()
+```
+
+## Common Issues and Solutions
+
+### Issue 1: Default Branch Mismatch
+
+#### Problem
+You might encounter this error:
+```
+Error in `git_default_branch()`:
+✖ Default branch mismatch between local repo and remote.
+```
+
+This occurs because your local repository uses "master" as the default branch while GitHub uses "main".
+
+#### Solution
+1. Run the following command to fix the branch mismatch:
+```r
+usethis::git_default_branch_rediscover()
+```
+
+2. This will automatically:
+   - Detect the default branch of the remote repository
+   - Update your local repository's default branch
+   - Move from "master" to "main"
+
+### Issue 2: Push Failures Due to Buffer Size
+
+#### Problem
+When pushing large repositories, you might see errors like:
+```
+error: RPC failed; HTTP 400 curl 22 The requested URL returned error: 400
+send-pack: unexpected disconnect while reading sideband packet
+fatal: the remote end hung up unexpectedly
+```
+
+This typically occurs when pushing large files exceeds the default HTTP buffer size.
+
+#### Solution
+1. Open Terminal and increase the Git buffer size:
+```bash
+git config http.postBuffer 524288000
+```
+
+2. This sets the buffer to 500MB, which should be sufficient for most projects
+3. You can adjust the size further if needed
+
+## Best Practices for Quarto Projects
+
+### File Organization
+Common files in a Quarto project that should be version controlled:
+- `_quarto.yml` (project configuration)
+- `*.qmd` files (content files)
+- `references.bib` (bibliography)
+- `*.Rproj` file (project settings)
+
+### Recommended `.gitignore` Entries
+```
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+.quarto
+/_site/
+/_book/
+/docs/
+*.html
+```
+
+## Workflow Tips
+
+1. **Regular Commits**: Make small, frequent commits with meaningful messages
+2. **Pull Before Push**: Always pull changes before pushing to avoid conflicts
+3. **Branch Management**: Create feature branches for major changes
+4. **Review Changes**: Use `git status` to review changes before committing
+
+## Troubleshooting Checklist
+
+If you encounter issues:
+
+1. Verify Git installation:
+   ```bash
+   git --version
+   ```
+
+2. Check Git configuration:
+   ```bash
+   git config --list
+   ```
+
+3. Verify remote connection:
+   ```bash
+   git remote -v
+   ```
+
+4. Ensure you have the latest version of `usethis`:
+   ```r
+   update.packages("usethis")
+   ```
+
+## Additional Resources
+
+- [Happy Git with R](https://happygitwithr.com/)
+- [Quarto Documentation](https://quarto.org/)
+- [GitHub Documentation](https://docs.github.com/)
+- [RStudio Git Integration Guide](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
+
+Remember to keep your R packages updated and regularly check for updates to RStudio and Quarto for the best integration experience.
+

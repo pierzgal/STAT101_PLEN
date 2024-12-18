@@ -1,36 +1,27 @@
 # Introduction to (Discrete) Probability
 
-
-## Fundamental Concepts
-
-Before we dive into probability theory, let's establish some foundational concepts that we'll use throughout this course:
+Before we dive into probability theory, let's establish some foundational concepts that we'll use throughout this course.
 
 
 ### Basic Set Concepts
 
-Before we can understand probability, we need to grasp some fundamental concepts from set theory. A set is simply a collection of distinct objects. 
+Before we can understand probability, we need to grasp some fundamental concepts from set theory. A set is simply a collection of distinct objects.
 
 A set can be defined by:
 
 -   Listing all elements: $A = \{1, 2, 3\}$
-
 -   Describing a property: $B = \{\text{x | x is a positive integer less than 4}\}$
 
 The empty set $\emptyset$ contains no elements.
-
 
 ### Set Operations
 
 Given two sets $A$ and $B$:
 
 1.  Union ($A \cup B$): Elements in either A OR B (or both)
-
 2.  Intersection ($A \cap B$): Elements in BOTH A AND B
-
 3.  Complement ($A^c$): Elements NOT in A
-
 4.  Difference ($A \setminus B$): Elements in A but NOT in B
-
 
 These operations follow important laws like:
 
@@ -38,10 +29,185 @@ $$(A \cup B)^c = A^c \cap B^c$$ (DeMorgan's Law)
 
 $$(A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$$ (Distributive Law)
 
+### Set Theory as a Language for Probability
+
+Set theory provides the fundamental mathematical framework for understanding and working with probability theory. The following table illustrates the key parallels between set theory concepts and their probability theory counterparts.
+
+| Set Theory | Probability Theory | Description |
+|--------------------|------------------------------|----------------------|
+| $\Omega$ (Universal set) | Sample space ($S$) | The set of all possible outcomes in the experiment |
+| $x \in A$ (Element) | Outcome | A single result from the sample space |
+| $A \subseteq \Omega$ (Subset) | Event | A collection of outcomes we're interested in |
+| $\emptyset$ (Empty set) | Impossible event | An event that cannot occur ($P(\emptyset) = 0$) |
+| $\Omega$ (Universal set) | Certain event | An event that must occur ($P(\Omega) = 1$) |
+| $A \cup B$ (Union) | Either A OR B occurs | $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ |
+| $A \cap B$ (Intersection) | Both A AND B occur | $P(A \cap B) = P(A)P(B)$ (if independent) |
+| $A'$ (Complement) | Event A does not occur | $P(A') = 1 - P(A)$ |
+| $A \cap B = \emptyset$ (Disjoint sets) | Mutually exclusive events | $P(A \cap B) = 0$ |
+| Partition of $\Omega$ | Complete set of events | $\sum P(A_i) = 1$ |
+| $A - B$ (Set difference) | A occurs without B | $P(A - B) = P(A) - P(A \cap B)$ |
+| De Morgan's Laws | Probability Laws | $P((A \cup B)') = P(A') \cap P(B')$ |
+
+::: {.callout-note}
+## Cardinality in Probability: Quick Reference
+
+In probability theory, we denote cardinality (the number of elements in a set) using vertical bars: |A|
+
+Key points:
+
+- |A| means "number of elements in set A"
+- For a finite set like A = {1, 2, 3}, we have |A| = 3
+- Empty set has cardinality zero: |∅| = 0
+- For two sets A and B:
+
+  - Union (no overlap): |A ∪ B| = |A| + |B|
+  - Union (with overlap): |A ∪ B| = |A| + |B| - |A ∩ B|
+  - Cartesian product: |A × B| = |A| × |B|
+
+**Example**: 
+
+If A = {♠, ♣, ♥, ♦} and B = {K, Q, J}, then:
+- |A| = 4
+- |B| = 3
+- |A × B| = 12 (all possible combinations)
+:::
+
+
+## Counting Rules in Probability: Multiplication and Addition Rules
+
+### The Multiplication Rule: "AND" Situations
+
+When we need to count outcomes where we need to make multiple choices in sequence (one AND another AND another...), we multiply the number of possibilities for each choice.
+
+### Simple Example: Creating a Password
+Imagine creating a 3-character password where:
+
+- First character must be a letter (26 choices)
+- Second character must be a digit (10 choices)
+- Third character must be a symbol (@, #, $, % only - 4 choices)
+
+Using the multiplication rule:
+$$\text{Total possible passwords} = 26 \times 10 \times 4 = 1,040$$
+
+This works because for EACH first character, we have ALL 10 digits available, and for EACH of those combinations, we have ALL 4 symbols available.
+
+### The Addition Rule: "OR" Situations
+
+When we want to count outcomes that can happen in different ways (this OR that), we add the number of possibilities.
+
+#### Simple Example: License Plates
+Let's say a special license plate can either be:
+
+- 3 letters followed by 3 digits, OR
+- 3 digits followed by 3 letters
+
+For the first type: $$26 \times 26 \times 26 \times 10 \times 10 \times 10$$
+For the second type: $$10 \times 10 \times 10 \times 26 \times 26 \times 26$$
+
+Total number of possible plates:
+$$\text{Total} = \text{First type} + \text{Second type}$$
+
+### The Addition Rule for Non-Mutually Exclusive Events
+
+Sometimes events can overlap. When this happens, we need to subtract the overlap to avoid counting it twice.
+
+For events A and B:
+$$P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)$$
+
+#### Real-World Example: Student Clubs
+In a class of 100 students:
+
+- 45 play sports
+- 55 are in academic clubs
+- 20 do both
+
+To find how many students are in either sports OR academic clubs:
+$$\text{Total in either} = 45 + 55 - 20 = 80 \text{ students}$$
+
+We subtract 20 because otherwise those students would be counted twice!
+
+
+#### The Inclusion-Exclusion Principle
+
+**Venn diagrams are useful to visualize the inclusion-exclusion principle**, which states that for two sets A and B, the number of elements in their union equals the sum of elements in each set, minus the elements they share in common (to avoid double counting).
+
+For general sets, this can be written as:
+
+$$
+|A \cup B| = |A| + |B| - |A \cap B|
+$$ For three sets A, B, and C, the formula becomes more complex:
+
+$$
+|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |B \cap C| - |A \cap C| + |A \cap B \cap C|
+$$
+
+![https://en.wikipedia.org/wiki/Inclusion%E2%80%93exclusion_principle](stat_imgs/Inclusion-exclusion.svg)
+
+Let's work through a simple example to make this concrete:
+
+Imagine we're counting students in a school who play either basketball (set A) or volleyball (set B). Let's say:
+
+-   15 students play basketball (\|A\| = 15)
+-   12 students play volleyball (\|B\| = 12)
+-   5 students play both sports (\|A ∩ B\| = 5)
+
+To find the total number of students who play either sport (\|A ∪ B\|), we calculate:
+
+$$
+|A \cup B| = |A| + |B| - |A \cap B| = 15 + 12 - 5 = 22
+$$
+
+The reason we subtract the intersection is that these 5 students who play both sports were counted twice (once in \|A\| and once in \|B\|), so we need to subtract once to avoid double counting.
+
+This principle extends to probability theory, where for events A and B:
+
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
+$$
+
+
+### Combining Both Rules: A Complex Example
+
+Let's create a password system where:
+
+- Password must be 4 characters long
+- Must contain at least one symbol (@, #)
+- All other characters can be letters
+
+This requires combining both rules because:
+
+1. We can have a symbol in position 1, 2, 3, or 4 (OR - Addition Rule)
+2. For each position of the symbol, we need to fill the other spots (AND - Multiplication Rule)
+
+Let's solve step by step:
+
+1. Symbol in first position:
+   $$2 \times 26 \times 26 \times 26$$
+
+2. Symbol in second position:
+   $$26 \times 2 \times 26 \times 26$$
+
+3. Symbol in third position:
+   $$26 \times 26 \times 2 \times 26$$
+
+4. Symbol in fourth position:
+   $$26 \times 26 \times 26 \times 2$$
+
+Total possibilities:
+$$\text{Total} = (2 \times 26^3) \times 4 = 140,608$$
+
+This example shows how we:
+
+1. Used multiplication within each case (filling positions)
+2. Used addition to combine all possible positions
+3. Simplified the final answer
+
+Remember: These rules help us count possibilities systematically, breaking complex problems into manageable pieces!
+
 
 ### Random Experiments and Outcomes
 
-A random experiment is any procedure that meets these criteria:
+A **random experiment** is any procedure that meets these criteria:
 
 1.  It can be repeated under identical conditions
 2.  All possible results can be described in advance
@@ -53,8 +219,7 @@ For example, rolling a die is a random experiment because:
 -   We know all possible results (1 through 6) before rolling
 -   We cannot predict exactly which number will appear on any given roll
 
-An outcome is a single possible result of a random experiment. When we roll a die, getting a 3 is an outcome. When we flip a coin, getting heads is an outcome. Each outcome represents the finest level of detail we care about in our experiment.
-
+An **outcome** is a single possible result of a random experiment. When we roll a die, getting a 3 is an outcome. When we flip a coin, getting heads is an outcome.
 
 ### Sample Space
 
@@ -69,44 +234,42 @@ The sample space should be:
 1.  Exhaustive (includes all possible outcomes)
 2.  Mutually exclusive (outcomes cannot overlap)
 
-
 ### Events
 
-An event is a set of outcomes that we're interested in. While an outcome is a single result, an event can contain multiple outcomes. For instance:
+An **event** is a set of outcomes that we're interested in. While an outcome is a single result, an event can contain multiple outcomes. For instance:
 
 -   When rolling a die, "getting an even number" is an event containing the outcomes {2, 4, 6}
 -   When drawing a card, "getting a heart" is an event containing thirteen outcomes
 -   When flipping two coins, "getting at least one head" is an event containing three outcomes {HH, HT, TH}
 
+In probability theory, a **tree diagram** may be used to represent a sample space and help calculate probabilities. A tree diagram may represent a series of independent events (such as a set of coin flips) or conditional probabilities (such as drawing cards from a deck, without replacing the cards).
 
-Events are subsets of the sample space, and we can perform set operations on them. Let's understand these operations both conceptually and through their connection to probability calculations:
+**Events are subsets of the sample space, and we can perform set operations on them**.
 
-Union ($A \cup B$) represents combining events - it gives us all outcomes that occur in either $A$ OR $B$ (or both). Think of it like combining two groups of students: if we have a group of math club members and a group of chess club members, their union includes everyone who's in either club (being careful not to count students in both clubs twice). When using tree diagrams, if we want the probability of getting either outcome A OR outcome B, we add the probabilities of the different paths that lead to these outcomes.
 
-Intersection ($A \cap B$) finds shared outcomes - it gives us outcomes that occur in both $A$ AND $B$ simultaneously. Using our club analogy, the intersection would be students who are members of both the math club AND chess club. In tree diagrams, when we follow a path where both events A AND B occur, we multiply the probabilities along that path. This multiplication makes sense because each branch represents taking a portion of the previous outcomes - like taking half of a half to get a quarter.
+### Visualizing Sample Spaces
 
-Complement ($A^c$ or $A'$) gives us everything that's NOT in $A$. If $A$ represents math club members, $A^c$ would be all students who are not in the math club. In probability terms, if we know the probability of A, we can find the probability of "not A" by subtracting from 1.
+In probability theory and statistics, being able to visualize sample spaces is crucial for understanding possible outcomes and their relationships. We'll explore three main approaches to visualizing sample spaces:
 
-Let's see these concepts in action:
+1.  Venn Diagrams
+2.  Tree Diagrams
+3.  Grid/Matrix Diagrams
 
-1. With a single die roll:
-   - Event $A$: "rolling an even number" = $\{2, 4, 6\}$
-   - Event $B$: "rolling a number greater than 4" = $\{5, 6\}$
-   - $A \cup B = \{2, 4, 5, 6\}$ (all numbers that are either even OR greater than 4)
-   - $A \cap B = \{6\}$ (the only number that is both even AND greater than 4)
-   - $A^c = \{1, 3, 5\}$ (all numbers that aren't even)
+#### Venn Diagrams
 
-2. With two coin flips:
-   - To find P(getting at least one heads), we ADD the probabilities of all paths leading to HT, TH, or HH
-   - To find P(getting two heads), we MULTIPLY along the HH path: $\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$, because:
-     * First H takes half of all possible outcomes
-     * Second H takes half of those first-H outcomes
-     * Just like taking half of a half gives you a quarter
+Venn diagrams provide a powerful visual tool for understanding sample spaces.
 
-The key is understanding that in tree diagrams:
-- We MULTIPLY along a path because each branch takes a portion of the previous outcomes
-- We ADD different paths because they represent different ways to achieve our desired outcome
+-   A Venn diagram is a visual representation that shows relationships between different sets or groups using overlapping circles.
+-   Think of each circle in a Venn diagram as a container that holds items with specific characteristics. Where these circles overlap, we find items that share characteristics of multiple groups.
 
+In probability theory, our sample space (usually denoted by Ω or S) represents all possible outcomes of an experiment. When we draw a Venn diagram, the rectangular frame represents this entire sample space, with a probability of 1. Any event is then a subset of this space.
+
+![](stat_imgs/venn-diagram.svg)
+
+
+#### Tree Diagrams
+
+Tree diagrams are particularly useful for visualizing sequential events and their outcomes. Here's a tree diagram showing a simple probability experiment: We toss a fair coin twice.
 
 ```{mermaid}
 graph LR
@@ -134,56 +297,166 @@ graph LR
     style H3 fill:#bbdefb,stroke:#1e88e5,stroke-width:2px
     style T3 fill:#ffcdd2,stroke:#ff5252,stroke-width:2px
     
-    style HH fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px
-    style HT fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px
-    style TH fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px
-    style TT fill:#ffebee,stroke:#ff5252,stroke-width:2px
+    style HH fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style HT fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style TH fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style TT fill:#f5f5f5,stroke:#333,stroke-width:2px
+```
+
+
+#### Grid/Matrix Diagrams
+
+Grid diagrams are excellent for showing combinations of events.
+
+Scenario. We have 7 balls in the bag:
+
+-   4 red balls (let's call them R₁, R₂, R₃, R₄)
+-   3 black balls (B₁, B₂, B₃)
+-   We'll draw 2 balls without replacement
+-   Order doesn't matter (like picking team members)
+
+Let's visualize the entire sample space using a grid where each cell represents selecting two balls in order:
+
+| First Draw →  | R₁  | R₂  | R₃  | R₄  | B₁  | B₂  | B₃  |
+|---------------|-----|-----|-----|-----|-----|-----|-----|
+| Second Draw ↓ |     |     |     |     |     |     |     |
+| R₁            | X   | ⚫  | ⚫  | ⚫  | ⚪  | ⚪  | ⚪  |
+| R₂            | ⚫  | X   | ⚫  | ⚫  | ⚪  | ⚪  | ⚪  |
+| R₃            | ⚫  | ⚫  | X   | ⚫  | ⚪  | ⚪  | ⚪  |
+| R₄            | ⚫  | ⚫  | ⚫  | X   | ⚪  | ⚪  | ⚪  |
+| B₁            | ⚪  | ⚪  | ⚪  | ⚪  | X   | ⚫  | ⚫  |
+| B₂            | ⚪  | ⚪  | ⚪  | ⚪  | ⚫  | X   | ⚫  |
+| B₃            | ⚪  | ⚪  | ⚪  | ⚪  | ⚫  | ⚫  | X   |
+
+Where:
+
+-   X: Impossible (same ball twice)
+-   ⚫: Both red or both black
+-   ⚪: Multi-colored outcome
+
+From this grid:
+
+1.  Both red = 12 outcomes (⚫ in upper-left quadrant)
+2.  Red then black = 12 outcomes (⚪ in upper-right)
+3.  Total possible outcomes = 42 (remove diagonal X's)
+
+
+#### Tips for Choosing the Right Visualization
+
+-   Use **Venn diagrams** when:
+    -   Showing overlapping sets or events
+    -   Illustrating unions and intersections
+    -   Demonstrating mutual exclusivity
+-   Use **Tree diagrams** when:
+    -   Showing sequential events
+    -   Illustrating conditional probability
+    -   Displaying all possible pathways of outcomes
+-   Use **Grid diagrams** when:
+    -   Showing combinations of two independent events
+    -   Displaying frequency distributions
+    -   Illustrating joint probability distributions
+
+
+### Basic Set Operations Using Venn Diagrams
+
+![https://www.nagwa.com/en/explainers/758149689032/](stat_imgs/set_operations_1.svg)
+
+-   **Union** ($A \cup B$) represents combining events - it gives us all outcomes that occur in either $A$ OR $B$ (or both). Think of it like combining two groups of students: if we have a group of math club members and a group of chess club members, their union includes everyone who's in either club (being careful not to count students in both clubs twice). When using tree diagrams, if we want the probability of getting either outcome A OR outcome B, we add the probabilities of the different paths that lead to these outcomes.
+
+-   **Intersection** ($A \cap B$) finds shared outcomes - it gives us outcomes that occur in both $A$ AND $B$ simultaneously. Using our club analogy, the intersection would be students who are members of both the math club AND chess club. In tree diagrams, when we follow a path where both events A AND B occur, we multiply the probabilities along that path. This multiplication makes sense because each branch represents taking a portion of the previous outcomes - like taking half of a half to get a quarter.
+
+-   **Complement** ($A^c$ or $A'$) gives us everything that's NOT in $A$. If $A$ represents math club members, $A^c$ would be all students who are not in the math club. In probability terms, if we know the probability of A, we can find the probability of "not A" by subtracting from 1.
+
+Let's see these concepts in action:
+
+1.  With a single die roll:
+
+    -   Event $A$: "rolling an even number" = $\{2, 4, 6\}$
+    -   Event $B$: "rolling a number greater than 4" = $\{5, 6\}$
+    -   $A \cup B = \{2, 4, 5, 6\}$ (all numbers that are either even OR greater than 4)
+    -   $A \cap B = \{6\}$ (the only number that is both even AND greater than 4)
+    -   $A^c = \{1, 3, 5\}$ (all numbers that aren't even)
+
+2.  With two coin flips:
+
+    -   To find P(getting at least one heads), we **ADD** the probabilities of all paths leading to HT, TH, or HH
+    -   To find P(getting two heads), we **MULTIPLY** along the HH path: $\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$, because:
+        -   First H takes half of all possible outcomes
+        -   Second H takes half of those first-H outcomes
+        -   Just like taking half of a half gives you a quarter
+
+In tree diagrams:
+
+-   We **MULTIPLY** along a path because each branch takes a portion of the previous outcomes.
+-   We **ADD** different paths because they represent different ways to achieve our desired outcome.
+
+```{mermaid}
+graph LR
+    Start[Start] --> H1[H]
+    Start --> T1[T]
+    H1 --> H2[H]
+    H1 --> T2[T]
+    T1 --> H3[H]
+    T1 --> T3[T]
+    
+    H2 --> HH([HH: 1/4])
+    T2 --> HT([HT: 1/4])
+    H3 --> TH([TH: 1/4])
+    T3 --> TT([TT: 1/4])
+    
+    linkStyle 0,2,3 stroke:#1e88e5,stroke-width:2px
+    linkStyle 4,5 stroke:#ff5252,stroke-width:2px
+    linkStyle 1 stroke:#ff5252,stroke-width:2px
+    
+    style Start fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style H1 fill:#bbdefb,stroke:#1e88e5,stroke-width:2px
+    style T1 fill:#ffcdd2,stroke:#ff5252,stroke-width:2px
+    style H2 fill:#bbdefb,stroke:#1e88e5,stroke-width:2px
+    style T2 fill:#ffcdd2,stroke:#ff5252,stroke-width:2px
+    style H3 fill:#bbdefb,stroke:#1e88e5,stroke-width:2px
+    style T3 fill:#ffcdd2,stroke:#ff5252,stroke-width:2px
+    
+    style HH fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style HT fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style TH fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style TT fill:#f5f5f5,stroke:#333,stroke-width:2px
 ```
 
 This diagram shows:
-- Blue paths and nodes represent Heads (H)
-- Red paths and nodes represent Tails (T)
-- Each branch splits the previous outcomes in half (probability 1/2)
-- Final outcomes (HH, HT, TH, TT) each have probability 1/4
-- To find P(at least one H), we add HH + HT + TH = 3/4
-- To find P(two H), we multiply along the HH path: 1/2 × 1/2 = 1/4
 
-
+-   Blue paths and nodes represent Heads (H)
+-   Red paths and nodes represent Tails (T)
+-   Each branch splits the previous outcomes in half (probability 1/2)
+-   Final outcomes (HH, HT, TH, TT) each have probability 1/4
+-   To find P(at least one H), we add HH + HT + TH = 3/4
+-   To find P(two H), we multiply along the HH path: 1/2 × 1/2 = 1/4
 
 ## Why Focus on Discrete Probability?
 
 When we say a probability problem is "discrete," we mean we're dealing with situations where:
 
 1.  We can count the number of possible outcomes
-
 2.  Each outcome is separate and distinct from others
-
 3.  We can list all possible outcomes in our sample space
 
 For example, when we:
 
 -   Draw balls from an urn
-
 -   Flip coins or roll dice
-
 -   Count successes in a sequence of trials
-
 -   Select items from a group
 
 This approach is particularly valuable because:
 
 1.  It allows us to build strong intuition about probability without requiring calculus
-
 2.  It directly connects to many real-world applications in statistics
-
 3.  It provides the foundation for understanding the binomial distribution, which we'll use later for hypothesis testing
 
 ## Key Questions Before Calculating Probabilities
 
 Before we can correctly calculate probabilities in any discrete scenario, we must answer two fundamental questions:
 
-
-### 1. Does Order Matter?
+1.  **Does Order Matter?**
 
 The importance of order fundamentally changes how we count outcomes. Consider selecting two cards from a deck:
 
@@ -192,7 +465,7 @@ The importance of order fundamentally changes how we count outcomes. Consider se
 
 When order matters, we're dealing with permutations. When order doesn't matter, we're dealing with combinations. This distinction dramatically affects the number of possible outcomes and, consequently, our probability calculations.
 
-### 2. Is Sampling With or Without Replacement?
+2.  **Is Sampling With or Without Replacement?**
 
 After selecting an item, do we put it back before the next selection? This question fundamentally changes the probability structure:
 
@@ -203,12 +476,6 @@ These sampling schemes lead to different probability models:
 
 -   With replacement leads to independent events and often simpler calculations
 -   Without replacement leads to dependent events and requires conditional probability
-
-Understanding these two questions helps us:
-
-1.  Choose the correct counting method (permutations vs combinations)
-2.  Determine whether we can treat events as independent
-3.  Decide whether we need to use conditional probability
 
 ## Set Theory and Power Sets (Event Space)
 
@@ -233,9 +500,9 @@ For a set with $n$ elements, its power set will have $2^n$ elements. This is bec
 
 There's an important distinction between outcomes (also called simple events) and events:
 
-1.  An outcome or simple event is a single, indivisible result of an experiment. For example, getting heads on a single coin flip is an outcome.
+1.  **An outcome or simple event is a single, indivisible result of an experiment**. For example, getting heads on a single coin flip is an outcome.
 
-2.  An event is a set of outcomes - it can contain one outcome, multiple outcomes, or even no outcomes (the empty set). For example, "getting at least one head when flipping two coins" is an event containing multiple outcomes.
+2.  **An event is a set of outcomes** - it can contain one outcome, multiple outcomes, or even no outcomes (the empty set). For example, "getting at least one head when flipping two coins" is an event containing multiple outcomes.
 
 Let's illustrate this with two coin flips where:
 
@@ -251,8 +518,7 @@ The power set (all possible events) would contain $2^4 = 16$ events:
 
 ### Understanding Set Relations: Elements vs Subsets
 
-One of the most foundational distinctions in set theory – and one that often creates confusion for new students – is the difference between an element belonging to a set and one set being a subset of another. Let's explore this critical distinction through everyday analogies and probability examples.
-
+**The difference between an element belonging to a set and one set being a subset of another**.
 
 #### The "Belongs To" Relationship ($\in$)
 
@@ -270,33 +536,40 @@ We can say:
 
 #### The "Is Contained In" Relationship ($\subseteq$)
 
-A subset relationship (written as $A \subseteq B$) describes when one set is entirely contained within another set. Every element of the smaller set must appear in the larger set. Think of Russian nesting dolls – each smaller doll fits completely inside the larger ones.
+A subset relationship (written as $A \subseteq B$) describes when one set is entirely contained within another set. Every element of the smaller set must appear in the larger set. This is different from set membership ($\in$), which describes when a single element belongs to a set.
 
-Let's look at some sets of cards:
+To understand the distinction, let's look at some examples:
 
-$H$ = all hearts $F$ = face cards of hearts = $\{J♥, Q♥, K♥\}$ $R$ = red cards
+Consider the following sets:
 
-These sets demonstrate important subset relationships:
+-   $A = \{1, 2\}$
+-   $B = \{1, 2, 3, 4\}$
+-   $C = \{1\}$
 
-$F \subseteq H$ is true because every heart face card is also a heart. Similarly, $H \subseteq R$ is true because all hearts are red cards. An interesting case is $\{A♥\} \subseteq H$, which is true because the set containing just the ace of hearts is contained within the set of all hearts.
+For set membership ($\in$):
 
-#### Why This Matters in Probability
+-   $1 \in A$ (the number 1 is an element of set A)
+-   $\{1\} \notin A$ (the set containing 1 is not an element of A)
+-   $2 \in B$ (the number 2 is an element of B)
 
-This distinction becomes crucial when working with events in probability. Consider rolling a die. We can define our sample space and events:
+For subset relationships ($\subseteq$):
 
-$S = \{1, 2, 3, 4, 5, 6\}$ represents our sample space $E = \{2, 4, 6\}$ represents the event of rolling an even number $F = \{6\}$ represents the event of rolling a six
+-   $A \subseteq B$ (all elements of A are in B)
+-   $C \subseteq A$ (all elements of C are in A)
+-   $\{1\} \subseteq A$ (the set containing 1 is a subset of A)
 
-We use these relations differently in probability contexts: When discussing outcomes: $6 \in E$ tells us "6 is one of the possible even rolls" When discussing events: $F \subseteq E$ tells us "the event of rolling a six is contained within the event of rolling an even number"
+A key insight is that while $1 \in A$ is true (1 is an element of A), $\{1\} \in A$ is false (the set containing 1 is not an element of A). However, $\{1\} \subseteq A$ is true (the set containing 1 is a subset of A).
 
-Here's a helpful rule of thumb for working with probability: use $\in$ when checking if a specific outcome belongs to an event, and use $\subseteq$ when comparing one event to another event. This distinction helps us understand the structure of our probability space and apply probability rules correctly.
+Think of it this way: membership ($\in$) asks "Is this single thing in the set?" while subset ($\subseteq$) asks "Is every element of this smaller set found in the larger set?"
 
-This becomes especially important in three key areas of probability theory. First, when defining events as collections of outcomes, we need to be clear about whether we're talking about individual outcomes or sets of outcomes. Second, when working with compound events through unions and intersections, understanding subset relationships helps us calculate probabilities correctly. Third, when applying probability rules to nested events, the subset relationship gives us important inequalities.
+Another helpful example is with the empty set $\emptyset$:
 
-For example, if $A \subseteq B$, then $P(A) \leq P(B)$. This makes intuitive sense – the probability of a more specific event cannot exceed the probability of a more general event that contains it. Understanding the distinction between membership and subset relationships helps us see why this must be true.
+-   $\emptyset \subseteq A$ for any set A (the empty set is a subset of every set)
+-   But $\emptyset \notin A$ unless A specifically contains the empty set as an element
 
-### Classical (Naive) Probability
+### Classical (Naive) Discrete Probability
 
-The classical or naive definition of probability provides a simple way to calculate probabilities when:
+The classical or naive definition (measure) of probability provides a simple way to calculate probabilities when:
 
 1.  The sample space is finite (we can count all possible outcomes)
 2.  All outcomes are equally likely to occur (uniform probability measure)
@@ -314,7 +587,6 @@ For example, when flipping two coins:
 
 This classical definition, while simple, serves as a foundation for understanding more complex probability concepts. Let's now explore these ideas further with set operations.
 
-
 ## Sample Space and Events
 
 The sample space ($\Omega$) contains all possible outcomes of an experiment. An event is a subset of the sample space. Let's understand this through concrete examples.
@@ -324,39 +596,175 @@ The sample space ($\Omega$) contains all possible outcomes of an experiment. An 
 Consider an urn with 3 green and 2 red balls. For drawing one ball:
 
 -   Sample space: $\Omega = \{G_1, G_2, G_3, R_1, R_2\}$
-
 -   Event "draw green": $A = \{G_1, G_2, G_3\}$
-
 -   Event "draw red": $B = \{R_1, R_2\}$
 
 Note that $A \cup B = \Omega$ and $A \cap B = \emptyset$ (these events are mutually exclusive and exhaustive).
 
-## Probability Measure Function
+## Understanding Probability Measures and Related Concepts
+
+A probability measure is a fundamental way to quantify the likelihood of events mathematically. Let's explore this concept and related terms.
+
+### Probability Measure Function
 
 A probability measure $P$ assigns numbers to events following these axioms:
 
 1.  $P(A) \geq 0$ for any event $A$ (non-negativity)
-
 2.  $P(\Omega) = 1$ (normalization)
-
 3.  For disjoint events: $P(A \cup B) = P(A) + P(B)$ (additivity)
+
+### Related Terms
+
+**Probability Distribution**
+
+A probability distribution describes how likely different possible outcomes are. Think of it as a complete description of the probability for every possible event. For example, when rolling a fair six-sided die, each number has a probability of $\frac{1}{6}$. This forms a probability distribution because it tells us the probability for every possible outcome.
+
+**Probability Law**
+
+The probability law is another term for probability distribution. It refers to the rule or pattern that determines how probabilities are assigned to different outcomes. Using our die example, the probability law states that each face has an equal probability of $\frac{1}{6}$.
+
+### Common Types of (Discrete) Distributions
+
+**Uniform Distribution**
+
+The uniform distribution is the simplest distribution where all outcomes have equal probability. Rolling a fair die or flipping a fair coin follows a uniform distribution. For a die, each number has probability $\frac{1}{6}$.
+
+**Binomial Distribution**
+
+The binomial distribution describes the number of successes in a fixed number of independent yes/no experiments. For example, if we flip a coin 10 times, the number of heads follows a binomial distribution. The probability of getting exactly $k$ heads in $n$ flips is:
+
+$$P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}$$
+
+where $p$ is the probability of success on each try.
+
+**Geometric Distribution**
+
+The geometric distribution describes the number of tries needed until the first success occurs. For example, the number of coin flips needed until we get our first heads. The probability of success on the $k$th try is:
+
+$$P(X = k) = (1-p)^{k-1}p$$
+
+where $p$ is the probability of success on each try.
+
+### Simple Example
+
+Let's consider flipping a fair coin:
+
+-   The sample space $\Omega$ contains all possible outcomes: {Heads, Tails}
+
+-   The probability measure assigns: $P(\text{Heads}) = \frac{1}{2}$ and $P(\text{Tails}) = \frac{1}{2}$
+
+-   This forms a uniform distribution since both outcomes are equally likely
+
+-   We can verify the axioms:
+
+    -   Non-negativity: Both $\frac{1}{2} \geq 0$
+    -   Normalization: $\frac{1}{2} + \frac{1}{2} = 1$
+    -   Additivity: If we consider Heads and Tails as disjoint events, their probabilities add up correctly
 
 ### Understanding Through the Urn Example
 
 In our urn with 3 green and 2 red balls:
 
 -   $P(\text{green}) = \frac{3}{5}$
-
 -   $P(\text{red}) = \frac{2}{5}$
-
 -   $P(\text{green}) + P(\text{red}) = 1$
 
+The classical definition of probability assumes:
 
-## Sequential Events and Tree Diagrams
+1.  A finite sample space $\Omega$ with equally likely outcomes ('fair' experiment)
+2.  For an event $A$, probability is defined as: $P(A) = \frac{\text{favorable outcomes}}{\text{total outcomes}}$
 
-Tree diagrams are powerful tools for visualizing sequential events. Each branch represents a possible outcome, and probabilities multiply along paths. Let's explore this through detailed examples.
+In our urn with 3 green and 2 red balls, these assumptions manifest as:
 
-### Example 1: Drawing Two Balls Without Replacement
+-   Sample space $\Omega = \{b_1, b_2, b_3, b_4, b_5\}$ where each ball is equally likely
+-   For green: $P(\text{green}) = \frac{|\text{green balls}|}{|\Omega|} = \frac{3}{5}$
+-   For red: $P(\text{red}) = \frac{|\text{red balls}|}{|\Omega|} = \frac{2}{5}$
+
+Key probability axioms are demonstrated:
+
+1.  Non-negativity: $P(\text{green}), P(\text{red}) \geq 0$
+2.  Normalization: $P(\Omega) = P(\text{green}) + P(\text{red}) = 1$
+3.  Additivity: Since green and red are disjoint events, $P(\text{green or red}) = P(\text{green}) + P(\text{red})$
+
+**REMARK**: Many probabilistic situations have the property that they involve a number of different possible outcomes, all of which are equally likely. For example, Heads and Tails on a coin are equally likely to be tossed, the numbers 1 through 6 on a die are equally likely to be rolled, and the ten balls in the above box are all equally likely to be picked.
+
+**'Naive' (classical) probability definition assumes uniform probability measure (all outcomes equally likely), and finite uniform sample space.**
+
+When considering shapes or elements of the same color in an urn or box, treating them as distinguishable allows you to assume a uniform sample space — equally likely outcomes.
+
+## How to Calculate Basic Probabilities
+
+Let's explore some fundamental probability concepts using a simple example with colored balls in an urn/bag. This example will help us understand:
+
+-   How to calculate basic probabilities using the tree diagrams
+-   How replacement affects probability
+-   How the importance of order affects our calculations
+-   How to break down probability problems into steps
+
+Tree diagrams are powerful tools for visualizing sequential events. Each branch represents a possible outcome, and probabilities multiply along paths.
+
+::: callout-note
+## Sampling Methods Overview
+
+| Sampling Method | With Replacement | Without Replacement |
+|------------------|:--------------------------|:--------------------------|
+| **Order Matters** | Each selection sequence is counted separately | Each sequence is unique, items not replaced |
+| **Order Does Not Matter** | Items can be repeated, sequence ignored | Each group is unique, no repeats allowed |
+:::
+
+### Example 1A: Drawing Two Balls from an Urn or a Bag
+
+Consider drawing two balls from an urn containing 3 green and 2 red balls.
+
+Find the probabilities of the following random events:
+
+-   The first ball is red and the second one is green (**order matters, drawing without replacement**)
+-   The first ball is red and the second one is green (**order matters, drawing with replacement**)
+-   The balls are of different colors (**order doesn't matter, drawing without replacement**)
+-   The balls are of different colors (**order doesn't matter, drawing with replacement)**
+
+**Understanding Event Types in Probability:**
+
+1.  **Simple events represent a single outcome from a single random action**, such as drawing one ball from an urn. The probability of a simple event is calculated directly from the number of favorable outcomes divided by the total possible outcomes.
+2.  **Compound events involve multiple outcomes or conditions that must occur together**. These can occur **simultaneously** (like rolling two dice at once) or **sequentially** (like drawing two balls one after another). The key difference lies in whether the events happen at the same time or in sequence.
+
+-   **Sequential events are a specific type of compound events where outcomes occur in a particular order over time.** Our urn example is particularly instructive here because it demonstrates sequential events through the process of drawing balls one after another. This allows us to explore how the probability of the second draw depends on what happened in the first draw (when sampling without replacement).
+
+![Sample spaces (S) visualized using the grid diagrams](stat_imgs/probability-grid.svg)
+
+To better understand how the sample space changes based on our sampling method, let's examine two scenarios:
+
+1.  **With Replacement**
+
+When we sample with replacement, we return the ball to the urn after the first draw. This means:
+
+-   The probability remains constant for each draw
+-   Total possible outcomes: 25 (5×5 grid)
+-   Each outcome has equal probability
+-   $P(\text{both green}) = \frac{3}{5} \times \frac{3}{5} = \frac{9}{25}$
+-   $P(\text{both red}) = \frac{2}{5} \times \frac{2}{5} = \frac{4}{25}$
+-   $P(\text{mixed}) = \frac{12}{25}$
+
+2.  **Without Replacement**
+
+When we sample without replacement, the first draw affects the probability of the second draw:
+
+-   Total possible outcomes: 20 (removing diagonal cells where same ball is drawn twice)
+-   Second draw probabilities change based on first draw
+-   $P(\text{both green}) = \frac{3}{5} \times \frac{2}{4} = \frac{6}{20}$
+-   $P(\text{both red}) = \frac{2}{5} \times \frac{1}{4} = \frac{2}{20}$
+-   $P(\text{mixed}) = \frac{12}{20}$
+
+The grid diagram above visualizes both scenarios, where:
+
+-   Green cells represent both balls drawn being green
+-   Red cells represent both balls drawn being red
+-   Orange cells represent mixed outcomes (one green, one red)
+-   Crossed-out cells in the "Without Replacement" grid show impossible outcomes
+
+This visualization helps demonstrate how the sample space and probabilities change between the two sampling methods, while maintaining the fundamental principle that probabilities must sum to 1 in both cases.
+
+I.  **Drawing Two Balls Without Replacement**
 
 Consider drawing two balls from an urn containing 3 green and 2 red balls. Let's analyze all scenarios systematically.
 
@@ -382,7 +790,9 @@ Let's solve for different scenarios:
 
     $= \frac{2}{5} \cdot \frac{3}{4} + \frac{3}{5} \cdot \frac{2}{4} = \frac{6}{20} + \frac{6}{20} = \frac{12}{20} = 0.6$
 
-### Example 2: Drawing With Replacement
+<!-- -->
+
+II. **Drawing With Replacement**
 
 When we replace the first ball before drawing the second, the probabilities for the second draw remain unchanged:
 
@@ -406,7 +816,145 @@ Now:
 
     $P(\text{different colors}) = \frac{2}{5} \cdot \frac{3}{5} + \frac{3}{5} \cdot \frac{2}{5} = \frac{12}{25} = 0.48$
 
-## The Four Types of Counting Problems
+### Example 1B: Drawing Two Balls from an Urn or a Bag (\*)
+
+Consider drawing two balls from an urn containing 3 green and 2 red balls.
+
+Find the probabilities of the following random events:
+
+-   The first ball is red and the second one is green (order matters, drawing without replacement)
+-   The first ball is red and the second one is green (order matters, drawing with replacement)
+-   The balls are of different colors (order doesn't matter, drawing without replacement)
+-   The balls are of different colors (order doesn't matter, drawing with replacement)
+
+**Understanding Event Types in Probability:**
+
+-   **Simple events represent a single outcome from a single random action**, such as drawing one ball from an urn. The probability of a simple event is calculated directly from the number of favorable outcomes divided by the total possible outcomes.
+-   **Compound events involve multiple outcomes or conditions that must occur together**. These can occur simultaneously (like rolling two dice at once) or sequentially (like drawing two balls one after another). The key difference lies in whether the events happen at the same time or in sequence.
+-   **Sequential events are a specific type of compound events where outcomes occur in a particular order over time**. Our urn example is particularly instructive here because it demonstrates sequential events through the process of drawing balls one after another. This allows us to explore how the probability of the second draw depends on what happened in the first draw (when sampling without replacement).
+
+![Sample spaces (S) visualized using the grid diagrams](stat_imgs/probability-grid.svg)
+
+To better understand how the sample space changes based on our sampling method, let's examine two scenarios:
+
+1.  **With Replacement**
+
+When we sample with replacement, we return the ball to the urn after the first draw. This means:
+
+-   The probability remains constant for each draw
+-   Total possible outcomes: 25 (5×5 grid)
+-   Each outcome has equal probability
+-   $P(\text{both green}) = \frac{3}{5} \times \frac{3}{5} = \frac{9}{25}$
+-   $P(\text{both red}) = \frac{2}{5} \times \frac{2}{5} = \frac{4}{25}$
+-   $P(\text{mixed}) = \frac{12}{25}$
+
+2.  **Without Replacement**
+
+When we sample without replacement, the first draw affects the probability of the second draw:
+
+-   Total possible outcomes: 20 (removing diagonal cells where same ball is drawn twice)
+-   Second draw probabilities change based on first draw
+-   $P(\text{both green}) = \frac{3}{5} \times \frac{2}{4} = \frac{6}{20}$
+-   $P(\text{both red}) = \frac{2}{5} \times \frac{1}{4} = \frac{2}{20}$
+-   $P(\text{mixed}) = \frac{12}{20}$
+
+The grid diagram above visualizes both scenarios, where:
+
+-   Green cells represent both balls drawn being green
+-   Red cells represent both balls drawn being red
+-   Orange cells represent mixed outcomes (one green, one red)
+-   Crossed-out cells in the "Without Replacement" grid show impossible outcomes
+
+This visualization helps demonstrate how the sample space and probabilities change between the two sampling methods, while maintaining the fundamental principle that probabilities must sum to 1 in both cases.
+
+I.  **Drawing Two Balls Without Replacement**
+
+When drawing without replacement, we'll examine both order-sensitive and order-insensitive probabilities.
+
+```{mermaid}
+flowchart TD
+    A(["Initial State\n3G, 2R"]) --> B["First: Green\n3/5"]
+    A --> C["First: Red\n2/5"]
+    B --> D["Second: Green\n2/4"]
+    B --> E["Second: Red\n2/4"]
+    C --> F["Second: Green\n3/4"]
+    C --> G["Second: Red\n1/4"]
+    
+    D --> H["GG: 3/5 × 2/4 = 6/20"]
+    E --> I["GR: 3/5 × 2/4 = 6/20"]
+    F --> J["RG: 2/5 × 3/4 = 6/20"]
+    G --> K["RR: 2/5 × 1/4 = 2/20"]
+```
+
+A)  When order matters (ordered pairs):
+
+<!-- -->
+
+1.  P(G then G) = 6/20
+2.  P(G then R) = 6/20
+3.  P(R then G) = 6/20
+4.  P(R then R) = 2/20
+
+<!-- -->
+
+B)  When order doesn't matter (combinations):
+
+<!-- -->
+
+1.  P(two greens) = 6/20
+
+2.  P(different colors) = P(G,R) or P(R,G) = 12/20
+
+3.  P(two reds) = 2/20
+
+<!-- -->
+
+II. **Drawing With Replacement**
+
+```{mermaid}
+flowchart TD
+    A(["Initial State\n3G, 2R"]) --> B["First: Green\n3/5"]
+    A --> C["First: Red\n2/5"]
+    B --> D["Second: Green\n3/5"]
+    B --> E["Second: Red\n2/5"]
+    C --> F["Second: Green\n3/5"]
+    C --> G["Second: Red\n2/5"]
+    
+    D --> H["GG: 3/5 × 3/5 = 9/25"]
+    E --> I["GR: 3/5 × 2/5 = 6/25"]
+    F --> J["RG: 2/5 × 3/5 = 6/25"]
+    G --> K["RR: 2/5 × 2/5 = 4/25"]
+```
+
+A)  When order matters (ordered pairs):
+
+<!-- -->
+
+1.  P(G then G) = 9/25
+2.  P(G then R) = 6/25
+3.  P(R then G) = 6/25
+4.  P(R then R) = 4/25
+
+<!-- -->
+
+B)  When order doesn't matter (combinations):
+
+<!-- -->
+
+1.  P(two greens) = 9/25
+2.  P(different colors) = P(G,R) or P(R,G) = 12/25
+3.  P(two reds) = 4/25
+
+Key observations:
+
+1.  Without replacement:
+    -   Different orders of the same colors have different probabilities
+    -   The second draw's probability depends on the first outcome
+2.  With replacement:
+    -   Each draw is independent
+    -   Probabilities multiply directly because sample space remains unchanged
+
+## The Four Types of Counting Problems (\*)
 
 When we count possibilities in probability problems, we need to think about two important questions:
 
@@ -415,7 +963,7 @@ When we count possibilities in probability problems, we need to think about two 
 
 Let's explore each type of counting using a simple example: We have an urn with 5 colored balls (Red, Blue, Green, Yellow, and Purple), and we'll make 2 draws. For each scenario, we'll think about what makes sense in real life and how to count correctly.
 
-### 1. Order Matters, With Replacement
+1.  Order Matters, With Replacement
 
 Think about picking a two-digit code where you can use any digit twice. This is similar to drawing a ball, writing down its color, putting it back, and drawing again.
 
@@ -436,7 +984,7 @@ Total outcomes: $5 \times 5 = 5^2 = 25$ possibilities The formula is $n^r$ where
 -   $n$ is how many options we have (5 balls)
 -   $r$ is how many selections we make (2 draws)
 
-### 2. Order Matters, Without Replacement
+2.  Order Matters, Without Replacement
 
 Now imagine picking two students to do tasks in order - the first student will present today, the second tomorrow. We can't pick the same student twice!
 
@@ -450,7 +998,7 @@ For our balls:
 
 Total outcomes: $5 \times 4 = 20$ possibilities The formula is $P(n,r) = \frac{n!}{(n-r)!}$
 
-### 3. Order Doesn't Matter, With Replacement
+3.  Order Doesn't Matter, With Replacement
 
 Imagine picking your two favorite colors - you can pick the same color twice, and it doesn't matter which you say first.
 
@@ -459,14 +1007,14 @@ This is tricky! Here's why:
 -   If we pick Red and then Blue, this is the same as picking Blue and then Red
 -   But picking Red twice is still just one outcome
 
-We need to be careful not to count the same outcome twice. The formula $\binom{n+r-1}{r}$ helps us avoid this overcounting.
+We need to be careful not to count the same outcome twice. The formula $\binom{n+r-1}{r}$ helps us avoid this **overcounting**.
 
 In our example:
 
 -   Total outcomes: $\binom{5+2-1}{2} = \binom{6}{2} = 15$ possibilities
 -   This correctly counts (Red,Blue) and (Blue,Red) as one outcome
 
-### 4. Order Doesn't Matter, Without Replacement
+4.  Order Doesn't Matter, Without Replacement
 
 Think about picking two students to be on a team - it doesn't matter who you pick first, and you can't pick the same person twice.
 
@@ -501,20 +1049,20 @@ First, let's count the total possible outcomes:
 
 Now let's find each probability:
 
-#### 1. Two Red Balls
+1.  Two Red Balls
 
 -   We need to pick 2 red balls from 4 red balls
 -   This is like picking 2 team members from 4 people
 -   Number of ways = $\binom{4}{2} = \frac{4 \times 3}{2 \times 1} = 6$
 -   Probability = $\frac{6}{21}$
 
-#### 2. Two Black Balls
+2.  Two Black Balls
 
 -   Similarly, we need to pick 2 black balls from 3 black balls
 -   Number of ways = $\binom{3}{2} = \frac{3 \times 2}{2 \times 1} = 3$
 -   Probability = $\frac{3}{21}$
 
-#### 3. One Red and One Black
+3.  One Red and One Black
 
 -   We need:
     -   One red ball (we have 4 to choose from)
@@ -577,25 +1125,19 @@ Let's visualize the entire sample space using a grid where each cell represents 
 Where:
 
 -   X: Impossible (same ball twice)
-
 -   ⚫: Both red or both black
-
 -   ⚪: Multi-colored outcome
 
 From this grid:
 
 1.  Both red = 12 outcomes (⚫ in upper-left quadrant)
-
 2.  Red then black = 12 outcomes (⚪ in upper-right)
-
 3.  Total possible outcomes = 42 (remove diagonal X's)
 
 Therefore:
 
 -   P(both red) = $\frac{12}{42} = \frac{6}{21}$
-
 -   P(red then black) = $\frac{12}{42} = \frac{2}{7}$
-
 -   P(multi-colored) = $\frac{24}{42} = \frac{4}{7}$
 
 ### Comparing the Methods
@@ -632,284 +1174,7 @@ Each method highlights different aspects of the problem:
 
     -   Shows symmetry in the problem
 
-## Practice Problems
-
-1.  An urn contains 5 white and 4 black balls. Three balls are drawn with replacement. Find the probability that:
-
-    a)  All are white
-
-    b)  Exactly two are white
-
-    c)  At least two are white
-
-2.  From a standard deck of 52 cards, two cards are drawn without replacement. Find the probability of:
-
-    a)  Both being aces
-
-    b)  Getting a pair (same rank)
-
-    c)  Getting two cards of the same suit
-
-## Key Takeaways
-
-1.  The tree diagram method works because it:
-
-    -   Visually represents the sample space
-
-    -   Shows how probabilities combine multiplicatively for independent events
-
-    -   Helps identify all possible outcomes systematically
-
-2.  When solving probability problems:
-
-    -   First identify if order matters
-
-    -   Determine if sampling is with or without replacement
-
-    -   Choose the appropriate counting method
-
-    -   Calculate both favorable and total outcomes carefully
-
-# Next Steps
-
-This introduction prepares you for more advanced topics:
-
--   Conditional probability
-
--   Independence
-
--   Random variables
-
--   Probability distributions
-
-Understanding these foundational concepts is crucial for grasping statistical inference and data analysis methods.
-
-## Advanced Counting in Probability: A Student Guide
-
-### Poker Hands: A Window into Complex Counting
-
-Poker hands provide some of the most interesting examples for understanding counting in probability. They're perfect for learning because they combine multiple counting principles and help us understand common pitfalls. Let's explore these concepts step by step.
-
-### Understanding Our Sample Space
-
-Before we dive into specific hands, let's understand what we're working with. A poker hand consists of 5 cards drawn from a standard 52-card deck. Understanding the sample space is crucial because it forms the foundation of all our probability calculations.
-
-The total number of possible poker hands represents how many different ways we can select 5 cards from 52 cards, where the order doesn't matter (getting ace-king-queen is the same hand as getting king-queen-ace), we can't reuse cards (we can't have the ace of spades twice in our hand), and we must take exactly 5 cards (not more, not less).
-
-This means we're dealing with combinations. Let's calculate this step by step:
-
-$\binom{52}{5} = \frac{52!}{5!(52-5)!} = \frac{52!}{5!(47)!} = \frac{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48}{5 \cdot 4 \cdot 3 \cdot 2 \cdot 1} = 2,598,960$
-
-This number, 2,598,960, will be our denominator for calculating the probability of any specific poker hand.
-
-### Understanding Two Pairs: A Careful Counting Approach
-
-Two pairs is one of the most interesting hands for understanding counting principles. To get two pairs, we need:
-
--   Two cards of one rank
--   Two cards of another rank
--   One card of a third rank (the kicker)
-
-Let's build this hand step by step, being careful to understand each choice we make:
-
-First, let's select our ranks. We might think we should just choose two ranks from 13 for our pairs using $\binom{13}{2}$, but this approach hides some important subtleties. Instead, let's think about the actual process of constructing the hand:
-
-1.  We have 13 possible ranks for our first pair
-2.  After choosing the first pair's rank, we have 12 ranks left for our second pair
-3.  After choosing both pair ranks, we have 11 ranks left for our kicker
-
-For each rank we've chosen, we need to select specific cards:
-
-1.  For our first pair: we choose 2 cards from the 4 available cards of that rank: $\binom{4}{2} = 6$ ways
-2.  For our second pair: again $\binom{4}{2} = 6$ ways
-3.  For our kicker: we choose 1 card from 4: $\binom{4}{1} = 4$ ways
-
-Now, here's where many students get confused: Does it matter which pair we count "first" and which we count "second"? The answer reveals a deep truth about counting in probability.
-
-Let's use a concrete example. Suppose we want two pairs with Aces and Kings, and a Two as our kicker. We could:
-
-1.  Choose Aces as our first pair, then Kings as our second pair
-2.  Choose Kings as our first pair, then Aces as our second pair
-
-These lead to the exact same hand type, but we need to count both paths to this hand because they represent different ways of constructing it. It's similar to how we can make a sandwich by putting either cheese slice on first - the order of construction matters for counting all possibilities, even though the final sandwich is the same.
-
-This is why our final formula multiplies all these independent choices:
-
-$13$ (first pair rank) × $12$ (second pair rank) × $11$ (kicker rank) × $\binom{4}{2}$ (first pair cards) × $\binom{4}{2}$ (second pair cards) × $\binom{4}{1}$ (kicker card)
-
-Each term represents a separate decision we make in constructing the hand. While the order of these decisions doesn't affect the final hand we get, we need to account for all possible ways to arrive at each hand to get the correct total.
-
-Let's calculate the total probability:
-
-$P(\text{two pairs}) = \frac{13 \cdot 12 \cdot 11 \cdot \binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}}{2,598,960} = \frac{123,552}{2,598,960} \approx 0.0475$
-
-This means about 4.75% of all possible poker hands are two pairs.
-
-### Understanding Full House: A Different Counting Challenge
-
-A full house gives us a perfect contrast to two pairs. While both hands involve multiple cards of the same rank, the counting process reveals important differences in how we approach probability problems.
-
-In a full house, we need:
-
--   Three cards of one rank (called "three of a kind")
--   Two cards of another rank (a pair)
-
-Let's think about why counting a full house is different from counting two pairs. With two pairs, we had to be careful about the order of selecting our pairs. With a full house, we have a natural order: we must choose our three of a kind first (because it's distinct from the pair), then choose our pair.
-
-Let's count step by step:
-
-1.  For the three of a kind:
-    -   Choose the rank: 13 possible ranks
-    -   Choose which three cards of that rank: $\binom{4}{3} = 4$ ways
-2.  For the pair:
-    -   Choose the rank: 12 remaining ranks
-    -   Choose which two cards of that rank: $\binom{4}{2} = 6$ ways
-
-Multiplying these together:
-
-$13$ (three of a kind rank) × $\binom{4}{3}$ (specific three cards) × $12$ (pair rank) × $\binom{4}{2}$ (specific pair cards)
-
-$= 13 \cdot 4 \cdot 12 \cdot 6 = 3,744$
-
-Therefore:
-
-$P(\text{full house}) = \frac{3,744}{2,598,960} \approx 0.0014$
-
-About 0.14% of all poker hands are full houses, making them significantly rarer than two pairs (4.75%). This makes intuitive sense - it's harder to get three of the same rank plus a pair than to get two pairs plus a kicker.
-
-### The Birthday Problem: A Beautiful Probability Surprise
-
-The birthday problem provides a fascinating connection to our poker probability work, while teaching us something profound about the nature of counting. The classic question is: "How many people need to be in a room for there to be a 50% chance that at least two share a birthday?"
-
-Most people guess around 183 (half of 365), but the actual answer is just 23 people! Let's understand why this connects to our previous counting work and why the answer is so surprising.
-
-First, let's think about what makes this problem different from our poker calculations:
-
-1.  In poker, we were looking for specific combinations (like two pairs)
-2.  In the birthday problem, we're looking for any match at all
-
-This is similar to the difference between asking: - "What's the probability of drawing the ace of spades and king of hearts specifically?" - "What's the probability of drawing any two cards of different ranks?"
-
-The second question has many more ways to succeed.
-
-Let's solve the birthday problem step by step:
-
-1.  First, it's easier to calculate the probability of no matches
-2.  Then we can subtract from 1 to get the probability of at least one match
-
-For 23 people, we calculate no matches like this:
-
--   First person can have any birthday: $\frac{365}{365}$
--   Second person needs a different birthday: $\frac{364}{365}$
--   Third person needs a different birthday: $\frac{363}{365}$ And so on until person 23.
-
-This gives us:
-
-$P(\text{no matches}) = \frac{365}{365} \cdot \frac{364}{365} \cdot \frac{363}{365} \cdot ... \cdot \frac{343}{365}$
-
-$= \frac{365!}{(365-23)! \cdot 365^{23}} \approx 0.492$
-
-Therefore:
-
-$P(\text{at least one match}) = 1 - 0.492 \approx 0.508$
-
-This teaches us something profound about probability: when we're looking for any match among many possibilities (like in the birthday problem), we often get much higher probabilities than when we're looking for specific matches (like in poker hands).
-
-### Lottery Mathematics: Putting It All Together
-
-Let's apply everything we've learned to understand lottery probabilities. Consider a typical "6/49" lottery where players choose 6 numbers from 1-49. This gives us a perfect opportunity to apply our counting principles in a real-world context.
-
-The fundamental question is: What's the probability of winning the jackpot (matching all 6 numbers)?
-
-This is a combination problem because: - Order doesn't matter (matching 1-2-3-4-5-6 is the same as matching 6-5-4-3-2-1) - We can't use the same number twice - We need exactly 6 numbers
-
-Therefore:
-
-$P(\text{jackpot}) = \frac{1}{\binom{49}{6}} = \frac{1}{13,983,816}$
-
-This tiny probability (about 0.0000000715) shows why lottery wins are so rare. But modern lotteries have multiple prize tiers, which gives us a chance to explore more interesting probability calculations.
-
-Consider matching 5 numbers plus a bonus number. For this, we need to: 1. Match 5 of the 6 winning numbers: $\binom{6}{5}$ ways to choose which 5 2. Match 1 of the remaining 43 numbers with the bonus: $\binom{43}{1}$ ways
-
-Therefore:
-
-$P(\text{5 + bonus}) = \frac{\binom{6}{5} \cdot \binom{43}{1}}{\binom{49}{6}} = \frac{6 \cdot 43}{13,983,816} \approx 0.0000184$
-
-This shows us how breaking down complex probability problems into simpler parts helps us solve them systematically.
-
-### Alternative Approaches to Poker Hand Probabilities
-
-Understanding different ways to calculate the same probability deepens our insight into counting principles. Let's explore several methods for finding the probabilities of two pairs and full house, seeing how each approach highlights different aspects of the problem.
-
-#### Multiple Paths to Two Pairs Probability
-
-Let's start with two pairs. We've seen one method, but there are several valid approaches:
-
-Method 1: Sequential Selection (Our Original Approach) We build the hand step by step:
-
-1.  Choose first pair's rank: 13 ways
-2.  Choose second pair's rank: 12 ways
-3.  Choose kicker's rank: 11 ways
-4.  Choose specific cards for first pair: $\binom{4}{2}$ ways
-5.  Choose specific cards for second pair: $\binom{4}{2}$ ways
-6.  Choose specific card for kicker: $\binom{4}{1}$ ways
-
-This gives us: $P(\text{two pairs}) = \frac{13 \cdot 12 \cdot 11 \cdot \binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}}{2,598,960}$
-
-Method 2: Complementary Counting We can find two pairs probability by subtracting the probability of all other possible hands from 1. However, this is more complex than direct counting because we need to know the probabilities of all other poker hands. Still, it serves as a good verification:
-
-$P(\text{two pairs}) = 1 - P(\text{high card}) - P(\text{one pair}) - P(\text{three of a kind}) - P(\text{straight}) - P(\text{flush}) - P(\text{full house}) - P(\text{four of a kind}) - P(\text{straight flush})$
-
-Method 3: Using Permutations with Adjustment We can use permutations and then adjust for overcounting:
-
-1.  Choose an ordered arrangement of two ranks for pairs: $P(13,2) = 13 \cdot 12$
-2.  Choose kicker rank: 11 ways
-3.  Choose specific cards for pairs and kicker: $\binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}$
-4.  Divide by 2 to account for the fact that the order of pairs doesn't matter
-
-This gives: $P(\text{two pairs}) = \frac{P(13,2) \cdot 11 \cdot \binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}}{2 \cdot 2,598,960}$
-
-Method 4: Combination-Based Approach with Multiplication Principle We can separate rank selection from card selection:
-
-1.  First, select three ranks: $\binom{13}{3}$ ways
-2.  From these three ranks, designate two for pairs and one for kicker: $\binom{3}{2}$ ways
-3.  For each pair rank, select two cards: $\binom{4}{2} \cdot \binom{4}{2}$ ways
-4.  For the kicker rank, select one card: $\binom{4}{1}$ ways
-
-This gives us: $P(\text{two pairs}) = \frac{\binom{13}{3} \cdot \binom{3}{2} \cdot \binom{4}{2} \cdot \binom{4}{2} \cdot \binom{4}{1}}{2,598,960}$
-
-#### Alternative Approaches to Full House Probability
-
-The full house probability can also be calculated in several ways:
-
-Method 1: Direct Sequential Selection (Our Original Approach) 1. Choose rank for three of a kind: 13 ways 2. Choose specific three cards: $\binom{4}{3}$ ways 3. Choose rank for pair: 12 ways 4. Choose specific two cards: $\binom{4}{2}$ ways
-
-Leading to: $P(\text{full house}) = \frac{13 \cdot \binom{4}{3} \cdot 12 \cdot \binom{4}{2}}{2,598,960}$
-
-Method 2: Using Combinations with Distribution We can think about it as: 1. Choose two ranks from 13: $\binom{13}{2}$ ways 2. Designate which rank gets three cards: 2 ways (since either rank could be the three of a kind) 3. Choose specific cards: $\binom{4}{3} \cdot \binom{4}{2}$ ways
-
-This gives: $P(\text{full house}) = \frac{\binom{13}{2} \cdot 2 \cdot \binom{4}{3} \cdot \binom{4}{2}}{2,598,960}$
-
-Method 3: Using the Multiplication Principle with Sets Think about constructing the hand as selecting two sets of cards:
-
-1.  First set: three cards of the same rank from 13 ranks
-    -   Choose rank: 13 ways
-    -   Choose three cards: $\binom{4}{3}$ ways
-2.  Second set: two cards of the same rank from 12 remaining ranks
-    -   Choose rank: 12 ways
-    -   Choose two cards: $\binom{4}{2}$ ways
-
-This yields the same result: $P(\text{full house}) = \frac{13 \cdot \binom{4}{3} \cdot 12 \cdot \binom{4}{2}}{2,598,960}$
-
-Each method illuminates different aspects of the counting process:
-
--   Sequential selection helps us understand the step-by-step construction of hands
--   Combination-based approaches highlight the underlying structure of the selections
--   Permutation-based methods with adjustment show how overcounting can be handled systematically
-
-The fact that all these methods yield the same result serves as a powerful verification tool. When solving complex probability problems, being able to approach the solution in multiple ways not only confirms our answer but also deepens our understanding of the underlying counting principles.
-
-## Advanced Counting in Probability: A Student Guide
+## Appendix 1. Advanced Counting in Probability: A Student Guide (\*)
 
 ### Poker Hands: A Window into Complex Counting
 
@@ -1055,7 +1320,7 @@ $P(\text{5 + bonus}) = \frac{\binom{6}{5} \cdot \binom{43}{1}}{\binom{49}{6}} = 
 
 This shows us how breaking down complex probability problems into simpler parts helps us solve them systematically.
 
-### Alternative Approaches to Poker Hand Probabilities
+### Appendix 2. Alternative Approaches to Poker Hand Probabilities (\*)
 
 Understanding different ways to calculate the same probability deepens our insight into counting principles. Let's explore several methods for finding the probabilities of two pairs and full house, seeing how each approach highlights different aspects of the problem.
 
@@ -1109,7 +1374,7 @@ Each method illuminates different aspects of the counting process: - Sequential 
 
 The fact that all these methods yield the same result serves as a powerful verification tool. When solving complex probability problems, being able to approach the solution in multiple ways not only confirms our answer but also deepens our understanding of the underlying counting principles.
 
-### Occupancy Problems and Statistical Physics
+### Appendix 3: Occupancy Problems and Statistical Physics (\*)
 
 Understanding how objects can be distributed into containers forms the foundation for both probability theory and statistical mechanics. Let's explore this connection, starting with basic counting principles and building up to physical applications.
 
@@ -1202,19 +1467,5 @@ This same framework helps us solve other important problems:
 2.  Compositions How many ways can we write $n$ as an ordered sum?
     -   Like distinguishable boxes
     -   Order matters here
-
-#### Physical Implications and Applications
-
-Understanding these counting principles helps explain:
-
-1.  Why metals conduct electricity
-    -   Electrons follow Fermi-Dirac statistics
-    -   Creates "bands" of allowed energies
-2.  Why lasers work
-    -   Photons' Bose-Einstein nature enables stimulated emission
-    -   Many photons can occupy same state
-3.  Why gases behave as they do
-    -   Maxwell-Boltzmann statistics gives velocity distribution
-    -   Explains gas pressure and temperature
 
 This connection between simple counting and profound physical phenomena shows the deep unity of mathematics and physics. The same principles that help us count poker hands and lottery combinations govern the behavior of the universe at its most fundamental level.

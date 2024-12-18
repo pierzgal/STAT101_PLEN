@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -328,14 +294,21 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#fundamental-concepts" id="toc-fundamental-concepts" class="nav-link active" data-scroll-target="#fundamental-concepts"><span class="header-section-number">17.1</span> Fundamental Concepts</a>
+  <li><a href="#basic-set-concepts" id="toc-basic-set-concepts" class="nav-link active" data-scroll-target="#basic-set-concepts"><span class="header-section-number">17.0.1</span> Basic Set Concepts</a></li>
+  <li><a href="#set-operations" id="toc-set-operations" class="nav-link" data-scroll-target="#set-operations"><span class="header-section-number">17.0.2</span> Set Operations</a></li>
+  <li><a href="#set-theory-as-a-language-for-probability" id="toc-set-theory-as-a-language-for-probability" class="nav-link" data-scroll-target="#set-theory-as-a-language-for-probability"><span class="header-section-number">17.0.3</span> Set Theory as a Language for Probability</a></li>
+  <li><a href="#counting-rules-in-probability-multiplication-and-addition-rules" id="toc-counting-rules-in-probability-multiplication-and-addition-rules" class="nav-link" data-scroll-target="#counting-rules-in-probability-multiplication-and-addition-rules"><span class="header-section-number">17.1</span> Counting Rules in Probability: Multiplication and Addition Rules</a>
   <ul class="collapse">
-  <li><a href="#basic-set-concepts" id="toc-basic-set-concepts" class="nav-link" data-scroll-target="#basic-set-concepts"><span class="header-section-number">17.1.1</span> Basic Set Concepts</a></li>
-  <li><a href="#set-operations" id="toc-set-operations" class="nav-link" data-scroll-target="#set-operations"><span class="header-section-number">17.1.2</span> Set Operations</a></li>
-  <li><a href="#set-theory-as-a-language-for-probability" id="toc-set-theory-as-a-language-for-probability" class="nav-link" data-scroll-target="#set-theory-as-a-language-for-probability"><span class="header-section-number">17.1.3</span> Set Theory as a Language for Probability</a></li>
-  <li><a href="#random-experiments-and-outcomes" id="toc-random-experiments-and-outcomes" class="nav-link" data-scroll-target="#random-experiments-and-outcomes"><span class="header-section-number">17.1.4</span> Random Experiments and Outcomes</a></li>
-  <li><a href="#sample-space" id="toc-sample-space" class="nav-link" data-scroll-target="#sample-space"><span class="header-section-number">17.1.5</span> Sample Space</a></li>
-  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events"><span class="header-section-number">17.1.6</span> Events</a></li>
+  <li><a href="#the-multiplication-rule-and-situations" id="toc-the-multiplication-rule-and-situations" class="nav-link" data-scroll-target="#the-multiplication-rule-and-situations"><span class="header-section-number">17.1.1</span> The Multiplication Rule: “AND” Situations</a></li>
+  <li><a href="#simple-example-creating-a-password" id="toc-simple-example-creating-a-password" class="nav-link" data-scroll-target="#simple-example-creating-a-password"><span class="header-section-number">17.1.2</span> Simple Example: Creating a Password</a></li>
+  <li><a href="#the-addition-rule-or-situations" id="toc-the-addition-rule-or-situations" class="nav-link" data-scroll-target="#the-addition-rule-or-situations"><span class="header-section-number">17.1.3</span> The Addition Rule: “OR” Situations</a></li>
+  <li><a href="#the-addition-rule-for-non-mutually-exclusive-events" id="toc-the-addition-rule-for-non-mutually-exclusive-events" class="nav-link" data-scroll-target="#the-addition-rule-for-non-mutually-exclusive-events"><span class="header-section-number">17.1.4</span> The Addition Rule for Non-Mutually Exclusive Events</a></li>
+  <li><a href="#combining-both-rules-a-complex-example" id="toc-combining-both-rules-a-complex-example" class="nav-link" data-scroll-target="#combining-both-rules-a-complex-example"><span class="header-section-number">17.1.5</span> Combining Both Rules: A Complex Example</a></li>
+  <li><a href="#random-experiments-and-outcomes" id="toc-random-experiments-and-outcomes" class="nav-link" data-scroll-target="#random-experiments-and-outcomes"><span class="header-section-number">17.1.6</span> Random Experiments and Outcomes</a></li>
+  <li><a href="#sample-space" id="toc-sample-space" class="nav-link" data-scroll-target="#sample-space"><span class="header-section-number">17.1.7</span> Sample Space</a></li>
+  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events"><span class="header-section-number">17.1.8</span> Events</a></li>
+  <li><a href="#visualizing-sample-spaces" id="toc-visualizing-sample-spaces" class="nav-link" data-scroll-target="#visualizing-sample-spaces"><span class="header-section-number">17.1.9</span> Visualizing Sample Spaces</a></li>
+  <li><a href="#basic-set-operations-using-venn-diagrams" id="toc-basic-set-operations-using-venn-diagrams" class="nav-link" data-scroll-target="#basic-set-operations-using-venn-diagrams"><span class="header-section-number">17.1.10</span> Basic Set Operations Using Venn Diagrams</a></li>
   </ul></li>
   <li><a href="#why-focus-on-discrete-probability" id="toc-why-focus-on-discrete-probability" class="nav-link" data-scroll-target="#why-focus-on-discrete-probability"><span class="header-section-number">17.2</span> Why Focus on Discrete Probability?</a></li>
   <li><a href="#key-questions-before-calculating-probabilities" id="toc-key-questions-before-calculating-probabilities" class="nav-link" data-scroll-target="#key-questions-before-calculating-probabilities"><span class="header-section-number">17.3</span> Key Questions Before Calculating Probabilities</a></li>
@@ -406,39 +379,37 @@ window.Quarto = {
 </header>
 
 
-<section id="fundamental-concepts" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="fundamental-concepts"><span class="header-section-number">17.1</span> Fundamental Concepts</h2>
-<p>Before we dive into probability theory, let’s establish some foundational concepts that we’ll use throughout this course:</p>
-<section id="basic-set-concepts" class="level3" data-number="17.1.1">
-<h3 data-number="17.1.1" class="anchored" data-anchor-id="basic-set-concepts"><span class="header-section-number">17.1.1</span> Basic Set Concepts</h3>
+<p>Before we dive into probability theory, let’s establish some foundational concepts that we’ll use throughout this course.</p>
+<section id="basic-set-concepts" class="level3" data-number="17.0.1">
+<h3 data-number="17.0.1" class="anchored" data-anchor-id="basic-set-concepts"><span class="header-section-number">17.0.1</span> Basic Set Concepts</h3>
 <p>Before we can understand probability, we need to grasp some fundamental concepts from set theory. A set is simply a collection of distinct objects.</p>
 <p>A set can be defined by:</p>
 <ul>
-<li><p>Listing all elements: <span class="math inline">A = \{1, 2, 3\}</span></p></li>
-<li><p>Describing a property: <span class="math inline">B = \{\text{x | x is a positive integer less than 4}\}</span></p></li>
+<li>Listing all elements: <span class="math inline">A = \{1, 2, 3\}</span></li>
+<li>Describing a property: <span class="math inline">B = \{\text{x | x is a positive integer less than 4}\}</span></li>
 </ul>
 <p>The empty set <span class="math inline">\emptyset</span> contains no elements.</p>
 </section>
-<section id="set-operations" class="level3" data-number="17.1.2">
-<h3 data-number="17.1.2" class="anchored" data-anchor-id="set-operations"><span class="header-section-number">17.1.2</span> Set Operations</h3>
+<section id="set-operations" class="level3" data-number="17.0.2">
+<h3 data-number="17.0.2" class="anchored" data-anchor-id="set-operations"><span class="header-section-number">17.0.2</span> Set Operations</h3>
 <p>Given two sets <span class="math inline">A</span> and <span class="math inline">B</span>:</p>
 <ol type="1">
-<li><p>Union (<span class="math inline">A \cup B</span>): Elements in either A OR B (or both)</p></li>
-<li><p>Intersection (<span class="math inline">A \cap B</span>): Elements in BOTH A AND B</p></li>
-<li><p>Complement (<span class="math inline">A^c</span>): Elements NOT in A</p></li>
-<li><p>Difference (<span class="math inline">A \setminus B</span>): Elements in A but NOT in B</p></li>
+<li>Union (<span class="math inline">A \cup B</span>): Elements in either A OR B (or both)</li>
+<li>Intersection (<span class="math inline">A \cap B</span>): Elements in BOTH A AND B</li>
+<li>Complement (<span class="math inline">A^c</span>): Elements NOT in A</li>
+<li>Difference (<span class="math inline">A \setminus B</span>): Elements in A but NOT in B</li>
 </ol>
 <p>These operations follow important laws like:</p>
 <p><span class="math display">(A \cup B)^c = A^c \cap B^c</span> (DeMorgan’s Law)</p>
 <p><span class="math display">(A \cup (B \cap C) = (A \cup B) \cap (A \cup C)</span> (Distributive Law)</p>
 </section>
-<section id="set-theory-as-a-language-for-probability" class="level3" data-number="17.1.3">
-<h3 data-number="17.1.3" class="anchored" data-anchor-id="set-theory-as-a-language-for-probability"><span class="header-section-number">17.1.3</span> Set Theory as a Language for Probability</h3>
+<section id="set-theory-as-a-language-for-probability" class="level3" data-number="17.0.3">
+<h3 data-number="17.0.3" class="anchored" data-anchor-id="set-theory-as-a-language-for-probability"><span class="header-section-number">17.0.3</span> Set Theory as a Language for Probability</h3>
 <p>Set theory provides the fundamental mathematical framework for understanding and working with probability theory. The following table illustrates the key parallels between set theory concepts and their probability theory counterparts.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 27%">
-<col style="width: 42%">
+<col style="width: 41%">
 <col style="width: 30%">
 </colgroup>
 <thead>
@@ -511,9 +482,145 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cardinality in Probability: Quick Reference
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In probability theory, we denote cardinality (the number of elements in a set) using vertical bars: |A|</p>
+<p>Key points:</p>
+<ul>
+<li><p>|A| means “number of elements in set A”</p></li>
+<li><p>For a finite set like A = {1, 2, 3}, we have |A| = 3</p></li>
+<li><p>Empty set has cardinality zero: |∅| = 0</p></li>
+<li><p>For two sets A and B:</p>
+<ul>
+<li>Union (no overlap): |A ∪ B| = |A| + |B|</li>
+<li>Union (with overlap): |A ∪ B| = |A| + |B| - |A ∩ B|</li>
+<li>Cartesian product: |A × B| = |A| × |B|</li>
+</ul></li>
+</ul>
+<p><strong>Example</strong>:</p>
+<p>If A = {♠, ♣, ♥, ♦} and B = {K, Q, J}, then: - |A| = 4 - |B| = 3 - |A × B| = 12 (all possible combinations)</p>
+</div>
+</div>
 </section>
-<section id="random-experiments-and-outcomes" class="level3" data-number="17.1.4">
-<h3 data-number="17.1.4" class="anchored" data-anchor-id="random-experiments-and-outcomes"><span class="header-section-number">17.1.4</span> Random Experiments and Outcomes</h3>
+<section id="counting-rules-in-probability-multiplication-and-addition-rules" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="counting-rules-in-probability-multiplication-and-addition-rules"><span class="header-section-number">17.1</span> Counting Rules in Probability: Multiplication and Addition Rules</h2>
+<section id="the-multiplication-rule-and-situations" class="level3" data-number="17.1.1">
+<h3 data-number="17.1.1" class="anchored" data-anchor-id="the-multiplication-rule-and-situations"><span class="header-section-number">17.1.1</span> The Multiplication Rule: “AND” Situations</h3>
+<p>When we need to count outcomes where we need to make multiple choices in sequence (one AND another AND another…), we multiply the number of possibilities for each choice.</p>
+</section>
+<section id="simple-example-creating-a-password" class="level3" data-number="17.1.2">
+<h3 data-number="17.1.2" class="anchored" data-anchor-id="simple-example-creating-a-password"><span class="header-section-number">17.1.2</span> Simple Example: Creating a Password</h3>
+<p>Imagine creating a 3-character password where:</p>
+<ul>
+<li>First character must be a letter (26 choices)</li>
+<li>Second character must be a digit (10 choices)</li>
+<li>Third character must be a symbol (@, #, $, % only - 4 choices)</li>
+</ul>
+<p>Using the multiplication rule: <span class="math display">\text{Total possible passwords} = 26 \times 10 \times 4 = 1,040</span></p>
+<p>This works because for EACH first character, we have ALL 10 digits available, and for EACH of those combinations, we have ALL 4 symbols available.</p>
+</section>
+<section id="the-addition-rule-or-situations" class="level3" data-number="17.1.3">
+<h3 data-number="17.1.3" class="anchored" data-anchor-id="the-addition-rule-or-situations"><span class="header-section-number">17.1.3</span> The Addition Rule: “OR” Situations</h3>
+<p>When we want to count outcomes that can happen in different ways (this OR that), we add the number of possibilities.</p>
+<section id="simple-example-license-plates" class="level4" data-number="17.1.3.1">
+<h4 data-number="17.1.3.1" class="anchored" data-anchor-id="simple-example-license-plates"><span class="header-section-number">17.1.3.1</span> Simple Example: License Plates</h4>
+<p>Let’s say a special license plate can either be:</p>
+<ul>
+<li>3 letters followed by 3 digits, OR</li>
+<li>3 digits followed by 3 letters</li>
+</ul>
+<p>For the first type: <span class="math display">26 \times 26 \times 26 \times 10 \times 10 \times 10</span> For the second type: <span class="math display">10 \times 10 \times 10 \times 26 \times 26 \times 26</span></p>
+<p>Total number of possible plates: <span class="math display">\text{Total} = \text{First type} + \text{Second type}</span></p>
+</section>
+</section>
+<section id="the-addition-rule-for-non-mutually-exclusive-events" class="level3" data-number="17.1.4">
+<h3 data-number="17.1.4" class="anchored" data-anchor-id="the-addition-rule-for-non-mutually-exclusive-events"><span class="header-section-number">17.1.4</span> The Addition Rule for Non-Mutually Exclusive Events</h3>
+<p>Sometimes events can overlap. When this happens, we need to subtract the overlap to avoid counting it twice.</p>
+<p>For events A and B: <span class="math display">P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)</span></p>
+<section id="real-world-example-student-clubs" class="level4" data-number="17.1.4.1">
+<h4 data-number="17.1.4.1" class="anchored" data-anchor-id="real-world-example-student-clubs"><span class="header-section-number">17.1.4.1</span> Real-World Example: Student Clubs</h4>
+<p>In a class of 100 students:</p>
+<ul>
+<li>45 play sports</li>
+<li>55 are in academic clubs</li>
+<li>20 do both</li>
+</ul>
+<p>To find how many students are in either sports OR academic clubs: <span class="math display">\text{Total in either} = 45 + 55 - 20 = 80 \text{ students}</span></p>
+<p>We subtract 20 because otherwise those students would be counted twice!</p>
+</section>
+<section id="the-inclusion-exclusion-principle" class="level4" data-number="17.1.4.2">
+<h4 data-number="17.1.4.2" class="anchored" data-anchor-id="the-inclusion-exclusion-principle"><span class="header-section-number">17.1.4.2</span> The Inclusion-Exclusion Principle</h4>
+<p><strong>Venn diagrams are useful to visualize the inclusion-exclusion principle</strong>, which states that for two sets A and B, the number of elements in their union equals the sum of elements in each set, minus the elements they share in common (to avoid double counting).</p>
+<p>For general sets, this can be written as:</p>
+<p><span class="math display">
+|A \cup B| = |A| + |B| - |A \cap B|
+</span> For three sets A, B, and C, the formula becomes more complex:</p>
+<p><span class="math display">
+|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |B \cap C| - |A \cap C| + |A \cap B \cap C|
+</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stat_imgs/Inclusion-exclusion.svg" class="img-fluid figure-img"></p>
+<figcaption>https://en.wikipedia.org/wiki/Inclusion%E2%80%93exclusion_principle</figcaption>
+</figure>
+</div>
+<p>Let’s work through a simple example to make this concrete:</p>
+<p>Imagine we’re counting students in a school who play either basketball (set A) or volleyball (set B). Let’s say:</p>
+<ul>
+<li>15 students play basketball (|A| = 15)</li>
+<li>12 students play volleyball (|B| = 12)</li>
+<li>5 students play both sports (|A ∩ B| = 5)</li>
+</ul>
+<p>To find the total number of students who play either sport (|A ∪ B|), we calculate:</p>
+<p><span class="math display">
+|A \cup B| = |A| + |B| - |A \cap B| = 15 + 12 - 5 = 22
+</span></p>
+<p>The reason we subtract the intersection is that these 5 students who play both sports were counted twice (once in |A| and once in |B|), so we need to subtract once to avoid double counting.</p>
+<p>This principle extends to probability theory, where for events A and B:</p>
+<p><span class="math display">
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
+</span></p>
+</section>
+</section>
+<section id="combining-both-rules-a-complex-example" class="level3" data-number="17.1.5">
+<h3 data-number="17.1.5" class="anchored" data-anchor-id="combining-both-rules-a-complex-example"><span class="header-section-number">17.1.5</span> Combining Both Rules: A Complex Example</h3>
+<p>Let’s create a password system where:</p>
+<ul>
+<li>Password must be 4 characters long</li>
+<li>Must contain at least one symbol (@, #)</li>
+<li>All other characters can be letters</li>
+</ul>
+<p>This requires combining both rules because:</p>
+<ol type="1">
+<li>We can have a symbol in position 1, 2, 3, or 4 (OR - Addition Rule)</li>
+<li>For each position of the symbol, we need to fill the other spots (AND - Multiplication Rule)</li>
+</ol>
+<p>Let’s solve step by step:</p>
+<ol type="1">
+<li><p>Symbol in first position: <span class="math display">2 \times 26 \times 26 \times 26</span></p></li>
+<li><p>Symbol in second position: <span class="math display">26 \times 2 \times 26 \times 26</span></p></li>
+<li><p>Symbol in third position: <span class="math display">26 \times 26 \times 2 \times 26</span></p></li>
+<li><p>Symbol in fourth position: <span class="math display">26 \times 26 \times 26 \times 2</span></p></li>
+</ol>
+<p>Total possibilities: <span class="math display">\text{Total} = (2 \times 26^3) \times 4 = 140,608</span></p>
+<p>This example shows how we:</p>
+<ol type="1">
+<li>Used multiplication within each case (filling positions)</li>
+<li>Used addition to combine all possible positions</li>
+<li>Simplified the final answer</li>
+</ol>
+<p>Remember: These rules help us count possibilities systematically, breaking complex problems into manageable pieces!</p>
+</section>
+<section id="random-experiments-and-outcomes" class="level3" data-number="17.1.6">
+<h3 data-number="17.1.6" class="anchored" data-anchor-id="random-experiments-and-outcomes"><span class="header-section-number">17.1.6</span> Random Experiments and Outcomes</h3>
 <p>A <strong>random experiment</strong> is any procedure that meets these criteria:</p>
 <ol type="1">
 <li>It can be repeated under identical conditions</li>
@@ -528,8 +635,8 @@ window.Quarto = {
 </ul>
 <p>An <strong>outcome</strong> is a single possible result of a random experiment. When we roll a die, getting a 3 is an outcome. When we flip a coin, getting heads is an outcome.</p>
 </section>
-<section id="sample-space" class="level3" data-number="17.1.5">
-<h3 data-number="17.1.5" class="anchored" data-anchor-id="sample-space"><span class="header-section-number">17.1.5</span> Sample Space</h3>
+<section id="sample-space" class="level3" data-number="17.1.7">
+<h3 data-number="17.1.7" class="anchored" data-anchor-id="sample-space"><span class="header-section-number">17.1.7</span> Sample Space</h3>
 <p>The sample space, typically denoted by Ω or S, is the collection of all possible outcomes of a random experiment. For example:</p>
 <ul>
 <li>For a coin flip: S = {heads, tails}</li>
@@ -542,8 +649,8 @@ window.Quarto = {
 <li>Mutually exclusive (outcomes cannot overlap)</li>
 </ol>
 </section>
-<section id="events" class="level3" data-number="17.1.6">
-<h3 data-number="17.1.6" class="anchored" data-anchor-id="events"><span class="header-section-number">17.1.6</span> Events</h3>
+<section id="events" class="level3" data-number="17.1.8">
+<h3 data-number="17.1.8" class="anchored" data-anchor-id="events"><span class="header-section-number">17.1.8</span> Events</h3>
 <p>An <strong>event</strong> is a set of outcomes that we’re interested in. While an outcome is a single result, an event can contain multiple outcomes. For instance:</p>
 <ul>
 <li>When rolling a die, “getting an even number” is an event containing the outcomes {2, 4, 6}</li>
@@ -551,105 +658,216 @@ window.Quarto = {
 <li>When flipping two coins, “getting at least one head” is an event containing three outcomes {HH, HT, TH}</li>
 </ul>
 <p>In probability theory, a <strong>tree diagram</strong> may be used to represent a sample space and help calculate probabilities. A tree diagram may represent a series of independent events (such as a set of coin flips) or conditional probabilities (such as drawing cards from a deck, without replacing the cards).</p>
-<p><strong>Events are subsets of the sample space, and we can perform set operations on them</strong>. Let’s understand these operations both conceptually and through their connection to probability calculations:</p>
-<section id="graphical-representations-of-sample-spaces-and-events" class="level4" data-number="17.1.6.1">
-<h4 data-number="17.1.6.1" class="anchored" data-anchor-id="graphical-representations-of-sample-spaces-and-events"><span class="header-section-number">17.1.6.1</span> Graphical Representations of Sample Spaces and Events</h4>
-<p>In probability theory, visualizing sample spaces and relationships between events is crucial for understanding and solving problems. This section covers three main graphical representations: <strong>Venn diagrams, tree diagrams, and grids.</strong></p>
+<p><strong>Events are subsets of the sample space, and we can perform set operations on them</strong>.</p>
+</section>
+<section id="visualizing-sample-spaces" class="level3" data-number="17.1.9">
+<h3 data-number="17.1.9" class="anchored" data-anchor-id="visualizing-sample-spaces"><span class="header-section-number">17.1.9</span> Visualizing Sample Spaces</h3>
+<p>In probability theory and statistics, being able to visualize sample spaces is crucial for understanding possible outcomes and their relationships. We’ll explore three main approaches to visualizing sample spaces:</p>
 <ol type="1">
-<li><strong>Venn Diagrams</strong></li>
+<li>Venn Diagrams</li>
+<li>Tree Diagrams</li>
+<li>Grid/Matrix Diagrams</li>
 </ol>
-<p>Venn diagrams are particularly useful for visualizing relationships between events and performing set operations.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VennDiagram)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: grid</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: futile.logger</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple two-set Venn diagram</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>venn.plot <span class="ot">&lt;-</span> <span class="fu">draw.pairwise.venn</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">area1 =</span> <span class="dv">100</span>,        <span class="co"># Size of first set</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">area2 =</span> <span class="dv">80</span>,         <span class="co"># Size of second set</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">cross.area =</span> <span class="dv">40</span>,    <span class="co"># Size of intersection</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">"Event A"</span>, <span class="st">"Event B"</span>),</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"lightblue"</span>, <span class="st">"lightgreen"</span>),</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> <span class="fl">0.5</span>,        <span class="co"># Transparency level</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">cat.col =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"darkgreen"</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="probability_en_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<ol start="2" type="1">
-<li><strong>Tree Diagrams</strong></li>
-</ol>
-<p>Tree diagrams are excellent for visualizing sequential events and conditional probabilities. They show how probabilities branch out at each stage of an experiment.</p>
+<section id="venn-diagrams" class="level4" data-number="17.1.9.1">
+<h4 data-number="17.1.9.1" class="anchored" data-anchor-id="venn-diagrams"><span class="header-section-number">17.1.9.1</span> Venn Diagrams</h4>
+<p>Venn diagrams provide a powerful visual tool for understanding sample spaces.</p>
+<ul>
+<li>A Venn diagram is a visual representation that shows relationships between different sets or groups using overlapping circles.</li>
+<li>Think of each circle in a Venn diagram as a container that holds items with specific characteristics. Where these circles overlap, we find items that share characteristics of multiple groups.</li>
+</ul>
+<p>In probability theory, our sample space (usually denoted by Ω or S) represents all possible outcomes of an experiment. When we draw a Venn diagram, the rectangular frame represents this entire sample space, with a probability of 1. Any event is then a subset of this space.</p>
+<p><img src="stat_imgs/venn-diagram.svg" class="img-fluid"></p>
+</section>
+<section id="tree-diagrams" class="level4" data-number="17.1.9.2">
+<h4 data-number="17.1.9.2" class="anchored" data-anchor-id="tree-diagrams"><span class="header-section-number">17.1.9.2</span> Tree Diagrams</h4>
+<p>Tree diagrams are particularly useful for visualizing sequential events and their outcomes. Here’s a tree diagram showing a simple probability experiment: We toss a fair coin twice.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
-<pre class="mermaid mermaid-js">graph TD
-    A[Start] --&gt; B[Success]
-    A --&gt; C[Failure]
-    B --&gt; D[Success]
-    B --&gt; E[Failure]
-    C --&gt; F[Success]
-    C --&gt; G[Failure]
+<pre class="mermaid mermaid-js">graph LR
+    Start[Start] --&gt; H1[H]
+    Start --&gt; T1[T]
+    H1 --&gt; H2[H]
+    H1 --&gt; T2[T]
+    T1 --&gt; H3[H]
+    T1 --&gt; T3[T]
     
-    %% Probabilities on edges
-    A -- "0.6" --&gt; B
-    A -- "0.4" --&gt; C
-    B -- "0.7" --&gt; D
-    B -- "0.3" --&gt; E
-    C -- "0.5" --&gt; F
-    C -- "0.5" --&gt; G
+    H2 --&gt; HH([HH: 1/4])
+    T2 --&gt; HT([HT: 1/4])
+    H3 --&gt; TH([TH: 1/4])
+    T3 --&gt; TT([TT: 1/4])
+    
+    linkStyle 0,2,3 stroke:#1e88e5,stroke-width:2px
+    linkStyle 4,5 stroke:#ff5252,stroke-width:2px
+    linkStyle 1 stroke:#ff5252,stroke-width:2px
+    
+    style Start fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style H1 fill:#bbdefb,stroke:#1e88e5,stroke-width:2px
+    style T1 fill:#ffcdd2,stroke:#ff5252,stroke-width:2px
+    style H2 fill:#bbdefb,stroke:#1e88e5,stroke-width:2px
+    style T2 fill:#ffcdd2,stroke:#ff5252,stroke-width:2px
+    style H3 fill:#bbdefb,stroke:#1e88e5,stroke-width:2px
+    style T3 fill:#ffcdd2,stroke:#ff5252,stroke-width:2px
+    
+    style HH fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style HT fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style TH fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style TT fill:#f5f5f5,stroke:#333,stroke-width:2px
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
-<p>Key features of tree diagrams:</p>
+</section>
+<section id="gridmatrix-diagrams" class="level4" data-number="17.1.9.3">
+<h4 data-number="17.1.9.3" class="anchored" data-anchor-id="gridmatrix-diagrams"><span class="header-section-number">17.1.9.3</span> Grid/Matrix Diagrams</h4>
+<p>Grid diagrams are excellent for showing combinations of events.</p>
+<p>Scenario. We have 7 balls in the bag:</p>
+<ul>
+<li>4 red balls (let’s call them R₁, R₂, R₃, R₄)</li>
+<li>3 black balls (B₁, B₂, B₃)</li>
+<li>We’ll draw 2 balls without replacement</li>
+<li>Order doesn’t matter (like picking team members)</li>
+</ul>
+<p>Let’s visualize the entire sample space using a grid where each cell represents selecting two balls in order:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>First Draw →</th>
+<th>R₁</th>
+<th>R₂</th>
+<th>R₃</th>
+<th>R₄</th>
+<th>B₁</th>
+<th>B₂</th>
+<th>B₃</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Second Draw ↓</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>R₁</td>
+<td>X</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+</tr>
+<tr class="odd">
+<td>R₂</td>
+<td>⚫</td>
+<td>X</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+</tr>
+<tr class="even">
+<td>R₃</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>X</td>
+<td>⚫</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+</tr>
+<tr class="odd">
+<td>R₄</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>X</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+</tr>
+<tr class="even">
+<td>B₁</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>X</td>
+<td>⚫</td>
+<td>⚫</td>
+</tr>
+<tr class="odd">
+<td>B₂</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚫</td>
+<td>X</td>
+<td>⚫</td>
+</tr>
+<tr class="even">
+<td>B₃</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚪</td>
+<td>⚫</td>
+<td>⚫</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<p>Where:</p>
+<ul>
+<li>X: Impossible (same ball twice)</li>
+<li>⚫: Both red or both black</li>
+<li>⚪: Multi-colored outcome</li>
+</ul>
+<p>From this grid:</p>
 <ol type="1">
-<li><p>Each branch represents a possible outcome</p></li>
-<li><p>Probabilities are written on the branches</p></li>
-<li><p>Probabilities at each level sum to 1</p></li>
-<li><p>The probability of a path is found by multiplying along branches</p></li>
-<li><p><strong>Grid/Matrix Representations</strong></p></li>
+<li>Both red = 12 outcomes (⚫ in upper-left quadrant)</li>
+<li>Red then black = 12 outcomes (⚪ in upper-right)</li>
+<li>Total possible outcomes = 42 (remove diagonal X’s)</li>
 </ol>
-<p>Grid or matrix representations are particularly useful for two-dimensional sample spaces, such as rolling two dice or drawing two cards.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a matrix showing outcomes of rolling two dice</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dice_outcomes <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">36</span>, <span class="at">nrow =</span> <span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">6</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(dice_outcomes) <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dice_outcomes) <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a heatmap visualization</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">expand.grid</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)) <span class="sc">+</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> x <span class="sc">+</span> y)) <span class="sc">+</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sum of Two Dice Rolls"</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"First Die"</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Second Die"</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Sum"</span>) <span class="sc">+</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="probability_en_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Basic Set Operations Using Venn Diagrams</strong></p>
+</section>
+<section id="tips-for-choosing-the-right-visualization" class="level4" data-number="17.1.9.4">
+<h4 data-number="17.1.9.4" class="anchored" data-anchor-id="tips-for-choosing-the-right-visualization"><span class="header-section-number">17.1.9.4</span> Tips for Choosing the Right Visualization</h4>
+<ul>
+<li>Use <strong>Venn diagrams</strong> when:
+<ul>
+<li>Showing overlapping sets or events</li>
+<li>Illustrating unions and intersections</li>
+<li>Demonstrating mutual exclusivity</li>
+</ul></li>
+<li>Use <strong>Tree diagrams</strong> when:
+<ul>
+<li>Showing sequential events</li>
+<li>Illustrating conditional probability</li>
+<li>Displaying all possible pathways of outcomes</li>
+</ul></li>
+<li>Use <strong>Grid diagrams</strong> when:
+<ul>
+<li>Showing combinations of two independent events</li>
+<li>Displaying frequency distributions</li>
+<li>Illustrating joint probability distributions</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="basic-set-operations-using-venn-diagrams" class="level3" data-number="17.1.10">
+<h3 data-number="17.1.10" class="anchored" data-anchor-id="basic-set-operations-using-venn-diagrams"><span class="header-section-number">17.1.10</span> Basic Set Operations Using Venn Diagrams</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="stat_imgs/set_operations_1.svg" class="img-fluid figure-img"></p>
@@ -738,27 +956,26 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-</section>
 <section id="why-focus-on-discrete-probability" class="level2" data-number="17.2">
 <h2 data-number="17.2" class="anchored" data-anchor-id="why-focus-on-discrete-probability"><span class="header-section-number">17.2</span> Why Focus on Discrete Probability?</h2>
 <p>When we say a probability problem is “discrete,” we mean we’re dealing with situations where:</p>
 <ol type="1">
-<li><p>We can count the number of possible outcomes</p></li>
-<li><p>Each outcome is separate and distinct from others</p></li>
-<li><p>We can list all possible outcomes in our sample space</p></li>
+<li>We can count the number of possible outcomes</li>
+<li>Each outcome is separate and distinct from others</li>
+<li>We can list all possible outcomes in our sample space</li>
 </ol>
 <p>For example, when we:</p>
 <ul>
-<li><p>Draw balls from an urn</p></li>
-<li><p>Flip coins or roll dice</p></li>
-<li><p>Count successes in a sequence of trials</p></li>
-<li><p>Select items from a group</p></li>
+<li>Draw balls from an urn</li>
+<li>Flip coins or roll dice</li>
+<li>Count successes in a sequence of trials</li>
+<li>Select items from a group</li>
 </ul>
 <p>This approach is particularly valuable because:</p>
 <ol type="1">
-<li><p>It allows us to build strong intuition about probability without requiring calculus</p></li>
-<li><p>It directly connects to many real-world applications in statistics</p></li>
-<li><p>It provides the foundation for understanding the binomial distribution, which we’ll use later for hypothesis testing</p></li>
+<li>It allows us to build strong intuition about probability without requiring calculus</li>
+<li>It directly connects to many real-world applications in statistics</li>
+<li>It provides the foundation for understanding the binomial distribution, which we’ll use later for hypothesis testing</li>
 </ol>
 </section>
 <section id="key-questions-before-calculating-probabilities" class="level2" data-number="17.3">
@@ -836,10 +1053,6 @@ window.Quarto = {
 </section>
 <section id="the-is-contained-in-relationship-subseteq" class="level4" data-number="17.4.2.2">
 <h4 data-number="17.4.2.2" class="anchored" data-anchor-id="the-is-contained-in-relationship-subseteq"><span class="header-section-number">17.4.2.2</span> The “Is Contained In” Relationship (<span class="math inline">\subseteq</span>)</h4>
-<p>Let me expand this by adding clear examples that illustrate the difference between set membership (<span class="math inline">\in</span>) and the subset relationship (<span class="math inline">\subseteq</span>).</p>
-</section>
-<section id="the-is-contained-in-relationship-subseteq-1" class="level4" data-number="17.4.2.3">
-<h4 data-number="17.4.2.3" class="anchored" data-anchor-id="the-is-contained-in-relationship-subseteq-1"><span class="header-section-number">17.4.2.3</span> The “Is Contained In” Relationship (<span class="math inline">\subseteq</span>)</h4>
 <p>A subset relationship (written as <span class="math inline">A \subseteq B</span>) describes when one set is entirely contained within another set. Every element of the smaller set must appear in the larger set. This is different from set membership (<span class="math inline">\in</span>), which describes when a single element belongs to a set.</p>
 <p>To understand the distinction, let’s look at some examples:</p>
 <p>Consider the following sets:</p>
@@ -894,9 +1107,9 @@ window.Quarto = {
 <h3 data-number="17.5.1" class="anchored" data-anchor-id="example-single-ball-draw"><span class="header-section-number">17.5.1</span> Example: Single Ball Draw</h3>
 <p>Consider an urn with 3 green and 2 red balls. For drawing one ball:</p>
 <ul>
-<li><p>Sample space: <span class="math inline">\Omega = \{G_1, G_2, G_3, R_1, R_2\}</span></p></li>
-<li><p>Event “draw green”: <span class="math inline">A = \{G_1, G_2, G_3\}</span></p></li>
-<li><p>Event “draw red”: <span class="math inline">B = \{R_1, R_2\}</span></p></li>
+<li>Sample space: <span class="math inline">\Omega = \{G_1, G_2, G_3, R_1, R_2\}</span></li>
+<li>Event “draw green”: <span class="math inline">A = \{G_1, G_2, G_3\}</span></li>
+<li>Event “draw red”: <span class="math inline">B = \{R_1, R_2\}</span></li>
 </ul>
 <p>Note that <span class="math inline">A \cup B = \Omega</span> and <span class="math inline">A \cap B = \emptyset</span> (these events are mutually exclusive and exhaustive).</p>
 </section>
@@ -952,13 +1165,13 @@ window.Quarto = {
 <h3 data-number="17.6.5" class="anchored" data-anchor-id="understanding-through-the-urn-example"><span class="header-section-number">17.6.5</span> Understanding Through the Urn Example</h3>
 <p>In our urn with 3 green and 2 red balls:</p>
 <ul>
-<li><p><span class="math inline">P(\text{green}) = \frac{3}{5}</span></p></li>
-<li><p><span class="math inline">P(\text{red}) = \frac{2}{5}</span></p></li>
-<li><p><span class="math inline">P(\text{green}) + P(\text{red}) = 1</span></p></li>
+<li><span class="math inline">P(\text{green}) = \frac{3}{5}</span></li>
+<li><span class="math inline">P(\text{red}) = \frac{2}{5}</span></li>
+<li><span class="math inline">P(\text{green}) + P(\text{red}) = 1</span></li>
 </ul>
 <p>The classical definition of probability assumes:</p>
 <ol type="1">
-<li>A finite sample space <span class="math inline">\Omega</span> with equally likely outcomes</li>
+<li>A finite sample space <span class="math inline">\Omega</span> with equally likely outcomes (‘fair’ experiment)</li>
 <li>For an event <span class="math inline">A</span>, probability is defined as: <span class="math inline">P(A) = \frac{\text{favorable outcomes}}{\text{total outcomes}}</span></li>
 </ol>
 <p>In our urn with 3 green and 2 red balls, these assumptions manifest as:</p>
@@ -1570,21 +1783,21 @@ Sampling Methods Overview
 </table>
 <p>Where:</p>
 <ul>
-<li><p>X: Impossible (same ball twice)</p></li>
-<li><p>⚫: Both red or both black</p></li>
-<li><p>⚪: Multi-colored outcome</p></li>
+<li>X: Impossible (same ball twice)</li>
+<li>⚫: Both red or both black</li>
+<li>⚪: Multi-colored outcome</li>
 </ul>
 <p>From this grid:</p>
 <ol type="1">
-<li><p>Both red = 12 outcomes (⚫ in upper-left quadrant)</p></li>
-<li><p>Red then black = 12 outcomes (⚪ in upper-right)</p></li>
-<li><p>Total possible outcomes = 42 (remove diagonal X’s)</p></li>
+<li>Both red = 12 outcomes (⚫ in upper-left quadrant)</li>
+<li>Red then black = 12 outcomes (⚪ in upper-right)</li>
+<li>Total possible outcomes = 42 (remove diagonal X’s)</li>
 </ol>
 <p>Therefore:</p>
 <ul>
-<li><p>P(both red) = <span class="math inline">\frac{12}{42} = \frac{6}{21}</span></p></li>
-<li><p>P(red then black) = <span class="math inline">\frac{12}{42} = \frac{2}{7}</span></p></li>
-<li><p>P(multi-colored) = <span class="math inline">\frac{24}{42} = \frac{4}{7}</span></p></li>
+<li>P(both red) = <span class="math inline">\frac{12}{42} = \frac{6}{21}</span></li>
+<li>P(red then black) = <span class="math inline">\frac{12}{42} = \frac{2}{7}</span></li>
+<li>P(multi-colored) = <span class="math inline">\frac{24}{42} = \frac{4}{7}</span></li>
 </ul>
 </section>
 <section id="comparing-the-methods" class="level3" data-number="17.9.4">

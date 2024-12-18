@@ -212,13 +212,14 @@ cat("Spearman Correlation:", round(cor(data$stress_level, data$cognitive_perform
 cat("Kendall's Tau:", round(cor(data$stress_level, data$cognitive_performance, method = "kendall"), 2), "\n")
 ```
 
-
 ## Example 4: Electoral District Magnitude vs. LH Index
 
 ```{r}
 DM <- c(3, 4, 5, 6, 7, 8)
 LHI <- c(15.5, 14.25, 13.5, 13.5, 13, 12.75)
 
+sd(DM)
+sd(LHI)
 
 cat("Covariance:", round(cov(DM, LHI), 2), "\n")
 cat("Pearson Correlation:", round(cor(DM, LHI, method = "pearson"), 2), "\n")
@@ -236,7 +237,6 @@ ggplot(data, aes(x = DM, y = LHI)) +
 ols1 <- lm(LHI ~ DM, data = data)
 summary(ols1)
 ```
-
 
 # Probability and Inference
 
@@ -267,8 +267,8 @@ summary(model.1)
 ## Example: Loosemore-Hanby Index vs. District Magnitude
 
 ```{r}
-DM <- c(4,10,3,8,7,4,6,2,7,14)
-LHI <- c(12,8,15,10,6,13,11,16,9,5)
+# DM <- c(4,10,3,8,7,4,6,2,7,14)
+# LHI <- c(12,8,15,10,6,13,11,16,9,5)
 
 DM <- c(4,10,3,8,7,4)
 LHI <- c(12,8,15,10,6,13)
