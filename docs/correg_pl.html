@@ -1479,13 +1479,13 @@ Model Regresji Liniowej (MNK): Szybki Start
 <li>Nazywana również: predyktor, zmienna objaśniająca, regresor</li>
 <li>Przykłady: lata edukacji, budżet reklamowy, godziny nauki</li>
 </ul></li>
-<li><strong>Parametry Populacji (<span class="math inline">\beta</span>)</strong>:
+<li><strong>Parametry Populacji (</strong><span class="math inline">\beta</span>):
 <ul>
 <li>Prawdziwe podstawowe zależności, które chcemy zrozumieć</li>
 <li>Zazwyczaj nieznane w praktyce</li>
 <li>Przykłady: <span class="math inline">\beta_0</span> (prawdziwy wyraz wolny), <span class="math inline">\beta_1</span> (prawdziwe nachylenie)</li>
 </ul></li>
-<li><strong>Oszacowania Parametrów (<span class="math inline">\hat{\beta}</span>)</strong>:
+<li><strong>Oszacowania Parametrów (</strong><span class="math inline">\hat{\beta}</span>):
 <ul>
 <li>Nasze najlepsze przypuszczenia dotyczące prawdziwych parametrów na podstawie danych</li>
 <li>Obliczane na podstawie danych próby</li>
@@ -2144,7 +2144,7 @@ Intuicyjne zrozumienie Metody Najmniejszych Kwadratów (MNK)
 <section id="miary-dopasowania" class="level3" data-number="16.6.7">
 <h3 data-number="16.6.7" class="anchored" data-anchor-id="miary-dopasowania"><span class="header-section-number">16.6.7</span> Miary Dopasowania</h3>
 <ol type="1">
-<li><p><strong>R-kwadrat (<span class="math inline">R^2</span>)</strong>: <span class="math display">R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}</span></p></li>
+<li><p><strong>R-kwadrat (</strong><span class="math inline">R^2</span>): <span class="math display">R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}</span></p></li>
 <li><p><strong>Pierwiastek Błędu Średniokwadratowego (RMSE)</strong>: <span class="math display">RMSE = \sqrt{\frac{SSE}{n}}</span></p></li>
 <li><p><strong>Średni Błąd Bezwzględny (MAE)</strong>: <span class="math display">MAE = \frac{1}{n}\sum_{i=1}^n |Y_i - \hat{Y}_i|</span></p></li>
 </ol>
@@ -2160,13 +2160,14 @@ Dekompozycja Wariancji w Regresji Liniowej
 <div class="callout-body-container callout-body">
 <section id="dlaczego-to-jest-ważne-zrozumienie-poprawy-prognoz-poprzez-dodatkowe-informacje" class="level3" data-number="16.6.8">
 <h3 data-number="16.6.8" class="anchored" data-anchor-id="dlaczego-to-jest-ważne-zrozumienie-poprawy-prognoz-poprzez-dodatkowe-informacje"><span class="header-section-number">16.6.8</span> Dlaczego To Jest Ważne: Zrozumienie Poprawy Prognoz Poprzez Dodatkowe Informacje</h3>
-<p>Rozważmy wyzwanie związane z przewidywaniem cen nieruchomości na rynku mieszkaniowym. Na najbardziej podstawowym poziomie można oszacować cenę dowolnego domu, używając średniej ceny rynkowej. Jednakże takie podejście pomija potencjalnie wartościowe informacje. Gdy uwzględnimy dodatkowe zmienne, takie jak powierzchnia użytkowa, lokalizacja czy liczba sypialni, nasze prognozy zazwyczaj stają się bardziej precyzyjne. <strong>Dekompozycja wariancji</strong> dostarcza matematycznych ram do dokładnego określenia, o ile poprawia się trafność prognoz, gdy włączamy takie dodatkowe informacje.</p>
+<p>Rozważmy prbem zwizany z przewidywaniem cen nieruchomości na rynku mieszkaniowym. Na najbardziej podstawowym poziomie można oszacować cenę dowolnego domu, używając średniej ceny rynkowej. Jednakże takie podejście pomija potencjalnie wartościowe informacje. Gdy uwzględnimy dodatkowe zmienne, takie jak powierzchnia użytkowa, lokalizacja czy liczba sypialni, nasze prognozy zazwyczaj stają się bardziej precyzyjne.</p>
+<p><strong>Dekompozycja wariancji</strong> dostarcza matematycznych ram do dokładnego określenia, o ile poprawia się trafność prognoz, gdy włączamy takie dodatkowe informacje.</p>
 </section>
 <section id="udoskonalenie-estymacji" class="level3" data-number="16.6.9">
 <h3 data-number="16.6.9" class="anchored" data-anchor-id="udoskonalenie-estymacji"><span class="header-section-number">16.6.9</span> Udoskonalenie Estymacji</h3>
 <section id="podejście-początkowe-uniwersalna-średnia" class="level4" data-number="16.6.9.1">
 <h4 data-number="16.6.9.1" class="anchored" data-anchor-id="podejście-początkowe-uniwersalna-średnia"><span class="header-section-number">16.6.9.1</span> Podejście Początkowe: Uniwersalna Średnia</h4>
-<p>Nasza podróż rozpoczyna się od najprostszej możliwej prognozy: średniej wszystkich cen domów (<span class="math inline">\bar{y}</span>). Stanowi to nasz punkt wyjścia – prognozę dokonaną bez żadnych szczególnych informacji o poszczególnych nieruchomościach. Choć podejście to zapewnia rozsądny punkt odniesienia, traktuje każdy dom identycznie, prowadząc do tzw. <strong>błędów bazowych</strong>. Błędy te powstają właśnie dlatego, że ignorujemy unikalne cechy każdej nieruchomości.</p>
+<p>Zaczynamy od najprostszej możliwej prognozy: średniej wszystkich cen domów (<span class="math inline">\bar{y}</span>). Stanowi to nasz punkt wyjścia – prognozę dokonaną bez żadnych szczególnych informacji o poszczególnych nieruchomościach. Choć podejście to zapewnia rozsądny punkt odniesienia, traktuje każdy dom identycznie, prowadząc do tzw. <strong>błędów bazowych</strong>. Błędy te powstają właśnie dlatego, że ignorujemy unikalne cechy każdej nieruchomości.</p>
 </section>
 <section id="podejście-zaawansowane-włączenie-informacji-szczegółowych" class="level4" data-number="16.6.9.2">
 <h4 data-number="16.6.9.2" class="anchored" data-anchor-id="podejście-zaawansowane-włączenie-informacji-szczegółowych"><span class="header-section-number">16.6.9.2</span> Podejście Zaawansowane: Włączenie Informacji Szczegółowych</h4>
@@ -2198,7 +2199,7 @@ Dekompozycja Wariancji w Regresji Liniowej
 <li><strong>Interpretacja Praktyczna:</strong> Mniejsze SSE sugeruje, że nasz model wychwytuje większość głównych czynników wpływających na cenę</li>
 </ul></li>
 </ol>
-<p>Piękno tej dekompozycji tkwi w jej matematycznej kompletności: SST = SSR + SSE. Ta zależność mówi nam, że cała zmienność cen musi być albo wyjaśniona przez nasz model (SSR), albo pozostać niewyjaśniona (SSE), dostarczając kompleksowych ram do zrozumienia poprawy prognoz. Kolorowe linie na wykresie stanowią wizualne potwierdzenie tej zależności, pomagając zrozumieć, jak te komponenty współdziałają w praktyce.</p>
+<p>SST = SSR + SSE. Ta zależność mówi nam, że cała zmienność cen musi być albo wyjaśniona przez nasz model (SSR), albo pozostać niewyjaśniona (SSE), dostarczając kompleksowych ram do zrozumienia poprawy prognoz. Kolorowe linie na wykresie stanowią wizualne potwierdzenie tej zależności, pomagając zrozumieć, jak te komponenty współdziałają w praktyce.</p>
 <section id="wizualizacja-dekompozycji-wariancji" class="level4" data-number="16.6.10.1">
 <h4 data-number="16.6.10.1" class="anchored" data-anchor-id="wizualizacja-dekompozycji-wariancji"><span class="header-section-number">16.6.10.1</span> Wizualizacja Dekompozycji Wariancji</h4>
 <div class="cell">
@@ -3512,14 +3513,14 @@ Zrozumienie Regresji Metodą Najmniejszych Kwadratów (OLS): Podsumowanie dla St
 <p>Pełna tabela robocza ze wszystkimi obliczeniami:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 3%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 26%">
-<col style="width: 15%">
-<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 12%">
 </colgroup>
 <thead>
 <tr class="header">
