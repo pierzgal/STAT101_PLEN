@@ -1,67 +1,64 @@
 # Introduction to Data Science and Statistics for Social Sciences
 
-## What is Data Science?
+This chapter introduces students to the fundamentals of data science and statistics – knowledge areas that are essential for social science researchers.
+
+## What are Statistics and Data Science?
 
 ::: callout-important
-Statistics and Data Science are The Art and Science of Learning from Data.
+Statistics and data science are both the art and science of extracting knowledge from data – they help us understand the world through methodical analysis of collected information.
 :::
 
-1.  Data science and statistics are powerful tools that help us understand complex phenomena across various social sciences, including political science, economics, and sociology. These complementary fields provide researchers and practitioners with the means to analyze trends, behaviors, and outcomes in society, offering insights that can shape policy and advance our understanding of human interaction.
+1.  Data science and statistics are key research tools that enable a better understanding of social phenomena, regardless of specialization: political science, economics, sociology, or other social sciences. They allow researchers to analyze trends, social behaviors, and effects of various policies, providing solid foundations for formulating conclusions based on empirical data.
 
-2.  Statistics provides the mathematical foundation for analyzing societal trends and outcomes, offering methods for designing studies, summarizing data, and making inferences. Data science expands on this foundation by incorporating computational methods and domain expertise to handle larger datasets and perform more complex analyses.
+2.  Statistics provides the mathematical foundations for data analysis – teaching research design, synthesizing collected information, and testing research hypotheses. Data science extends these capabilities by integrating statistics with programming skills and domain knowledge, allowing researchers to work effectively even with complex datasets.
 
-3.  Together, these disciplines allow us to collect and process large datasets, visualize complex information, uncover patterns in social interactions, evaluate policy impacts, and support evidence-based decision-making. Their applications are vast and varied, from studying voting patterns and analyzing economic indicators to researching social inequalities and examining human behavior.
+3.  Together, these fields significantly enhance research capabilities. They enable the collection and analysis of large datasets, creation of clear visualizations of complex information, discovery of patterns in social behaviors that aren't immediately apparent, and evaluation of the effectiveness of different solutions. These skills have broad applications – from analyzing electoral processes and economic phenomena to studying social inequalities.
 
-4.  As our world becomes increasingly data-driven, the importance of data science and statistics in social sciences continues to grow.
+4.  In the digital era, characterized by a rapid increase in available data, competencies in data analysis are becoming an essential element in the toolkit of contemporary researchers and social science specialists.
 
 ::: callout-note
-In social sciences, data science combines statistical methods, computational tools, and domain expertise to analyze complex social phenomena and human behavior.
+In social sciences, data science constitutes a set of methods for solving complex research problems – combining statistical approaches, computational tools, and specialized knowledge to more effectively analyze social processes.
 :::
 
 ## The Relationship Between Statistics and Data Science
 
-Statistics and data science are closely interrelated fields with significant overlap, especially in social sciences. Rather than strict divisions, it's more accurate to view them as complementary approaches on a continuum:
+Statistics and data science are closely related fields with a significant overlap. Rather than treating them as completely separate disciplines, it's beneficial to view them as complementary approaches within the spectrum of data analysis methods:
 
 ::: panel-tabset
 ### Traditional Statistics
 
--   Rooted in mathematical theories and methods for data analysis
--   Emphasizes statistical inference, hypothesis testing, and probability theory
--   Historically central to social sciences for analyzing surveys, experiments, and observational studies
+-   Based on mathematical foundations and probability theory
+-   Focuses on hypothesis testing, parameter estimation, and statistical inference
+-   In social sciences, it's primarily applied to analyzing data from surveys, experiments, and observations
+-   Forms the methodological foundation of quantitative analysis
 
-### Modern Data Science
+### Data Science
 
--   Integrates statistical methods with computer science and domain expertise
--   Expands focus to include machine learning, big data processing, and predictive modeling
--   In social sciences, often tackles large-scale digital data and complex behavioral datasets
-
-### Evolving Landscape
-
--   Boundaries between statistics and data science are increasingly blurred
--   Many techniques and tools are shared across both fields
--   Social scientists often combine traditional statistical approaches with newer data science methods
--   The choice of approach depends on research questions, data characteristics, and specific analytical needs
+-   Combines statistical methods with programming skills and domain knowledge
+-   Utilizes modern techniques such as machine learning and big data analysis
+-   In social sciences, it enables work with digital data, textual information, and complex patterns of social interactions
+-   Develops and extends traditional statistical approaches, adapting them to contemporary research challenges
 :::
 
-Data science can be seen as an evolution and expansion of traditional statistics, incorporating new technologies and methodologies to handle larger and more complex social science datasets.
+Data science can be viewed as a contemporary extension of traditional statistics that has evolved in response to new technological possibilities and the need to analyze increasingly complex social data.
 
-## Essential Concepts in Data Science and Statistics
+## Basic Concepts in Data Science and Statistics
 
-### Population, Sample and related concepts
+### Data and Populations – Key Concepts
 
-::: callout-important
-1.  **Data**: Observations or measurements collected from a sample or population.
+1.  **Data**: Information collected in the research process – these can be questionnaire responses, experimental results, economic indicators, social media content, or other measurable observations.
 
-2.  **Population**: The entire set of individuals or items under study at a specific time.
+2.  **Population**: The complete set of units (individuals, institutions, events) that the research concerns – the entire group about which the researcher wants to draw conclusions.
 
-    -   Example: All eligible voters in a country during a specific election year.
+    -   Example: In a study of electoral preferences, the population consists of all citizens eligible to vote in a given country.
 
-3.  **Sample**: A subset of the population that is actually measured. A representative sample is a subset of a larger population that accurately reflects the characteristics of that population. The sample should mirror the population in terms of important traits like age, gender, socioeconomic status, etc. Often uses random sampling methods to avoid bias. Large enough to be statistically significant, but smaller than the full population.
+3.  **Sample**: A subset of the population selected for study. A **representative** sample mirrors the essential characteristics of the target population in appropriate proportions. Effective sampling considers the diversity of units across relevant variables (demographic, behavioral, etc.). For example, a simple random sample (SRS) is created when each unit in the population has an equal probability of selection. Sample adequacy depends on both representativeness and sufficient size to achieve desired precision.
 
-    -   Example: 1500 randomly selected eligible voters surveyed in a pre-election poll.
-:::
+    -   Example: Instead of studying all eligible voters, researchers analyze 1,500 randomly selected individuals, taking into account the appropriate distribution of age, gender, education, and region of residence.
 
-::: callout-important
+    A properly selected sample enables inference about the entire population while significantly optimizing research resources.
+
+::: callout-note
 **Data Generating Process (DGP) and Superpopulation: Expanding on Traditional Concepts**
 
 In traditional statistics, we often work with two key concepts:
@@ -191,289 +188,378 @@ This diagram illustrates the relationships between the Data Generating Process (
     -   From Sample to Population: Traditional statistical inference
     -   From Sample to DGP: Inferring about the underlying process from sample data
     -   From Population to DGP: Inferring about the DGP using complete population data
-
-For example, in our study on the effect of electoral rules on voter turnout in Polish municipalities (1998-2010 municipal elections):
-
--   We have data for the entire population of municipalities, so we don't need to infer from a sample to the population.
--   Our focus is on using the complete population data (rightmost dashed arrow) to make inferences about the underlying DGP—the complex processes by which electoral rules influence voter turnout across municipalities.
--   This approach allows us to potentially understand the mechanisms behind how different electoral systems (e.g., proportional representation vs. plurality vote) affect turnout rates, and make informed predictions about how changes in electoral rules might impact future turnout or how these effects might generalize to similar contexts.
 :::
 
+
+::: {.callout-important}
+## Population Parameter ($\theta$)
+
+A numerical value characterizing a specific feature of the entire population. Examples of population parameters include:
+- $\mu$ (population mean)
+- $\sigma^2$ (population variance)
+- $\sigma$ (population standard deviation)
+- $p$ (population proportion)
+
+Population parameters are usually unknown and are the subject of estimation based on a sample.
+
+## Distribution of the Sample Statistic ($\hat{\theta}$)
+
+A sample statistic $\hat{\theta}$ is a value calculated from sample observations that is used to estimate the population parameter $\theta$. The distribution of the statistic describes how the values of this statistic vary when repeatedly drawing samples of the same size $n$ from the same population.
+
+The distribution of a statistic refers to the probability distribution that describes all possible values the statistic might take when calculated from different random samples drawn from the same population, along with the probability of obtaining each value.
+
+To explain more clearly:
+
+When we take a sample from a population and calculate a statistic (like a sample mean), we get one specific value. But if we were to repeat this process many times—taking different random samples of the same size from the same population—we would get different values of the statistic each time. The distribution of the statistic describes this pattern of variability.
+
+Key points about the distribution of a statistic:
+
+1. It shows how the statistic varies from sample to sample
+2. It helps us understand sampling error and uncertainty
+3. It allows us to make probabilistic statements about how close our estimate is to the true population parameter
+4. It forms the foundation for statistical inference, including confidence intervals and hypothesis testing
+
+Example: If we are interested in the population mean $\mu$, its estimator is the sample mean $\bar{x}$. The distribution of the statistic $\bar{x}$ shows what values the sample mean can take and with what probability. Under certain conditions, this distribution approaches a "normal distribution" as sample size increases (according to the Central Limit Theorem), even if the original population distribution isn't "normal".
+
+We can represent this formally as follows:
+$$\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i$$
+
+where $x_1, x_2, ..., x_n$ are observations in a random sample.
+
+## Expected Value of the Sample Statistic
+
+The expected value of a sample statistic $E(\hat{\theta})$ is the average value that the statistic takes when repeatedly drawing samples from the population.
+
+There are important theorems in statistics that guarantee that for well-constructed estimators, the expected value of the statistic equals the parameter we want to estimate. This results from the linearity property of expected value and the independence of observations in a random sample. Speaking more informally - "good" estimators are constructed so that they "on average" hit the target, meaning:
+
+$$E(\hat{\theta}) = \theta$$
+
+For example, for the sample mean, we can prove that:
+$$E(\bar{x}) = E\left(\frac{1}{n}\sum_{i=1}^{n}x_i\right) = \frac{1}{n}\sum_{i=1}^{n}E(x_i) = \frac{1}{n} \cdot n \cdot \mu = \mu$$
+
+Such an estimator is called unbiased. Importantly, not all estimators are unbiased - some have systematic deviation, e.g., the variance estimator $s^2$ must include a correction $\frac{1}{n-1}$ instead of $\frac{1}{n}$ to be unbiased.
+
 ![Population vs. sample. Retrieved from: https://allmodelsarewrong.github.io/mse.html](stat_imgs/sampling-estimators.svg)
+:::
 
-Data forms the foundation of statistical analysis. It can be:
 
--   Primary data: Collected firsthand for a specific purpose
--   Secondary data: Obtained from existing sources
+::: {.callout-note}
+# Normal Distribution - The Bell Curve
 
-Example: In a study of university students' heights, the population is all university students in the country, while a sample might be 1000 randomly selected students.
+The normal distribution (also known as the Gaussian distribution or bell curve) is one of the most important probability distributions in statistics.
+
+The normal distribution has a characteristic bell or dome-like shape - hence the popular name "bell curve." It is symmetric around the mean, which means that values above and below the mean occur with the same probability.
+
+Interestingly, the normal distribution appears in nature surprisingly often. Human height, measurement errors, test scores, and even deviations in manufacturing processes often follow this distribution.
+
+Most importantly, according to the Central Limit Theorem, sample means tend to follow a normal distribution, even if the original data doesn't have a normal distribution. This is precisely why the normal distribution is so fundamental to statistics and statistical inference!
+
+The normal distribution is fully described by two parameters: the mean $\mu$ (which determines the center of the distribution) and the standard deviation $\sigma$ (which determines how wide the "bell" is).
+:::
+
+
+## Data and Populations
+
+Data forms the foundation of statistical analysis. To better understand its role, it's important to familiarize yourself with key concepts.
+
+### Types of Data
+
+-   **Primary data**: Collected directly for a specific research purpose, e.g., conducting your own survey
+-   **Secondary data**: Obtained from existing sources, e.g., databases or publications by other researchers
+
+::: callout-note
+## Population and Sample - Fundamental Distinction
+
+-   **Population**: The complete set of all elements/units about which we want to draw conclusions (e.g., all adult citizens of a country)
+-   **Sample**: A subset of the population that we actually study (e.g., 1000 randomly selected adult citizens)
+
+In research practice, we almost always analyze a sample and then make inferences about the population.
+:::
 
 ### Variables and Constants
 
-Variables are characteristics that can take different values across a dataset. They can be:
+**Variables** are characteristics that can take on different values in a dataset. They are the objects of our research and analysis.
 
-1.  Quantitative (numeric):
+#### Classification of Variables
 
-    -   Continuous: Height, weight, temperature
-    -   Discrete: Number of children, count of errors in a program
+1.  **Quantitative Variables**:
+    -   **Continuous**: Can take any value within a specific range, e.g., height, weight, temperature
+    -   **Discrete**: Take only specific values (usually integers), e.g., number of children, number of errors
+2.  **Qualitative Variables**:
+    -   **Nominal**: Categories with no natural order, e.g., blood type, gender, region
+    -   **Ordinal**: Categories with a natural order, e.g., education level (primary, secondary, higher), Likert scale (1-5)
 
-2.  Qualitative (categorical):
+**Constants** are values that remain unchanged throughout the analysis and often serve as reference points.
 
-    -   Nominal: Blood type, eye color
-    -   Ordinal: Education level, customer satisfaction rating
+## Population Parameters and Related Concepts - Key Distinctions
 
-Constants are fixed values that remain unchanged throughout an analysis.
+In statistics, there are several similar-sounding concepts that are often confused. Below is a clear distinction between them:
 
-#### Types of Data in Social Sciences
+### Population Parameter and Estimand
 
-Social science research deals with various types of data:
+**Population parameter** is a numerical value describing a characteristic of the entire population. Key features:
 
-1.  **Quantitative Data**: Numerical data (e.g., survey responses, economic indicators)
-2.  **Qualitative Data**: Non-numerical data (e.g., interview transcripts, open-ended survey responses)
-3.  **Big Data**: Large-scale digital traces (e.g., social media posts, online behavior logs)
+1.  It concerns the *entire* population, not just a sample
+2.  Usually denoted by Greek letters (μ, σ, π, ρ)
+3.  In most cases remains **unknown** (we cannot study the entire population)
+4.  Is determined by the actual Data Generating Process (DGP)
 
-### Population Parameters and Estimands
+**Estimand** is a specific population parameter or function of parameters that we want to estimate. It is the *goal of our estimation*.
 
-Population parameters are numerical characteristics of a population. Key points:
+Examples of population parameters:
 
-1.  They describe the entire population, not just a sample.
-2.  They are usually denoted by Greek letters.
-3.  In most cases, they cannot be directly calculated because we can't measure the entire population.
-4.  They are determined by the underlying Data Generating Process (DGP).
+-   Population mean (μ): The true average value of a characteristic in the population
+-   Population variance (σ²): The true measure of variability in the population
+-   Population proportion (p): The true proportion of units in the population having a certain characteristic
 
-Common population parameters include:
+::: callout-important
+## Important distinction!
 
--   Population mean ($\mu$): The average value of a variable in the population.
--   Population variance ($\sigma^2$): A measure of variability in the population.
--   Population proportion ($p$): The proportion of individuals in the population with a certain characteristic.
-
-An estimand is the target of estimation - the specific population parameter or function of parameters that we aim to estimate. It defines what we want to know about the population.
-
-::: callout-note
-## Example: Height of University Students
-
-Consider the height of all university students in a country:
-
--   $\mu$ (estimand): The true average height of all university students (population mean)
--   $\sigma^2$ (estimand): The true variance of heights in the population
-
-These parameters are unknown estimands that we aim to estimate using sample data.
+The estimand (population parameter) is a value in the population that we want to know but that remains unknown to us. It is our research target.
 :::
 
-### Statistic(s) and Estimators
+### Estimator (Statistic)
 
-A statistic (singular) or sample statistic is any quantity computed from values in a sample, which is considered for a statistical purpose.
+**Estimator** is a mathematical function (formula, procedure) that provides an estimate of a population parameter based on sample data. **An estimator is a random variable** because its value depends on the specific sample.
 
-When a statistic is used for estimating an estimand (population parameter), it is called an estimator. Estimators are functions of sample data that provide approximate values for unknown population parameters.
+**Statistic** is any measure calculated from sample data. When a statistic is used to estimate a population parameter, we call it an estimator.
 
-Examples of statistics/estimators:
+Examples of estimators (statistics):
 
--   Sample mean: $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ (estimates $\mu$)
--   Sample variance: $s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$ (estimates $\sigma^2$)
--   Sample proportion: $\hat{p} = \frac{x}{n}$ (estimates $p$)
+-   Sample mean: $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ (estimator of population mean μ)
+-   Sample variance: $s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$ (estimator of population variance σ²)
+-   Sample proportion: $\hat{p} = \frac{x}{n}$ (estimator of population proportion p)
 
-### Estimates
+::: callout-note
+## Estimator as a procedure
 
-An estimate is the specific value obtained by applying an estimator to a particular sample. It is a point value that approximates the true estimand (population parameter).
+An estimator should be understood as a **recipe** for calculating a value based on a sample. The same estimator applied to different samples will yield different results.
 
-Example: If we calculate a sample mean height of 68 inches from our data, then 68 inches is our estimate of the estimand $\mu$ (population mean height).
+Example: The mean estimator $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ is a procedure of "sum all values and divide by their count."
+:::
+
+### Estimate
+
+**Estimate** is a specific numerical value obtained after applying an estimator to a particular sample. It is a single number, being a realization of the random variable that is the estimator.
+
+::: callout-tip
+## Example distinguishing these concepts
+
+-   **Estimand**: Average height of all adults in a country (μ) - unknown value
+-   **Estimator**: Formula for sample mean $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ - computational procedure
+-   **Estimate**: 173.5 cm - specific value obtained from a sample
+
+Different samples will give different estimates of the same estimand using the same estimator.
+:::
+
+### Properties of Estimators
+
+A good estimator should have favorable statistical properties:
+
+1.  **Unbiasedness**: An estimator is unbiased if its expected value (average from many samples) equals the estimand. Formally: E(θ̂) = θ
+
+2.  **Efficiency**: An estimator is efficient if it has the smallest possible variance among all unbiased estimators
+
+3.  **Consistency**: An estimator is consistent if, as the sample size increases, its value approaches the true value of the parameter
+
+4.  **Sufficiency**: An estimator is sufficient if it uses all available information from the sample regarding the parameter being estimated
+
+## Statistical Models and Inference
 
 ### Statistical Models
 
-::: callout-note
-A model in science is a simplified representation of a complex system or phenomenon. It's designed to help us understand, explain, and make predictions about the real world. Models can take various forms, including mathematical equations, computer simulations, or conceptual frameworks. They allow scientists to focus on key aspects of a system while ignoring less relevant details, making complex problems more manageable and easier to study.
-:::
-
-Statistical models represent relationships between variables and help in making predictions or inferences about estimands (population parameters).
-
-Example: A linear regression model $y = \beta_0 + \beta_1x + \epsilon$ describes the relationship between an independent variable $x$ and a dependent variable $y$, where:
-
--   $y$ is the dependent variable (e.g. quantity demanded)
--   $x$ is the independent variable (e.g. price, income level of the consumer)
--   $\beta_0$ and $\beta_1$ are parameters, estimands to be estimated
--   $\epsilon$ is the error term, representing unexplained variation
-
-I'll help you create a callout note about causal inference and counterfactuals for Quarto.
+A statistical model is a mathematical representation of reality that describes relationships between variables and the structure of data. It allows for describing the data generating process (DGP) and making inferences about parameters.
 
 ::: callout-note
-## Causal Inference and Counterfactuals
-
-In social sciences, we often want to understand **what would have happened** if we had done something differently - this hypothetical scenario is called a *counterfactual*. For instance:
-
--   What would a person's income be if they had attended college vs. if they hadn't?
--   How would voter turnout change if voting was mandatory?
-
-Since we can't observe both scenarios simultaneously, statistical models help us estimate these counterfactuals by: 1. Controlling for confounding variables 2. Comparing similar groups that differ only in the treatment 3. Using techniques like propensity score matching or instrumental variables
-
-![Fundamental problem of causal inference: We can think of causal inference as a PREDICTION problem. How could we predict the counterfactual given that we never observe it?](stat_imgs/meme_horse.svg)
-
-Remember: Correlation ≠ Causation, but careful research design and statistical methods can help us make causal claims.
-
-![Confounding bias and spurious correlation (https://www.bradyneal.com/causal-inference-course) drinking the night before is a common cause of sleeping with shoes on and waking up with a headache :-)](stat_imgs/IMG_4337.jpg)
-
-![Reverse causality: https://ff13.fastforwardlabs.com/](stat_imgs/ff13-23.png)
+A statistical model consists of: 1. A probabilistic structure (e.g., assumption of normal distribution) 2. Parameters we want to estimate 3. Relationships between variables (e.g., linear, exponential)
 :::
 
-This creates a note-type callout in Quarto that explains the concept succinctly while highlighting key points about counterfactuals and their estimation.
+Example of a linear regression model: $y = \beta_0 + \beta_1x + \epsilon$, where $\epsilon \sim N(0, \sigma^2)$
 
-### Inference
+In this model: - $\beta_0$ and $\beta_1$ are parameters (estimands) we want to estimate - $\epsilon$ is a random component representing unexplained variability - We assume normality of the distribution of random errors
 
-Statistical inference is the process of drawing conclusions about estimands (population parameters) based on sample data. It involves two main types:
+### Causal vs. Predictive Inference
 
-1.  Estimation: Using sample statistics (estimators) to estimate estimands (population parameters)
-2.  Hypothesis testing: Making decisions about estimands based on sample evidence
+In statistical analysis, we may have two main goals:
 
-::: callout-note
-## Estimation and Hypothesis Testing
+1.  **Causal inference**: Determining whether variable X *causes* a change in variable Y
+    -   Requires additional assumptions or special research designs
+    -   Enables predicting the effects of interventions
+2.  **Predictive inference**: Predicting Y values based on X
+    -   Does not need to assume a causal relationship
+    -   Focuses on prediction accuracy
 
-1.  **Estimation**
+::: callout-warning
+## Correlation ≠ Causation
 
-Estimation is about determining the likely value of a population parameter based on sample data. In the context of a binomial distribution, we might be interested in estimating the probability of success (p) for a certain event.
+One of the most common errors in statistics is interpreting correlation as evidence of causation. Two variables can be strongly correlated because of:
 
-**Example: Coin Flipping**
-
-Let's say we're flipping a coin 100 times and want to estimate the probability of getting heads.
-
--   We flip the coin 100 times and observe 55 heads.
--   Our point estimate for p (probability of heads) would be 55/100 = 0.55
--   We might also calculate a confidence interval, e.g., a 95% confidence interval might be (0.45, 0.65).
-
-The confidence interval tells us a range where we think the true probability might lie. In plain English, this means: "We're 95% confident that the true probability of getting heads is between 45% and 65%."
-
-The goal here is to provide our best guess of the true probability of heads, along with a range of plausible values.
-
-**Important Concepts in Estimation:**
-
-a.  **Bias**
-
-Bias refers to the tendency of an estimator to systematically overestimate or underestimate the true value of a population parameter (estimand).
-
--   An unbiased estimator is one whose average value (when estimation is repeated multiple times) equals the true value of the parameter.
--   Bias can be understood as the difference between the average value of the estimator and the true value of the parameter.
-
-b.  **Efficiency**
-
-Efficiency refers to the precision of an estimator. A more efficient estimator produces results closer to the true parameter value, i.e., it has less dispersion in its results.
-
--   It is most often measured by the variance of the estimator (lower variance means higher efficiency)
--   For unbiased estimators, efficiency is often compared using Mean Squared Error (MSE)
-
-2.  **Hypothesis Testing**
-
-Hypothesis testing, on the other hand, is about making a decision between two competing claims about a population parameter. We typically have a null hypothesis (H0) and an alternative hypothesis (H1).
-
-**Example: Is the Coin Fair?**
-
-Using the same coin-flipping scenario, let's say we want to test if the coin is fair (p = 0.5) or biased towards heads (p \> 0.5).
-
--   Null hypothesis (H0): p = 0.5 (the coin is fair)
--   Alternative hypothesis (H1): p \> 0.5 (the coin is biased towards heads)
--   We observe 55 heads out of 100 flips
-
-**Introducing p-values and "Probabilistic Proof by Contradiction"**
-
-Now, let's dive into the concept of p-values and how hypothesis testing works as a kind of "probabilistic proof by contradiction":
-
-1.  We start by assuming the null hypothesis (H0) is true. In this case, we assume the coin is fair.
-
-2.  We then ask: "If the coin were truly fair, how likely would it be to observe 55 or more heads out of 100 flips?"
-
-3.  This probability is called the p-value. It's the probability of observing our data (or more extreme data) assuming the null hypothesis is true.
-
-4.  If this probability (the p-value) is very small, we have a contradiction: we've observed something that should be very rare if our assumption (H0) were true.
-
-5.  We typically set a threshold called the significance level (often 0.05 or 5%) for what we consider "very small."
-
-6.  If the p-value is less than our chosen significance level, we reject H0. We conclude that our observation is too unlikely under H0, so we favor the alternative hypothesis instead.
-
-7.  If the p-value is greater than our significance level, we fail to reject H0. We don't have enough evidence to conclude the coin is biased.
-
-This process is like a **"probabilistic proof by contradiction"** because:
-
--   We start by assuming H0 (like assuming the opposite of what we want to prove in a proof by contradiction).
--   We see if this assumption leads to a very unlikely situation (our observed data).
--   If it does, we reject the assumption (H0) and favor the alternative.
-
-The p-value quantifies exactly how unlikely our observation is under H0. A very small p-value (like 0.01) means: "If H0 were true, we'd only expect to see data this extreme about 1% of the time."
-
-**Hypothesis testing and estimation are related but distinct statistical procedures; hypothesis testing can be used to make inferences about estimates and can complement estimation in several ways, e.g.**:
-
--   Testing Point Estimates: Hypothesis testing can be used to evaluate whether a point estimate is significantly different from a hypothesized value. For example, if we estimate that a coin has a 0.55 probability of landing heads, we could use a hypothesis test to determine if this is significantly different from 0.5 (a fair coin).
--   Parameter Significance: In multivariate models, hypothesis tests (like t-tests in regression) can help determine which estimated parameters are significantly different from zero, providing insight into which variables are important in the model.
+1.  A confounding variable that affects both variables
+2.  Reverse causality (Y affects X, not the other way around)
+3.  Chance (spurious correlation)
 :::
 
-### Relationships Between Concepts
+### Challenges of Causal Inference
 
-1.  The Data Generating Process (DGP) determines the actual values of population parameters (estimands).
-2.  Estimands are estimated using statistics calculated from the sample (estimators).
-3.  The quality of estimators is assessed based on properties such as bias and efficiency in estimating the estimand.
-4.  Statistical models use estimated parameters to describe relationships between variables in the population.
-5.  Statistical inference involves drawing conclusions about estimands based on sample data, utilizing the properties of estimators.
+The fundamental problem of causal inference is the impossibility of observing **counterfactuals** (alternative scenarios). For a given unit, we can observe only one potential outcome.
+
+![The fundamental problem of causal inference: We can think of causal inference as a PREDICTION problem. How can we predict the counterfactual given that we never observe it?](stat_imgs/meme_horse.svg){fig-align="center"}
+
+Example:
+
+- We observe a person who completed college and earns \$8,000 per month
+- We cannot observe how much the same person would earn if they had not completed college
+
+Causal methods attempt to solve this problem through: 1. Randomized experiments 2. Instrumental variables 3. Matching methods 4. Regression discontinuity analysis 5. Difference-in-differences
+
+Causal inference is complicated by various issues, such as:
+
+![Confounding bias and spurious correlation: drinking the night before is a common cause of sleeping with shoes on and waking up with a headache](stat_imgs/IMG_4337.jpg){fig-align="center"}
+
+![Reverse causality](stat_imgs/ff13-23.png){fig-align="center"}
+
+## Statistical Inference
+
+Statistical inference is the process of drawing conclusions about a population based on sample data. It encompasses two main areas:
+
+### 1. Estimation
+
+Estimation is the process of estimating unknown population parameters based on sample data. We distinguish:
+
+-   **Point estimation**: We provide a single value (estimate) as the best approximation of the parameter
+-   **Interval estimation**: We construct a confidence interval that indicates the range of possible parameter values consistent with our data
+
+Example of a confidence interval: "The 95% confidence interval for the average height of adults is (173 cm, 175 cm)."
+
+**Correct interpretation of confidence interval**: If we were to repeatedly take samples from the same population and for each of them construct a 95% confidence interval using the same method, about 95% of the intervals constructed this way would contain the true population parameter value.
+
+**Incorrect interpretation**: "There is a 95% chance that the true mean is in the interval (173 cm, 175 cm)" – this is incorrect because the population parameter is a fixed (though unknown) value, not a random variable.
+
+### 2. Hypothesis Testing
+
+Hypothesis testing is a formal procedure for verifying conjectures about population parameters. This concept is best understood through a concrete example:
 
 ::: callout-tip
-## Example: Studying Voting Behavior
+## Example: Binomial test for a coin
 
--   **Population**: All eligible voters in a country
--   **Estimand**: $p$ = true proportion of voters supporting a given candidate
--   **Sample**: 1000 randomly selected eligible voters
--   **Estimator**: $\hat{p}$ = proportion of voters in the sample supporting the candidate
--   **Estimate**: Specific value of $\hat{p}$ calculated from the sample (e.g., 0.52)
--   **DGP**: Complex interaction of factors influencing voting decisions, such as political beliefs, economic conditions, media exposure, and social networks.
+Imagine we want to check if a coin is fair.
 
-Understanding the DGP helps researchers interpret why the estimand $p$ has a certain value and how it might change over time. For example, a sudden change in the economy might affect voters' preferences, thereby changing the value of $p$.
+1.  **Research question**: Is the coin fair (probability of heads = 0.5)?
 
-**Bias and efficiency in the context of the example**:
+2.  **Formulate hypotheses**:
 
--   If $\hat{p}$ is an unbiased estimator, it means that when the survey is repeated multiple times with different samples, the average value of $\hat{p}$ will be close to the true value of $p$.
--   The efficiency of $\hat{p}$ determines how dispersed the results of individual surveys are around this average. The less dispersion, the more efficient the estimator.
+    -   **Null hypothesis (H₀)**: p = 0.5 (the coin is fair)
+    -   **Alternative hypothesis (H₁)**: p ≠ 0.5 (the coin is not fair)
+
+3.  **Collect data**: We flip the coin 100 times and get 65 heads.
+
+4.  **Analyze**: Is 65 heads out of 100 flips evidence against the hypothesis that the coin is fair?
+
+5.  **Reasoning**:
+
+    -   If the coin were fair (p = 0.5), the number of heads in 100 flips should follow a binomial distribution B(100, 0.5)
+    -   For this distribution, we expect an average of 50 heads, with a standard deviation of √(100 × 0.5 × 0.5) = 5
+    -   Getting 65 heads means a deviation of 3 standard deviations from the expected value
+    -   The probability of getting 65 or more heads with a fair coin is very small (p \< 0.01)
+
+6.  **Conclusion**: Since the observed result is very unlikely under the assumption that the coin is fair, we reject the null hypothesis and conclude that the coin is most likely not fair.
 :::
 
-## Core Components of Data Science in Scientific Research
+General hypothesis testing procedure:
 
-::: panel-tabset
+1.  Formulate the null hypothesis (H₀) and alternative hypothesis (H₁)
+2.  Choose a significance level α (most commonly 0.05)
+3.  Collect data and calculate the appropriate test statistic
+4.  Calculate the p-value (probability of obtaining our data or more extreme data, assuming H₀ is true)
+5.  Make a decision: if p \< α, reject H₀ in favor of H₁
+
+::: callout-note
+## Intuition behind hypothesis testing
+
+Hypothesis testing resembles a court procedure: - H₀ corresponds to the principle of "innocent until proven guilty" (we assume the parameter has a specific value) - Data constitutes "evidence" against H₀ - P-value determines how strong this evidence is - If the evidence is strong enough (p \< α), we "convict" H₀ (reject it) - If the evidence is not strong enough, we do not reject H₀ (but we do not prove its truth)
+:::
+
+::: callout-important
+## Common errors in interpreting p-values and tests
+
+1.  P-value is **NOT** the probability that the null hypothesis is true
+2.  P-value is **NOT** the probability of making an error when rejecting H₀
+3.  Failing to reject H₀ does **NOT** mean proving it (absence of evidence against the accused does not prove innocence)
+4.  A very small p-value does **NOT** indicate a large practical effect (statistical significance ≠ practical significance)
+5.  P-value depends on sample size - with very large samples, even small, practically insignificant differences can be statistically significant
+
+**Definition of p-value**: The probability of observing a result at least as extreme as the one obtained, assuming the null hypothesis is true.
+:::
+
+::: callout-tip
+## Types of errors in hypothesis testing
+
+-   **Type I error (α)**: Rejecting a true null hypothesis ("convicting an innocent")
+    -   The probability of this error is controlled by the significance level α
+-   **Type II error (β)**: Failing to reject a false null hypothesis ("acquitting the guilty")
+    -   The probability of avoiding this error (1-β) is called the power of the test
+    -   Test power increases with sample size and effect size
+:::
+
+## Solid Foundations for Good Research
+
+To conduct reliable statistical research, one should ensure:
+
+1.  **Representativeness of the sample**: The sample should well reflect the studied population
+2.  **Adequate sample size**: Larger samples provide more accurate estimates and greater statistical power
+3.  **Control of confounding variables**: Both in research design and data analysis
+4.  **Appropriate statistical methods**: Matched to the type of data and research questions
+5.  **Clear interpretation**: Taking into account study limitations and alternative explanations
+
+::: callout-tip
+## Summary of key concepts often confused by students:
+
+| Concept | Definition | Example |
+|----------------------|--------------------------|------------------------|
+| **Population parameter (Estimand)** | Value characterizing the population, usually unknown | μ (population mean) |
+| **Estimator (Statistic)** | Function/procedure for estimating a parameter based on a sample | $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ |
+| **Estimate** | Specific value obtained after applying an estimator to a sample | $\bar{x} = 173.5$ cm |
+| **Standard error** | Measure of estimator variability between samples | $SE(\bar{x}) = \frac{s}{\sqrt{n}}$ |
+| **Confidence interval** | Range of values that, with specified probability, contains the parameter | (173 cm, 175 cm) |
+| **P-value** | Probability of observing the data assuming H₀ is true | p = 0.03 |
+:::
+
+## Main Components of the Research Process in Data Science
+
 ### Data Collection
 
--   Experimental methods: Controlled studies where researchers manipulate variables to observe effects
--   Observational studies: Gathering data by watching and recording without interfering
--   Surveys and interviews: Collecting information directly from people through questions
--   Digital data collection: Gathering data from online sources, sensors, or computer systems
--   Ethical considerations: Ensuring research respects participants' rights and well-being
+-   **Experimental methods**: Controlled studies with manipulation of variables
+-   **Observational studies**: Gathering data without researcher intervention
+-   **Surveys and interviews**: Collecting data directly from respondents
+-   **Administrative data**: Using existing registers and databases
+-   **Digital data collection**: Data from the internet, social media, IoT sensors
 
-### Data Processing
+### Data Processing and Preparation
 
--   Data cleaning: Removing errors and inconsistencies from raw data
--   Handling missing values: Addressing gaps in the dataset that could affect analysis
--   Data transformation: Converting data into formats suitable for analysis, like changing text to numbers
+-   **Data cleaning**: Identifying and correcting errors, inconsistencies, duplicates
+-   **Handling missing values**: Imputation, removing observations, analyzing missingness
+-   **Data transformation**: Normalization, standardization, distribution transformations
+-   **Feature engineering**: Creating new variables based on existing ones
+-   **Dimensionality reduction**: Simplifying data while preserving essential information
 
-### Exploratory Data Analysis (EDA)
+### Data Analysis and Inference
 
--   Descriptive statistics: Summarizing data with measures like mean, median, and standard deviation
--   Data visualization: Creating graphs and charts to visually represent data patterns
--   Pattern identification: Discovering trends or relationships in the data
+-   **Exploratory data analysis (EDA)**: Examining data structure, detecting patterns
+-   **Statistical modeling**: Building models describing relationships between variables
+-   **Statistical inference**: Hypothesis testing, confidence intervals, causal inference
+-   **Machine learning**: Using algorithms to automatically learn from data
+-   **Interpretation of results**: Giving meaning to discovered relationships
 
-### Statistical Inference
+### Communication and Implementation of Results
 
--   Hypothesis testing: Using data to evaluate claims about populations
--   Regression analysis: Examining relationships between variables and making predictions
--   Causal inference: Determining if one variable directly influences another
+-   **Data visualization**: Conveying results in graphical form
+-   **Reporting**: Preparing reports, articles, presentations
+-   **Decision making**: Using analysis results for practical actions
+-   **Model implementation**: Implementing solutions in real systems
+-   **Evaluation and monitoring**: Assessing the effectiveness of implemented solutions
 
-### Machine Learning
-
--   Supervised learning: Training models to predict outcomes using data with known answers
--   Unsupervised learning: Finding hidden patterns in data without predefined categories
--   Natural Language Processing (NLP): Teaching computers to understand and analyze human language
-
-### Data Visualization and Communication
-
--   Effective visualizations: Creating clear, informative graphics to represent complex data
--   Science communication: Explaining findings to different audiences, from experts to the public
--   Scientific writing: Preparing research papers and reports to share results
-
-### Reproducibility and Open Science
-
--   Version control: Tracking changes in data and code throughout the research process
--   Open data practices: Sharing research data and methods for verification and further study
--   Reproducible workflows: Documenting research steps so others can repeat the study
+::: callout-note
+In practice, the research process is iterative. The results of data analysis often lead to new questions, additional data collection, or model modifications. A good researcher must be ready to cycle through these stages multiple times.
 :::
 
 ## Tools for Data Science in Social Sciences
@@ -990,7 +1076,7 @@ LLMs are trained on vast text data to predict the probability distribution of th
 To understand LLMs better, let's compare them to Ordinary Least Squares (OLS) regression:
 
 | Aspect | OLS Regression | Large Language Models |
-|----|----|----|
+|------------------|----------------------|---------------------------------|
 | Basic Function | Predicts continuous outcomes based on input variables | Predicts probability distribution of next token based on previous tokens |
 | Input-Output | Continuous variables, linear relationships | Discrete tokens, non-linear relationships |
 | Prediction Type | Point predictions with confidence intervals | Probability distributions over possible tokens |

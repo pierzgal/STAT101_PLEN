@@ -413,7 +413,7 @@ Let's calculate the covariance for two variables:
 -   y: 2, 4, 5, 4, 5
 
 | Step | Description | Calculation |
-|------------------|---------------------------|---------------------------|
+|----|----|----|
 | 1 | Calculate means | $\bar{x} = 3, \bar{y} = 4$ |
 | 2 | Calculate $(x_i - \bar{x})(y_i - \bar{y})$ for each pair | $(-2)(-2) = 4$ |
 |  |  | $(-1)(0) = 0$ |
@@ -454,7 +454,7 @@ Pearson correlation measures the strength and direction of the linear relationsh
 Using the same data as above:
 
 | Step | Description | Calculation |
-|------------------|---------------------------|---------------------------|
+|----|----|----|
 | 1 | Calculate covariance | (From previous calculation) 1.5 |
 | 2 | Calculate standard deviations | $s_X = \sqrt{\frac{10}{4}} = 1.58, s_Y = \sqrt{\frac{6}{4}} = 1.22$ |
 | 3 | Divide covariance by product of standard deviations | $1.5 / (1.58 * 1.22) = 0.7746$ |
@@ -728,16 +728,16 @@ At its heart, regression analysis helps us answer questions about cause and effe
 
 The process begins by collecting data about the variables of interest. The analysis then fits a mathematical model—typically a line or curve—that best represents the relationship between these variables. This model allows us to:
 
-- Identify the strength and direction of relationships between variables
-- Make predictions about future outcomes
-- Understand which factors have the most significant impact on our results
+-   Identify the strength and direction of relationships between variables
+-   Make predictions about future outcomes
+-   Understand which factors have the most significant impact on our results
 
 ### Regression as a Stochastic Model
 
 In mathematical modeling, we encounter two fundamental approaches to describing relationships between variables:
 
-- deterministic models,
-- stochastic models.
+-   deterministic models,
+-   stochastic models.
 
 #### Deterministic vs. Stochastic Models
 
@@ -753,9 +753,9 @@ $$Y = f(X) + \epsilon$$
 
 Where:
 
-- $Y$ represents the outcome we wish to predict
-- $f(X)$ represents the systematic relationship between our predictors (X) and the outcome
-- $\epsilon$ represents the random variation that naturally occurs in real-world data
+-   $Y$ represents the outcome we wish to predict
+-   $f(X)$ represents the systematic relationship between our predictors (X) and the outcome
+-   $\epsilon$ represents the random variation that naturally occurs in real-world data
 
 #### The Nature of Stochastic Models in Regression
 
@@ -765,10 +765,10 @@ The systematic part $f(X)$ captures the general trend: more study time tends to 
 
 The error term $\epsilon$ accounts for all other influences:
 
-- Different learning styles
-- Study environment
-- Physical and mental state during the test
-- Quality of study materials
+-   Different learning styles
+-   Study environment
+-   Physical and mental state during the test
+-   Quality of study materials
 
 #### Mathematical Framework
 
@@ -778,40 +778,38 @@ $$Y = \beta_0 + \beta_1X + \epsilon$$
 
 Where:
 
-- $\beta_0$ represents the baseline value (when X = 0)
-- $\beta_1$ represents the change in Y for each unit increase in X
-- $\epsilon$ represents the natural variation around this relationship
+-   $\beta_0$ represents the baseline value (when X = 0)
+-   $\beta_1$ represents the change in Y for each unit increase in X
+-   $\epsilon$ represents the natural variation around this relationship
 
 #### Practical Implications
 
 Understanding regression as a stochastic model has important practical implications:
 
-1. Predictions: We recognize that our predictions will have some natural variation around them. Rather than claiming an exact outcome, we acknowledge a range of plausible values.
+1.  Predictions: We recognize that our predictions will have some natural variation around them. Rather than claiming an exact outcome, we acknowledge a range of plausible values.
 
-2. Model Evaluation: We assess models by how well they capture both the general trend and the typical amount of variation in the data.
+2.  Model Evaluation: We assess models by how well they capture both the general trend and the typical amount of variation in the data.
 
-3. Decision Making: Understanding the natural variation in our predictions helps us make more realistic plans and decisions.
+3.  Decision Making: Understanding the natural variation in our predictions helps us make more realistic plans and decisions.
 
 **Real-World Applications**
 
-Consider predicting house prices based on square footage. A deterministic model might say:
-"A 2000 sq ft house will sell for exactly $300,000"
+Consider predicting house prices based on square footage. A deterministic model might say: "A 2000 sq ft house will sell for exactly \$300,000"
 
 A regression model instead recognizes that:
 
-- There's a general relationship between size and price
-- But many other factors affect the final price
-- Similar houses might sell for somewhat different prices
-- Our predictions should reflect this natural variation
+-   There's a general relationship between size and price
+-   But many other factors affect the final price
+-   Similar houses might sell for somewhat different prices
+-   Our predictions should reflect this natural variation
 
 **Conclusion**
 
 The stochastic nature of regression analysis provides a more realistic framework for understanding real-world relationships between variables. By explicitly accounting for natural variation, regression analysis helps us:
 
-- Make more realistic predictions
-- Better understand the limitations of our models
-- Make more informed decisions
-
+-   Make more realistic predictions
+-   Better understand the limitations of our models
+-   Make more informed decisions
 
 ### Why Study Regression?
 
@@ -1849,8 +1847,7 @@ Omitted Variable Bias occurs when an important variable that affects both the de
 
 Consider a study examining the relationship between education and income:
 
-**Example: Education and Income**
-The observed relationship shows that more education correlates with higher income. However, an individual's inherent abilities affect both their educational attainment and their earning potential. Without accounting for ability, we may overestimate education's direct effect on income.
+**Example: Education and Income** The observed relationship shows that more education correlates with higher income. However, an individual's inherent abilities affect both their educational attainment and their earning potential. Without accounting for ability, we may overestimate education's direct effect on income.
 
 The statistical representation shows why this matters:
 
@@ -1897,17 +1894,17 @@ summary(model_simple)
 summary(model_full)
 ```
 
-1. Include Additional Variables: Collect data on potentially important omitted variables and include relevant control variables in your analysis. For example, including measures of ability when studying education's effect on income.
+1.  Include Additional Variables: Collect data on potentially important omitted variables and include relevant control variables in your analysis. For example, including measures of ability when studying education's effect on income.
 
-2. Use Panel Data: Collect data across multiple time periods to control for unobserved fixed characteristics and analyze changes over time.
+2.  Use Panel Data: Collect data across multiple time periods to control for unobserved fixed characteristics and analyze changes over time.
 
-3. Instrumental Variables: Find variables that affect your independent variable but not your dependent variable to isolate the relationship of interest.
+3.  Instrumental Variables: Find variables that affect your independent variable but not your dependent variable to isolate the relationship of interest.
 
 #### Improving Measurement
 
-1. Multiple Measurements: Take several measurements of key variables, use averaging to reduce random error, and compare different measurement methods.
+1.  Multiple Measurements: Take several measurements of key variables, use averaging to reduce random error, and compare different measurement methods.
 
-2. Better Data Collection: Use validated measurement instruments, implement quality control procedures, and document potential sources of error.
+2.  Better Data Collection: Use validated measurement instruments, implement quality control procedures, and document potential sources of error.
 
 ### Best Practices for Researchers
 
@@ -1917,7 +1914,6 @@ Analysis should include testing for endogeneity when possible, using appropriate
 
 Reporting must clearly describe potential endogeneity concerns, explain how you addressed these issues, and discuss implications for your conclusions.
 :::
-
 
 ## Multiple Regression (\*)
 
@@ -2042,7 +2038,6 @@ ggplot(data_collinear, aes(x = X1, y = X2)) +
        subtitle = paste("Correlation =", 
                        round(cor(X1_new, X2_new), 3)))
 ```
-
 
 ## Advanced Topics
 
@@ -2355,8 +2350,6 @@ For deeper understanding:
 -   Angrist, J.D. and Pischke, J.S. "Mostly Harmless Econometrics"
 -   Stock & Watson "Introduction to Econometrics"
 
-
-
 ::: callout-important
 ## Understanding Ordinary Least Squares (OLS) Regression: A Student's Guide
 
@@ -2368,8 +2361,8 @@ At its heart, regression analysis helps us answer questions about cause and effe
 
 In mathematical modelling, we encounter two fundamental approaches to describing relationships between variables:
 
-- deterministic models,
-- stochastic models.
+-   deterministic models,
+-   stochastic models.
 
 #### Deterministic vs. Stochastic Models
 
@@ -2385,10 +2378,9 @@ $$Y = f(X) + \epsilon$$
 
 Where:
 
-- $Y$ represents the outcome we wish to predict
-- $f(X)$ represents the systematic relationship between our predictors (X) and the outcome
-- $\epsilon$ represents the random variation that naturally occurs in real-world data
-
+-   $Y$ represents the outcome we wish to predict
+-   $f(X)$ represents the systematic relationship between our predictors (X) and the outcome
+-   $\epsilon$ represents the random variation that naturally occurs in real-world data
 
 ### What is Simple Linear Regression?
 
@@ -2568,7 +2560,6 @@ $$ \hat{\beta}_0 = \bar{Y} - \hat{\beta}_1\bar{X} $$
 
 This ensures the regression line intersects the point of means ($\bar{X}$, $\bar{Y}$).
 
-
 ### Understanding Variation in Regression Analysis
 
 In regression analysis, we decompose the variation in our data into distinct components to understand how well our model explains the outcome variable. Let's examine each component of variation in detail.
@@ -2591,8 +2582,7 @@ To make this concrete, imagine measuring the heights of everyone in a city. Some
 
 #### Regression Sum of Squares (SSR)
 
-Once we introduce explanatory variables (like genetics, nutrition, or age), we can predict heights more accurately.
-The explained variation (SSR) measures how much better our predictions become using these variables.
+Once we introduce explanatory variables (like genetics, nutrition, or age), we can predict heights more accurately. The explained variation (SSR) measures how much better our predictions become using these variables.
 
 SSR quantifies how much variation our model explains through its predictor variables:
 
@@ -2630,11 +2620,10 @@ When R² equals 0.75, it indicates our model explains 75% of the variation in th
 
 Understanding these components helps us:
 
-1. Evaluate model performance through the proportion of explained variation
-2. Identify how much variation remains unexplained
-3. Make informed decisions about model improvement
-4. Compare different models' explanatory power
-
+1.  Evaluate model performance through the proportion of explained variation
+2.  Identify how much variation remains unexplained
+3.  Make informed decisions about model improvement
+4.  Compare different models' explanatory power
 
 ```{r}
 #| fig-width: 8
@@ -2710,7 +2699,7 @@ data <- data.frame(
 #### Step 2: Calculate Deviations and Products
 
 | i | $x_i$ | $y_i$ | $(x_i - \bar{x})$ | $(y_i - \bar{y})$ | $(x_i - \bar{x})(y_i - \bar{y})$ |
-|------------|------------|------------|------------|------------|-------------|
+|----|----|----|----|----|----|
 | 1 | 8 | 85 | -1.17 | 12.17 | -14.24 |
 | 2 | 5 | 90 | -4.17 | 17.17 | -71.60 |
 | 3 | 11 | 62 | 1.83 | -10.83 | -19.82 |
@@ -2728,7 +2717,7 @@ $$ \text{Cov}(X,Y) = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{n-1} = \frac{-21
 #### Step 1: Calculate Squared Deviations
 
 | i | $(x_i - \bar{x})$ | $(y_i - \bar{y})$ | $(x_i - \bar{x})^2$ | $(y_i - \bar{y})^2$ |
-|---------------|---------------|---------------|---------------|---------------|
+|----|----|----|----|----|
 | 1 | -1.17 | 12.17 | 1.37 | 148.11 |
 | 2 | -4.17 | 17.17 | 17.39 | 294.81 |
 | 3 | 1.83 | -10.83 | 3.35 | 117.29 |
@@ -2740,7 +2729,7 @@ $$ \text{Cov}(X,Y) = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{n-1} = \frac{-21
 #### Step 2: Calculate Standard Deviations
 
 | Measure | Formula | Calculation | Result |
-|-----------------|-----------------|---------------------|-----------------|
+|----|----|----|----|
 | $s_x$ | $\sqrt{\frac{\sum (x_i - \bar{x})^2}{n-1}}$ | $\sqrt{\frac{50.84}{5}}$ | 3.19 |
 | $s_y$ | $\sqrt{\frac{\sum (y_i - \bar{y})^2}{n-1}}$ | $\sqrt{\frac{990.84}{5}}$ | 14.08 |
 
@@ -2789,7 +2778,6 @@ cor(data$anxiety_level, data$cognitive_performance, method = "spearman")
     -   Add one outlier and observe how it affects both correlation coefficients
     -   Change one pair of values and recalculate
 
-
 ## Appendix A.2: Calculating Covariance, Pearson, Spearman Correlation, and OLS - worked example
 
 A political science student is investigating the relationship between district magnitude (DM) and Gallagher's disproportionality index (GH) in parliamentary elections across 10 randomly selected democracies.
@@ -2830,7 +2818,7 @@ $$18.2 + 16.7 + 15.8 + 15.3 + 15.0 + 14.8 + 14.7 + 14.6 + 14.55 + 14.52 = 154.17
 Complete working table showing all calculations:
 
 | $i$ | $X_i$ | $Y_i$ | $(X_i - \bar{X})$ | $(Y_i - \bar{Y})$ | $(X_i - \bar{X})(Y_i - \bar{Y})$ | $(X_i - \bar{X})^2$ | $(Y_i - \bar{Y})^2$ |
-|---------|---------|---------|---------|---------|----------|---------|---------|
+|----|----|----|----|----|----|----|----|
 | 1 | 2 | 18.2 | $-4.5$ | 2.783 | $-12.5235$ | 20.25 | 7.7451 |
 | 2 | 3 | 16.7 | $-3.5$ | 1.283 | $-4.4905$ | 12.25 | 1.6461 |
 | 3 | 4 | 15.8 | $-2.5$ | 0.383 | $-0.9575$ | 6.25 | 0.1467 |
@@ -2928,8 +2916,8 @@ Using previously calculated values:
 
 -   $\sum(X_i - \bar{X})(Y_i - \bar{Y}) = -28.085$
 -   $\sum(X_i - \bar{X})^2 = 82.5$
-- $\bar{X} = 6.5$
-- $\bar{Y} = 15.417$
+-   $\bar{X} = 6.5$
+-   $\bar{Y} = 15.417$
 
 Calculate slope ($\hat{\beta_1}$): $\hat{\beta_1} = \frac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{\sum(X_i - \bar{X})^2}$
 
@@ -2948,7 +2936,7 @@ Therefore, the OLS regression equation is: $\hat{Y} = 17.6296 - 0.3404X$
 Complete table showing all calculations:
 
 | $i$ | $X_i$ | $Y_i$ | $\hat{Y}_i$ | $e_i = Y_i - \hat{Y}_i$ | $e_i^2$ | $(Y_i - \bar{Y})^2$ | $(\hat{Y}_i - \bar{Y})^2$ |
-|---------|---------|---------|---------|---------|---------|---------|---------|
+|----|----|----|----|----|----|----|----|
 | 1 | 2 | 18.2 | 16.9488 | 1.2512 | 1.5655 | 7.7451 | 2.3404 |
 | 2 | 3 | 16.7 | 16.6084 | 0.0916 | 0.0084 | 1.6461 | 1.4241 |
 | 3 | 4 | 15.8 | 16.2680 | -0.4680 | 0.2190 | 0.1467 | 0.7225 |
@@ -3203,7 +3191,7 @@ $$ r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \
 #### Step-by-Step Calculations:
 
 | i | $x_i$ | $y_i$ | $x_i - \bar{x}$ | $y_i - \bar{y}$ | $(x_i - \bar{x})(y_i - \bar{y})$ | $(x_i - \bar{x})^2$ | $(y_i - \bar{y})^2$ |
-|---------|---------|---------|---------|---------|---------|---------|---------|
+|----|----|----|----|----|----|----|----|
 | 1 | 2 | 3 | -2.4 | -1.6 | 3.84 | 5.76 | 2.56 |
 | 2 | 4 | 5 | -0.4 | 0.4 | -0.16 | 0.16 | 0.16 |
 | 3 | 5 | 4 | 0.6 | -0.6 | -0.36 | 0.36 | 0.36 |
