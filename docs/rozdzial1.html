@@ -493,27 +493,6 @@ Note
 <section id="związek-między-statystyką-a-nauką-o-danych" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="związek-między-statystyką-a-nauką-o-danych"><span class="header-section-number">2.2</span> Związek Między Statystyką a Nauką o Danych</h2>
 <p>Statystyka i data science to ściśle powiązane dziedziny o znaczącym obszarze wspólnym. Zamiast traktować je jako całkowicie odrębne dyscypliny, warto postrzegać je jako komplementarne podejścia w spektrum metod analizy danych:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Tradycyjna Statystyka</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Data Science</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<ul>
-<li>Opiera się na podstawach matematycznych i teorii prawdopodobieństwa</li>
-<li>Koncentruje się na testowaniu hipotez, estymacji parametrów i wnioskowaniu statystycznym</li>
-<li>W naukach społecznych znajduje zastosowanie głównie do analizy danych z badań ankietowych, eksperymentów i obserwacji</li>
-<li>Stanowi metodologiczny fundament analizy ilościowej</li>
-</ul>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<ul>
-<li>Łączy metody statystyczne z umiejętnościami programistycznymi i wiedzą dziedzinową</li>
-<li>Wykorzystuje nowoczesne techniki jak uczenie maszynowe i analiza dużych zbiorów danych</li>
-<li>W naukach społecznych umożliwia pracę z danymi cyfrowymi, tekstowymi i złożonymi wzorcami interakcji społecznych</li>
-<li>Rozwija i rozszerza tradycyjne podejścia statystyczne, dostosowując je do współczesnych wyzwań badawczych</li>
-</ul>
-</div>
-</div>
-</div>
 <p>Nauka o danych może być postrzegana jako współczesne rozwinięcie tradycyjnej statystyki, które ewoluowało w odpowiedzi na nowe możliwości technologiczne i potrzebę analizy coraz bardziej złożonych danych społecznych.</p>
 </section>
 <section id="podstawowe-koncepcje-w-nauce-o-danych-i-statystyce" class="level2" data-number="2.3">
@@ -531,7 +510,40 @@ Note
 <li>Przykład: Zamiast badać wszystkich uprawnionych wyborców, analizuje się 1500 losowo wybranych osób z uwzględnieniem odpowiedniego rozkładu wieku, płci, wykształcenia i regionu zamieszkania.</li>
 </ul>
 <p>Prawidłowo dobrana próba umożliwia wnioskowanie o całej populacji przy znaczącej optymalizacji zasobów badawczych.</p></li>
+<li><p><strong>Pobieranie próbek</strong> (<em>sampling</em>, próbkowanie) to procedura wybierania jednostek z populacji do badania. Nieobciążona metoda pobierania próbek daje każdej jednostce w populacji równą szansę na wybór, zapewniając reprezentatywne wyniki.</p></li>
 </ol>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">SRS</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Dobór warstwowy</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Dobór grupowy</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><strong>Prosty Dobór Losowy</strong>: Każda jednostka ma równe prawdopodobieństwo wyboru. Cała populacja jest losowo próbkowana bez żadnego z góry ustalonego wzorca.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stat_imgs/Simple_Random_Sampling2.svg" class="img-fluid figure-img"></p>
+<figcaption>Prosty Dobór Losowy. Źródło: https://app.passyourmath.com/courses/theory/116/1750/26640/en</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><strong>Dobór Warstwowy</strong>: Populacja jest podzielona na odrębne podgrupy (warstwy) przed losowym pobraniem próbek z każdej warstwy proporcjonalnie.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stat_imgs/Stratified2.svg" class="img-fluid figure-img"></p>
+<figcaption>Dobór Warstwowy. Źródło: https://app.passyourmath.com/courses/theory/116/1750/26640/en</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p><strong>Dobór Grupowy</strong>: Populacja jest podzielona na skupiska (klastry), a całe skupiska są losowo wybierane do analizy zamiast pojedynczych jednostek.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stat_imgs/Cluster2.svg" class="img-fluid figure-img"></p>
+<figcaption>Dobór Grupowy. Źródło: https://app.passyourmath.com/courses/theory/116/1750/26640/en</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -544,116 +556,120 @@ Proces Generowania Danych (PGD) i Superpopulacja: Rozszerzenie Tradycyjnych Konc
 <div class="callout-body-container callout-body">
 <p>W tradycyjnej statystyce pracujemy z dwoma kluczowymi pojęciami:</p>
 <ul>
-<li><strong>Populacja</strong>: Cała grupa, którą chcemy badać.</li>
+<li><strong>Populacja</strong>: Cała grupa jednostek, którą chcemy badać.</li>
 <li><strong>Próba</strong>: Podzbiór populacji, który faktycznie obserwujemy i analizujemy.</li>
 </ul>
-<p>Współczesne badania często wymagają myślenia wykraczającego poza ten dychotomiczny podział. Tu wkraczają koncepcje Procesu Generowania Danych (PGD) i superpopulacji, pogłębiając nasze rozumienie danych i ich struktury.</p>
-<section id="proces-generowania-danych-pgd-data-generating-process-dgp" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="proces-generowania-danych-pgd-data-generating-process-dgp"><span class="header-section-number">2.3.2</span> Proces Generowania Danych (PGD; Data Generating Process, DGP)</h3>
-<p><strong>Definicja formalna</strong>:<br>
-PGD to zbiór mechanizmów statystycznych i przyczynowych odpowiedzialnych za wytwarzanie obserwowanych wartości zmiennych w systemie, opisany najczęściej za pomocą funkcji matematycznych i rozkładów prawdopodobieństwa.</p>
-<p><strong>Intuicyjne wyjaśnienie</strong>:<br>
-PGD można postrzegać jako “czarną skrzynkę”, która przekształca przyczyny w skutki. To fundamentalny mechanizm, który produkuje dane obserwowane w rzeczywistym świecie - zarówno w naszej próbie, jak i w całej populacji, a także poza nią.</p>
-<p><strong>Przykład</strong>:<br>
-W badaniu zachowań wyborczych, PGD obejmowałby czynniki takie jak:</p>
-<ul>
-<li>Cechy demograficzne wyborców</li>
-<li>Warunki ekonomiczne</li>
-<li>Wydarzenia polityczne</li>
-<li>Wpływ mediów społecznościowych</li>
-<li>Historyczne trendy wyborcze</li>
-</ul>
-<p>Wszystkie te czynniki kształtują zachowania wyborcze niezależnie od tego, czy dany wyborca został uwzględniony w badaniu, czy nie.</p>
+<p>Współczesne badania często wymagają myślenia wykraczającego poza ten dychotomiczny podział. Tu wkraczają koncepcje <strong>Procesu Generowania Danych (PGD)</strong> i <strong>superpopulacji</strong>, które pogłębiają nasze rozumienie danych i ich struktury.</p>
+<section id="kluczowe-definicje" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="kluczowe-definicje"><span class="header-section-number">2.3.2</span> Kluczowe definicje</h3>
+<p><strong>Populacja</strong>: Zbiór wszystkich jednostek, które są bezpośrednim przedmiotem naszego badania (np. wszyscy dorośli mieszkańcy Polski).</p>
+<p><strong>Próba</strong>: Podzbiór populacji, który faktycznie badamy (np. 1000 losowo wybranych dorosłych Polaków).</p>
+<p><strong>Superpopulacja</strong>: Teoretyczny koncept obejmujący nie tylko obserwowalne jednostki z aktualnej populacji, ale wszystkie potencjalne jednostki, które mogłyby wystąpić w podobnych warunkach (np. wszyscy możliwi dorośli Polacy - obecni, przyszli i hipotetyczni).</p>
+<p><strong>Proces Generowania Danych (PGD)</strong>: Mechanizmy i czynniki, które generują wartości obserwowanych zmiennych w systemie.</p>
 </section>
-<section id="superpopulacja" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="superpopulacja"><span class="header-section-number">2.3.3</span> Superpopulacja</h3>
-<p><strong>Definicja formalna</strong>:<br>
-Superpopulacja to hipotetyczna, nieskończona populacja, z której obserwowana populacja może być postrzegana jako próba losowa. Reprezentuje wszystkie potencjalne jednostki i wyniki, które mogłyby zostać wygenerowane przez ten sam PGD.</p>
-<p><strong>Intuicyjne wyjaśnienie</strong>:<br>
-Superpopulacja wykracza zarówno poza próbę, jak i obserwowalną populację, obejmując wszystkie potencjalne wyniki, które mogłyby wystąpić w podobnych warunkach lub procesach - zarówno teraz, jak i w przyszłości.</p>
+<section id="proces-generowania-danych-pgd-data-generating-process-dgp" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="proces-generowania-danych-pgd-data-generating-process-dgp"><span class="header-section-number">2.3.3</span> Proces Generowania Danych (PGD; Data Generating Process, DGP)</h3>
+<p><strong>Definicja formalna</strong>: PGD to zbiór mechanizmów statystycznych i przyczynowych odpowiedzialnych za wytwarzanie obserwowanych wartości zmiennych w systemie, opisany najczęściej za pomocą funkcji matematycznych i rozkładów prawdopodobieństwa.</p>
+<p><strong>Intuicyjne wyjaśnienie</strong>: PGD można postrzegać jako “mechanizm” lub “czarną skrzynkę”, która przekształca przyczyny w skutki. To fundamentalny proces, który produkuje dane obserwowane w rzeczywistym świecie - zarówno w naszej próbie, jak i w całej populacji, a także potencjalnie poza nią.</p>
 </section>
-<section id="porównanie-podejść" class="level3" data-number="2.3.4">
-<h3 data-number="2.3.4" class="anchored" data-anchor-id="porównanie-podejść"><span class="header-section-number">2.3.4</span> Porównanie podejść</h3>
-<section id="podejście-tradycyjne-vs.-podejście-superpopulacyjne" class="level4" data-number="2.3.4.1">
-<h4 data-number="2.3.4.1" class="anchored" data-anchor-id="podejście-tradycyjne-vs.-podejście-superpopulacyjne"><span class="header-section-number">2.3.4.1</span> 1. Podejście tradycyjne vs.&nbsp;podejście superpopulacyjne</h4>
+<section id="przykłady-ilustrujące-różnice" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="przykłady-ilustrujące-różnice"><span class="header-section-number">2.3.4</span> Przykłady ilustrujące różnice</h3>
+<section id="przykład-1-badanie-opinii-wyborców" class="level4" data-number="2.3.4.1">
+<h4 data-number="2.3.4.1" class="anchored" data-anchor-id="przykład-1-badanie-opinii-wyborców"><span class="header-section-number">2.3.4.1</span> Przykład 1: Badanie opinii wyborców</h4>
 <ul>
-<li><strong>Tradycyjne</strong>:
+<li><strong>Populacja</strong>: Wszyscy zarejestrowani wyborcy w Polsce w 2023 roku (ok. 30 milionów osób)</li>
+<li><strong>Próba</strong>: 1000 losowo wybranych wyborców ankietowanych w sondażu</li>
+<li><strong>Superpopulacja</strong>: Wszyscy możliwi wyborcy (obecni, przyszli i hipotetyczni) oraz wszystkie możliwe scenariusze głosowania</li>
+<li><strong>PGD</strong>: Złożony mechanizm kształtujący opinie i decyzje wyborcze, w tym:
 <ul>
-<li>Populacja: wszyscy zarejestrowani wyborcy w województwie</li>
-<li>Próba: 1000 ankietowanych wyborców</li>
-</ul></li>
-<li><strong>Superpopulacyjne</strong>:
-<ul>
-<li>Obserwowane dane: 1000 ankietowanych wyborców</li>
-<li>Populacja: wszyscy zarejestrowani wyborcy</li>
-<li>Superpopulacja: Wszyscy możliwi wyborcy i scenariusze głosowania, w tym przyszłe wybory i hipotetyczne konteksty polityczne</li>
+<li>Czynniki demograficzne (wiek, wykształcenie, miejsce zamieszkania)</li>
+<li>Warunki ekonomiczne (dochód, status zawodowy)</li>
+<li>Wpływ mediów i debaty publicznej</li>
+<li>Doświadczenia osobiste</li>
+<li>Historyczne uwarunkowania polityczne</li>
 </ul></li>
 </ul>
 </section>
-<section id="gdy-próba-równa-się-populacji" class="level4" data-number="2.3.4.2">
-<h4 data-number="2.3.4.2" class="anchored" data-anchor-id="gdy-próba-równa-się-populacji"><span class="header-section-number">2.3.4.2</span> 2. Gdy próba równa się populacji</h4>
-<p>W badaniach wszystkich 16 województw Polski:</p>
+<section id="przykład-2-badanie-efektów-leku-przeciwcukrzycowego" class="level4" data-number="2.3.4.2">
+<h4 data-number="2.3.4.2" class="anchored" data-anchor-id="przykład-2-badanie-efektów-leku-przeciwcukrzycowego"><span class="header-section-number">2.3.4.2</span> Przykład 2: Badanie efektów leku przeciwcukrzycowego</h4>
 <ul>
-<li><strong>Tradycyjne spojrzenie</strong>: Brak rozróżnienia między próbą a populacją</li>
-<li><strong>Spojrzenie superpopulacyjne</strong>: Traktuje te 16 województw jako “próbę” z teoretycznego zbioru wszystkich możliwych interakcji między województwami a polityką</li>
+<li><strong>Populacja</strong>: Wszyscy pacjenci z cukrzycą typu 2 w danym kraju (np. 2 miliony osób)</li>
+<li><strong>Próba</strong>: 500 pacjentów uczestniczących w badaniu klinicznym</li>
+<li><strong>Superpopulacja</strong>: Wszyscy możliwi pacjenci z cukrzycą typu 2 (obecni i przyszli) z różnymi profilami genetycznymi i środowiskowymi</li>
+<li><strong>PGD</strong>: Biologiczny mechanizm obejmujący:
+<ul>
+<li>Interakcje leku z receptorami w organizmie</li>
+<li>Indywidualne uwarunkowania genetyczne</li>
+<li>Czynniki środowiskowe (dieta, aktywność fizyczna)</li>
+<li>Interakcje z innymi lekami</li>
+<li>Mechanizmy metaboliczne organizmu</li>
+</ul></li>
 </ul>
 </section>
-</section>
-<section id="zastosowanie-w-praktyce" class="level3" data-number="2.3.5">
-<h3 data-number="2.3.5" class="anchored" data-anchor-id="zastosowanie-w-praktyce"><span class="header-section-number">2.3.5</span> Zastosowanie w praktyce</h3>
-<p>Badanie wpływu nowej polityki planowania urbanistycznego:</p>
+<section id="przykład-3-gdy-próba-równa-się-populacji" class="level4" data-number="2.3.4.3">
+<h4 data-number="2.3.4.3" class="anchored" data-anchor-id="przykład-3-gdy-próba-równa-się-populacji"><span class="header-section-number">2.3.4.3</span> Przykład 3: Gdy próba równa się populacji</h4>
+<p>Badanie wszystkich 50 stanów USA:</p>
 <ul>
-<li><strong>Podejście tradycyjne</strong>:
-<ul>
-<li>Populacja: Wszystkie miasta w kraju</li>
-<li>Próba: Miasta uwzględnione w badaniu</li>
-</ul></li>
+<li><strong>Tradycyjne podejście</strong>: Nie ma rozróżnienia między próbą a populacją (badamy wszystkie stany)</li>
 <li><strong>Podejście superpopulacyjne</strong>:
 <ul>
-<li>Obserwowane dane: Miasta w badaniu</li>
-<li>Populacja: Wszystkie obecne miasta</li>
-<li>Superpopulacja: Wszystkie miasta (istniejące lub potencjalne), w których można by zastosować podobne zasady planowania</li>
+<li><strong>Populacja/Próba</strong>: 50 istniejących stanów USA</li>
+<li><strong>Superpopulacja</strong>: Teoretyczny zbiór wszystkich możliwych jednostek terytorialnych typu “stan” w różnych warunkach historycznych, politycznych i społecznych</li>
+<li><strong>PGD</strong>: Fundamentalne mechanizmy geograficzne, historyczne, polityczne i społeczno-ekonomiczne kształtujące charakterystyki stanów</li>
 </ul></li>
 </ul>
-<p>PGD w tym przypadku byłby złożonym zestawem czynników, które determinują, jak polityki planowania urbanistycznego wpływają na rozwój miast.</p>
 </section>
-<section id="kluczowe-aspekty-metodologiczne" class="level3" data-number="2.3.6">
-<h3 data-number="2.3.6" class="anchored" data-anchor-id="kluczowe-aspekty-metodologiczne"><span class="header-section-number">2.3.6</span> Kluczowe aspekty metodologiczne</h3>
-<ol type="1">
-<li><p><strong>Zakres i ograniczenia</strong>:<br>
-Badacze powinni jasno określić, jakie jednostki lub procesy starają się zrozumieć, wykraczając poza samo opisanie próby i populacji.</p></li>
-<li><p><strong>Możliwość uogólnienia</strong>:<br>
-Przy formułowaniu wniosków dotyczących superpopulacji, należy wyraźnie określić granice, w których ustalenia mają zastosowanie.</p></li>
-<li><p><strong>Specyfika kontekstu</strong>:<br>
-Choć koncepcja superpopulacji pozwala na szersze wnioskowanie, ważne jest zrozumienie, że PGD może się różnić w zależności od kontekstu.</p></li>
-</ol>
-</section>
-<section id="przykład-jakość-pizzy-w-nowym-jorku" class="level3" data-number="2.3.7">
-<h3 data-number="2.3.7" class="anchored" data-anchor-id="przykład-jakość-pizzy-w-nowym-jorku"><span class="header-section-number">2.3.7</span> Przykład: Jakość Pizzy w Nowym Jorku</h3>
-<p><strong>Populacja</strong>:<br>
-Wszystkie obecnie działające pizzerie w Nowym Jorku.</p>
-<p><strong>Próba</strong>:<br>
-50 losowo wybranych pizzerii z różnych dzielnic.</p>
-<p><strong>Superpopulacja</strong>:<br>
-Wszystkie możliwe pizzerie, które mogłyby istnieć w Nowym Jorku:</p>
+<section id="przykład-4-jakość-pizzy-w-nowym-jorku" class="level4" data-number="2.3.4.4">
+<h4 data-number="2.3.4.4" class="anchored" data-anchor-id="przykład-4-jakość-pizzy-w-nowym-jorku"><span class="header-section-number">2.3.4.4</span> Przykład 4: Jakość pizzy w Nowym Jorku</h4>
+<ul>
+<li><strong>Populacja</strong>: Wszystkie obecnie działające pizzerie w Nowym Jorku (np. 2000 lokali)</li>
+<li><strong>Próba</strong>: 50 losowo wybranych pizzerii z różnych dzielnic</li>
+<li><strong>Superpopulacja</strong>: Wszystkie możliwe pizzerie, które mogłyby istnieć w Nowym Jorku:
 <ul>
 <li>Obecnie działające</li>
-<li>Przyszłe (nieotwarte)</li>
-<li>Historyczne (zamknięte)</li>
-<li>Hipotetyczne (w alternatywnych warunkach)</li>
-</ul>
-<p><strong>Proces Generowania Danych (PGD)</strong>:<br>
-Czynniki wpływające na jakość pizzy:</p>
-<ol type="1">
+<li>Przyszłe (jeszcze nieotwarte)</li>
+<li>Historyczne (już zamknięte)</li>
+<li>Hipotetyczne (w alternatywnych warunkach ekonomicznych czy kulturowych)</li>
+</ul></li>
+<li><strong>PGD</strong>: Czynniki wpływające na jakość pizzy:
+<ul>
 <li>Składniki i ich jakość</li>
 <li>Umiejętności i doświadczenie szefów kuchni</li>
-<li>Sprzęt i infrastruktura</li>
+<li>Sprzęt i infrastruktura kuchenna</li>
 <li>Metody przygotowania i przepisy</li>
-<li>Czynniki środowiskowe (np. jakość wody)</li>
-<li>Wpływy kulturowe i tradycje</li>
-<li>Uwarunkowania ekonomiczne (koszty, czynsze)</li>
+<li>Czynniki środowiskowe (np. jakość lokalnej wody)</li>
+<li>Wpływy kulturowe i tradycje kulinarne</li>
+<li>Uwarunkowania ekonomiczne (koszty operacyjne, czynsze)</li>
+</ul></li>
+</ul>
+<p>PGD jest jak “przepis na jakość pizzy”, który determinuje rezultaty dla wszystkich potencjalnych pizzerii w superpopulacji, nie tylko dla obecnie istniejących lokali.</p>
+</section>
+</section>
+<section id="praktyczne-znaczenie-tych-różnic" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="praktyczne-znaczenie-tych-różnic"><span class="header-section-number">2.3.5</span> Praktyczne znaczenie tych różnic</h3>
+<ol type="1">
+<li><strong>Wnioskowanie statystyczne</strong>:
+<ul>
+<li>W tradycyjnym podejściu: Z próby wnioskujemy o populacji</li>
+<li>W podejściu superpopulacyjnym: Z modelu wnioskujemy o ogólnych prawidłowościach wykraczających poza obserwowaną populację</li>
+</ul></li>
+<li><strong>Generalizacja wyników</strong>:
+<ul>
+<li>Tradycyjne podejście: Wyniki możemy generalizować tylko na obecną populację</li>
+<li>Podejście superpopulacyjne: Wyniki można generalizować na przyszłe lub hipotetyczne przypadki</li>
+</ul></li>
+<li><strong>Interpretacja niepewności</strong>:
+<ul>
+<li>W podejściu tradycyjnym: Niepewność wynika głównie z losowości próby</li>
+<li>W podejściu superpopulacyjnym: Niepewność wynika zarówno z losowości próby, jak i z losowości procesów w ramach PGD</li>
+</ul></li>
+<li><strong>Modelowanie predykcyjne</strong>:
+<ul>
+<li>Tradycyjne podejście: Ograniczone do obecnej populacji</li>
+<li>Podejście superpopulacyjne: Pozwala modelować nowe, nieobserwowane jeszcze przypadki</li>
+</ul></li>
 </ol>
-<p>PGD jest jak “przepis na jakość pizzy”, który ma zastosowanie do wszystkich potencjalnych pizzerii w superpopulacji, nie tylko do obecnie istniejących lokali.</p>
+<p>Zrozumienie różnic między tymi koncepcjami jest kluczowe dla prawidłowej interpretacji wyników badań i właściwego wnioskowania statystycznego, szczególnie w badaniach obejmujących złożone systemy społeczne, ekonomiczne czy biologiczne.</p>
 </section>
 </div>
 </div>
@@ -685,32 +701,6 @@ Czynniki wpływające na jakość pizzy:</p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Objaśnienie diagramu PGD, Populacji i Próby
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Diagram przedstawia relacje między Procesem Generującym Dane (PGD), populacją i próbą, wraz ze ścieżkami wnioskowania:</p>
-<ol type="1">
-<li>Relacje bezpośrednie (ciągłe strzałki):
-<ul>
-<li>PGD generuje populację</li>
-<li>Z populacji pobierane są próby</li>
-</ul></li>
-<li>Ścieżki wnioskowania (przerywane strzałki):
-<ul>
-<li>Od Próby do Populacji: Tradycyjne wnioskowanie statystyczne</li>
-<li>Od Próby do PGD: Wnioskowanie o podstawowym procesie na podstawie danych z próby</li>
-<li>Od Populacji do PGD: Wnioskowanie o PGD przy użyciu pełnych danych populacji</li>
-</ul></li>
-</ol>
-</div>
-</div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -731,7 +721,7 @@ Parametr populacji (<span class="math inline">\theta</span>)
 <p>Parametry populacji zazwyczaj nie są znane i stanowią przedmiot estymacji na podstawie próby.</p>
 <section id="rozkład-statystyki-hattheta-z-próby" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="rozkład-statystyki-hattheta-z-próby"><span class="header-section-number">2.4</span> Rozkład statystyki (<span class="math inline">\hat{\theta}</span>) z próby</h2>
-<p>Statystyka z próby <span class="math inline">\hat{\theta}</span> to wartość wyliczona na podstawie obserwacji z próby, która służy do estymacji parametru populacji <span class="math inline">\theta</span>. Rozkład statystyki opisuje, jak zmieniają się wartości tej statystyki przy wielokrotnym pobieraniu prób o tej samej liczebności <span class="math inline">n</span> z tej samej populacji.</p>
+<p><strong>Statystyka z próby</strong> <span class="math inline">\hat{\theta}</span> to wartość wyliczona na podstawie obserwacji z próby, która służy do estymacji parametru populacji <span class="math inline">\theta</span>. Rozkład statystyki opisuje, jak zmieniają się wartości tej statystyki przy wielokrotnym pobieraniu prób o tej samej liczebności <span class="math inline">n</span> z tej samej populacji.</p>
 <p>Rozkład statystyki odnosi się do rozkładu prawdopodobieństwa, który opisuje wszystkie możliwe wartości, jakie może przyjąć dana statystyka, gdy jest obliczana z różnych prób losowych pobieranych z tej samej populacji, wraz z prawdopodobieństwem uzyskania każdej wartości.</p>
 <p>Gdy pobieramy próbę z populacji i obliczamy statystykę (np. średnią z próby), otrzymujemy jedną konkretną wartość. Jednakże gdybyśmy powtórzyli ten proces wielokrotnie – pobierając różne próby losowe o tej samej wielkości z tej samej populacji – za każdym razem otrzymalibyśmy inne wartości tej statystyki. Rozkład statystyki opisuje właśnie ten wzorzec zmienności.</p>
 <p>Kluczowe cechy rozkładu statystyki:</p>
@@ -752,14 +742,20 @@ Parametr populacji (<span class="math inline">\theta</span>)
 <p><span class="math display">E(\hat{\theta}) = \theta</span></p>
 <p>Na przykład, dla średniej z próby możemy udowodnić, że: <span class="math display">E(\bar{x}) = E\left(\frac{1}{n}\sum_{i=1}^{n}x_i\right) = \frac{1}{n}\sum_{i=1}^{n}E(x_i) = \frac{1}{n} \cdot n \cdot \mu = \mu</span></p>
 <p>Taki estymator nazywamy nieobciążonym. Co ważne, nie wszystkie estymatory są nieobciążone - niektóre mają systematyczne odchylenie, np. estymator wariancji <span class="math inline">s^2</span> musi zawierać korektę <span class="math inline">\frac{1}{n-1}</span> zamiast <span class="math inline">\frac{1}{n}</span>, aby być nieobciążonym.</p>
+</section>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stat_imgs/population_vs_sample.png" class="img-fluid figure-img"></p>
+<figcaption>The process of using a sample from a population to obtain a point estimate of a population parameter. In this case, a sample of 10 individuals yielded 6 who own an iPhone, resulting in an estimated population proportion of 60% iPhone owners. The actual population proportion is 53.8%. Retrieved from: https://datasciencebook.ca/inference.html</figcaption>
+</figure>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="stat_imgs/sampling-estimators.svg" class="img-fluid figure-img"></p>
-<figcaption>Populacja vs.&nbsp;próba. Retrieved from: https://allmodelsarewrong.github.io/mse.html</figcaption>
+<figcaption>Various random samples of equal size and their statistics. Retrieved from: https://allmodelsarewrong.github.io/mse.html</figcaption>
 </figure>
-</div>
-</section>
-</div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
