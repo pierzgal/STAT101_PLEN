@@ -508,7 +508,7 @@ Note
 <ul>
 <li>Example: In a study of electoral preferences, the population consists of all citizens eligible to vote in a given country.</li>
 </ul></li>
-<li><p><strong>Sample</strong>: A subset of the population selected for study. A <strong>representative</strong> sample mirrors the essential characteristics of the target population in appropriate proportions. Effective sampling considers the diversity of units across relevant variables (demographic, behavioral, etc.). For example, a simple random sample (SRS) is created when each unit in the population has an equal probability of selection. Sample adequacy depends on both representativeness and sufficient size to achieve desired precision.</p>
+<li><p><strong>Sample</strong>: A subset of the population selected for study. A <strong>representative</strong> sample reflects the key characteristics of the target population in appropriate proportions. Effective sampling accounts for diversity across relevant variables (demographic, behavioral, etc.). In a simple random sample (SRS), each unit in the population has an equal and independent probability of selection. Sample adequacy depends on both the sampling method’s <strong>randomness</strong> and <strong>sufficient sample size</strong> to minimize error.</p>
 <ul>
 <li>Example: Instead of studying all eligible voters, researchers analyze 1,500 randomly selected individuals, taking into account the appropriate distribution of age, gender, education, and region of residence.</li>
 </ul>
@@ -930,15 +930,31 @@ Example distinguishing these concepts
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Components of a Statistical Model
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A statistical model consists of: 1. A probabilistic structure (e.g., assumption of normal distribution) 2. Parameters we want to estimate 3. Relationships between variables (e.g., linear, exponential)</p>
+<p>A statistical model is a mathematical framework used to represent relationships in data and make predictions. A complete statistical model consists of:</p>
+<ol type="1">
+<li><p><strong>Functional form</strong>: The mathematical structure that defines the relationship between variables (e.g., linear, quadratic, exponential, logarithmic)</p></li>
+<li><p><strong>Variables</strong>:</p>
+<ul>
+<li>Dependent variable(s): What we’re trying to predict or explain</li>
+<li>Independent/explanatory variables: Factors that might influence the dependent variable</li>
+</ul></li>
+<li><p><strong>Parameters</strong>: Unknown values we estimate from data that quantify the relationship between variables (e.g., regression coefficients, means, variances)</p></li>
+<li><p><strong>Random component</strong>: The error term or stochastic element that accounts for uncertainty and variability not explained by the model</p></li>
+<li><p><strong>Probability distribution assumptions</strong>: Specifications about how the random component is distributed (e.g., normal, Poisson, binomial)</p></li>
+</ol>
 </div>
 </div>
 <p>Example of a linear regression model: <span class="math inline">y = \beta_0 + \beta_1x + \epsilon</span>, where <span class="math inline">\epsilon \sim N(0, \sigma^2)</span></p>
-<p>In this model: - <span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span> are parameters (estimands) we want to estimate - <span class="math inline">\epsilon</span> is a random component representing unexplained variability - We assume normality of the distribution of random errors</p>
+<p>In this model:</p>
+<ul>
+<li><span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span> are parameters (estimands) we want to estimate</li>
+<li><span class="math inline">\epsilon</span> is a random component representing unexplained variability</li>
+<li>We assume normality of the distribution of random errors</li>
+</ul>
 </section>
 <section id="causal-vs.-predictive-inference" class="level3" data-number="1.8.2">
 <h3 data-number="1.8.2" class="anchored" data-anchor-id="causal-vs.-predictive-inference"><span class="header-section-number">1.8.2</span> Causal vs.&nbsp;Predictive Inference</h3>
@@ -965,6 +981,9 @@ Correlation ≠ Causation
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<blockquote class="blockquote">
+<p>In statistics, a spurious relationship or spurious correlation is a mathematical relationship in which two or more events or variables are associated but not causally related, due to either coincidence or the presence of a certain third, unseen factor (referred to as a “common response variable”, “confounding factor”, or “lurking variable”).</p>
+</blockquote>
 <p>One of the most common errors in statistics is interpreting correlation as evidence of causation. Two variables can be strongly correlated because of:</p>
 <ol type="1">
 <li>A confounding variable that affects both variables</li>

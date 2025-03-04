@@ -505,7 +505,7 @@ Note
 <ul>
 <li>Przykład: W badaniu preferencji wyborczych populację stanowią wszyscy uprawnieni do głosowania obywatele danego kraju.</li>
 </ul></li>
-<li><p><strong>Próba</strong>: Podzbiór populacji wybrany do badania. Próba <strong>reprezentatywna</strong> odzwierciedla istotne cechy populacji docelowej we właściwych proporcjach. Efektywne pobieranie próby uwzględnia różnorodność jednostek w zakresie istotnych zmiennych (demograficznych, behawioralnych itp.). Na przykład, prosta próba losowa (PPS) powstaje, gdy każda jednostka w populacji ma równe prawdopodobieństwo wyboru. Adekwatność próby zależy zarówno od reprezentatywności, jak i wystarczającej wielkości do osiągnięcia pożądanej precyzji.</p>
+<li><p><strong>Próba</strong>: Podzbiór populacji wybrany do badania. <strong>Reprezentatywna</strong> próba odzwierciedla kluczowe cechy populacji docelowej w odpowiednich proporcjach. Efektywne pobieranie próbek uwzględnia różnorodność jednostek w zakresie istotnych zmiennych (demograficznych, behawioralnych, itp.). W prostej próbie losowej (SRS), każda jednostka w populacji ma równe i niezależne prawdopodobieństwo wyboru. Reprezentatywność próby zależy zarówno od losowości metody pobierania, jak i od wystarczającej wielkości próby, aby zminimalizować błąd.</p>
 <ul>
 <li>Przykład: Zamiast badać wszystkich uprawnionych wyborców, analizuje się 1500 losowo wybranych osób z uwzględnieniem odpowiedniego rozkładu wieku, płci, wykształcenia i regionu zamieszkania.</li>
 </ul>
@@ -926,15 +926,31 @@ Przykład rozróżnienia tych pojęć
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Komponenty Modelu Statystycznego
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Model statystyczny składa się z: 1. Struktury probabilistycznej (np. założenie o rozkładzie normalnym) 2. Parametrów, które chcemy oszacować 3. Relacji między zmiennymi (np. liniowa, wykładnicza)</p>
+<p>Model statystyczny to matematyczne ramy służące do reprezentowania zależności w danych i formułowania prognoz. Kompletny model statystyczny składa się z:</p>
+<ol type="1">
+<li><p><strong>Forma funkcyjna</strong>: Struktura matematyczna określająca relację między zmiennymi (np. liniowa, kwadratowa, wykładnicza, logarytmiczna)</p></li>
+<li><p><strong>Zmienne</strong>:</p>
+<ul>
+<li>Zmienna zależna: To, co staramy się przewidzieć lub wyjaśnić</li>
+<li>Zmienne niezależne/objaśniające: Czynniki, które mogą wpływać na zmienną zależną</li>
+</ul></li>
+<li><p><strong>Parametry</strong>: Nieznane wartości, które szacujemy na podstawie danych, kwantyfikujące relację między zmiennymi (np. współczynniki regresji, średnie, wariancje)</p></li>
+<li><p><strong>Składnik losowy</strong>: Człon błędu lub element stochastyczny, który uwzględnia niepewność i zmienność niewyjaśnioną przez model</p></li>
+<li><p><strong>Założenia dotyczące rozkładu prawdopodobieństwa</strong>: Specyfikacje dotyczące tego, jak jest rozłożony składnik losowy (np. rozkład normalny, Poissona, dwumianowy)</p></li>
+</ol>
 </div>
 </div>
 <p>Przykład modelu regresji liniowej: <span class="math inline">y = \beta_0 + \beta_1x + \epsilon</span>, gdzie <span class="math inline">\epsilon \sim N(0, \sigma^2)</span></p>
-<p>W tym modelu: - <span class="math inline">\beta_0</span> i <span class="math inline">\beta_1</span> to parametry (estymandy), które chcemy oszacować - <span class="math inline">\epsilon</span> to składnik losowy reprezentujący niewyjaśnioną zmienność - Zakładamy normalność rozkładu błędów losowych</p>
+<p>W tym modelu:</p>
+<ul>
+<li><span class="math inline">\beta_0</span> i <span class="math inline">\beta_1</span> to parametry (estymandy), które chcemy oszacować</li>
+<li><span class="math inline">\epsilon</span> to składnik losowy reprezentujący niewyjaśnioną zmienność</li>
+<li>Zakładamy normalność rozkładu błędów losowych</li>
+</ul>
 </section>
 <section id="wnioskowanie-przyczynowe-vs.-predykcyjne" class="level3" data-number="2.8.2">
 <h3 data-number="2.8.2" class="anchored" data-anchor-id="wnioskowanie-przyczynowe-vs.-predykcyjne"><span class="header-section-number">2.8.2</span> Wnioskowanie Przyczynowe vs.&nbsp;Predykcyjne</h3>
@@ -961,6 +977,9 @@ Korelacja ≠ Przyczynowość
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<blockquote class="blockquote">
+<p>W statystyce, związek pozorny (spurious relationship) lub korelacja pozorna (spurious correlation) to relacja matematyczna, w której dwa lub więcej zdarzeń lub zmiennych są ze sobą powiązane, ale nie pozostają w relacji przyczynowo-skutkowej. Wynika to albo z przypadkowego zbiegu okoliczności, albo z obecności pewnego trzeciego, niewidocznego czynnika (określanego jako “wspólna zmienna odpowiedzi” (common response variable), “czynnik zakłócający” (confounding factor) lub “zmienna ukryta” (lurking variable)).</p>
+</blockquote>
 <p>Jednym z najczęstszych błędów w statystyce jest interpretowanie korelacji jako dowodu na przyczynowość. Dwie zmienne mogą być silnie skorelowane z powodu:</p>
 <ol type="1">
 <li>Zmiennej zakłócającej (confounder), która wpływa na obie zmienne</li>
@@ -972,7 +991,7 @@ Korelacja ≠ Przyczynowość
 </section>
 <section id="problemy-wnioskowania-przyczynowego" class="level3" data-number="2.8.3">
 <h3 data-number="2.8.3" class="anchored" data-anchor-id="problemy-wnioskowania-przyczynowego"><span class="header-section-number">2.8.3</span> Problemy Wnioskowania Przyczynowego</h3>
-<p>Fundamentalnym problemem wnioskowania przyczynowego jest niemożność obserwowania <strong>kontrfaktów</strong> (alternatywnych scenariuszy). Dla danej jednostki możemy zaobserwować tylko jeden potencjalny wynik.</p>
+<p>Fundamentalnym problemem wnioskowania przyczynowego jest niemożność obserwowania <strong>kontrfaktów</strong> (alternatywnych/kontrfaktycznych scenariuszy). Dla danej jednostki możemy zaobserwować tylko jeden potencjalny wynik.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="stat_imgs/meme_horse.svg" class="img-fluid figure-img"></p>
