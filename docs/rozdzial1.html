@@ -721,12 +721,12 @@ Parametr populacji (<span class="math inline">\theta</span>)
 <p>Parametry populacji zazwyczaj nie są znane i stanowią przedmiot estymacji na podstawie próby.</p>
 <section id="rozkład-statystyki-hattheta-z-próby" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="rozkład-statystyki-hattheta-z-próby"><span class="header-section-number">2.4</span> Rozkład statystyki (<span class="math inline">\hat{\theta}</span>) z próby</h2>
-<p><strong>Statystyka z próby</strong> <span class="math inline">\hat{\theta}</span> to wartość wyliczona na podstawie obserwacji z próby, która służy do estymacji parametru populacji <span class="math inline">\theta</span>. Rozkład statystyki opisuje, jak zmieniają się wartości tej statystyki przy wielokrotnym pobieraniu prób o tej samej liczebności <span class="math inline">n</span> z tej samej populacji.</p>
+<p><strong>Statystyka z próby</strong> (a sample statistic) <span class="math inline">\hat{\theta}</span> to wartość wyliczona na podstawie obserwacji z próby, która służy do estymacji parametru populacji <span class="math inline">\theta</span>. Rozkład statystyki opisuje, jak zmieniają się wartości tej statystyki przy wielokrotnym pobieraniu prób o tej samej liczebności <span class="math inline">n</span> z tej samej populacji.</p>
 <p>Rozkład statystyki odnosi się do rozkładu prawdopodobieństwa, który opisuje wszystkie możliwe wartości, jakie może przyjąć dana statystyka, gdy jest obliczana z różnych prób losowych pobieranych z tej samej populacji, wraz z prawdopodobieństwem uzyskania każdej wartości.</p>
 <p>Gdy pobieramy próbę z populacji i obliczamy statystykę (np. średnią z próby), otrzymujemy jedną konkretną wartość. Jednakże gdybyśmy powtórzyli ten proces wielokrotnie – pobierając różne próby losowe o tej samej wielkości z tej samej populacji – za każdym razem otrzymalibyśmy inne wartości tej statystyki. Rozkład statystyki opisuje właśnie ten wzorzec zmienności.</p>
 <p>Kluczowe cechy rozkładu statystyki:</p>
 <ol type="1">
-<li>Pokazuje, jak statystyka zmienia się od próby do próby</li>
+<li>Pokazuje, zróżnicowanie statystyki w różnych próbach</li>
 <li>Pomaga zrozumieć błąd losowy i niepewność związaną z próbkowaniem</li>
 <li>Pozwala formułować stwierdzenia probabilistyczne o tym, jak blisko nasza estymacja jest prawdziwego parametru populacji</li>
 <li>Stanowi podstawę wnioskowania statystycznego, w tym przedziałów ufności i testów hipotez</li>
@@ -1006,7 +1006,7 @@ Korelacja ≠ Przyczynowość
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="stat_imgs/IMG_4337.jpg" class="img-fluid figure-img"></p>
-<figcaption>Błąd wspólnej przyczyny i pozorna korelacja: picie alkoholu wieczorem jest wspólną przyczyną spania w butach i budzenia się z bólem głowy</figcaption>
+<figcaption>Błąd wspólnej przyczyny (confounding bias) i pozorna korelacja: picie alkoholu wieczorem jest wspólną przyczyną spania w butach i budzenia się z bólem głowy</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -1068,7 +1068,7 @@ Przykład: Test dwumianowy dla monety
 <p>Ogólna procedura testowania hipotez:</p>
 <ol type="1">
 <li>Formułujemy hipotezę zerową (H₀) i alternatywną (H₁)</li>
-<li>Wybieramy poziom istotności α (najczęściej 0.05)</li>
+<li>Wybieramy poziom istotności α (najczęściej 0.05) - reguła decyzyjna, która pomaga ocenić co to znaczy małe prawdopodobieństwo zaobserwowanego wyniku przy założeniu, że testowana hipoteza jest prawdziwa</li>
 <li>Zbieramy dane i obliczamy odpowiednią statystykę testową</li>
 <li>Obliczamy p-wartość (prawdopodobieństwo uzyskania naszych danych lub bardziej ekstremalnych, przy założeniu prawdziwości H₀)</li>
 <li>Podejmujemy decyzję: jeśli p &lt; α, odrzucamy H₀ na rzecz H₁</li>
@@ -1083,7 +1083,14 @@ Intuicja za testowaniem hipotez
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Testowanie hipotez przypomina procedurę sądową: - H₀ odpowiada zasadzie “niewinny, dopóki nie udowodni się winy” (zakładamy, że parametr ma określoną wartość) - Dane stanowią “dowody” przeciwko H₀ - P-wartość określa, jak silne są te dowody - Jeśli dowody są wystarczająco mocne (p &lt; α), “skazujemy” H₀ (odrzucamy ją) - Jeśli dowody nie są wystarczająco mocne, nie odrzucamy H₀ (ale nie udowadniamy jej prawdziwości)</p>
+<p>Testowanie hipotez przypomina procedurę sądową:</p>
+<ul>
+<li>H₀ odpowiada zasadzie “niewinny, dopóki nie udowodni się winy” (zakładamy, że parametr ma określoną wartość)</li>
+<li>Dane stanowią “dowody” przeciwko H₀</li>
+<li>P-wartość określa, jak silne są te dowody</li>
+<li>Jeśli dowody są wystarczająco mocne (p &lt; α), “skazujemy” H₀ (odrzucamy ją)</li>
+<li>Jeśli dowody nie są wystarczająco mocne, nie odrzucamy H₀ (ale nie udowadniamy jej prawdziwości)</li>
+</ul>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
