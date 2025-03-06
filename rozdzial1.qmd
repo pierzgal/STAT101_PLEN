@@ -24,23 +24,8 @@ W naukach społecznych nauka o danych stanowi zestaw metod do rozwiązywania zł
 
 Statystyka i data science to ściśle powiązane dziedziny o znaczącym obszarze wspólnym. Zamiast traktować je jako całkowicie odrębne dyscypliny, warto postrzegać je jako komplementarne podejścia w spektrum metod analizy danych:
 
-::: panel-tabset
-### Tradycyjna Statystyka
-
--   Opiera się na podstawach matematycznych i teorii prawdopodobieństwa
--   Koncentruje się na testowaniu hipotez, estymacji parametrów i wnioskowaniu statystycznym
--   W naukach społecznych znajduje zastosowanie głównie do analizy danych z badań ankietowych, eksperymentów i obserwacji
--   Stanowi metodologiczny fundament analizy ilościowej
-
-### Data Science
-
--   Łączy metody statystyczne z umiejętnościami programistycznymi i wiedzą dziedzinową
--   Wykorzystuje nowoczesne techniki jak uczenie maszynowe i analiza dużych zbiorów danych
--   W naukach społecznych umożliwia pracę z danymi cyfrowymi, tekstowymi i złożonymi wzorcami interakcji społecznych
--   Rozwija i rozszerza tradycyjne podejścia statystyczne, dostosowując je do współczesnych wyzwań badawczych
-:::
-
 Nauka o danych może być postrzegana jako współczesne rozwinięcie tradycyjnej statystyki, które ewoluowało w odpowiedzi na nowe możliwości technologiczne i potrzebę analizy coraz bardziej złożonych danych społecznych.
+
 
 ## Podstawowe Koncepcje w Nauce o Danych i Statystyce
 
@@ -52,121 +37,135 @@ Nauka o danych może być postrzegana jako współczesne rozwinięcie tradycyjne
 
     -   Przykład: W badaniu preferencji wyborczych populację stanowią wszyscy uprawnieni do głosowania obywatele danego kraju.
 
-3.  **Próba**: Podzbiór populacji wybrany do badania. Próba **reprezentatywna** odzwierciedla istotne cechy populacji docelowej we właściwych proporcjach. Efektywne pobieranie próby uwzględnia różnorodność jednostek w zakresie istotnych zmiennych (demograficznych, behawioralnych itp.). Na przykład, prosta próba losowa (PPS) powstaje, gdy każda jednostka w populacji ma równe prawdopodobieństwo wyboru. Adekwatność próby zależy zarówno od reprezentatywności, jak i wystarczającej wielkości do osiągnięcia pożądanej precyzji.
+3. **Próba**: Podzbiór populacji wybrany do badania. **Reprezentatywna** próba odzwierciedla kluczowe cechy populacji docelowej w odpowiednich proporcjach. Efektywne pobieranie próbek uwzględnia różnorodność jednostek w zakresie istotnych zmiennych (demograficznych, behawioralnych, itp.). W prostej próbie losowej (SRS), każda jednostka w populacji ma równe i niezależne prawdopodobieństwo wyboru. Reprezentatywność próby zależy zarówno od losowości metody pobierania, jak i od wystarczającej wielkości próby, aby zminimalizować błąd.
 
     -   Przykład: Zamiast badać wszystkich uprawnionych wyborców, analizuje się 1500 losowo wybranych osób z uwzględnieniem odpowiedniego rozkładu wieku, płci, wykształcenia i regionu zamieszkania.
 
     Prawidłowo dobrana próba umożliwia wnioskowanie o całej populacji przy znaczącej optymalizacji zasobów badawczych.
+
+4. **Pobieranie próbek** (*sampling*, próbkowanie) to procedura wybierania jednostek z populacji do badania. Nieobciążona metoda pobierania próbek daje każdej jednostce w populacji równą szansę na wybór, zapewniając reprezentatywne wyniki.
+
+::: {.panel-tabset group="language"}
+## SRS
+**Prosty Dobór Losowy**: Każda jednostka ma równe prawdopodobieństwo wyboru. Cała populacja jest losowo próbkowana bez żadnego z góry ustalonego wzorca.
+
+![Prosty Dobór Losowy. Źródło: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Simple_Random_Sampling2.svg)
+
+## Dobór warstwowy
+**Dobór Warstwowy**: Populacja jest podzielona na odrębne podgrupy (warstwy) przed losowym pobraniem próbek z każdej warstwy proporcjonalnie.
+
+![Dobór Warstwowy. Źródło: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Stratified2.svg)
+
+## Dobór grupowy
+**Dobór Grupowy**: Populacja jest podzielona na skupiska (klastry), a całe skupiska są losowo wybierane do analizy zamiast pojedynczych jednostek.
+
+![Dobór Grupowy. Źródło: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Cluster2.svg)
+:::
 
 ::: callout-note
 ## Proces Generowania Danych (PGD) i Superpopulacja: Rozszerzenie Tradycyjnych Koncepcji
 
 W tradycyjnej statystyce pracujemy z dwoma kluczowymi pojęciami:
 
--   **Populacja**: Cała grupa, którą chcemy badać.
+-   **Populacja**: Cała grupa jednostek, którą chcemy badać.
 -   **Próba**: Podzbiór populacji, który faktycznie obserwujemy i analizujemy.
 
-Współczesne badania często wymagają myślenia wykraczającego poza ten dychotomiczny podział. Tu wkraczają koncepcje Procesu Generowania Danych (PGD) i superpopulacji, pogłębiając nasze rozumienie danych i ich struktury.
+Współczesne badania często wymagają myślenia wykraczającego poza ten dychotomiczny podział. Tu wkraczają koncepcje **Procesu Generowania Danych (PGD)** i **superpopulacji**, które pogłębiają nasze rozumienie danych i ich struktury.
+
+### Kluczowe definicje
+
+**Populacja**: Zbiór wszystkich jednostek, które są bezpośrednim przedmiotem naszego badania (np. wszyscy dorośli mieszkańcy Polski).
+
+**Próba**: Podzbiór populacji, który faktycznie badamy (np. 1000 losowo wybranych dorosłych Polaków).
+
+**Superpopulacja**: Teoretyczny koncept obejmujący nie tylko obserwowalne jednostki z aktualnej populacji, ale wszystkie potencjalne jednostki, które mogłyby wystąpić w podobnych warunkach (np. wszyscy możliwi dorośli Polacy - obecni, przyszli i hipotetyczni).
+
+**Proces Generowania Danych (PGD)**: Mechanizmy i czynniki, które generują wartości obserwowanych zmiennych w systemie.
 
 ### Proces Generowania Danych (PGD; Data Generating Process, DGP)
 
-**Definicja formalna**:\
+**Definicja formalna**:
 PGD to zbiór mechanizmów statystycznych i przyczynowych odpowiedzialnych za wytwarzanie obserwowanych wartości zmiennych w systemie, opisany najczęściej za pomocą funkcji matematycznych i rozkładów prawdopodobieństwa.
 
-**Intuicyjne wyjaśnienie**:\
-PGD można postrzegać jako "czarną skrzynkę", która przekształca przyczyny w skutki. To fundamentalny mechanizm, który produkuje dane obserwowane w rzeczywistym świecie - zarówno w naszej próbie, jak i w całej populacji, a także poza nią.
+**Intuicyjne wyjaśnienie**:
+PGD można postrzegać jako "mechanizm" lub "czarną skrzynkę", która przekształca przyczyny w skutki. To fundamentalny proces, który produkuje dane obserwowane w rzeczywistym świecie - zarówno w naszej próbie, jak i w całej populacji, a także potencjalnie poza nią.
 
-**Przykład**:\
-W badaniu zachowań wyborczych, PGD obejmowałby czynniki takie jak:
+### Przykłady ilustrujące różnice
 
--   Cechy demograficzne wyborców
--   Warunki ekonomiczne
--   Wydarzenia polityczne
--   Wpływ mediów społecznościowych
--   Historyczne trendy wyborcze
+#### Przykład 1: Badanie opinii wyborców
 
-Wszystkie te czynniki kształtują zachowania wyborcze niezależnie od tego, czy dany wyborca został uwzględniony w badaniu, czy nie.
+- **Populacja**: Wszyscy zarejestrowani wyborcy w Polsce w 2023 roku (ok. 30 milionów osób)
+- **Próba**: 1000 losowo wybranych wyborców ankietowanych w sondażu
+- **Superpopulacja**: Wszyscy możliwi wyborcy (obecni, przyszli i hipotetyczni) oraz wszystkie możliwe scenariusze głosowania
+- **PGD**: Złożony mechanizm kształtujący opinie i decyzje wyborcze, w tym:
+  - Czynniki demograficzne (wiek, wykształcenie, miejsce zamieszkania)
+  - Warunki ekonomiczne (dochód, status zawodowy)
+  - Wpływ mediów i debaty publicznej
+  - Doświadczenia osobiste
+  - Historyczne uwarunkowania polityczne
 
-### Superpopulacja
+#### Przykład 2: Badanie efektów leku przeciwcukrzycowego
 
-**Definicja formalna**:\
-Superpopulacja to hipotetyczna, nieskończona populacja, z której obserwowana populacja może być postrzegana jako próba losowa. Reprezentuje wszystkie potencjalne jednostki i wyniki, które mogłyby zostać wygenerowane przez ten sam PGD.
+- **Populacja**: Wszyscy pacjenci z cukrzycą typu 2 w danym kraju (np. 2 miliony osób)
+- **Próba**: 500 pacjentów uczestniczących w badaniu klinicznym
+- **Superpopulacja**: Wszyscy możliwi pacjenci z cukrzycą typu 2 (obecni i przyszli) z różnymi profilami genetycznymi i środowiskowymi
+- **PGD**: Biologiczny mechanizm obejmujący:
+  - Interakcje leku z receptorami w organizmie
+  - Indywidualne uwarunkowania genetyczne
+  - Czynniki środowiskowe (dieta, aktywność fizyczna)
+  - Interakcje z innymi lekami
+  - Mechanizmy metaboliczne organizmu
 
-**Intuicyjne wyjaśnienie**:\
-Superpopulacja wykracza zarówno poza próbę, jak i obserwowalną populację, obejmując wszystkie potencjalne wyniki, które mogłyby wystąpić w podobnych warunkach lub procesach - zarówno teraz, jak i w przyszłości.
+#### Przykład 3: Gdy próba równa się populacji
 
-### Porównanie podejść
+Badanie wszystkich 50 stanów USA:
 
-#### 1. Podejście tradycyjne vs. podejście superpopulacyjne
+- **Tradycyjne podejście**: Nie ma rozróżnienia między próbą a populacją (badamy wszystkie stany)
+- **Podejście superpopulacyjne**:
+  - **Populacja/Próba**: 50 istniejących stanów USA
+  - **Superpopulacja**: Teoretyczny zbiór wszystkich możliwych jednostek terytorialnych typu "stan" w różnych warunkach historycznych, politycznych i społecznych
+  - **PGD**: Fundamentalne mechanizmy geograficzne, historyczne, polityczne i społeczno-ekonomiczne kształtujące charakterystyki stanów
 
--   **Tradycyjne**:
-    -   Populacja: wszyscy zarejestrowani wyborcy w województwie
-    -   Próba: 1000 ankietowanych wyborców
--   **Superpopulacyjne**:
-    -   Obserwowane dane: 1000 ankietowanych wyborców
-    -   Populacja: wszyscy zarejestrowani wyborcy
-    -   Superpopulacja: Wszyscy możliwi wyborcy i scenariusze głosowania, w tym przyszłe wybory i hipotetyczne konteksty polityczne
+#### Przykład 4: Jakość pizzy w Nowym Jorku
 
-#### 2. Gdy próba równa się populacji
+- **Populacja**: Wszystkie obecnie działające pizzerie w Nowym Jorku (np. 2000 lokali)
+- **Próba**: 50 losowo wybranych pizzerii z różnych dzielnic
+- **Superpopulacja**: Wszystkie możliwe pizzerie, które mogłyby istnieć w Nowym Jorku:
+  - Obecnie działające
+  - Przyszłe (jeszcze nieotwarte)
+  - Historyczne (już zamknięte)
+  - Hipotetyczne (w alternatywnych warunkach ekonomicznych czy kulturowych)
+- **PGD**: Czynniki wpływające na jakość pizzy:
+  - Składniki i ich jakość
+  - Umiejętności i doświadczenie szefów kuchni
+  - Sprzęt i infrastruktura kuchenna
+  - Metody przygotowania i przepisy
+  - Czynniki środowiskowe (np. jakość lokalnej wody)
+  - Wpływy kulturowe i tradycje kulinarne
+  - Uwarunkowania ekonomiczne (koszty operacyjne, czynsze)
 
-W badaniach wszystkich 16 województw Polski:
+PGD jest jak "przepis na jakość pizzy", który determinuje rezultaty dla wszystkich potencjalnych pizzerii w superpopulacji, nie tylko dla obecnie istniejących lokali.
 
--   **Tradycyjne spojrzenie**: Brak rozróżnienia między próbą a populacją
--   **Spojrzenie superpopulacyjne**: Traktuje te 16 województw jako "próbę" z teoretycznego zbioru wszystkich możliwych interakcji między województwami a polityką
+### Praktyczne znaczenie tych różnic
 
-### Zastosowanie w praktyce
+1. **Wnioskowanie statystyczne**:
+   - W tradycyjnym podejściu: Z próby wnioskujemy o populacji
+   - W podejściu superpopulacyjnym: Z modelu wnioskujemy o ogólnych prawidłowościach wykraczających poza obserwowaną populację
 
-Badanie wpływu nowej polityki planowania urbanistycznego:
+2. **Generalizacja wyników**:
+   - Tradycyjne podejście: Wyniki możemy generalizować tylko na obecną populację
+   - Podejście superpopulacyjne: Wyniki można generalizować na przyszłe lub hipotetyczne przypadki
 
--   **Podejście tradycyjne**:
-    -   Populacja: Wszystkie miasta w kraju
-    -   Próba: Miasta uwzględnione w badaniu
--   **Podejście superpopulacyjne**:
-    -   Obserwowane dane: Miasta w badaniu
-    -   Populacja: Wszystkie obecne miasta
-    -   Superpopulacja: Wszystkie miasta (istniejące lub potencjalne), w których można by zastosować podobne zasady planowania
+3. **Interpretacja niepewności**:
+   - W podejściu tradycyjnym: Niepewność wynika głównie z losowości próby
+   - W podejściu superpopulacyjnym: Niepewność wynika zarówno z losowości próby, jak i z losowości procesów w ramach PGD
 
-PGD w tym przypadku byłby złożonym zestawem czynników, które determinują, jak polityki planowania urbanistycznego wpływają na rozwój miast.
+4. **Modelowanie predykcyjne**:
+   - Tradycyjne podejście: Ograniczone do obecnej populacji
+   - Podejście superpopulacyjne: Pozwala modelować nowe, nieobserwowane jeszcze przypadki
 
-### Kluczowe aspekty metodologiczne
+Zrozumienie różnic między tymi koncepcjami jest kluczowe dla prawidłowej interpretacji wyników badań i właściwego wnioskowania statystycznego, szczególnie w badaniach obejmujących złożone systemy społeczne, ekonomiczne czy biologiczne.
 
-1.  **Zakres i ograniczenia**:\
-    Badacze powinni jasno określić, jakie jednostki lub procesy starają się zrozumieć, wykraczając poza samo opisanie próby i populacji.
-
-2.  **Możliwość uogólnienia**:\
-    Przy formułowaniu wniosków dotyczących superpopulacji, należy wyraźnie określić granice, w których ustalenia mają zastosowanie.
-
-3.  **Specyfika kontekstu**:\
-    Choć koncepcja superpopulacji pozwala na szersze wnioskowanie, ważne jest zrozumienie, że PGD może się różnić w zależności od kontekstu.
-
-### Przykład: Jakość Pizzy w Nowym Jorku
-
-**Populacja**:\
-Wszystkie obecnie działające pizzerie w Nowym Jorku.
-
-**Próba**:\
-50 losowo wybranych pizzerii z różnych dzielnic.
-
-**Superpopulacja**:\
-Wszystkie możliwe pizzerie, które mogłyby istnieć w Nowym Jorku:
-
--   Obecnie działające
--   Przyszłe (nieotwarte)
--   Historyczne (zamknięte)
--   Hipotetyczne (w alternatywnych warunkach)
-
-**Proces Generowania Danych (PGD)**:\
-Czynniki wpływające na jakość pizzy:
-
-1.  Składniki i ich jakość
-2.  Umiejętności i doświadczenie szefów kuchni
-3.  Sprzęt i infrastruktura
-4.  Metody przygotowania i przepisy
-5.  Czynniki środowiskowe (np. jakość wody)
-6.  Wpływy kulturowe i tradycje
-7.  Uwarunkowania ekonomiczne (koszty, czynsze)
-
-PGD jest jak "przepis na jakość pizzy", który ma zastosowanie do wszystkich potencjalnych pizzerii w superpopulacji, nie tylko do obecnie istniejących lokali.
 :::
 
 ```{mermaid}
@@ -189,19 +188,6 @@ graph TD
     class C sam;
 ```
 
-::: callout-note
-## Objaśnienie diagramu PGD, Populacji i Próby
-
-Diagram przedstawia relacje między Procesem Generującym Dane (PGD), populacją i próbą, wraz ze ścieżkami wnioskowania:
-
-1.  Relacje bezpośrednie (ciągłe strzałki):
-    -   PGD generuje populację
-    -   Z populacji pobierane są próby
-2.  Ścieżki wnioskowania (przerywane strzałki):
-    -   Od Próby do Populacji: Tradycyjne wnioskowanie statystyczne
-    -   Od Próby do PGD: Wnioskowanie o podstawowym procesie na podstawie danych z próby
-    -   Od Populacji do PGD: Wnioskowanie o PGD przy użyciu pełnych danych populacji
-:::
 
 
 ::: {.callout-important}
@@ -218,7 +204,7 @@ Parametry populacji zazwyczaj nie są znane i stanowią przedmiot estymacji na p
 
 ## Rozkład statystyki ($\hat{\theta}$) z próby
 
-Statystyka z próby $\hat{\theta}$ to wartość wyliczona na podstawie obserwacji z próby, która służy do estymacji parametru populacji $\theta$. Rozkład statystyki opisuje, jak zmieniają się wartości tej statystyki przy wielokrotnym pobieraniu prób o tej samej liczebności $n$ z tej samej populacji.
+**Statystyka z próby** (a sample statistic) $\hat{\theta}$ to wartość wyliczona na podstawie obserwacji z próby, która służy do estymacji parametru populacji $\theta$. Rozkład statystyki opisuje, jak zmieniają się wartości tej statystyki przy wielokrotnym pobieraniu prób o tej samej liczebności $n$ z tej samej populacji.
 
 Rozkład statystyki odnosi się do rozkładu prawdopodobieństwa, który opisuje wszystkie możliwe wartości, jakie może przyjąć dana statystyka, gdy jest obliczana z różnych prób losowych pobieranych z tej samej populacji, wraz z prawdopodobieństwem uzyskania każdej wartości.
 
@@ -226,7 +212,7 @@ Gdy pobieramy próbę z populacji i obliczamy statystykę (np. średnią z prób
 
 Kluczowe cechy rozkładu statystyki:
 
-1. Pokazuje, jak statystyka zmienia się od próby do próby
+1. Pokazuje, zróżnicowanie statystyki w różnych próbach
 2. Pomaga zrozumieć błąd losowy i niepewność związaną z próbkowaniem
 3. Pozwala formułować stwierdzenia probabilistyczne o tym, jak blisko nasza estymacja jest prawdziwego parametru populacji
 4. Stanowi podstawę wnioskowania statystycznego, w tym przedziałów ufności i testów hipotez
@@ -251,8 +237,12 @@ $$E(\bar{x}) = E\left(\frac{1}{n}\sum_{i=1}^{n}x_i\right) = \frac{1}{n}\sum_{i=1
 
 Taki estymator nazywamy nieobciążonym. Co ważne, nie wszystkie estymatory są nieobciążone - niektóre mają systematyczne odchylenie, np. estymator wariancji $s^2$ musi zawierać korektę $\frac{1}{n-1}$ zamiast $\frac{1}{n}$, aby być nieobciążonym.
 
-![Populacja vs. próba. Retrieved from: https://allmodelsarewrong.github.io/mse.html](stat_imgs/sampling-estimators.svg)
 :::
+
+![The process of using a sample from a population to obtain a point estimate of a population parameter. In this case, a sample of 10 individuals yielded 6 who own an iPhone, resulting in an estimated population proportion of 60% iPhone owners. The actual population proportion is 53.8%. Retrieved from: https://datasciencebook.ca/inference.html](stat_imgs/population_vs_sample.png)
+
+![Various random samples of equal size and their statistics. Retrieved from: https://allmodelsarewrong.github.io/mse.html](stat_imgs/sampling-estimators.svg)
+
 
 ::: {.callout-note}
 # Rozkład normalny - krzywa dzwonowa
@@ -382,12 +372,30 @@ Dobry estymator powinien posiadać korzystne właściwości statystyczne:
 Model statystyczny to matematyczna reprezentacja rzeczywistości, która opisuje relacje między zmiennymi i strukturę danych. Pozwala na opisanie procesu generującego dane (DGP) i wnioskowanie o parametrach.
 
 ::: callout-note
-Model statystyczny składa się z: 1. Struktury probabilistycznej (np. założenie o rozkładzie normalnym) 2. Parametrów, które chcemy oszacować 3. Relacji między zmiennymi (np. liniowa, wykładnicza)
+# Komponenty Modelu Statystycznego
+
+Model statystyczny to matematyczne ramy służące do reprezentowania zależności w danych i formułowania prognoz. Kompletny model statystyczny składa się z:
+
+1. **Forma funkcyjna**: Struktura matematyczna określająca relację między zmiennymi (np. liniowa, kwadratowa, wykładnicza, logarytmiczna)
+
+2. **Zmienne**: 
+   - Zmienna zależna: To, co staramy się przewidzieć lub wyjaśnić
+   - Zmienne niezależne/objaśniające: Czynniki, które mogą wpływać na zmienną zależną
+
+3. **Parametry**: Nieznane wartości, które szacujemy na podstawie danych, kwantyfikujące relację między zmiennymi (np. współczynniki regresji, średnie, wariancje)
+
+4. **Składnik losowy**: Człon błędu lub element stochastyczny, który uwzględnia niepewność i zmienność niewyjaśnioną przez model
+
+5. **Założenia dotyczące rozkładu prawdopodobieństwa**: Specyfikacje dotyczące tego, jak jest rozłożony składnik losowy (np. rozkład normalny, Poissona, dwumianowy)
 :::
 
 Przykład modelu regresji liniowej: $y = \beta_0 + \beta_1x + \epsilon$, gdzie $\epsilon \sim N(0, \sigma^2)$
 
-W tym modelu: - $\beta_0$ i $\beta_1$ to parametry (estymandy), które chcemy oszacować - $\epsilon$ to składnik losowy reprezentujący niewyjaśnioną zmienność - Zakładamy normalność rozkładu błędów losowych
+W tym modelu:
+
+- $\beta_0$ i $\beta_1$ to parametry (estymandy), które chcemy oszacować
+- $\epsilon$ to składnik losowy reprezentujący niewyjaśnioną zmienność
+- Zakładamy normalność rozkładu błędów losowych
 
 ### Wnioskowanie Przyczynowe vs. Predykcyjne
 
@@ -403,6 +411,8 @@ W analizie statystycznej możemy mieć dwa główne cele:
 ::: callout-warning
 ## Korelacja ≠ Przyczynowość
 
+W statystyce, związek pozorny (spurious relationship) lub korelacja pozorna (spurious correlation) to relacja matematyczna, w której dwa lub więcej zdarzeń lub zmiennych są ze sobą powiązane, ale nie pozostają w relacji przyczynowo-skutkowej. Wynika to albo z przypadkowego zbiegu okoliczności, albo z obecności pewnego trzeciego, niewidocznego czynnika (określanego jako "wspólna zmienna odpowiedzi" (common response variable), "czynnik zakłócający" (confounding factor) lub "zmienna ukryta" (lurking variable)).
+
 Jednym z najczęstszych błędów w statystyce jest interpretowanie korelacji jako dowodu na przyczynowość. Dwie zmienne mogą być silnie skorelowane z powodu:
 
 1.  Zmiennej zakłócającej (confounder), która wpływa na obie zmienne
@@ -412,7 +422,7 @@ Jednym z najczęstszych błędów w statystyce jest interpretowanie korelacji ja
 
 ### Problemy Wnioskowania Przyczynowego
 
-Fundamentalnym problemem wnioskowania przyczynowego jest niemożność obserwowania **kontrfaktów** (alternatywnych scenariuszy). Dla danej jednostki możemy zaobserwować tylko jeden potencjalny wynik.
+Fundamentalnym problemem wnioskowania przyczynowego jest niemożność obserwowania **kontrfaktów** (alternatywnych/kontrfaktycznych scenariuszy). Dla danej jednostki możemy zaobserwować tylko jeden potencjalny wynik.
 
 ![Fundamentalny problem wnioskowania przyczynowego: Możemy traktować wnioskowanie przyczynowe jako problem PREDYKCJI. Jak przewidzieć kontrfakt, skoro nigdy go nie obserwujemy?](stat_imgs/meme_horse.svg){fig-align="center"}
 
@@ -425,7 +435,7 @@ Metody przyczynowe próbują rozwiązać ten problem przez: 1. Randomizowane eks
 
 Wnioskowanie przyczynowe jest utrudnione przez różne problemy, takie jak:
 
-![Błąd wspólnej przyczyny i pozorna korelacja: picie alkoholu wieczorem jest wspólną przyczyną spania w butach i budzenia się z bólem głowy](stat_imgs/IMG_4337.jpg){fig-align="center"}
+![Błąd wspólnej przyczyny (confounding bias) i pozorna korelacja: picie alkoholu wieczorem jest wspólną przyczyną spania w butach i budzenia się z bólem głowy](stat_imgs/IMG_4337.jpg){fig-align="center"}
 
 ![Odwrócona przyczynowość](stat_imgs/ff13-23.png){fig-align="center"}
 
@@ -476,18 +486,27 @@ Wyobraźmy sobie, że chcemy sprawdzić, czy moneta jest uczciwa.
 6.  **Wniosek**: Ponieważ zaobserwowany wynik jest bardzo mało prawdopodobny przy założeniu, że moneta jest uczciwa, odrzucamy hipotezę zerową i wnioskujemy, że moneta najprawdopodobniej nie jest uczciwa.
 :::
 
+
 Ogólna procedura testowania hipotez:
 
-1.  Formułujemy hipotezę zerową (H₀) i alternatywną (H₁)
-2.  Wybieramy poziom istotności α (najczęściej 0.05)
-3.  Zbieramy dane i obliczamy odpowiednią statystykę testową
-4.  Obliczamy p-wartość (prawdopodobieństwo uzyskania naszych danych lub bardziej ekstremalnych, przy założeniu prawdziwości H₀)
-5.  Podejmujemy decyzję: jeśli p \< α, odrzucamy H₀ na rzecz H₁
+1. Formułujemy hipotezę zerową (H₀) i alternatywną (H₁)
+2. Wybieramy poziom istotności α (najczęściej 0.05) - reguła decyzyjna, która pomaga ocenić co to znaczy małe prawdopodobieństwo zaobserwowanego wyniku przy założeniu, że testowana hipoteza jest prawdziwa
+3. Zbieramy dane i obliczamy odpowiednią statystykę testową
+4. Obliczamy p-wartość (prawdopodobieństwo uzyskania naszych danych lub bardziej ekstremalnych, przy założeniu prawdziwości H₀)
+5. Podejmujemy decyzję: jeśli p < α, odrzucamy H₀ na rzecz H₁
+
 
 ::: callout-note
 ## Intuicja za testowaniem hipotez
 
-Testowanie hipotez przypomina procedurę sądową: - H₀ odpowiada zasadzie "niewinny, dopóki nie udowodni się winy" (zakładamy, że parametr ma określoną wartość) - Dane stanowią "dowody" przeciwko H₀ - P-wartość określa, jak silne są te dowody - Jeśli dowody są wystarczająco mocne (p \< α), "skazujemy" H₀ (odrzucamy ją) - Jeśli dowody nie są wystarczająco mocne, nie odrzucamy H₀ (ale nie udowadniamy jej prawdziwości)
+Testowanie hipotez przypomina procedurę sądową:
+
+- H₀ odpowiada zasadzie "niewinny, dopóki nie udowodni się winy" (zakładamy, że parametr ma określoną wartość)
+- Dane stanowią "dowody" przeciwko H₀
+- P-wartość określa, jak silne są te dowody
+- Jeśli dowody są wystarczająco mocne (p \< α), "skazujemy" H₀ (odrzucamy ją)
+- Jeśli dowody nie są wystarczająco mocne, nie odrzucamy H₀ (ale nie udowadniamy jej prawdziwości)
+
 :::
 
 ::: callout-important

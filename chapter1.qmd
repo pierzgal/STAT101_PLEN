@@ -24,23 +24,8 @@ In social sciences, data science constitutes a set of methods for solving comple
 
 Statistics and data science are closely related fields with a significant overlap. Rather than treating them as completely separate disciplines, it's beneficial to view them as complementary approaches within the spectrum of data analysis methods:
 
-::: panel-tabset
-### Traditional Statistics
-
--   Based on mathematical foundations and probability theory
--   Focuses on hypothesis testing, parameter estimation, and statistical inference
--   In social sciences, it's primarily applied to analyzing data from surveys, experiments, and observations
--   Forms the methodological foundation of quantitative analysis
-
-### Data Science
-
--   Combines statistical methods with programming skills and domain knowledge
--   Utilizes modern techniques such as machine learning and big data analysis
--   In social sciences, it enables work with digital data, textual information, and complex patterns of social interactions
--   Develops and extends traditional statistical approaches, adapting them to contemporary research challenges
-:::
-
 Data science can be viewed as a contemporary extension of traditional statistics that has evolved in response to new technological possibilities and the need to analyze increasingly complex social data.
+
 
 ## Basic Concepts in Data Science and Statistics
 
@@ -52,106 +37,137 @@ Data science can be viewed as a contemporary extension of traditional statistics
 
     -   Example: In a study of electoral preferences, the population consists of all citizens eligible to vote in a given country.
 
-3.  **Sample**: A subset of the population selected for study. A **representative** sample mirrors the essential characteristics of the target population in appropriate proportions. Effective sampling considers the diversity of units across relevant variables (demographic, behavioral, etc.). For example, a simple random sample (SRS) is created when each unit in the population has an equal probability of selection. Sample adequacy depends on both representativeness and sufficient size to achieve desired precision.
+3. **Sample**: A subset of the population selected for study. A **representative** sample reflects the key characteristics of the target population in appropriate proportions. Effective sampling accounts for diversity across relevant variables (demographic, behavioral, etc.). In a simple random sample (SRS), each unit in the population has an equal and independent probability of selection. Sample adequacy depends on both the sampling method's **randomness** and **sufficient sample size** to minimize error.
 
     -   Example: Instead of studying all eligible voters, researchers analyze 1,500 randomly selected individuals, taking into account the appropriate distribution of age, gender, education, and region of residence.
 
     A properly selected sample enables inference about the entire population while significantly optimizing research resources.
 
+4. **Sampling** is the procedure of selecting individuals from a population for investigation. An unbiased sampling method gives every individual in the population an equal chance of selection, ensuring representative results.
+
+::: {.panel-tabset group="language"}
+## SRS
+**Simple Random Sampling**: Every individual has an equal probability of selection. The entire population is randomly sampled without any predetermined pattern.
+
+![Simple Random Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Simple_Random_Sampling2.svg)
+
+## Stratified sampling
+**Stratified Sampling**: The population is divided into distinct subgroups (strata) before random samples are drawn from each stratum proportionally.
+
+![Stratified Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Stratified2.svg)
+
+## Cluster sampling
+**Cluster Sampling**: The population is divided into clusters, and entire clusters are randomly selected for analysis rather than individuals.
+
+![Cluster Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Cluster2.svg)
+
+:::
+
 ::: callout-note
-**Data Generating Process (DGP) and Superpopulation: Expanding on Traditional Concepts**
+## Data Generating Process (DGP) and Superpopulation: Extending Traditional Concepts
 
-In traditional statistics, we often work with two key concepts:
+In traditional statistics, we work with two key concepts:
 
--   **Population**: The entire group we want to study.
+-   **Population**: The entire group of units we want to study.
 -   **Sample**: A subset of the population that we actually observe and analyze.
 
-While these concepts are fundamental, modern research often requires us to think beyond this dichotomy. This is where Data Generating Process (DGP) and superpopulation come in, extending our understanding of data and populations.
+Modern research often requires thinking beyond this dichotomous division. This is where the concepts of **Data Generating Process (DGP)** and **superpopulation** come in, deepening our understanding of data and their structure.
 
-**Data Generating Process (DGP)**:
+### Key Definitions
 
-The DGP is the underlying mechanism that produces the data we observe in the real world, whether in our sample or the entire population.
+**Population**: The set of all units that are the direct subject of our study (e.g., all adult residents of the United States).
 
-Intuitive explanation: Think of the DGP as a complex system that takes various inputs and produces observable outcomes. It's the "black box" that transforms causes into effects, not just for our sample, but for the entire population and beyond.
+**Sample**: A subset of the population that we actually study (e.g., 1000 randomly selected American adults).
 
-Example: Consider a study on voter behavior. The traditional approach might define the population as "all registered voters" and take a sample from this group. The DGP, however, would include factors like demographic characteristics, economic conditions, political events, and media influence that shape voting behavior for all voters, sampled or not.
+**Superpopulation**: A theoretical concept encompassing not only observable units from the current population but all potential units that could occur under similar conditions (e.g., all possible American adults - present, future, and hypothetical).
 
-**Superpopulation**:
+**Data Generating Process (DGP)**: The mechanisms and factors that generate the values of observed variables in a system.
 
-The superpopulation is a theoretical concept that extends beyond both the sample and the observable population to include all potential outcomes that could occur under similar conditions or processes.
+### Data Generating Process (DGP)
 
-Examples:
+**Formal definition**:
+The DGP is a set of statistical and causal mechanisms responsible for producing the observed values of variables in a system, typically described using mathematical functions and probability distributions.
 
-1.  Traditional approach vs. Superpopulation approach:
+**Intuitive explanation**:
+The DGP can be viewed as a "mechanism" or "black box" that transforms causes into effects. It's the fundamental process that produces data observed in the real world - both in our sample and in the entire population, and potentially beyond it.
 
-    -   Traditional: population (all registered voters in a state), sample (1000 surveyed voters)
-    -   Superpopulation: All possible voters and voting scenarios, including future elections and hypothetical political contexts
+### Examples Illustrating the Differences
 
-2.  When sample equals population:
+#### Example 1: Voter Opinion Study
 
-    In studies of all 50 U.S. states:
+- **Population**: All registered voters in the United States in 2023 (approx. 168 million people)
+- **Sample**: 1000 randomly selected voters surveyed in a poll
+- **Superpopulation**: All possible voters (current, future, and hypothetical) and all possible voting scenarios
+- **DGP**: Complex mechanism shaping voting opinions and decisions, including:
+  - Demographic factors (age, education, place of residence)
+  - Economic conditions (income, employment status)
+  - Media influence and public debate
+  - Personal experiences
+  - Historical political conditions
 
-    -   Traditional view: No distinction between sample and population
-    -   Superpopulation view: Considers these 50 states as a "sample" from a theoretical set of all possible state-policy interactions
+#### Example 2: Anti-diabetic Drug Study
 
-Real-world application: Let's say researchers are studying the impact of a new urban planning policy across several cities:
+- **Population**: All patients with type 2 diabetes in a given country (e.g., 35 million people)
+- **Sample**: 500 patients participating in a clinical trial
+- **Superpopulation**: All possible patients with type 2 diabetes (current and future) with various genetic and environmental profiles
+- **DGP**: Biological mechanism including:
+  - Drug interactions with receptors in the body
+  - Individual genetic factors
+  - Environmental factors (diet, physical activity)
+  - Interactions with other medications
+  - Metabolic mechanisms of the organism
 
--   Traditional approach:
+#### Example 3: When Sample Equals Population
 
-    -   Population: All cities in the country
-    -   Sample: The cities included in the study
+Study of all 50 US states:
 
--   Superpopulation approach:
+- **Traditional approach**: No distinction between sample and population (we study all states)
+- **Superpopulation approach**:
+  - **Population/Sample**: All 50 existing US states
+  - **Superpopulation**: Theoretical set of all possible territorial units of the "state" type under various historical, political, and social conditions
+  - **DGP**: Fundamental geographic, historical, political, and socio-economic mechanisms shaping the characteristics of states
 
-    -   Observed data: The cities in the study
-    -   Superpopulation: All cities (existing or potential) where similar urban planning principles could be applied
+#### Example 4: Pizza Quality in New York City
 
-The DGP in this case would be the complex set of factors that determine how urban planning policies affect city outcomes, applicable not just to the sampled cities or even all existing cities, but to the broader concept of "city" itself.
+- **Population**: All currently operating pizzerias in New York City (approx. 2000 establishments)
+- **Sample**: 50 randomly selected pizzerias from different neighborhoods
+- **Superpopulation**: All possible pizzerias that could exist in New York City:
+  - Currently operating
+  - Future (not yet opened)
+  - Historical (already closed)
+  - Hypothetical (in alternative economic or cultural conditions)
+- **DGP**: Factors affecting pizza quality:
+  - Ingredients and their quality
+  - Skills and experience of chefs
+  - Equipment and kitchen infrastructure
+  - Preparation methods and recipes
+  - Environmental factors (e.g., local water quality)
+  - Cultural influences and culinary traditions
+  - Economic factors (operating costs, rent)
 
-Important considerations:
+The DGP is like a "recipe for pizza quality" that determines outcomes for all potential pizzerias in the superpopulation, not just currently existing establishments.
 
-1.  Scope and limitations: Researchers should clearly define what units or processes they're trying to understand, beyond just describing their sample and population.
+### Practical Significance of These Differences
 
-2.  Generalizability: When making claims about a superpopulation, researchers should explicitly state the "scope conditions" - the boundaries within which their findings are expected to hold true.
+1. **Statistical Inference**:
+   - Traditional approach: We infer from the sample to the population
+   - Superpopulation approach: We infer from the model to general patterns extending beyond the observed population
 
-3.  Context-specificity: While the superpopulation concept allows for broader inferences than traditional sampling, it's important to recognize that DGPs can vary across different contexts.
+2. **Generalization of Results**:
+   - Traditional approach: Results can only be generalized to the current population
+   - Superpopulation approach: Results can be generalized to future or hypothetical cases
 
-By incorporating these concepts alongside traditional population-sample thinking, researchers can make more nuanced inferences and be more transparent about the extent to which their findings might apply beyond their specific observed data, while still respecting the foundational principles of statistical inference.
+3. **Interpretation of Uncertainty**:
+   - Traditional approach: Uncertainty primarily stems from sample randomness
+   - Superpopulation approach: Uncertainty stems from both sample randomness and randomness of processes within the DGP
 
-**Summary example**: Pizza Quality in New York City
+4. **Predictive Modeling**:
+   - Traditional approach: Limited to the current population
+   - Superpopulation approach: Allows modeling of new, not yet observed cases
 
-Population: All pizzerias currently operating in New York City. This is a finite, countable group of establishments that exist at the present moment.
-
-Sample: A selection of 50 pizzerias chosen randomly from different boroughs of New York City. These are the specific pizzerias where researchers will taste and rate pizzas.
-
-Superpopulation: All possible pizzerias that could exist in New York City, including:
-
--   Current pizzerias
--   Future pizzerias that haven't opened yet
--   Pizzerias that have closed down
--   Hypothetical pizzerias that might exist under different economic or cultural conditions
-
-The superpopulation concept allows us to think about pizza quality beyond just the current snapshot of New York pizzerias.
-
-Data Generating Process (DGP): The DGP is the complex set of factors that contribute to the quality of pizza in any given pizzeria. This might include:
-
-1.  Ingredients: Quality and source of flour, tomatoes, cheese, etc.
-2.  Chef's skill: Training, experience, and personal touch of the pizza maker
-3.  Equipment: Type and condition of the oven, tools used
-4.  Recipe: Proportions of ingredients, preparation methods
-5.  Environmental factors: Humidity, water quality in New York
-6.  Cultural influences: Local pizza-making traditions, customer preferences
-7.  Economic factors: Cost of ingredients, rent prices affecting business decisions
-
-The DGP is like the "pizza quality recipe" that applies not just to our sample or even the current population, but to all potential pizzerias in the superpopulation.
-
-Intuitive Breakdown:
-
--   If you visit all current NYC pizzerias and rate them, you've assessed the population.
--   If you randomly select 50 pizzerias to visit and rate, you've taken a sample.
--   If you consider how pizza quality might vary in all possible NYC pizzerias (past, present, future, and hypothetical), you're thinking about the superpopulation.
--   If you're trying to understand all the factors that go into making a quality pizza in NYC, regardless of whether a pizzeria currently exists or not, you're exploring the Data Generating Process.
+Understanding the differences between these concepts is crucial for correct interpretation of research results and proper statistical inference, especially in studies involving complex social, economic, or biological systems.
 :::
+
 
 ```{mermaid}
 graph TD
@@ -173,28 +189,13 @@ graph TD
     class C sam;
 ```
 
-::: callout-note
-## Explanation of the DGP, Population, and Sample Diagram
-
-This diagram illustrates the relationships between the Data Generating Process (DGP), population, and sample, including paths of inference:
-
-1.  Direct relationships (solid arrows):
-
-    -   The DGP generates the population
-    -   Samples are drawn from the population
-
-2.  Inference paths (dashed arrows):
-
-    -   From Sample to Population: Traditional statistical inference
-    -   From Sample to DGP: Inferring about the underlying process from sample data
-    -   From Population to DGP: Inferring about the DGP using complete population data
-:::
 
 
 ::: {.callout-important}
 ## Population Parameter ($\theta$)
 
 A numerical value characterizing a specific feature of the entire population. Examples of population parameters include:
+
 - $\mu$ (population mean)
 - $\sigma^2$ (population variance)
 - $\sigma$ (population standard deviation)
@@ -204,7 +205,7 @@ Population parameters are usually unknown and are the subject of estimation base
 
 ## Distribution of the Sample Statistic ($\hat{\theta}$)
 
-A sample statistic $\hat{\theta}$ is a value calculated from sample observations that is used to estimate the population parameter $\theta$. The distribution of the statistic describes how the values of this statistic vary when repeatedly drawing samples of the same size $n$ from the same population.
+A **sample statistic** $\hat{\theta}$ is a value calculated from sample observations that is used to estimate the population parameter $\theta$. The distribution of the statistic describes how the values of this statistic vary when repeatedly drawing samples of the same size $n$ from the same population.
 
 The distribution of a statistic refers to the probability distribution that describes all possible values the statistic might take when calculated from different random samples drawn from the same population, along with the probability of obtaining each value.
 
@@ -239,8 +240,12 @@ $$E(\bar{x}) = E\left(\frac{1}{n}\sum_{i=1}^{n}x_i\right) = \frac{1}{n}\sum_{i=1
 
 Such an estimator is called unbiased. Importantly, not all estimators are unbiased - some have systematic deviation, e.g., the variance estimator $s^2$ must include a correction $\frac{1}{n-1}$ instead of $\frac{1}{n}$ to be unbiased.
 
-![Population vs. sample. Retrieved from: https://allmodelsarewrong.github.io/mse.html](stat_imgs/sampling-estimators.svg)
 :::
+
+![The process of using a sample from a population to obtain a point estimate of a population parameter. In this case, a sample of 10 individuals yielded 6 who own an iPhone, resulting in an estimated population proportion of 60% iPhone owners. The actual population proportion is 53.8%. Retrieved from: https://datasciencebook.ca/inference.html](stat_imgs/population_vs_sample.png)
+
+![Various random samples of equal size and their statistics. Retrieved from: https://allmodelsarewrong.github.io/mse.html](stat_imgs/sampling-estimators.svg)
+
 
 
 ::: {.callout-note}
@@ -371,12 +376,30 @@ A good estimator should have favorable statistical properties:
 A statistical model is a mathematical representation of reality that describes relationships between variables and the structure of data. It allows for describing the data generating process (DGP) and making inferences about parameters.
 
 ::: callout-note
-A statistical model consists of: 1. A probabilistic structure (e.g., assumption of normal distribution) 2. Parameters we want to estimate 3. Relationships between variables (e.g., linear, exponential)
+# Components of a Statistical Model
+
+A statistical model is a mathematical framework used to represent relationships in data and make predictions. A complete statistical model consists of:
+
+1. **Functional form**: The mathematical structure that defines the relationship between variables (e.g., linear, quadratic, exponential, logarithmic)
+
+2. **Variables**: 
+   - Dependent variable(s): What we're trying to predict or explain
+   - Independent/explanatory variables: Factors that might influence the dependent variable
+
+3. **Parameters**: Unknown values we estimate from data that quantify the relationship between variables (e.g., regression coefficients, means, variances)
+
+4. **Random component**: The error term or stochastic element that accounts for uncertainty and variability not explained by the model
+
+5. **Probability distribution assumptions**: Specifications about how the random component is distributed (e.g., normal, Poisson, binomial)
 :::
 
 Example of a linear regression model: $y = \beta_0 + \beta_1x + \epsilon$, where $\epsilon \sim N(0, \sigma^2)$
 
-In this model: - $\beta_0$ and $\beta_1$ are parameters (estimands) we want to estimate - $\epsilon$ is a random component representing unexplained variability - We assume normality of the distribution of random errors
+In this model:
+
+- $\beta_0$ and $\beta_1$ are parameters (estimands) we want to estimate
+- $\epsilon$ is a random component representing unexplained variability
+- We assume normality of the distribution of random errors
 
 ### Causal vs. Predictive Inference
 
@@ -391,6 +414,8 @@ In statistical analysis, we may have two main goals:
 
 ::: callout-warning
 ## Correlation ≠ Causation
+
+In statistics, a spurious relationship or spurious correlation is a mathematical relationship in which two or more events or variables are associated but not causally related, due to either coincidence or the presence of a certain third, unseen factor (referred to as a "common response variable", "confounding factor", or "lurking variable").
 
 One of the most common errors in statistics is interpreting correlation as evidence of causation. Two variables can be strongly correlated because of:
 
@@ -467,11 +492,11 @@ Imagine we want to check if a coin is fair.
 
 General hypothesis testing procedure:
 
-1.  Formulate the null hypothesis (H₀) and alternative hypothesis (H₁)
-2.  Choose a significance level α (most commonly 0.05)
-3.  Collect data and calculate the appropriate test statistic
-4.  Calculate the p-value (probability of obtaining our data or more extreme data, assuming H₀ is true)
-5.  Make a decision: if p \< α, reject H₀ in favor of H₁
+1. Formulate the null hypothesis (H₀) and alternative hypothesis (H₁)
+2. Choose a significance level α (usually 0.05) - a decision rule that helps assess what constitutes a small probability of the observed result, assuming that the tested hypothesis is true
+3. Collect data and calculate the appropriate test statistic
+4. Calculate the p-value (the probability of obtaining our data or more extreme results, assuming H₀ is true)
+5. Make a decision: if p < α, reject H₀ in favor of H₁
 
 ::: callout-note
 ## Intuition behind hypothesis testing
