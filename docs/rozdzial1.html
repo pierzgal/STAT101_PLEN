@@ -524,9 +524,9 @@ Wnioskowanie Statystyczne: Jak Mała Próba Może Reprezentować Dużą Populacj
 <div class="callout-body-container callout-body">
 <p>Kiedy ankieterzy badają tylko 1 000 wyborców, aby przewidzieć wynik wyborów z 30 000 000 wyborców, wydaje się to zagadkowe. Jak tak mały ułamek (zaledwie 0,003%) może nam powiedzieć coś o całości?</p>
 <p>Pomyśl o tym jak o próbowaniu zupy. Kiedy gotujesz duży garnek zupy i dokładnie ją mieszasz, nie musisz zjeść całego garnka, aby wiedzieć, jak smakuje. Wystarczy jedna łyżka – pod warunkiem, że zupa jest dobrze wymieszana.</p>
-<section id="dlaczego-badanie-próby-losowej" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="dlaczego-badanie-próby-losowej"><span class="header-section-number">2.3.2</span> Dlaczego Badanie Próby Losowej</h3>
-<p>Badanie próby losowej działa, ponieważ:</p>
+<section id="dlaczego-losowe-pobieranie-próby-działa-ang.-random-sampling" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="dlaczego-losowe-pobieranie-próby-działa-ang.-random-sampling"><span class="header-section-number">2.3.2</span> Dlaczego Losowe Pobieranie Próby Działa (ang. Random Sampling)</h3>
+<p>Losowe pobieranie próby działa, ponieważ:</p>
 <ol type="1">
 <li><strong>Daje każdemu równą szansę</strong> na wybór, unikając stronniczości</li>
 <li><strong>Wykorzystuje moc prawdopodobieństwa</strong>, aby zapewnić, że próba przypomina populację</li>
@@ -546,15 +546,15 @@ Wnioskowanie Statystyczne: Jak Mała Próba Może Reprezentować Dużą Populacj
 <li>Błąd standardowy zmniejsza się wraz ze wzrostem wielkości próby (w przybliżeniu proporcjonalnie do 1/√n)</li>
 <li>Na błąd standardowy wpływa zmienność w populacji</li>
 </ul></li>
-<li><p><strong>Błąd systematyczny (błąd niepróbkowy)</strong>: Występuje, gdy nasze metody zbierania danych systematycznie zniekształcają wyniki w jednym kierunku. W przeciwieństwie do błędu próbkowania, błędu systematycznego NIE można zmniejszyć przez zwiększenie wielkości próby.</p></li>
-</ol>
+<li><p><strong>Błąd systematyczny (błąd niepróbkowy)</strong>: Występuje, gdy nasze metody zbierania danych systematycznie zniekształcają wyniki w jednym kierunku. W przeciwieństwie do błędu próbkowania, błędu systematycznego NIE można zmniejszyć przez zwiększenie wielkości próby.</p>
 <p>Źródła błędu systematycznego obejmują:</p>
 <ul>
 <li><strong>Błąd selekcji</strong>: Gdy metoda wyboru próby faworyzuje pewne grupy (np. ankiety telefoniczne mogą pomijać osoby bez telefonów)</li>
 <li><strong>Błąd odpowiedzi</strong>: Gdy respondenci udzielają niedokładnych odpowiedzi (np. zawyżanie dochodów w ankietach)</li>
 <li><strong>Błąd braku odpowiedzi</strong>: Gdy osoby, które odmawiają udziału, różnią się od tych, które uczestniczą</li>
 <li><strong>Błąd pomiaru</strong>: Wynikający z niedokładnych narzędzi lub metod pomiaru</li>
-</ul>
+</ul></li>
+</ol>
 <p>Na przykład, jeśli obliczymy średni wzrost z próby, błąd standardowy mówi nam, jak bardzo ta średnia mogłaby się różnić, gdybyśmy pobrali wiele różnych losowych prób. Jednak jeśli nasz przyrząd pomiarowy jest wadliwy i zawsze dodaje 2 cm do każdego pomiaru, mamy do czynienia z błędem systematycznym, którego zwiększenie wielkości próby nie naprawi.</p>
 <p>Dobry projekt badania musi uwzględniać oba rodzaje błędów:</p>
 <ul>
@@ -566,19 +566,35 @@ Wnioskowanie Statystyczne: Jak Mała Próba Może Reprezentować Dużą Populacj
 <h3 data-number="2.3.4" class="anchored" data-anchor-id="jak-duża-powinna-być-nasza-próba"><span class="header-section-number">2.3.4</span> Jak Duża Powinna Być Nasza Próba?</h3>
 <p>Niezbędna wielkość próby zależy od trzech głównych czynników:</p>
 <ol type="1">
-<li><strong>Jakiego rodzaju szacunek przeprowadzasz?</strong> (proporcja czy średnia)</li>
-<li><strong>Jak dokładny musi być twój szacunek?</strong>
+<li><p><strong>Jakiego rodzaju szacunek przeprowadzasz?</strong> (proporcja czy średnia)</p></li>
+<li><p><strong>Jak dokładny musi być twój szacunek?</strong></p>
 <ul>
 <li>Większa dokładność = większa próba</li>
 <li>Przykład: Szacowanie z dokładnością do ±1 punktu procentowego wymaga około 9 razy więcej osób niż szacowanie z dokładnością do ±3 punktów procentowych</li>
 <li>Przykład: Jeśli potrzebujesz być bardziej pewny swoich wyników (dla kluczowych decyzji), będziesz potrzebować większej próby</li>
 </ul></li>
-<li><strong>Jak zróżnicowana jest twoja populacja?</strong>
+<li><p><strong>Jak zróżnicowana jest twoja populacja?</strong></p>
 <ul>
 <li>Dla proporcji: Największa zmienność przy 50%, najmniejsza przy 0% lub 100%</li>
 <li>Dla średnich: Sprawdź, jak bardzo pomiary różnią się w twojej populacji</li>
 </ul></li>
 </ol>
+<p><strong>A co z małymi populacjami?</strong></p>
+<p>Przy pracy z małymi populacjami (np. 1 000 osób lub mniej):</p>
+<ul>
+<li>Nadal można wylosować prostą próbę losową, ale podejście nieco się zmienia</li>
+<li>Dla bardzo małych populacji, próba stanowi znaczący procent całości</li>
+<li><strong>Współczynnik korekty dla populacji skończonej</strong> staje się istotny, gdy pobieramy więcej niż 5-10% populacji</li>
+<li>Dobra wiadomość: Możesz osiągnąć tę samą precyzję z mniejszą próbą niż potrzebowałbyś dla dużej populacji</li>
+<li>Przykład: Aby osiągnąć dokładność ±3 punktów procentowych w populacji liczącej 1 000 osób, możesz potrzebować tylko około 400-500 osób zamiast 1 000 potrzebnych dla bardzo dużej populacji</li>
+<li>Dla skrajnie małych populacji (np. 100 osób), możesz potrzebować zbadać 50% lub więcej, aby uzyskać wiarygodne szacunki</li>
+</ul>
+<p><strong>Metody pobierania próby z małych populacji:</strong></p>
+<ul>
+<li>Całkowity spis (badanie wszystkich) staje się bardziej wykonalny</li>
+<li>Próba systematyczna (wybieranie co k-tej osoby z listy)</li>
+<li>Próba warstwowa zapewnia proporcjonalną reprezentację kluczowych podgrup</li>
+</ul>
 <p><strong>Proste reguły dla szybkich oszacowań:</strong></p>
 <ul>
 <li>Dla proporcji bliskich 50%: Próba 1 000 osób daje dokładność około ±3 punktów procentowych</li>
@@ -593,30 +609,30 @@ Wnioskowanie Statystyczne: Jak Mała Próba Może Reprezentować Dużą Populacj
 <h4 data-number="2.3.5.1" class="anchored" data-anchor-id="proporcje-procenty"><span class="header-section-number">2.3.5.1</span> Proporcje (procenty)</h4>
 <p>Przy szacowaniu proporcji (takiej jak odsetek wyborców popierających kandydata):</p>
 <ul>
-<li>Proporcja reprezentuje część populacji o określonej cesze</li>
-<li>W zasadzie liczymy odpowiedzi “tak” vs “nie”</li>
-<li>Obliczanie wielkości próby koncentruje się na oczekiwanej proporcji (p):
+<li><p>Proporcja reprezentuje część populacji o określonej cesze</p></li>
+<li><p>W zasadzie liczymy odpowiedzi “tak” vs “nie”</p></li>
+<li><p>Obliczanie wielkości próby koncentruje się na oczekiwanej proporcji (p):</p>
 <ul>
 <li>Proporcja bliska 50% ma maksymalną niepewność i wymaga większych prób</li>
 <li>Proporcja bliska 10% lub 90% ma mniejszą niepewność i wymaga mniejszych prób</li>
 </ul></li>
-<li>Dla typowego sondażu wyborczego z proporcjami bliskimi 50%, około 1 000 losowo wybranych osób zapewnia dokładność około ±3 punktów procentowych</li>
-<li>Co ciekawe, ta wielkość próby pozostaje taka sama, niezależnie od tego, czy twoja populacja liczy 30 000 czy 30 milionów</li>
+<li><p>Dla typowego sondażu wyborczego z proporcjami bliskimi 50%, około 1 000 losowo wybranych osób zapewnia dokładność około ±3 punktów procentowych</p></li>
+<li><p>Co ciekawe, ta wielkość próby pozostaje taka sama, niezależnie od tego, czy twoja populacja liczy 30 000 czy 30 milionów</p></li>
 </ul>
 </section>
 <section id="średnie" class="level4" data-number="2.3.5.2">
 <h4 data-number="2.3.5.2" class="anchored" data-anchor-id="średnie"><span class="header-section-number">2.3.5.2</span> Średnie</h4>
 <p>Przy szacowaniu średniej (takiej jak typowy dochód gospodarstwa domowego lub wzrost):</p>
 <ul>
-<li>Średnia podsumowuje ciągłe pomiary, które mogą przyjmować wiele różnych wartości</li>
-<li>Wielkość próby zależy głównie od tego, jak bardzo te pomiary różnią się między osobami</li>
-<li>Kluczowe względy dla wielkości próby:
+<li><p>Średnia podsumowuje ciągłe pomiary, które mogą przyjmować wiele różnych wartości</p></li>
+<li><p>Wielkość próby zależy głównie od tego, jak bardzo te pomiary różnią się między osobami</p></li>
+<li><p>Kluczowe względy dla wielkości próby:</p>
 <ul>
 <li>Populacje o bardziej zróżnicowanych pomiarach (wysoka odchylenie standardowe) wymagają większych prób</li>
 <li>Bardziej precyzyjne szacunki wymagają większych prób</li>
 <li>W przeciwieństwie do proporcji, nie ma “maksymalnej niepewności” przy określonej wartości</li>
 </ul></li>
-<li>Na przykład, szacowanie średniego dochodu może wymagać większej próby niż szacowanie średniego wzrostu, ponieważ dochody zazwyczaj różnią się bardziej niż wzrost</li>
+<li><p>Na przykład, szacowanie średniego dochodu może wymagać większej próby niż szacowanie średniego wzrostu, ponieważ dochody zazwyczaj różnią się bardziej niż wzrost</p></li>
 </ul>
 </section>
 <section id="parametry-modeli-regresyjnych" class="level4" data-number="2.3.5.3">
@@ -737,7 +753,7 @@ Wnioskowanie Statystyczne: Jak Mała Próba Może Reprezentować Dużą Populacj
 <li>Do pomiaru średniego zużycia energii w gospodarstwach domowych: prawdopodobnie 2 000-3 000 gospodarstw</li>
 <li>Do oszacowania średniego czasu dojazdu: prawdopodobnie 500-600 dojeżdżających</li>
 </ul>
-<p>Przy właściwej randomizacji możemy dowiedzieć się o bardzo dużych populacjach, badając stosunkowo małe próby!</p>
+<p>Siła próbkowania polega na tym, że przy właściwej randomizacji możemy dowiedzieć się o bardzo dużych populacjach, badając stosunkowo małe próby!</p>
 </section>
 </section>
 </div>

@@ -569,20 +569,42 @@ Statistical Inference: How Can a Small Sample Represent a Large Population?
 <h3 data-number="1.3.4" class="anchored" data-anchor-id="how-large-should-our-sample-be"><span class="header-section-number">1.3.4</span> How Large Should Our Sample Be?</h3>
 <p>The necessary sample size depends on three main factors:</p>
 <ol type="1">
-<li><strong>What type of estimate are you making?</strong> (proportion or average)</li>
-<li><strong>How accurate do you need your estimate to be?</strong>
+<li><p><strong>What type of estimate are you making?</strong> (proportion or average)</p></li>
+<li><p><strong>How accurate do you need your estimate to be?</strong></p>
 <ul>
 <li>More accurate = larger sample</li>
 <li>Example: Estimating within ±1% requires about 9 times more people than estimating within ±3%</li>
 <li>Example: If you need to be more certain of your results (for crucial decisions), you’ll need a larger sample</li>
 </ul></li>
-<li><strong>How variable is your population?</strong>
+<li><p><strong>How variable is your population?</strong></p>
 <ul>
 <li>For proportions: Most variable at 50%, least variable at 0% or 100%</li>
 <li>For averages: Look at how widely measurements differ in your population</li>
 </ul></li>
 </ol>
-<p><strong>Simple rules of thumb for quick estimates:</strong> * For proportions near 50%: A sample of 1,000 gives about ±3% accuracy * To double your accuracy (±1.5% instead of ±3%), you need about 4 times more people (4,000) * For averages: The more varied your population, the larger sample you’ll need * Practical example: National polls typically use 1,000-1,500 people because this balances accuracy with cost</p>
+<p><strong>What about small populations?</strong></p>
+<p>When working with small populations (e.g., 1,000 people or fewer):</p>
+<ul>
+<li>You can still draw a simple random sample, but the approach changes somewhat</li>
+<li>For very small populations, the sample becomes a significant percentage of the total</li>
+<li>A <strong>finite population correction factor</strong> becomes important when sampling more than 5-10% of the population</li>
+<li>The good news: You can achieve the same precision with a smaller sample than you would need for a large population</li>
+<li>Example: To achieve ±3 percentage points accuracy in a population of 1,000 people, you might need only about 400-500 people instead of the 1,000 needed for a very large population</li>
+<li>For extremely small populations (e.g., 100 people), you might need to sample 50% or more to get reliable estimates</li>
+</ul>
+<p><strong>Methods for sampling small populations:</strong></p>
+<ul>
+<li>Complete census (surveying everyone) becomes more feasible</li>
+<li>Systematic sampling (selecting every kth person from a list)</li>
+<li>Stratified sampling ensures key subgroups are proportionally represented</li>
+</ul>
+<p><strong>Simple rules of thumb for quick estimates:</strong></p>
+<ul>
+<li>For proportions near 50%: A sample of 1,000 gives about ±3 percentage points accuracy</li>
+<li>To double your accuracy (±1.5% instead of ±3%), you need about 4 times more people (4,000)</li>
+<li>For averages: The more varied your population, the larger sample you’ll need</li>
+<li>Practical example: National polls typically use 1,000-1,500 people because this balances accuracy with cost</li>
+</ul>
 </section>
 <section id="proportions-vs.-averages-understanding-the-differences" class="level3" data-number="1.3.5">
 <h3 data-number="1.3.5" class="anchored" data-anchor-id="proportions-vs.-averages-understanding-the-differences"><span class="header-section-number">1.3.5</span> Proportions vs.&nbsp;Averages: Understanding the Differences</h3>
@@ -590,30 +612,66 @@ Statistical Inference: How Can a Small Sample Represent a Large Population?
 <h4 data-number="1.3.5.1" class="anchored" data-anchor-id="proportions-percentages"><span class="header-section-number">1.3.5.1</span> Proportions (percentages)</h4>
 <p>When estimating a proportion (like the percentage of voters supporting a candidate):</p>
 <ul>
-<li>A proportion represents the fraction of the population with a certain characteristic</li>
-<li>We’re essentially counting “yes” vs “no” responses</li>
-<li>Sample size calculation focuses on the expected proportion (p):
+<li><p>A proportion represents the fraction of the population with a certain characteristic</p></li>
+<li><p>We’re essentially counting “yes” vs “no” responses</p></li>
+<li><p>Sample size calculation focuses on the expected proportion (p):</p>
 <ul>
 <li>A proportion near 50% has maximum uncertainty and requires larger samples</li>
 <li>A proportion near 10% or 90% has less uncertainty and requires smaller samples</li>
 </ul></li>
-<li>For a typical election poll with proportions near 50%, about 1,000 randomly selected people provide accuracy around ±3%</li>
-<li>Interestingly, this sample size remains the same whether your population is 30,000 or 30 million</li>
+<li><p>For a typical election poll with proportions near 50%, about 1,000 randomly selected people provide accuracy around ±3 percentage points</p></li>
+<li><p>Interestingly, this sample size remains the same whether your population is 30,000 or 30 million</p></li>
 </ul>
 </section>
 <section id="averages-means" class="level4" data-number="1.3.5.2">
 <h4 data-number="1.3.5.2" class="anchored" data-anchor-id="averages-means"><span class="header-section-number">1.3.5.2</span> Averages (means)</h4>
 <p>When estimating an average (like typical household income or height):</p>
 <ul>
-<li>An average summarizes continuous measurements that can take many different values</li>
-<li>Sample size depends primarily on how much these measurements vary from person to person</li>
-<li>Key considerations for sample size:
+<li><p>An average summarizes continuous measurements that can take many different values</p></li>
+<li><p>Sample size depends primarily on how much these measurements vary from person to person</p></li>
+<li><p>Key considerations for sample size:</p>
 <ul>
 <li>Populations with more varied measurements (high standard deviation) require larger samples</li>
 <li>More precise estimates require larger samples</li>
 <li>Unlike proportions, there is no “maximum uncertainty” at a certain value</li>
 </ul></li>
-<li>For example, estimating average income might require a larger sample than estimating average height because incomes typically vary more widely than heights</li>
+<li><p>For example, estimating average income might require a larger sample than estimating average height because incomes typically vary more widely than heights</p></li>
+</ul>
+</section>
+<section id="regression-model-parameters" class="level4" data-number="1.3.5.3">
+<h4 data-number="1.3.5.3" class="anchored" data-anchor-id="regression-model-parameters"><span class="header-section-number">1.3.5.3</span> Regression Model Parameters</h4>
+<p>When estimating regression model parameters (such as coefficients in linear regression):</p>
+<ul>
+<li><p><strong>What is regression?</strong> Regression models describe how one variable (the dependent variable) relates to one or more other variables (the independent variables). For example, how sales depend on advertising spend, or how crop yield depends on rainfall and temperature.</p></li>
+<li><p>These parameters show relationships between variables, e.g., how height affects weight</p></li>
+<li><p>Sample size for regression models is more complex than for simple means or proportions</p></li>
+<li><p>Key factors affecting required sample size:</p>
+<ul>
+<li>Number of variables in the model (more variables = larger sample)</li>
+<li>Strength of the effects being studied (weaker effects require larger samples to detect)</li>
+<li>Variability in the data (greater variability = larger sample)</li>
+<li>Model complexity (more complex models require larger samples)</li>
+</ul></li>
+</ul>
+<p><strong>Simple rules for regression models:</strong></p>
+<ul>
+<li>Basic rule of thumb: at least 10-20 observations per variable in your model</li>
+<li>For detecting subtle effects: may need 100+ observations per variable</li>
+<li>Multilevel or hierarchical models: require substantially larger samples</li>
+</ul>
+<p><strong>How regression parameters relate to proportions or means:</strong></p>
+<ul>
+<li>Regression parameters are more complex - they describe relationships between variables, not just single values</li>
+<li>While proportions and means focus on one variable, regression analyzes interdependencies</li>
+<li>Standard errors of regression parameters depend on all factors affecting mean variability, plus the correlations between variables</li>
+</ul>
+<p><strong>How to tell if your sample was too small:</strong></p>
+<ul>
+<li>Large standard errors relative to parameter values (wide confidence intervals)</li>
+<li>Instability of results - small changes in data cause large changes in parameters</li>
+<li>Statistically insignificant results despite theory suggesting strong effects</li>
+<li>Problems with model fit (e.g., overfitting, unstable predictions)</li>
+<li>Lack of statistical power to detect effects of expected magnitude</li>
 </ul>
 </section>
 </section>
@@ -673,26 +731,26 @@ Statistical Inference: How Can a Small Sample Represent a Large Population?
 <p><strong>For proportions (like an election poll):</strong></p>
 <ul>
 <li>Imagine flipping coins: When outcomes are close to 50-50 (like a tight election), there’s more uncertainty about the true percentage</li>
-<li>Example 1: If 500 out of 1,000 people (50%) support Candidate A, the accuracy is about ±3%</li>
-<li>Example 2: If 900 out of 1,000 (90%) support Candidate A, the accuracy is only about ±2%</li>
-<li>Example 3: In a classroom poll where 15 out of 20 students (75%) prefer pizza over burgers, the accuracy is about ±19% - much larger than with 1,000 people!</li>
+<li>Example 1: If 500 out of 1,000 people (50%) support Candidate A, the accuracy is about ±3 percentage points</li>
+<li>Example 2: If 900 out of 1,000 (90%) support Candidate A, the accuracy is only about ±2 percentage points</li>
+<li>Example 3: In a classroom poll where 15 out of 20 students (75%) prefer pizza over burgers, the accuracy is about ±19 percentage points - much larger than with 1,000 people!</li>
 <li>The closer to 50%, the more people we need to sample to be confident in our result</li>
 </ul>
 <p><strong>For general averages (like household income):</strong></p>
 <ul>
-<li>Imagine measuring different things:
+<li><p>Imagine measuring different things:</p>
 <ul>
 <li>Heights: Most adults are between 150 cm and 195 cm (not much variation)</li>
 <li>Incomes: People might earn anywhere from $0 to millions (huge variation)</li>
 <li>Test scores: Most students score between 60-90 on a test (moderate variation)</li>
 </ul></li>
-<li>Example 1: To estimate average height within ±2,5 cm, we might need only 100 people</li>
-<li>Example 2: To estimate average income within ±$1,000, we might need 10,000 people</li>
-<li>Example 3: To estimate average test scores within ±2 points, we might need 500 people</li>
-<li>The more variation in the population, the larger sample needed for the same precision</li>
+<li><p>Example 1: To estimate average height within ±2,5 cm, we might need only 100 people</p></li>
+<li><p>Example 2: To estimate average income within ±$1,000, we might need 10,000 people</p></li>
+<li><p>Example 3: To estimate average test scores within ±2 points, we might need 500 people</p></li>
+<li><p>The more variation in the population, the larger sample needed for the same precision</p></li>
 </ul>
 <p><strong>Real-world comparison:</strong></p>
-<p>If we want the same level of accuracy (±3%):</p>
+<p>If we want the same level of accuracy (±3 percentage points):</p>
 <ul>
 <li>For a yes/no question where we expect close to 50-50 split: about 1,000 people</li>
 <li>For measuring average household energy usage: possibly 2,000-3,000 households</li>
