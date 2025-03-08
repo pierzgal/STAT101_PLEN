@@ -114,37 +114,48 @@ Niezbędna wielkość próby zależy od trzech głównych czynników:
    * Większa dokładność = większa próba
    * Przykład: Szacowanie z dokładnością do ±1 punktu procentowego wymaga około 9 razy więcej osób niż szacowanie z dokładnością do ±3 punktów procentowych
    * Przykład: Jeśli potrzebujesz być bardziej pewny swoich wyników (dla kluczowych decyzji), będziesz potrzebować większej próby
-   
+
+
 3. **Jak zróżnicowana jest twoja populacja?**
    
-   * Dla proporcji: Największa zmienność przy 50%, najmniejsza przy 0% lub 100%
-   * Dla średnich: Sprawdź, jak bardzo pomiary różnią się w twojej populacji
+   * Dla proporcji: Największa zmienność występuje przy wartości 50%, najmniejsza przy 0% lub 100%
+   * Dla średnich: Sprawdź, jak bardzo pomiary różnią się od siebie (wariancja) w badanej populacji
 
 **A co z małymi populacjami?**
 
 Przy pracy z małymi populacjami (np. 1 000 osób lub mniej):
 
-- Nadal można wylosować prostą próbę losową, ale podejście nieco się zmienia
-- Dla bardzo małych populacji, próba stanowi znaczący procent całości
-- **Współczynnik korekty dla populacji skończonej** staje się istotny, gdy pobieramy więcej niż 5-10% populacji
-- Dobra wiadomość: Możesz osiągnąć tę samą precyzję z mniejszą próbą niż potrzebowałbyś dla dużej populacji
-- Przykład: Aby osiągnąć dokładność ±3 punktów procentowych w populacji liczącej 1 000 osób, możesz potrzebować tylko około 400-500 osób zamiast 1 000 potrzebnych dla bardzo dużej populacji
-- Dla skrajnie małych populacji (np. 100 osób), możesz potrzebować zbadać 50% lub więcej, aby uzyskać wiarygodne szacunki
+- Występują istotne różnice w metodologii w porównaniu do dużych populacji
+- Tradycyjnie rozumiana prosta próba losowa zakłada losowanie ze zwracaniem (z jednakowym prawdopodobieństwem wyboru każdej jednostki)
+- W praktyce badawczej stosuje się zwykle losowanie bez zwracania, gdzie prawdopodobieństwa wyboru zmieniają się po każdym losowaniu
+- Im mniejsza populacja, tym większa różnica między tymi podejściami
+- **Współczynnik korekty dla populacji skończonej** koryguje właśnie tę rozbieżność i staje się niezbędny przy badaniu więcej niż 5-10% populacji
 
-**Metody pobierania próby z małych populacji:**
+**Wyjaśnienie różnicy:**
 
-- Całkowity spis (badanie wszystkich) staje się bardziej wykonalny
-- Próba systematyczna (wybieranie co k-tej osoby z listy)
-- Próba warstwowa zapewnia proporcjonalną reprezentację kluczowych podgrup
+- Losowanie ze zwracaniem: każda jednostka ma stałe prawdopodobieństwo wyboru w każdym losowaniu (np. 1/N)
+- Losowanie bez zwracania: prawdopodobieństwo wyboru zmienia się w kolejnych losowaniach (z 1/N na 1/(N-1), 1/(N-2) itd.)
+- W dużych populacjach różnica jest minimalna, w małych - fundamentalna
+- Schematy losowania bez zwracania mają często mniejszą wariancję estymatora niż przy losowaniu ze zwracaniem
 
-**Proste reguły dla szybkich oszacowań:**
+**Podejścia do małych populacji:**
 
-* Dla proporcji bliskich 50%: Próba 1 000 osób daje dokładność około ±3 punktów procentowych
-* Aby podwoić dokładność (±1,5 zamiast ±3 punktów procentowych), potrzebujesz około 4 razy więcej osób (4 000)
-* Dla średnich: Im bardziej zróżnicowana populacja, tym większej próby będziesz potrzebować
-* Praktyczny przykład: Krajowe sondaże zazwyczaj używają 1 000-1 500 osób, ponieważ równoważy to dokładność z kosztami
+- Badanie pełne eliminuje problemy związane z losowaniem
+- Stratyfikacja może poprawić reprezentatywność, ale nie rozwiązuje problemu zmieniających się prawdopodobieństw
+- Metody nieparametryczne, które uwzględniają specyfikę małych populacji
+- Techniki "bootstrap" z odpowiednimi modyfikacjami dla małych populacji
 
-### Proporcje a Średnie: Zrozumienie Różnic
+**Praktyczne zalecenia:**
+
+* Dla populacji poniżej 200 jednostek rozważ badanie pełne
+* Stosuj odpowiednie wzory statystyczne uwzględniające losowanie bez zwracania
+* Standardowe wzory na błędy standardowe oparte na losowaniu ze zwracaniem będą zawyżać błąd w małych populacjach
+* Wyraźnie dokumentuj mechanizm losowania w raportach badawczych
+
+Te rozróżnienia są istotne w badaniach małych społeczności, organizacji, czy badaniach pilotażowych, gdzie wpływ schematu losowania na wnioskowanie statystyczne jest znacznie większy niż w dużych badaniach reprezentatywnych.
+
+
+### Proporcje a Średnie
 
 #### Proporcje (procenty)
 Przy szacowaniu proporcji (takiej jak odsetek wyborców popierających kandydata):
@@ -316,42 +327,298 @@ Siła próbkowania polega na tym, że przy właściwej randomizacji możemy dowi
 ![Dobór Grupowy. Źródło: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Cluster2.svg)
 :::
 
-::: callout-note
-## Proces Generowania Danych (PGD) i Superpopulacja: Rozszerzenie Tradycyjnych Koncepcji
 
-W tradycyjnej statystyce pracujemy z dwoma kluczowymi pojęciami:
+---
+title: "Data Generating Process i Superpopulacja"
+subtitle: "Wprowadzenie do kluczowych pojęć statystycznych"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+---
 
--   **Populacja**: Cała grupa jednostek, którą chcemy badać.
--   **Próba**: Podzbiór populacji, który faktycznie obserwujemy i analizujemy.
+::: {.callout-note}
+## Data Generating Process i Superpopulacja w kontekście badań statystycznych
 
-Współczesne badania często wymagają myślenia wykraczającego poza ten dychotomiczny podział. Tu wkraczają koncepcje **Procesu Generowania Danych (PGD)** i **superpopulacji**, które pogłębiają nasze rozumienie danych i ich struktury.
+W statystyce i ekonometrii często posługujemy się pojęciami populacji i próby. Jednak dla pełnego zrozumienia statystycznych modeli warto wprowadzić dwa dodatkowe koncepty: **data generating process (DGP)** oraz **superpopulację**. Pojęcia te pomogą lepiej zrozumieć, w jaki sposób powstają dane, które analizujemy.
 
-### Kluczowe definicje
+### Podstawowe pojęcia
 
-**Populacja**: Zbiór wszystkich jednostek, które są bezpośrednim przedmiotem naszego badania (np. wszyscy dorośli mieszkańcy Polski).
+**Populacja**: Zbiór wszystkich jednostek (osób, firm, krajów itp.), które są przedmiotem naszego badania. Przykładowo, wszystkie gospodarstwa domowe w Polsce.
 
-**Próba**: Podzbiór populacji, który faktycznie badamy (np. 1000 losowo wybranych dorosłych Polaków).
+**Próba**: Podzbiór populacji, który badamy, aby wyciągnąć wnioski o całej populacji. Przykładowo, 1000 losowo wybranych gospodarstw domowych w Polsce.
 
-**Superpopulacja**: Teoretyczny koncept obejmujący nie tylko obserwowalne jednostki z aktualnej populacji, ale wszystkie potencjalne jednostki, które mogłyby wystąpić w podobnych warunkach (np. wszyscy możliwi dorośli Polacy - obecni, przyszli i hipotetyczni).
+### Data Generating Process (DGP)
 
-**Proces Generowania Danych (PGD)**: Mechanizmy i czynniki, które generują wartości obserwowanych zmiennych w systemie.
+**Data Generating Process** (proces generujący dane) to mechanizm lub model stochastyczny (losowy), który określa, w jaki sposób powstają wartości zmiennych, które obserwujemy.
 
-### Proces Generowania Danych (PGD; Data Generating Process, DGP)
+Kluczowe cechy DGP:
 
-**Definicja formalna**:
-PGD to zbiór mechanizmów statystycznych i przyczynowych odpowiedzialnych za wytwarzanie obserwowanych wartości zmiennych w systemie, opisany najczęściej za pomocą funkcji matematycznych i rozkładów prawdopodobieństwa.
+- Jest to abstrakcyjny, matematyczny model opisujący, jak zmienne są ze sobą powiązane
+- Zawiera zarówno element deterministyczny (przewidywalny), jak i losowy (nieprzewidywalny)
+- Zwykle wyrażany za pomocą równań i rozkładów prawdopodobieństwa
 
-**Intuicyjne wyjaśnienie**:
-PGD można postrzegać jako "mechanizm" lub "czarną skrzynkę", która przekształca przyczyny w skutki. To fundamentalny proces, który produkuje dane obserwowane w rzeczywistym świecie - zarówno w naszej próbie, jak i w całej populacji, a także potencjalnie poza nią.
+#### Przykład DGP:
+Załóżmy, że badamy dochody gospodarstw domowych. Model DGP (równanie matematyczne) mógłby wyglądać tak:
 
-### Przykłady ilustrujące różnice
+$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \varepsilon_i$
+
+Gdzie:
+
+- $Y_i$ to dochód gospodarstwa domowego $i$
+- $X_{1i}$ to liczba osób pracujących w gospodarstwie $i$
+- $X_{2i}$ to poziom wykształcenia głównego żywiciela gospodarstwa $i$
+- $\varepsilon_i$ to czynnik losowy (błąd)
+- $\beta_0, \beta_1, \beta_2$ to parametry modelu
+
+W tym przykładzie DGP określa, jak dochód zależy od liczby pracujących osób i wykształcenia, plus element losowy.
+
+### Superpopulacja
+
+**Superpopulacja** to hipotetyczna, nieskończona populacja, z której nasza rzeczywista populacja może być traktowana jako próba.
+
+Kluczowe cechy superpopulacji:
+
+- Jest konceptualnym rozszerzeniem pojęcia populacji
+- Reprezentuje wszystkie możliwe realizacje procesu generującego dane (DGP)
+- Pozwala na wnioskowanie nie tylko o aktualnej populacji, ale o ogólnych prawidłowościach
+
+#### Przykłady superpopulacji:
+1. Badamy wyniki matur w Polsce w 2024 roku (populacja). Superpopulacja to hipotetyczne wyniki matur wszystkich możliwych uczniów, którzy mogliby zdawać maturę w podobnych warunkach, w dowolnym roku.
+
+2. Analizujemy PKB krajów europejskich w 2023 roku (populacja). Superpopulacja to wszystkie możliwe realizacje PKB tych krajów w różnych warunkach gospodarczych.
+
+### Relacje między pojęciami
+
+```
+DGP → Superpopulacja → Populacja → Próba
+```
+
+- **DGP** definiuje mechanizm generowania danych
+- **Superpopulacja** to wszystkie możliwe realizacje DGP
+- **Populacja** to konkretna, skończona realizacja z superpopulacji
+- **Próba** to podzbiór populacji, który faktycznie obserwujemy i analizujemy
+
+### Praktyczne znaczenie
+
+#### Dlaczego te pojęcia są ważne?
+
+1. **Modelowanie ekonometryczne** - DGP jest fundamentem modelowania ekonometrycznego, pozwala zrozumieć, jak zmienne ekonomiczne wpływają na siebie nawzajem.
+
+2. **Wnioskowanie statystyczne** - Koncepcja superpopulacji pozwala na formułowanie wniosków ogólnych, wykraczających poza konkretny moment czasowy czy grupę.
+
+3. **Prognozowanie** - Zrozumienie DGP umożliwia lepsze prognozowanie przyszłych wartości zmiennych ekonomicznych.
+
+4. **Weryfikacja hipotez** - Pozwala lepiej określić, czy zaobserwowane zależności są dziełem przypadku, czy odzwierciedlają rzeczywiste prawidłowości.
+
+### Przykład zastosowania w ekonomii
+
+Załóżmy, że ekonomista bada wpływ stóp procentowych na inflację:
+
+- **DGP**: Równanie opisujące, jak stopa procentowa i inne czynniki wpływają na inflację
+- **Superpopulacja**: Wszystkie możliwe wartości inflacji przy różnych poziomach stóp procentowych i innych czynników
+- **Populacja**: Faktyczne wartości inflacji we wszystkich krajach w danym okresie
+- **Próba**: Dane o inflacji z 30 wybranych krajów, które badamy
+
+### Przykłady ze studiów wyborczych
+
+**Przykład 1: Frekwencja wyborcza**
+
+- **DGP**: $Frekwencja_i = \beta_0 + \beta_1 Wiek_i + \beta_2 Wykształcenie_i + \beta_3 Dochód_i + \varepsilon_i$
+- **Superpopulacja**: Wszystkie możliwe decyzje o udziale w wyborach, które mogliby podjąć wyborcy o różnych cechach społeczno-demograficznych w różnych warunkach
+- **Populacja**: Wszyscy uprawnieni do głosowania w wyborach prezydenckich 2020
+- **Próba**: 1500 respondentów ankiety exit poll po wyborach
+
+**Przykład 2: Poparcie dla partii politycznych**
+
+- **DGP**: $Poparcie_{ij} = \beta_0 + \beta_1 Ideologia_i + \beta_2 SytuacjaEkonomiczna_i + \beta_3 Wiek_i + \varepsilon_i$
+- **Superpopulacja**: Wszystkie możliwe preferencje wyborcze osób o różnych cechach w różnych warunkach społeczno-ekonomicznych
+- **Populacja**: Wszyscy wyborcy w Polsce w 2023 roku
+- **Próba**: Respondenci sondażu przedwyborczego (n=1000)
+
+### Symulacja i estymacja funkcji popytu jako DGP w R
+
+Poniższy kod ilustruje, jak można zasymulować funkcję popytu z wieloma predyktorami jako DGP i estymować jej parametry za pomocą regresji OLS:
+
+```{r}
+#| warning: false
+#| message: false
+
+# Załadowanie potrzebnych pakietów
+library(tidyverse)
+
+# Ustawienie ziarna losowości dla powtarzalnych wyników
+set.seed(123)
+
+# 1. Zdefiniowanie "prawdziwego" DGP: Funkcja popytu na produkt
+# Model: Q = beta0 + beta1*P + beta2*I + beta3*P_sub + beta4*P_comp + beta5*A + epsilon
+# Gdzie:
+# Q = ilość popytu na produkt
+# P = cena produktu
+# I = dochód konsumentów
+# P_sub = cena dobra substytucyjnego
+# P_comp = cena dobra komplementarnego
+# A = wydatki na reklamę
+
+# Prawdziwe wartości parametrów (zgodne z teorią ekonomiczną)
+beta0_true <- 100      # Stała
+beta1_true <- -2.5     # Efekt własnej ceny (ujemny - zgodnie z prawem popytu)
+beta2_true <- 0.8      # Efekt dochodu (dodatni - dobro normalne)
+beta3_true <- 1.2      # Efekt ceny substytutu (dodatni)
+beta4_true <- -0.7     # Efekt ceny dobra komplementarnego (ujemny)
+beta5_true <- 0.5      # Efekt reklamy (dodatni)
+sigma_true <- 5        # Odchylenie standardowe błędu losowego
+
+# 2. Symulacja superpopulacji (5000 potencjalnych rynków/okresów)
+n_super <- 5000
+
+# Generowanie predyktorów
+cena <- runif(n_super, min = 5, max = 15)               # Cena produktu (zł)
+dochod <- rnorm(n_super, mean = 3000, sd = 500)         # Średni dochód (zł)
+cena_substytutu <- runif(n_super, min = 4, max = 16)    # Cena substytutu (zł)
+cena_komplementu <- runif(n_super, min = 2, max = 8)    # Cena komplementu (zł)
+reklama <- runif(n_super, min = 0, max = 100)           # Wydatki na reklamę (tys. zł)
+
+# Dodanie korelacji między zmiennymi (np. cena i cena substytutu)
+cena_substytutu <- cena_substytutu + rnorm(n_super, mean = 0.2 * cena, sd = 1)
+
+# Generowanie popytu zgodnie z DGP
+epsilon <- rnorm(n_super, mean = 0, sd = sigma_true)  # Składnik losowy
+popyt <- beta0_true + 
+         beta1_true * cena + 
+         beta2_true * (dochod/1000) +  # skalowanie dochodu dla lepszej interpretacji
+         beta3_true * cena_substytutu + 
+         beta4_true * cena_komplementu + 
+         beta5_true * (reklama/10) +    # skalowanie reklamy dla lepszej interpretacji
+         epsilon
+
+# Tworzenie ramki danych superpopulacji
+superpopulacja <- tibble(
+  id = 1:n_super,
+  cena = cena,
+  dochod = dochod,
+  cena_substytutu = cena_substytutu,
+  cena_komplementu = cena_komplementu,
+  reklama = reklama,
+  popyt = popyt
+)
+
+# Pokaż kilka pierwszych obserwacji
+head(superpopulacja)
+
+# 3. Pobieranie próby z superpopulacji (np. 200 obserwacji)
+n_sample <- 200
+indeksy_proby <- sample(1:n_super, n_sample)
+proba <- superpopulacja[indeksy_proby, ]
+
+# 4. Estymacja modelu OLS na podstawie próby
+model_ols <- lm(popyt ~ cena + I(dochod/1000) + cena_substytutu + 
+                cena_komplementu + I(reklama/10), data = proba)
+
+# 5. Wyświetlenie podsumowania modelu
+summary(model_ols)
+
+# 6. Porównanie prawdziwych parametrów z estymowanymi
+parametry_prawdziwe <- c(beta0_true, beta1_true, beta2_true, 
+                         beta3_true, beta4_true, beta5_true)
+parametry_estymowane <- coef(model_ols)
+
+porownanie <- tibble(
+  parametr = c("Stała", "Cena", "Dochód (tys.)", "Cena substytutu", 
+               "Cena komplementu", "Reklama (10 tys.)"),
+  prawdziwa_wartość = parametry_prawdziwe,
+  estymowana_wartość = parametry_estymowane,
+  różnica = estymowana_wartość - prawdziwa_wartość,
+  błąd_procentowy = abs(różnica / prawdziwa_wartość) * 100
+)
+
+# Wyświetlenie porównania
+print(porownanie)
+
+# 7. Wizualizacja porównania prawdziwych i estymowanych parametrów
+ggplot(porownanie, aes(x = parametr, y = prawdziwa_wartość)) +
+  geom_point(color = "blue", size = 3) +
+  geom_point(aes(y = estymowana_wartość), color = "red", size = 3) +
+  geom_segment(aes(xend = parametr, y = prawdziwa_wartość, 
+                   yend = estymowana_wartość), color = "gray") +
+  labs(title = "Porównanie prawdziwego DGP z estymowanym modelem",
+       subtitle = "Niebieskie punkty: prawdziwe wartości, czerwone punkty: estymowane wartości",
+       x = "Parametr", y = "Wartość") +
+  theme_minimal() +
+  coord_flip()
+
+# 8. Sprawdzenie zdolności predykcyjnej modelu na nowych danych
+# Pobieramy nowe dane z superpopulacji (nie używane w estymacji)
+nowe_indeksy <- sample(setdiff(1:n_super, indeksy_proby), 100)
+nowe_dane <- superpopulacja[nowe_indeksy, ]
+
+# Predykcja na nowych danych
+nowe_dane$przewidywany_popyt <- predict(model_ols, newdata = nowe_dane)
+
+# Obliczenie błędu średniokwadratowego (MSE) predykcji
+mse <- mean((nowe_dane$popyt - nowe_dane$przewidywany_popyt)^2)
+rmse <- sqrt(mse)
+cat("Pierwiastek błędu średniokwadratowego (RMSE):", round(rmse, 2), "\n")
+
+# 9. Wizualizacja relacji między ceną a popytem
+# (efekt ceteris paribus - przy kontroli innych zmiennych)
+ceteris_paribus <- tibble(
+  cena = seq(5, 15, length.out = 100),
+  dochod = mean(proba$dochod),
+  cena_substytutu = mean(proba$cena_substytutu),
+  cena_komplementu = mean(proba$cena_komplementu),
+  reklama = mean(proba$reklama)
+)
+
+# Obliczenie przewidywanego popytu według prawdziwego DGP
+ceteris_paribus$popyt_prawdziwy <- beta0_true + 
+                                 beta1_true * ceteris_paribus$cena + 
+                                 beta2_true * (ceteris_paribus$dochod/1000) + 
+                                 beta3_true * ceteris_paribus$cena_substytutu + 
+                                 beta4_true * ceteris_paribus$cena_komplementu + 
+                                 beta5_true * (ceteris_paribus$reklama/10)
+
+# Obliczenie przewidywanego popytu według estymowanego modelu
+ceteris_paribus$popyt_estymowany <- predict(model_ols, newdata = ceteris_paribus)
+
+# Wizualizacja
+ggplot(ceteris_paribus, aes(x = cena)) +
+  geom_line(aes(y = popyt_prawdziwy, color = "Prawdziwy DGP"), size = 1.2) +
+  geom_line(aes(y = popyt_estymowany, color = "Estymowany model"), size = 1.2) +
+  scale_color_manual(values = c("Prawdziwy DGP" = "blue", "Estymowany model" = "red")) +
+  labs(title = "Krzywa popytu: Prawdziwy DGP vs. Estymowany model",
+       subtitle = "Efekt ceteris paribus (przy stałych wartościach innych zmiennych)",
+       x = "Cena produktu (zł)",
+       y = "Popyt (ilość)",
+       color = "Model") +
+  theme_minimal()
+```
+
+Ten kod pokazuje:
+
+1. Definiowanie złożonego DGP dla funkcji popytu z wieloma predyktorami zgodnej z teorią ekonomiczną
+2. Symulowanie superpopulacji zgodnie z tym DGP
+3. Pobieranie próby z superpopulacji
+4. Estymację parametrów modelu za pomocą regresji OLS
+5. Porównanie estymowanych parametrów z ich prawdziwymi wartościami
+6. Wizualizację porównania prawdziwych i estymowanych parametrów
+7. Sprawdzenie zdolności predykcyjnej modelu na nowych danych
+8. Wizualizację relacji między ceną a popytem z efektem ceteris paribus
+
+Przykład ten pokazuje, jak można symulować złożone zależności ekonomiczne, a następnie używać metod ekonometrycznych do odkrywania tych zależności na podstawie próby danych. Jest to doskonała ilustracja, jak teoria ekonomiczna, DGP i metody statystyczne są ze sobą powiązane.
+
+W rzeczywistości nigdy nie znamy prawdziwego DGP - to właśnie próbujemy odkryć za pomocą analizy statystycznej. Symulacje tego typu pozwalają jednak zrozumieć konceptualnie, jak wnioskowanie statystyczne łączy się z pojęciem DGP i superpopulacji.
+
+
+### Przykłady pomocnicze
 
 #### Przykład 1: Badanie opinii wyborców
 
 - **Populacja**: Wszyscy zarejestrowani wyborcy w Polsce w 2023 roku (ok. 30 milionów osób)
 - **Próba**: 1000 losowo wybranych wyborców ankietowanych w sondażu
 - **Superpopulacja**: Wszyscy możliwi wyborcy (obecni, przyszli i hipotetyczni) oraz wszystkie możliwe scenariusze głosowania
-- **PGD**: Złożony mechanizm kształtujący opinie i decyzje wyborcze, w tym:
+- **DGP** (Data Generating Process): Złożony mechanizm kształtujący opinie i decyzje wyborcze, w tym:
   - Czynniki demograficzne (wiek, wykształcenie, miejsce zamieszkania)
   - Warunki ekonomiczne (dochód, status zawodowy)
   - Wpływ mediów i debaty publicznej
@@ -363,7 +630,7 @@ PGD można postrzegać jako "mechanizm" lub "czarną skrzynkę", która przekszt
 - **Populacja**: Wszyscy pacjenci z cukrzycą typu 2 w danym kraju (np. 2 miliony osób)
 - **Próba**: 500 pacjentów uczestniczących w badaniu klinicznym
 - **Superpopulacja**: Wszyscy możliwi pacjenci z cukrzycą typu 2 (obecni i przyszli) z różnymi profilami genetycznymi i środowiskowymi
-- **PGD**: Biologiczny mechanizm obejmujący:
+- **DGP**: Biologiczny mechanizm obejmujący:
   - Interakcje leku z receptorami w organizmie
   - Indywidualne uwarunkowania genetyczne
   - Czynniki środowiskowe (dieta, aktywność fizyczna)
@@ -378,7 +645,7 @@ Badanie wszystkich 50 stanów USA:
 - **Podejście superpopulacyjne**:
   - **Populacja/Próba**: 50 istniejących stanów USA
   - **Superpopulacja**: Teoretyczny zbiór wszystkich możliwych jednostek terytorialnych typu "stan" w różnych warunkach historycznych, politycznych i społecznych
-  - **PGD**: Fundamentalne mechanizmy geograficzne, historyczne, polityczne i społeczno-ekonomiczne kształtujące charakterystyki stanów
+  - **DGP**: Fundamentalne mechanizmy geograficzne, historyczne, polityczne i społeczno-ekonomiczne kształtujące charakterystyki stanów
 
 #### Przykład 4: Jakość pizzy w Nowym Jorku
 
@@ -389,7 +656,7 @@ Badanie wszystkich 50 stanów USA:
   - Przyszłe (jeszcze nieotwarte)
   - Historyczne (już zamknięte)
   - Hipotetyczne (w alternatywnych warunkach ekonomicznych czy kulturowych)
-- **PGD**: Czynniki wpływające na jakość pizzy:
+- **DGP**: Czynniki wpływające na jakość pizzy:
   - Składniki i ich jakość
   - Umiejętności i doświadczenie szefów kuchni
   - Sprzęt i infrastruktura kuchenna
@@ -398,47 +665,36 @@ Badanie wszystkich 50 stanów USA:
   - Wpływy kulturowe i tradycje kulinarne
   - Uwarunkowania ekonomiczne (koszty operacyjne, czynsze)
 
-PGD jest jak "przepis na jakość pizzy", który determinuje rezultaty dla wszystkich potencjalnych pizzerii w superpopulacji, nie tylko dla obecnie istniejących lokali.
-
-### Praktyczne znaczenie tych różnic
-
-1. **Wnioskowanie statystyczne**:
-   - W tradycyjnym podejściu: Z próby wnioskujemy o populacji
-   - W podejściu superpopulacyjnym: Z modelu wnioskujemy o ogólnych prawidłowościach wykraczających poza obserwowaną populację
-
-2. **Generalizacja wyników**:
-   - Tradycyjne podejście: Wyniki możemy generalizować tylko na obecną populację
-   - Podejście superpopulacyjne: Wyniki można generalizować na przyszłe lub hipotetyczne przypadki
-
-3. **Interpretacja niepewności**:
-   - W podejściu tradycyjnym: Niepewność wynika głównie z losowości próby
-   - W podejściu superpopulacyjnym: Niepewność wynika zarówno z losowości próby, jak i z losowości procesów w ramach PGD
-
-4. **Modelowanie predykcyjne**:
-   - Tradycyjne podejście: Ograniczone do obecnej populacji
-   - Podejście superpopulacyjne: Pozwala modelować nowe, nieobserwowane jeszcze przypadki
-
-Zrozumienie różnic między tymi koncepcjami jest kluczowe dla prawidłowej interpretacji wyników badań i właściwego wnioskowania statystycznego, szczególnie w badaniach obejmujących złożone systemy społeczne, ekonomiczne czy biologiczne.
+DGP jest jak "przepis na jakość pizzy", który determinuje rezultaty dla wszystkich potencjalnych pizzerii w superpopulacji, nie tylko dla obecnie istniejących lokali.
 
 ```{mermaid}
 graph TD
     A[Data Generating Process DGP]
-    B(Population)
-    C[Sample]
-    A -->|Generates| B
-    B -->|Sampled from| C
-    C -.->|Inference| B
-    C -.->|Inference| A
-    B -.->|Inference| A
+    S(Superpopulacja)
+    B(Populacja)
+    C[Próba]
+    A -->|Generuje| S
+    S -->|Jedna realizacja| B
+    B -->|Pobieranie próby| C
+    C -.->|Wnioskowanie| B
+    C -.->|Wnioskowanie| S
+    C -.->|Wnioskowanie| A
+    B -.->|Wnioskowanie| S
+    B -.->|Wnioskowanie| A
+    S -.->|Wnioskowanie| A
     
     classDef dgp fill:#f9f,stroke:#333,stroke-width:4px;
+    classDef superpop fill:#fce,stroke:#333,stroke-width:3px;
     classDef pop fill:#bbf,stroke:#333,stroke-width:2px;
     classDef sam fill:#bfb,stroke:#333,stroke-width:2px;
     
     class A dgp;
+    class S superpop;
     class B pop;
     class C sam;
 ```
+
+
 :::
 
 

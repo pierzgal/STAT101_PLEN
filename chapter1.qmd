@@ -113,35 +113,45 @@ The necessary sample size depends on three main factors:
    * More accurate = larger sample
    * Example: Estimating within ±1% requires about 9 times more people than estimating within ±3%
    * Example: If you need to be more certain of your results (for crucial decisions), you'll need a larger sample
+
+3. **How diverse is your population?**
    
-3. **How variable is your population?**
-   
-   * For proportions: Most variable at 50%, least variable at 0% or 100%
-   * For averages: Look at how widely measurements differ in your population
+   * For proportions: Maximum variability occurs at 50%, minimum at 0% or 100%
+   * For means: Check how much measurements differ from each other (variance) in your study population
 
 **What about small populations?**
 
 When working with small populations (e.g., 1,000 people or fewer):
 
-- You can still draw a simple random sample, but the approach changes somewhat
-- For very small populations, the sample becomes a significant percentage of the total
-- A **finite population correction factor** becomes important when sampling more than 5-10% of the population
-- The good news: You can achieve the same precision with a smaller sample than you would need for a large population
-- Example: To achieve ±3 percentage points accuracy in a population of 1,000 people, you might need only about 400-500 people instead of the 1,000 needed for a very large population
-- For extremely small populations (e.g., 100 people), you might need to sample 50% or more to get reliable estimates
+- There are significant methodological differences compared to large populations
+- A simple random sample traditionally assumes sampling with replacement (with equal probability of selecting each unit)
+- In research practice, sampling without replacement is typically used, where selection probabilities change after each draw
+- The smaller the population, the greater the difference between these approaches
+- The **finite population correction factor** addresses precisely this discrepancy and becomes essential when studying more than 5-10% of the population
 
-**Methods for sampling small populations:**
+**Explaining the difference:**
 
-- Complete census (surveying everyone) becomes more feasible
-- Systematic sampling (selecting every kth person from a list)
-- Stratified sampling ensures key subgroups are proportionally represented
+- Sampling with replacement: each unit has a constant probability of selection in each draw (e.g., 1/N)
+- Sampling without replacement: selection probability changes in subsequent draws (from 1/N to 1/(N-1), 1/(N-2), etc.)
+- In large populations, the difference is minimal; in small ones - fundamental
+- Sampling without replacement schemes often have lower estimator variance than sampling with replacement
 
-**Simple rules of thumb for quick estimates:**
+**Approaches to small populations:**
 
-* For proportions near 50%: A sample of 1,000 gives about ±3 percentage points accuracy
-* To double your accuracy (±1.5% instead of ±3%), you need about 4 times more people (4,000)
-* For averages: The more varied your population, the larger sample you'll need
-* Practical example: National polls typically use 1,000-1,500 people because this balances accuracy with cost
+- Complete enumeration (census) eliminates problems associated with sampling
+- Stratification can improve representativeness but doesn't solve the issue of changing probabilities
+- Nonparametric methods that account for small population specifics
+- "Bootstrap" techniques with appropriate modifications for small populations
+
+**Practical recommendations:**
+
+* For populations under 200 units, consider a complete census
+* Use appropriate statistical formulas that account for sampling without replacement
+* Standard formulas for standard errors based on sampling with replacement will overestimate error in small populations
+* Clearly document the sampling mechanism in research reports
+
+These distinctions are crucial in studies of small communities, organizations, or pilot studies, where the impact of the sampling scheme on statistical inference is much greater than in large representative surveys.
+
 
 ### Proportions vs. Averages: Understanding the Differences
 
@@ -316,53 +326,306 @@ The beauty of sampling is that with proper randomization, we can learn about ver
 
 :::
 
-::: callout-note
-## Data Generating Process (DGP) and Superpopulation: Extending Traditional Concepts
+---
+title: "Data Generating Process and Superpopulation"
+subtitle: "Introduction to Key Statistical Concepts"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+---
 
-In traditional statistics, we work with two key concepts:
+::: {.callout-note}
+## Data Generating Process and Superpopulation in the Context of Statistical Research
 
--   **Population**: The entire group of units we want to study.
--   **Sample**: A subset of the population that we actually observe and analyze.
+In statistics and econometrics, we often use the concepts of population and sample. However, for a complete understanding of statistical models, it's worth introducing two additional concepts: **data generating process (DGP)** and **superpopulation**. These concepts will help us better understand how the data we analyze is generated.
 
-Modern research often requires thinking beyond this dichotomous division. This is where the concepts of **Data Generating Process (DGP)** and **superpopulation** come in, deepening our understanding of data and their structure.
+### Basic Concepts
 
-### Key Definitions
+**Population**: The set of all units (people, firms, countries, etc.) that are the subject of our study. For example, all households in the United States.
 
-**Population**: The set of all units that are the direct subject of our study (e.g., all adult residents of the United States).
-
-**Sample**: A subset of the population that we actually study (e.g., 1000 randomly selected American adults).
-
-**Superpopulation**: A theoretical concept encompassing not only observable units from the current population but all potential units that could occur under similar conditions (e.g., all possible American adults - present, future, and hypothetical).
-
-**Data Generating Process (DGP)**: The mechanisms and factors that generate the values of observed variables in a system.
+**Sample**: A subset of the population that we study to draw conclusions about the entire population. For example, 1000 randomly selected households in the United States.
 
 ### Data Generating Process (DGP)
 
-**Formal definition**:
-The DGP is a set of statistical and causal mechanisms responsible for producing the observed values of variables in a system, typically described using mathematical functions and probability distributions.
+**Data Generating Process** is a mechanism or stochastic (random) model that determines how the values of variables we observe are generated.
 
-**Intuitive explanation**:
-The DGP can be viewed as a "mechanism" or "black box" that transforms causes into effects. It's the fundamental process that produces data observed in the real world - both in our sample and in the entire population, and potentially beyond it.
+Key features of DGP:
 
-### Examples Illustrating the Differences
+- It is an abstract, mathematical model describing how variables are related to each other
+- It contains both deterministic (predictable) and random (unpredictable) elements
+- It is usually expressed using equations and probability distributions
+
+#### Example of DGP:
+Let's assume we're studying household incomes. The DGP model (a mathematical equation) could look like this:
+
+$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \varepsilon_i$
+
+Where:
+
+- $Y_i$ is the income of household $i$
+- $X_{1i}$ is the number of employed people in household $i$
+- $X_{2i}$ is the education level of the main earner in household $i$
+- $\varepsilon_i$ is a random factor (error)
+- $\beta_0, \beta_1, \beta_2$ are model parameters
+
+In this example, the DGP determines how income depends on the number of working people and education, plus a random element.
+
+### Superpopulation
+
+**Superpopulation** is a hypothetical, infinite population from which our actual population can be treated as a sample.
+
+Key features of superpopulation:
+
+- It is a conceptual extension of the population concept
+- It represents all possible realizations of the data generating process (DGP)
+- It allows for inference not only about the current population but about general regularities
+
+#### Examples of superpopulation:
+1. We are studying SAT results in the United States in 2024 (population). The superpopulation is the hypothetical SAT results of all possible students who could take the SAT in similar conditions in any year.
+
+2. We are analyzing the GDP of European countries in 2023 (population). The superpopulation is all possible realizations of these countries' GDP under different economic conditions.
+
+### Relationships Between Concepts
+
+```
+DGP → Superpopulation → Population → Sample
+```
+
+- **DGP** defines the mechanism of data generation
+- **Superpopulation** is all possible realizations of DGP
+- **Population** is a specific, finite realization from the superpopulation
+- **Sample** is a subset of the population that we actually observe and analyze
+
+### Practical Significance
+
+#### Why are these concepts important?
+
+1. **Econometric modeling** - DGP is the foundation of econometric modeling, allowing us to understand how economic variables affect each other.
+
+2. **Statistical inference** - The concept of superpopulation allows for formulating general conclusions that go beyond a specific time or group.
+
+3. **Forecasting** - Understanding DGP enables better forecasting of future values of economic variables.
+
+4. **Hypothesis testing** - It helps better determine whether observed relationships are due to chance or reflect actual regularities.
+
+### Example of Application in Economics
+
+Let's assume an economist is studying the impact of interest rates on inflation:
+
+- **DGP**: Equation describing how interest rates and other factors affect inflation
+- **Superpopulation**: All possible inflation values at different levels of interest rates and other factors
+- **Population**: Actual inflation values in all countries during a given period
+- **Sample**: Inflation data from 30 selected countries that we study
+
+### Examples from Electoral Studies
+
+**Example 1: Voter Turnout**
+
+- **DGP**: $Turnout_i = \beta_0 + \beta_1 Age_i + \beta_2 Education_i + \beta_3 Income_i + \varepsilon_i$
+- **Superpopulation**: All possible decisions to participate in elections that voters with different socio-demographic characteristics could make under different conditions
+- **Population**: All eligible voters in the 2020 presidential election
+- **Sample**: 1500 respondents of an exit poll after the election
+
+**Example 2: Support for Political Parties**
+
+- **DGP**: $Support_{ij} = \beta_0 + \beta_1 Ideology_i + \beta_2 EconomicSituation_i + \beta_3 Age_i + \varepsilon_i$
+- **Superpopulation**: All possible electoral preferences of people with different characteristics in different socio-economic conditions
+- **Population**: All voters in the United States in 2023
+- **Sample**: Pre-election survey respondents (n=1000)
+
+### Simulation and Estimation of a Demand Function as DGP in R
+
+The following code illustrates how to simulate a demand function with multiple predictors as a DGP and estimate its parameters using OLS regression:
+
+```{r}
+#| warning: false
+#| message: false
+
+# Loading required packages
+library(tidyverse)
+
+# Setting random seed for reproducible results
+set.seed(123)
+
+# 1. Defining the "true" DGP: Product demand function
+# Model: Q = beta0 + beta1*P + beta2*I + beta3*P_sub + beta4*P_comp + beta5*A + epsilon
+# Where:
+# Q = quantity demanded
+# P = product price
+# I = consumer income
+# P_sub = price of substitute good
+# P_comp = price of complementary good
+# A = advertising expenditure
+
+# True parameter values (consistent with economic theory)
+beta0_true <- 100      # Constant
+beta1_true <- -2.5     # Own price effect (negative - according to the law of demand)
+beta2_true <- 0.8      # Income effect (positive - normal good)
+beta3_true <- 1.2      # Substitute price effect (positive)
+beta4_true <- -0.7     # Complementary good price effect (negative)
+beta5_true <- 0.5      # Advertising effect (positive)
+sigma_true <- 5        # Standard deviation of random error
+
+# 2. Simulating superpopulation (5000 potential markets/periods)
+n_super <- 5000
+
+# Generating predictors
+price <- runif(n_super, min = 5, max = 15)             # Product price ($)
+income <- rnorm(n_super, mean = 3000, sd = 500)        # Average income ($)
+price_substitute <- runif(n_super, min = 4, max = 16)  # Substitute price ($)
+price_complement <- runif(n_super, min = 2, max = 8)   # Complement price ($)
+advertising <- runif(n_super, min = 0, max = 100)      # Advertising expenditure ($1000s)
+
+# Adding correlation between variables (e.g., price and substitute price)
+price_substitute <- price_substitute + rnorm(n_super, mean = 0.2 * price, sd = 1)
+
+# Generating demand according to DGP
+epsilon <- rnorm(n_super, mean = 0, sd = sigma_true)  # Random component
+demand <- beta0_true + 
+         beta1_true * price + 
+         beta2_true * (income/1000) +  # scaling income for better interpretation
+         beta3_true * price_substitute + 
+         beta4_true * price_complement + 
+         beta5_true * (advertising/10) +   # scaling advertising for better interpretation
+         epsilon
+
+# Creating superpopulation data frame
+superpopulation <- tibble(
+  id = 1:n_super,
+  price = price,
+  income = income,
+  price_substitute = price_substitute,
+  price_complement = price_complement,
+  advertising = advertising,
+  demand = demand
+)
+
+# Show first few observations
+head(superpopulation)
+
+# 3. Drawing a sample from superpopulation (e.g., 200 observations)
+n_sample <- 200
+sample_indices <- sample(1:n_super, n_sample)
+sample_data <- superpopulation[sample_indices, ]
+
+# 4. Estimating OLS model based on the sample
+ols_model <- lm(demand ~ price + I(income/1000) + price_substitute + 
+                price_complement + I(advertising/10), data = sample_data)
+
+# 5. Displaying model summary
+summary(ols_model)
+
+# 6. Comparing true parameters with estimated ones
+true_parameters <- c(beta0_true, beta1_true, beta2_true, 
+                     beta3_true, beta4_true, beta5_true)
+estimated_parameters <- coef(ols_model)
+
+comparison <- tibble(
+  parameter = c("Intercept", "Price", "Income (thousands)", "Substitute price", 
+               "Complement price", "Advertising (10 thousands)"),
+  true_value = true_parameters,
+  estimated_value = estimated_parameters,
+  difference = estimated_value - true_value,
+  percent_error = abs(difference / true_value) * 100
+)
+
+# Display comparison
+print(comparison)
+
+# 7. Visualizing comparison of true and estimated parameters
+ggplot(comparison, aes(x = parameter, y = true_value)) +
+  geom_point(color = "blue", size = 3) +
+  geom_point(aes(y = estimated_value), color = "red", size = 3) +
+  geom_segment(aes(xend = parameter, y = true_value, 
+                   yend = estimated_value), color = "gray") +
+  labs(title = "Comparison of True DGP with Estimated Model",
+       subtitle = "Blue points: true values, Red points: estimated values",
+       x = "Parameter", y = "Value") +
+  theme_minimal() +
+  coord_flip()
+
+# 8. Checking model's predictive ability on new data
+# We draw new data from superpopulation (not used in estimation)
+new_indices <- sample(setdiff(1:n_super, sample_indices), 100)
+new_data <- superpopulation[new_indices, ]
+
+# Prediction on new data
+new_data$predicted_demand <- predict(ols_model, newdata = new_data)
+
+# Calculating mean squared error (MSE) of prediction
+mse <- mean((new_data$demand - new_data$predicted_demand)^2)
+rmse <- sqrt(mse)
+cat("Root Mean Squared Error (RMSE):", round(rmse, 2), "\n")
+
+# 9. Visualizing relationship between price and demand
+# (ceteris paribus effect - controlling for other variables)
+ceteris_paribus <- tibble(
+  price = seq(5, 15, length.out = 100),
+  income = mean(sample_data$income),
+  price_substitute = mean(sample_data$price_substitute),
+  price_complement = mean(sample_data$price_complement),
+  advertising = mean(sample_data$advertising)
+)
+
+# Calculating predicted demand according to true DGP
+ceteris_paribus$true_demand <- beta0_true + 
+                              beta1_true * ceteris_paribus$price + 
+                              beta2_true * (ceteris_paribus$income/1000) + 
+                              beta3_true * ceteris_paribus$price_substitute + 
+                              beta4_true * ceteris_paribus$price_complement + 
+                              beta5_true * (ceteris_paribus$advertising/10)
+
+# Calculating predicted demand according to estimated model
+ceteris_paribus$estimated_demand <- predict(ols_model, newdata = ceteris_paribus)
+
+# Visualization
+ggplot(ceteris_paribus, aes(x = price)) +
+  geom_line(aes(y = true_demand, color = "True DGP"), size = 1.2) +
+  geom_line(aes(y = estimated_demand, color = "Estimated model"), size = 1.2) +
+  scale_color_manual(values = c("True DGP" = "blue", "Estimated model" = "red")) +
+  labs(title = "Demand Curve: True DGP vs. Estimated Model",
+       subtitle = "Ceteris paribus effect (with other variables held constant)",
+       x = "Product price ($)",
+       y = "Demand (quantity)",
+       color = "Model") +
+  theme_minimal()
+```
+
+This code demonstrates:
+
+1. Defining a complex DGP for a demand function with multiple predictors consistent with economic theory
+2. Simulating a superpopulation according to this DGP
+3. Drawing a sample from the superpopulation
+4. Estimating model parameters using OLS regression
+5. Comparing estimated parameters with their true values
+6. Visualizing the comparison of true and estimated parameters
+7. Checking the model's predictive ability on new data
+8. Visualizing the relationship between price and demand with ceteris paribus effect
+
+This example shows how we can simulate complex economic relationships and then use econometric methods to discover these relationships based on a sample of data. It is an excellent illustration of how economic theory, DGP, and statistical methods are interconnected.
+
+In reality, we never know the true DGP - that's exactly what we're trying to discover through statistical analysis. Simulations of this type, however, allow us to conceptually understand how statistical inference connects with the concept of DGP and superpopulation.
+
+
+### Supplementary Examples
 
 #### Example 1: Voter Opinion Study
-
 - **Population**: All registered voters in the United States in 2023 (approx. 168 million people)
 - **Sample**: 1000 randomly selected voters surveyed in a poll
-- **Superpopulation**: All possible voters (current, future, and hypothetical) and all possible voting scenarios
-- **DGP**: Complex mechanism shaping voting opinions and decisions, including:
+- **Superpopulation**: All possible voters (present, future, and hypothetical) and all possible voting scenarios
+- **DGP** (Data Generating Process): Complex mechanism shaping opinions and voting decisions, including:
   - Demographic factors (age, education, place of residence)
   - Economic conditions (income, employment status)
   - Media influence and public debate
   - Personal experiences
   - Historical political conditions
 
-#### Example 2: Anti-diabetic Drug Study
-
-- **Population**: All patients with type 2 diabetes in a given country (e.g., 35 million people)
+#### Example 2: Anti-diabetic Drug Effects Study
+- **Population**: All patients with type 2 diabetes in a given country (e.g., 34 million people)
 - **Sample**: 500 patients participating in a clinical trial
-- **Superpopulation**: All possible patients with type 2 diabetes (current and future) with various genetic and environmental profiles
+- **Superpopulation**: All possible type 2 diabetes patients (present and future) with various genetic and environmental profiles
 - **DGP**: Biological mechanism including:
   - Drug interactions with receptors in the body
   - Individual genetic factors
@@ -371,18 +634,15 @@ The DGP can be viewed as a "mechanism" or "black box" that transforms causes int
   - Metabolic mechanisms of the organism
 
 #### Example 3: When Sample Equals Population
-
 Study of all 50 US states:
-
 - **Traditional approach**: No distinction between sample and population (we study all states)
 - **Superpopulation approach**:
-  - **Population/Sample**: All 50 existing US states
-  - **Superpopulation**: Theoretical set of all possible territorial units of the "state" type under various historical, political, and social conditions
-  - **DGP**: Fundamental geographic, historical, political, and socio-economic mechanisms shaping the characteristics of states
+  - **Population/Sample**: 50 existing US states
+  - **Superpopulation**: Theoretical set of all possible territorial units of the "state" type under different historical, political, and social conditions
+  - **DGP**: Fundamental geographic, historical, political, and socio-economic mechanisms shaping state characteristics
 
 #### Example 4: Pizza Quality in New York City
-
-- **Population**: All currently operating pizzerias in New York City (approx. 2000 establishments)
+- **Population**: All currently operating pizzerias in New York City (e.g., 2000 establishments)
 - **Sample**: 50 randomly selected pizzerias from different neighborhoods
 - **Superpopulation**: All possible pizzerias that could exist in New York City:
   - Currently operating
@@ -392,56 +652,42 @@ Study of all 50 US states:
 - **DGP**: Factors affecting pizza quality:
   - Ingredients and their quality
   - Skills and experience of chefs
-  - Equipment and kitchen infrastructure
+  - Kitchen equipment and infrastructure
   - Preparation methods and recipes
   - Environmental factors (e.g., local water quality)
   - Cultural influences and culinary traditions
-  - Economic factors (operating costs, rent)
+  - Economic conditions (operating costs, rent)
 
-The DGP is like a "recipe for pizza quality" that determines outcomes for all potential pizzerias in the superpopulation, not just currently existing establishments.
-
-### Practical Significance of These Differences
-
-1. **Statistical Inference**:
-   - Traditional approach: We infer from the sample to the population
-   - Superpopulation approach: We infer from the model to general patterns extending beyond the observed population
-
-2. **Generalization of Results**:
-   - Traditional approach: Results can only be generalized to the current population
-   - Superpopulation approach: Results can be generalized to future or hypothetical cases
-
-3. **Interpretation of Uncertainty**:
-   - Traditional approach: Uncertainty primarily stems from sample randomness
-   - Superpopulation approach: Uncertainty stems from both sample randomness and randomness of processes within the DGP
-
-4. **Predictive Modeling**:
-   - Traditional approach: Limited to the current population
-   - Superpopulation approach: Allows modeling of new, not yet observed cases
-
-Understanding the differences between these concepts is crucial for correct interpretation of research results and proper statistical inference, especially in studies involving complex social, economic, or biological systems.
+DGP is like a "recipe for pizza quality" that determines outcomes for all potential pizzerias in the superpopulation, not just currently existing establishments.
 
 ```{mermaid}
 graph TD
     A[Data Generating Process DGP]
+    S(Superpopulation)
     B(Population)
     C[Sample]
-    A -->|Generates| B
-    B -->|Sampled from| C
+    A -->|Generates| S
+    S -->|One realization| B
+    B -->|Sampling| C
     C -.->|Inference| B
+    C -.->|Inference| S
     C -.->|Inference| A
+    B -.->|Inference| S
     B -.->|Inference| A
+    S -.->|Inference| A
     
     classDef dgp fill:#f9f,stroke:#333,stroke-width:4px;
+    classDef superpop fill:#fce,stroke:#333,stroke-width:3px;
     classDef pop fill:#bbf,stroke:#333,stroke-width:2px;
     classDef sam fill:#bfb,stroke:#333,stroke-width:2px;
     
     class A dgp;
+    class S superpop;
     class B pop;
     class C sam;
 ```
 
 :::
-
 
 
 ::: {.callout-important}
