@@ -512,6 +512,236 @@ Note
 <figcaption>The process of using a sample from a population to obtain a point estimate of a population parameter. In this case, a sample of 10 individuals yielded 6 who own an iPhone, resulting in an estimated population proportion of 60% iPhone owners. The actual population proportion is 53.8%. Retrieved from: https://datasciencebook.ca/inference.html</figcaption>
 </figure>
 </div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Wnioskowanie Statystyczne: Jak Mała Próba Może Reprezentować Dużą Populację?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Kiedy ankieterzy badają tylko 1 000 wyborców, aby przewidzieć wynik wyborów z 30 000 000 wyborców, wydaje się to zagadkowe. Jak tak mały ułamek (zaledwie 0,003%) może nam powiedzieć coś o całości?</p>
+<p>Pomyśl o tym jak o próbowaniu zupy. Kiedy gotujesz duży garnek zupy i dokładnie ją mieszasz, nie musisz zjeść całego garnka, aby wiedzieć, jak smakuje. Wystarczy jedna łyżka – pod warunkiem, że zupa jest dobrze wymieszana.</p>
+<section id="dlaczego-badanie-próby-losowej" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="dlaczego-badanie-próby-losowej"><span class="header-section-number">2.3.2</span> Dlaczego Badanie Próby Losowej</h3>
+<p>Badanie próby losowej działa, ponieważ:</p>
+<ol type="1">
+<li><strong>Daje każdemu równą szansę</strong> na wybór, unikając stronniczości</li>
+<li><strong>Wykorzystuje moc prawdopodobieństwa</strong>, aby zapewnić, że próba przypomina populację</li>
+<li><strong>Przy wystarczającej liczbie osób</strong> naturalne wahania zwykle się równoważą</li>
+</ol>
+<p>Kluczowa jest losowość. Jeśli wybieramy osoby naprawdę losowo, prawdopodobnie otrzymamy mieszankę, która odzwierciedla całą populację. Bez losowości moglibyśmy przypadkowo skupić się na jednej “części zupy”, która nie reprezentuje całości.</p>
+</section>
+<section id="zrozumienie-błędu-statystycznego" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="zrozumienie-błędu-statystycznego"><span class="header-section-number">2.3.3</span> Zrozumienie Błędu Statystycznego</h3>
+<p>Gdy używamy próby do poznania populacji, nieuchronnie napotykamy błąd statystyczny:</p>
+<p><strong>Błąd statystyczny</strong> to różnica między naszym oszacowaniem z próby a prawdziwą wartością w populacji. Możemy go podzielić na dwa główne rodzaje:</p>
+<ol type="1">
+<li><p><strong>Błąd losowy (błąd próbkowania)</strong>: Naturalna zmienność, która występuje przypadkowo, gdy wybieramy losową próbę. Dzieje się tak po prostu dlatego, że badamy część, a nie całą populację.</p>
+<p><strong>Błąd standardowy</strong> jest miarą błędu próbkowania. Pokazuje, jak bardzo nasze statystyki z próby (jak średnie czy proporcje) różniłyby się, gdybyśmy wielokrotnie pobierali różne próby z tej samej populacji.</p>
+<ul>
+<li>Mniejsze błędy standardowe wskazują na bardziej precyzyjne oszacowania</li>
+<li>Błąd standardowy zmniejsza się wraz ze wzrostem wielkości próby (w przybliżeniu proporcjonalnie do 1/√n)</li>
+<li>Na błąd standardowy wpływa zmienność w populacji</li>
+</ul></li>
+<li><p><strong>Błąd systematyczny (błąd niepróbkowy)</strong>: Występuje, gdy nasze metody zbierania danych systematycznie zniekształcają wyniki w jednym kierunku. W przeciwieństwie do błędu próbkowania, błędu systematycznego NIE można zmniejszyć przez zwiększenie wielkości próby.</p></li>
+</ol>
+<p>Źródła błędu systematycznego obejmują:</p>
+<ul>
+<li><strong>Błąd selekcji</strong>: Gdy metoda wyboru próby faworyzuje pewne grupy (np. ankiety telefoniczne mogą pomijać osoby bez telefonów)</li>
+<li><strong>Błąd odpowiedzi</strong>: Gdy respondenci udzielają niedokładnych odpowiedzi (np. zawyżanie dochodów w ankietach)</li>
+<li><strong>Błąd braku odpowiedzi</strong>: Gdy osoby, które odmawiają udziału, różnią się od tych, które uczestniczą</li>
+<li><strong>Błąd pomiaru</strong>: Wynikający z niedokładnych narzędzi lub metod pomiaru</li>
+</ul>
+<p>Na przykład, jeśli obliczymy średni wzrost z próby, błąd standardowy mówi nam, jak bardzo ta średnia mogłaby się różnić, gdybyśmy pobrali wiele różnych losowych prób. Jednak jeśli nasz przyrząd pomiarowy jest wadliwy i zawsze dodaje 2 cm do każdego pomiaru, mamy do czynienia z błędem systematycznym, którego zwiększenie wielkości próby nie naprawi.</p>
+<p>Dobry projekt badania musi uwzględniać oba rodzaje błędów:</p>
+<ul>
+<li>Błąd próbkowania można zmniejszyć przez zwiększenie wielkości próby</li>
+<li>Błąd systematyczny można zmniejszyć tylko przez ulepszenie metod zbierania danych</li>
+</ul>
+</section>
+<section id="jak-duża-powinna-być-nasza-próba" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="jak-duża-powinna-być-nasza-próba"><span class="header-section-number">2.3.4</span> Jak Duża Powinna Być Nasza Próba?</h3>
+<p>Niezbędna wielkość próby zależy od trzech głównych czynników:</p>
+<ol type="1">
+<li><strong>Jakiego rodzaju szacunek przeprowadzasz?</strong> (proporcja czy średnia)</li>
+<li><strong>Jak dokładny musi być twój szacunek?</strong>
+<ul>
+<li>Większa dokładność = większa próba</li>
+<li>Przykład: Szacowanie z dokładnością do ±1 punktu procentowego wymaga około 9 razy więcej osób niż szacowanie z dokładnością do ±3 punktów procentowych</li>
+<li>Przykład: Jeśli potrzebujesz być bardziej pewny swoich wyników (dla kluczowych decyzji), będziesz potrzebować większej próby</li>
+</ul></li>
+<li><strong>Jak zróżnicowana jest twoja populacja?</strong>
+<ul>
+<li>Dla proporcji: Największa zmienność przy 50%, najmniejsza przy 0% lub 100%</li>
+<li>Dla średnich: Sprawdź, jak bardzo pomiary różnią się w twojej populacji</li>
+</ul></li>
+</ol>
+<p><strong>Proste reguły dla szybkich oszacowań:</strong></p>
+<ul>
+<li>Dla proporcji bliskich 50%: Próba 1 000 osób daje dokładność około ±3 punktów procentowych</li>
+<li>Aby podwoić dokładność (±1,5 zamiast ±3 punktów procentowych), potrzebujesz około 4 razy więcej osób (4 000)</li>
+<li>Dla średnich: Im bardziej zróżnicowana populacja, tym większej próby będziesz potrzebować</li>
+<li>Praktyczny przykład: Krajowe sondaże zazwyczaj używają 1 000-1 500 osób, ponieważ równoważy to dokładność z kosztami</li>
+</ul>
+</section>
+<section id="proporcje-a-średnie-zrozumienie-różnic" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="proporcje-a-średnie-zrozumienie-różnic"><span class="header-section-number">2.3.5</span> Proporcje a Średnie: Zrozumienie Różnic</h3>
+<section id="proporcje-procenty" class="level4" data-number="2.3.5.1">
+<h4 data-number="2.3.5.1" class="anchored" data-anchor-id="proporcje-procenty"><span class="header-section-number">2.3.5.1</span> Proporcje (procenty)</h4>
+<p>Przy szacowaniu proporcji (takiej jak odsetek wyborców popierających kandydata):</p>
+<ul>
+<li>Proporcja reprezentuje część populacji o określonej cesze</li>
+<li>W zasadzie liczymy odpowiedzi “tak” vs “nie”</li>
+<li>Obliczanie wielkości próby koncentruje się na oczekiwanej proporcji (p):
+<ul>
+<li>Proporcja bliska 50% ma maksymalną niepewność i wymaga większych prób</li>
+<li>Proporcja bliska 10% lub 90% ma mniejszą niepewność i wymaga mniejszych prób</li>
+</ul></li>
+<li>Dla typowego sondażu wyborczego z proporcjami bliskimi 50%, około 1 000 losowo wybranych osób zapewnia dokładność około ±3 punktów procentowych</li>
+<li>Co ciekawe, ta wielkość próby pozostaje taka sama, niezależnie od tego, czy twoja populacja liczy 30 000 czy 30 milionów</li>
+</ul>
+</section>
+<section id="średnie" class="level4" data-number="2.3.5.2">
+<h4 data-number="2.3.5.2" class="anchored" data-anchor-id="średnie"><span class="header-section-number">2.3.5.2</span> Średnie</h4>
+<p>Przy szacowaniu średniej (takiej jak typowy dochód gospodarstwa domowego lub wzrost):</p>
+<ul>
+<li>Średnia podsumowuje ciągłe pomiary, które mogą przyjmować wiele różnych wartości</li>
+<li>Wielkość próby zależy głównie od tego, jak bardzo te pomiary różnią się między osobami</li>
+<li>Kluczowe względy dla wielkości próby:
+<ul>
+<li>Populacje o bardziej zróżnicowanych pomiarach (wysoka odchylenie standardowe) wymagają większych prób</li>
+<li>Bardziej precyzyjne szacunki wymagają większych prób</li>
+<li>W przeciwieństwie do proporcji, nie ma “maksymalnej niepewności” przy określonej wartości</li>
+</ul></li>
+<li>Na przykład, szacowanie średniego dochodu może wymagać większej próby niż szacowanie średniego wzrostu, ponieważ dochody zazwyczaj różnią się bardziej niż wzrost</li>
+</ul>
+</section>
+<section id="parametry-modeli-regresyjnych" class="level4" data-number="2.3.5.3">
+<h4 data-number="2.3.5.3" class="anchored" data-anchor-id="parametry-modeli-regresyjnych"><span class="header-section-number">2.3.5.3</span> Parametry modeli regresyjnych</h4>
+<p>Przy szacowaniu parametrów modeli regresyjnych (takich jak współczynniki w regresji liniowej):</p>
+<ul>
+<li><p><strong>Czym jest regresja?</strong> Modele regresji opisują, jak jedna zmienna (zmienna zależna) wiąże się z jedną lub wieloma innymi zmiennymi (zmiennymi niezależnymi). Na przykład, jak sprzedaż zależy od wydatków na reklamę, lub jak plony zależą od opadów deszczu i temperatury.</p></li>
+<li><p>Parametry te pokazują związki między zmiennymi, np. jak wzrost wpływa na wagę</p></li>
+<li><p>Wielkość próby dla modeli regresyjnych jest bardziej złożona niż dla prostych średnich czy proporcji</p></li>
+<li><p>Kluczowe czynniki wpływające na wymaganą wielkość próby:</p>
+<ul>
+<li>Liczba zmiennych w modelu (więcej zmiennych = większa próba)</li>
+<li>Siła badanych efektów (słabsze efekty wymagają większych prób do wykrycia)</li>
+<li>Zmienność danych (większa zmienność = większa próba)</li>
+<li>Złożoność modelu (bardziej złożone modele wymagają większych prób)</li>
+</ul></li>
+</ul>
+<p><strong>Proste reguły dla modeli regresyjnych:</strong></p>
+<ul>
+<li>Podstawowa zasada: co najmniej 10-20 obserwacji na każdą zmienną w modelu</li>
+<li>Dla wykrywania słabych efektów: może być potrzebne nawet 100+ obserwacji na zmienną</li>
+<li>Modele wielopoziomowe lub hierarchiczne: wymagają znacznie większych prób</li>
+</ul>
+<p><strong>Jak parametry regresyjne mają się do proporcji lub średnich?</strong></p>
+<ul>
+<li>Parametry regresyjne są bardziej złożone – opisują relacje między zmiennymi, a nie tylko pojedyncze wartości</li>
+<li>Podczas gdy proporcje i średnie skupiają się na jednej zmiennej, regresja analizuje współzależności</li>
+<li>Błędy standardowe parametrów regresji zależą od wszystkich czynników wpływających na zmienność średnich, plus dodatkowo od korelacji między zmiennymi</li>
+</ul>
+<p><strong>Jak ocenić, że próba była zbyt mała?</strong></p>
+<ul>
+<li>Duże błędy standardowe w stosunku do wartości parametrów (szerokie przedziały ufności)</li>
+<li>Niestabilność wyników – małe zmiany w danych powodują duże zmiany w parametrach</li>
+<li>Nieistotne statystycznie wyniki, mimo że teoria sugeruje silne efekty</li>
+<li>Problemy z dopasowaniem modelu (np. przeuczenie, niestabilne predykcje)</li>
+<li>Brak mocy statystycznej do wykrycia efektów o oczekiwanej wielkości</li>
+</ul>
+</section>
+</section>
+<section id="przykład-maksymalnej-niepewności-dlaczego-50-to-najgorszy-przypadek" class="level3" data-number="2.3.6">
+<h3 data-number="2.3.6" class="anchored" data-anchor-id="przykład-maksymalnej-niepewności-dlaczego-50-to-najgorszy-przypadek"><span class="header-section-number">2.3.6</span> Przykład Maksymalnej Niepewności: Dlaczego 50% to “Najgorszy Przypadek”</h3>
+<p><strong>Demonstracja maksymalnej niepewności na monetach:</strong></p>
+<p>Wyobraź sobie, że masz 100 monet w worku, które są albo złote, albo srebrne. Chcesz oszacować, jaki procent jest złoty, losowo wybierając 10 monet.</p>
+<p><strong>Scenariusz A: 50% Złotych (Maksymalna Niepewność)</strong></p>
+<ul>
+<li>Worek zawiera 50 złotych i 50 srebrnych monet (50% złotych)</li>
+<li>Jeśli wyciągniesz 10 monet, możesz zobaczyć: 3 złote, 6 złotych, 4 złote, itd.</li>
+<li>Wyniki mogą się znacznie różnić od prawdziwego odsetka</li>
+<li>Twoja próba może łatwo odbiegać o 20% lub więcej od prawdziwych 50%</li>
+</ul>
+<p><strong>Scenariusz B: 10% Złotych (Mniejsza Niepewność)</strong></p>
+<ul>
+<li>Worek zawiera 10 złotych i 90 srebrnych monet (10% złotych)</li>
+<li>Jeśli wyciągniesz 10 monet, zazwyczaj zobaczysz: 0, 1 lub 2 złote monety</li>
+<li>Jest mało prawdopodobne, że wyciągniesz 5 złotych monet (co byłoby bardzo dalekie od prawdziwych 10%)</li>
+<li>Twój szacunek jest naturalnie bardziej stabilny i bliższy prawdziwemu odsetkowi</li>
+</ul>
+<p>Dlatego potrzebujemy większych prób, gdy proporcja jest bliska 50% - istnieje więcej naturalnej zmienności w tym, co możemy zaobserwować przez przypadek.</p>
+<p><strong>Przykład Sondażu: Popularni vs.&nbsp;Niepopularni Kandydaci</strong></p>
+<p>W sondażu wyborczym z 1 000 osób:</p>
+<p><strong>Dla głównego kandydata z poparciem 40%:</strong></p>
+<ul>
+<li>Nasza dokładność wyniosłaby około ±3 punktów procentowych</li>
+<li>Możemy oszacować, że jego poparcie wynosi między 37% a 43%</li>
+<li>Jest to wystarczająco precyzyjne, aby dokonać użytecznych prognoz</li>
+</ul>
+<p><strong>Dla kandydata z mniejszym poparciem na poziomie 3%:</strong></p>
+<ul>
+<li>Nasza dokładność wyniosłaby około ±1 punkt procentowy (mniejsza niż dla głównego kandydata)</li>
+<li>Możemy oszacować, że jego poparcie wynosi między 2% a 4%</li>
+<li>Jest to również wystarczająco precyzyjne dla praktycznych celów</li>
+</ul>
+<p><strong>Ważne wyjaśnienie dotyczące dokładności:</strong></p>
+<ol type="1">
+<li><p><strong>Dokładność bezwzględna (w punktach procentowych):</strong></p>
+<ul>
+<li>Dla kandydata z małym poparciem (3%): ±1 punkt procentowy (mniejszy błąd bezwzględny)</li>
+<li>Dla głównego kandydata (40%): ±3 punkty procentowe (większy błąd bezwzględny)</li>
+<li>Dzieje się tak, ponieważ proporcje dalekie od 50% (jak 3%) naturalnie mają mniejszą zmienność</li>
+</ul></li>
+<li><p><strong>Dokładność względna (jako proporcja szacunku):</strong></p>
+<ul>
+<li>Dla kandydata z małym poparciem (3%): ±1 punkt procentowy to 33% ich poziomu poparcia</li>
+<li>Dla głównego kandydata (40%): ±3 punkty procentowe to tylko 7,5% ich poziomu poparcia</li>
+<li>Więc choć błąd bezwzględny jest mniejszy, błąd względny jest znacznie większy dla kandydatów z małym poparciem</li>
+</ul></li>
+</ol>
+<p>Na przykład, jeśli sondaż pokazuje 3% poparcia dla kandydata z małym poparciem z dokładnością ±1 punkt procentowy, ich rzeczywiste poparcie może być o 33% wyższe lub niższe niż zmierzone (między 2% a 4%). Dla głównego kandydata z poparciem 40% z dokładnością ±3 punkty procentowe, ich rzeczywiste poparcie będzie się różnić tylko o 7,5% od zmierzonej wartości.</p>
+<p>To wyjaśnia, dlaczego sondaże mogą wiarygodnie wykrywać obecność kandydatów z małym poparciem i przybliżać ich poparcie, ale mogą mieć trudności z precyzyjnym mierzeniem małych zmian w ich poziomach poparcia. Ta sama wielkość próby daje różne dokładności bezwzględne w zależności od tego, jak blisko proporcja jest 50%.</p>
+<section id="dlaczego-są-różne" class="level4" data-number="2.3.6.1">
+<h4 data-number="2.3.6.1" class="anchored" data-anchor-id="dlaczego-są-różne"><span class="header-section-number">2.3.6.1</span> Dlaczego Są Różne?</h4>
+<p>Chociaż proporcję można obliczyć jako średnią z 0 i 1 (nie/tak), zachowują się one inaczej w praktyce:</p>
+<p><strong>Dla proporcji (takich jak sondaż wyborczy):</strong></p>
+<ul>
+<li>Wyobraź sobie rzucanie monetami: Gdy wyniki są bliskie 50-50 (jak w zaciętych wyborach), istnieje większa niepewność co do prawdziwego odsetka</li>
+<li>Przykład 1: Jeśli 500 z 1 000 osób (50%) popiera Kandydata A, dokładność wynosi około ±3 punktów procentowych</li>
+<li>Przykład 2: Jeśli 900 z 1 000 (90%) popiera Kandydata A, dokładność wynosi tylko około ±2 punktów procentowych</li>
+<li>Przykład 3: W ankiecie klasowej, gdzie 15 z 20 uczniów (75%) woli pizzę od hamburgerów, dokładność wynosi około ±19 punktów procentowych - znacznie większa niż przy 1 000 osobach!</li>
+<li>Im bliżej 50%, tym więcej osób musimy zbadać, aby być pewnym naszego wyniku</li>
+</ul>
+<p><strong>Dla ogólnych średnich (takich jak dochód gospodarstwa domowego):</strong></p>
+<ul>
+<li><p>Wyobraź sobie pomiar różnych rzeczy:</p>
+<ul>
+<li>Wzrost: Większość dorosłych ma między 150 cm a 195 cm (niewielka zmienność)</li>
+<li>Dochody: Ludzie mogą zarabiać od 0 zł do milionów (ogromna zmienność)</li>
+<li>Wyniki testów: Większość uczniów zdobywa między 60-90 punktów na teście (umiarkowana zmienność)</li>
+</ul></li>
+<li><p>Przykład 1: Aby oszacować średni wzrost z dokładnością do ±2,5 cm, możemy potrzebować tylko 100 osób</p></li>
+<li><p>Przykład 2: Aby oszacować średni dochód z dokładnością do ±1 000 zł, możemy potrzebować 10 000 osób</p></li>
+<li><p>Przykład 3: Aby oszacować średnie wyniki testów z dokładnością do ±2 punktów, możemy potrzebować 500 osób</p></li>
+<li><p>Im większa zmienność w populacji, tym większej próby potrzeba dla tej samej precyzji</p></li>
+</ul>
+<p><strong>Porównanie w świecie rzeczywistym:</strong></p>
+<p>Jeśli chcemy tej samej dokładności (±3 punktów procentowych):</p>
+<ul>
+<li>Dla pytania tak/nie, gdzie spodziewamy się podziału bliskiego 50-50: około 1 000 osób</li>
+<li>Do pomiaru średniego zużycia energii w gospodarstwach domowych: prawdopodobnie 2 000-3 000 gospodarstw</li>
+<li>Do oszacowania średniego czasu dojazdu: prawdopodobnie 500-600 dojeżdżających</li>
+</ul>
+<p>Przy właściwej randomizacji możemy dowiedzieć się o bardzo dużych populacjach, badając stosunkowo małe próby!</p>
+</section>
+</section>
+</div>
+</div>
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">SRS</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Dobór warstwowy</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Dobór grupowy</a></li></ul>
 <div class="tab-content" data-group="language">
@@ -560,22 +790,22 @@ Proces Generowania Danych (PGD) i Superpopulacja: Rozszerzenie Tradycyjnych Konc
 <li><strong>Próba</strong>: Podzbiór populacji, który faktycznie obserwujemy i analizujemy.</li>
 </ul>
 <p>Współczesne badania często wymagają myślenia wykraczającego poza ten dychotomiczny podział. Tu wkraczają koncepcje <strong>Procesu Generowania Danych (PGD)</strong> i <strong>superpopulacji</strong>, które pogłębiają nasze rozumienie danych i ich struktury.</p>
-<section id="kluczowe-definicje" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="kluczowe-definicje"><span class="header-section-number">2.3.2</span> Kluczowe definicje</h3>
+<section id="kluczowe-definicje" class="level3" data-number="2.3.7">
+<h3 data-number="2.3.7" class="anchored" data-anchor-id="kluczowe-definicje"><span class="header-section-number">2.3.7</span> Kluczowe definicje</h3>
 <p><strong>Populacja</strong>: Zbiór wszystkich jednostek, które są bezpośrednim przedmiotem naszego badania (np. wszyscy dorośli mieszkańcy Polski).</p>
 <p><strong>Próba</strong>: Podzbiór populacji, który faktycznie badamy (np. 1000 losowo wybranych dorosłych Polaków).</p>
 <p><strong>Superpopulacja</strong>: Teoretyczny koncept obejmujący nie tylko obserwowalne jednostki z aktualnej populacji, ale wszystkie potencjalne jednostki, które mogłyby wystąpić w podobnych warunkach (np. wszyscy możliwi dorośli Polacy - obecni, przyszli i hipotetyczni).</p>
 <p><strong>Proces Generowania Danych (PGD)</strong>: Mechanizmy i czynniki, które generują wartości obserwowanych zmiennych w systemie.</p>
 </section>
-<section id="proces-generowania-danych-pgd-data-generating-process-dgp" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="proces-generowania-danych-pgd-data-generating-process-dgp"><span class="header-section-number">2.3.3</span> Proces Generowania Danych (PGD; Data Generating Process, DGP)</h3>
+<section id="proces-generowania-danych-pgd-data-generating-process-dgp" class="level3" data-number="2.3.8">
+<h3 data-number="2.3.8" class="anchored" data-anchor-id="proces-generowania-danych-pgd-data-generating-process-dgp"><span class="header-section-number">2.3.8</span> Proces Generowania Danych (PGD; Data Generating Process, DGP)</h3>
 <p><strong>Definicja formalna</strong>: PGD to zbiór mechanizmów statystycznych i przyczynowych odpowiedzialnych za wytwarzanie obserwowanych wartości zmiennych w systemie, opisany najczęściej za pomocą funkcji matematycznych i rozkładów prawdopodobieństwa.</p>
 <p><strong>Intuicyjne wyjaśnienie</strong>: PGD można postrzegać jako “mechanizm” lub “czarną skrzynkę”, która przekształca przyczyny w skutki. To fundamentalny proces, który produkuje dane obserwowane w rzeczywistym świecie - zarówno w naszej próbie, jak i w całej populacji, a także potencjalnie poza nią.</p>
 </section>
-<section id="przykłady-ilustrujące-różnice" class="level3" data-number="2.3.4">
-<h3 data-number="2.3.4" class="anchored" data-anchor-id="przykłady-ilustrujące-różnice"><span class="header-section-number">2.3.4</span> Przykłady ilustrujące różnice</h3>
-<section id="przykład-1-badanie-opinii-wyborców" class="level4" data-number="2.3.4.1">
-<h4 data-number="2.3.4.1" class="anchored" data-anchor-id="przykład-1-badanie-opinii-wyborców"><span class="header-section-number">2.3.4.1</span> Przykład 1: Badanie opinii wyborców</h4>
+<section id="przykłady-ilustrujące-różnice" class="level3" data-number="2.3.9">
+<h3 data-number="2.3.9" class="anchored" data-anchor-id="przykłady-ilustrujące-różnice"><span class="header-section-number">2.3.9</span> Przykłady ilustrujące różnice</h3>
+<section id="przykład-1-badanie-opinii-wyborców" class="level4" data-number="2.3.9.1">
+<h4 data-number="2.3.9.1" class="anchored" data-anchor-id="przykład-1-badanie-opinii-wyborców"><span class="header-section-number">2.3.9.1</span> Przykład 1: Badanie opinii wyborców</h4>
 <ul>
 <li><strong>Populacja</strong>: Wszyscy zarejestrowani wyborcy w Polsce w 2023 roku (ok. 30 milionów osób)</li>
 <li><strong>Próba</strong>: 1000 losowo wybranych wyborców ankietowanych w sondażu</li>
@@ -590,8 +820,8 @@ Proces Generowania Danych (PGD) i Superpopulacja: Rozszerzenie Tradycyjnych Konc
 </ul></li>
 </ul>
 </section>
-<section id="przykład-2-badanie-efektów-leku-przeciwcukrzycowego" class="level4" data-number="2.3.4.2">
-<h4 data-number="2.3.4.2" class="anchored" data-anchor-id="przykład-2-badanie-efektów-leku-przeciwcukrzycowego"><span class="header-section-number">2.3.4.2</span> Przykład 2: Badanie efektów leku przeciwcukrzycowego</h4>
+<section id="przykład-2-badanie-efektów-leku-przeciwcukrzycowego" class="level4" data-number="2.3.9.2">
+<h4 data-number="2.3.9.2" class="anchored" data-anchor-id="przykład-2-badanie-efektów-leku-przeciwcukrzycowego"><span class="header-section-number">2.3.9.2</span> Przykład 2: Badanie efektów leku przeciwcukrzycowego</h4>
 <ul>
 <li><strong>Populacja</strong>: Wszyscy pacjenci z cukrzycą typu 2 w danym kraju (np. 2 miliony osób)</li>
 <li><strong>Próba</strong>: 500 pacjentów uczestniczących w badaniu klinicznym</li>
@@ -606,8 +836,8 @@ Proces Generowania Danych (PGD) i Superpopulacja: Rozszerzenie Tradycyjnych Konc
 </ul></li>
 </ul>
 </section>
-<section id="przykład-3-gdy-próba-równa-się-populacji" class="level4" data-number="2.3.4.3">
-<h4 data-number="2.3.4.3" class="anchored" data-anchor-id="przykład-3-gdy-próba-równa-się-populacji"><span class="header-section-number">2.3.4.3</span> Przykład 3: Gdy próba równa się populacji</h4>
+<section id="przykład-3-gdy-próba-równa-się-populacji" class="level4" data-number="2.3.9.3">
+<h4 data-number="2.3.9.3" class="anchored" data-anchor-id="przykład-3-gdy-próba-równa-się-populacji"><span class="header-section-number">2.3.9.3</span> Przykład 3: Gdy próba równa się populacji</h4>
 <p>Badanie wszystkich 50 stanów USA:</p>
 <ul>
 <li><strong>Tradycyjne podejście</strong>: Nie ma rozróżnienia między próbą a populacją (badamy wszystkie stany)</li>
@@ -619,8 +849,8 @@ Proces Generowania Danych (PGD) i Superpopulacja: Rozszerzenie Tradycyjnych Konc
 </ul></li>
 </ul>
 </section>
-<section id="przykład-4-jakość-pizzy-w-nowym-jorku" class="level4" data-number="2.3.4.4">
-<h4 data-number="2.3.4.4" class="anchored" data-anchor-id="przykład-4-jakość-pizzy-w-nowym-jorku"><span class="header-section-number">2.3.4.4</span> Przykład 4: Jakość pizzy w Nowym Jorku</h4>
+<section id="przykład-4-jakość-pizzy-w-nowym-jorku" class="level4" data-number="2.3.9.4">
+<h4 data-number="2.3.9.4" class="anchored" data-anchor-id="przykład-4-jakość-pizzy-w-nowym-jorku"><span class="header-section-number">2.3.9.4</span> Przykład 4: Jakość pizzy w Nowym Jorku</h4>
 <ul>
 <li><strong>Populacja</strong>: Wszystkie obecnie działające pizzerie w Nowym Jorku (np. 2000 lokali)</li>
 <li><strong>Próba</strong>: 50 losowo wybranych pizzerii z różnych dzielnic</li>
@@ -645,8 +875,8 @@ Proces Generowania Danych (PGD) i Superpopulacja: Rozszerzenie Tradycyjnych Konc
 <p>PGD jest jak “przepis na jakość pizzy”, który determinuje rezultaty dla wszystkich potencjalnych pizzerii w superpopulacji, nie tylko dla obecnie istniejących lokali.</p>
 </section>
 </section>
-<section id="praktyczne-znaczenie-tych-różnic" class="level3" data-number="2.3.5">
-<h3 data-number="2.3.5" class="anchored" data-anchor-id="praktyczne-znaczenie-tych-różnic"><span class="header-section-number">2.3.5</span> Praktyczne znaczenie tych różnic</h3>
+<section id="praktyczne-znaczenie-tych-różnic" class="level3" data-number="2.3.10">
+<h3 data-number="2.3.10" class="anchored" data-anchor-id="praktyczne-znaczenie-tych-różnic"><span class="header-section-number">2.3.10</span> Praktyczne znaczenie tych różnic</h3>
 <ol type="1">
 <li><strong>Wnioskowanie statystyczne</strong>:
 <ul>

@@ -515,6 +515,194 @@ Note
 <figcaption>The process of using a sample from a population to obtain a point estimate of a population parameter. In this case, a sample of 10 individuals yielded 6 who own an iPhone, resulting in an estimated population proportion of 60% iPhone owners. The actual population proportion is 53.8%. Retrieved from: https://datasciencebook.ca/inference.html</figcaption>
 </figure>
 </div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Statistical Inference: How Can a Small Sample Represent a Large Population?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When pollsters survey just 1,000 voters to predict an election with 30,000,000 voters, it seems puzzling. How can such a tiny fraction (just 0.003%) tell us about the whole?</p>
+<p>Think of it like tasting soup. When you cook a large pot of soup and stir it thoroughly, you don’t need to eat the entire pot to know how it tastes. A single spoonful is enough—as long as the soup is well-stirred.</p>
+<section id="why-random-sampling-works" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="why-random-sampling-works"><span class="header-section-number">1.3.2</span> Why Random Sampling Works</h3>
+<p>Random sampling works because:</p>
+<ol type="1">
+<li><strong>It gives everyone an equal chance</strong> of being selected, avoiding bias</li>
+<li><strong>It harnesses the power of probability</strong> to ensure the sample resembles the population</li>
+<li><strong>With enough people</strong>, the natural variations tend to balance out</li>
+</ol>
+<p>The key is randomness. If we select people truly randomly, we’re likely to get a mix that reflects the whole population. Without randomness, we might accidentally focus on one “part of the soup” that doesn’t represent the whole.</p>
+</section>
+<section id="understanding-statistical-error" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="understanding-statistical-error"><span class="header-section-number">1.3.3</span> Understanding Statistical Error</h3>
+<p>When we use a sample to learn about a population, we inevitably encounter statistical error:</p>
+<p><strong>Statistical error</strong> is the difference between our sample estimate and the true population value. We can divide it into two main types:</p>
+<ol type="1">
+<li><p><strong>Random error (sampling error)</strong>: The natural variation that occurs by chance when we select a random sample. This happens simply because we’re looking at a portion rather than the whole population.</p>
+<p><strong>Standard error</strong> is a measure of sampling error. It shows how much our sample statistics (like means or proportions) would vary if we repeatedly took different samples from the same population.</p>
+<ul>
+<li>Smaller standard errors indicate more precise estimates</li>
+<li>Standard error decreases as sample size increases (roughly proportional to 1/√n)</li>
+<li>Standard error is affected by the variability in the population</li>
+</ul></li>
+<li><p><strong>Systematic error (non-sampling error)</strong>: Occurs when our data collection methods systematically skew results in one direction. Unlike sampling error, systematic error CANNOT be reduced by increasing sample size.</p>
+<p>Sources of systematic error include:</p>
+<ul>
+<li><strong>Selection bias</strong>: When the method of selecting your sample favors certain groups (e.g., phone surveys may miss people without phones)</li>
+<li><strong>Response bias</strong>: When respondents provide inaccurate answers (e.g., over-reporting income on surveys)</li>
+<li><strong>Non-response bias</strong>: When people who refuse to participate differ from those who do</li>
+<li><strong>Measurement error</strong>: Stemming from inaccurate measuring tools or methods</li>
+</ul></li>
+</ol>
+<p>For example, if we calculate the average height from a sample, the standard error tells us how much that average might vary if we took many different random samples. However, if our measuring device is faulty and always adds 1 inch to each measurement, we have systematic error that increasing sample size won’t fix.</p>
+<p>A good study design must address both types of error:</p>
+<ul>
+<li>Sampling error can be reduced by increasing sample size</li>
+<li>Systematic error can only be reduced by improving data collection methods</li>
+</ul>
+</section>
+<section id="how-large-should-our-sample-be" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="how-large-should-our-sample-be"><span class="header-section-number">1.3.4</span> How Large Should Our Sample Be?</h3>
+<p>The necessary sample size depends on three main factors:</p>
+<ol type="1">
+<li><strong>What type of estimate are you making?</strong> (proportion or average)</li>
+<li><strong>How accurate do you need your estimate to be?</strong>
+<ul>
+<li>More accurate = larger sample</li>
+<li>Example: Estimating within ±1% requires about 9 times more people than estimating within ±3%</li>
+<li>Example: If you need to be more certain of your results (for crucial decisions), you’ll need a larger sample</li>
+</ul></li>
+<li><strong>How variable is your population?</strong>
+<ul>
+<li>For proportions: Most variable at 50%, least variable at 0% or 100%</li>
+<li>For averages: Look at how widely measurements differ in your population</li>
+</ul></li>
+</ol>
+<p><strong>Simple rules of thumb for quick estimates:</strong> * For proportions near 50%: A sample of 1,000 gives about ±3% accuracy * To double your accuracy (±1.5% instead of ±3%), you need about 4 times more people (4,000) * For averages: The more varied your population, the larger sample you’ll need * Practical example: National polls typically use 1,000-1,500 people because this balances accuracy with cost</p>
+</section>
+<section id="proportions-vs.-averages-understanding-the-differences" class="level3" data-number="1.3.5">
+<h3 data-number="1.3.5" class="anchored" data-anchor-id="proportions-vs.-averages-understanding-the-differences"><span class="header-section-number">1.3.5</span> Proportions vs.&nbsp;Averages: Understanding the Differences</h3>
+<section id="proportions-percentages" class="level4" data-number="1.3.5.1">
+<h4 data-number="1.3.5.1" class="anchored" data-anchor-id="proportions-percentages"><span class="header-section-number">1.3.5.1</span> Proportions (percentages)</h4>
+<p>When estimating a proportion (like the percentage of voters supporting a candidate):</p>
+<ul>
+<li>A proportion represents the fraction of the population with a certain characteristic</li>
+<li>We’re essentially counting “yes” vs “no” responses</li>
+<li>Sample size calculation focuses on the expected proportion (p):
+<ul>
+<li>A proportion near 50% has maximum uncertainty and requires larger samples</li>
+<li>A proportion near 10% or 90% has less uncertainty and requires smaller samples</li>
+</ul></li>
+<li>For a typical election poll with proportions near 50%, about 1,000 randomly selected people provide accuracy around ±3%</li>
+<li>Interestingly, this sample size remains the same whether your population is 30,000 or 30 million</li>
+</ul>
+</section>
+<section id="averages-means" class="level4" data-number="1.3.5.2">
+<h4 data-number="1.3.5.2" class="anchored" data-anchor-id="averages-means"><span class="header-section-number">1.3.5.2</span> Averages (means)</h4>
+<p>When estimating an average (like typical household income or height):</p>
+<ul>
+<li>An average summarizes continuous measurements that can take many different values</li>
+<li>Sample size depends primarily on how much these measurements vary from person to person</li>
+<li>Key considerations for sample size:
+<ul>
+<li>Populations with more varied measurements (high standard deviation) require larger samples</li>
+<li>More precise estimates require larger samples</li>
+<li>Unlike proportions, there is no “maximum uncertainty” at a certain value</li>
+</ul></li>
+<li>For example, estimating average income might require a larger sample than estimating average height because incomes typically vary more widely than heights</li>
+</ul>
+</section>
+</section>
+<section id="maximum-uncertainty-example-why-50-is-the-worst-case" class="level3" data-number="1.3.6">
+<h3 data-number="1.3.6" class="anchored" data-anchor-id="maximum-uncertainty-example-why-50-is-the-worst-case"><span class="header-section-number">1.3.6</span> Maximum Uncertainty Example: Why 50% is the “Worst Case”</h3>
+<p><strong>Demonstrating maximum uncertainty with coins:</strong></p>
+<p>Imagine you have 100 coins in a bag that are either gold or silver. You want to estimate what percentage are gold by randomly selecting 10 coins.</p>
+<p><strong>Scenario A: 50% Gold (Maximum Uncertainty)</strong></p>
+<ul>
+<li>The bag contains 50 gold and 50 silver coins (50% gold)</li>
+<li>If you draw 10 coins, you might see: 3 gold, 6 gold, 4 gold, etc.</li>
+<li>The results can vary widely around the true percentage</li>
+<li>Your sample might easily be off by 20% or more from the true 50%</li>
+</ul>
+<p><strong>Scenario B: 10% Gold (Less Uncertainty)</strong></p>
+<ul>
+<li>The bag contains 10 gold and 90 silver coins (10% gold)</li>
+<li>If you draw 10 coins, you’ll typically see: 0, 1, or 2 gold coins</li>
+<li>It’s unlikely you’ll draw 5 gold coins (which would be very far from the true 10%)</li>
+<li>Your estimate is naturally more stable and closer to the true percentage</li>
+</ul>
+<p>This is why we need larger samples when the proportion is close to 50% - there’s more natural variability in what we might observe by chance alone.</p>
+<p><strong>Opinion Poll Example: Popular vs.&nbsp;Unpopular Candidates</strong></p>
+<p>In an election poll with 1,000 people:</p>
+<p><strong>For a major candidate polling at 40%:</strong></p>
+<ul>
+<li>Our accuracy would be about ±3 percentage points</li>
+<li>We can estimate their support is between 37% and 43%</li>
+<li>This is precise enough to make useful predictions</li>
+</ul>
+<p><strong>For a minor candidate polling at 3%:</strong></p>
+<ul>
+<li>Our accuracy would be about ±1 percentage point (smaller than for the major candidate)</li>
+<li>We can estimate their support is between 2% and 4%</li>
+<li>This is also precise enough for practical purposes</li>
+</ul>
+<p><strong>Important clarification about accuracy:</strong></p>
+<ol type="1">
+<li><p><strong>Absolute accuracy (in percentage points):</strong></p>
+<ul>
+<li>For a minor candidate (3%): ±1 percentage point (smaller absolute error)</li>
+<li>For a major candidate (40%): ±3 percentage points (larger absolute error)</li>
+<li>This happens because proportions far from 50% (like 3%) naturally have less variability</li>
+</ul></li>
+<li><p><strong>Relative accuracy (as a proportion of the estimate):</strong></p>
+<ul>
+<li>For a minor candidate (3%): ±1 percentage point is 33% of their support level</li>
+<li>For a major candidate (40%): ±3 percentage points is only 7.5% of their support level</li>
+<li>So while the absolute error is smaller, the relative error is much larger for minor candidates</li>
+</ul></li>
+</ol>
+<p>For example, if a poll shows 3% support for a minor candidate with ±1 percentage point accuracy, their actual support could be 33% higher or lower than measured (between 2% and 4%). For a major candidate at 40% with ±3 percentage points accuracy, their actual support would only vary by 7.5% from the measured value.</p>
+<p>This explains why polls can reliably detect the presence of minor candidates and approximate their support, but might have difficulty precisely measuring small changes in their support levels. The same sample size gives different absolute accuracies depending on how close the proportion is to 50%.</p>
+<section id="why-theyre-different" class="level4" data-number="1.3.6.1">
+<h4 data-number="1.3.6.1" class="anchored" data-anchor-id="why-theyre-different"><span class="header-section-number">1.3.6.1</span> Why They’re Different?</h4>
+<p>Although a proportion can be calculated as an average of 0’s and 1’s (no/yes), they behave differently in practice:</p>
+<p><strong>For proportions (like an election poll):</strong></p>
+<ul>
+<li>Imagine flipping coins: When outcomes are close to 50-50 (like a tight election), there’s more uncertainty about the true percentage</li>
+<li>Example 1: If 500 out of 1,000 people (50%) support Candidate A, the accuracy is about ±3%</li>
+<li>Example 2: If 900 out of 1,000 (90%) support Candidate A, the accuracy is only about ±2%</li>
+<li>Example 3: In a classroom poll where 15 out of 20 students (75%) prefer pizza over burgers, the accuracy is about ±19% - much larger than with 1,000 people!</li>
+<li>The closer to 50%, the more people we need to sample to be confident in our result</li>
+</ul>
+<p><strong>For general averages (like household income):</strong></p>
+<ul>
+<li>Imagine measuring different things:
+<ul>
+<li>Heights: Most adults are between 150 cm and 195 cm (not much variation)</li>
+<li>Incomes: People might earn anywhere from $0 to millions (huge variation)</li>
+<li>Test scores: Most students score between 60-90 on a test (moderate variation)</li>
+</ul></li>
+<li>Example 1: To estimate average height within ±2,5 cm, we might need only 100 people</li>
+<li>Example 2: To estimate average income within ±$1,000, we might need 10,000 people</li>
+<li>Example 3: To estimate average test scores within ±2 points, we might need 500 people</li>
+<li>The more variation in the population, the larger sample needed for the same precision</li>
+</ul>
+<p><strong>Real-world comparison:</strong></p>
+<p>If we want the same level of accuracy (±3%):</p>
+<ul>
+<li>For a yes/no question where we expect close to 50-50 split: about 1,000 people</li>
+<li>For measuring average household energy usage: possibly 2,000-3,000 households</li>
+<li>For estimating average commute time: possibly 500-600 commuters</li>
+</ul>
+<p>The beauty of sampling is that with proper randomization, we can learn about very large populations by studying relatively small samples!</p>
+</section>
+</section>
+</div>
+</div>
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">SRS</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Stratified sampling</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Cluster sampling</a></li></ul>
 <div class="tab-content" data-group="language">
@@ -563,22 +751,22 @@ Data Generating Process (DGP) and Superpopulation: Extending Traditional Concept
 <li><strong>Sample</strong>: A subset of the population that we actually observe and analyze.</li>
 </ul>
 <p>Modern research often requires thinking beyond this dichotomous division. This is where the concepts of <strong>Data Generating Process (DGP)</strong> and <strong>superpopulation</strong> come in, deepening our understanding of data and their structure.</p>
-<section id="key-definitions" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="key-definitions"><span class="header-section-number">1.3.2</span> Key Definitions</h3>
+<section id="key-definitions" class="level3" data-number="1.3.7">
+<h3 data-number="1.3.7" class="anchored" data-anchor-id="key-definitions"><span class="header-section-number">1.3.7</span> Key Definitions</h3>
 <p><strong>Population</strong>: The set of all units that are the direct subject of our study (e.g., all adult residents of the United States).</p>
 <p><strong>Sample</strong>: A subset of the population that we actually study (e.g., 1000 randomly selected American adults).</p>
 <p><strong>Superpopulation</strong>: A theoretical concept encompassing not only observable units from the current population but all potential units that could occur under similar conditions (e.g., all possible American adults - present, future, and hypothetical).</p>
 <p><strong>Data Generating Process (DGP)</strong>: The mechanisms and factors that generate the values of observed variables in a system.</p>
 </section>
-<section id="data-generating-process-dgp" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="data-generating-process-dgp"><span class="header-section-number">1.3.3</span> Data Generating Process (DGP)</h3>
+<section id="data-generating-process-dgp" class="level3" data-number="1.3.8">
+<h3 data-number="1.3.8" class="anchored" data-anchor-id="data-generating-process-dgp"><span class="header-section-number">1.3.8</span> Data Generating Process (DGP)</h3>
 <p><strong>Formal definition</strong>: The DGP is a set of statistical and causal mechanisms responsible for producing the observed values of variables in a system, typically described using mathematical functions and probability distributions.</p>
 <p><strong>Intuitive explanation</strong>: The DGP can be viewed as a “mechanism” or “black box” that transforms causes into effects. It’s the fundamental process that produces data observed in the real world - both in our sample and in the entire population, and potentially beyond it.</p>
 </section>
-<section id="examples-illustrating-the-differences" class="level3" data-number="1.3.4">
-<h3 data-number="1.3.4" class="anchored" data-anchor-id="examples-illustrating-the-differences"><span class="header-section-number">1.3.4</span> Examples Illustrating the Differences</h3>
-<section id="example-1-voter-opinion-study" class="level4" data-number="1.3.4.1">
-<h4 data-number="1.3.4.1" class="anchored" data-anchor-id="example-1-voter-opinion-study"><span class="header-section-number">1.3.4.1</span> Example 1: Voter Opinion Study</h4>
+<section id="examples-illustrating-the-differences" class="level3" data-number="1.3.9">
+<h3 data-number="1.3.9" class="anchored" data-anchor-id="examples-illustrating-the-differences"><span class="header-section-number">1.3.9</span> Examples Illustrating the Differences</h3>
+<section id="example-1-voter-opinion-study" class="level4" data-number="1.3.9.1">
+<h4 data-number="1.3.9.1" class="anchored" data-anchor-id="example-1-voter-opinion-study"><span class="header-section-number">1.3.9.1</span> Example 1: Voter Opinion Study</h4>
 <ul>
 <li><strong>Population</strong>: All registered voters in the United States in 2023 (approx. 168 million people)</li>
 <li><strong>Sample</strong>: 1000 randomly selected voters surveyed in a poll</li>
@@ -593,8 +781,8 @@ Data Generating Process (DGP) and Superpopulation: Extending Traditional Concept
 </ul></li>
 </ul>
 </section>
-<section id="example-2-anti-diabetic-drug-study" class="level4" data-number="1.3.4.2">
-<h4 data-number="1.3.4.2" class="anchored" data-anchor-id="example-2-anti-diabetic-drug-study"><span class="header-section-number">1.3.4.2</span> Example 2: Anti-diabetic Drug Study</h4>
+<section id="example-2-anti-diabetic-drug-study" class="level4" data-number="1.3.9.2">
+<h4 data-number="1.3.9.2" class="anchored" data-anchor-id="example-2-anti-diabetic-drug-study"><span class="header-section-number">1.3.9.2</span> Example 2: Anti-diabetic Drug Study</h4>
 <ul>
 <li><strong>Population</strong>: All patients with type 2 diabetes in a given country (e.g., 35 million people)</li>
 <li><strong>Sample</strong>: 500 patients participating in a clinical trial</li>
@@ -609,8 +797,8 @@ Data Generating Process (DGP) and Superpopulation: Extending Traditional Concept
 </ul></li>
 </ul>
 </section>
-<section id="example-3-when-sample-equals-population" class="level4" data-number="1.3.4.3">
-<h4 data-number="1.3.4.3" class="anchored" data-anchor-id="example-3-when-sample-equals-population"><span class="header-section-number">1.3.4.3</span> Example 3: When Sample Equals Population</h4>
+<section id="example-3-when-sample-equals-population" class="level4" data-number="1.3.9.3">
+<h4 data-number="1.3.9.3" class="anchored" data-anchor-id="example-3-when-sample-equals-population"><span class="header-section-number">1.3.9.3</span> Example 3: When Sample Equals Population</h4>
 <p>Study of all 50 US states:</p>
 <ul>
 <li><strong>Traditional approach</strong>: No distinction between sample and population (we study all states)</li>
@@ -622,8 +810,8 @@ Data Generating Process (DGP) and Superpopulation: Extending Traditional Concept
 </ul></li>
 </ul>
 </section>
-<section id="example-4-pizza-quality-in-new-york-city" class="level4" data-number="1.3.4.4">
-<h4 data-number="1.3.4.4" class="anchored" data-anchor-id="example-4-pizza-quality-in-new-york-city"><span class="header-section-number">1.3.4.4</span> Example 4: Pizza Quality in New York City</h4>
+<section id="example-4-pizza-quality-in-new-york-city" class="level4" data-number="1.3.9.4">
+<h4 data-number="1.3.9.4" class="anchored" data-anchor-id="example-4-pizza-quality-in-new-york-city"><span class="header-section-number">1.3.9.4</span> Example 4: Pizza Quality in New York City</h4>
 <ul>
 <li><strong>Population</strong>: All currently operating pizzerias in New York City (approx. 2000 establishments)</li>
 <li><strong>Sample</strong>: 50 randomly selected pizzerias from different neighborhoods</li>
@@ -648,8 +836,8 @@ Data Generating Process (DGP) and Superpopulation: Extending Traditional Concept
 <p>The DGP is like a “recipe for pizza quality” that determines outcomes for all potential pizzerias in the superpopulation, not just currently existing establishments.</p>
 </section>
 </section>
-<section id="practical-significance-of-these-differences" class="level3" data-number="1.3.5">
-<h3 data-number="1.3.5" class="anchored" data-anchor-id="practical-significance-of-these-differences"><span class="header-section-number">1.3.5</span> Practical Significance of These Differences</h3>
+<section id="practical-significance-of-these-differences" class="level3" data-number="1.3.10">
+<h3 data-number="1.3.10" class="anchored" data-anchor-id="practical-significance-of-these-differences"><span class="header-section-number">1.3.10</span> Practical Significance of These Differences</h3>
 <ol type="1">
 <li><strong>Statistical Inference</strong>:
 <ul>
