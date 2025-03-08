@@ -45,6 +45,259 @@ Data science can be viewed as a contemporary extension of traditional statistics
 
 4. **Sampling** is the procedure of selecting individuals from a population for investigation. An unbiased sampling method gives every individual in the population an equal chance of selection, ensuring representative results.
 
+5. **Statistical inference** is the process of drawing conclusions about a population based on data from a sample. It involves using sample statistics to estimate population parameters, assess the reliability of these estimates, and test hypotheses about population characteristics.
+
+Key components of statistical inference:
+
+- Estimation: Calculating point estimates (specific values) and interval estimates (confidence intervals) for population parameters such as means, proportions, or variances.
+- Hypothesis testing: Evaluating claims about population parameters by determining the probability of obtaining the observed sample results if the claim is true.
+
+
+![The process of using a sample from a population to obtain a point estimate of a population parameter. In this case, a sample of 10 individuals yielded 6 who own an iPhone, resulting in an estimated population proportion of 60% iPhone owners. The actual population proportion is 53.8%. Retrieved from: https://datasciencebook.ca/inference.html](stat_imgs/population_vs_sample.png)
+
+
+::: {.callout-important}
+## Statistical Inference: How Can a Small Sample Represent a Large Population?
+
+When pollsters survey just 1,000 voters to predict an election with 30,000,000 voters, it seems puzzling. How can such a tiny fraction (just 0.003%) tell us about the whole?
+
+Think of it like tasting soup. When you cook a large pot of soup and stir it thoroughly, you don't need to eat the entire pot to know how it tastes. A single spoonful is enough—as long as the soup is well-stirred.
+
+### Why Random Sampling Works
+
+Random sampling works because:
+
+1. **It gives everyone an equal chance** of being selected, avoiding bias
+2. **It harnesses the power of probability** to ensure the sample resembles the population
+3. **With enough people**, the natural variations tend to balance out
+
+The key is randomness. If we select people truly randomly, we're likely to get a mix that reflects the whole population. Without randomness, we might accidentally focus on one "part of the soup" that doesn't represent the whole.
+
+### Understanding Statistical Error
+
+When we use a sample to learn about a population, we inevitably encounter statistical error:
+
+**Statistical error** is the difference between our sample estimate and the true population value. We can divide it into two main types:
+
+1. **Random error (sampling error)**: The natural variation that occurs by chance when we select a random sample. This happens simply because we're looking at a portion rather than the whole population.
+
+   **Standard error** is a measure of sampling error. It shows how much our sample statistics (like means or proportions) would vary if we repeatedly took different samples from the same population.
+   
+   * Smaller standard errors indicate more precise estimates
+   * Standard error decreases as sample size increases (roughly proportional to 1/√n)
+   * Standard error is affected by the variability in the population
+
+2. **Systematic error (non-sampling error)**: Occurs when our data collection methods systematically skew results in one direction. Unlike sampling error, systematic error CANNOT be reduced by increasing sample size.
+
+   Sources of systematic error include:
+   
+   * **Selection bias**: When the method of selecting your sample favors certain groups (e.g., phone surveys may miss people without phones)
+   * **Response bias**: When respondents provide inaccurate answers (e.g., over-reporting income on surveys)
+   * **Non-response bias**: When people who refuse to participate differ from those who do
+   * **Measurement error**: Stemming from inaccurate measuring tools or methods
+
+For example, if we calculate the average height from a sample, the standard error tells us how much that average might vary if we took many different random samples. However, if our measuring device is faulty and always adds 1 inch to each measurement, we have systematic error that increasing sample size won't fix.
+
+A good study design must address both types of error:
+
+* Sampling error can be reduced by increasing sample size
+* Systematic error can only be reduced by improving data collection methods
+
+### How Large Should Our Sample Be?
+
+The necessary sample size depends on three main factors:
+
+1. **What type of estimate are you making?** (proportion or average)
+2. **How accurate do you need your estimate to be?**
+   
+   * More accurate = larger sample
+   * Example: Estimating within ±1% requires about 9 times more people than estimating within ±3%
+   * Example: If you need to be more certain of your results (for crucial decisions), you'll need a larger sample
+   
+3. **How variable is your population?**
+   
+   * For proportions: Most variable at 50%, least variable at 0% or 100%
+   * For averages: Look at how widely measurements differ in your population
+
+**What about small populations?**
+
+When working with small populations (e.g., 1,000 people or fewer):
+
+- You can still draw a simple random sample, but the approach changes somewhat
+- For very small populations, the sample becomes a significant percentage of the total
+- A **finite population correction factor** becomes important when sampling more than 5-10% of the population
+- The good news: You can achieve the same precision with a smaller sample than you would need for a large population
+- Example: To achieve ±3 percentage points accuracy in a population of 1,000 people, you might need only about 400-500 people instead of the 1,000 needed for a very large population
+- For extremely small populations (e.g., 100 people), you might need to sample 50% or more to get reliable estimates
+
+**Methods for sampling small populations:**
+
+- Complete census (surveying everyone) becomes more feasible
+- Systematic sampling (selecting every kth person from a list)
+- Stratified sampling ensures key subgroups are proportionally represented
+
+**Simple rules of thumb for quick estimates:**
+
+* For proportions near 50%: A sample of 1,000 gives about ±3 percentage points accuracy
+* To double your accuracy (±1.5% instead of ±3%), you need about 4 times more people (4,000)
+* For averages: The more varied your population, the larger sample you'll need
+* Practical example: National polls typically use 1,000-1,500 people because this balances accuracy with cost
+
+### Proportions vs. Averages: Understanding the Differences
+
+#### Proportions (percentages)
+When estimating a proportion (like the percentage of voters supporting a candidate):
+
+- A proportion represents the fraction of the population with a certain characteristic
+- We're essentially counting "yes" vs "no" responses
+- Sample size calculation focuses on the expected proportion (p):
+  
+  * A proportion near 50% has maximum uncertainty and requires larger samples
+  * A proportion near 10% or 90% has less uncertainty and requires smaller samples
+
+- For a typical election poll with proportions near 50%, about 1,000 randomly selected people provide accuracy around ±3 percentage points
+- Interestingly, this sample size remains the same whether your population is 30,000 or 30 million
+
+#### Averages (means)
+When estimating an average (like typical household income or height):
+
+- An average summarizes continuous measurements that can take many different values
+- Sample size depends primarily on how much these measurements vary from person to person
+- Key considerations for sample size:
+  
+  * Populations with more varied measurements (high standard deviation) require larger samples
+  * More precise estimates require larger samples
+  * Unlike proportions, there is no "maximum uncertainty" at a certain value
+
+- For example, estimating average income might require a larger sample than estimating average height because incomes typically vary more widely than heights
+
+#### Regression Model Parameters
+When estimating regression model parameters (such as coefficients in linear regression):
+
+- **What is regression?** Regression models describe how one variable (the dependent variable) relates to one or more other variables (the independent variables). For example, how sales depend on advertising spend, or how crop yield depends on rainfall and temperature.
+
+- These parameters show relationships between variables, e.g., how height affects weight
+- Sample size for regression models is more complex than for simple means or proportions
+- Key factors affecting required sample size:
+  
+  * Number of variables in the model (more variables = larger sample)
+  * Strength of the effects being studied (weaker effects require larger samples to detect)
+  * Variability in the data (greater variability = larger sample)
+  * Model complexity (more complex models require larger samples)
+
+**Simple rules for regression models:**
+
+- Basic rule of thumb: at least 10-20 observations per variable in your model
+- For detecting subtle effects: may need 100+ observations per variable
+- Multilevel or hierarchical models: require substantially larger samples
+
+**How regression parameters relate to proportions or means:**
+
+- Regression parameters are more complex - they describe relationships between variables, not just single values
+- While proportions and means focus on one variable, regression analyzes interdependencies
+- Standard errors of regression parameters depend on all factors affecting mean variability, plus the correlations between variables
+
+**How to tell if your sample was too small:**
+
+- Large standard errors relative to parameter values (wide confidence intervals)
+- Instability of results - small changes in data cause large changes in parameters
+- Statistically insignificant results despite theory suggesting strong effects
+- Problems with model fit (e.g., overfitting, unstable predictions)
+- Lack of statistical power to detect effects of expected magnitude
+
+### Maximum Uncertainty Example: Why 50% is the "Worst Case"
+
+**Demonstrating maximum uncertainty with coins:**
+
+Imagine you have 100 coins in a bag that are either gold or silver. You want to estimate what percentage are gold by randomly selecting 10 coins.
+
+**Scenario A: 50% Gold (Maximum Uncertainty)**
+
+- The bag contains 50 gold and 50 silver coins (50% gold)
+- If you draw 10 coins, you might see: 3 gold, 6 gold, 4 gold, etc.
+- The results can vary widely around the true percentage
+- Your sample might easily be off by 20% or more from the true 50%
+
+**Scenario B: 10% Gold (Less Uncertainty)**
+
+- The bag contains 10 gold and 90 silver coins (10% gold)
+- If you draw 10 coins, you'll typically see: 0, 1, or 2 gold coins
+- It's unlikely you'll draw 5 gold coins (which would be very far from the true 10%)
+- Your estimate is naturally more stable and closer to the true percentage
+
+This is why we need larger samples when the proportion is close to 50% - there's more natural variability in what we might observe by chance alone.
+
+**Opinion Poll Example: Popular vs. Unpopular Candidates**
+
+In an election poll with 1,000 people:
+
+**For a major candidate polling at 40%:**
+
+- Our accuracy would be about ±3 percentage points
+- We can estimate their support is between 37% and 43%
+- This is precise enough to make useful predictions
+
+**For a minor candidate polling at 3%:**
+
+- Our accuracy would be about ±1 percentage point (smaller than for the major candidate)
+- We can estimate their support is between 2% and 4%
+- This is also precise enough for practical purposes
+
+**Important clarification about accuracy:** 
+
+1. **Absolute accuracy (in percentage points):**
+   
+   - For a minor candidate (3%): ±1 percentage point (smaller absolute error)
+   - For a major candidate (40%): ±3 percentage points (larger absolute error)
+   - This happens because proportions far from 50% (like 3%) naturally have less variability
+
+2. **Relative accuracy (as a proportion of the estimate):**
+   
+   - For a minor candidate (3%): ±1 percentage point is 33% of their support level
+   - For a major candidate (40%): ±3 percentage points is only 7.5% of their support level
+   - So while the absolute error is smaller, the relative error is much larger for minor candidates
+
+For example, if a poll shows 3% support for a minor candidate with ±1 percentage point accuracy, their actual support could be 33% higher or lower than measured (between 2% and 4%). For a major candidate at 40% with ±3 percentage points accuracy, their actual support would only vary by 7.5% from the measured value.
+
+This explains why polls can reliably detect the presence of minor candidates and approximate their support, but might have difficulty precisely measuring small changes in their support levels. The same sample size gives different absolute accuracies depending on how close the proportion is to 50%.
+
+#### Why They're Different?
+
+Although a proportion can be calculated as an average of 0's and 1's (no/yes), they behave differently in practice:
+
+**For proportions (like an election poll):**
+
+- Imagine flipping coins: When outcomes are close to 50-50 (like a tight election), there's more uncertainty about the true percentage
+- Example 1: If 500 out of 1,000 people (50%) support Candidate A, the accuracy is about ±3 percentage points
+- Example 2: If 900 out of 1,000 (90%) support Candidate A, the accuracy is only about ±2 percentage points
+- Example 3: In a classroom poll where 15 out of 20 students (75%) prefer pizza over burgers, the accuracy is about ±19 percentage points - much larger than with 1,000 people!
+- The closer to 50%, the more people we need to sample to be confident in our result
+
+**For general averages (like household income):**
+
+- Imagine measuring different things:
+  
+  * Heights: Most adults are between 150 cm and 195 cm (not much variation)
+  * Incomes: People might earn anywhere from $0 to millions (huge variation)
+  * Test scores: Most students score between 60-90 on a test (moderate variation)
+
+- Example 1: To estimate average height within ±2,5 cm, we might need only 100 people
+- Example 2: To estimate average income within ±$1,000, we might need 10,000 people
+- Example 3: To estimate average test scores within ±2 points, we might need 500 people
+- The more variation in the population, the larger sample needed for the same precision
+
+**Real-world comparison:**
+
+If we want the same level of accuracy (±3 percentage points):
+
+- For a yes/no question where we expect close to 50-50 split: about 1,000 people
+- For measuring average household energy usage: possibly 2,000-3,000 households
+- For estimating average commute time: possibly 500-600 commuters
+
+The beauty of sampling is that with proper randomization, we can learn about very large populations by studying relatively small samples!
+:::
+
+
 ::: {.panel-tabset group="language"}
 ## SRS
 **Simple Random Sampling**: Every individual has an equal probability of selection. The entire population is randomly sampled without any predetermined pattern.
@@ -166,8 +419,6 @@ The DGP is like a "recipe for pizza quality" that determines outcomes for all po
    - Superpopulation approach: Allows modeling of new, not yet observed cases
 
 Understanding the differences between these concepts is crucial for correct interpretation of research results and proper statistical inference, especially in studies involving complex social, economic, or biological systems.
-:::
-
 
 ```{mermaid}
 graph TD
@@ -188,6 +439,8 @@ graph TD
     class B pop;
     class C sam;
 ```
+
+:::
 
 
 
@@ -242,26 +495,51 @@ Such an estimator is called unbiased. Importantly, not all estimators are unbias
 
 :::
 
-![The process of using a sample from a population to obtain a point estimate of a population parameter. In this case, a sample of 10 individuals yielded 6 who own an iPhone, resulting in an estimated population proportion of 60% iPhone owners. The actual population proportion is 53.8%. Retrieved from: https://datasciencebook.ca/inference.html](stat_imgs/population_vs_sample.png)
 
 ![Various random samples of equal size and their statistics. Retrieved from: https://allmodelsarewrong.github.io/mse.html](stat_imgs/sampling-estimators.svg)
 
 
-
 ::: {.callout-note}
-# Normal Distribution - The Bell Curve
+## Normal Distribution - The Bell Curve
 
-The normal distribution (also known as the Gaussian distribution or bell curve) is one of the most important probability distributions in statistics.
+### Key Properties
 
-The normal distribution has a characteristic bell or dome-like shape - hence the popular name "bell curve." It is symmetric around the mean, which means that values above and below the mean occur with the same probability.
+- The normal distribution (also known as the Gaussian distribution or bell curve) is one of the most important probability distributions in statistics.
+- It has a characteristic bell or dome-like shape that is symmetric around the mean, meaning values above and below the mean occur with equal probability.
+- It is fully described by just two parameters:
+  - The mean $\mu$ (centers the distribution)
+  - The standard deviation $\sigma$ (determines the width of the "bell")
 
-Interestingly, the normal distribution appears in nature surprisingly often. Human height, measurement errors, test scores, and even deviations in manufacturing processes often follow this distribution.
+### Mathematical Representation
+The probability "density" function (PDF) of the normal distribution is:
 
-Most importantly, according to the Central Limit Theorem, sample means tend to follow a normal distribution, even if the original data doesn't have a normal distribution. This is precisely why the normal distribution is so fundamental to statistics and statistical inference!
+$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
+$$
 
-The normal distribution is fully described by two parameters: the mean $\mu$ (which determines the center of the distribution) and the standard deviation $\sigma$ (which determines how wide the "bell" is).
+Where:
+
+- $x$ is a random variable
+- $\mu$ is the mean (location parameter)
+- $\sigma$ is the standard deviation (scale parameter)
+- $e$ is Euler's number (approximately 2.71828)
+- $\pi$ is the mathematical constant pi (approximately 3.14159)
+
+### Practical Significance
+
+The normal distribution appears frequently in nature and human systems:
+
+- Human height and weight distributions
+- Measurement errors in scientific experiments
+- Test scores and academic performance
+- Manufacturing process variations
+
+#### Statistical Theory
+
+- **68-95-99.7 Rule**: Approximately 68% of values fall within 1 standard deviation of the mean, 95% within 2 standard deviations, and 99.7% within 3 standard deviations.
+- **Central Limit Theorem**: Sample means tend to follow a normal distribution regardless of the original distribution's shape (given a sufficiently large sample size).
+- **Statistical Inference**: Forms the foundation for many statistical tests and confidence intervals.
 :::
-
 
 ## Data and Populations
 
@@ -549,45 +827,9 @@ To conduct reliable statistical research, one should ensure:
 | **P-value** | Probability of observing the data assuming H₀ is true | p = 0.03 |
 :::
 
-## Main Components of the Research Process in Data Science
 
-### Data Collection
 
--   **Experimental methods**: Controlled studies with manipulation of variables
--   **Observational studies**: Gathering data without researcher intervention
--   **Surveys and interviews**: Collecting data directly from respondents
--   **Administrative data**: Using existing registers and databases
--   **Digital data collection**: Data from the internet, social media, IoT sensors
-
-### Data Processing and Preparation
-
--   **Data cleaning**: Identifying and correcting errors, inconsistencies, duplicates
--   **Handling missing values**: Imputation, removing observations, analyzing missingness
--   **Data transformation**: Normalization, standardization, distribution transformations
--   **Feature engineering**: Creating new variables based on existing ones
--   **Dimensionality reduction**: Simplifying data while preserving essential information
-
-### Data Analysis and Inference
-
--   **Exploratory data analysis (EDA)**: Examining data structure, detecting patterns
--   **Statistical modeling**: Building models describing relationships between variables
--   **Statistical inference**: Hypothesis testing, confidence intervals, causal inference
--   **Machine learning**: Using algorithms to automatically learn from data
--   **Interpretation of results**: Giving meaning to discovered relationships
-
-### Communication and Implementation of Results
-
--   **Data visualization**: Conveying results in graphical form
--   **Reporting**: Preparing reports, articles, presentations
--   **Decision making**: Using analysis results for practical actions
--   **Model implementation**: Implementing solutions in real systems
--   **Evaluation and monitoring**: Assessing the effectiveness of implemented solutions
-
-::: callout-note
-In practice, the research process is iterative. The results of data analysis often lead to new questions, additional data collection, or model modifications. A good researcher must be ready to cycle through these stages multiple times.
-:::
-
-## Tools for Data Science in Social Sciences
+## Tools for Data Science in Social Sciences(*)
 
 In this course, we'll use R for our data analysis, as it's widely used in social science research.
 
@@ -668,6 +910,7 @@ print(group_cors)
 
 This example demonstrates basic data manipulation, summary statistics, and visualization using R, which are common tasks in social science research.
 
+
 ## Causal Inference vs. Observational Studies
 
 In social sciences and beyond, understanding the relationship between variables is crucial. Two key approaches to this are causal inference and observational studies, each with its own strengths and limitations.
@@ -688,12 +931,12 @@ In social sciences and beyond, understanding the relationship between variables 
 -   Examples: Cohort studies, case-control studies, cross-sectional surveys
 
 ### Key Distinction: Correlation vs. Causation
+
+A fundamental principle in research is that correlation between two variables does not necessarily imply a causal relationship. This concept is crucial when interpreting results from observational studies.
 :::
 
 ::: callout-important
 ## Remember: Correlation Does Not Imply Causation
-
-A fundamental principle in research is that correlation between two variables does not necessarily imply a causal relationship. This concept is crucial when interpreting results from observational studies.
 
 -   **Correlation**: Measures the strength and direction of a relationship between variables
 -   **Causation**: Indicates that changes in one variable directly cause changes in another
@@ -963,14 +1206,8 @@ summary(model_collider)$coefficients["job_satisfaction", "Estimate"]
 
 Controlling for the collider (work-life balance) introduces a spurious correlation between job satisfaction and salary.
 
-### Conclusion
-
 Understanding spurious correlations, confounders, and colliders is crucial for proper statistical analysis and causal inference. Always consider the underlying causal structure of your data and be cautious about which variables you control for in your analyses.
 
-## Further Reading
-
--   Pearl, J. (2009). Causality: Models, Reasoning, and Inference. Cambridge University Press.
--   Hernán, M. A., & Robins, J. M. (2020). Causal Inference: What If. Boca Raton: Chapman & Hall/CRC.
 
 ## Ethical Considerations in Social Science Data Analysis
 
@@ -982,19 +1219,7 @@ Ethics play a crucial role in social science research:
 4.  **Transparency**: Clearly communicating research methods and limitations
 5.  **Social Impact**: Considering the potential societal implications of research findings
 
-::: callout-warning
-### Important
 
-Social scientists must carefully consider the ethical implications of their data collection, analysis, and dissemination practices.
-:::
-
-### Key Takeaways
-
-1.  Data science in social sciences builds upon traditional statistical methods, incorporating new technologies to analyze complex social phenomena.
-2.  Understanding concepts like population, sample, and data generating processes is crucial for valid social science research.
-3.  The data science process in social research involves multiple steps from ethical data collection to the communication of insights.
-4.  R is a powerful tool for social science data analysis, offering a wide range of capabilities.
-5.  Ethical considerations should be at the forefront of any social science data project.
 
 ## Appendix A: Classical vs Quantum Randomness: Understanding the Fundamental Differences
 
