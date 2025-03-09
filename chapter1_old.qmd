@@ -1,0 +1,1973 @@
+# Introduction to Data Science and Statistics for Social Sciences
+
+This chapter introduces students to the fundamentals of data science and statistics – knowledge areas that are essential for social science researchers.
+
+## What are Statistics and Data Science?
+
+::: callout-important
+Statistics and data science are both the art and science of extracting knowledge from data – they help us understand the world through methodical analysis of collected information.
+:::
+
+1.  Data science and statistics are key research tools that enable a better understanding of social phenomena, regardless of specialization: political science, economics, sociology, or other social sciences. They allow researchers to analyze trends, social behaviors, and effects of various policies, providing solid foundations for formulating conclusions based on empirical data.
+
+2.  Statistics provides the mathematical foundations for data analysis – teaching research design, synthesizing collected information, and testing research hypotheses. Data science extends these capabilities by integrating statistics with programming skills and domain knowledge, allowing researchers to work effectively even with complex datasets.
+
+3.  Together, these fields significantly enhance research capabilities. They enable the collection and analysis of large datasets, creation of clear visualizations of complex information, discovery of patterns in social behaviors that aren't immediately apparent, and evaluation of the effectiveness of different solutions. These skills have broad applications – from analyzing electoral processes and economic phenomena to studying social inequalities.
+
+4.  In the digital era, characterized by a rapid increase in available data, competencies in data analysis are becoming an essential element in the toolkit of contemporary researchers and social science specialists.
+
+::: callout-note
+In social sciences, data science constitutes a set of methods for solving complex research problems – combining statistical approaches, computational tools, and specialized knowledge to more effectively analyze social processes.
+:::
+
+## The Relationship Between Statistics and Data Science
+
+Statistics and data science are closely related fields with a significant overlap. Rather than treating them as completely separate disciplines, it's beneficial to view them as complementary approaches within the spectrum of data analysis methods:
+
+Data science can be viewed as a contemporary extension of traditional statistics that has evolved in response to new technological possibilities and the need to analyze increasingly complex social data.
+
+
+## Basic Concepts in Data Science and Statistics
+
+### Data and Populations – Key Concepts
+
+1.  **Data**: Information collected in the research process – these can be questionnaire responses, experimental results, economic indicators, social media content, or other measurable observations.
+
+2.  **Population**: The complete set of units (individuals, institutions, events) that the research concerns – the entire group about which the researcher wants to draw conclusions.
+
+    -   Example: In a study of electoral preferences, the population consists of all citizens eligible to vote in a given country.
+
+3. **Sample**: A subset of the population selected for study. A **representative** sample reflects the key characteristics of the target population in appropriate proportions. Effective sampling accounts for diversity across relevant variables (demographic, behavioral, etc.). In a simple random sample (SRS), each unit in the population has an equal and independent probability of selection. Sample adequacy depends on both the sampling method's **randomness** and **sufficient sample size** to minimize error.
+
+    -   Example: Instead of studying all eligible voters, researchers analyze 1,500 randomly selected individuals, taking into account the appropriate distribution of age, gender, education, and region of residence.
+
+    A properly selected sample enables inference about the entire population while significantly optimizing research resources.
+
+4. **Sampling** is the procedure of selecting individuals from a population for investigation. An unbiased sampling method gives every individual in the population an equal chance of selection, ensuring representative results.
+
+5. **Statistical inference** is the process of drawing conclusions about a population based on data from a sample. It involves using sample statistics to estimate population parameters, assess the reliability of these estimates, and test hypotheses about population characteristics.
+
+Key components of statistical inference:
+
+- Estimation: Calculating point estimates (specific values) and interval estimates (confidence intervals) for population parameters such as means, proportions, or variances.
+- Hypothesis testing: Evaluating claims about population parameters by determining the probability of obtaining the observed sample results if the claim is true.
+
+
+![The process of using a sample from a population to obtain a point estimate of a population parameter. In this case, a sample of 10 individuals yielded 6 who own an iPhone, resulting in an estimated population proportion of 60% iPhone owners. The actual population proportion is 53.8%. Retrieved from: https://datasciencebook.ca/inference.html](stat_imgs/population_vs_sample.png)
+
+
+::: {.callout-important}
+## Statistical Inference: How Can a Small Sample Represent a Large Population?
+
+When pollsters survey just 1,000 voters to predict an election with 30,000,000 voters, it seems puzzling. How can such a tiny fraction (just 0.003%) tell us about the whole?
+
+Think of it like tasting soup. When you cook a large pot of soup and stir it thoroughly, you don't need to eat the entire pot to know how it tastes. A single spoonful is enough—as long as the soup is well-stirred.
+
+### Why Random Sampling Works
+
+Random sampling works because:
+
+1. **It gives everyone an equal chance** of being selected, avoiding bias
+2. **It harnesses the power of probability** to ensure the sample resembles the population
+3. **With enough people**, the natural variations tend to balance out
+
+The key is randomness. If we select people truly randomly, we're likely to get a mix that reflects the whole population. Without randomness, we might accidentally focus on one "part of the soup" that doesn't represent the whole.
+
+### Understanding Statistical Error
+
+When we use a sample to learn about a population, we inevitably encounter statistical error:
+
+**Statistical error** is the difference between our sample estimate and the true population value. We can divide it into two main types:
+
+1. **Random error (sampling error)**: The natural variation that occurs by chance when we select a random sample. This happens simply because we're looking at a portion rather than the whole population.
+
+   **Standard error** is a measure of sampling error. It shows how much our sample statistics (like means or proportions) would vary if we repeatedly took different samples from the same population.
+   
+   * Smaller standard errors indicate more precise estimates
+   * Standard error decreases as sample size increases (roughly proportional to 1/√n)
+   * Standard error is affected by the variability in the population
+
+2. **Systematic error (non-sampling error)**: Occurs when our data collection methods systematically skew results in one direction. Unlike sampling error, systematic error CANNOT be reduced by increasing sample size.
+
+   Sources of systematic error include:
+   
+   * **Selection bias**: When the method of selecting your sample favors certain groups (e.g., phone surveys may miss people without phones)
+   * **Response bias**: When respondents provide inaccurate answers (e.g., over-reporting income on surveys)
+   * **Non-response bias**: When people who refuse to participate differ from those who do
+   * **Measurement error**: Stemming from inaccurate measuring tools or methods
+
+For example, if we calculate the average height from a sample, the standard error tells us how much that average might vary if we took many different random samples. However, if our measuring device is faulty and always adds 1 inch to each measurement, we have systematic error that increasing sample size won't fix.
+
+A good study design must address both types of error:
+
+* Sampling error can be reduced by increasing sample size
+* Systematic error can only be reduced by improving data collection methods
+
+### How Large Should Our Sample Be?
+
+The necessary sample size depends on three main factors:
+
+1. **What type of estimate are you making?** (proportion or average)
+2. **How accurate do you need your estimate to be?**
+   
+   * More accurate = larger sample
+   * Example: Estimating within ±1% requires about 9 times more people than estimating within ±3%
+   * Example: If you need to be more certain of your results (for crucial decisions), you'll need a larger sample
+
+3. **How diverse is your population?**
+   
+   * For proportions: Maximum variability occurs at 50%, minimum at 0% or 100%
+   * For means: Check how much measurements differ from each other (variance) in your study population
+
+**What about small populations?**
+
+When working with small populations (e.g., 1,000 people or fewer):
+
+- There are significant methodological differences compared to large populations
+- A simple random sample traditionally assumes sampling with replacement (with equal probability of selecting each unit)
+- In research practice, sampling without replacement is typically used, where selection probabilities change after each draw
+- The smaller the population, the greater the difference between these approaches
+- The **finite population correction factor** addresses precisely this discrepancy and becomes essential when studying more than 5-10% of the population
+
+**Explaining the difference:**
+
+- Sampling with replacement: each unit has a constant probability of selection in each draw (e.g., 1/N)
+- Sampling without replacement: selection probability changes in subsequent draws (from 1/N to 1/(N-1), 1/(N-2), etc.)
+- In large populations, the difference is minimal; in small ones - fundamental
+- Sampling without replacement schemes often have lower estimator variance than sampling with replacement
+
+**Approaches to small populations:**
+
+- Complete enumeration (census) eliminates problems associated with sampling
+- Stratification can improve representativeness but doesn't solve the issue of changing probabilities
+- Nonparametric methods that account for small population specifics
+- "Bootstrap" techniques with appropriate modifications for small populations
+
+**Practical recommendations:**
+
+* For populations under 200 units, consider a complete census
+* Use appropriate statistical formulas that account for sampling without replacement
+* Standard formulas for standard errors based on sampling with replacement will overestimate error in small populations
+* Clearly document the sampling mechanism in research reports
+
+These distinctions are crucial in studies of small communities, organizations, or pilot studies, where the impact of the sampling scheme on statistical inference is much greater than in large representative surveys.
+
+
+### Proportions vs. Averages: Understanding the Differences
+
+#### Proportions (percentages)
+When estimating a proportion (like the percentage of voters supporting a candidate):
+
+- A proportion represents the fraction of the population with a certain characteristic
+- We're essentially counting "yes" vs "no" responses
+- Sample size calculation focuses on the expected proportion (p):
+  
+  * A proportion near 50% has maximum uncertainty and requires larger samples
+  * A proportion near 10% or 90% has less uncertainty and requires smaller samples
+
+- For a typical election poll with proportions near 50%, about 1,000 randomly selected people provide accuracy around ±3 percentage points
+- Interestingly, this sample size remains the same whether your population is 30,000 or 30 million
+
+#### Averages (means)
+When estimating an average (like typical household income or height):
+
+- An average summarizes continuous measurements that can take many different values
+- Sample size depends primarily on how much these measurements vary from person to person
+- Key considerations for sample size:
+  
+  * Populations with more varied measurements (high standard deviation) require larger samples
+  * More precise estimates require larger samples
+  * Unlike proportions, there is no "maximum uncertainty" at a certain value
+
+- For example, estimating average income might require a larger sample than estimating average height because incomes typically vary more widely than heights
+
+#### Regression Model Parameters
+When estimating regression model parameters (such as coefficients in linear regression):
+
+- **What is regression?** Regression models describe how one variable (the dependent variable) relates to one or more other variables (the independent variables). For example, how sales depend on advertising spend, or how crop yield depends on rainfall and temperature.
+
+- These parameters show relationships between variables, e.g., how height affects weight
+- Sample size for regression models is more complex than for simple means or proportions
+- Key factors affecting required sample size:
+  
+  * Number of variables in the model (more variables = larger sample)
+  * Strength of the effects being studied (weaker effects require larger samples to detect)
+  * Variability in the data (greater variability = larger sample)
+  * Model complexity (more complex models require larger samples)
+
+**Simple rules for regression models:**
+
+- Basic rule of thumb: at least 10-20 observations per variable in your model
+- For detecting subtle effects: may need 100+ observations per variable
+- Multilevel or hierarchical models: require substantially larger samples
+
+**How regression parameters relate to proportions or means:**
+
+- Regression parameters are more complex - they describe relationships between variables, not just single values
+- While proportions and means focus on one variable, regression analyzes interdependencies
+- Standard errors of regression parameters depend on all factors affecting mean variability, plus the correlations between variables
+
+**How to tell if your sample was too small:**
+
+- Large standard errors relative to parameter values (wide confidence intervals)
+- Instability of results - small changes in data cause large changes in parameters
+- Statistically insignificant results despite theory suggesting strong effects
+- Problems with model fit (e.g., overfitting, unstable predictions)
+- Lack of statistical power to detect effects of expected magnitude
+
+### Maximum Uncertainty Example: Why 50% is the "Worst Case"
+
+**Demonstrating maximum uncertainty with coins:**
+
+Imagine you have 100 coins in a bag that are either gold or silver. You want to estimate what percentage are gold by randomly selecting 10 coins.
+
+**Scenario A: 50% Gold (Maximum Uncertainty)**
+
+- The bag contains 50 gold and 50 silver coins (50% gold)
+- If you draw 10 coins, you might see: 3 gold, 6 gold, 4 gold, etc.
+- The results can vary widely around the true percentage
+- Your sample might easily be off by 20% or more from the true 50%
+
+**Scenario B: 10% Gold (Less Uncertainty)**
+
+- The bag contains 10 gold and 90 silver coins (10% gold)
+- If you draw 10 coins, you'll typically see: 0, 1, or 2 gold coins
+- It's unlikely you'll draw 5 gold coins (which would be very far from the true 10%)
+- Your estimate is naturally more stable and closer to the true percentage
+
+This is why we need larger samples when the proportion is close to 50% - there's more natural variability in what we might observe by chance alone.
+
+**Opinion Poll Example: Popular vs. Unpopular Candidates**
+
+In an election poll with 1,000 people:
+
+**For a major candidate polling at 40%:**
+
+- Our accuracy would be about ±3 percentage points
+- We can estimate their support is between 37% and 43%
+- This is precise enough to make useful predictions
+
+**For a minor candidate polling at 3%:**
+
+- Our accuracy would be about ±1 percentage point (smaller than for the major candidate)
+- We can estimate their support is between 2% and 4%
+- This is also precise enough for practical purposes
+
+**Important clarification about accuracy:** 
+
+1. **Absolute accuracy (in percentage points):**
+   
+   - For a minor candidate (3%): ±1 percentage point (smaller absolute error)
+   - For a major candidate (40%): ±3 percentage points (larger absolute error)
+   - This happens because proportions far from 50% (like 3%) naturally have less variability
+
+2. **Relative accuracy (as a proportion of the estimate):**
+   
+   - For a minor candidate (3%): ±1 percentage point is 33% of their support level
+   - For a major candidate (40%): ±3 percentage points is only 7.5% of their support level
+   - So while the absolute error is smaller, the relative error is much larger for minor candidates
+
+For example, if a poll shows 3% support for a minor candidate with ±1 percentage point accuracy, their actual support could be 33% higher or lower than measured (between 2% and 4%). For a major candidate at 40% with ±3 percentage points accuracy, their actual support would only vary by 7.5% from the measured value.
+
+This explains why polls can reliably detect the presence of minor candidates and approximate their support, but might have difficulty precisely measuring small changes in their support levels. The same sample size gives different absolute accuracies depending on how close the proportion is to 50%.
+
+#### Why They're Different?
+
+Although a proportion can be calculated as an average of 0's and 1's (no/yes), they behave differently in practice:
+
+**For proportions (like an election poll):**
+
+- Imagine flipping coins: When outcomes are close to 50-50 (like a tight election), there's more uncertainty about the true percentage
+- Example 1: If 500 out of 1,000 people (50%) support Candidate A, the accuracy is about ±3 percentage points
+- Example 2: If 900 out of 1,000 (90%) support Candidate A, the accuracy is only about ±2 percentage points
+- Example 3: In a classroom poll where 15 out of 20 students (75%) prefer pizza over burgers, the accuracy is about ±19 percentage points - much larger than with 1,000 people!
+- The closer to 50%, the more people we need to sample to be confident in our result
+
+**For general averages (like household income):**
+
+- Imagine measuring different things:
+  
+  * Heights: Most adults are between 150 cm and 195 cm (not much variation)
+  * Incomes: People might earn anywhere from $0 to millions (huge variation)
+  * Test scores: Most students score between 60-90 on a test (moderate variation)
+
+- Example 1: To estimate average height within ±2,5 cm, we might need only 100 people
+- Example 2: To estimate average income within ±$1,000, we might need 10,000 people
+- Example 3: To estimate average test scores within ±2 points, we might need 500 people
+- The more variation in the population, the larger sample needed for the same precision
+
+**Real-world comparison:**
+
+If we want the same level of accuracy (±3 percentage points):
+
+- For a yes/no question where we expect close to 50-50 split: about 1,000 people
+- For measuring average household energy usage: possibly 2,000-3,000 households
+- For estimating average commute time: possibly 500-600 commuters
+
+The beauty of sampling is that with proper randomization, we can learn about very large populations by studying relatively small samples!
+:::
+
+
+::: {.panel-tabset group="language"}
+## SRS
+**Simple Random Sampling**: Every individual has an equal probability of selection. The entire population is randomly sampled without any predetermined pattern.
+
+![Simple Random Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Simple_Random_Sampling2.svg)
+
+## Stratified sampling
+**Stratified Sampling**: The population is divided into distinct subgroups (strata) before random samples are drawn from each stratum proportionally.
+
+![Stratified Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Stratified2.svg)
+
+## Cluster sampling
+**Cluster Sampling**: The population is divided into clusters, and entire clusters are randomly selected for analysis rather than individuals.
+
+![Cluster Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Cluster2.svg)
+
+:::
+
+
+::: {.callout-note}
+## Data Generating Process and Superpopulation in the Context of Statistical Research
+
+In statistics and econometrics, we often use the concepts of population and sample. However, for a complete understanding of statistical models, it's worth introducing two additional concepts: **data generating process (DGP)** and **superpopulation**. These concepts will help us better understand how the data we analyze is generated.
+
+### Basic Concepts
+
+**Population**: The set of all units (people, firms, countries, etc.) that are the subject of our study. For example, all households in the United States.
+
+**Sample**: A subset of the population that we study to draw conclusions about the entire population. For example, 1000 randomly selected households in the United States.
+
+### Data Generating Process (DGP)
+
+**Data Generating Process** is a mechanism or stochastic (random) model that determines how the values of variables we observe are generated.
+
+Key features of DGP:
+
+- It is an abstract, mathematical model describing how variables are related to each other
+- It contains both deterministic (predictable) and random (unpredictable) elements
+- It is usually expressed using equations and probability distributions
+
+#### Example of DGP:
+Let's assume we're studying household incomes. The DGP model (a mathematical equation) could look like this:
+
+$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \varepsilon_i$
+
+Where:
+
+- $Y_i$ is the income of household $i$
+- $X_{1i}$ is the number of employed people in household $i$
+- $X_{2i}$ is the education level of the main earner in household $i$
+- $\varepsilon_i$ is a random factor (error)
+- $\beta_0, \beta_1, \beta_2$ are model parameters
+
+In this example, the DGP determines how income depends on the number of working people and education, plus a random element.
+
+### Superpopulation
+
+**Superpopulation** is a hypothetical, infinite population from which our actual population can be treated as a sample.
+
+Key features of superpopulation:
+
+- It is a conceptual extension of the population concept
+- It represents all possible realizations of the data generating process (DGP)
+- It allows for inference not only about the current population but about general regularities
+
+#### Examples of superpopulation:
+1. We are studying SAT results in the United States in 2024 (population). The superpopulation is the hypothetical SAT results of all possible students who could take the SAT in similar conditions in any year.
+
+2. We are analyzing the GDP of European countries in 2023 (population). The superpopulation is all possible realizations of these countries' GDP under different economic conditions.
+
+### Relationships Between Concepts
+
+```
+DGP → Superpopulation → Population → Sample
+```
+
+- **DGP** defines the mechanism of data generation
+- **Superpopulation** is all possible realizations of DGP
+- **Population** is a specific, finite realization from the superpopulation
+- **Sample** is a subset of the population that we actually observe and analyze
+
+### Practical Significance
+
+#### Why are these concepts important?
+
+1. **Econometric modeling** - DGP is the foundation of econometric modeling, allowing us to understand how economic variables affect each other.
+
+2. **Statistical inference** - The concept of superpopulation allows for formulating general conclusions that go beyond a specific time or group.
+
+3. **Forecasting** - Understanding DGP enables better forecasting of future values of economic variables.
+
+4. **Hypothesis testing** - It helps better determine whether observed relationships are due to chance or reflect actual regularities.
+
+### Example of Application in Economics
+
+Let's assume an economist is studying the impact of interest rates on inflation:
+
+- **DGP**: Equation describing how interest rates and other factors affect inflation
+- **Superpopulation**: All possible inflation values at different levels of interest rates and other factors
+- **Population**: Actual inflation values in all countries during a given period
+- **Sample**: Inflation data from 30 selected countries that we study
+
+### Examples from Electoral Studies
+
+**Example 1: Voter Turnout**
+
+- **DGP**: $Turnout_i = \beta_0 + \beta_1 Age_i + \beta_2 Education_i + \beta_3 Income_i + \varepsilon_i$
+- **Superpopulation**: All possible decisions to participate in elections that voters with different socio-demographic characteristics could make under different conditions
+- **Population**: All eligible voters in the 2020 presidential election
+- **Sample**: 1500 respondents of an exit poll after the election
+
+**Example 2: Support for Political Parties**
+
+- **DGP**: $Support_{ij} = \beta_0 + \beta_1 Ideology_i + \beta_2 EconomicSituation_i + \beta_3 Age_i + \varepsilon_i$
+- **Superpopulation**: All possible electoral preferences of people with different characteristics in different socio-economic conditions
+- **Population**: All voters in the United States in 2023
+- **Sample**: Pre-election survey respondents (n=1000)
+
+### Simulation and Estimation of a Demand Function as DGP in R
+
+The following code illustrates how to simulate a demand function with multiple predictors as a DGP and estimate its parameters using OLS regression:
+
+```{r}
+#| warning: false
+#| message: false
+
+# Loading required packages
+library(tidyverse)
+
+# Setting random seed for reproducible results
+set.seed(123)
+
+# 1. Defining the "true" DGP: Product demand function
+# Model: Q = beta0 + beta1*P + beta2*I + beta3*P_sub + beta4*P_comp + beta5*A + epsilon
+# Where:
+# Q = quantity demanded
+# P = product price
+# I = consumer income
+# P_sub = price of substitute good
+# P_comp = price of complementary good
+# A = advertising expenditure
+
+# True parameter values (consistent with economic theory)
+beta0_true <- 100      # Constant
+beta1_true <- -2.5     # Own price effect (negative - according to the law of demand)
+beta2_true <- 0.8      # Income effect (positive - normal good)
+beta3_true <- 1.2      # Substitute price effect (positive)
+beta4_true <- -0.7     # Complementary good price effect (negative)
+beta5_true <- 0.5      # Advertising effect (positive)
+sigma_true <- 5        # Standard deviation of random error
+
+# 2. Simulating superpopulation (5000 potential markets/periods)
+n_super <- 5000
+
+# Generating predictors
+price <- runif(n_super, min = 5, max = 15)             # Product price ($)
+income <- rnorm(n_super, mean = 3000, sd = 500)        # Average income ($)
+price_substitute <- runif(n_super, min = 4, max = 16)  # Substitute price ($)
+price_complement <- runif(n_super, min = 2, max = 8)   # Complement price ($)
+advertising <- runif(n_super, min = 0, max = 100)      # Advertising expenditure ($1000s)
+
+# Adding correlation between variables (e.g., price and substitute price)
+price_substitute <- price_substitute + rnorm(n_super, mean = 0.2 * price, sd = 1)
+
+# Generating demand according to DGP
+epsilon <- rnorm(n_super, mean = 0, sd = sigma_true)  # Random component
+demand <- beta0_true + 
+         beta1_true * price + 
+         beta2_true * (income/1000) +  # scaling income for better interpretation
+         beta3_true * price_substitute + 
+         beta4_true * price_complement + 
+         beta5_true * (advertising/10) +   # scaling advertising for better interpretation
+         epsilon
+
+# Creating superpopulation data frame
+superpopulation <- tibble(
+  id = 1:n_super,
+  price = price,
+  income = income,
+  price_substitute = price_substitute,
+  price_complement = price_complement,
+  advertising = advertising,
+  demand = demand
+)
+
+# Show first few observations
+head(superpopulation)
+
+# 3. Drawing a sample from superpopulation (e.g., 200 observations)
+n_sample <- 200
+sample_indices <- sample(1:n_super, n_sample)
+sample_data <- superpopulation[sample_indices, ]
+
+# 4. Estimating OLS model based on the sample
+ols_model <- lm(demand ~ price + I(income/1000) + price_substitute + 
+                price_complement + I(advertising/10), data = sample_data)
+
+# 5. Displaying model summary
+summary(ols_model)
+
+# 6. Comparing true parameters with estimated ones
+true_parameters <- c(beta0_true, beta1_true, beta2_true, 
+                     beta3_true, beta4_true, beta5_true)
+estimated_parameters <- coef(ols_model)
+
+comparison <- tibble(
+  parameter = c("Intercept", "Price", "Income (thousands)", "Substitute price", 
+               "Complement price", "Advertising (10 thousands)"),
+  true_value = true_parameters,
+  estimated_value = estimated_parameters,
+  difference = estimated_value - true_value,
+  percent_error = abs(difference / true_value) * 100
+)
+
+# Display comparison
+print(comparison)
+
+# 7. Visualizing comparison of true and estimated parameters
+ggplot(comparison, aes(x = parameter, y = true_value)) +
+  geom_point(color = "blue", size = 3) +
+  geom_point(aes(y = estimated_value), color = "red", size = 3) +
+  geom_segment(aes(xend = parameter, y = true_value, 
+                   yend = estimated_value), color = "gray") +
+  labs(title = "Comparison of True DGP with Estimated Model",
+       subtitle = "Blue points: true values, Red points: estimated values",
+       x = "Parameter", y = "Value") +
+  theme_minimal() +
+  coord_flip()
+
+# 8. Checking model's predictive ability on new data
+# We draw new data from superpopulation (not used in estimation)
+new_indices <- sample(setdiff(1:n_super, sample_indices), 100)
+new_data <- superpopulation[new_indices, ]
+
+# Prediction on new data
+new_data$predicted_demand <- predict(ols_model, newdata = new_data)
+
+# Calculating mean squared error (MSE) of prediction
+mse <- mean((new_data$demand - new_data$predicted_demand)^2)
+rmse <- sqrt(mse)
+cat("Root Mean Squared Error (RMSE):", round(rmse, 2), "\n")
+
+# 9. Visualizing relationship between price and demand
+# (ceteris paribus effect - controlling for other variables)
+ceteris_paribus <- tibble(
+  price = seq(5, 15, length.out = 100),
+  income = mean(sample_data$income),
+  price_substitute = mean(sample_data$price_substitute),
+  price_complement = mean(sample_data$price_complement),
+  advertising = mean(sample_data$advertising)
+)
+
+# Calculating predicted demand according to true DGP
+ceteris_paribus$true_demand <- beta0_true + 
+                              beta1_true * ceteris_paribus$price + 
+                              beta2_true * (ceteris_paribus$income/1000) + 
+                              beta3_true * ceteris_paribus$price_substitute + 
+                              beta4_true * ceteris_paribus$price_complement + 
+                              beta5_true * (ceteris_paribus$advertising/10)
+
+# Calculating predicted demand according to estimated model
+ceteris_paribus$estimated_demand <- predict(ols_model, newdata = ceteris_paribus)
+
+# Visualization
+ggplot(ceteris_paribus, aes(x = price)) +
+  geom_line(aes(y = true_demand, color = "True DGP"), size = 1.2) +
+  geom_line(aes(y = estimated_demand, color = "Estimated model"), size = 1.2) +
+  scale_color_manual(values = c("True DGP" = "blue", "Estimated model" = "red")) +
+  labs(title = "Demand Curve: True DGP vs. Estimated Model",
+       subtitle = "Ceteris paribus effect (with other variables held constant)",
+       x = "Product price ($)",
+       y = "Demand (quantity)",
+       color = "Model") +
+  theme_minimal()
+```
+
+This code demonstrates:
+
+1. Defining a complex DGP for a demand function with multiple predictors consistent with economic theory
+2. Simulating a superpopulation according to this DGP
+3. Drawing a sample from the superpopulation
+4. Estimating model parameters using OLS regression
+5. Comparing estimated parameters with their true values
+6. Visualizing the comparison of true and estimated parameters
+7. Checking the model's predictive ability on new data
+8. Visualizing the relationship between price and demand with ceteris paribus effect
+
+This example shows how we can simulate complex economic relationships and then use econometric methods to discover these relationships based on a sample of data. It is an excellent illustration of how economic theory, DGP, and statistical methods are interconnected.
+
+In reality, we never know the true DGP - that's exactly what we're trying to discover through statistical analysis. Simulations of this type, however, allow us to conceptually understand how statistical inference connects with the concept of DGP and superpopulation.
+
+
+### Supplementary Examples
+
+#### Example 1: Voter Opinion Study
+- **Population**: All registered voters in the United States in 2023 (approx. 168 million people)
+- **Sample**: 1000 randomly selected voters surveyed in a poll
+- **Superpopulation**: All possible voters (present, future, and hypothetical) and all possible voting scenarios
+- **DGP** (Data Generating Process): Complex mechanism shaping opinions and voting decisions, including:
+  - Demographic factors (age, education, place of residence)
+  - Economic conditions (income, employment status)
+  - Media influence and public debate
+  - Personal experiences
+  - Historical political conditions
+
+#### Example 2: Anti-diabetic Drug Effects Study
+- **Population**: All patients with type 2 diabetes in a given country (e.g., 34 million people)
+- **Sample**: 500 patients participating in a clinical trial
+- **Superpopulation**: All possible type 2 diabetes patients (present and future) with various genetic and environmental profiles
+- **DGP**: Biological mechanism including:
+  - Drug interactions with receptors in the body
+  - Individual genetic factors
+  - Environmental factors (diet, physical activity)
+  - Interactions with other medications
+  - Metabolic mechanisms of the organism
+
+#### Example 3: When Sample Equals Population
+Study of all 50 US states:
+- **Traditional approach**: No distinction between sample and population (we study all states)
+- **Superpopulation approach**:
+  - **Population/Sample**: 50 existing US states
+  - **Superpopulation**: Theoretical set of all possible territorial units of the "state" type under different historical, political, and social conditions
+  - **DGP**: Fundamental geographic, historical, political, and socio-economic mechanisms shaping state characteristics
+
+#### Example 4: Pizza Quality in New York City
+- **Population**: All currently operating pizzerias in New York City (e.g., 2000 establishments)
+- **Sample**: 50 randomly selected pizzerias from different neighborhoods
+- **Superpopulation**: All possible pizzerias that could exist in New York City:
+  - Currently operating
+  - Future (not yet opened)
+  - Historical (already closed)
+  - Hypothetical (in alternative economic or cultural conditions)
+- **DGP**: Factors affecting pizza quality:
+  - Ingredients and their quality
+  - Skills and experience of chefs
+  - Kitchen equipment and infrastructure
+  - Preparation methods and recipes
+  - Environmental factors (e.g., local water quality)
+  - Cultural influences and culinary traditions
+  - Economic conditions (operating costs, rent)
+
+DGP is like a "recipe for pizza quality" that determines outcomes for all potential pizzerias in the superpopulation, not just currently existing establishments.
+
+```{mermaid}
+graph TD
+    A[Data Generating Process DGP]
+    S(Superpopulation)
+    B(Population)
+    C[Sample]
+    A -->|Generates| S
+    S -->|One realization| B
+    B -->|Sampling| C
+    C -.->|Inference| B
+    C -.->|Inference| S
+    C -.->|Inference| A
+    B -.->|Inference| S
+    B -.->|Inference| A
+    S -.->|Inference| A
+    
+    classDef dgp fill:#f9f,stroke:#333,stroke-width:4px;
+    classDef superpop fill:#fce,stroke:#333,stroke-width:3px;
+    classDef pop fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef sam fill:#bfb,stroke:#333,stroke-width:2px;
+    
+    class A dgp;
+    class S superpop;
+    class B pop;
+    class C sam;
+```
+
+:::
+
+
+::: {.callout-important}
+## Population Parameter ($\theta$)
+
+A numerical value characterizing a specific feature of the entire population. Examples of population parameters include:
+
+- $\mu$ (population mean)
+- $\sigma^2$ (population variance)
+- $\sigma$ (population standard deviation)
+- $p$ (population proportion)
+
+Population parameters are usually unknown and are the subject of estimation based on a sample.
+
+## Distribution of the Sample Statistic ($\hat{\theta}$)
+
+A **sample statistic** $\hat{\theta}$ is a value calculated from sample observations that is used to estimate the population parameter $\theta$. The distribution of the statistic describes how the values of this statistic vary when repeatedly drawing samples of the same size $n$ from the same population.
+
+The distribution of a statistic refers to the probability distribution that describes all possible values the statistic might take when calculated from different random samples drawn from the same population, along with the probability of obtaining each value.
+
+To explain more clearly:
+
+When we take a sample from a population and calculate a statistic (like a sample mean), we get one specific value. But if we were to repeat this process many times—taking different random samples of the same size from the same population—we would get different values of the statistic each time. The distribution of the statistic describes this pattern of variability.
+
+Key points about the distribution of a statistic:
+
+1. It shows how the statistic varies from sample to sample
+2. It helps us understand sampling error and uncertainty
+3. It allows us to make probabilistic statements about how close our estimate is to the true population parameter
+4. It forms the foundation for statistical inference, including confidence intervals and hypothesis testing
+
+Example: If we are interested in the population mean $\mu$, its estimator is the sample mean $\bar{x}$. The distribution of the statistic $\bar{x}$ shows what values the sample mean can take and with what probability. Under certain conditions, this distribution approaches a "normal distribution" as sample size increases (according to the Central Limit Theorem), even if the original population distribution isn't "normal".
+
+We can represent this formally as follows:
+$$\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i$$
+
+where $x_1, x_2, ..., x_n$ are observations in a random sample.
+
+## Expected Value of the Sample Statistic
+
+The expected value of a sample statistic $E(\hat{\theta})$ is the average value that the statistic takes when repeatedly drawing samples from the population.
+
+There are important theorems in statistics that guarantee that for well-constructed estimators, the expected value of the statistic equals the parameter we want to estimate. This results from the linearity property of expected value and the independence of observations in a random sample. Speaking more informally - "good" estimators are constructed so that they "on average" hit the target, meaning:
+
+$$E(\hat{\theta}) = \theta$$
+
+For example, for the sample mean, we can prove that:
+$$E(\bar{x}) = E\left(\frac{1}{n}\sum_{i=1}^{n}x_i\right) = \frac{1}{n}\sum_{i=1}^{n}E(x_i) = \frac{1}{n} \cdot n \cdot \mu = \mu$$
+
+Such an estimator is called unbiased. Importantly, not all estimators are unbiased - some have systematic deviation, e.g., the variance estimator $s^2$ must include a correction $\frac{1}{n-1}$ instead of $\frac{1}{n}$ to be unbiased.
+
+:::
+
+
+![Various random samples of equal size and their statistics. Retrieved from: https://allmodelsarewrong.github.io/mse.html](stat_imgs/sampling-estimators.svg)
+
+
+::: {.callout-note}
+## Normal Distribution - The Bell Curve
+
+### Key Properties
+
+- The normal distribution (also known as the Gaussian distribution or bell curve) is one of the most important probability distributions in statistics.
+- It has a characteristic bell or dome-like shape that is symmetric around the mean, meaning values above and below the mean occur with equal probability.
+- It is fully described by just two parameters:
+  - The mean $\mu$ (centers the distribution)
+  - The standard deviation $\sigma$ (determines the width of the "bell")
+
+### Mathematical Representation
+The probability "density" function (PDF) of the normal distribution is:
+
+$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
+$$
+
+Where:
+
+- $x$ is a random variable
+- $\mu$ is the mean (location parameter)
+- $\sigma$ is the standard deviation (scale parameter)
+- $e$ is Euler's number (approximately 2.71828)
+- $\pi$ is the mathematical constant pi (approximately 3.14159)
+
+### Practical Significance
+
+The normal distribution appears frequently in nature and human systems:
+
+- Human height and weight distributions
+- Measurement errors in scientific experiments
+- Test scores and academic performance
+- Manufacturing process variations
+
+#### Statistical Theory
+
+- **68-95-99.7 Rule**: Approximately 68% of values fall within 1 standard deviation of the mean, 95% within 2 standard deviations, and 99.7% within 3 standard deviations.
+- **Central Limit Theorem**: Sample means tend to follow a normal distribution regardless of the original distribution's shape (given a sufficiently large sample size).
+- **Statistical Inference**: Forms the foundation for many statistical tests and confidence intervals.
+:::
+
+## Data and Populations
+
+Data forms the foundation of statistical analysis. To better understand its role, it's important to familiarize yourself with key concepts.
+
+### Types of Data
+
+-   **Primary data**: Collected directly for a specific research purpose, e.g., conducting your own survey
+-   **Secondary data**: Obtained from existing sources, e.g., databases or publications by other researchers
+
+::: callout-note
+## Population and Sample - Fundamental Distinction
+
+-   **Population**: The complete set of all elements/units about which we want to draw conclusions (e.g., all adult citizens of a country)
+-   **Sample**: A subset of the population that we actually study (e.g., 1000 randomly selected adult citizens)
+
+In research practice, we almost always analyze a sample and then make inferences about the population.
+:::
+
+### Variables and Constants
+
+**Variables** are characteristics that can take on different values in a dataset. They are the objects of our research and analysis.
+
+#### Classification of Variables
+
+1.  **Quantitative Variables**:
+    -   **Continuous**: Can take any value within a specific range, e.g., height, weight, temperature
+    -   **Discrete**: Take only specific values (usually integers), e.g., number of children, number of errors
+2.  **Qualitative Variables**:
+    -   **Nominal**: Categories with no natural order, e.g., blood type, gender, region
+    -   **Ordinal**: Categories with a natural order, e.g., education level (primary, secondary, higher), Likert scale (1-5)
+
+**Constants** are values that remain unchanged throughout the analysis and often serve as reference points.
+
+## Population Parameters and Related Concepts - Key Distinctions
+
+In statistics, there are several similar-sounding concepts that are often confused. Below is a clear distinction between them:
+
+### Population Parameter and Estimand
+
+**Population parameter** is a numerical value describing a characteristic of the entire population. Key features:
+
+1.  It concerns the *entire* population, not just a sample
+2.  Usually denoted by Greek letters (μ, σ, π, ρ)
+3.  In most cases remains **unknown** (we cannot study the entire population)
+4.  Is determined by the actual Data Generating Process (DGP)
+
+**Estimand** is a specific population parameter or function of parameters that we want to estimate. It is the *goal of our estimation*.
+
+Examples of population parameters:
+
+-   Population mean (μ): The true average value of a characteristic in the population
+-   Population variance (σ²): The true measure of variability in the population
+-   Population proportion (p): The true proportion of units in the population having a certain characteristic
+
+::: callout-important
+## Important distinction!
+
+The estimand (population parameter) is a value in the population that we want to know but that remains unknown to us. It is our research target.
+:::
+
+### Estimator (Statistic)
+
+**Estimator** is a mathematical function (formula, procedure) that provides an estimate of a population parameter based on sample data. **An estimator is a random variable** because its value depends on the specific sample.
+
+**Statistic** is any measure calculated from sample data. When a statistic is used to estimate a population parameter, we call it an estimator.
+
+Examples of estimators (statistics):
+
+-   Sample mean: $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ (estimator of population mean μ)
+-   Sample variance: $s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$ (estimator of population variance σ²)
+-   Sample proportion: $\hat{p} = \frac{x}{n}$ (estimator of population proportion p)
+
+::: callout-note
+## Estimator as a procedure
+
+An estimator should be understood as a **recipe** for calculating a value based on a sample. The same estimator applied to different samples will yield different results.
+
+Example: The mean estimator $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ is a procedure of "sum all values and divide by their count."
+:::
+
+### Estimate
+
+**Estimate** is a specific numerical value obtained after applying an estimator to a particular sample. It is a single number, being a realization of the random variable that is the estimator.
+
+::: callout-tip
+## Example distinguishing these concepts
+
+-   **Estimand**: Average height of all adults in a country (μ) - unknown value
+-   **Estimator**: Formula for sample mean $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ - computational procedure
+-   **Estimate**: 173.5 cm - specific value obtained from a sample
+
+Different samples will give different estimates of the same estimand using the same estimator.
+:::
+
+### Properties of Estimators
+
+A good estimator should have favorable statistical properties:
+
+1.  **Unbiasedness**: An estimator is unbiased if its expected value (average from many samples) equals the estimand. Formally: E(θ̂) = θ
+
+2.  **Efficiency**: An estimator is efficient if it has the smallest possible variance among all unbiased estimators
+
+3.  **Consistency**: An estimator is consistent if, as the sample size increases, its value approaches the true value of the parameter
+
+4.  **Sufficiency**: An estimator is sufficient if it uses all available information from the sample regarding the parameter being estimated
+
+## Statistical Models and Inference
+
+### Statistical Models
+
+A statistical model is a mathematical representation of reality that describes relationships between variables and the structure of data. It allows for describing the data generating process (DGP) and making inferences about parameters.
+
+::: callout-note
+# Components of a Statistical Model
+
+A statistical model is a mathematical framework used to represent relationships in data and make predictions. A complete statistical model consists of:
+
+1. **Functional form**: The mathematical structure that defines the relationship between variables (e.g., linear, quadratic, exponential, logarithmic)
+
+2. **Variables**: 
+   - Dependent variable(s): What we're trying to predict or explain
+   - Independent/explanatory variables: Factors that might influence the dependent variable
+
+3. **Parameters**: Unknown values we estimate from data that quantify the relationship between variables (e.g., regression coefficients, means, variances)
+
+4. **Random component**: The error term or stochastic element that accounts for uncertainty and variability not explained by the model
+
+5. **Probability distribution assumptions**: Specifications about how the random component is distributed (e.g., normal, Poisson, binomial)
+:::
+
+Example of a linear regression model: $y = \beta_0 + \beta_1x + \epsilon$, where $\epsilon \sim N(0, \sigma^2)$
+
+In this model:
+
+- $\beta_0$ and $\beta_1$ are parameters (estimands) we want to estimate
+- $\epsilon$ is a random component representing unexplained variability
+- We assume normality of the distribution of random errors
+
+### Causal vs. Predictive Inference
+
+In statistical analysis, we may have two main goals:
+
+1.  **Causal inference**: Determining whether variable X *causes* a change in variable Y
+    -   Requires additional assumptions or special research designs
+    -   Enables predicting the effects of interventions
+2.  **Predictive inference**: Predicting Y values based on X
+    -   Does not need to assume a causal relationship
+    -   Focuses on prediction accuracy
+
+::: callout-warning
+## Correlation ≠ Causation
+
+In statistics, a spurious relationship or spurious correlation is a mathematical relationship in which two or more events or variables are associated but not causally related, due to either coincidence or the presence of a certain third, unseen factor (referred to as a "common response variable", "confounding factor", or "lurking variable").
+
+One of the most common errors in statistics is interpreting correlation as evidence of causation. Two variables can be strongly correlated because of:
+
+1.  A confounding variable that affects both variables
+2.  Reverse causality (Y affects X, not the other way around)
+3.  Chance (spurious correlation)
+:::
+
+### Challenges of Causal Inference
+
+The fundamental problem of causal inference is the impossibility of observing **counterfactuals** (alternative scenarios). For a given unit, we can observe only one potential outcome.
+
+![The fundamental problem of causal inference: We can think of causal inference as a PREDICTION problem. How can we predict the counterfactual given that we never observe it?](stat_imgs/meme_horse.svg){fig-align="center"}
+
+Example:
+
+- We observe a person who completed college and earns \$8,000 per month
+- We cannot observe how much the same person would earn if they had not completed college
+
+Causal methods attempt to solve this problem through: 1. Randomized experiments 2. Instrumental variables 3. Matching methods 4. Regression discontinuity analysis 5. Difference-in-differences
+
+Causal inference is complicated by various issues, such as:
+
+![Confounding bias and spurious correlation: drinking the night before is a common cause of sleeping with shoes on and waking up with a headache](stat_imgs/IMG_4337.jpg){fig-align="center"}
+
+![Reverse causality](stat_imgs/ff13-23.png){fig-align="center"}
+
+## Statistical Inference
+
+Statistical inference is the process of drawing conclusions about a population based on sample data. It encompasses two main areas:
+
+### 1. Estimation
+
+Estimation is the process of estimating unknown population parameters based on sample data. We distinguish:
+
+-   **Point estimation**: We provide a single value (estimate) as the best approximation of the parameter
+-   **Interval estimation**: We construct a confidence interval that indicates the range of possible parameter values consistent with our data
+
+Example of a confidence interval: "The 95% confidence interval for the average height of adults is (173 cm, 175 cm)."
+
+**Correct interpretation of confidence interval**: If we were to repeatedly take samples from the same population and for each of them construct a 95% confidence interval using the same method, about 95% of the intervals constructed this way would contain the true population parameter value.
+
+**Incorrect interpretation**: "There is a 95% chance that the true mean is in the interval (173 cm, 175 cm)" – this is incorrect because the population parameter is a fixed (though unknown) value, not a random variable.
+
+### 2. Hypothesis Testing
+
+Hypothesis testing is a formal procedure for verifying conjectures about population parameters. This concept is best understood through a concrete example:
+
+::: callout-tip
+## Example: Binomial test for a coin
+
+Imagine we want to check if a coin is fair.
+
+1.  **Research question**: Is the coin fair (probability of heads = 0.5)?
+
+2.  **Formulate hypotheses**:
+
+    -   **Null hypothesis (H₀)**: p = 0.5 (the coin is fair)
+    -   **Alternative hypothesis (H₁)**: p ≠ 0.5 (the coin is not fair)
+
+3.  **Collect data**: We flip the coin 100 times and get 65 heads.
+
+4.  **Analyze**: Is 65 heads out of 100 flips evidence against the hypothesis that the coin is fair?
+
+5.  **Reasoning**:
+
+    -   If the coin were fair (p = 0.5), the number of heads in 100 flips should follow a binomial distribution B(100, 0.5)
+    -   For this distribution, we expect an average of 50 heads, with a standard deviation of √(100 × 0.5 × 0.5) = 5
+    -   Getting 65 heads means a deviation of 3 standard deviations from the expected value
+    -   The probability of getting 65 or more heads with a fair coin is very small (p \< 0.01)
+
+6.  **Conclusion**: Since the observed result is very unlikely under the assumption that the coin is fair, we reject the null hypothesis and conclude that the coin is most likely not fair.
+:::
+
+General hypothesis testing procedure:
+
+1. Formulate the null hypothesis (H₀) and alternative hypothesis (H₁)
+2. Choose a significance level α (usually 0.05) - a decision rule that helps assess what constitutes a small probability of the observed result, assuming that the tested hypothesis is true
+3. Collect data and calculate the appropriate test statistic
+4. Calculate the p-value (the probability of obtaining our data or more extreme results, assuming H₀ is true)
+5. Make a decision: if p < α, reject H₀ in favor of H₁
+
+::: callout-note
+## Intuition behind hypothesis testing
+
+Hypothesis testing resembles a court procedure: - H₀ corresponds to the principle of "innocent until proven guilty" (we assume the parameter has a specific value) - Data constitutes "evidence" against H₀ - P-value determines how strong this evidence is - If the evidence is strong enough (p \< α), we "convict" H₀ (reject it) - If the evidence is not strong enough, we do not reject H₀ (but we do not prove its truth)
+:::
+
+::: callout-important
+## Common errors in interpreting p-values and tests
+
+1.  P-value is **NOT** the probability that the null hypothesis is true
+2.  P-value is **NOT** the probability of making an error when rejecting H₀
+3.  Failing to reject H₀ does **NOT** mean proving it (absence of evidence against the accused does not prove innocence)
+4.  A very small p-value does **NOT** indicate a large practical effect (statistical significance ≠ practical significance)
+5.  P-value depends on sample size - with very large samples, even small, practically insignificant differences can be statistically significant
+
+**Definition of p-value**: The probability of observing a result at least as extreme as the one obtained, assuming the null hypothesis is true.
+:::
+
+::: callout-tip
+## Types of errors in hypothesis testing
+
+-   **Type I error (α)**: Rejecting a true null hypothesis ("convicting an innocent")
+    -   The probability of this error is controlled by the significance level α
+-   **Type II error (β)**: Failing to reject a false null hypothesis ("acquitting the guilty")
+    -   The probability of avoiding this error (1-β) is called the power of the test
+    -   Test power increases with sample size and effect size
+:::
+
+## Solid Foundations for Good Research
+
+To conduct reliable statistical research, one should ensure:
+
+1.  **Representativeness of the sample**: The sample should well reflect the studied population
+2.  **Adequate sample size**: Larger samples provide more accurate estimates and greater statistical power
+3.  **Control of confounding variables**: Both in research design and data analysis
+4.  **Appropriate statistical methods**: Matched to the type of data and research questions
+5.  **Clear interpretation**: Taking into account study limitations and alternative explanations
+
+::: callout-tip
+## Summary of key concepts often confused by students:
+
+| Concept | Definition | Example |
+|----------------------|--------------------------|------------------------|
+| **Population parameter (Estimand)** | Value characterizing the population, usually unknown | μ (population mean) |
+| **Estimator (Statistic)** | Function/procedure for estimating a parameter based on a sample | $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ |
+| **Estimate** | Specific value obtained after applying an estimator to a sample | $\bar{x} = 173.5$ cm |
+| **Standard error** | Measure of estimator variability between samples | $SE(\bar{x}) = \frac{s}{\sqrt{n}}$ |
+| **Confidence interval** | Range of values that, with specified probability, contains the parameter | (173 cm, 175 cm) |
+| **P-value** | Probability of observing the data assuming H₀ is true | p = 0.03 |
+:::
+
+
+
+## Tools for Data Science in Social Sciences(*)
+
+In this course, we'll use R for our data analysis, as it's widely used in social science research.
+
+### R for Social Science Data Analysis
+
+R offers powerful capabilities for social science research, from data manipulation to advanced statistical modeling.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Kliknij, aby pokazać/ukryć kod R"
+
+library(tidyverse)
+
+# Set seed for reproducibility
+set.seed(42)
+
+# Generate example data with a Simpson's Paradox
+n <- 1000
+data <- tibble(
+  age_group = sample(c("Young", "Middle", "Old"), n, replace = TRUE, prob = c(0.3, 0.4, 0.3)),
+  education_years = case_when(
+    age_group == "Young" ~ rnorm(n, mean = 10, sd = 1),
+    age_group == "Middle" ~ rnorm(n, mean = 13, sd = 1),
+    age_group == "Old" ~ rnorm(n, mean = 16, sd = 1)
+  ),
+  income = case_when(
+    age_group == "Young" ~ 70000 + 1000 * education_years + rnorm(n, mean = 0, sd = 5000),
+    age_group == "Middle" ~ 50000 + 1000 * education_years + rnorm(n, mean = 0, sd = 5000),
+    age_group == "Old" ~ 30000 + 1000 * education_years + rnorm(n, mean = 0, sd = 5000)
+  )
+)
+
+# Basic data summary
+summary(data)
+
+# Correlation analysis
+cor(data %>% select(education_years, income))
+
+# Overall trend (Simpson's Paradox)
+overall_plot <- ggplot(data, aes(x = education_years, y = income)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "Overall Relationship between Education and Income",
+       subtitle = "Simpson's Paradox: Appears negative",
+       x = "Years of Education", y = "Income") +
+  theme_minimal()
+
+# Trend by age group (Resolving Simpson's Paradox)
+grouped_plot <- ggplot(data, aes(x = education_years, y = income, color = age_group)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Relationship between Education and Income by Age Group",
+       subtitle = "Resolving Simpson's Paradox: Positive relationship within groups",
+       x = "Years of Education", y = "Income") +
+  theme_minimal()
+
+# Statistical analysis
+model_overall <- lm(income ~ education_years, data = data)
+model_by_age <- lm(income ~ education_years + age_group, data = data)
+
+# Print results
+print(overall_plot)
+print(grouped_plot)
+print(summary(model_overall))
+print(summary(model_by_age))
+
+# Calculate and print correlations
+overall_cor <- cor(data$education_years, data$income)
+group_cors <- data %>%
+  group_by(age_group) %>%
+  summarize(correlation = cor(education_years, income))
+
+print("Overall correlation:")
+print(overall_cor)
+print("Correlations by age group:")
+print(group_cors)
+```
+
+This example demonstrates basic data manipulation, summary statistics, and visualization using R, which are common tasks in social science research.
+
+
+## Causal Inference vs. Observational Studies
+
+In social sciences and beyond, understanding the relationship between variables is crucial. Two key approaches to this are causal inference and observational studies, each with its own strengths and limitations.
+
+::: panel-tabset
+### Causal Inference
+
+-   Aims to establish cause-and-effect relationships
+-   Often involves experimental designs or advanced statistical techniques
+-   Seeks to answer "What if?" questions and determine the impact of interventions
+-   Examples: Randomized controlled trials, quasi-experimental designs, instrumental variables
+
+### Observational Studies
+
+-   Examine relationships between variables without direct intervention
+-   Rely on data collected from natural settings or existing datasets
+-   Can identify correlations and patterns but struggle to establish causation
+-   Examples: Cohort studies, case-control studies, cross-sectional surveys
+
+### Key Distinction: Correlation vs. Causation
+
+A fundamental principle in research is that correlation between two variables does not necessarily imply a causal relationship. This concept is crucial when interpreting results from observational studies.
+:::
+
+::: callout-important
+## Remember: Correlation Does Not Imply Causation
+
+-   **Correlation**: Measures the strength and direction of a relationship between variables
+-   **Causation**: Indicates that changes in one variable directly cause changes in another
+
+While strong correlations can suggest potential causal links, additional evidence and rigorous methods are required to establish causality.
+:::
+
+::: panel-tabset
+### Challenges in Establishing Causality
+
+-   Confounding variables: Unmeasured factors that affect both the presumed cause and effect
+-   Reverse causality: The presumed effect might actually be causing the presumed cause
+-   Selection bias: Non-random selection of subjects into study groups
+
+### Methods to Strengthen Causal Claims
+
+1.  Randomized controlled trials (when ethical and feasible)
+2.  Natural experiments or quasi-experimental designs
+3.  Propensity score matching
+4.  Difference-in-differences analysis
+5.  Instrumental variable approaches
+6.  Directed acyclic graphs (DAGs) for visualizing causal relationships
+
+### Importance in Social Sciences
+
+Understanding the distinction between causal inference and observational studies is crucial in social sciences, where ethical considerations often limit experimental manipulation. Researchers must carefully design studies and interpret results to avoid misleading conclusions about causality.
+:::
+
+## Models in Science: From Deterministic to Stochastic (\*)
+
+Models are essential tools in scientific research, helping scientists to represent, understand, and predict complex phenomena. This section explores the main types of models used in science, along with examples of their applications. It's important to note that these categories often overlap, and many scientific models incorporate multiple aspects.
+
+### Mathematical Models
+
+Mathematical models use equations and mathematical concepts to describe and analyze systems or phenomena. They can be further divided into several subcategories, though it's important to note that some complex models may incorporate elements from multiple categories:
+
+#### a. Deterministic Models
+
+Deterministic models provide precise predictions based on a set of variables, without incorporating randomness at the macroscopic level.
+
+**Example:** Newton's laws of motion, which can precisely predict the motion of objects under known forces in classical mechanics.
+
+#### b. Stochastic Models
+
+Stochastic models incorporate randomness and probability. However, it's crucial to distinguish between two fundamentally different types of stochastic models:
+
+##### i. Classical Stochastic Models
+
+These models deal with randomness arising from incomplete information or complex interactions in classical systems. The underlying system is deterministic, but practical limitations in measurement or computation lead to the use of probabilistic descriptions.
+
+**Example:** Regression models in statistics, where the randomness represents unexplained variation or measurement error:
+
+$$y = β_0 + β_1x + ε$$
+
+Where:
+
+-   $y$ is the dependent variable (e.g. quantity demanded)
+-   $x$ is the independent variable (e.g. price, income level of the consumer)
+-   $β_0$ and $β_1$ are parameters
+-   $ε$ is the error term, representing unexplained variation
+
+##### ii. Quantum Stochastic Models
+
+These models deal with the fundamental, irreducible randomness inherent in quantum mechanical systems. This randomness is not due to lack of information, but is a core feature of quantum reality.
+
+**Example:** The Standard Model in particle physics, which describes particle interactions using quantum field theory. For instance, the decay of a particle is inherently probabilistic:
+
+$$P(t) = e^{-t/τ}$$
+
+Where:
+
+-   $P(t)$ is the probability that the particle has not decayed after time t
+-   $τ$ is the mean lifetime of the particle
+
+#### c. Computer Simulation Models
+
+Computer simulations use algorithms and computational methods based on mathematical models to simulate complex systems and predict their behavior over time. These can be deterministic or stochastic.
+
+**Example:** Climate models that simulate the Earth's climate system, incorporating factors such as atmospheric composition, ocean currents, and solar radiation to project future climate scenarios.
+
+### Conceptual Models
+
+Conceptual models are abstract representations of systems or processes, often using diagrams or flowcharts to illustrate relationships between components.
+
+**Example:** The water cycle model in Earth sciences, which illustrates the continuous movement of water within the Earth and atmosphere through processes such as evaporation, precipitation, and runoff.
+
+### Physical Models
+
+Physical models are tangible representations of objects or systems, often scaled down or simplified versions of the real thing.
+
+**Example:** Wind tunnel models in aerodynamics research, used to study the effects of air moving past solid objects and optimize designs for aircraft, vehicles, or buildings.
+
+### Theoretical Models
+
+Theoretical models are abstract frameworks based on fundamental principles and hypotheses, often used to explain observed phenomena or predict new ones. These models frequently employ mathematical formulations and can be deterministic or stochastic in nature.
+
+**Example:** The theory of evolution by natural selection, which provides a framework for understanding the diversity and adaptation of life forms over time.
+
+### Conclusion
+
+These various forms of models play crucial roles in scientific research, each offering unique advantages for understanding and predicting natural phenomena. Scientists often use multiple types of models in conjunction to gain comprehensive insights into complex systems and processes.
+
+It's important to recognize that these categories are not mutually exclusive and often overlap:
+
+1.  Mathematical models form the foundation for many other types of models, including computer simulations and some theoretical models.
+2.  Computer simulation models are essentially mathematical models implemented through computational methods, and can be either deterministic or stochastic.
+3.  Theoretical models often employ mathematical formulations and may be implemented as computer simulations.
+4.  Physical models may be designed based on mathematical models and can be used to validate computer simulations.
+
+The choice of model type often depends on the specific research question, the nature of the system being studied, the available data, and the computational resources at hand. As science progresses, the boundaries between these model types continue to blur, leading to increasingly sophisticated and interdisciplinary approaches to modeling complex phenomena.
+
+It's crucial to distinguish between different types of stochastic models. Classical stochastic models, such as those used in regression analysis, deal with randomness arising from incomplete information or complex interactions in otherwise deterministic systems. In contrast, quantum stochastic models, like those in particle physics, deal with fundamental, irreducible randomness inherent in quantum mechanical systems. This distinction reflects the profound differences between classical and quantum paradigms in physics and highlights the diverse ways in which probability is used in scientific modeling.
+
+## Understanding Spurious Correlations, Confounders, and Colliders (\*)
+
+In this tutorial, we'll explore three important concepts in statistical analysis: spurious correlations, confounders, and colliders. Understanding these concepts is crucial for avoiding misinterpretation of data and drawing incorrect conclusions from statistical analyses.
+
+Let's start by loading the necessary libraries:
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(dagitty)
+library(ggdag)
+set.seed(123) # for reproducibility
+```
+
+### Spurious Correlations
+
+Spurious correlations are relationships between variables that appear to be causal but are actually coincidental or caused by an unseen third factor.
+
+### Example: Ice Cream Sales and Drowning Incidents
+
+Let's create a dataset that shows a spurious correlation between ice cream sales and drowning incidents:
+
+```{r}
+#| label: spurious-data
+
+n <- 100
+spurious_data <- tibble(
+  temperature = rnorm(n, mean = 25, sd = 5),
+  ice_cream_sales = 100 + 5 * temperature + rnorm(n, sd = 10),
+  drowning_incidents = 1 + 0.5 * temperature + rnorm(n, sd = 2)
+)
+
+ggplot(spurious_data, aes(x = ice_cream_sales, y = drowning_incidents)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Spurious Correlation: Ice Cream Sales vs. Drowning Incidents",
+       x = "Ice Cream Sales", y = "Drowning Incidents")
+```
+
+This plot shows a positive correlation between ice cream sales and drowning incidents. However, this relationship is spurious. The real cause for both is the temperature:
+
+```{r}
+#| label: spurious-explanation
+
+ggplot(spurious_data, aes(x = temperature)) +
+  geom_point(aes(y = ice_cream_sales), color = "blue") +
+  geom_point(aes(y = drowning_incidents * 10), color = "red") +
+  geom_smooth(aes(y = ice_cream_sales), method = "lm", se = FALSE, color = "blue") +
+  geom_smooth(aes(y = drowning_incidents * 10), method = "lm", se = FALSE, color = "red") +
+  scale_y_continuous(
+    name = "Ice Cream Sales",
+    sec.axis = sec_axis(~./10, name = "Drowning Incidents")
+  ) +
+  labs(title = "Temperature as the Common Cause",
+       x = "Temperature")
+```
+
+### Confounders
+
+A confounder is a variable that influences both the dependent variable and independent variable, causing a spurious association.
+
+### Example: Education, Income, and Age
+
+```{r}
+#| label: confounder-data
+
+library(tidyverse)
+library(viridis)
+
+n <- 1000
+confounder_data <- tibble(
+  age = runif(n, 25, 65),
+  education = round(10 + 0.1 * age + rnorm(n, sd = 2)),
+  income = 20000 + 1000 * education + 500 * age + rnorm(n, sd = 5000)
+)
+
+# Without controlling for age
+model_naive <- lm(income ~ education, data = confounder_data)
+# Controlling for age
+model_adjusted <- lm(income ~ education + age, data = confounder_data)
+
+# Create age groups for visualization
+confounder_data <- confounder_data %>%
+  mutate(age_group = cut(age, breaks = 3, labels = c("Young", "Middle", "Old")))
+
+# Visualize
+ggplot(confounder_data, aes(x = education, y = income)) +
+  geom_point(aes(color = age), alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 1.2) +
+  geom_smooth(aes(group = age_group, color = as.numeric(age_group)), 
+              method = "lm", se = FALSE, linewidth = 1) +
+  scale_color_viridis_c(name = "Age", 
+                        breaks = c(30, 45, 60), 
+                        labels = c("Young", "Middle", "Old")) +
+  labs(title = "Education vs Income, Confounded by Age",
+       x = "Years of Education", y = "Income") +
+  theme_minimal()
+```
+
+Compare the coefficients:
+
+```{r}
+#| label: confounder-models
+
+summary(model_naive)$coefficients["education", "Estimate"]
+summary(model_adjusted)$coefficients["education", "Estimate"]
+```
+
+The effect of education on income is overestimated when we don't control for age.
+
+### Colliders
+
+A collider is a variable that is influenced by both the independent variable and the dependent variable. Controlling for a collider can introduce a spurious correlation.
+
+### Example: Job Satisfaction, Salary, and Work-Life Balance
+
+Let's create a dataset where work-life balance is a collider between job satisfaction and salary:
+
+```{r}
+#| label: collider-data
+
+n <- 1000
+collider_data <- tibble(
+  job_satisfaction = rnorm(n),
+  salary = rnorm(n),
+  work_life_balance = -0.5 * job_satisfaction - 0.5 * salary + rnorm(n, sd = 0.5)
+)
+
+# Without controlling for work-life balance
+model_correct <- lm(salary ~ job_satisfaction, data = collider_data)
+
+# Incorrectly controlling for work-life balance
+model_collider <- lm(salary ~ job_satisfaction + work_life_balance, data = collider_data)
+
+# Visualize
+ggplot(collider_data, aes(x = job_satisfaction, y = salary, color = work_life_balance)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  scale_color_viridis_c() +
+  labs(title = "Job Satisfaction vs Salary, Work-Life Balance as Collider",
+       x = "Job Satisfaction", y = "Salary")
+```
+
+Compare the coefficients:
+
+```{r}
+#| label: collider-models
+
+summary(model_correct)$coefficients["job_satisfaction", "Estimate"]
+summary(model_collider)$coefficients["job_satisfaction", "Estimate"]
+```
+
+Controlling for the collider (work-life balance) introduces a spurious correlation between job satisfaction and salary.
+
+Understanding spurious correlations, confounders, and colliders is crucial for proper statistical analysis and causal inference. Always consider the underlying causal structure of your data and be cautious about which variables you control for in your analyses.
+
+
+## Ethical Considerations in Social Science Data Analysis
+
+Ethics play a crucial role in social science research:
+
+1.  **Privacy and Consent**: Ensuring participant privacy and informed consent
+2.  **Data Protection**: Securely storing and managing sensitive personal data
+3.  **Bias and Representation**: Addressing sampling bias and ensuring diverse representation
+4.  **Transparency**: Clearly communicating research methods and limitations
+5.  **Social Impact**: Considering the potential societal implications of research findings
+
+
+
+## Appendix A: Classical vs Quantum Randomness: Understanding the Fundamental Differences
+
+To understand how the randomness in quantum mechanics differs from the randomness represented by the error term in regression models, we need to examine their origins, nature, and implications.
+
+### Origin of Randomness
+
+#### Classical Randomness (Regression Models)
+
+-   **Source**: Incomplete information or complex interactions in an otherwise deterministic system.
+-   **Nature**: Epistemic uncertainty (due to lack of knowledge).
+-   **Example**: In a regression model, $y = β_0 + β_1x + ε$, the error term ε represents unexplained variation.
+
+#### Quantum Randomness
+
+-   **Source**: Fundamental property of quantum systems.
+-   **Nature**: Ontic uncertainty (inherent to the system, not due to lack of knowledge).
+-   **Example**: The exact time of decay of a radioactive atom cannot be predicted, only its probability.
+
+### Philosophical Implications
+
+#### Classical Randomness
+
+-   **Determinism**: Underlying reality is deterministic; randomness reflects our ignorance.
+-   **Hidden Variables**: In principle, if we had complete information, we could predict outcomes precisely.
+
+#### Quantum Randomness
+
+-   **Indeterminism**: Randomness is a fundamental feature of reality, not just our description of it.
+-   **No Hidden Variables**: Even with complete information about a quantum system, some outcomes remain unpredictable (as suggested by Bell's theorem).
+
+### Mathematical Treatment
+
+#### Classical Randomness
+
+-   **Probability Theory**: Based on classical probability theory.
+-   **Distribution**: Often assumed to follow known distributions (e.g., normal distribution in many regression models).
+-   **Central Limit Theorem**: Applies to large samples of random variables.
+
+#### Quantum Randomness
+
+-   **Quantum Probability**: Based on the mathematical framework of quantum mechanics.
+-   **Wave Function**: Describes the quantum state and its evolution.
+-   **Born Rule**: Gives probabilities of measurement outcomes from the wave function.
+
+### Predictability and Control
+
+#### Classical Randomness
+
+-   **Reducible**: In principle, can be reduced by gathering more data or improving measurement precision.
+-   **Controllable**: Systematic errors can be identified and corrected.
+
+#### Quantum Randomness
+
+-   **Irreducible**: Cannot be eliminated even with perfect measurements.
+-   **Fundamentally Uncontrollable**: The act of measurement itself affects the system (measurement problem).
+
+### Practical Implications
+
+#### Classical Randomness
+
+-   **Error Reduction**: Focus on improving measurement techniques and data collection.
+-   **Model Refinement**: Aim to explain more variance and reduce the error term.
+
+#### Quantum Randomness
+
+-   **Inherent Limitation**: Accept fundamental limits on predictability.
+-   **Probabilistic Predictions**: Focus on accurate probability distributions rather than exact outcomes.
+
+### Examples to Understand the Difference
+
+#### Classical Randomness Example
+
+Imagine flipping a coin. Classical physics says the outcome is determined by initial conditions (force applied, air resistance, etc.). The "randomness" comes from our inability to precisely measure and account for all these factors.
+
+#### Quantum Randomness Example
+
+In the double-slit experiment, individual particles show interference patterns as if they went through both slits simultaneously. The exact path of any individual particle is fundamentally undetermined until measured, and this indeterminacy cannot be resolved by more precise measurements.
+
+### Conclusion
+
+While both types of randomness lead to probabilistic predictions, their fundamental natures are quite different:
+
+-   Classical randomness in regression models is a reflection of our incomplete knowledge or measurement limitations in an otherwise deterministic system.
+-   Quantum randomness is a fundamental property of quantum systems, representing an inherent indeterminacy in nature that persists even with perfect knowledge and measurement.
+
+Understanding these differences is crucial for correctly interpreting and applying statistical models in different scientific contexts, from social sciences using regression analysis to quantum physics experiments.
+
+## Appendix B: Large Language Models - Understanding Their Stochastic Nature
+
+Large Language Models (LLMs) like GPT-3, BERT, and Claude have revolutionized natural language processing but can make puzzling mistakes, especially in mathematical tasks. This appendix explains LLMs' functioning, stochastic nature, and compares them to classical statistical models.
+
+### LLM Basics and Stochastic Nature
+
+LLMs are trained on vast text data to predict the probability distribution of the next token in a sequence. They use transformer architectures for processing and generating text. Key aspects of their stochastic nature include:
+
+1.  Probabilistic token selection: LLMs choose each word based on calculated probabilities, not fixed rules.
+2.  Temperature-controlled randomness: A "temperature" parameter adjusts the randomness of selections, balancing creativity and coherence.
+3.  Non-deterministic outputs: The same input can produce different outputs in separate runs.
+4.  Contextual ambiguity: LLMs interpret context probabilistically, sometimes leading to misunderstandings.
+
+### Comparison to Classical Statistical Models
+
+To understand LLMs better, let's compare them to Ordinary Least Squares (OLS) regression:
+
+| Aspect | OLS Regression | Large Language Models |
+|------------------|----------------------|---------------------------------|
+| Basic Function | Predicts continuous outcomes based on input variables | Predicts probability distribution of next token based on previous tokens |
+| Input-Output | Continuous variables, linear relationships | Discrete tokens, non-linear relationships |
+| Prediction Type | Point predictions with confidence intervals | Probability distributions over possible tokens |
+| Model Complexity | Few parameters | Billions of parameters |
+| Interpretability | Clear coefficient interpretations | Largely opaque internal workings |
+| Noise Handling | Assumes random noise in outcome variable | Deals with natural language variability |
+| Extrapolation | Less reliable outside training range | Less reliable on unfamiliar topics |
+
+Both models aim to learn input-output mappings based on training data patterns.
+
+### Implications for Mathematical Tasks
+
+LLMs' stochastic nature affects mathematical operations:
+
+1.  Variable outputs for repeated calculations: Each attempt might yield a different result due to probabilistic token selection.
+2.  Confidence doesn't guarantee correctness: High model confidence can occur even for incorrect answers.
+3.  Approximation rather than exact computation: LLMs pattern-match rather than perform precise calculations.
+
+Limitations in mathematical tasks stem from:
+
+-   Training objective mismatch: LLMs are trained for language prediction, not mathematical accuracy.
+-   Lack of explicit mathematical reasoning: They don't have built-in mathematical rules or operations.
+-   Absence of working memory: LLMs can't reliably store and manipulate intermediate results.
+-   Limited context window: They may lose track of relevant information in long problems.
+-   Training data limitations: Underrepresentation of certain math concepts can lead to poor performance.
+-   Lack of consistency checks: LLMs don't verify the logical consistency of their outputs.
+
+### Best Practices and Conclusion
+
+When using LLMs for mathematical tasks:
+
+1.  Focus on conceptual explanations, not precise calculations: LLMs excel at explaining concepts but may falter on exact computations.
+2.  Verify results with dedicated software: Always double-check LLM calculations with proper math tools.
+3.  Break down complex problems: Splitting tasks into smaller steps can improve LLM performance.
+4.  Be aware of rephrasing effects: Different phrasings of the same problem may yield different results.
+5.  Use as assistive tools, not replacements for expertise: LLMs should complement, not substitute, mathematical expertise.
+
+Understanding LLMs' probabilistic nature helps leverage their strengths in language tasks while recognizing their limitations in domains requiring deterministic precision, like mathematics.
+
+## Appendix C: Deterministic and Stochastic Models (\*)
+
+### Deterministic Models
+
+Deterministic models are those where the output is fully determined by the parameter values and the initial conditions. These models are often used in physics and engineering.
+
+### Example: Uniformly Accelerated Motion
+
+A classic example of a deterministic model is uniformly accelerated motion, described by the equation:
+
+$$x(t) = x_0 + v_0t + \frac{1}{2}at^2$$
+
+Where:
+
+-   $x(t)$ is the position at time $t$
+-   $x_0$ is the initial position
+-   $v_0$ is the initial velocity
+-   $a$ is the acceleration
+-   $t$ is time
+
+Let's simulate this in R:
+
+```{r}
+# Uniformly accelerated motion
+simulate_accelerated_motion <- function(x0, v0, a, t) {
+  x0 + v0 * t + 0.5 * a * t^2
+}
+
+# Generating data
+t <- seq(0, 10, by = 0.1)
+x <- simulate_accelerated_motion(x0 = 0, v0 = 2, a = 1, t = t)
+
+# Plot
+plot(t, x, type = "l", xlab = "Time", ylab = "Position", 
+     main = "Uniformly Accelerated Motion")
+```
+
+This code will generate a plot of uniformly accelerated motion, which is an intuitive example from Newtonian dynamics. In this case, an object starts moving with an initial velocity and accelerates uniformly, resulting in a parabolic trajectory on the position-time graph.
+
+### Stochastic Models in Social Sciences
+
+Stochastic models incorporate randomness and are often used in social sciences where there's inherent uncertainty in the systems being studied.
+
+### Example: Ordinary Least Squares (OLS) Regression
+
+OLS is a fundamental stochastic model in social sciences. It's represented as:
+
+$$Y = \beta_0 + \beta_1X + \epsilon$$
+
+Where:
+
+-   $Y$ is the dependent variable
+-   $X$ is the independent variable
+-   $\beta_0$ and $\beta_1$ are parameters
+-   $\epsilon$ is the error term (stochastic component)
+
+Let's demonstrate OLS in R:
+
+```{r}
+# Generate some sample data
+set.seed(123)
+X <- rnorm(100)
+Y <- 2 + 3*X + rnorm(100, sd = 0.5)
+
+# Fit OLS model
+model <- lm(Y ~ X)
+
+# Summary of the model
+summary(model)
+
+# Plot
+plot(X, Y, main = "OLS Regression")
+abline(model, col = "red")
+```
+
+This will fit an OLS model to some simulated data and plot the results.
+
+![Retrieved from: https://scientistcafe.com/ids/vbtradeoff](stat_imgs/ModelError.png)
+
+### Advanced Stochastic Models: Large Language Models
+
+Large Language Models (LLMs) like GPT-3 are complex stochastic models used in natural language processing. While we can't implement a full LLM in this tutorial, we can discuss its principles.
+
+LLMs are based on the transformer architecture and use self-attention mechanisms. They're trained on vast amounts of text data and learn to predict the next token in a sequence.
+
+The core of an LLM can be thought of as a conditional probability distribution:
+
+$$P(x_t | x_{<t}, \theta)$$
+
+Where: - $x_t$ is the current token - $x_{<t}$ represents all previous tokens - $\theta$ are the model parameters
+
+::: callout-note
+Tokens in Large Language Models (LLMs) are the basic units of text that the model processes. They can be thought of as pieces of words or punctuation marks. Here are key points about tokens:
+
+Definition: Tokens are the smallest units of text that an LLM processes. They can be whole words, parts of words, or even individual characters or punctuation marks. Tokenization: The process of breaking text into tokens is called tokenization. LLMs use specific algorithms to perform this task. Examples:
+
+The word "cat" might be a single token. A longer word like "understanding" might be broken into multiple tokens, e.g., "under" and "standing". Punctuation marks like "." or "?" are often individual tokens. Common prefixes or suffixes might be their own tokens.
+
+Vocabulary: LLMs have a fixed vocabulary of tokens they recognize. This vocabulary typically ranges from tens of thousands to hundreds of thousands of tokens. Significance: The way text is tokenized can affect how the model understands and generates language. It's particularly important for handling different languages, rare words, or specialized vocabulary. Context: In the equation for LLMs: $$P(x_t | x_{<t}, \theta)$$ Where:
+
+$x_t$ represents the current token $x_{<t}$ represents all previous tokens in the sequence $\theta$ represents the model parameters
+:::
+
+Unlike deterministic models, LLMs produce different outputs even for the same input due to their stochastic nature.
+
+### Conclusion
+
+We've explored a range of models from deterministic to highly complex stochastic ones. Each type of model has its place in science, depending on the system being studied and the level of uncertainty involved.
+
+Remember, the choice between deterministic and stochastic models often depends on the nature of the system you're studying and the questions you're trying to answer. Deterministic models are great for systems with well-understood mechanics, while stochastic models shine when dealing with inherent randomness or complex, not fully understood systems.
+
+## Appendix D: Introduction to R, RStudio, and tidyverse
+
+R is a powerful programming language and environment for statistical computing and graphics. It's widely used in academia, especially in fields like social sciences, for data analysis and visualization.
+
+#### Key features of R:
+
+-   Open-source and free
+-   Extensive package ecosystem
+-   Strong community support
+-   Excellent for statistical analysis and data visualization
+
+### Getting Started with RStudio
+
+RStudio is an Integrated Development Environment (IDE) for R that makes it easier to work with R.
+
+#### Installing R and RStudio
+
+1.  Download and install R from [CRAN](https://cran.r-project.org/)
+2.  Download and install RStudio from [RStudio's website](https://www.rstudio.com/products/rstudio/download/)
+
+#### RStudio Interface
+
+RStudio has four main panes:
+
+1.  **Source Editor**: Where you write and edit your R scripts
+2.  **Console**: Where you can type R commands and see output
+3.  **Environment/History**: Shows all objects in your workspace and command history
+4.  **Files/Plots/Packages/Help**: Multipurpose pane for file management, viewing plots, managing packages, and accessing help
+
+#### Basic RStudio Features
+
+-   Creating a new R script: File \> New File \> R Script
+-   Running code: Select code and press Ctrl+Enter (Cmd+Enter on Mac)
+-   Installing packages: Tools \> Install Packages
+-   Getting help: Type `?function_name` in the console
+
+### R Basics
+
+#### Data Types in R
+
+```{r}
+# Numeric
+x <- 10.5
+class(x)
+
+# Integer
+y <- 1L
+class(y)
+
+# Character
+name <- "Alice"
+class(name)
+
+# Logical
+is_student <- TRUE
+class(is_student)
+```
+
+#### Data Structures
+
+##### Vectors
+
+```{r}
+# Create a vector
+numbers <- c(1, 2, 3, 4, 5)
+fruits <- c("apple", "banana", "cherry")
+
+# Vector operations
+numbers + 2
+numbers * 2
+mean(numbers)
+length(fruits)
+```
+
+##### Matrices
+
+```{r}
+# Create a matrix
+m <- matrix(1:6, nrow = 2, ncol = 3)
+print(m)
+
+# Matrix operations
+t(m)  # transpose
+m * 2  # scalar multiplication
+```
+
+##### Data Frames
+
+```{r}
+# Create a data frame
+df <- data.frame(
+  name = c("Alice", "Bob", "Charlie"),
+  age = c(25, 30, 35),
+  student = c(TRUE, FALSE, TRUE)
+)
+print(df)
+
+# Accessing data frame elements
+df$name
+df[1, 2]
+df[df$age > 25, ]
+```
+
+#### Functions
+
+```{r}
+# Define a function
+greet <- function(name) {
+  paste("Hello,", name, "!")
+}
+
+# Use the function
+greet("Alice")
+
+# Function with multiple arguments
+calculate_bmi <- function(weight, height) {
+  bmi <- weight / (height^2)
+  return(bmi)
+}
+
+calculate_bmi(70, 1.75)
+```
+
+#### Control Structures
+
+```{r}
+# If-else statement
+x <- 10
+if (x > 5) {
+  print("x is greater than 5")
+} else {
+  print("x is not greater than 5")
+}
+
+# For loop
+for (i in 1:5) {
+  print(paste("Iteration", i))
+}
+
+# While loop
+counter <- 1
+while (counter <= 5) {
+  print(paste("Counter:", counter))
+  counter <- counter + 1
+}
+```
+
+### Introduction to tidyverse
+
+The tidyverse is a collection of R packages designed for data science. These packages share a common philosophy and are designed to work together seamlessly.
+
+#### Key tidyverse Packages
+
+-   ggplot2: for data visualization
+-   dplyr: for data manipulation
+-   tidyr: for tidying data
+-   readr: for reading rectangular data
+-   purrr: for functional programming
+-   tibble: modern reimagining of data frames
+
+#### Getting Started with tidyverse
+
+```{r}
+# Install tidyverse (run once)
+# install.packages("tidyverse")
+
+# Load tidyverse
+library(tidyverse)
+```
+
+#### Data Import with readr
+
+```{r}
+#| eval: false
+# Reading CSV files
+data <- read_csv("social_data.csv")
+
+# Reading other file formats
+read_tsv("data.tsv")  # Tab-separated values
+read_delim("data.txt", delim = "|")  # Custom delimiter
+```
+
+#### Data Manipulation with dplyr
+
+```{r}
+# Let's use the built-in mtcars dataset
+data("mtcars")
+
+# Selecting columns
+mtcars %>% 
+  select(mpg, cyl, hp)
+
+# Filtering rows
+mtcars %>% 
+  filter(cyl == 4)
+
+# Arranging data
+mtcars %>% 
+  arrange(desc(mpg))
+
+# Creating new variables
+mtcars %>% 
+  mutate(kpl = mpg * 0.425)
+
+# Summarizing data
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarize(mean_mpg = mean(mpg),
+            count = n())
+```
+
+#### Data Visualization with ggplot2
+
+```{r}
+#| label: scatter-plot
+#| fig-cap: "Car Weight vs. Fuel Efficiency"
+# Scatter plot
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(title = "Car Weight vs. Fuel Efficiency",
+       x = "Weight (1000 lbs)",
+       y = "Miles per Gallon")
+```
+
+```{r}
+#| label: bar-chart
+#| fig-cap: "Number of Cars by Cylinder Count"
+# Bar chart
+mtcars %>% 
+  count(cyl) %>% 
+  ggplot(aes(x = factor(cyl), y = n)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Number of Cars by Cylinder Count",
+       x = "Number of Cylinders",
+       y = "Count")
+```
+
+```{r}
+#| label: box-plot
+#| fig-cap: "Fuel Efficiency by Number of Cylinders"
+# Box plot
+ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+  geom_boxplot() +
+  labs(title = "Fuel Efficiency by Number of Cylinders",
+       x = "Number of Cylinders",
+       y = "Miles per Gallon")
+```
+
+### Additional Resources
+
+-   [R for Data Science](https://r4ds.had.co.nz/)
+-   [tidyverse documentation](https://www.tidyverse.org/)
+-   [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)
+-   [Quarto Guide](https://quarto.org/docs/guide/)
+-   [R Cookbook](http://www.cookbook-r.com/)
+
+Remember to experiment with the code, modify examples, and don't hesitate to use the built-in R help system (accessed by typing `?function_name` in the console) when you encounter unfamiliar functions or concepts.
