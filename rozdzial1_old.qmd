@@ -26,7 +26,6 @@ Statystyka i data science to ściśle powiązane dziedziny o znaczącym obszarze
 
 Nauka o danych może być postrzegana jako współczesne rozwinięcie tradycyjnej statystyki, które ewoluowało w odpowiedzi na nowe możliwości technologiczne i potrzebę analizy coraz bardziej złożonych danych społecznych.
 
-
 ## Podstawowe Koncepcje w Nauce o Danych i Statystyce
 
 ### Dane i Populacje (Data and Populations) – kluczowe pojęcia
@@ -37,27 +36,24 @@ Nauka o danych może być postrzegana jako współczesne rozwinięcie tradycyjne
 
     -   Przykład: W badaniu preferencji wyborczych populację stanowią wszyscy uprawnieni do głosowania obywatele danego kraju.
 
-3. **Próba**: Podzbiór populacji wybrany do badania. **Reprezentatywna** próba odzwierciedla kluczowe cechy populacji docelowej w odpowiednich proporcjach. Efektywne pobieranie próbek uwzględnia różnorodność jednostek w zakresie istotnych zmiennych (demograficznych, behawioralnych, itp.). W prostej próbie losowej (SRS), każda jednostka w populacji ma równe i niezależne prawdopodobieństwo wyboru. Reprezentatywność próby zależy zarówno od losowości metody pobierania, jak i od wystarczającej wielkości próby, aby zminimalizować błąd.
+3.  **Próba**: Podzbiór populacji wybrany do badania. **Reprezentatywna** próba odzwierciedla kluczowe cechy populacji docelowej w odpowiednich proporcjach. Efektywne pobieranie próbek uwzględnia różnorodność jednostek w zakresie istotnych zmiennych (demograficznych, behawioralnych, itp.). W prostej próbie losowej (SRS), każda jednostka w populacji ma równe i niezależne prawdopodobieństwo wyboru. Reprezentatywność próby zależy zarówno od losowości metody pobierania, jak i od wystarczającej wielkości próby, aby zminimalizować błąd.
 
     -   Przykład: Zamiast badać wszystkich uprawnionych wyborców, analizuje się 1500 losowo wybranych osób z uwzględnieniem odpowiedniego rozkładu wieku, płci, wykształcenia i regionu zamieszkania.
 
     Prawidłowo dobrana próba umożliwia wnioskowanie o całej populacji przy znaczącej optymalizacji zasobów badawczych.
 
-4. **Pobieranie próbek** (*sampling*, próbkowanie) to procedura wybierania jednostek z populacji do badania. Nieobciążona metoda pobierania próbek daje każdej jednostce w populacji równą szansę na wybór, zapewniając reprezentatywne wyniki.
+4.  **Pobieranie próbek** (*sampling*, próbkowanie) to procedura wybierania jednostek z populacji do badania. Nieobciążona metoda pobierania próbek daje każdej jednostce w populacji równą szansę na wybór, zapewniając reprezentatywne wyniki.
 
+5.  **Wnioskowanie statystyczne** to proces wyciągania wniosków o populacji na podstawie danych z próby. Polega na wykorzystaniu statystyk z próby do oszacowania parametrów populacji, oceny wiarygodności tych oszacowań oraz testowania hipotez dotyczących charakterystyk populacji.
 
-5. **Wnioskowanie statystyczne** to proces wyciągania wniosków o populacji na podstawie danych z próby. Polega na wykorzystaniu statystyk z próby do oszacowania parametrów populacji, oceny wiarygodności tych oszacowań oraz testowania hipotez dotyczących charakterystyk populacji.
-   
 Kluczowe elementy wnioskowania statystycznego:
 
-   - Estymacja: Obliczanie estymatorów punktowych (konkretnych wartości) i przedziałowych (przedziałów ufności) dla parametrów (charakterystyk) populacji, takich jak średnie, proporcje czy wariancje.
-   - Testowanie hipotez: Ocena twierdzeń dotyczących parametrów populacji poprzez określenie prawdopodobieństwa uzyskania zaobserwowanych wyników próby, jeśli twierdzenie jest prawdziwe.
-
+-   Estymacja: Obliczanie estymatorów punktowych (konkretnych wartości) i przedziałowych (przedziałów ufności) dla parametrów (charakterystyk) populacji, takich jak średnie, proporcje czy wariancje.
+-   Testowanie hipotez: Ocena twierdzeń dotyczących parametrów populacji poprzez określenie prawdopodobieństwa uzyskania zaobserwowanych wyników próby, jeśli twierdzenie jest prawdziwe.
 
 ![The process of using a sample from a population to obtain a point estimate of a population parameter. In this case, a sample of 10 individuals yielded 6 who own an iPhone, resulting in an estimated population proportion of 60% iPhone owners. The actual population proportion is 53.8%. Retrieved from: https://datasciencebook.ca/inference.html](stat_imgs/population_vs_sample.png)
 
-
-::: {.callout-important}
+::: callout-important
 ## Wnioskowanie Statystyczne: Jak Mała Próba Może Reprezentować Dużą Populację?
 
 Kiedy ankieterzy badają tylko 1 000 wyborców, aby przewidzieć wynik wyborów z 30 000 000 wyborców, wydaje się to zagadkowe. Jak tak mały ułamek (zaledwie 0,003%) może nam powiedzieć coś o całości?
@@ -68,9 +64,9 @@ Pomyśl o tym jak o próbowaniu zupy. Kiedy gotujesz duży garnek zupy i dokład
 
 Losowe pobieranie próby działa, ponieważ:
 
-1. **Daje każdemu równą szansę** na wybór, unikając stronniczości
-2. **Wykorzystuje moc prawdopodobieństwa**, aby zapewnić, że próba przypomina populację
-3. **Przy wystarczającej liczbie osób** naturalne wahania zwykle się równoważą
+1.  **Daje każdemu równą szansę** na wybór, unikając stronniczości
+2.  **Wykorzystuje moc prawdopodobieństwa**, aby zapewnić, że próba przypomina populację
+3.  **Przy wystarczającej liczbie osób** naturalne wahania zwykle się równoważą
 
 Kluczowa jest losowość. Jeśli wybieramy osoby naprawdę losowo, prawdopodobnie otrzymamy mieszankę, która odzwierciedla całą populację. Bez losowości moglibyśmy przypadkowo skupić się na jednej "części zupy", która nie reprezentuje całości.
 
@@ -80,142 +76,151 @@ Gdy używamy próby do poznania populacji, nieuchronnie napotykamy błąd statys
 
 **Błąd statystyczny** to różnica między naszym oszacowaniem z próby a prawdziwą wartością w populacji. Możemy go podzielić na dwa główne rodzaje:
 
-1. **Błąd losowy (błąd próbkowania)**: Naturalna zmienność, która występuje przypadkowo, gdy wybieramy losową próbę. Dzieje się tak po prostu dlatego, że badamy część, a nie całą populację.
+1.  **Błąd losowy (błąd próbkowania)**: Naturalna zmienność, która występuje przypadkowo, gdy wybieramy losową próbę. Dzieje się tak po prostu dlatego, że badamy część, a nie całą populację.
 
-   **Błąd standardowy** jest miarą błędu próbkowania. Pokazuje, jak bardzo nasze statystyki z próby (jak średnie czy proporcje) różniłyby się, gdybyśmy wielokrotnie pobierali różne próby z tej samej populacji.
-   
-   * Mniejsze błędy standardowe wskazują na bardziej precyzyjne oszacowania
-   * Błąd standardowy zmniejsza się wraz ze wzrostem wielkości próby (w przybliżeniu proporcjonalnie do 1/√n)
-   * Na błąd standardowy wpływa zmienność w populacji
+    **Błąd standardowy** jest miarą błędu próbkowania. Pokazuje, jak bardzo nasze statystyki z próby (jak średnie czy proporcje) różniłyby się, gdybyśmy wielokrotnie pobierali różne próby z tej samej populacji.
 
-2. **Błąd systematyczny (błąd niepróbkowy)**: Występuje, gdy nasze metody zbierania danych systematycznie zniekształcają wyniki w jednym kierunku. W przeciwieństwie do błędu próbkowania, błędu systematycznego NIE można zmniejszyć przez zwiększenie wielkości próby.
+    -   Mniejsze błędy standardowe wskazują na bardziej precyzyjne oszacowania
+    -   Błąd standardowy zmniejsza się wraz ze wzrostem wielkości próby (w przybliżeniu proporcjonalnie do 1/√n)
+    -   Na błąd standardowy wpływa zmienność w populacji
 
-   Źródła błędu systematycznego obejmują:
-   
-   * **Błąd selekcji**: Gdy metoda wyboru próby faworyzuje pewne grupy (np. ankiety telefoniczne mogą pomijać osoby bez telefonów)
-   * **Błąd odpowiedzi**: Gdy respondenci udzielają niedokładnych odpowiedzi (np. zawyżanie dochodów w ankietach)
-   * **Błąd braku odpowiedzi**: Gdy osoby, które odmawiają udziału, różnią się od tych, które uczestniczą
-   * **Błąd pomiaru**: Wynikający z niedokładnych narzędzi lub metod pomiaru
+2.  **Błąd systematyczny (błąd niepróbkowy)**: Występuje, gdy nasze metody zbierania danych systematycznie zniekształcają wyniki w jednym kierunku. W przeciwieństwie do błędu próbkowania, błędu systematycznego NIE można zmniejszyć przez zwiększenie wielkości próby.
+
+    Źródła błędu systematycznego obejmują:
+
+    -   **Błąd selekcji**: Gdy metoda wyboru próby faworyzuje pewne grupy (np. ankiety telefoniczne mogą pomijać osoby bez telefonów)
+    -   **Błąd odpowiedzi**: Gdy respondenci udzielają niedokładnych odpowiedzi (np. zawyżanie dochodów w ankietach)
+    -   **Błąd braku odpowiedzi**: Gdy osoby, które odmawiają udziału, różnią się od tych, które uczestniczą
+    -   **Błąd pomiaru**: Wynikający z niedokładnych narzędzi lub metod pomiaru
 
 Na przykład, jeśli obliczymy średni wzrost z próby, błąd standardowy mówi nam, jak bardzo ta średnia mogłaby się różnić, gdybyśmy pobrali wiele różnych losowych prób. Jednak jeśli nasz przyrząd pomiarowy jest wadliwy i zawsze dodaje 2 cm do każdego pomiaru, mamy do czynienia z błędem systematycznym, którego zwiększenie wielkości próby nie naprawi.
 
 Dobry projekt badania musi uwzględniać oba rodzaje błędów:
 
-* Błąd próbkowania można zmniejszyć przez zwiększenie wielkości próby
-* Błąd systematyczny można zmniejszyć tylko przez ulepszenie metod zbierania danych
+-   Błąd próbkowania można zmniejszyć przez zwiększenie wielkości próby
+-   Błąd systematyczny można zmniejszyć tylko przez ulepszenie metod zbierania danych
 
 ### Jak Duża Powinna Być Nasza Próba?
 
 Niezbędna wielkość próby zależy od trzech głównych czynników:
 
-1. **Jakiego rodzaju szacunek przeprowadzasz?** (proporcja czy średnia)
-2. **Jak dokładny musi być twój szacunek?**
-   
-   * Większa dokładność = większa próba
-   * Przykład: Szacowanie z dokładnością do ±1 punktu procentowego wymaga około 9 razy więcej osób niż szacowanie z dokładnością do ±3 punktów procentowych
-   * Przykład: Jeśli potrzebujesz być bardziej pewny swoich wyników (dla kluczowych decyzji), będziesz potrzebować większej próby
+1.  **Jakiego rodzaju szacunek przeprowadzasz?** (proporcja czy średnia)
 
+2.  **Jak dokładny musi być twój szacunek?**
 
-3. **Jak zróżnicowana jest twoja populacja?**
-   
-   * Dla proporcji: Największa zmienność występuje przy wartości 50%, najmniejsza przy 0% lub 100%
-   * Dla średnich: Sprawdź, jak bardzo pomiary różnią się od siebie (wariancja) w badanej populacji
+    -   Większa dokładność = większa próba
+    -   Przykład: Szacowanie z dokładnością do ±1 punktu procentowego wymaga około 9 razy więcej osób niż szacowanie z dokładnością do ±3 punktów procentowych
+    -   Przykład: Jeśli potrzebujesz być bardziej pewny swoich wyników (dla kluczowych decyzji), będziesz potrzebować większej próby
+
+3.  **Jak zróżnicowana jest twoja populacja?**
+
+    -   Dla proporcji: Największa zmienność występuje przy wartości 50%, najmniejsza przy 0% lub 100%
+    -   Dla średnich: Sprawdź, jak bardzo pomiary różnią się od siebie (wariancja) w badanej populacji
 
 **A co z małymi populacjami?**
 
 Przy pracy z małymi populacjami (np. 1 000 osób lub mniej):
 
-- Występują istotne różnice w metodologii w porównaniu do dużych populacji
-- Tradycyjnie rozumiana prosta próba losowa zakłada losowanie ze zwracaniem (z jednakowym prawdopodobieństwem wyboru każdej jednostki)
-- W praktyce badawczej stosuje się zwykle losowanie bez zwracania, gdzie prawdopodobieństwa wyboru zmieniają się po każdym losowaniu
-- Im mniejsza populacja, tym większa różnica między tymi podejściami
-- **Współczynnik korekty dla populacji skończonej** koryguje właśnie tę rozbieżność i staje się niezbędny przy badaniu więcej niż 5-10% populacji
+-   Występują istotne różnice w metodologii w porównaniu do dużych populacji
+-   Tradycyjnie rozumiana prosta próba losowa zakłada losowanie ze zwracaniem (z jednakowym prawdopodobieństwem wyboru każdej jednostki)
+-   W praktyce badawczej stosuje się zwykle losowanie bez zwracania, gdzie prawdopodobieństwa wyboru zmieniają się po każdym losowaniu
+-   Im mniejsza populacja, tym większa różnica między tymi podejściami
+-   **Współczynnik korekty dla populacji skończonej** koryguje właśnie tę rozbieżność i staje się niezbędny przy badaniu więcej niż 5-10% populacji
 
 **Wyjaśnienie różnicy:**
 
-- Losowanie ze zwracaniem: każda jednostka ma stałe prawdopodobieństwo wyboru w każdym losowaniu (np. 1/N)
-- Losowanie bez zwracania: prawdopodobieństwo wyboru zmienia się w kolejnych losowaniach (z 1/N na 1/(N-1), 1/(N-2) itd.)
-- W dużych populacjach różnica jest minimalna, w małych - fundamentalna
-- Schematy losowania bez zwracania mają często mniejszą wariancję estymatora niż przy losowaniu ze zwracaniem
+-   Losowanie ze zwracaniem: każda jednostka ma stałe prawdopodobieństwo wyboru w każdym losowaniu (np. 1/N)
+-   Losowanie bez zwracania: prawdopodobieństwo wyboru zmienia się w kolejnych losowaniach (z 1/N na 1/(N-1), 1/(N-2) itd.)
+-   W dużych populacjach różnica jest minimalna, w małych - fundamentalna
+-   Schematy losowania bez zwracania mają często mniejszą wariancję estymatora niż przy losowaniu ze zwracaniem
 
 **Podejścia do małych populacji:**
 
-- Badanie pełne eliminuje problemy związane z losowaniem
-- Stratyfikacja może poprawić reprezentatywność, ale nie rozwiązuje problemu zmieniających się prawdopodobieństw
-- Metody nieparametryczne, które uwzględniają specyfikę małych populacji
-- Techniki "bootstrap" z odpowiednimi modyfikacjami dla małych populacji
+-   Badanie pełne eliminuje problemy związane z losowaniem
+-   Stratyfikacja może poprawić reprezentatywność, ale nie rozwiązuje problemu zmieniających się prawdopodobieństw
+-   Metody nieparametryczne, które uwzględniają specyfikę małych populacji
+-   Techniki "bootstrap" z odpowiednimi modyfikacjami dla małych populacji
 
 **Praktyczne zalecenia:**
 
-* Dla populacji poniżej 200 jednostek rozważ badanie pełne
-* Stosuj odpowiednie wzory statystyczne uwzględniające losowanie bez zwracania
-* Standardowe wzory na błędy standardowe oparte na losowaniu ze zwracaniem będą zawyżać błąd w małych populacjach
-* Wyraźnie dokumentuj mechanizm losowania w raportach badawczych
+-   Dla populacji poniżej 200 jednostek rozważ badanie pełne
+-   Stosuj odpowiednie wzory statystyczne uwzględniające losowanie bez zwracania
+-   Standardowe wzory na błędy standardowe oparte na losowaniu ze zwracaniem będą zawyżać błąd w małych populacjach
+-   Wyraźnie dokumentuj mechanizm losowania w raportach badawczych
 
 Te rozróżnienia są istotne w badaniach małych społeczności, organizacji, czy badaniach pilotażowych, gdzie wpływ schematu losowania na wnioskowanie statystyczne jest znacznie większy niż w dużych badaniach reprezentatywnych.
-
 
 ### Proporcje a Średnie
 
 #### Proporcje (procenty)
+
 Przy szacowaniu proporcji (takiej jak odsetek wyborców popierających kandydata):
 
-- Proporcja reprezentuje część populacji o określonej cesze
-- W zasadzie liczymy odpowiedzi "tak" vs "nie"
-- Obliczanie wielkości próby koncentruje się na oczekiwanej proporcji (p):
-  
-  * Proporcja bliska 50% ma maksymalną niepewność i wymaga większych prób
-  * Proporcja bliska 10% lub 90% ma mniejszą niepewność i wymaga mniejszych prób
+-   Proporcja reprezentuje część populacji o określonej cesze
 
-- Dla typowego sondażu wyborczego z proporcjami bliskimi 50%, około 1 000 losowo wybranych osób zapewnia dokładność około ±3 punktów procentowych
-- Co ciekawe, ta wielkość próby pozostaje taka sama, niezależnie od tego, czy twoja populacja liczy 30 000 czy 30 milionów
+-   W zasadzie liczymy odpowiedzi "tak" vs "nie"
+
+-   Obliczanie wielkości próby koncentruje się na oczekiwanej proporcji (p):
+
+    -   Proporcja bliska 50% ma maksymalną niepewność i wymaga większych prób
+    -   Proporcja bliska 10% lub 90% ma mniejszą niepewność i wymaga mniejszych prób
+
+-   Dla typowego sondażu wyborczego z proporcjami bliskimi 50%, około 1 000 losowo wybranych osób zapewnia dokładność około ±3 punktów procentowych
+
+-   Co ciekawe, ta wielkość próby pozostaje taka sama, niezależnie od tego, czy twoja populacja liczy 30 000 czy 30 milionów
 
 #### Średnie
+
 Przy szacowaniu średniej (takiej jak typowy dochód gospodarstwa domowego lub wzrost):
 
-- Średnia podsumowuje ciągłe pomiary, które mogą przyjmować wiele różnych wartości
-- Wielkość próby zależy głównie od tego, jak bardzo te pomiary różnią się między osobami
-- Kluczowe względy dla wielkości próby:
-  
-  * Populacje o bardziej zróżnicowanych pomiarach (wysoka odchylenie standardowe) wymagają większych prób
-  * Bardziej precyzyjne szacunki wymagają większych prób
-  * W przeciwieństwie do proporcji, nie ma "maksymalnej niepewności" przy określonej wartości
+-   Średnia podsumowuje ciągłe pomiary, które mogą przyjmować wiele różnych wartości
 
-- Na przykład, szacowanie średniego dochodu może wymagać większej próby niż szacowanie średniego wzrostu, ponieważ dochody zazwyczaj różnią się bardziej niż wzrost
+-   Wielkość próby zależy głównie od tego, jak bardzo te pomiary różnią się między osobami
+
+-   Kluczowe względy dla wielkości próby:
+
+    -   Populacje o bardziej zróżnicowanych pomiarach (wysoka odchylenie standardowe) wymagają większych prób
+    -   Bardziej precyzyjne szacunki wymagają większych prób
+    -   W przeciwieństwie do proporcji, nie ma "maksymalnej niepewności" przy określonej wartości
+
+-   Na przykład, szacowanie średniego dochodu może wymagać większej próby niż szacowanie średniego wzrostu, ponieważ dochody zazwyczaj różnią się bardziej niż wzrost
 
 #### Parametry modeli regresyjnych
+
 Przy szacowaniu parametrów modeli regresyjnych (takich jak współczynniki w regresji liniowej):
 
-- **Czym jest regresja?** Modele regresji opisują, jak jedna zmienna (zmienna zależna) wiąże się z jedną lub wieloma innymi zmiennymi (zmiennymi niezależnymi). Na przykład, jak sprzedaż zależy od wydatków na reklamę, lub jak plony zależą od opadów deszczu i temperatury.
+-   **Czym jest regresja?** Modele regresji opisują, jak jedna zmienna (zmienna zależna) wiąże się z jedną lub wieloma innymi zmiennymi (zmiennymi niezależnymi). Na przykład, jak sprzedaż zależy od wydatków na reklamę, lub jak plony zależą od opadów deszczu i temperatury.
 
-- Parametry te pokazują związki między zmiennymi, np. jak wzrost wpływa na wagę
-- Wielkość próby dla modeli regresyjnych jest bardziej złożona niż dla prostych średnich czy proporcji
-- Kluczowe czynniki wpływające na wymaganą wielkość próby:
-  
-  * Liczba zmiennych w modelu (więcej zmiennych = większa próba)
-  * Siła badanych efektów (słabsze efekty wymagają większych prób do wykrycia)
-  * Zmienność danych (większa zmienność = większa próba)
-  * Złożoność modelu (bardziej złożone modele wymagają większych prób)
+-   Parametry te pokazują związki między zmiennymi, np. jak wzrost wpływa na wagę
+
+-   Wielkość próby dla modeli regresyjnych jest bardziej złożona niż dla prostych średnich czy proporcji
+
+-   Kluczowe czynniki wpływające na wymaganą wielkość próby:
+
+    -   Liczba zmiennych w modelu (więcej zmiennych = większa próba)
+    -   Siła badanych efektów (słabsze efekty wymagają większych prób do wykrycia)
+    -   Zmienność danych (większa zmienność = większa próba)
+    -   Złożoność modelu (bardziej złożone modele wymagają większych prób)
 
 **Proste reguły dla modeli regresyjnych:**
 
-- Podstawowa zasada: co najmniej 10-20 obserwacji na każdą zmienną w modelu
-- Dla wykrywania słabych efektów: może być potrzebne nawet 100+ obserwacji na zmienną
-- Modele wielopoziomowe lub hierarchiczne: wymagają znacznie większych prób
+-   Podstawowa zasada: co najmniej 10-20 obserwacji na każdą zmienną w modelu
+-   Dla wykrywania słabych efektów: może być potrzebne nawet 100+ obserwacji na zmienną
+-   Modele wielopoziomowe lub hierarchiczne: wymagają znacznie większych prób
 
 **Jak parametry regresyjne mają się do proporcji lub średnich?**
 
-- Parametry regresyjne są bardziej złożone – opisują relacje między zmiennymi, a nie tylko pojedyncze wartości
-- Podczas gdy proporcje i średnie skupiają się na jednej zmiennej, regresja analizuje współzależności
-- Błędy standardowe parametrów regresji zależą od wszystkich czynników wpływających na zmienność średnich, plus dodatkowo od korelacji między zmiennymi
+-   Parametry regresyjne są bardziej złożone – opisują relacje między zmiennymi, a nie tylko pojedyncze wartości
+-   Podczas gdy proporcje i średnie skupiają się na jednej zmiennej, regresja analizuje współzależności
+-   Błędy standardowe parametrów regresji zależą od wszystkich czynników wpływających na zmienność średnich, plus dodatkowo od korelacji między zmiennymi
 
 **Jak ocenić, że próba była zbyt mała?**
 
-- Duże błędy standardowe w stosunku do wartości parametrów (szerokie przedziały ufności)
-- Niestabilność wyników – małe zmiany w danych powodują duże zmiany w parametrach
-- Nieistotne statystycznie wyniki, mimo że teoria sugeruje silne efekty
-- Problemy z dopasowaniem modelu (np. przeuczenie, niestabilne predykcje)
-- Brak mocy statystycznej do wykrycia efektów o oczekiwanej wielkości
+-   Duże błędy standardowe w stosunku do wartości parametrów (szerokie przedziały ufności)
+-   Niestabilność wyników – małe zmiany w danych powodują duże zmiany w parametrach
+-   Nieistotne statystycznie wyniki, mimo że teoria sugeruje silne efekty
+-   Problemy z dopasowaniem modelu (np. przeuczenie, niestabilne predykcje)
+-   Brak mocy statystycznej do wykrycia efektów o oczekiwanej wielkości
 
 ### Przykład Maksymalnej Niepewności: Dlaczego 50% to "Najgorszy Przypadek"
 
@@ -225,17 +230,17 @@ Wyobraź sobie, że masz 100 monet w worku, które są albo złote, albo srebrne
 
 **Scenariusz A: 50% Złotych (Maksymalna Niepewność)**
 
-- Worek zawiera 50 złotych i 50 srebrnych monet (50% złotych)
-- Jeśli wyciągniesz 10 monet, możesz zobaczyć: 3 złote, 6 złotych, 4 złote, itd.
-- Wyniki mogą się znacznie różnić od prawdziwego odsetka
-- Twoja próba może łatwo odbiegać o 20% lub więcej od prawdziwych 50%
+-   Worek zawiera 50 złotych i 50 srebrnych monet (50% złotych)
+-   Jeśli wyciągniesz 10 monet, możesz zobaczyć: 3 złote, 6 złotych, 4 złote, itd.
+-   Wyniki mogą się znacznie różnić od prawdziwego odsetka
+-   Twoja próba może łatwo odbiegać o 20% lub więcej od prawdziwych 50%
 
 **Scenariusz B: 10% Złotych (Mniejsza Niepewność)**
 
-- Worek zawiera 10 złotych i 90 srebrnych monet (10% złotych)
-- Jeśli wyciągniesz 10 monet, zazwyczaj zobaczysz: 0, 1 lub 2 złote monety
-- Jest mało prawdopodobne, że wyciągniesz 5 złotych monet (co byłoby bardzo dalekie od prawdziwych 10%)
-- Twój szacunek jest naturalnie bardziej stabilny i bliższy prawdziwemu odsetkowi
+-   Worek zawiera 10 złotych i 90 srebrnych monet (10% złotych)
+-   Jeśli wyciągniesz 10 monet, zazwyczaj zobaczysz: 0, 1 lub 2 złote monety
+-   Jest mało prawdopodobne, że wyciągniesz 5 złotych monet (co byłoby bardzo dalekie od prawdziwych 10%)
+-   Twój szacunek jest naturalnie bardziej stabilny i bliższy prawdziwemu odsetkowi
 
 Dlatego potrzebujemy większych prób, gdy proporcja jest bliska 50% - istnieje więcej naturalnej zmienności w tym, co możemy zaobserwować przez przypadek.
 
@@ -245,29 +250,29 @@ W sondażu wyborczym z 1 000 osób:
 
 **Dla głównego kandydata z poparciem 40%:**
 
-- Nasza dokładność wyniosłaby około ±3 punktów procentowych
-- Możemy oszacować, że jego poparcie wynosi między 37% a 43%
-- Jest to wystarczająco precyzyjne, aby dokonać użytecznych prognoz
+-   Nasza dokładność wyniosłaby około ±3 punktów procentowych
+-   Możemy oszacować, że jego poparcie wynosi między 37% a 43%
+-   Jest to wystarczająco precyzyjne, aby dokonać użytecznych prognoz
 
 **Dla kandydata z mniejszym poparciem na poziomie 3%:**
 
-- Nasza dokładność wyniosłaby około ±1 punkt procentowy (mniejsza niż dla głównego kandydata)
-- Możemy oszacować, że jego poparcie wynosi między 2% a 4%
-- Jest to również wystarczająco precyzyjne dla praktycznych celów
+-   Nasza dokładność wyniosłaby około ±1 punkt procentowy (mniejsza niż dla głównego kandydata)
+-   Możemy oszacować, że jego poparcie wynosi między 2% a 4%
+-   Jest to również wystarczająco precyzyjne dla praktycznych celów
 
-**Ważne wyjaśnienie dotyczące dokładności:** 
+**Ważne wyjaśnienie dotyczące dokładności:**
 
-1. **Dokładność bezwzględna (w punktach procentowych):**
-   
-   - Dla kandydata z małym poparciem (3%): ±1 punkt procentowy (mniejszy błąd bezwzględny)
-   - Dla głównego kandydata (40%): ±3 punkty procentowe (większy błąd bezwzględny)
-   - Dzieje się tak, ponieważ proporcje dalekie od 50% (jak 3%) naturalnie mają mniejszą zmienność
+1.  **Dokładność bezwzględna (w punktach procentowych):**
 
-2. **Dokładność względna (jako proporcja szacunku):**
-   
-   - Dla kandydata z małym poparciem (3%): ±1 punkt procentowy to 33% ich poziomu poparcia
-   - Dla głównego kandydata (40%): ±3 punkty procentowe to tylko 7,5% ich poziomu poparcia
-   - Więc choć błąd bezwzględny jest mniejszy, błąd względny jest znacznie większy dla kandydatów z małym poparciem
+    -   Dla kandydata z małym poparciem (3%): ±1 punkt procentowy (mniejszy błąd bezwzględny)
+    -   Dla głównego kandydata (40%): ±3 punkty procentowe (większy błąd bezwzględny)
+    -   Dzieje się tak, ponieważ proporcje dalekie od 50% (jak 3%) naturalnie mają mniejszą zmienność
+
+2.  **Dokładność względna (jako proporcja szacunku):**
+
+    -   Dla kandydata z małym poparciem (3%): ±1 punkt procentowy to 33% ich poziomu poparcia
+    -   Dla głównego kandydata (40%): ±3 punkty procentowe to tylko 7,5% ich poziomu poparcia
+    -   Więc choć błąd bezwzględny jest mniejszy, błąd względny jest znacznie większy dla kandydatów z małym poparciem
 
 Na przykład, jeśli sondaż pokazuje 3% poparcia dla kandydata z małym poparciem z dokładnością ±1 punkt procentowy, ich rzeczywiste poparcie może być o 33% wyższe lub niższe niż zmierzone (między 2% a 4%). Dla głównego kandydata z poparciem 40% z dokładnością ±3 punkty procentowe, ich rzeczywiste poparcie będzie się różnić tylko o 7,5% od zmierzonej wartości.
 
@@ -279,32 +284,35 @@ Chociaż proporcję można obliczyć jako średnią z 0 i 1 (nie/tak), zachowuj�
 
 **Dla proporcji (takich jak sondaż wyborczy):**
 
-- Wyobraź sobie rzucanie monetami: Gdy wyniki są bliskie 50-50 (jak w zaciętych wyborach), istnieje większa niepewność co do prawdziwego odsetka
-- Przykład 1: Jeśli 500 z 1 000 osób (50%) popiera Kandydata A, dokładność wynosi około ±3 punktów procentowych
-- Przykład 2: Jeśli 900 z 1 000 (90%) popiera Kandydata A, dokładność wynosi tylko około ±2 punktów procentowych
-- Przykład 3: W ankiecie klasowej, gdzie 15 z 20 uczniów (75%) woli pizzę od hamburgerów, dokładność wynosi około ±19 punktów procentowych - znacznie większa niż przy 1 000 osobach!
-- Im bliżej 50%, tym więcej osób musimy zbadać, aby być pewnym naszego wyniku
+-   Wyobraź sobie rzucanie monetami: Gdy wyniki są bliskie 50-50 (jak w zaciętych wyborach), istnieje większa niepewność co do prawdziwego odsetka
+-   Przykład 1: Jeśli 500 z 1 000 osób (50%) popiera Kandydata A, dokładność wynosi około ±3 punktów procentowych
+-   Przykład 2: Jeśli 900 z 1 000 (90%) popiera Kandydata A, dokładność wynosi tylko około ±2 punktów procentowych
+-   Przykład 3: W ankiecie klasowej, gdzie 15 z 20 uczniów (75%) woli pizzę od hamburgerów, dokładność wynosi około ±19 punktów procentowych - znacznie większa niż przy 1 000 osobach!
+-   Im bliżej 50%, tym więcej osób musimy zbadać, aby być pewnym naszego wyniku
 
 **Dla ogólnych średnich (takich jak dochód gospodarstwa domowego):**
 
-- Wyobraź sobie pomiar różnych rzeczy:
-  
-  * Wzrost: Większość dorosłych ma między 150 cm a 195 cm (niewielka zmienność)
-  * Dochody: Ludzie mogą zarabiać od 0 zł do milionów (ogromna zmienność)
-  * Wyniki testów: Większość uczniów zdobywa między 60-90 punktów na teście (umiarkowana zmienność)
+-   Wyobraź sobie pomiar różnych rzeczy:
 
-- Przykład 1: Aby oszacować średni wzrost z dokładnością do ±2,5 cm, możemy potrzebować tylko 100 osób
-- Przykład 2: Aby oszacować średni dochód z dokładnością do ±1 000 zł, możemy potrzebować 10 000 osób
-- Przykład 3: Aby oszacować średnie wyniki testów z dokładnością do ±2 punktów, możemy potrzebować 500 osób
-- Im większa zmienność w populacji, tym większej próby potrzeba dla tej samej precyzji
+    -   Wzrost: Większość dorosłych ma między 150 cm a 195 cm (niewielka zmienność)
+    -   Dochody: Ludzie mogą zarabiać od 0 zł do milionów (ogromna zmienność)
+    -   Wyniki testów: Większość uczniów zdobywa między 60-90 punktów na teście (umiarkowana zmienność)
+
+-   Przykład 1: Aby oszacować średni wzrost z dokładnością do ±2,5 cm, możemy potrzebować tylko 100 osób
+
+-   Przykład 2: Aby oszacować średni dochód z dokładnością do ±1 000 zł, możemy potrzebować 10 000 osób
+
+-   Przykład 3: Aby oszacować średnie wyniki testów z dokładnością do ±2 punktów, możemy potrzebować 500 osób
+
+-   Im większa zmienność w populacji, tym większej próby potrzeba dla tej samej precyzji
 
 **Porównanie w świecie rzeczywistym:**
 
 Jeśli chcemy tej samej dokładności (±3 punktów procentowych):
 
-- Dla pytania tak/nie, gdzie spodziewamy się podziału bliskiego 50-50: około 1 000 osób
-- Do pomiaru średniego zużycia energii w gospodarstwach domowych: prawdopodobnie 2 000-3 000 gospodarstw
-- Do oszacowania średniego czasu dojazdu: prawdopodobnie 500-600 dojeżdżających
+-   Dla pytania tak/nie, gdzie spodziewamy się podziału bliskiego 50-50: około 1 000 osób
+-   Do pomiaru średniego zużycia energii w gospodarstwach domowych: prawdopodobnie 2 000-3 000 gospodarstw
+-   Do oszacowania średniego czasu dojazdu: prawdopodobnie 500-600 dojeżdżających
 
 Siła próbkowania polega na tym, że przy właściwej randomizacji możemy dowiedzieć się o bardzo dużych populacjach, badając stosunkowo małe próby!
 :::
@@ -312,26 +320,26 @@ Siła próbkowania polega na tym, że przy właściwej randomizacji możemy dowi
 ![The process of using a sample from a population to obtain a point estimate of a population parameter. In this case, a sample of 10 individuals yielded 6 who own an iPhone, resulting in an estimated population proportion of 60% iPhone owners. The actual population proportion is 53.8%. Retrieved from: https://datasciencebook.ca/inference.html](stat_imgs/population_vs_sample.png)
 
 ::: {.panel-tabset group="language"}
-
 ## SRS
+
 **Prosty Dobór Losowy**: Każda jednostka ma równe prawdopodobieństwo wyboru. Cała populacja jest losowo próbkowana bez żadnego z góry ustalonego wzorca.
 
 ![Prosty Dobór Losowy. Źródło: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Simple_Random_Sampling2.svg)
 
 ## Dobór warstwowy
+
 **Dobór Warstwowy**: Populacja jest podzielona na odrębne podgrupy (warstwy) przed losowym pobraniem próbek z każdej warstwy proporcjonalnie.
 
 ![Dobór Warstwowy. Źródło: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Stratified2.svg)
 
 ## Dobór grupowy
+
 **Dobór Grupowy**: Populacja jest podzielona na skupiska (klastry), a całe skupiska są losowo wybierane do analizy zamiast pojedynczych jednostek.
 
 ![Dobór Grupowy. Źródło: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Cluster2.svg)
 :::
 
-
-
-::: {.callout-note}
+::: callout-note
 ## Data Generating Process i Superpopulacja w kontekście badań statystycznych
 
 W statystyce i ekonometrii często posługujemy się pojęciami populacji i próby. Jednak dla pełnego zrozumienia statystycznych modeli warto wprowadzić dwa dodatkowe koncepty: **data generating process (DGP)** oraz **superpopulację**. Pojęcia te pomogą lepiej zrozumieć, w jaki sposób powstają dane, które analizujemy.
@@ -348,22 +356,23 @@ W statystyce i ekonometrii często posługujemy się pojęciami populacji i pró
 
 Kluczowe cechy DGP:
 
-- Jest to abstrakcyjny, matematyczny model opisujący, jak zmienne są ze sobą powiązane
-- Zawiera zarówno element deterministyczny (przewidywalny), jak i losowy (nieprzewidywalny)
-- Zwykle wyrażany za pomocą równań i rozkładów prawdopodobieństwa
+-   Jest to abstrakcyjny, matematyczny model opisujący, jak zmienne są ze sobą powiązane
+-   Zawiera zarówno element deterministyczny (przewidywalny), jak i losowy (nieprzewidywalny)
+-   Zwykle wyrażany za pomocą równań i rozkładów prawdopodobieństwa
 
 #### Przykład DGP:
+
 Załóżmy, że badamy dochody gospodarstw domowych. Model DGP (równanie matematyczne) mógłby wyglądać tak:
 
 $Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \varepsilon_i$
 
 Gdzie:
 
-- $Y_i$ to dochód gospodarstwa domowego $i$
-- $X_{1i}$ to liczba osób pracujących w gospodarstwie $i$
-- $X_{2i}$ to poziom wykształcenia głównego żywiciela gospodarstwa $i$
-- $\varepsilon_i$ to czynnik losowy (błąd)
-- $\beta_0, \beta_1, \beta_2$ to parametry modelu
+-   $Y_i$ to dochód gospodarstwa domowego $i$
+-   $X_{1i}$ to liczba osób pracujących w gospodarstwie $i$
+-   $X_{2i}$ to poziom wykształcenia głównego żywiciela gospodarstwa $i$
+-   $\varepsilon_i$ to czynnik losowy (błąd)
+-   $\beta_0, \beta_1, \beta_2$ to parametry modelu
 
 W tym przykładzie DGP określa, jak dochód zależy od liczby pracujących osób i wykształcenia, plus element losowy.
 
@@ -373,62 +382,63 @@ W tym przykładzie DGP określa, jak dochód zależy od liczby pracujących osó
 
 Kluczowe cechy superpopulacji:
 
-- Jest konceptualnym rozszerzeniem pojęcia populacji
-- Reprezentuje wszystkie możliwe realizacje procesu generującego dane (DGP)
-- Pozwala na wnioskowanie nie tylko o aktualnej populacji, ale o ogólnych prawidłowościach
+-   Jest konceptualnym rozszerzeniem pojęcia populacji
+-   Reprezentuje wszystkie możliwe realizacje procesu generującego dane (DGP)
+-   Pozwala na wnioskowanie nie tylko o aktualnej populacji, ale o ogólnych prawidłowościach
 
 #### Przykłady superpopulacji:
-1. Badamy wyniki matur w Polsce w 2024 roku (populacja). Superpopulacja to hipotetyczne wyniki matur wszystkich możliwych uczniów, którzy mogliby zdawać maturę w podobnych warunkach, w dowolnym roku.
 
-2. Analizujemy PKB krajów europejskich w 2023 roku (populacja). Superpopulacja to wszystkie możliwe realizacje PKB tych krajów w różnych warunkach gospodarczych.
+1.  Badamy wyniki matur w Polsce w 2024 roku (populacja). Superpopulacja to hipotetyczne wyniki matur wszystkich możliwych uczniów, którzy mogliby zdawać maturę w podobnych warunkach, w dowolnym roku.
+
+2.  Analizujemy PKB krajów europejskich w 2023 roku (populacja). Superpopulacja to wszystkie możliwe realizacje PKB tych krajów w różnych warunkach gospodarczych.
 
 ### Relacje między pojęciami
 
-```
+```         
 DGP → Superpopulacja → Populacja → Próba
 ```
 
-- **DGP** definiuje mechanizm generowania danych
-- **Superpopulacja** to wszystkie możliwe realizacje DGP
-- **Populacja** to konkretna, skończona realizacja z superpopulacji
-- **Próba** to podzbiór populacji, który faktycznie obserwujemy i analizujemy
+-   **DGP** definiuje mechanizm generowania danych
+-   **Superpopulacja** to wszystkie możliwe realizacje DGP
+-   **Populacja** to konkretna, skończona realizacja z superpopulacji
+-   **Próba** to podzbiór populacji, który faktycznie obserwujemy i analizujemy
 
 ### Praktyczne znaczenie
 
 #### Dlaczego te pojęcia są ważne?
 
-1. **Modelowanie ekonometryczne** - DGP jest fundamentem modelowania ekonometrycznego, pozwala zrozumieć, jak zmienne ekonomiczne wpływają na siebie nawzajem.
+1.  **Modelowanie ekonometryczne** - DGP jest fundamentem modelowania ekonometrycznego, pozwala zrozumieć, jak zmienne ekonomiczne wpływają na siebie nawzajem.
 
-2. **Wnioskowanie statystyczne** - Koncepcja superpopulacji pozwala na formułowanie wniosków ogólnych, wykraczających poza konkretny moment czasowy czy grupę.
+2.  **Wnioskowanie statystyczne** - Koncepcja superpopulacji pozwala na formułowanie wniosków ogólnych, wykraczających poza konkretny moment czasowy czy grupę.
 
-3. **Prognozowanie** - Zrozumienie DGP umożliwia lepsze prognozowanie przyszłych wartości zmiennych ekonomicznych.
+3.  **Prognozowanie** - Zrozumienie DGP umożliwia lepsze prognozowanie przyszłych wartości zmiennych ekonomicznych.
 
-4. **Weryfikacja hipotez** - Pozwala lepiej określić, czy zaobserwowane zależności są dziełem przypadku, czy odzwierciedlają rzeczywiste prawidłowości.
+4.  **Weryfikacja hipotez** - Pozwala lepiej określić, czy zaobserwowane zależności są dziełem przypadku, czy odzwierciedlają rzeczywiste prawidłowości.
 
 ### Przykład zastosowania w ekonomii
 
 Załóżmy, że ekonomista bada wpływ stóp procentowych na inflację:
 
-- **DGP**: Równanie opisujące, jak stopa procentowa i inne czynniki wpływają na inflację
-- **Superpopulacja**: Wszystkie możliwe wartości inflacji przy różnych poziomach stóp procentowych i innych czynników
-- **Populacja**: Faktyczne wartości inflacji we wszystkich krajach w danym okresie
-- **Próba**: Dane o inflacji z 30 wybranych krajów, które badamy
+-   **DGP**: Równanie opisujące, jak stopa procentowa i inne czynniki wpływają na inflację
+-   **Superpopulacja**: Wszystkie możliwe wartości inflacji przy różnych poziomach stóp procentowych i innych czynników
+-   **Populacja**: Faktyczne wartości inflacji we wszystkich krajach w danym okresie
+-   **Próba**: Dane o inflacji z 30 wybranych krajów, które badamy
 
 ### Przykłady ze studiów wyborczych
 
 **Przykład 1: Frekwencja wyborcza**
 
-- **DGP**: $Frekwencja_i = \beta_0 + \beta_1 Wiek_i + \beta_2 Wykształcenie_i + \beta_3 Dochód_i + \varepsilon_i$
-- **Superpopulacja**: Wszystkie możliwe decyzje o udziale w wyborach, które mogliby podjąć wyborcy o różnych cechach społeczno-demograficznych w różnych warunkach
-- **Populacja**: Wszyscy uprawnieni do głosowania w wyborach prezydenckich 2020
-- **Próba**: 1500 respondentów ankiety exit poll po wyborach
+-   **DGP**: $Frekwencja_i = \beta_0 + \beta_1 Wiek_i + \beta_2 Wykształcenie_i + \beta_3 Dochód_i + \varepsilon_i$
+-   **Superpopulacja**: Wszystkie możliwe decyzje o udziale w wyborach, które mogliby podjąć wyborcy o różnych cechach społeczno-demograficznych w różnych warunkach
+-   **Populacja**: Wszyscy uprawnieni do głosowania w wyborach prezydenckich 2020
+-   **Próba**: 1500 respondentów ankiety exit poll po wyborach
 
 **Przykład 2: Poparcie dla partii politycznych**
 
-- **DGP**: $Poparcie_{ij} = \beta_0 + \beta_1 Ideologia_i + \beta_2 SytuacjaEkonomiczna_i + \beta_3 Wiek_i + \varepsilon_i$
-- **Superpopulacja**: Wszystkie możliwe preferencje wyborcze osób o różnych cechach w różnych warunkach społeczno-ekonomicznych
-- **Populacja**: Wszyscy wyborcy w Polsce w 2023 roku
-- **Próba**: Respondenci sondażu przedwyborczego (n=1000)
+-   **DGP**: $Poparcie_{ij} = \beta_0 + \beta_1 Ideologia_i + \beta_2 SytuacjaEkonomiczna_i + \beta_3 Wiek_i + \varepsilon_i$
+-   **Superpopulacja**: Wszystkie możliwe preferencje wyborcze osób o różnych cechach w różnych warunkach społeczno-ekonomicznych
+-   **Populacja**: Wszyscy wyborcy w Polsce w 2023 roku
+-   **Próba**: Respondenci sondażu przedwyborczego (n=1000)
 
 ### Symulacja i estymacja funkcji popytu jako DGP w R
 
@@ -590,73 +600,72 @@ ggplot(ceteris_paribus, aes(x = cena)) +
 
 Ten kod pokazuje:
 
-1. Definiowanie złożonego DGP dla funkcji popytu z wieloma predyktorami zgodnej z teorią ekonomiczną
-2. Symulowanie superpopulacji zgodnie z tym DGP
-3. Pobieranie próby z superpopulacji
-4. Estymację parametrów modelu za pomocą regresji OLS
-5. Porównanie estymowanych parametrów z ich prawdziwymi wartościami
-6. Wizualizację porównania prawdziwych i estymowanych parametrów
-7. Sprawdzenie zdolności predykcyjnej modelu na nowych danych
-8. Wizualizację relacji między ceną a popytem z efektem ceteris paribus
+1.  Definiowanie złożonego DGP dla funkcji popytu z wieloma predyktorami zgodnej z teorią ekonomiczną
+2.  Symulowanie superpopulacji zgodnie z tym DGP
+3.  Pobieranie próby z superpopulacji
+4.  Estymację parametrów modelu za pomocą regresji OLS
+5.  Porównanie estymowanych parametrów z ich prawdziwymi wartościami
+6.  Wizualizację porównania prawdziwych i estymowanych parametrów
+7.  Sprawdzenie zdolności predykcyjnej modelu na nowych danych
+8.  Wizualizację relacji między ceną a popytem z efektem ceteris paribus
 
 Przykład ten pokazuje, jak można symulować złożone zależności ekonomiczne, a następnie używać metod ekonometrycznych do odkrywania tych zależności na podstawie próby danych. Jest to doskonała ilustracja, jak teoria ekonomiczna, DGP i metody statystyczne są ze sobą powiązane.
 
 W rzeczywistości nigdy nie znamy prawdziwego DGP - to właśnie próbujemy odkryć za pomocą analizy statystycznej. Symulacje tego typu pozwalają jednak zrozumieć konceptualnie, jak wnioskowanie statystyczne łączy się z pojęciem DGP i superpopulacji.
 
-
 ### Przykłady pomocnicze
 
 #### Przykład 1: Badanie opinii wyborców
 
-- **Populacja**: Wszyscy zarejestrowani wyborcy w Polsce w 2023 roku (ok. 30 milionów osób)
-- **Próba**: 1000 losowo wybranych wyborców ankietowanych w sondażu
-- **Superpopulacja**: Wszyscy możliwi wyborcy (obecni, przyszli i hipotetyczni) oraz wszystkie możliwe scenariusze głosowania
-- **DGP** (Data Generating Process): Złożony mechanizm kształtujący opinie i decyzje wyborcze, w tym:
-  - Czynniki demograficzne (wiek, wykształcenie, miejsce zamieszkania)
-  - Warunki ekonomiczne (dochód, status zawodowy)
-  - Wpływ mediów i debaty publicznej
-  - Doświadczenia osobiste
-  - Historyczne uwarunkowania polityczne
+-   **Populacja**: Wszyscy zarejestrowani wyborcy w Polsce w 2023 roku (ok. 30 milionów osób)
+-   **Próba**: 1000 losowo wybranych wyborców ankietowanych w sondażu
+-   **Superpopulacja**: Wszyscy możliwi wyborcy (obecni, przyszli i hipotetyczni) oraz wszystkie możliwe scenariusze głosowania
+-   **DGP** (Data Generating Process): Złożony mechanizm kształtujący opinie i decyzje wyborcze, w tym:
+    -   Czynniki demograficzne (wiek, wykształcenie, miejsce zamieszkania)
+    -   Warunki ekonomiczne (dochód, status zawodowy)
+    -   Wpływ mediów i debaty publicznej
+    -   Doświadczenia osobiste
+    -   Historyczne uwarunkowania polityczne
 
 #### Przykład 2: Badanie efektów leku przeciwcukrzycowego
 
-- **Populacja**: Wszyscy pacjenci z cukrzycą typu 2 w danym kraju (np. 2 miliony osób)
-- **Próba**: 500 pacjentów uczestniczących w badaniu klinicznym
-- **Superpopulacja**: Wszyscy możliwi pacjenci z cukrzycą typu 2 (obecni i przyszli) z różnymi profilami genetycznymi i środowiskowymi
-- **DGP**: Biologiczny mechanizm obejmujący:
-  - Interakcje leku z receptorami w organizmie
-  - Indywidualne uwarunkowania genetyczne
-  - Czynniki środowiskowe (dieta, aktywność fizyczna)
-  - Interakcje z innymi lekami
-  - Mechanizmy metaboliczne organizmu
+-   **Populacja**: Wszyscy pacjenci z cukrzycą typu 2 w danym kraju (np. 2 miliony osób)
+-   **Próba**: 500 pacjentów uczestniczących w badaniu klinicznym
+-   **Superpopulacja**: Wszyscy możliwi pacjenci z cukrzycą typu 2 (obecni i przyszli) z różnymi profilami genetycznymi i środowiskowymi
+-   **DGP**: Biologiczny mechanizm obejmujący:
+    -   Interakcje leku z receptorami w organizmie
+    -   Indywidualne uwarunkowania genetyczne
+    -   Czynniki środowiskowe (dieta, aktywność fizyczna)
+    -   Interakcje z innymi lekami
+    -   Mechanizmy metaboliczne organizmu
 
 #### Przykład 3: Gdy próba równa się populacji
 
 Badanie wszystkich 50 stanów USA:
 
-- **Tradycyjne podejście**: Nie ma rozróżnienia między próbą a populacją (badamy wszystkie stany)
-- **Podejście superpopulacyjne**:
-  - **Populacja/Próba**: 50 istniejących stanów USA
-  - **Superpopulacja**: Teoretyczny zbiór wszystkich możliwych jednostek terytorialnych typu "stan" w różnych warunkach historycznych, politycznych i społecznych
-  - **DGP**: Fundamentalne mechanizmy geograficzne, historyczne, polityczne i społeczno-ekonomiczne kształtujące charakterystyki stanów
+-   **Tradycyjne podejście**: Nie ma rozróżnienia między próbą a populacją (badamy wszystkie stany)
+-   **Podejście superpopulacyjne**:
+    -   **Populacja/Próba**: 50 istniejących stanów USA
+    -   **Superpopulacja**: Teoretyczny zbiór wszystkich możliwych jednostek terytorialnych typu "stan" w różnych warunkach historycznych, politycznych i społecznych
+    -   **DGP**: Fundamentalne mechanizmy geograficzne, historyczne, polityczne i społeczno-ekonomiczne kształtujące charakterystyki stanów
 
 #### Przykład 4: Jakość pizzy w Nowym Jorku
 
-- **Populacja**: Wszystkie obecnie działające pizzerie w Nowym Jorku (np. 2000 lokali)
-- **Próba**: 50 losowo wybranych pizzerii z różnych dzielnic
-- **Superpopulacja**: Wszystkie możliwe pizzerie, które mogłyby istnieć w Nowym Jorku:
-  - Obecnie działające
-  - Przyszłe (jeszcze nieotwarte)
-  - Historyczne (już zamknięte)
-  - Hipotetyczne (w alternatywnych warunkach ekonomicznych czy kulturowych)
-- **DGP**: Czynniki wpływające na jakość pizzy:
-  - Składniki i ich jakość
-  - Umiejętności i doświadczenie szefów kuchni
-  - Sprzęt i infrastruktura kuchenna
-  - Metody przygotowania i przepisy
-  - Czynniki środowiskowe (np. jakość lokalnej wody)
-  - Wpływy kulturowe i tradycje kulinarne
-  - Uwarunkowania ekonomiczne (koszty operacyjne, czynsze)
+-   **Populacja**: Wszystkie obecnie działające pizzerie w Nowym Jorku (np. 2000 lokali)
+-   **Próba**: 50 losowo wybranych pizzerii z różnych dzielnic
+-   **Superpopulacja**: Wszystkie możliwe pizzerie, które mogłyby istnieć w Nowym Jorku:
+    -   Obecnie działające
+    -   Przyszłe (jeszcze nieotwarte)
+    -   Historyczne (już zamknięte)
+    -   Hipotetyczne (w alternatywnych warunkach ekonomicznych czy kulturowych)
+-   **DGP**: Czynniki wpływające na jakość pizzy:
+    -   Składniki i ich jakość
+    -   Umiejętności i doświadczenie szefów kuchni
+    -   Sprzęt i infrastruktura kuchenna
+    -   Metody przygotowania i przepisy
+    -   Czynniki środowiskowe (np. jakość lokalnej wody)
+    -   Wpływy kulturowe i tradycje kulinarne
+    -   Uwarunkowania ekonomiczne (koszty operacyjne, czynsze)
 
 DGP jest jak "przepis na jakość pizzy", który determinuje rezultaty dla wszystkich potencjalnych pizzerii w superpopulacji, nie tylko dla obecnie istniejących lokali.
 
@@ -686,21 +695,17 @@ graph TD
     class B pop;
     class C sam;
 ```
-
-
 :::
 
-
-
-::: {.callout-important}
+::: callout-important
 ## Parametr populacji ($\theta$)
 
 Wartość liczbowa charakteryzująca określoną cechę całej populacji. Przykładami parametrów populacji są:
 
-- $\mu$ (średnia populacji)
-- $\sigma^2$ (wariancja populacji)
-- $\sigma$ (odchylenie standardowe populacji)
-- $p$ (proporcja w populacji)
+-   $\mu$ (średnia populacji)
+-   $\sigma^2$ (wariancja populacji)
+-   $\sigma$ (odchylenie standardowe populacji)
+-   $p$ (proporcja w populacji)
 
 Parametry populacji zazwyczaj nie są znane i stanowią przedmiot estymacji na podstawie próby.
 
@@ -714,15 +719,14 @@ Gdy pobieramy próbę z populacji i obliczamy statystykę (np. średnią z prób
 
 Kluczowe cechy rozkładu statystyki:
 
-1. Pokazuje, zróżnicowanie statystyki w różnych próbach
-2. Pomaga zrozumieć błąd losowy i niepewność związaną z próbkowaniem
-3. Pozwala formułować stwierdzenia probabilistyczne o tym, jak blisko nasza estymacja jest prawdziwego parametru populacji
-4. Stanowi podstawę wnioskowania statystycznego, w tym przedziałów ufności i testów hipotez
+1.  Pokazuje, zróżnicowanie statystyki w różnych próbach
+2.  Pomaga zrozumieć błąd losowy i niepewność związaną z próbkowaniem
+3.  Pozwala formułować stwierdzenia probabilistyczne o tym, jak blisko nasza estymacja jest prawdziwego parametru populacji
+4.  Stanowi podstawę wnioskowania statystycznego, w tym przedziałów ufności i testów hipotez
 
 Przykład: Jeśli interesuje nas średnia populacji $\mu$, to jej estymatorem jest średnia z próby $\bar{x}$. Rozkład statystyki $\bar{x}$ pokazuje, jakie wartości może przyjmować średnia z próby i z jakim prawdopodobieństwem. W określonych warunkach, ten rozkład zbliża się do "rozkładu normalnego" wraz ze wzrostem wielkości próby (zgodnie z Centralnym Twierdzeniem Granicznym), nawet jeśli oryginalny rozkład populacji nie jest "normalny".
 
-Możemy przedstawić to formalnie następująco:
-$$\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i$$
+Możemy przedstawić to formalnie następująco: $$\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i$$
 
 gdzie $x_1, x_2, ..., x_n$ to obserwacje w próbie losowej.
 
@@ -734,29 +738,26 @@ Istnieją ważne twierdzenia w statystyce, które gwarantują nam, że dla dobrz
 
 $$E(\hat{\theta}) = \theta$$
 
-Na przykład, dla średniej z próby możemy udowodnić, że:
-$$E(\bar{x}) = E\left(\frac{1}{n}\sum_{i=1}^{n}x_i\right) = \frac{1}{n}\sum_{i=1}^{n}E(x_i) = \frac{1}{n} \cdot n \cdot \mu = \mu$$
+Na przykład, dla średniej z próby możemy udowodnić, że: $$E(\bar{x}) = E\left(\frac{1}{n}\sum_{i=1}^{n}x_i\right) = \frac{1}{n}\sum_{i=1}^{n}E(x_i) = \frac{1}{n} \cdot n \cdot \mu = \mu$$
 
 Taki estymator nazywamy nieobciążonym. Co ważne, nie wszystkie estymatory są nieobciążone - niektóre mają systematyczne odchylenie, np. estymator wariancji $s^2$ musi zawierać korektę $\frac{1}{n-1}$ zamiast $\frac{1}{n}$, aby być nieobciążonym.
-
 :::
 
 ![Various random samples of equal size and their statistics. Retrieved from: https://allmodelsarewrong.github.io/mse.html](stat_imgs/sampling-estimators.svg)
 
-
-::: {.callout-note}
-
+::: callout-note
 ## Rozkład Normalny - Krzywa Dzwonowa
 
 ### Kluczowe Właściwości
 
-- Rozkład normalny (znany również jako rozkład Gaussa lub krzywa dzwonowa) jest jednym z najważniejszych rozkładów prawdopodobieństwa w statystyce.
-- Ma charakterystyczny kształt dzwonu lub kopuły, który jest symetryczny wokół średniej, co oznacza, że wartości powyżej i poniżej średniej występują z jednakowym prawdopodobieństwem.
-- Jest w pełni opisany przez tylko dwa parametry:
-  - Średnią $\mu$ (wyznacza centrum rozkładu)
-  - Odchylenie standardowe $\sigma$ (określa szerokość "dzwonu")
+-   Rozkład normalny (znany również jako rozkład Gaussa lub krzywa dzwonowa) jest jednym z najważniejszych rozkładów prawdopodobieństwa w statystyce.
+-   Ma charakterystyczny kształt dzwonu lub kopuły, który jest symetryczny wokół średniej, co oznacza, że wartości powyżej i poniżej średniej występują z jednakowym prawdopodobieństwem.
+-   Jest w pełni opisany przez tylko dwa parametry:
+    -   Średnią $\mu$ (wyznacza centrum rozkładu)
+    -   Odchylenie standardowe $\sigma$ (określa szerokość "dzwonu")
 
 ### Reprezentacja Matematyczna
+
 Funkcja "gęstości" prawdopodobieństwa (PDF) rozkładu normalnego to:
 
 $$
@@ -765,29 +766,27 @@ $$
 
 Gdzie:
 
-- $x$ to zmienna losowa
-- $\mu$ to średnia (parametr położenia)
-- $\sigma$ to odchylenie standardowe (parametr skali)
-- $e$ to liczba Eulera (w przybliżeniu 2,71828)
-- $\pi$ to stała matematyczna pi (w przybliżeniu 3,14159)
+-   $x$ to zmienna losowa
+-   $\mu$ to średnia (parametr położenia)
+-   $\sigma$ to odchylenie standardowe (parametr skali)
+-   $e$ to liczba Eulera (w przybliżeniu 2,71828)
+-   $\pi$ to stała matematyczna pi (w przybliżeniu 3,14159)
 
 ### Znaczenie Praktyczne
 
 Rozkład normalny pojawia się często w naturze i systemach społecznych:
 
-- Rozkład wzrostu i wagi ludzi
-- Błędy pomiarowe w eksperymentach naukowych
-- Wyniki testów i osiągnięcia akademickie
-- Odchylenia w procesach produkcyjnych
+-   Rozkład wzrostu i wagi ludzi
+-   Błędy pomiarowe w eksperymentach naukowych
+-   Wyniki testów i osiągnięcia akademickie
+-   Odchylenia w procesach produkcyjnych
 
 #### Teoria Statystyczna
 
-- **Reguła 68-95-99,7**: Około 68% wartości mieści się w granicach 1 odchylenia standardowego od średniej, 95% w granicach 2 odchyleń standardowych, a 99,7% w granicach 3 odchyleń standardowych.
-- **Centralne Twierdzenie Graniczne**: Średnie próbkowe mają tendencję do podążania za rozkładem normalnym niezależnie od kształtu oryginalnego rozkładu (przy odpowiednio dużej wielkości próby).
-- **Wnioskowanie Statystyczne**: Stanowi podstawę dla wielu testów statystycznych i przedziałów ufności.
-
+-   **Reguła 68-95-99,7**: Około 68% wartości mieści się w granicach 1 odchylenia standardowego od średniej, 95% w granicach 2 odchyleń standardowych, a 99,7% w granicach 3 odchyleń standardowych.
+-   **Centralne Twierdzenie Graniczne**: Średnie próbkowe mają tendencję do podążania za rozkładem normalnym niezależnie od kształtu oryginalnego rozkładu (przy odpowiednio dużej wielkości próby).
+-   **Wnioskowanie Statystyczne**: Stanowi podstawę dla wielu testów statystycznych i przedziałów ufności.
 :::
-
 
 ## Dane i Populacje
 
@@ -906,26 +905,27 @@ Model statystyczny to matematyczna reprezentacja rzeczywistości, która opisuje
 
 Model statystyczny to matematyczne ramy służące do reprezentowania zależności w danych i formułowania prognoz. Kompletny model statystyczny składa się z:
 
-1. **Forma funkcyjna**: Struktura matematyczna określająca relację między zmiennymi (np. liniowa, kwadratowa, wykładnicza, logarytmiczna)
+1.  **Forma funkcyjna**: Struktura matematyczna określająca relację między zmiennymi (np. liniowa, kwadratowa, wykładnicza, logarytmiczna)
 
-2. **Zmienne**: 
-   - Zmienna zależna: To, co staramy się przewidzieć lub wyjaśnić
-   - Zmienne niezależne/objaśniające: Czynniki, które mogą wpływać na zmienną zależną
+2.  **Zmienne**:
 
-3. **Parametry**: Nieznane wartości, które szacujemy na podstawie danych, kwantyfikujące relację między zmiennymi (np. współczynniki regresji, średnie, wariancje)
+    -   Zmienna zależna: To, co staramy się przewidzieć lub wyjaśnić
+    -   Zmienne niezależne/objaśniające: Czynniki, które mogą wpływać na zmienną zależną
 
-4. **Składnik losowy**: Człon błędu lub element stochastyczny, który uwzględnia niepewność i zmienność niewyjaśnioną przez model
+3.  **Parametry**: Nieznane wartości, które szacujemy na podstawie danych, kwantyfikujące relację między zmiennymi (np. współczynniki regresji, średnie, wariancje)
 
-5. **Założenia dotyczące rozkładu prawdopodobieństwa**: Specyfikacje dotyczące tego, jak jest rozłożony składnik losowy (np. rozkład normalny, Poissona, dwumianowy)
+4.  **Składnik losowy**: Człon błędu lub element stochastyczny, który uwzględnia niepewność i zmienność niewyjaśnioną przez model
+
+5.  **Założenia dotyczące rozkładu prawdopodobieństwa**: Specyfikacje dotyczące tego, jak jest rozłożony składnik losowy (np. rozkład normalny, Poissona, dwumianowy)
 :::
 
 Przykład modelu regresji liniowej: $y = \beta_0 + \beta_1x + \epsilon$, gdzie $\epsilon \sim N(0, \sigma^2)$
 
 W tym modelu:
 
-- $\beta_0$ i $\beta_1$ to parametry (estymandy), które chcemy oszacować
-- $\epsilon$ to składnik losowy reprezentujący niewyjaśnioną zmienność
-- Zakładamy normalność rozkładu błędów losowych
+-   $\beta_0$ i $\beta_1$ to parametry (estymandy), które chcemy oszacować
+-   $\epsilon$ to składnik losowy reprezentujący niewyjaśnioną zmienność
+-   Zakładamy normalność rozkładu błędów losowych
 
 ### Wnioskowanie Przyczynowe vs. Predykcyjne
 
@@ -958,8 +958,8 @@ Fundamentalnym problemem wnioskowania przyczynowego jest niemożność obserwowa
 
 Przykład:
 
-- Obserwujemy osobę, która skończyła studia i zarabia 8000 zł
-- Nie możemy zaobserwować, ile ta sama osoba zarabiałaby, gdyby nie skończyła studiów
+-   Obserwujemy osobę, która skończyła studia i zarabia 8000 zł
+-   Nie możemy zaobserwować, ile ta sama osoba zarabiałaby, gdyby nie skończyła studiów
 
 Metody przyczynowe próbują rozwiązać ten problem przez: 1. Randomizowane eksperymenty 2. Metoda zmiennych instrumentalnych 3. Matching 4. Analizę regresji nieciągłej 5. Modele regresji difference-in-differences
 
@@ -1016,27 +1016,24 @@ Wyobraźmy sobie, że chcemy sprawdzić, czy moneta jest uczciwa.
 6.  **Wniosek**: Ponieważ zaobserwowany wynik jest bardzo mało prawdopodobny przy założeniu, że moneta jest uczciwa, odrzucamy hipotezę zerową i wnioskujemy, że moneta najprawdopodobniej nie jest uczciwa.
 :::
 
-
 Ogólna procedura testowania hipotez:
 
-1. Formułujemy hipotezę zerową (H₀) i alternatywną (H₁)
-2. Wybieramy poziom istotności α (najczęściej 0.05) - reguła decyzyjna, która pomaga ocenić co to znaczy małe prawdopodobieństwo zaobserwowanego wyniku przy założeniu, że testowana hipoteza jest prawdziwa
-3. Zbieramy dane i obliczamy odpowiednią statystykę testową
-4. Obliczamy p-wartość (prawdopodobieństwo uzyskania naszych danych lub bardziej ekstremalnych, przy założeniu prawdziwości H₀)
-5. Podejmujemy decyzję: jeśli p < α, odrzucamy H₀ na rzecz H₁
-
+1.  Formułujemy hipotezę zerową (H₀) i alternatywną (H₁)
+2.  Wybieramy poziom istotności α (najczęściej 0.05) - reguła decyzyjna, która pomaga ocenić co to znaczy małe prawdopodobieństwo zaobserwowanego wyniku przy założeniu, że testowana hipoteza jest prawdziwa
+3.  Zbieramy dane i obliczamy odpowiednią statystykę testową
+4.  Obliczamy p-wartość (prawdopodobieństwo uzyskania naszych danych lub bardziej ekstremalnych, przy założeniu prawdziwości H₀)
+5.  Podejmujemy decyzję: jeśli p \< α, odrzucamy H₀ na rzecz H₁
 
 ::: callout-note
 ## Intuicja za testowaniem hipotez
 
 Testowanie hipotez przypomina procedurę sądową:
 
-- H₀ odpowiada zasadzie "niewinny, dopóki nie udowodni się winy" (zakładamy, że parametr ma określoną wartość)
-- Dane stanowią "dowody" przeciwko H₀
-- P-wartość określa, jak silne są te dowody
-- Jeśli dowody są wystarczająco mocne (p \< α), "skazujemy" H₀ (odrzucamy ją)
-- Jeśli dowody nie są wystarczająco mocne, nie odrzucamy H₀ (ale nie udowadniamy jej prawdziwości)
-
+-   H₀ odpowiada zasadzie "niewinny, dopóki nie udowodni się winy" (zakładamy, że parametr ma określoną wartość)
+-   Dane stanowią "dowody" przeciwko H₀
+-   P-wartość określa, jak silne są te dowody
+-   Jeśli dowody są wystarczająco mocne (p \< α), "skazujemy" H₀ (odrzucamy ją)
+-   Jeśli dowody nie są wystarczająco mocne, nie odrzucamy H₀ (ale nie udowadniamy jej prawdziwości)
 :::
 
 ::: callout-important
@@ -1075,7 +1072,7 @@ Aby przeprowadzić rzetelne badanie statystyczne, należy zadbać o:
 ## Podsumowanie kluczowych pojęć często mylonych przez studentów:
 
 | Pojęcie | Definicja | Przykład |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | **Parametr populacji (Estymand)** | Wartość charakteryzująca populację, zwykle nieznana | μ (średnia populacji) |
 | **Estymator (Statystyka)** | Funkcja/procedura szacowania parametru na podstawie próby | $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ |
 | **Oszacowanie (Estymata)** | Konkretna wartość uzyskana po zastosowaniu estymatora do próby | $\bar{x} = 173.5$ cm |
@@ -1084,8 +1081,7 @@ Aby przeprowadzić rzetelne badanie statystyczne, należy zadbać o:
 | **P-wartość** | Prawdopodobieństwo zaobserwowania danych przy założeniu H₀ | p = 0.03 |
 :::
 
-
-## Narzędzia do Nauki o Danych w Naukach Społecznych(*)
+## Narzędzia do Nauki o Danych w Naukach Społecznych(\*)
 
 W tym kursie będziemy głównie używać R do naszej analizy danych, ponieważ jest on szeroko stosowany w badaniach nauk społecznych.
 
@@ -1463,9 +1459,7 @@ summary(model_kolizyjny)$coefficients["satysfakcja_z_pracy", "Estimate"]
 
 Kontrolowanie zmiennej kolizyjnej (równowaga praca-życie) wprowadza pozorną korelację między satysfakcją z pracy a wynagrodzeniem.
 
-
 Zrozumienie pozornych korelacji, zmiennych zakłócających i kolizyjnych jest kluczowe dla prawidłowej analizy statystycznej i wnioskowania przyczynowego. Zawsze rozważ podstawową strukturę przyczynową swoich danych i bądź ostrożny w kwestii tego, które zmienne kontrolujesz w swoich analizach.
-
 
 ## Etyczne Aspekty w Analizie Danych Nauk Społecznych
 
@@ -1476,8 +1470,6 @@ Etyka odgrywa kluczową rolę w badaniach nauk społecznych:
 3.  **Błędy i Reprezentacja**: Adresowanie błędów próbkowania i zapewnienie różnorodnej reprezentacji
 4.  **Przejrzystość**: Jasne komunikowanie metod badawczych i ograniczeń
 5.  **Wpływ Społeczny**: Rozważanie potencjalnych społecznych implikacji wyników badań
-
-
 
 ## Appendix A: Losowość Klasyczna a Kwantowa: Zrozumienie Fundamentalnych Różnic
 
@@ -1584,7 +1576,7 @@ LLM są trenowane na ogromnych zbiorach danych tekstowych, aby przewidywać rozk
 Aby lepiej zrozumieć LLM, porównajmy je z regresją Najmniejszych Kwadratów (OLS):
 
 | Aspekt | Regresja OLS | Duże Modele Językowe |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | Podstawowa funkcja | Przewiduje ciągłe wyniki na podstawie zmiennych wejściowych | Przewiduje rozkład prawdopodobieństwa następnego tokenu na podstawie poprzednich tokenów |
 | Wejście-Wyjście | Zmienne ciągłe, relacje liniowe | Dyskretne tokeny, relacje nieliniowe |
 | Typ predykcji | Predykcje punktowe z przedziałami ufności | Rozkłady prawdopodobieństwa dla możliwych tokenów |

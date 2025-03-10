@@ -26,7 +26,6 @@ Statistics and data science are closely related fields with a significant overla
 
 Data science can be viewed as a contemporary extension of traditional statistics that has evolved in response to new technological possibilities and the need to analyze increasingly complex social data.
 
-
 ## Basic Concepts in Data Science and Statistics
 
 ### Data and Populations – Key Concepts
@@ -37,26 +36,24 @@ Data science can be viewed as a contemporary extension of traditional statistics
 
     -   Example: In a study of electoral preferences, the population consists of all citizens eligible to vote in a given country.
 
-3. **Sample**: A subset of the population selected for study. A **representative** sample reflects the key characteristics of the target population in appropriate proportions. Effective sampling accounts for diversity across relevant variables (demographic, behavioral, etc.). In a simple random sample (SRS), each unit in the population has an equal and independent probability of selection. Sample adequacy depends on both the sampling method's **randomness** and **sufficient sample size** to minimize error.
+3.  **Sample**: A subset of the population selected for study. A **representative** sample reflects the key characteristics of the target population in appropriate proportions. Effective sampling accounts for diversity across relevant variables (demographic, behavioral, etc.). In a simple random sample (SRS), each unit in the population has an equal and independent probability of selection. Sample adequacy depends on both the sampling method's **randomness** and **sufficient sample size** to minimize error.
 
     -   Example: Instead of studying all eligible voters, researchers analyze 1,500 randomly selected individuals, taking into account the appropriate distribution of age, gender, education, and region of residence.
 
     A properly selected sample enables inference about the entire population while significantly optimizing research resources.
 
-4. **Sampling** is the procedure of selecting individuals from a population for investigation. An unbiased sampling method gives every individual in the population an equal chance of selection, ensuring representative results.
+4.  **Sampling** is the procedure of selecting individuals from a population for investigation. An unbiased sampling method gives every individual in the population an equal chance of selection, ensuring representative results.
 
-5. **Statistical inference** is the process of drawing conclusions about a population based on data from a sample. It involves using sample statistics to estimate population parameters, assess the reliability of these estimates, and test hypotheses about population characteristics.
+5.  **Statistical inference** is the process of drawing conclusions about a population based on data from a sample. It involves using sample statistics to estimate population parameters, assess the reliability of these estimates, and test hypotheses about population characteristics.
 
 Key components of statistical inference:
 
-- Estimation: Calculating point estimates (specific values) and interval estimates (confidence intervals) for population parameters such as means, proportions, or variances.
-- Hypothesis testing: Evaluating claims about population parameters by determining the probability of obtaining the observed sample results if the claim is true.
-
+-   Estimation: Calculating point estimates (specific values) and interval estimates (confidence intervals) for population parameters such as means, proportions, or variances.
+-   Hypothesis testing: Evaluating claims about population parameters by determining the probability of obtaining the observed sample results if the claim is true.
 
 ![The process of using a sample from a population to obtain a point estimate of a population parameter. In this case, a sample of 10 individuals yielded 6 who own an iPhone, resulting in an estimated population proportion of 60% iPhone owners. The actual population proportion is 53.8%. Retrieved from: https://datasciencebook.ca/inference.html](stat_imgs/population_vs_sample.png)
 
-
-::: {.callout-important}
+::: callout-important
 ## Statistical Inference: How Can a Small Sample Represent a Large Population?
 
 When pollsters survey just 1,000 voters to predict an election with 30,000,000 voters, it seems puzzling. How can such a tiny fraction (just 0.003%) tell us about the whole?
@@ -67,9 +64,9 @@ Think of it like tasting soup. When you cook a large pot of soup and stir it tho
 
 Random sampling works because:
 
-1. **It gives everyone an equal chance** of being selected, avoiding bias
-2. **It harnesses the power of probability** to ensure the sample resembles the population
-3. **With enough people**, the natural variations tend to balance out
+1.  **It gives everyone an equal chance** of being selected, avoiding bias
+2.  **It harnesses the power of probability** to ensure the sample resembles the population
+3.  **With enough people**, the natural variations tend to balance out
 
 The key is randomness. If we select people truly randomly, we're likely to get a mix that reflects the whole population. Without randomness, we might accidentally focus on one "part of the soup" that doesn't represent the whole.
 
@@ -79,141 +76,151 @@ When we use a sample to learn about a population, we inevitably encounter statis
 
 **Statistical error** is the difference between our sample estimate and the true population value. We can divide it into two main types:
 
-1. **Random error (sampling error)**: The natural variation that occurs by chance when we select a random sample. This happens simply because we're looking at a portion rather than the whole population.
+1.  **Random error (sampling error)**: The natural variation that occurs by chance when we select a random sample. This happens simply because we're looking at a portion rather than the whole population.
 
-   **Standard error** is a measure of sampling error. It shows how much our sample statistics (like means or proportions) would vary if we repeatedly took different samples from the same population.
-   
-   * Smaller standard errors indicate more precise estimates
-   * Standard error decreases as sample size increases (roughly proportional to 1/√n)
-   * Standard error is affected by the variability in the population
+    **Standard error** is a measure of sampling error. It shows how much our sample statistics (like means or proportions) would vary if we repeatedly took different samples from the same population.
 
-2. **Systematic error (non-sampling error)**: Occurs when our data collection methods systematically skew results in one direction. Unlike sampling error, systematic error CANNOT be reduced by increasing sample size.
+    -   Smaller standard errors indicate more precise estimates
+    -   Standard error decreases as sample size increases (roughly proportional to 1/√n)
+    -   Standard error is affected by the variability in the population
 
-   Sources of systematic error include:
-   
-   * **Selection bias**: When the method of selecting your sample favors certain groups (e.g., phone surveys may miss people without phones)
-   * **Response bias**: When respondents provide inaccurate answers (e.g., over-reporting income on surveys)
-   * **Non-response bias**: When people who refuse to participate differ from those who do
-   * **Measurement error**: Stemming from inaccurate measuring tools or methods
+2.  **Systematic error (non-sampling error)**: Occurs when our data collection methods systematically skew results in one direction. Unlike sampling error, systematic error CANNOT be reduced by increasing sample size.
+
+    Sources of systematic error include:
+
+    -   **Selection bias**: When the method of selecting your sample favors certain groups (e.g., phone surveys may miss people without phones)
+    -   **Response bias**: When respondents provide inaccurate answers (e.g., over-reporting income on surveys)
+    -   **Non-response bias**: When people who refuse to participate differ from those who do
+    -   **Measurement error**: Stemming from inaccurate measuring tools or methods
 
 For example, if we calculate the average height from a sample, the standard error tells us how much that average might vary if we took many different random samples. However, if our measuring device is faulty and always adds 1 inch to each measurement, we have systematic error that increasing sample size won't fix.
 
 A good study design must address both types of error:
 
-* Sampling error can be reduced by increasing sample size
-* Systematic error can only be reduced by improving data collection methods
+-   Sampling error can be reduced by increasing sample size
+-   Systematic error can only be reduced by improving data collection methods
 
 ### How Large Should Our Sample Be?
 
 The necessary sample size depends on three main factors:
 
-1. **What type of estimate are you making?** (proportion or average)
-2. **How accurate do you need your estimate to be?**
-   
-   * More accurate = larger sample
-   * Example: Estimating within ±1% requires about 9 times more people than estimating within ±3%
-   * Example: If you need to be more certain of your results (for crucial decisions), you'll need a larger sample
+1.  **What type of estimate are you making?** (proportion or average)
 
-3. **How diverse is your population?**
-   
-   * For proportions: Maximum variability occurs at 50%, minimum at 0% or 100%
-   * For means: Check how much measurements differ from each other (variance) in your study population
+2.  **How accurate do you need your estimate to be?**
+
+    -   More accurate = larger sample
+    -   Example: Estimating within ±1% requires about 9 times more people than estimating within ±3%
+    -   Example: If you need to be more certain of your results (for crucial decisions), you'll need a larger sample
+
+3.  **How diverse is your population?**
+
+    -   For proportions: Maximum variability occurs at 50%, minimum at 0% or 100%
+    -   For means: Check how much measurements differ from each other (variance) in your study population
 
 **What about small populations?**
 
 When working with small populations (e.g., 1,000 people or fewer):
 
-- There are significant methodological differences compared to large populations
-- A simple random sample traditionally assumes sampling with replacement (with equal probability of selecting each unit)
-- In research practice, sampling without replacement is typically used, where selection probabilities change after each draw
-- The smaller the population, the greater the difference between these approaches
-- The **finite population correction factor** addresses precisely this discrepancy and becomes essential when studying more than 5-10% of the population
+-   There are significant methodological differences compared to large populations
+-   A simple random sample traditionally assumes sampling with replacement (with equal probability of selecting each unit)
+-   In research practice, sampling without replacement is typically used, where selection probabilities change after each draw
+-   The smaller the population, the greater the difference between these approaches
+-   The **finite population correction factor** addresses precisely this discrepancy and becomes essential when studying more than 5-10% of the population
 
 **Explaining the difference:**
 
-- Sampling with replacement: each unit has a constant probability of selection in each draw (e.g., 1/N)
-- Sampling without replacement: selection probability changes in subsequent draws (from 1/N to 1/(N-1), 1/(N-2), etc.)
-- In large populations, the difference is minimal; in small ones - fundamental
-- Sampling without replacement schemes often have lower estimator variance than sampling with replacement
+-   Sampling with replacement: each unit has a constant probability of selection in each draw (e.g., 1/N)
+-   Sampling without replacement: selection probability changes in subsequent draws (from 1/N to 1/(N-1), 1/(N-2), etc.)
+-   In large populations, the difference is minimal; in small ones - fundamental
+-   Sampling without replacement schemes often have lower estimator variance than sampling with replacement
 
 **Approaches to small populations:**
 
-- Complete enumeration (census) eliminates problems associated with sampling
-- Stratification can improve representativeness but doesn't solve the issue of changing probabilities
-- Nonparametric methods that account for small population specifics
-- "Bootstrap" techniques with appropriate modifications for small populations
+-   Complete enumeration (census) eliminates problems associated with sampling
+-   Stratification can improve representativeness but doesn't solve the issue of changing probabilities
+-   Nonparametric methods that account for small population specifics
+-   "Bootstrap" techniques with appropriate modifications for small populations
 
 **Practical recommendations:**
 
-* For populations under 200 units, consider a complete census
-* Use appropriate statistical formulas that account for sampling without replacement
-* Standard formulas for standard errors based on sampling with replacement will overestimate error in small populations
-* Clearly document the sampling mechanism in research reports
+-   For populations under 200 units, consider a complete census
+-   Use appropriate statistical formulas that account for sampling without replacement
+-   Standard formulas for standard errors based on sampling with replacement will overestimate error in small populations
+-   Clearly document the sampling mechanism in research reports
 
 These distinctions are crucial in studies of small communities, organizations, or pilot studies, where the impact of the sampling scheme on statistical inference is much greater than in large representative surveys.
-
 
 ### Proportions vs. Averages: Understanding the Differences
 
 #### Proportions (percentages)
+
 When estimating a proportion (like the percentage of voters supporting a candidate):
 
-- A proportion represents the fraction of the population with a certain characteristic
-- We're essentially counting "yes" vs "no" responses
-- Sample size calculation focuses on the expected proportion (p):
-  
-  * A proportion near 50% has maximum uncertainty and requires larger samples
-  * A proportion near 10% or 90% has less uncertainty and requires smaller samples
+-   A proportion represents the fraction of the population with a certain characteristic
 
-- For a typical election poll with proportions near 50%, about 1,000 randomly selected people provide accuracy around ±3 percentage points
-- Interestingly, this sample size remains the same whether your population is 30,000 or 30 million
+-   We're essentially counting "yes" vs "no" responses
+
+-   Sample size calculation focuses on the expected proportion (p):
+
+    -   A proportion near 50% has maximum uncertainty and requires larger samples
+    -   A proportion near 10% or 90% has less uncertainty and requires smaller samples
+
+-   For a typical election poll with proportions near 50%, about 1,000 randomly selected people provide accuracy around ±3 percentage points
+
+-   Interestingly, this sample size remains the same whether your population is 30,000 or 30 million
 
 #### Averages (means)
+
 When estimating an average (like typical household income or height):
 
-- An average summarizes continuous measurements that can take many different values
-- Sample size depends primarily on how much these measurements vary from person to person
-- Key considerations for sample size:
-  
-  * Populations with more varied measurements (high standard deviation) require larger samples
-  * More precise estimates require larger samples
-  * Unlike proportions, there is no "maximum uncertainty" at a certain value
+-   An average summarizes continuous measurements that can take many different values
 
-- For example, estimating average income might require a larger sample than estimating average height because incomes typically vary more widely than heights
+-   Sample size depends primarily on how much these measurements vary from person to person
+
+-   Key considerations for sample size:
+
+    -   Populations with more varied measurements (high standard deviation) require larger samples
+    -   More precise estimates require larger samples
+    -   Unlike proportions, there is no "maximum uncertainty" at a certain value
+
+-   For example, estimating average income might require a larger sample than estimating average height because incomes typically vary more widely than heights
 
 #### Regression Model Parameters
+
 When estimating regression model parameters (such as coefficients in linear regression):
 
-- **What is regression?** Regression models describe how one variable (the dependent variable) relates to one or more other variables (the independent variables). For example, how sales depend on advertising spend, or how crop yield depends on rainfall and temperature.
+-   **What is regression?** Regression models describe how one variable (the dependent variable) relates to one or more other variables (the independent variables). For example, how sales depend on advertising spend, or how crop yield depends on rainfall and temperature.
 
-- These parameters show relationships between variables, e.g., how height affects weight
-- Sample size for regression models is more complex than for simple means or proportions
-- Key factors affecting required sample size:
-  
-  * Number of variables in the model (more variables = larger sample)
-  * Strength of the effects being studied (weaker effects require larger samples to detect)
-  * Variability in the data (greater variability = larger sample)
-  * Model complexity (more complex models require larger samples)
+-   These parameters show relationships between variables, e.g., how height affects weight
+
+-   Sample size for regression models is more complex than for simple means or proportions
+
+-   Key factors affecting required sample size:
+
+    -   Number of variables in the model (more variables = larger sample)
+    -   Strength of the effects being studied (weaker effects require larger samples to detect)
+    -   Variability in the data (greater variability = larger sample)
+    -   Model complexity (more complex models require larger samples)
 
 **Simple rules for regression models:**
 
-- Basic rule of thumb: at least 10-20 observations per variable in your model
-- For detecting subtle effects: may need 100+ observations per variable
-- Multilevel or hierarchical models: require substantially larger samples
+-   Basic rule of thumb: at least 10-20 observations per variable in your model
+-   For detecting subtle effects: may need 100+ observations per variable
+-   Multilevel or hierarchical models: require substantially larger samples
 
 **How regression parameters relate to proportions or means:**
 
-- Regression parameters are more complex - they describe relationships between variables, not just single values
-- While proportions and means focus on one variable, regression analyzes interdependencies
-- Standard errors of regression parameters depend on all factors affecting mean variability, plus the correlations between variables
+-   Regression parameters are more complex - they describe relationships between variables, not just single values
+-   While proportions and means focus on one variable, regression analyzes interdependencies
+-   Standard errors of regression parameters depend on all factors affecting mean variability, plus the correlations between variables
 
 **How to tell if your sample was too small:**
 
-- Large standard errors relative to parameter values (wide confidence intervals)
-- Instability of results - small changes in data cause large changes in parameters
-- Statistically insignificant results despite theory suggesting strong effects
-- Problems with model fit (e.g., overfitting, unstable predictions)
-- Lack of statistical power to detect effects of expected magnitude
+-   Large standard errors relative to parameter values (wide confidence intervals)
+-   Instability of results - small changes in data cause large changes in parameters
+-   Statistically insignificant results despite theory suggesting strong effects
+-   Problems with model fit (e.g., overfitting, unstable predictions)
+-   Lack of statistical power to detect effects of expected magnitude
 
 ### Maximum Uncertainty Example: Why 50% is the "Worst Case"
 
@@ -223,17 +230,17 @@ Imagine you have 100 coins in a bag that are either gold or silver. You want to 
 
 **Scenario A: 50% Gold (Maximum Uncertainty)**
 
-- The bag contains 50 gold and 50 silver coins (50% gold)
-- If you draw 10 coins, you might see: 3 gold, 6 gold, 4 gold, etc.
-- The results can vary widely around the true percentage
-- Your sample might easily be off by 20% or more from the true 50%
+-   The bag contains 50 gold and 50 silver coins (50% gold)
+-   If you draw 10 coins, you might see: 3 gold, 6 gold, 4 gold, etc.
+-   The results can vary widely around the true percentage
+-   Your sample might easily be off by 20% or more from the true 50%
 
 **Scenario B: 10% Gold (Less Uncertainty)**
 
-- The bag contains 10 gold and 90 silver coins (10% gold)
-- If you draw 10 coins, you'll typically see: 0, 1, or 2 gold coins
-- It's unlikely you'll draw 5 gold coins (which would be very far from the true 10%)
-- Your estimate is naturally more stable and closer to the true percentage
+-   The bag contains 10 gold and 90 silver coins (10% gold)
+-   If you draw 10 coins, you'll typically see: 0, 1, or 2 gold coins
+-   It's unlikely you'll draw 5 gold coins (which would be very far from the true 10%)
+-   Your estimate is naturally more stable and closer to the true percentage
 
 This is why we need larger samples when the proportion is close to 50% - there's more natural variability in what we might observe by chance alone.
 
@@ -243,29 +250,29 @@ In an election poll with 1,000 people:
 
 **For a major candidate polling at 40%:**
 
-- Our accuracy would be about ±3 percentage points
-- We can estimate their support is between 37% and 43%
-- This is precise enough to make useful predictions
+-   Our accuracy would be about ±3 percentage points
+-   We can estimate their support is between 37% and 43%
+-   This is precise enough to make useful predictions
 
 **For a minor candidate polling at 3%:**
 
-- Our accuracy would be about ±1 percentage point (smaller than for the major candidate)
-- We can estimate their support is between 2% and 4%
-- This is also precise enough for practical purposes
+-   Our accuracy would be about ±1 percentage point (smaller than for the major candidate)
+-   We can estimate their support is between 2% and 4%
+-   This is also precise enough for practical purposes
 
-**Important clarification about accuracy:** 
+**Important clarification about accuracy:**
 
-1. **Absolute accuracy (in percentage points):**
-   
-   - For a minor candidate (3%): ±1 percentage point (smaller absolute error)
-   - For a major candidate (40%): ±3 percentage points (larger absolute error)
-   - This happens because proportions far from 50% (like 3%) naturally have less variability
+1.  **Absolute accuracy (in percentage points):**
 
-2. **Relative accuracy (as a proportion of the estimate):**
-   
-   - For a minor candidate (3%): ±1 percentage point is 33% of their support level
-   - For a major candidate (40%): ±3 percentage points is only 7.5% of their support level
-   - So while the absolute error is smaller, the relative error is much larger for minor candidates
+    -   For a minor candidate (3%): ±1 percentage point (smaller absolute error)
+    -   For a major candidate (40%): ±3 percentage points (larger absolute error)
+    -   This happens because proportions far from 50% (like 3%) naturally have less variability
+
+2.  **Relative accuracy (as a proportion of the estimate):**
+
+    -   For a minor candidate (3%): ±1 percentage point is 33% of their support level
+    -   For a major candidate (40%): ±3 percentage points is only 7.5% of their support level
+    -   So while the absolute error is smaller, the relative error is much larger for minor candidates
 
 For example, if a poll shows 3% support for a minor candidate with ±1 percentage point accuracy, their actual support could be 33% higher or lower than measured (between 2% and 4%). For a major candidate at 40% with ±3 percentage points accuracy, their actual support would only vary by 7.5% from the measured value.
 
@@ -277,57 +284,60 @@ Although a proportion can be calculated as an average of 0's and 1's (no/yes), t
 
 **For proportions (like an election poll):**
 
-- Imagine flipping coins: When outcomes are close to 50-50 (like a tight election), there's more uncertainty about the true percentage
-- Example 1: If 500 out of 1,000 people (50%) support Candidate A, the accuracy is about ±3 percentage points
-- Example 2: If 900 out of 1,000 (90%) support Candidate A, the accuracy is only about ±2 percentage points
-- Example 3: In a classroom poll where 15 out of 20 students (75%) prefer pizza over burgers, the accuracy is about ±19 percentage points - much larger than with 1,000 people!
-- The closer to 50%, the more people we need to sample to be confident in our result
+-   Imagine flipping coins: When outcomes are close to 50-50 (like a tight election), there's more uncertainty about the true percentage
+-   Example 1: If 500 out of 1,000 people (50%) support Candidate A, the accuracy is about ±3 percentage points
+-   Example 2: If 900 out of 1,000 (90%) support Candidate A, the accuracy is only about ±2 percentage points
+-   Example 3: In a classroom poll where 15 out of 20 students (75%) prefer pizza over burgers, the accuracy is about ±19 percentage points - much larger than with 1,000 people!
+-   The closer to 50%, the more people we need to sample to be confident in our result
 
 **For general averages (like household income):**
 
-- Imagine measuring different things:
-  
-  * Heights: Most adults are between 150 cm and 195 cm (not much variation)
-  * Incomes: People might earn anywhere from $0 to millions (huge variation)
-  * Test scores: Most students score between 60-90 on a test (moderate variation)
+-   Imagine measuring different things:
 
-- Example 1: To estimate average height within ±2,5 cm, we might need only 100 people
-- Example 2: To estimate average income within ±$1,000, we might need 10,000 people
-- Example 3: To estimate average test scores within ±2 points, we might need 500 people
-- The more variation in the population, the larger sample needed for the same precision
+    -   Heights: Most adults are between 150 cm and 195 cm (not much variation)
+    -   Incomes: People might earn anywhere from \$0 to millions (huge variation)
+    -   Test scores: Most students score between 60-90 on a test (moderate variation)
+
+-   Example 1: To estimate average height within ±2,5 cm, we might need only 100 people
+
+-   Example 2: To estimate average income within ±\$1,000, we might need 10,000 people
+
+-   Example 3: To estimate average test scores within ±2 points, we might need 500 people
+
+-   The more variation in the population, the larger sample needed for the same precision
 
 **Real-world comparison:**
 
 If we want the same level of accuracy (±3 percentage points):
 
-- For a yes/no question where we expect close to 50-50 split: about 1,000 people
-- For measuring average household energy usage: possibly 2,000-3,000 households
-- For estimating average commute time: possibly 500-600 commuters
+-   For a yes/no question where we expect close to 50-50 split: about 1,000 people
+-   For measuring average household energy usage: possibly 2,000-3,000 households
+-   For estimating average commute time: possibly 500-600 commuters
 
 The beauty of sampling is that with proper randomization, we can learn about very large populations by studying relatively small samples!
 :::
 
-
 ::: {.panel-tabset group="language"}
 ## SRS
+
 **Simple Random Sampling**: Every individual has an equal probability of selection. The entire population is randomly sampled without any predetermined pattern.
 
 ![Simple Random Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Simple_Random_Sampling2.svg)
 
 ## Stratified sampling
+
 **Stratified Sampling**: The population is divided into distinct subgroups (strata) before random samples are drawn from each stratum proportionally.
 
 ![Stratified Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Stratified2.svg)
 
 ## Cluster sampling
+
 **Cluster Sampling**: The population is divided into clusters, and entire clusters are randomly selected for analysis rather than individuals.
 
 ![Cluster Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Cluster2.svg)
-
 :::
 
-
-::: {.callout-note}
+::: callout-note
 ## Data Generating Process and Superpopulation in the Context of Statistical Research
 
 In statistics and econometrics, we often use the concepts of population and sample. However, for a complete understanding of statistical models, it's worth introducing two additional concepts: **data generating process (DGP)** and **superpopulation**. These concepts will help us better understand how the data we analyze is generated.
@@ -344,22 +354,23 @@ In statistics and econometrics, we often use the concepts of population and samp
 
 Key features of DGP:
 
-- It is an abstract, mathematical model describing how variables are related to each other
-- It contains both deterministic (predictable) and random (unpredictable) elements
-- It is usually expressed using equations and probability distributions
+-   It is an abstract, mathematical model describing how variables are related to each other
+-   It contains both deterministic (predictable) and random (unpredictable) elements
+-   It is usually expressed using equations and probability distributions
 
 #### Example of DGP:
+
 Let's assume we're studying household incomes. The DGP model (a mathematical equation) could look like this:
 
 $Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \varepsilon_i$
 
 Where:
 
-- $Y_i$ is the income of household $i$
-- $X_{1i}$ is the number of employed people in household $i$
-- $X_{2i}$ is the education level of the main earner in household $i$
-- $\varepsilon_i$ is a random factor (error)
-- $\beta_0, \beta_1, \beta_2$ are model parameters
+-   $Y_i$ is the income of household $i$
+-   $X_{1i}$ is the number of employed people in household $i$
+-   $X_{2i}$ is the education level of the main earner in household $i$
+-   $\varepsilon_i$ is a random factor (error)
+-   $\beta_0, \beta_1, \beta_2$ are model parameters
 
 In this example, the DGP determines how income depends on the number of working people and education, plus a random element.
 
@@ -369,62 +380,63 @@ In this example, the DGP determines how income depends on the number of working 
 
 Key features of superpopulation:
 
-- It is a conceptual extension of the population concept
-- It represents all possible realizations of the data generating process (DGP)
-- It allows for inference not only about the current population but about general regularities
+-   It is a conceptual extension of the population concept
+-   It represents all possible realizations of the data generating process (DGP)
+-   It allows for inference not only about the current population but about general regularities
 
 #### Examples of superpopulation:
-1. We are studying SAT results in the United States in 2024 (population). The superpopulation is the hypothetical SAT results of all possible students who could take the SAT in similar conditions in any year.
 
-2. We are analyzing the GDP of European countries in 2023 (population). The superpopulation is all possible realizations of these countries' GDP under different economic conditions.
+1.  We are studying SAT results in the United States in 2024 (population). The superpopulation is the hypothetical SAT results of all possible students who could take the SAT in similar conditions in any year.
+
+2.  We are analyzing the GDP of European countries in 2023 (population). The superpopulation is all possible realizations of these countries' GDP under different economic conditions.
 
 ### Relationships Between Concepts
 
-```
+```         
 DGP → Superpopulation → Population → Sample
 ```
 
-- **DGP** defines the mechanism of data generation
-- **Superpopulation** is all possible realizations of DGP
-- **Population** is a specific, finite realization from the superpopulation
-- **Sample** is a subset of the population that we actually observe and analyze
+-   **DGP** defines the mechanism of data generation
+-   **Superpopulation** is all possible realizations of DGP
+-   **Population** is a specific, finite realization from the superpopulation
+-   **Sample** is a subset of the population that we actually observe and analyze
 
 ### Practical Significance
 
 #### Why are these concepts important?
 
-1. **Econometric modeling** - DGP is the foundation of econometric modeling, allowing us to understand how economic variables affect each other.
+1.  **Econometric modeling** - DGP is the foundation of econometric modeling, allowing us to understand how economic variables affect each other.
 
-2. **Statistical inference** - The concept of superpopulation allows for formulating general conclusions that go beyond a specific time or group.
+2.  **Statistical inference** - The concept of superpopulation allows for formulating general conclusions that go beyond a specific time or group.
 
-3. **Forecasting** - Understanding DGP enables better forecasting of future values of economic variables.
+3.  **Forecasting** - Understanding DGP enables better forecasting of future values of economic variables.
 
-4. **Hypothesis testing** - It helps better determine whether observed relationships are due to chance or reflect actual regularities.
+4.  **Hypothesis testing** - It helps better determine whether observed relationships are due to chance or reflect actual regularities.
 
 ### Example of Application in Economics
 
 Let's assume an economist is studying the impact of interest rates on inflation:
 
-- **DGP**: Equation describing how interest rates and other factors affect inflation
-- **Superpopulation**: All possible inflation values at different levels of interest rates and other factors
-- **Population**: Actual inflation values in all countries during a given period
-- **Sample**: Inflation data from 30 selected countries that we study
+-   **DGP**: Equation describing how interest rates and other factors affect inflation
+-   **Superpopulation**: All possible inflation values at different levels of interest rates and other factors
+-   **Population**: Actual inflation values in all countries during a given period
+-   **Sample**: Inflation data from 30 selected countries that we study
 
 ### Examples from Electoral Studies
 
 **Example 1: Voter Turnout**
 
-- **DGP**: $Turnout_i = \beta_0 + \beta_1 Age_i + \beta_2 Education_i + \beta_3 Income_i + \varepsilon_i$
-- **Superpopulation**: All possible decisions to participate in elections that voters with different socio-demographic characteristics could make under different conditions
-- **Population**: All eligible voters in the 2020 presidential election
-- **Sample**: 1500 respondents of an exit poll after the election
+-   **DGP**: $Turnout_i = \beta_0 + \beta_1 Age_i + \beta_2 Education_i + \beta_3 Income_i + \varepsilon_i$
+-   **Superpopulation**: All possible decisions to participate in elections that voters with different socio-demographic characteristics could make under different conditions
+-   **Population**: All eligible voters in the 2020 presidential election
+-   **Sample**: 1500 respondents of an exit poll after the election
 
 **Example 2: Support for Political Parties**
 
-- **DGP**: $Support_{ij} = \beta_0 + \beta_1 Ideology_i + \beta_2 EconomicSituation_i + \beta_3 Age_i + \varepsilon_i$
-- **Superpopulation**: All possible electoral preferences of people with different characteristics in different socio-economic conditions
-- **Population**: All voters in the United States in 2023
-- **Sample**: Pre-election survey respondents (n=1000)
+-   **DGP**: $Support_{ij} = \beta_0 + \beta_1 Ideology_i + \beta_2 EconomicSituation_i + \beta_3 Age_i + \varepsilon_i$
+-   **Superpopulation**: All possible electoral preferences of people with different characteristics in different socio-economic conditions
+-   **Population**: All voters in the United States in 2023
+-   **Sample**: Pre-election survey respondents (n=1000)
 
 ### Simulation and Estimation of a Demand Function as DGP in R
 
@@ -586,68 +598,66 @@ ggplot(ceteris_paribus, aes(x = price)) +
 
 This code demonstrates:
 
-1. Defining a complex DGP for a demand function with multiple predictors consistent with economic theory
-2. Simulating a superpopulation according to this DGP
-3. Drawing a sample from the superpopulation
-4. Estimating model parameters using OLS regression
-5. Comparing estimated parameters with their true values
-6. Visualizing the comparison of true and estimated parameters
-7. Checking the model's predictive ability on new data
-8. Visualizing the relationship between price and demand with ceteris paribus effect
+1.  Defining a complex DGP for a demand function with multiple predictors consistent with economic theory
+2.  Simulating a superpopulation according to this DGP
+3.  Drawing a sample from the superpopulation
+4.  Estimating model parameters using OLS regression
+5.  Comparing estimated parameters with their true values
+6.  Visualizing the comparison of true and estimated parameters
+7.  Checking the model's predictive ability on new data
+8.  Visualizing the relationship between price and demand with ceteris paribus effect
 
 This example shows how we can simulate complex economic relationships and then use econometric methods to discover these relationships based on a sample of data. It is an excellent illustration of how economic theory, DGP, and statistical methods are interconnected.
 
 In reality, we never know the true DGP - that's exactly what we're trying to discover through statistical analysis. Simulations of this type, however, allow us to conceptually understand how statistical inference connects with the concept of DGP and superpopulation.
 
-
 ### Supplementary Examples
 
 #### Example 1: Voter Opinion Study
-- **Population**: All registered voters in the United States in 2023 (approx. 168 million people)
-- **Sample**: 1000 randomly selected voters surveyed in a poll
-- **Superpopulation**: All possible voters (present, future, and hypothetical) and all possible voting scenarios
-- **DGP** (Data Generating Process): Complex mechanism shaping opinions and voting decisions, including:
-  - Demographic factors (age, education, place of residence)
-  - Economic conditions (income, employment status)
-  - Media influence and public debate
-  - Personal experiences
-  - Historical political conditions
+
+-   **Population**: All registered voters in the United States in 2023 (approx. 168 million people)
+-   **Sample**: 1000 randomly selected voters surveyed in a poll
+-   **Superpopulation**: All possible voters (present, future, and hypothetical) and all possible voting scenarios
+-   **DGP** (Data Generating Process): Complex mechanism shaping opinions and voting decisions, including:
+    -   Demographic factors (age, education, place of residence)
+    -   Economic conditions (income, employment status)
+    -   Media influence and public debate
+    -   Personal experiences
+    -   Historical political conditions
 
 #### Example 2: Anti-diabetic Drug Effects Study
-- **Population**: All patients with type 2 diabetes in a given country (e.g., 34 million people)
-- **Sample**: 500 patients participating in a clinical trial
-- **Superpopulation**: All possible type 2 diabetes patients (present and future) with various genetic and environmental profiles
-- **DGP**: Biological mechanism including:
-  - Drug interactions with receptors in the body
-  - Individual genetic factors
-  - Environmental factors (diet, physical activity)
-  - Interactions with other medications
-  - Metabolic mechanisms of the organism
+
+-   **Population**: All patients with type 2 diabetes in a given country (e.g., 34 million people)
+-   **Sample**: 500 patients participating in a clinical trial
+-   **Superpopulation**: All possible type 2 diabetes patients (present and future) with various genetic and environmental profiles
+-   **DGP**: Biological mechanism including:
+    -   Drug interactions with receptors in the body
+    -   Individual genetic factors
+    -   Environmental factors (diet, physical activity)
+    -   Interactions with other medications
+    -   Metabolic mechanisms of the organism
 
 #### Example 3: When Sample Equals Population
-Study of all 50 US states:
-- **Traditional approach**: No distinction between sample and population (we study all states)
-- **Superpopulation approach**:
-  - **Population/Sample**: 50 existing US states
-  - **Superpopulation**: Theoretical set of all possible territorial units of the "state" type under different historical, political, and social conditions
-  - **DGP**: Fundamental geographic, historical, political, and socio-economic mechanisms shaping state characteristics
+
+Study of all 50 US states: - **Traditional approach**: No distinction between sample and population (we study all states) - **Superpopulation approach**: - **Population/Sample**: 50 existing US states - **Superpopulation**: Theoretical set of all possible territorial units of the "state" type under different historical, political, and social conditions - **DGP**: Fundamental geographic, historical, political, and socio-economic mechanisms shaping state characteristics
 
 #### Example 4: Pizza Quality in New York City
-- **Population**: All currently operating pizzerias in New York City (e.g., 2000 establishments)
-- **Sample**: 50 randomly selected pizzerias from different neighborhoods
-- **Superpopulation**: All possible pizzerias that could exist in New York City:
-  - Currently operating
-  - Future (not yet opened)
-  - Historical (already closed)
-  - Hypothetical (in alternative economic or cultural conditions)
-- **DGP**: Factors affecting pizza quality:
-  - Ingredients and their quality
-  - Skills and experience of chefs
-  - Kitchen equipment and infrastructure
-  - Preparation methods and recipes
-  - Environmental factors (e.g., local water quality)
-  - Cultural influences and culinary traditions
-  - Economic conditions (operating costs, rent)
+
+-   **Population**: All currently operating pizzerias in New York City (e.g., 2000 establishments)
+-   **Sample**: 50 randomly selected pizzerias from different neighborhoods
+-   **Superpopulation**: All possible pizzerias that could exist in New York City:
+    -   Currently operating
+    -   Future (not yet opened)
+    -   Historical (already closed)
+    -   Hypothetical (in alternative economic or cultural conditions)
+-   **DGP**: Factors affecting pizza quality:
+    -   Ingredients and their quality
+    -   Skills and experience of chefs
+    -   Kitchen equipment and infrastructure
+    -   Preparation methods and recipes
+    -   Environmental factors (e.g., local water quality)
+    -   Cultural influences and culinary traditions
+    -   Economic conditions (operating costs, rent)
 
 DGP is like a "recipe for pizza quality" that determines outcomes for all potential pizzerias in the superpopulation, not just currently existing establishments.
 
@@ -677,19 +687,17 @@ graph TD
     class B pop;
     class C sam;
 ```
-
 :::
 
-
-::: {.callout-important}
+::: callout-important
 ## Population Parameter ($\theta$)
 
 A numerical value characterizing a specific feature of the entire population. Examples of population parameters include:
 
-- $\mu$ (population mean)
-- $\sigma^2$ (population variance)
-- $\sigma$ (population standard deviation)
-- $p$ (population proportion)
+-   $\mu$ (population mean)
+-   $\sigma^2$ (population variance)
+-   $\sigma$ (population standard deviation)
+-   $p$ (population proportion)
 
 Population parameters are usually unknown and are the subject of estimation based on a sample.
 
@@ -705,15 +713,14 @@ When we take a sample from a population and calculate a statistic (like a sample
 
 Key points about the distribution of a statistic:
 
-1. It shows how the statistic varies from sample to sample
-2. It helps us understand sampling error and uncertainty
-3. It allows us to make probabilistic statements about how close our estimate is to the true population parameter
-4. It forms the foundation for statistical inference, including confidence intervals and hypothesis testing
+1.  It shows how the statistic varies from sample to sample
+2.  It helps us understand sampling error and uncertainty
+3.  It allows us to make probabilistic statements about how close our estimate is to the true population parameter
+4.  It forms the foundation for statistical inference, including confidence intervals and hypothesis testing
 
 Example: If we are interested in the population mean $\mu$, its estimator is the sample mean $\bar{x}$. The distribution of the statistic $\bar{x}$ shows what values the sample mean can take and with what probability. Under certain conditions, this distribution approaches a "normal distribution" as sample size increases (according to the Central Limit Theorem), even if the original population distribution isn't "normal".
 
-We can represent this formally as follows:
-$$\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i$$
+We can represent this formally as follows: $$\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i$$
 
 where $x_1, x_2, ..., x_n$ are observations in a random sample.
 
@@ -725,29 +732,26 @@ There are important theorems in statistics that guarantee that for well-construc
 
 $$E(\hat{\theta}) = \theta$$
 
-For example, for the sample mean, we can prove that:
-$$E(\bar{x}) = E\left(\frac{1}{n}\sum_{i=1}^{n}x_i\right) = \frac{1}{n}\sum_{i=1}^{n}E(x_i) = \frac{1}{n} \cdot n \cdot \mu = \mu$$
+For example, for the sample mean, we can prove that: $$E(\bar{x}) = E\left(\frac{1}{n}\sum_{i=1}^{n}x_i\right) = \frac{1}{n}\sum_{i=1}^{n}E(x_i) = \frac{1}{n} \cdot n \cdot \mu = \mu$$
 
 Such an estimator is called unbiased. Importantly, not all estimators are unbiased - some have systematic deviation, e.g., the variance estimator $s^2$ must include a correction $\frac{1}{n-1}$ instead of $\frac{1}{n}$ to be unbiased.
-
 :::
-
 
 ![Various random samples of equal size and their statistics. Retrieved from: https://allmodelsarewrong.github.io/mse.html](stat_imgs/sampling-estimators.svg)
 
-
-::: {.callout-note}
+::: callout-note
 ## Normal Distribution - The Bell Curve
 
 ### Key Properties
 
-- The normal distribution (also known as the Gaussian distribution or bell curve) is one of the most important probability distributions in statistics.
-- It has a characteristic bell or dome-like shape that is symmetric around the mean, meaning values above and below the mean occur with equal probability.
-- It is fully described by just two parameters:
-  - The mean $\mu$ (centers the distribution)
-  - The standard deviation $\sigma$ (determines the width of the "bell")
+-   The normal distribution (also known as the Gaussian distribution or bell curve) is one of the most important probability distributions in statistics.
+-   It has a characteristic bell or dome-like shape that is symmetric around the mean, meaning values above and below the mean occur with equal probability.
+-   It is fully described by just two parameters:
+    -   The mean $\mu$ (centers the distribution)
+    -   The standard deviation $\sigma$ (determines the width of the "bell")
 
 ### Mathematical Representation
+
 The probability "density" function (PDF) of the normal distribution is:
 
 $$
@@ -756,26 +760,26 @@ $$
 
 Where:
 
-- $x$ is a random variable
-- $\mu$ is the mean (location parameter)
-- $\sigma$ is the standard deviation (scale parameter)
-- $e$ is Euler's number (approximately 2.71828)
-- $\pi$ is the mathematical constant pi (approximately 3.14159)
+-   $x$ is a random variable
+-   $\mu$ is the mean (location parameter)
+-   $\sigma$ is the standard deviation (scale parameter)
+-   $e$ is Euler's number (approximately 2.71828)
+-   $\pi$ is the mathematical constant pi (approximately 3.14159)
 
 ### Practical Significance
 
 The normal distribution appears frequently in nature and human systems:
 
-- Human height and weight distributions
-- Measurement errors in scientific experiments
-- Test scores and academic performance
-- Manufacturing process variations
+-   Human height and weight distributions
+-   Measurement errors in scientific experiments
+-   Test scores and academic performance
+-   Manufacturing process variations
 
 #### Statistical Theory
 
-- **68-95-99.7 Rule**: Approximately 68% of values fall within 1 standard deviation of the mean, 95% within 2 standard deviations, and 99.7% within 3 standard deviations.
-- **Central Limit Theorem**: Sample means tend to follow a normal distribution regardless of the original distribution's shape (given a sufficiently large sample size).
-- **Statistical Inference**: Forms the foundation for many statistical tests and confidence intervals.
+-   **68-95-99.7 Rule**: Approximately 68% of values fall within 1 standard deviation of the mean, 95% within 2 standard deviations, and 99.7% within 3 standard deviations.
+-   **Central Limit Theorem**: Sample means tend to follow a normal distribution regardless of the original distribution's shape (given a sufficiently large sample size).
+-   **Statistical Inference**: Forms the foundation for many statistical tests and confidence intervals.
 :::
 
 ## Data and Populations
@@ -895,26 +899,27 @@ A statistical model is a mathematical representation of reality that describes r
 
 A statistical model is a mathematical framework used to represent relationships in data and make predictions. A complete statistical model consists of:
 
-1. **Functional form**: The mathematical structure that defines the relationship between variables (e.g., linear, quadratic, exponential, logarithmic)
+1.  **Functional form**: The mathematical structure that defines the relationship between variables (e.g., linear, quadratic, exponential, logarithmic)
 
-2. **Variables**: 
-   - Dependent variable(s): What we're trying to predict or explain
-   - Independent/explanatory variables: Factors that might influence the dependent variable
+2.  **Variables**:
 
-3. **Parameters**: Unknown values we estimate from data that quantify the relationship between variables (e.g., regression coefficients, means, variances)
+    -   Dependent variable(s): What we're trying to predict or explain
+    -   Independent/explanatory variables: Factors that might influence the dependent variable
 
-4. **Random component**: The error term or stochastic element that accounts for uncertainty and variability not explained by the model
+3.  **Parameters**: Unknown values we estimate from data that quantify the relationship between variables (e.g., regression coefficients, means, variances)
 
-5. **Probability distribution assumptions**: Specifications about how the random component is distributed (e.g., normal, Poisson, binomial)
+4.  **Random component**: The error term or stochastic element that accounts for uncertainty and variability not explained by the model
+
+5.  **Probability distribution assumptions**: Specifications about how the random component is distributed (e.g., normal, Poisson, binomial)
 :::
 
 Example of a linear regression model: $y = \beta_0 + \beta_1x + \epsilon$, where $\epsilon \sim N(0, \sigma^2)$
 
 In this model:
 
-- $\beta_0$ and $\beta_1$ are parameters (estimands) we want to estimate
-- $\epsilon$ is a random component representing unexplained variability
-- We assume normality of the distribution of random errors
+-   $\beta_0$ and $\beta_1$ are parameters (estimands) we want to estimate
+-   $\epsilon$ is a random component representing unexplained variability
+-   We assume normality of the distribution of random errors
 
 ### Causal vs. Predictive Inference
 
@@ -947,8 +952,8 @@ The fundamental problem of causal inference is the impossibility of observing **
 
 Example:
 
-- We observe a person who completed college and earns \$8,000 per month
-- We cannot observe how much the same person would earn if they had not completed college
+-   We observe a person who completed college and earns \$8,000 per month
+-   We cannot observe how much the same person would earn if they had not completed college
 
 Causal methods attempt to solve this problem through: 1. Randomized experiments 2. Instrumental variables 3. Matching methods 4. Regression discontinuity analysis 5. Difference-in-differences
 
@@ -1007,11 +1012,11 @@ Imagine we want to check if a coin is fair.
 
 General hypothesis testing procedure:
 
-1. Formulate the null hypothesis (H₀) and alternative hypothesis (H₁)
-2. Choose a significance level α (usually 0.05) - a decision rule that helps assess what constitutes a small probability of the observed result, assuming that the tested hypothesis is true
-3. Collect data and calculate the appropriate test statistic
-4. Calculate the p-value (the probability of obtaining our data or more extreme results, assuming H₀ is true)
-5. Make a decision: if p < α, reject H₀ in favor of H₁
+1.  Formulate the null hypothesis (H₀) and alternative hypothesis (H₁)
+2.  Choose a significance level α (usually 0.05) - a decision rule that helps assess what constitutes a small probability of the observed result, assuming that the tested hypothesis is true
+3.  Collect data and calculate the appropriate test statistic
+4.  Calculate the p-value (the probability of obtaining our data or more extreme results, assuming H₀ is true)
+5.  Make a decision: if p \< α, reject H₀ in favor of H₁
 
 ::: callout-note
 ## Intuition behind hypothesis testing
@@ -1064,9 +1069,7 @@ To conduct reliable statistical research, one should ensure:
 | **P-value** | Probability of observing the data assuming H₀ is true | p = 0.03 |
 :::
 
-
-
-## Tools for Data Science in Social Sciences(*)
+## Tools for Data Science in Social Sciences(\*)
 
 In this course, we'll use R for our data analysis, as it's widely used in social science research.
 
@@ -1146,7 +1149,6 @@ print(group_cors)
 ```
 
 This example demonstrates basic data manipulation, summary statistics, and visualization using R, which are common tasks in social science research.
-
 
 ## Causal Inference vs. Observational Studies
 
@@ -1445,7 +1447,6 @@ Controlling for the collider (work-life balance) introduces a spurious correlati
 
 Understanding spurious correlations, confounders, and colliders is crucial for proper statistical analysis and causal inference. Always consider the underlying causal structure of your data and be cautious about which variables you control for in your analyses.
 
-
 ## Ethical Considerations in Social Science Data Analysis
 
 Ethics play a crucial role in social science research:
@@ -1455,8 +1456,6 @@ Ethics play a crucial role in social science research:
 3.  **Bias and Representation**: Addressing sampling bias and ensuring diverse representation
 4.  **Transparency**: Clearly communicating research methods and limitations
 5.  **Social Impact**: Considering the potential societal implications of research findings
-
-
 
 ## Appendix A: Classical vs Quantum Randomness: Understanding the Fundamental Differences
 
@@ -1563,7 +1562,7 @@ LLMs are trained on vast text data to predict the probability distribution of th
 To understand LLMs better, let's compare them to Ordinary Least Squares (OLS) regression:
 
 | Aspect | OLS Regression | Large Language Models |
-|------------------|----------------------|---------------------------------|
+|------------------|----------------------|--------------------------------|
 | Basic Function | Predicts continuous outcomes based on input variables | Predicts probability distribution of next token based on previous tokens |
 | Input-Output | Continuous variables, linear relationships | Discrete tokens, non-linear relationships |
 | Prediction Type | Point predictions with confidence intervals | Probability distributions over possible tokens |

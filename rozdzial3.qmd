@@ -1,342 +1,315 @@
-# Od Próby do Populacji - Zrozumienie Losowości, Próbkowania i Wnioskowania
+# Od Próby do Populacji - Zrozumienie Losowości, Pobierania Próby i Wnioskowania
 
-## Wprowadzenie do Losowości
-
-Losowość jest fundamentalnym pojęciem w statystyce i badaniach naukowych. Odnosi się do nieprzewidywalności indywidualnych wyników, nawet gdy ogólny wzorzec może być przewidywalny. W naukach społecznych zrozumienie losowości jest kluczowe dla projektowania badań, zbierania danych i interpretacji wyników.
-
-Rozważmy rzut uczciwą monetą. Chociaż wiemy, że prawdopodobieństwo wypadnięcia orła wynosi 50%, nie możemy z pewnością przewidzieć wyniku pojedynczego rzutu. Ta nieprzewidywalność jest istotą losowości.
-
-Przykłady losowych zjawisk w naukach społecznych obejmują:
-
-1. **Wybór uczestników**: W eksperymencie psychologicznym badającym czasy reakcji, kolejność, w jakiej uczestnicy przybywają do laboratorium, może być losowa.
-
-2. **Zachowania ekonomiczne**: Codzienne wahania cen akcji często wykazują losowe wzorce, na które wpływa niezliczona ilość nieprzewidywalnych czynników.
-
-3. **Interakcje społeczne**: Występowanie przypadkowych spotkań między osobami w społeczności można uznać za zdarzenia losowe.
-
-Zrozumienie losowości pomaga badaczom odróżnić rzeczywiste efekty od przypadkowych zdarzeń. Na przykład, jeśli zaobserwujemy niewielką różnicę w wynikach testów między dwiema grupami, losowość pomaga nam określić, czy ta różnica jest prawdopodobnie spowodowana rzeczywistym efektem, czy tylko przypadkową zmiennością.
-
-## Próbkowanie: Łączenie Próby i Populacji
-
-Próbkowanie to proces wybierania podzbioru (próby) z większej grupy (populacji) w celu wyciągnięcia wniosków o populacji. Jest to kluczowa umiejętność w badaniach nauk społecznych, ponieważ badanie całych populacji jest często niepraktyczne, zbyt kosztowne lub czasami niemożliwe.
-
-**Kluczowe pojęcia:**
-
-- **Populacja**: Cała grupa, o której chcemy wyciągnąć wnioski.
-- **Próba**: Podzbiór populacji, który faktycznie badamy.
-- **Operat losowania**: Lista lub procedura używana do identyfikacji wszystkich członków populacji.
-
-**Przykład:** 
-Załóżmy, że chcemy zbadać satysfakcję z pracy wszystkich nauczycieli w Polsce (populacja). Zamiast ankietować setki tysięcy nauczycieli, możemy wybrać próbę 5000 nauczycieli z różnych województw, powiatów i poziomów nauczania.
-
-Losowość w próbkowaniu pomaga zapewnić, że próba jest reprezentatywna dla populacji, zmniejszając błędy systematyczne i umożliwiając dokładniejsze wnioskowanie. Dlatego metody próbkowania probabilistycznego, które omówimy dalej, są często preferowane w badaniach naukowych.
-
-## Metody Próbkowania
+## Metody Pobierania Próby
 
 ### Próbkowanie Probabilistyczne
 
-Metody próbkowania probabilistycznego obejmują losowy wybór, dając każdemu członkowi populacji znaną, niezerową szansę na wybór.
+Metody próbkowania probabilistycznego opierają się na losowym doborze, gdzie każdy członek populacji ma znaną, niezerową szansę na wybór. Metody te pozwalają badaczom obliczyć błąd próbkowania i wyciągać wnioski statystyczne o populacji.
 
-1. **Prosty Dobór Losowy**: 
-   Każdy członek populacji ma równą szansę na wybór.
-   
-   Przykład: Aby wybrać 100 studentów z uniwersytetu liczącego 10 000 studentów, można przypisać każdemu studentowi numer od 1 do 10 000, a następnie użyć generatora liczb losowych do wybrania 100 numerów.
+1. **Prosty Dobór Losowy (SRS)**
+   * **Definicja**: Każdy członek populacji ma równą szansę na wybór.
+   * **Zalety**: Minimalizuje błąd selekcji; umożliwia prostą analizę statystyczną.
+   * **Wady**: Wymaga kompletnej operatu losowania; może nie uchwycić wystarczającej liczby członków mniejszych podgrup.
+   * **Przykład**: Aby wybrać 100 studentów z uniwersytetu liczącego 10 000 studentów, przypisz każdemu studentowi numer i użyj generatora liczb losowych do wybrania 100 numerów.
+   * **Najlepsze zastosowanie**: Gdy populacja jest względnie jednorodna i dostępna jest kompletna lista członków populacji.
 
-2. **Dobór Losowy Warstwowy**: 
-   Populacja jest podzielona na podgrupy (warstwy) na podstawie wspólnych cech, a następnie próbki są losowo wybierane z każdej warstwy.
-   
-   Przykład: W ogólnopolskim badaniu politycznym można podzielić populację na warstwy na podstawie regionów geograficznych (np. Polska Zachodnia, Centralna, Wschodnia) i losowo pobierać próbki z każdego regionu. Zapewnia to reprezentację ze wszystkich obszarów kraju.
+2. **Dobór Losowy Warstwowy**
+   * **Definicja**: Populacja jest podzielona na wzajemnie wykluczające się podgrupy (warstwy) na podstawie wspólnych cech, a następnie próbki są losowo wybierane z każdej warstwy.
+   * **Zalety**: Zapewnia reprezentację kluczowych podgrup; może poprawić precyzję dla tej samej wielkości próby co SRS; umożliwia analizę wewnątrz i między warstwami.
+   * **Wady**: Wymaga wcześniejszej znajomości cech populacji do stratyfikacji; bardziej złożona analiza.
+   * **Przykład**: W krajowym sondażu politycznym, podziel populację na warstwy według regionów geograficznych (Północny-Wschód, Północny-Zachód, Południe, itp.) i następnie losowo pobierz próbki z każdego regionu proporcjonalnie do ich wielkości populacji.
+   * **Najlepsze zastosowanie**: Gdy populacja zawiera wyraźne podgrupy, które mogą reagować różnie na pytanie badawcze.
 
-3. **Dobór Losowy Grupowy**: 
-   Populacja jest podzielona na skupiska (zwykle geograficzne), niektóre skupiska są losowo wybierane, a wszyscy członkowie w tych skupiskach są badani.
-   
-   Przykład: Aby zbadać nawyki uczenia się uczniów szkół średnich, można losowo wybrać 20 szkół z całego kraju, a następnie przeprowadzić ankietę wśród wszystkich uczniów w tych szkołach.
+3. **Dobór Grupowy (Klastrowy)**
+   * **Definicja**: Populacja jest podzielona na grupy (zwykle geograficzne), niektóre grupy są losowo wybierane, a wszyscy członkowie w tych grupach są badani.
+   * **Zalety**: Bardziej opłacalny gdy populacja jest geograficznie rozproszona; nie wymaga kompletnej listy członków populacji.
+   * **Wady**: Niższa precyzja statystyczna niż SRS lub dobór warstwowy; klastry muszą być reprezentatywne.
+   * **Przykład**: Aby zbadać nawyki uczenia się uczniów szkół średnich, losowo wybierz 20 szkół średnich z całego kraju i zbadaj wszystkich uczniów w tych szkołach.
+   * **Najlepsze zastosowanie**: Gdy populacja jest szeroko rozproszona geograficznie, a dotarcie do wszystkich jednostek byłoby kosztowne.
 
-4. **Dobór Systematyczny**: 
-   Wybieranie co k-tego elementu z listy po losowym starcie.
-   
-   Przykład: W ruchliwym centrum handlowym można ankietować co 20. osobę wchodzącą do centrum, zaczynając od losowo wybranej liczby między 1 a 20.
+4. **Dobór Systematyczny**
+   * **Definicja**: Wybieranie co k-tego elementu z listy po losowym starcie.
+   * **Zalety**: Prosty w implementacji; często bardziej praktyczny niż SRS; może uniknąć efektów sąsiedztwa.
+   * **Wady**: Może wprowadzić błąd, jeśli w liście występuje okresowy wzorzec.
+   * **Przykład**: W zatłoczonym centrum handlowym, badaj co 20. osobę, która wchodzi, zaczynając od losowo wybranego numeru między 1 a 20.
+   * **Najlepsze zastosowanie**: Gdy populacja jest uporządkowana losowo lub w sposób niezwiązany ze zmiennymi badania.
+
+5. **Dobór Wielostopniowy**
+   * **Definicja**: Łączenie wielu metod próbkowania w etapach.
+   * **Zalety**: Praktyczny dla badań na dużą skalę; równoważy koszty i precyzję.
+   * **Wady**: Złożony projekt i analiza; wiele etapów może kumulować błędy próbkowania.
+   * **Przykład**: Najpierw losowo wybierz powiaty (dobór klastrowy), następnie losowo wybierz gospodarstwa domowe w tych powiatach (prosty dobór losowy), a na końcu wybierz jednego dorosłego z każdego gospodarstwa (dobór systematyczny).
+   * **Najlepsze zastosowanie**: Badanie dużych, złożonych populacji na rozległych obszarach geograficznych.
 
 ### Próbkowanie Nieprobabilistyczne
 
-Próbkowanie nieprobabilistyczne nie obejmuje losowego wyboru. Chociaż może wprowadzać błędy systematyczne, może być konieczne w niektórych sytuacjach, zwłaszcza w przypadku trudno dostępnych populacji lub gdy zasoby są ograniczone.
+Próbkowanie nieprobabilistyczne nie wymaga losowego doboru, co oznacza, że wnioskowanie statystyczne o populacji musi być dokonywane z ostrożnością. Chociaż może wprowadzać błąd, może być konieczne w określonych sytuacjach.
+
+1. **Dobór Przypadkowy (Convenience Sampling)**
+   * **Definicja**: Wybieranie łatwo dostępnych podmiotów.
+   * **Zalety**: Szybki, niedrogi i łatwy w implementacji.
+   * **Wady**: Wysokie ryzyko błędu selekcji; ograniczona możliwość uogólniania.
+   * **Przykład**: Badacz studiujący wzorce snu studentów może ankietować studentów ze swoich własnych zajęć.
+   * **Najlepsze zastosowanie**: Badania pilotażowe, badania eksploracyjne lub gdy zasoby są znacznie ograniczone.
+
+2. **Dobór Celowy**
+   * **Definicja**: Wybieranie podmiotów na podstawie określonych cech istotnych dla pytania badawczego.
+   * **Zalety**: Koncentruje się na istotnych przypadkach; przydatny do dogłębnych badań określonych grup.
+   * **Wady**: Błąd badacza w wyborze; ograniczona możliwość uogólniania.
+   * **Przykład**: W badaniu doświadczeń dyrektorów generalnych w branży technologicznej, celowo poszukuj i przeprowadzaj wywiady z dyrektorami różnych firm technologicznych.
+   * **Najlepsze zastosowanie**: Badania jakościowe, studia przypadków lub badanie unikalnych populacji.
+
+3. **Dobór Kuli Śnieżnej**
+   * **Definicja**: Uczestnicy rekrutują innych uczestników ze swoich sieci.
+   * **Zalety**: Dostęp do trudno dostępnych lub ukrytych populacji; bazuje na sieciach społecznych.
+   * **Wady**: Próba stronnicza w kierunku osób w określonych sieciach społecznych; nie można obliczyć prawdopodobieństwa wyboru.
+   * **Przykład**: W badaniu dostępu nielegalnych imigrantów do opieki zdrowotnej, badacze proszą początkowych uczestników o polecenie innych potencjalnych uczestników.
+   * **Najlepsze zastosowanie**: Badanie rzadkich populacji lub wrażliwych tematów, gdzie nie istnieje operat losowania.
+
+4. **Dobór Kwotowy**
+   * **Definicja**: Wybieranie uczestników w celu spełnienia określonych kwot dla pewnych cech, aby dopasować do znanych parametrów populacji.
+   * **Zalety**: Zapewnia reprezentację kluczowych grup demograficznych; szybszy i tańszy niż próbkowanie probabilistyczne; nie wymaga operatu losowania.
+   * **Wady**: Nielosowy wybór w ramach kwot może wprowadzić błąd; wnioskowanie jest ograniczone.
+   * **Przykład**: W badaniu rynkowym, badacze upewniają się, że przeprowadzają wywiady z określoną liczbą osób z różnych grup wiekowych, płci i poziomów dochodów.
+   * **Najlepsze zastosowanie**: Komercyjne sondaże, badania rynkowe lub gdy próbkowanie probabilistyczne nie jest wykonalne.
 
-1. **Dobór Wygodny**: 
-   Wybieranie łatwo dostępnych podmiotów.
-   
-   Przykład: Badacz studiujący wzorce snu studentów może przeprowadzić ankietę wśród studentów na własnych zajęciach lub na terenie kampusu.
+### Próby Kwotowe vs. Próby Warstwowe: Porównanie i Praktyczne Zastosowania
 
-2. **Dobór Celowy**: 
-   Wybieranie podmiotów na podstawie określonych cech.
-   
-   Przykład: W badaniu doświadczeń prezesów w branży technologicznej badacz może celowo szukać i przeprowadzać wywiady z prezesami różnych firm technologicznych.
+Choć na pierwszy rzut oka próbkowanie warstwowe i kwotowe może wydawać się podobne, istnieją między nimi fundamentalne różnice:
 
-3. **Dobór Metodą Kuli Śnieżnej**: 
-   Uczestnicy rekrutują innych uczestników.
-   
-   Przykład: W badaniu dostępu imigrantów bez dokumentów do opieki zdrowotnej, badacze mogą poprosić początkowych uczestników o polecenie innych potencjalnych uczestników z ich społeczności.
+#### Kluczowe różnice między doborem warstwowym a kwotowym:
 
-4. **Dobór Kwotowy**: 
-   Wybieranie uczestników w celu spełnienia określonych kwot dla pewnych cech.
-   
-   Przykład: W badaniu rynku badacze mogą zapewnić, że przeprowadzają wywiady z określoną liczbą osób z różnych grup wiekowych, płci i poziomów dochodów, aby dopasować się do demografii rynku docelowego.
+1. **Podstawa metodologiczna**:
+   * **Dobór warstwowy**: Jest metodą probabilistyczną, gdzie po podziale na warstwy, jednostki w każdej warstwie są wybierane losowo.
+   * **Dobór kwotowy**: Jest metodą nieprobabilistyczną, gdzie badacz lub ankieter ma swobodę wyboru konkretnych jednostek, o ile spełnione są założone kwoty.
 
-## Wnioskowanie z Prób
+2. **Możliwość wnioskowania statystycznego**:
+   * **Dobór warstwowy**: Pozwala na obliczenie błędu próbkowania i przedziałów ufności, umożliwiając formalne wnioskowanie statystyczne.
+   * **Dobór kwotowy**: Nie pozwala na obliczenie błędu próbkowania, co ogranicza możliwości formalnego wnioskowania statystycznego.
 
-Wnioskowanie statystyczne to proces wyciągania wniosków o populacji na podstawie próby. Pozwala to badaczom oszacować charakterystyki całej populacji (parametry) przy użyciu charakterystyk próby (statystyk).
+3. **Kontrola procesu doboru**:
+   * **Dobór warstwowy**: Każdy etap procesu doboru jest kontrolowany przez badacza – od definicji warstw po losowy wybór jednostek w warstwach.
+   * **Dobór kwotowy**: Ostateczny wybór respondentów pozostaje w rękach ankieterów, co może wprowadzać nieświadome obciążenia.
 
-::: {.callout-note}
-The Soup Analogy: A Taste of Statistics
+4. **Praktyczne wdrożenie**:
+   * **Dobór warstwowy**: Wymaga operatu losowania (kompletnej listy populacji) do przeprowadzenia losowania.
+   * **Dobór kwotowy**: Nie wymaga operatu losowania, a jedynie znajomości rozkładu kluczowych cech w populacji.
 
-![](stat_imgs/soup-svgrepo-com.svg){width=30%}
+#### Jak dokładnie powstaje próba kwotowa w badaniach CATI lub CAPI
 
-- When you taste a spoonful of soup and decide it isn't salty enough, that's exploratory/descriptive analysis.
-- If you generalize and conclude that your entire pot of soup needs salt, that's an inference.
-- For your inference to be valid, the spoonful you tasted (the sample) needs to be representative of the entire pot (the population).
-- If the soup is not well stirred (heterogeneous population), it doesn't matter how large a spoon you have (sample size), it will still not accurately represent the whole. If the soup is well stirred (homogeneous population), even a small spoon will suffice to test the soup.
-:::
+Proces tworzenia próby kwotowej w badaniach CATI (Computer-Assisted Telephone Interviewing) lub CAPI (Computer-Assisted Personal Interviewing) obejmuje następujące etapy:
 
+1. **Etap planowania i przygotowania**:
+   * **Określenie zmiennych kwotowych**: Najczęściej są to podstawowe zmienne demograficzne: płeć, wiek, wykształcenie, miejsce zamieszkania (miasto/wieś), region. 
+   * **Ustalenie wielkości kwot**: Na podstawie danych GUS lub innych wiarygodnych źródeł danych (np. Diagnoza Społeczna) określa się, jaki procent populacji stanowią poszczególne kategorie.
+   * **Przygotowanie tabeli kwotowej**: Tworzy się wielowymiarową macierz kwot, np. ile powinno być kobiet w wieku 18-29 lat z wyższym wykształceniem mieszkających na wsi w województwie mazowieckim.
 
-**Kluczowe pojęcia:**
+2. **Przygotowanie operacyjne badania CATI**:
+   * **Przygotowanie bazy telefonicznej**: W przypadku CATI tworzy się bazę numerów telefonicznych (stacjonarnych i/lub komórkowych).
+   * **Losowanie numerów z puli**: Często stosuje się metodę RDD (Random Digit Dialing) dla telefonów komórkowych lub losowanie z książek telefonicznych (coraz rzadziej) dla telefonów stacjonarnych.
+   * **Przypisanie numerów do zespołów ankieterskich**: System CATI dystrybuuje numery do ankieterów.
 
-1. **Estymatory punktowe**: 
-   Pojedyncza wartość używana do oszacowania parametru populacji.
-   
-   Przykład: Średni dochód z próby 1000 pracowników może być użyty do oszacowania średniego dochodu wszystkich pracowników w kraju.
+3. **Realizacja badania CATI**:
+   * **Pytania filtrujące**: Na początku rozmowy ankieter zadaje pytania o wiek, płeć i inne zmienne kwotowe.
+   * **Decyzja o kontynuacji**: System CATI na bieżąco monitoruje wypełnienie kwot i decyduje, czy dana osoba kwalifikuje się do badania (czy jej profil demograficzny jest jeszcze potrzebny w próbie).
+   * **Realizacja wywiadu**: Jeśli respondent pasuje do wciąż otwartej kwoty, przeprowadzany jest wywiad.
+   * **Automatyczne zamykanie wypełnionych kwot**: Gdy dana kwota zostaje wypełniona, system przestaje przyjmować nowych respondentów o tym profilu.
+   * **Rejestracja odmów udziału w badaniu**: System rejestruje odmowy według ich typu (odmowa na etapie wprowadzenia, odmowa po pytaniach filtrujących, przerwanie wywiadu) oraz dane demograficzne, jeśli zostały zebrane przed odmową.
 
-2. **Przedziały ufności**: 
-   Zakres wartości, który prawdopodobnie zawiera prawdziwy parametr populacji.
-   
-   Przykład: Możemy powiedzieć: "Jesteśmy w 95% pewni, że prawdziwy średni dochód populacji mieści się między 4500 a 5500 złotych".
+4. **Przygotowanie operacyjne badania CAPI**:
+   * **Wybór lokalizacji**: Wybiera się punkty realizacji badania, często stratyfikowane według regionów, wielkości miejscowości itd.
+   * **Instrukcje dla ankieterów**: Ankieterzy otrzymują szczegółowe instrukcje dotyczące kwot, które muszą wypełnić w swoim rejonie.
 
-3. **Margines błędu**: 
-   Zakres wartości powyżej i poniżej statystyki z próby w przedziale ufności.
-   
-   Przykład: W sondażach politycznych można zobaczyć stwierdzenie: "Kandydat A jest preferowany przez 52% wyborców, z marginesem błędu ±3%".
+5. **Realizacja badania CAPI**:
+   * **Screener**: Ankieter używa krótkiego kwestionariusza selekcyjnego do określenia, czy dana osoba spełnia kryteria kwotowe.
+   * **Dobór respondenta**: Ankieter sam decyduje, kogo zapytać o udział w badaniu, kierując się wytycznymi kwotowymi.
+   * **Monitorowanie realizacji kwot**: Ankieterzy regularnie raportują zrealizowane wywiady, a koordynator badania monitoruje wypełnienie kwot.
 
-4. **Testowanie hipotez**: 
-   Metoda podejmowania decyzji o parametrach populacji na podstawie danych z próby.
-   
-   Przykład: Badacz może testować, czy istnieje istotna różnica w wynikach testów między uczniami, którzy uczą się przy muzyce, a tymi, którzy uczą się w ciszy.
+6. **Kontrola jakości i analiza odmów**:
+   * **Weryfikacja wywiadów**: Losowo wybrane wywiady są weryfikowane przez ponowny kontakt z respondentem.
+   * **Kontrola pracy ankieterów**: W badaniach CAPI często stosuje się geolokalizację ankieterów, żeby potwierdzić, że faktycznie byli w deklarowanych lokalizacjach.
+   * **Kontrola "efektu ankietera"**: Analizuje się, czy określeni ankieterzy nie mają systematycznie odmiennych wyników.
+   * **Analiza wskaźnika odpowiedzi (response rate)**: Oblicza się stosunek zrealizowanych wywiadów do wszystkich nawiązanych kontaktów.
+   * **Analiza struktury odmów**: Sprawdza się, czy odmowy nie są systematycznie powiązane z określonymi cechami demograficznymi, co mogłoby wprowadzić błąd.
 
-## Błędy Próbkowania i Błędy Niepróbkowe
+7. **Ważenie końcowe (po realizacji badania)**:
+   * **Korekta nierównomiernej realizacji kwot**: Nawet przy najstaranniejszym doborze kwotowym rzadko udaje się idealnie odwzorować strukturę populacji, dlatego stosuje się ważenie danych po zakończeniu zbierania wywiadów.
+   * **Kalibracja do znanych parametrów populacji**: Próbę kalibruje się do dokładnych danych z GUS lub innych wiarygodnych źródeł, przypisując odpowiednie wagi poszczególnym respondentom.
+   * **Metody ważenia**: Najczęściej stosuje się ważenie brzegowe (rim weighting) lub iteracyjne dopasowywanie (raking), które pozwalają jednocześnie dopasować próbę do wielu zmiennych demograficznych.
 
-Zrozumienie potencjalnych błędów w badaniach jest kluczowe dla dokładnej interpretacji wyników.
+#### Praktyczny przykład realizacji badania CATI z doborem kwotowym w Polsce:
 
-**Błąd próbkowania**: 
-Różnica między statystyką z próby a prawdziwym parametrem populacji, występująca z powodu przypadkowych wahań w wyborze członków próby.
+1. **Cel badania**: Ogólnopolski sondaż opinii na temat systemu edukacji, n=1000 wywiadów.
 
-Przykład: Jeśli oszacujemy średni wzrost wszystkich dorosłych mężczyzn w kraju na podstawie próby, nasze oszacowanie prawdopodobnie będzie się nieco różnić od prawdziwej średniej z powodu błędu próbkowania.
+2. **Zmienne kwotowe**:
+   * Płeć: 52% kobiety, 48% mężczyźni
+   * Wiek: 18-29 lat (18%), 30-44 lat (29%), 45-59 lat (25%), 60+ lat (28%)
+   * Wykształcenie: Podstawowe/gimnazjalne (18%), Zasadnicze zawodowe (23%), Średnie (35%), Wyższe (24%)
+   * Wielkość miejscowości: Wieś (39%), Miasto do 50 tys. (23%), Miasto 50-200 tys. (16%), Miasto 200+ tys. (22%)
+   * Region: Poszczególne województwa zgodnie z proporcjami GUS
 
-**Błędy niepróbkowe**: 
-Błędy nie wynikające z przypadku, które mogą wystąpić zarówno w badaniach próbkowych, jak i spisach.
+3. **Przebieg badania**:
+   * System CATI losuje numery telefonów i przydziela ankieterom
+   * Ankieter przeprowadza wywiad, jeśli respondent spełnia kryteria kwotowe i się zgadza
+   * System monitoruje wypełnienie kwot i automatycznie zamyka te, które osiągnęły zakładaną liczebność
+   * W trakcie realizacji badania okazuje się, że najtrudniej dotrzeć do mężczyzn z wykształceniem zasadniczym zawodowym w wieku 45-59 lat – ankieterom przydzielane są dodatkowe godziny na poszukiwanie respondentów o tym profilu
+   * Po zakończeniu zbierania danych, próba jest ważona, aby skorygować niewielkie odchylenia od założonych kwot
 
-1. **Błąd pokrycia**: 
-   Gdy operat losowania nie reprezentuje dokładnie populacji.
-   
-   Przykład: Badanie telefoniczne, które dzwoni tylko na telefony stacjonarne, pominęłoby osoby posiadające tylko telefony komórkowe, potencjalnie wypaczając wyniki.
+### Dlaczego Ankieterzy Coraz Częściej Stosują Dobór Kwotowy
 
-2. **Błąd braku odpowiedzi**: 
-   Gdy wybrani uczestnicy nie odpowiadają, potencjalnie wprowadzając błąd systematyczny.
-   
-   Przykład: W badaniu satysfakcji z pracy, bardzo zadowoleni lub bardzo niezadowoleni pracownicy mogą być bardziej skłonni do odpowiedzi, wypaczając wyniki.
+W ostatnich latach wiele organizacji sondażowych przeszło na metody doboru kwotowego z kilku kluczowych powodów:
 
-3. **Błąd pomiaru**: 
-   Niedokładności w zebranych danych.
-   
-   Przykład: Źle sformułowane pytanie ankietowe może być różnie interpretowane przez różnych respondentów, prowadząc do niespójnych danych.
+1. **Spadające Wskaźniki Odpowiedzi**: Tradycyjne sondaże telefoniczne oparte na prawdopodobieństwie odnotowały spadek wskaźników odpowiedzi z około 36% w latach 90. do mniej niż 10% obecnie. Zwiększa to koszty i potencjalnie wprowadza błąd braku odpowiedzi, który może być gorszy niż błąd selekcji z metod nieprobabilistycznych.
 
-4. **Błąd przetwarzania**: 
-   Błędy popełnione podczas wprowadzania danych, kodowania lub analizy.
-   
-   Przykład: Przypadkowe wprowadzenie "99" zamiast "9" dla odpowiedzi uczestnika mogłoby znacząco wypaczyć wyniki.
+2. **Problemy z Zasięgiem**: Losowe wybieranie numerów telefonicznych nie dociera już do reprezentatywnej próby populacji, ponieważ wielu ludzi zrezygnowało z telefonów stacjonarnych na rzecz komórkowych, a wielu nie odbiera połączeń od nieznanych numerów.
 
-## Wielkość Próby i Moc Statystyczna
+3. **Efektywność Kosztowa**: Sondaże oparte na prawdopodobieństwie stały się prohibicyjnie drogie wraz ze spadkiem wskaźników odpowiedzi, podczas gdy panele internetowe i próbkowanie kwotowe są bardziej przystępne cenowo.
 
-Określenie odpowiedniej wielkości próby wymaga zrównoważenia potrzeby precyzji z dostępnymi zasobami.
+4. **Szybkość**: W szybko zmieniających się kampaniach politycznych lub szybko ewoluujących sytuacjach opinii publicznej, próbkowanie kwotowe może dostarczyć wyniki znacznie szybciej niż metody probabilistyczne.
 
-**Rozważania dotyczące wielkości próby:**
-- Większe próby generalnie zapewniają bardziej precyzyjne oszacowania, ale są bardziej kosztowne i czasochłonne do uzyskania.
-- Wymagana wielkość próby zależy od czynników takich jak pożądany poziom precyzji, zmienność w populacji i rodzaj planowanej analizy.
+5. **Ulepszenia Ważenia i Modelowania**: Nowoczesne techniki statystyczne pozwalają ankieterom dostosować próby kwotowe, aby lepiej reprezentowały populację docelową poprzez ważenie odpowiedzi w oparciu o znane parametry populacji.
 
-**Przykład:** 
-Aby oszacować proporcję wyborców popierających konkretną politykę z marginesem błędu ±3% na poziomie ufności 95%, potrzebna byłaby próba około 1067 wyborców (zakładając maksymalną zmienność).
+6. **Podejścia Hybrydowe**: Wielu ankieterów stosuje obecnie metody hybrydowe, które łączą elementy próbkowania probabilistycznego i nieprobabilistycznego, z zaawansowanym ważeniem i modelowaniem w celu poprawy dokładności.
 
-**Moc statystyczna:**
-Prawdopodobieństwo, że badanie wykryje efekt, gdy taki efekt istnieje.
-
-Czynniki wpływające na moc:
-1. Wielkość próby
-2. Wielkość efektu (wielkość różnicy lub związku, który próbujemy wykryć)
-3. Wybrany poziom istotności (zwykle 0,05)
-
-**Przykład:** 
-W badaniu porównującym dwie metody nauczania, większa wielkość próby zwiększyłaby prawdopodobieństwo wykrycia istotnej różnicy między metodami, jeśli taka różnica istnieje.
-
-::: {.callout-note}
-Czym jest Moc Badania?
-
-Moc badania dotyczy tego, jak prawdopodobne jest, że znajdziemy coś, jeśli to naprawdę istnieje. To jak posiadanie dobrej latarki, gdy szukasz czegoś w ciemności - im lepsza latarka, tym bardziej prawdopodobne, że znajdziesz to, czego szukasz.
-
-1. **Wielkość Efektu**: Jak duża jest rzecz (efekt, różnica, itp.), której szukamy.
-2. **Wielkość Próby**: Ile osób lub rzeczy badamy w naszym studium.
-3. **Moc Badania**: Jak prawdopodobne jest, że znajdziemy efekt, jeśli naprawdę istnieje.
-
-Związek Między Wielkością Efektu a Wielkością Próby:
-
-Wyobraź sobie, że próbujesz znaleźć monety ukryte w piasku:
-
-1. **Duże Efekty (Duże Monety)**:
-   - Jeśli szukasz dużych monet (jak 5 złotych), nie musisz przeszukiwać tak dużo piasku, aby je znaleźć.
-   - W badaniach, jeśli efekt jest duży, możesz użyć mniejszej próby.
-
-   Przykład: Testowanie, czy nowa metoda nauki poprawia wyniki testów o 20 punktów na 100.
-   - Może wystarczyć przetestować 30 uczniów, aby zobaczyć tę dużą różnicę.
-
-2. **Małe Efekty (Małe Monety)**:
-   - Jeśli szukasz maleńkich monet (jak 1 grosz), będziesz musiał przeszukać więcej piasku.
-   - W badaniach, jeśli efekt jest mały, potrzebujesz większej próby.
-
-   Przykład: Sprawdzanie, czy korzystanie z mediów społecznościowych wpływa na szczęście o niewielką ilość.
-   - Może być potrzeba zbadania 500 lub więcej osób, aby wykryć ten mały efekt.
-
-Dlaczego Moc Badania Jest Ważna:
-
-1. **Nie Przegapienie Rzeczywistych Efektów**: 
-   - Przy niskiej mocy możesz przeoczyć rzeczywiste efekty, jak używanie słabej latarki i przeoczenie czegoś, co faktycznie tam jest.
-
-2. **Pewność Wyników**: 
-   - Wyższa moc daje większą pewność, że to, co znalazłeś, jest prawdziwe, a nie tylko przypadkiem.
-
-Przykład:
-
-Załóżmy, że chcemy zbadać, czy nowa metoda nauczania pomaga uczniom lepiej się uczyć:
-
-1. **Małe Badanie (Niska Moc)**:
-   - Próbujemy metody z zaledwie 10 uczniami.
-   - Nawet jeśli metoda działa, przy tak małej grupie trudno stwierdzić, czy poprawa wynika z nowej metody, czy to tylko przypadek.
-
-2. **Większe Badanie (Wyższa Moc)**:
-   - Stosujemy metodę ze 100 uczniami.
-   - Teraz jest bardziej prawdopodobne, że zobaczymy, czy metoda naprawdę pomaga, ponieważ mamy więcej danych do analizy.
-:::
-
-## Próbkowanie w Erze Cyfrowej
-
-Pojawienie się big data i technologii cyfrowych zmieniło praktyki próbkowania w wielu dziedzinach.
-
-**Możliwości i wyzwania Big Data:**
-- Bezprecedensowe ilości dostępnych informacji
-- Potencjalny brak reprezentatywności
-- Problemy z jakością danych
-- Kwestie prywatności i etyki
-
-**Przykład:** 
-Dane z mediów społecznościowych mogą dostarczyć wglądu w opinię publiczną w czasie rzeczywistym, ale użytkownicy konkretnej platformy mogą nie być reprezentatywni dla ogólnej populacji.
-
-**Badania internetowe:**
-- Oferują nowe możliwości zbierania danych
-- Stają przed wyzwaniami takimi jak błąd pokrycia (nie każdy ma dostęp do internetu) i błąd samoselekcji
-
-**Przykład:** 
-Ankieta online na temat nawyków korzystania z internetu z natury wykluczałaby osoby bez dostępu do internetu, potencjalnie wypaczając wyniki.
-
-## Etyczne Aspekty Próbkowania
-
-Etyczne praktyki próbkowania są kluczowe w badaniach nauk społecznych:
-
-1. **Świadoma zgoda**: 
-   Uczestnicy powinni rozumieć cel badania i zgodzić się na udział.
-   
-   Przykład: Przed przeprowadzeniem wywiadów na temat wrażliwych tematów, takich jak zdrowie psychiczne, badacze muszą jasno wyjaśnić cele badania i potencjalne ryzyko uczestnikom.
-
-2. **Prywatność i poufność**: 
-   Badacze muszą chronić dane osobowe uczestników.
-   
-   Przykład: W badaniu dotyczącym mobbingu w miejscu pracy, badacze mogą używać kodów numerycznych zamiast nazwisk, aby chronić tożsamość uczestników.
-
-3. **Reprezentatywność i inkluzywność**: 
-   Próby powinny sprawiedliwie reprezentować zróżnicowane populacje, w tym grupy marginalizowane.
-   
-
-Przykład: Badanie dotyczące mieszkalnictwa miejskiego powinno dołożyć starań, aby uwzględnić uczestników z różnych środowisk społeczno-ekonomicznych, grup etnicznych i sytuacji mieszkaniowych.
-
-
-## Podsumowanie
-
-Próbkowanie pozostaje fundamentem badań w naukach społecznych, nawet w erze big data. Zrozumienie zasad próbkowania pomaga badaczom projektować badania, interpretować wyniki i wyciągać trafne wnioski o populacjach. Jak widzieliśmy, droga od próby do populacji wymaga starannego rozważenia metod próbkowania, potencjalnych błędów, kwestii etycznych i stale ewoluującego krajobrazu gromadzenia danych w erze cyfrowej.
-
-
-Dziękuję za to bardzo trafne pytanie. Ma Pan/Pani rację, i doceniam tę uwagę. Rzeczywiście, tłumaczenie "błąd samplowy vs. niesamplowy" jest bardziej precyzyjne i lepiej oddaje istotę tych pojęć w polskiej terminologii statystycznej. Pozwolę sobie wprowadzić odpowiednie korekty i wyjaśnienia:
-
-
-## Błędy Statystyczne - podsumowanie
-
-### Błąd Systematyczny vs. Błąd Losowy
-
-Błędy systematyczne i losowe to dwa podstawowe rodzaje błędów w pomiarach i eksperymentach statystycznych.
-
-1. Błąd Systematyczny:
-   - Definicja: Konsekwentne, przewidywalne odchylenia od prawdziwej wartości
-   - Charakterystyka:
-     - Zniekształca wyniki w określonym kierunku
-     - Powtarzalny i często stały w różnych pomiarach
-     - Może być skorygowany, jeśli zostanie zidentyfikowany
-   - Przykłady:
-     - Źle skalibrowany przyrząd pomiarowy
-     - Konsekwentny błąd zaokrąglania przy wprowadzaniu danych
-     - Stronnicza metoda pobierania próbek
-
-2. Błąd Losowy:
-   - Definicja: Nieprzewidywalne wahania w pomiarach wynikające z przypadku
-   - Charakterystyka:
-     - Zmienia się co do wielkości i kierunku
-     - Podąża za rozkładem prawdopodobieństwa (często normalnym)
-     - Można go zmniejszyć zwiększając wielkość próby lub powtarzając pomiary
-   - Przykłady:
-     - Naturalne wahania w badanym zjawisku
-     - Małe fluktuacje w przyrządach pomiarowych
-     - Błędy ludzkie przy odczytywaniu lub zapisywaniu danych
-
-
-### Błędy Samplowe vs. Błędy Niesamplowe
-
-1. Błędy Samplowe (lub Błędy Próbkowania):
-   - Definicja: Błędy wynikające z tego, że próba (sample) nie reprezentuje idealnie populacji
-   - Charakterystyka:
-     - Nieodłączne w każdym badaniu opartym na próbie
-     - Można je oszacować i skwantyfikować za pomocą metod statystycznych
-     - Zmniejszają się wraz ze wzrostem wielkości próby
-   - Przykłady:
-     - Losowe wahania w statystykach (z) próby
-     - Nadreprezentacja lub niedoreprezentowanie niektórych grup w próbie
-
-2. Błędy Niesamplowe:
-   - Definicja: Wszystkie błędy w badaniu, które nie są związane z próbkowaniem (samplingiem)
-   - Charakterystyka:
-     - Mogą wystąpić zarówno w badaniach próbkowych, jak i pełnych (spisach)
-     - Często trudniejsze do skwantyfikowania i kontrolowania niż błędy samplowe
-     - Mogą wprowadzać stronniczość do wyników
-     - Mogą być systematyczne lub losowe
-   - Przykłady:
-     - Błędy odpowiedzi (np. niezrozumienie pytań, celowe błędne raportowanie)
-     - Błąd braku odpowiedzi (gdy niektóre grupy są mniej skłonne do odpowiedzi)
-     - Błędy przetwarzania danych (np. błędy kodowania, błędy wprowadzania danych)
-     - Błędy pokrycia (gdy operat losowania nie reprezentuje dokładnie populacji)
-
-Ważne wyjaśnienie: Błędy niesamplowe mogą być zarówno systematyczne, jak i losowe. To kluczowe rozróżnienie, które powinienem był uwzględnić w pierwotnym opisie. Błędy niesamplowe obejmują szeroki zakres możliwych błędów, które nie są bezpośrednio związane z procesem próbkowania. Niektóre z nich mogą być systematyczne (np. błędnie skalibrowany instrument pomiarowy), podczas gdy inne mogą być losowe (np. przypadkowe błędy przy wprowadzaniu danych).
-
-Rozróżnienie na błędy samplowe i niesamplowe jest niezależne od podziału na błędy systematyczne i losowe. W praktyce, błędy niesamplowe mogą należeć do obu tych kategorii, co czyni ich identyfikację i kontrolę szczególnie ważnym aspektem badań statystycznych.
-
-![Retrieved from: https://scientistcafe.com/ids/vbtradeoff](stat_imgs/ModelError.png)
-
-
-Kluczowe punkty do zapamiętania:
-
-1. Losowość jest podstawą wielu metod próbkowania i pomaga zapewnić reprezentatywność próby.
-2. Istnieją różne metody próbkowania, zarówno probabilistyczne, jak i nieprobabilistyczne, każda z własnymi zaletami i ograniczeniami.
-3. Wnioskowanie statystyczne pozwala nam wyciągać wnioski o populacji na podstawie danych z próby.
-4. Błędy próbkowania i niepróbkowe mogą wpływać na jakość naszych wniosków, dlatego ważne jest ich zrozumienie i minimalizowanie.
-5. Wielkość próby i moc statystyczna są kluczowe dla zapewnienia wiarygodności wyników badań.
-6. Era cyfrowa przynosi nowe możliwości i wyzwania w zakresie próbkowania i gromadzenia danych.
-7. Etyczne aspekty próbkowania, w tym świadoma zgoda, prywatność i reprezentatywność, są nieodłączną częścią procesu badawczego.
+#### Wpływ odmów na jakość próby i praktyczne problemy realizacji badań
+
+##### Problem odmów udziału w badaniach
+
+Odmowy udziału w badaniu stanowią jedno z największych wyzwań współczesnej metodologii badawczej i mają istotny wpływ na jakość uzyskiwanych wyników:
+
+1. **Skala zjawiska**:
+   * W klasycznych badaniach kwestionariuszowych poziom realizacji (response rate) w Polsce spadł z około 70-80% w latach 90. do 30-40% obecnie.
+   * W badaniach telefonicznych CATI współczynnik odpowiedzi wynosi często zaledwie 5-15%.
+   * W badaniach internetowych na panelach wskaźnik odpowiedzi może wynosić 20-30%, ale wśród respondentów dobieranych z ogółu populacji spada nawet do 1-2%.
+
+2. **Typy odmów**:
+   * **Odmowy "twarde"** – kategoryczna odmowa udziału w jakimkolwiek badaniu.
+   * **Odmowy "miękkie"** – wymówki typu "nie mam czasu", "jestem zajęty", które mogą wynikać z niechęci do tematu badania.
+   * **Odmowy selektywne** – odmowy udziału w badaniach na określone tematy (np. polityczne, dotyczące zdrowia).
+   * **Niedostępność** – niemożność nawiązania kontaktu z wylosowaną osobą mimo wielokrotnych prób.
+
+3. **Konsekwencje dla jakości badań**:
+   * **Błąd systematyczny** – jeśli osoby odmawiające udziału systematycznie różnią się od osób uczestniczących w badaniu pod względem kluczowych zmiennych.
+   * **Zawężenie próby do "zawodowych respondentów"** – szczególnie w panelach internetowych, gdzie uczestniczą głównie osoby chętne do udziału w wielu badaniach.
+   * **Nadreprezentacja określonych grup** – np. emerytów i rencistów, którzy częściej mają czas i chęć na udział w badaniach osobistych.
+
+4. **Metody radzenia sobie z odmowami**:
+   * **Ponowne próby kontaktu** – standardem jest wykonanie minimum 3-4 prób kontaktu w różnych dniach i porach.
+   * **Dostosowanie terminu** – oferowanie elastycznych terminów realizacji wywiadu.
+   * **Zachęty materialne** – oferowanie drobnych gratyfikacji za udział w badaniu.
+   * **Analiza i ważenie ze względu na odmowy** – uwzględnianie struktury osób odmawiających w procesie ważenia danych.
+   * **Techniki konwersji odmów** – specjalne szkolenia dla ankieterów w zakresie przekonywania osób początkowo odmawiających.
+
+5. **Dokumentacja odmów**:
+   * **Standard AAPOR** (American Association for Public Opinion Research) – zaleca dokładne raportowanie wszystkich kontaktów, odmów i przyczyn braku realizacji wywiadu.
+   * **Kategorie dokumentacji** – liczba połączeń/wizyt, powody niedostępności, typy i przyczyny odmów.
+   * **Transparentność metodologiczna** – raportowanie wskaźnika odpowiedzi oraz potencjalnego wpływu odmów na wyniki.
+
+#### Praktyczne problemy realizacji badań probabilistycznych w Polsce:
+
+1. **Brak dostępu do operatu losowania**: W Polsce nie ma łatwego dostępu do pełnych i aktualnych rejestrów populacji dla celów badawczych.
+
+2. **Problem z realizacją wywiadów pod wylosowanymi adresami**: Coraz trudniej przeprowadzić wywiady pod konkretnymi adresami ze względu na:
+   * Zwiększoną liczbę zamkniętych osiedli
+   * Spadek zaufania społecznego i niechęć do wpuszczania ankieterów do domów
+   * Różne godziny pracy potencjalnych respondentów wymagające wielokrotnych wizyt
+
+3. **Koszt realizacji**: Badania z prawdziwym losowym doborem próby (np. metodą random route) są kilkukrotnie droższe niż badania kwotowe.
+
+Wybory prezydenckie w USA w 2016 roku, gdzie wiele sondaży nie przewidziało dokładnie wyniku, doprowadziły do znacznych przemyśleń wśród ankieterów. Zamiast rezygnować z próbkowania kwotowego, wiele organizacji udoskonaliło swoje metody, koncentrując się na lepszych definicjach kwot, ulepszonych technikach ważenia i bardziej przejrzystym raportowaniu ograniczeń metodologicznych.
+
+Pomimo tych trendów, ważne jest, aby zauważyć, że próbkowanie probabilistyczne pozostaje złotym standardem wnioskowania statystycznego. Dobrze zaprojektowane próby probabilistyczne wciąż zapewniają najbardziej niezawodną podstawę do uogólniania z próby na populację, szczególnie w badaniach akademickich, gdzie dokładność jest priorytetem nad kosztem i szybkością.
+
+
+## Błędy Statystyczne
+
+### Błąd Systematyczny a Błąd Losowy
+
+Błędy systematyczne i błędy losowe reprezentują fundamentalnie różne sposoby, w jakie pomiary mogą odbiegać od prawdziwych wartości:
+
+1. **Błąd Systematyczny (Obciążenie)**
+   * **Definicja**: Spójne, przewidywalne odchylenia od prawdziwej wartości w określonym kierunku.
+   * **Cechy**:
+     * Skutkuje pomiarami, które są konsekwentnie zbyt wysokie lub zbyt niskie
+     * Nie zmniejsza się wraz ze zwiększeniem wielkości próby
+     * Często można go skorygować, jeśli zostanie zidentyfikowany
+   * **Przykłady**:
+     * Waga, która konsekwentnie pokazuje o 1 kilogram więcej niż rzeczywista waga
+     * Błąd selekcji wynikający z wykluczenia niektórych grup populacji
+     * Pytania naprowadzające w ankiecie, które skłaniają respondentów do konkretnych odpowiedzi
+   * **Wykrywanie i Korekta**:
+     * Kalibracja wobec znanych standardów
+     * Porównanie z pomiarami przy użyciu różnych metod
+     * Staranne projektowanie badań i testowanie wstępne
+
+2. **Błąd Losowy**
+   * **Definicja**: Nieprzewidywalne fluktuacje w pomiarach wynikające z czynników losowych.
+   * **Cechy**:
+     * Zmienia się zarówno pod względem wielkości, jak i kierunku w różnych pomiarach
+     * Podlega rozkładowi prawdopodobieństwa (często normalnemu)
+     * Zmniejsza się wraz ze wzrostem wielkości próby (zależność √n)
+   * **Przykłady**:
+     * Naturalne biologiczne różnice między badanymi
+     * Drobne wahania w przyrządach pomiarowych
+     * Warunki środowiskowe, które losowo zmieniają się podczas pomiaru
+   * **Wykrywanie i Redukcja**:
+     * Zwiększanie wielkości próby
+     * Wykonywanie powtórzonych pomiarów
+     * Poprawa precyzji pomiarów
+
+### Błędy Próbkowania a Błędy Niepróbkowania
+
+To rozróżnienie koncentruje się na źródle błędów w badaniach statystycznych:
+
+1. **Błąd Próbkowania**
+   * **Definicja**: Różnica między statystyką próby a prawdziwym parametrem populacji wynikająca z losowych wahań w doborze.
+   * **Cechy**:
+     * Nieunikniony w każdym badaniu opartym na próbie
+     * Możliwy do określenia ilościowego poprzez miary statystyczne (błąd standardowy, przedziały ufności)
+     * Zmniejsza się przewidywalnie wraz ze wzrostem wielkości próby
+     * Zawsze ma charakter losowy (nie systematyczny)
+   * **Przykłady**:
+     * Losowa próba pokazująca 52% poparcia dla polityki, gdy prawdziwa wartość w populacji wynosi 50%
+     * Zróżnicowanie średniego dochodu w różnych losowych próbach z tej samej populacji
+   * **Metody Kontroli**:
+     * Zwiększanie wielkości próby
+     * Stosowanie bardziej efektywnych projektów próbkowania (np. stratyfikacja)
+     * Korekty statystyczne, takie jak ważenie
+
+2. **Błąd Niepróbkowania**
+   * **Definicja**: Wszystkie błędy nieprzypisywalne do wahań próbkowania, występujące zarówno w badaniach próbkowych, jak i pełnych spisach.
+   * **Cechy**:
+     * Może być systematyczny lub losowy
+     * Często trudniejszy do wykrycia i określenia ilościowego niż błąd próbkowania
+     * Niekoniecznie zmniejsza się wraz z większymi próbami
+     * Potencjalnie bardziej szkodliwy dla ważności badań niż błąd próbkowania
+   * **Rodzaje i Przykłady**:
+     * **Błąd Pokrycia** (systematyczny): Używanie listy wyborców, która pomija osoby niedawno zarejestrowane
+     * **Błąd Braku Odpowiedzi** (może być systematyczny lub losowy): Wyższy wskaźnik odmów wśród określonych grup demograficznych
+     * **Błąd Pomiaru** (może być systematyczny lub losowy): 
+       * Systematyczny: Źle sformułowane pytania, które konsekwentnie zniekształcają odpowiedzi
+       * Losowy: Okazjonalne błędy wprowadzania danych
+     * **Błąd Przetwarzania** (może być systematyczny lub losowy):
+       * Systematyczny: Konsekwentne niewłaściwe kodowanie określonych odpowiedzi
+       * Losowy: Okazjonalne błędy w transkrypcji
+
+### Ramy Całkowitego Błędu Badania (Total Survey Error)
+
+Nowoczesna metodologia badań podchodzi do błędu poprzez ramy Całkowitego Błędu Badania (TSE), które uwzględniają wszystkie źródła błędów mogących wpływać na jakość badania:
+
+1. **Błędy Reprezentacji** (wpływające na to, kto jest uwzględniony):
+   * Błąd pokrycia
+   * Błąd próbkowania
+   * Błąd braku odpowiedzi
+   * Błąd dostosowania (z ważenia/imputacji)
+
+2. **Błędy Pomiaru** (wpływające na dokładność odpowiedzi):
+   * Błąd specyfikacji (mierzenie niewłaściwego pojęcia)
+   * Błąd pomiaru (wpływ respondenta, ankietera, kwestionariusza)
+   * Błąd przetwarzania (wprowadzanie danych, kodowanie, edytowanie)
+
+Zrozumienie wzajemnego oddziaływania między tymi rodzajami błędów jest kluczowe dla projektowania wysokiej jakości badań i właściwej interpretacji wyników. Chociaż błąd próbkowania otrzymuje znaczną uwagę, ponieważ jest łatwiejszy do określenia ilościowego, błędy niepróbkowania często stanowią większe zagrożenie dla ważności we współczesnych badaniach.
+
+![Źródło: https://scientistcafe.com/ids/vbtradeoff](stat_imgs/ModelError.png)
+
+*Rysunek: Związek między złożonością modelu, błędem systematycznym (bias) i wariancją. Ilustruje to, jak równowaga między błędem systematycznym a błędem losowym (wariancją) wpływa na ogólny błąd modelu.*

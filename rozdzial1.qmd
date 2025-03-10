@@ -60,6 +60,51 @@ Kiedy ankieterzy badają tylko 1000 wyborców, aby przewidzieć wynik wyborów z
 
 To podobne do próbowania zupy. Gdy gotujesz duży garnek zupy i dokładnie ją mieszasz, nie musisz zjeść całego garnka, aby wiedzieć, jak smakuje. Wystarczy jedna łyżka – o ile zupa jest dobrze wymieszana.
 
+::: callout-note
+The Soup Analogy: A Taste of Statistics
+
+![](stat_imgs/soup-svgrepo-com.svg){width="30%"}
+
+-   When you taste a spoonful of soup and decide it isn't salty enough, that's exploratory/descriptive analysis.
+-   If you generalize and conclude that your entire pot of soup needs salt, that's an inference.
+-   For your inference to be valid, the spoonful you tasted (the sample) needs to be representative of the entire pot (the population).
+-   If the soup is not well stirred (heterogeneous population), it doesn't matter how large a spoon you have (sample size), it will still not accurately represent the whole. If the soup is well stirred (homogeneous population), even a small spoon will suffice to test the soup.
+:::
+
+```{mermaid}
+graph TD
+    DGP[Data Generating Process] -->|Generates| A[Population]
+    A -->|Random Selection| B[Sample]
+    B -->|Statistical Inference| C[Estimates & Conclusions]
+    C -->|Generalize back to| A
+    C -.->|Attempt to understand| DGP
+
+    style DGP fill:#1E90FF,stroke:#000,stroke-width:4px,color:#FFF
+    style A fill:#DC143C,stroke:#000,stroke-width:4px,color:#FFF
+    style B fill:#228B22,stroke:#000,stroke-width:2px,color:#FFF
+    style C fill:#8B4513,stroke:#000,stroke-width:2px,color:#FFF
+    
+    classDef note fill:#F0F0F0,stroke:#000,stroke-width:1px;
+    D[["DGP:
+    Underlying process
+    that generates data"]]
+    E[["Population:
+    Entire group of interest"]]
+    F[["Sample:
+    Subset of population"]]
+    G[["Inference:
+    Drawing conclusions
+    about population
+    and DGP"]]
+    
+    class D,E,F,G note
+    
+    D --> DGP
+    E --> A
+    F --> B
+    G --> C
+```
+
 #### Dlaczego Losowy Dobór Próby Działa
 
 Losowy dobór próby działa dzięki trzem kluczowym zasadom:
@@ -76,132 +121,332 @@ Losowy dobór próby działa dzięki trzem kluczowym zasadom:
 
 Bez właściwego losowego doboru próby można łatwo uzyskać próbę obciążoną. Na przykład, gdybyś przeprowadzał ankiety tylko wśród osób w centrum handlowym w dni powszednie rano, pominąłbyś większość pracujących osób i studentów, co dałoby zniekształcony obraz populacji.
 
+
+::: {.callout-important}
+## Losowość jako fundamentalne prawo natury
+
+Losowość można postrzegać jako jedno z podstawowych praw natury, które kształtuje rzeczywistość na wielu poziomach:
+
+- **W mechanice kwantowej**: Zasada nieoznaczoności Heisenberga i probabilistyczna natura zjawisk kwantowych wskazują, że losowość jest wbudowana w fundamentalną strukturę rzeczywistości, a nie wynika jedynie z niedoskonałości naszych pomiarów czy wiedzy
+
+- **W genetyce**: Losowe mutacje i rekombinacje genetyczne stanowią podstawowy mechanizm ewolucji i różnorodności biologicznej
+
+- **W teorii chaosu**: Systemy deterministyczne mogą wykazywać nieprzewidywalne zachowania ze względu na wrażliwość na warunki początkowe (tzw. "efekt motyla")
+
+- **W badaniach statystycznych**: Losowy dobór próby jest podstawą wnioskowania o populacji - bez tej własności natury, nie bylibyśmy w stanie formułować wiarygodnych uogólnień z ograniczonych zbiorów danych
+
+Ta naturalna losowość staje się fundamentem metodologii nauk empirycznych, szczególnie widocznym w dwóch kluczowych aspektach:
+
+**1. Randomizacja w eksperymentach**
+
+Randomizacja to proces losowego przydzielania jednostek badawczych do grup eksperymentalnych. Jest to kluczowy element metodologii eksperymentalnej, który:
+- Minimalizuje wpływ zmiennych zakłócających
+- Równoważy nieznane czynniki między grupami
+- Zmniejsza ryzyko błędu systematycznego
+- Umożliwia stosowanie testów statystycznych do analizy wyników
+
+Przykład w R:
+```{r}
+# Randomizacja w eksperymencie
+set.seed(42) # dla odtwarzalności
+uczestnicy <- 1:30  # 30 uczestników badania
+grupy <- c(rep("Kontrolna", 15), rep("Eksperymentalna", 15))
+przydział_losowy <- sample(grupy)  # losowy przydział do grup
+head(data.frame(ID = uczestnicy[1:6], Grupa = przydział_losowy[1:6]))
+```
+
+**2. Prosta próba losowa**
+
+Prosta próba losowa to podstawowa metoda pobierania próby, w której każdy element populacji ma taką samą szansę na włączenie do próby. Ta własność losowości:
+- Zapewnia reprezentatywność próby
+- Umożliwia wnioskowanie o parametrach populacji
+- Pozwala na obliczanie błędów losowych i konstruowanie przedziałów ufności
+
+Przykład w R:
+```{r}
+# Losowanie prostej próby losowej z populacji
+populacja <- 1:1000  # populacja 1000 elementów
+próba <- sample(populacja, 50)  # losowa próba 50 elementów
+summary(próba)  # podstawowe statystyki wylosowanej próby
+```
+
+Uznanie losowości za prawo natury zmienia nasze postrzeganie rzeczywistości - z deterministycznego poglądu, gdzie wszystko jest teoretycznie przewidywalne przy wystarczającej wiedzy, na stochastyczny, gdzie niepewność i zmienność są nieodłącznymi cechami świata. Dzięki temu możemy projektować badania, które wykorzystują tę naturalną własność do wiarygodnego poznawania otaczającej nas rzeczywistości.
+:::
+
+
 ### Zrozumienie Błędu Statystycznego
 
 Korzystając z próby do poznania populacji, nieuchronnie napotykamy błąd statystyczny:
 
-**Błąd statystyczny** to różnica między naszym oszacowaniem z próby a prawdziwą wartością w populacji. Możemy podzielić go na dwa główne typy:
+**Błąd statystyczny** to różnica między naszym oszacowaniem z próby a prawdziwą wartością w populacji.
 
-1.  **Błąd losowy (błąd próbkowania, *sampling error*)**: Naturalna zmienność, która występuje przypadkowo przy wyborze losowej próby. Dzieje się tak po prostu dlatego, że patrzymy na część, a nie na całą populację.
 
-    **Błąd standardowy** mierzy ten błąd próbkowania. Pokazuje, jak bardzo nasze statystyki z próby (takie jak średnie czy proporcje) różniłyby się, gdybyśmy wielokrotnie pobierali różne próby z tej samej populacji.
+::: {.callout-important}
+## Kompletna klasyfikacja błędów statystycznych
 
-    -   Mniejsze błędy standardowe wskazują na bardziej precyzyjne oszacowania
-    -   Błąd standardowy zmniejsza się wraz ze wzrostem wielkości próby (w przybliżeniu proporcjonalnie do 1/√n)
-    -   Błąd standardowy zależy od zmienności w populacji
+Błędy statystyczne mogą podważyć wiarygodność i rzetelność wyników badań. Zrozumienie tych błędów jest kluczowe dla projektowania dobrych badań, prawidłowej analizy danych i wyciągania właściwych wniosków. Oto kompleksowa klasyfikacja błędów statystycznych:
 
-2.  **Błąd systematyczny (błąd niepróbkowy, *non-sampling error*)**: Występuje, gdy nasze metody zbierania danych systematycznie zniekształcają wyniki w jednym kierunku. W przeciwieństwie do błędu próbkowania, błędu systematycznego NIE MOŻNA zmniejszyć przez zwiększenie wielkości próby.
+### Błędy pobierania próby
 
-    Źródła błędu systematycznego obejmują:
+**Losowe błędy próbkowania**
+- Możesz o nich myśleć jako o naturalnym "szczęściu w losowaniu" przy wyborze próby
+- Przykład: Jeśli losowo wybierzesz 30 studentów z uniwersytetu, aby zmierzyć średni wzrost, prawdopodobnie otrzymasz nieco inny wynik za każdym razem, gdy pobierzesz próbę
+- Te błędy zmniejszają się wraz ze zwiększaniem liczebności próby
+- Nie można ich całkowicie wyeliminować, ale można je oszacować za pomocą "marginesu błędu"
 
-    -   **Błąd selekcji**: Gdy metoda wyboru próby faworyzuje pewne grupy (np. ankiety telefoniczne mogą pomijać osoby bez telefonów)
-    -   **Błąd odpowiedzi**: Gdy respondenci udzielają niedokładnych odpowiedzi (np. zawyżanie dochodów)
-    -   **Błąd braku odpowiedzi**: Gdy osoby, które odmawiają udziału, różnią się od tych, które uczestniczą
-    -   **Błąd pomiaru**: Wynikający z niedokładnych narzędzi lub metod pomiarowych
+**Nielosowe (systematyczne) błędy próbkowania**
+- **Błąd doboru próby**: Gdy próba nie reprezentuje uczciwie wszystkich, których powinna
+  - Przykład: Przeprowadzenie ankiety telefonicznej docierającej tylko do osób posiadających telefony stacjonarne, pomijając tych, którzy korzystają wyłącznie z telefonów komórkowych
+- **Niepełne pokrycie**: Gdy niektóre grupy są pomijane w próbie
+  - Przykład: Ankieta przeprowadzona tylko podczas zajęć dziennych pominie studentów studiów wieczorowych
+- **Błąd samoselekcji**: Gdy ludzie sami decydują, czy wziąć udział w badaniu, potencjalnie zniekształcając wyniki
+  - Przykład: Tylko osoby z silnymi opiniami odpowiadają na ankietę zadowolenia klienta
+- **Błąd braku odpowiedzi**: Gdy określone typy osób zwykle nie odpowiadają na ankiety
+  - Przykład: Bardzo zajęci ludzie mogą nie wypełnić kwestionariusza, co daje wyniki nadreprezentujące osoby z większą ilością wolnego czasu
+  
 
 Na przykład, jeśli obliczamy średni wzrost z próby, błąd standardowy mówi nam, jak bardzo ta średnia mogłaby się różnić, gdybyśmy wielokrotnie pobierali różne losowe próby. Jednak jeśli nasze urządzenie pomiarowe jest wadliwe i zawsze dodaje 2,5 cm do każdego pomiaru, mamy błąd systematyczny, którego zwiększenie wielkości próby nie naprawi.
 
-Dobry projekt badania musi uwzględniać oba typy błędów:
 
--   Błąd próbkowania można zmniejszyć zwiększając wielkość próby
--   Błąd systematyczny można zmniejszyć tylko przez ulepszenie metod zbierania danych
+### Błędy pomiaru
 
-### Dobór Wielkości Próby
+**Losowe błędy pomiaru**
+- Nieprzewidywalny "szum" podczas mierzenia czegokolwiek
+- Przykład: Lekko drżąca ręka przy pomiarze ciśnienia krwi daje nieco inne odczyty za każdym razem
+- Te błędy zazwyczaj równoważą się przy wielokrotnych pomiarach
+
+**Systematyczne błędy pomiaru**
+- **Błędy kalibracji**: Gdy narzędzie pomiarowe jest konsekwentnie niedokładne
+  - Przykład: Waga, która zawsze dodaje 1 kg do wagi każdego
+- **Błąd obserwatora**: Gdy osoba zbierająca dane wpływa na pomiary
+  - Przykład: Badacz nieświadomie zapisuje dane w sposób potwierdzający jego hipotezę
+- **Błąd społecznej poprawności**: Gdy ludzie odpowiadają tak, jak myślą, że "powinni", a nie zgodnie z prawdą
+  - Przykład: Zaniżanie ilości spożywanego fast foodu w badaniu żywieniowym
+
+### Błędy wnioskowania
+
+**Błędy testowania hipotez** (wyjaśnione prosto)
+- **Błąd I rodzaju**: Dostrzeganie efektu lub związku, który tak naprawdę nie istnieje (fałszywy alarm)
+  - Przykład: Wyciągnięcie wniosku, że lek działa, gdy jego korzyści wynikały tylko z przypadku
+- **Błąd II rodzaju**: Przeoczenie efektu lub związku, który faktycznie istnieje (przeoczenie)
+  - Przykład: Wyciągnięcie wniosku, że lek nie działa, gdy w rzeczywistości pomaga pacjentom
+- **Błąd III rodzaju**: Rozwiązywanie niewłaściwego problemu lub zadawanie złego pytania
+  - Przykład: Badanie, czy metoda nauczania poprawia wyniki testów, gdy prawdziwe pytanie powinno dotyczyć długoterminowego zrozumienia materiału
+
+**Problemy z mocą statystyczną**
+- **Badania z niedostateczną mocą**: Nieuwzględnienie wystarczającej liczby uczestników, aby wiarygodnie wykryć efekty
+  - Przykład: Próba przetestowania programu odchudzającego z udziałem tylko 5 osób — zbyt mało, aby wyciągnąć wiarygodne wnioski
+
+### Błędy specyfikacji modelu
+
+**Błędy wyboru zmiennych**
+- **Błąd pominięcia zmiennej**: Pominięcie ważnych czynników wpływających na wyniki
+  - Przykład: Badanie związku między ćwiczeniami a utratą wagi bez uwzględnienia diety uczestników
+- **Błąd zmiennej zakłócającej**: Gdy zewnętrzny czynnik wpływa zarówno na to, co testujesz, jak i na wynik
+  - Przykład: Osoby, które ćwiczą (zmienna 1), mogą również mieć tendencję do zdrowszego odżywiania się (ukryty czynnik), co wpływa na utratę wagi (wynik)
+
+**Błędy założeń**
+- Gdy stosowany test statystyczny nie pasuje do twoich danych
+  - Przykład: Używanie testu, który zakłada, że dane mają rozkład normalny (przypominający krzywą dzwonową), gdy w rzeczywistości tak nie jest
+
+### Błędy przetwarzania i analizy danych
+
+**Błędy obsługi danych**
+- **Błędy wprowadzania danych**: Proste pomyłki przy zapisywaniu informacji
+  - Przykład: Wpisanie "105" zamiast "15" jako wieku kogoś
+- **Problemy z brakującymi danymi**: Niewłaściwe uwzględnienie niekompletnych informacji
+  - Przykład: Obliczanie średniego wyniku testu przy ignorowaniu nieobecnych uczniów
+
+**Błędy wykonania analizy**
+- **Błędy oprogramowania lub użytkownika**: Pomyłki w korzystaniu z programów statystycznych
+  - Przykład: Wybranie niewłaściwego rodzaju testu w oprogramowaniu statystycznym
+
+### Błędy interpretacji i raportowania
+
+**Błędy wnioskowania przyczynowego**
+- **Błąd mylenia korelacji z przyczynowością**: Założenie, że gdy dwie rzeczy występują razem, jedna musi powodować drugą
+  - Przykład: Zauważenie, że kraje z większym spożyciem czekolady mają więcej laureatów Nagrody Nobla i błędne wnioskowanie, że czekolada zwiększa inteligencję
+
+**Błędy raportowania i komunikacji**
+- **p-hacking (manipulacja wartością p)**: Próbowanie wielu różnych analiz, aż znajdziesz coś "istotnego"
+  - Przykład: Analizowanie danych na 20 różnych sposobów i raportowanie tylko tej analizy, która pokazała pożądany wynik
+- **Wybiórcze raportowanie**: Dzielenie się tylko wynikami potwierdzającymi hipotezę
+  - Przykład: Firma produkująca tabletki odchudzające publikuje tylko badania, w których ich produkt działał, ukrywając badania, w których nie działał
+
+### Strategie naprawcze
+
+Sposoby na zmniejszenie tych błędów:
+
+- **Właściwe projektowanie badań**: Staranne planowanie badań przed zebraniem danych
+- **Odpowiednia wielkość próby**: Uwzględnienie wystarczającej liczby uczestników na podstawie obliczeń statystycznych
+- **Prerejestracja**: Zadeklarowanie, co będziesz analizować, zanim zobaczysz dane
+- **Przejrzystość**: Dzielenie się danymi i metodami analizy z innymi
+- **Replikacja**: Powtórzenie badania przez innych badaczy, aby sprawdzić, czy otrzymają podobne wyniki
+
+Zrozumienie tych błędów pomaga zapewnić, że wyniki badań są wiarygodne i że nie wyciągamy fałszywych wniosków, które mogłyby prowadzić do złych decyzji w dziedzinach takich jak medycyna, polityka publiczna, edukacja i biznes.
+:::
+
+
+### Zagadnienia Doboru Wielkości Próby
 
 Niezbędna wielkość próby zależy od trzech głównych czynników:
 
-1.  **Jaki rodzaj oszacowania wykonujesz?** (proporcja czy średnia)
+1. **Jaki rodzaj estymacji przeprowadzasz?** (proporcje, średnie, parametry regresji, itp.)
+2. **Jak dokładny ma być Twój szacunek?**
+   
+   * Większa dokładność = większa próba
+   * Przykład: Oszacowanie z dokładnością ±1% wymaga około 9 razy więcej osób niż szacowanie z dokładnością ±3%
 
-2.  **Jak dokładne musi być twoje oszacowanie?**
-
-    -   Większa dokładność = większa próba
-    -   Przykład: Oszacowanie z dokładnością do ±1% wymaga około 9 razy więcej osób niż oszacowanie z dokładnością do ±3%
-
-3.  **Jak zróżnicowana jest twoja populacja?**
-
-    -   Dla proporcji: Maksymalna zmienność występuje przy 50%, minimalna przy 0% lub 100%
-    -   Dla średnich: Sprawdź, jak bardzo pomiary różnią się między sobą (wariancja)
+3. **Jak zróżnicowana jest Twoja populacja?**
+   
+   * Dla proporcji: Maksymalna zmienność występuje przy 50%, minimalna przy 0% lub 100%
+   * Dla średnich: Sprawdź, jak bardzo pomiary różnią się między sobą (wariancja)
+   * Dla modeli regresji: Weź pod uwagę wariancję predyktorów i zmiennych wynikowych
 
 #### Uwagi dotyczące małych populacji
 
 Pracując z małymi populacjami (np. 1000 osób lub mniej):
 
--   Istnieją znaczące różnice metodologiczne w porównaniu do dużych populacji
--   Prosta próba losowa tradycyjnie zakłada losowanie ze zwracaniem
--   W praktyce badawczej zazwyczaj stosuje się losowanie bez zwracania
--   Im mniejsza populacja, tym większa różnica między tymi podejściami
--   **Współczynnik korekty dla populacji skończonej** staje się niezbędny podczas badania więcej niż 5-10% populacji
+- Istnieją znaczące różnice metodologiczne w porównaniu do dużych populacji
+- Prosta próba losowa tradycyjnie zakłada losowanie ze zwracaniem
+- W praktyce badawczej zwykle stosuje się losowanie bez zwracania
+- Im mniejsza populacja, tym większa różnica między tymi podejściami
+- **Współczynnik korekty dla populacji skończonej** staje się niezbędny przy badaniu ponad 5-10% populacji
 
 **Praktyczne zalecenia dla małych populacji:**
 
--   Dla populacji poniżej 200 jednostek, rozważ pełny spis (badanie całej populacji)
--   Stosuj odpowiednie formuły statystyczne uwzględniające losowanie bez zwracania
--   Standardowe formuły dla błędów standardowych oparte na losowaniu ze zwracaniem przeszacują błąd w małych populacjach
--   Jasno dokumentuj mechanizm doboru próby w raportach badawczych
+* Dla populacji poniżej 200 jednostek, rozważ pełny spis (census)
+* Stosuj odpowiednie formuły statystyczne uwzględniające losowanie bez zwracania
+* Standardowe formuły dla błędów standardowych oparte na losowaniu ze zwracaniem przeszacują błąd w małych populacjach
+* Jasno dokumentuj mechanizm doboru próby w raportach badawczych
 
-### Proporcje a Średnie: Zrozumienie Różnic
+**Wyjaśnienie różnicy:**
+
+-   Losowanie ze zwracaniem: każda jednostka ma stałe prawdopodobieństwo wyboru w każdym losowaniu (np. 1/N)
+-   Losowanie bez zwracania: prawdopodobieństwo wyboru zmienia się w kolejnych losowaniach (od 1/N do 1/(N-1), 1/(N-2), itd.)
+-   W dużych populacjach różnica jest minimalna; w małych - fundamentalna
+-   Schematy losowania bez zwracania często mają niższą wariancję estymatora niż losowanie ze zwracaniem
+
+
+### Aspekty Estymacji Statystycznej
 
 #### Proporcje (odsetki)
 
-Przy szacowaniu proporcji (np. odsetka wyborców popierających danego kandydata), wymagana wielkość próby zależy w dużej mierze od tego, jak blisko ta proporcja jest 50%.
+Przy szacowaniu proporcji (np. odsetka wyborców popierających kandydata), wymagana wielkość próby zależy w dużej mierze od tego, jak blisko ta proporcja jest 50%.
 
 **Dlaczego proporcje bliskie 50% wymagają większych prób:**
 
-Spójrzmy na konkretny przykład z różnymi wielkościami próby:
+Posłużmy się konkretnym przykładem z różnymi wielkościami próby:
 
-| Prawdziwa Proporcja w Populacji | Wielkość Próby | Typowy Margines Błędu    |
-|-------------------------------|------------------|-----------------------|
-| 50% (maksymalna niepewność)     | 100            | ±10 punktów procentowych |
-| 50% (maksymalna niepewność)     | 400            | ±5 punktów procentowych  |
-| 50% (maksymalna niepewność)     | 1000           | ±3 punkty procentowe     |
-| 10% (mniejsza niepewność)       | 100            | ±6 punktów procentowych  |
-| 10% (mniejsza niepewność)       | 400            | ±3 punkty procentowe     |
-| 10% (mniejsza niepewność)       | 1000           | ±2 punkty procentowe     |
+| Rzeczywista Proporcja w Populacji | Wielkość Próby | Typowy Margines Błędu |
+|-----------------------------------|----------------|------------------------|
+| 50% (maksymalna niepewność)       | 100            | ±10 punktów procentowych |
+| 50% (maksymalna niepewność)       | 400            | ±5 punktów procentowych  |
+| 50% (maksymalna niepewność)       | 1 000          | ±3 punktów procentowych  |
+| 10% (mniejsza niepewność)         | 100            | ±6 punktów procentowych  |
+| 10% (mniejsza niepewność)         | 400            | ±3 punktów procentowych  |
+| 10% (mniejsza niepewność)         | 1 000          | ±2 punktów procentowych  |
 
-Te liczby pokazują dwa ważne wzorce: 1. **Wraz ze wzrostem wielkości próby maleje margines błędu** (porównując wiersze) 2. **Przy tej samej wielkości próby, proporcje bliskie 50% mają większe marginesy błędu** niż proporcje bliskie 0% lub 100% (porównując 50% vs 10%)
+Te liczby pokazują dwa ważne wzorce:
+1. **Wraz ze wzrostem wielkości próby, margines błędu maleje** (porównując wiersze)
+2. **Przy tej samej wielkości próby, proporcje bliskie 50% mają większe marginesy błędu** niż proporcje bliskie 0% lub 100% (porównując 50% vs 10%)
 
 Dzieje się tak, ponieważ proporcje podlegają rozkładowi dwumianowemu, gdzie wariancja jest maksymalna przy p=0,5 (50%) i minimalna przy p=0 lub p=1 (0% lub 100%).
 
 **Wielkość populacji ma minimalny wpływ:**
 
-Dla typowego sondażu wyborczego z proporcjami bliskimi 50%, około 1000 losowo wybranych osób zapewnia dokładność około ±3 punktów procentowych. Co zaskakujące, ta wielkość próby pozostaje w przybliżeniu taka sama, niezależnie od tego, czy populacja liczy 30 000 czy 30 milionów. Ta nieintuicyjna prawidłowość wyjaśnia, dlaczego sondaże ogólnokrajowe mogą być dokładne przy stosunkowo małych próbach.
+W typowym sondażu wyborczym, gdzie proporcje są bliskie 50%, około 1000 losowo wybranych osób zapewnia dokładność około ±3 punktów procentowych. Co zaskakujące, ta wielkość próby pozostaje w przybliżeniu taka sama, niezależnie od tego, czy badana populacja liczy 30 000 czy 30 milionów osób. Ten nieintuicyjny fakt wyjaśnia, dlaczego ogólnokrajowe sondaże mogą być dokładne przy stosunkowo małych próbach.
 
 #### Średnie
 
-Przy szacowaniu średniej (np. typowego dochodu gospodarstwa domowego lub wzrostu):
+Przy szacowaniu średniej (np. typowego dochodu gospodarstwa domowego czy wzrostu):
 
--   Średnia podsumowuje ciągłe pomiary, które mogą przyjmować wiele różnych wartości
--   Wielkość próby zależy głównie od tego, jak bardzo te pomiary różnią się między osobami
--   Kluczowe uwagi:
-    -   Populacje z bardziej zróżnicowanymi pomiarami wymagają większych prób
-    -   Dokładniejsze oszacowania wymagają większych prób
-    -   W przeciwieństwie do proporcji, nie ma "maksymalnej niepewności" przy określonej wartości
--   Na przykład, oszacowanie średniego dochodu może wymagać większej próby niż oszacowanie średniego wzrostu, ponieważ dochody zwykle różnią się bardziej niż wzrost
+- Średnia podsumowuje ciągłe pomiary, które mogą przyjmować wiele różnych wartości
+- Wielkość próby zależy głównie od tego, jak bardzo te pomiary różnią się między osobami
+- Kluczowe aspekty:
+  * Populacje z bardziej zróżnicowanymi pomiarami wymagają większych prób
+  * Bardziej precyzyjne oszacowania wymagają większych prób
+  * W przeciwieństwie do proporcji, nie ma "maksymalnej niepewności" przy określonej wartości
+  * Niezbędna wielkość próby jest wprost proporcjonalna do wariancji zmiennej
 
-#### Parametry Modeli Regresji
+- Na przykład, oszacowanie średniego dochodu może wymagać większej próby niż oszacowanie średniego wzrostu, ponieważ dochody zazwyczaj różnią się bardziej niż wzrost
 
-Przy szacowaniu parametrów modeli regresji:
+#### Parametry Modeli i Złożona Estymacja
 
--   **Czym jest regresja?** Modele regresji opisują, jak jedna zmienna (zmienna zależna) odnosi się do jednej lub więcej innych zmiennych (zmiennych niezależnych). Na przykład, jak sprzedaż zależy od wydatków na reklamę lub jak plony zależą od opadów i temperatury.
+Modelowanie statystyczne wykracza poza proste proporcje i średnie, badając relacje między zmiennymi i tworząc prognozy. Wymagania dotyczące wielkości próby stają się bardziej złożone w tych kontekstach.
 
--   Te parametry pokazują związki między zmiennymi
+##### Parametry Modeli Regresji
 
--   Wielkość próby dla modeli regresji jest bardziej złożona niż dla prostych średnich czy proporcji
+Modele regresji opisują, jak jedna zmienna (zmienna zależna) odnosi się do jednej lub więcej innych zmiennych (zmiennych niezależnych). Aspekty dotyczące wielkości próby w regresji obejmują:
 
--   Kluczowe czynniki wpływające na wymaganą wielkość próby:
+**Kluczowe czynniki wpływające na wymaganą wielkość próby:**
 
-    -   Liczba zmiennych w modelu (więcej zmiennych = większa próba)
-    -   Siła badanych efektów (słabsze efekty wymagają większych prób do wykrycia)
-    -   Zmienność danych (większa zmienność = większa próba)
-    -   Złożoność modelu (bardziej złożone modele wymagają większych prób)
+- **Liczba parametrów**: Każda zmienna predykcyjna i termin interakcji zużywa "stopnie swobody"
+  * Więcej zmiennych = potrzebna większa próba
+  * Praktyczna zasada: 10-20 obserwacji na zmienną to minimalna wartość wyjściowa
+  * Do wykrywania subtelnych efektów: może być potrzebne 50-100+ obserwacji na zmienną
 
-**Proste zasady dla modeli regresji:**
+- **Wielkość efektu**: Siła badanych zależności
+  * Mniejsze efekty wymagają większych prób, aby je wiarygodnie wykryć
+  * Analiza mocy powinna być przeprowadzona w oparciu o spodziewane wielkości efektów
 
--   Podstawowa reguła: co najmniej 10-20 obserwacji na zmienną w modelu
--   Do wykrywania subtelnych efektów: może być potrzebne 100+ obserwacji na zmienną
--   Modele wielopoziomowe lub hierarchiczne: wymagają znacznie większych prób
+- **Wyjaśnienia zmienności**:
+  * Wartości $R^2$ - wyższe wartości wskazują na modele, które wyjaśniają więcej wariancji, potencjalnie wymagając mniejszych prób
+  * Wariancja resztowa - większa niewyjaśniona zmienność wymaga większych prób
 
-### Przykład Maksymalnej Niepewności: Dlaczego 50% to "Najgorszy Przypadek"
+- **Złożoność modelu**:
+  * Relacje liniowe vs. nieliniowe
+  * Efekty interakcji
+  * Zagnieżdżone lub hierarchiczne struktury danych
+  * Rozkłady nienormalne lub heteroskedastyczność
+
+##### Zaawansowane Aspekty Modelowania
+
+**Modele Wielopoziomowe i Hierarchiczne:**
+
+- Te modele obsługują zagnieżdżone struktury danych (np. uczniowie w klasach w szkołach)
+- Wymagania wielkości próby działają na wielu poziomach:
+  * Poziom 1: Indywidualne obserwacje (np. uczniowie)
+  * Poziom 2: Czynniki grupujące (np. klasy)
+  * Poziom 3: Grupy wyższego poziomu (np. szkoły)
+- Praktyczna zasada: Potrzeba co najmniej 30+ grup na wyższych poziomach dla wiarygodnej estymacji
+- Moc zależy bardziej od liczby jednostek wyższego poziomu niż od całkowitej wielkości próby
+
+**Modele Równań Strukturalnych (SEM):**
+
+- Złożone modele badające relacje między zmiennymi latentnymi
+- Wymagania dotyczące wielkości próby zazwyczaj większe niż przy prostej regresji
+- Zalecenia wahają się od minimum 200 do 10-20 obserwacji na szacowany parametr
+- Złożoność modelu i oczekiwane wielkości efektów mocno wpływają na wymagane wielkości prób
+
+**Podejścia Bayesowskie:**
+
+- Wcześniejsze informacje mogą czasami kompensować mniejsze wielkości prób
+- Jednakże nadal wymagają wystarczających danych, szczególnie dla złożonych modeli
+- Kontrole predykcyjne a posteriori pomagają ocenić, czy wielkość próby jest odpowiednia
+
+#### Planowanie Wielkości Próby w Praktyce
+
+Przy planowaniu badań należy wziąć pod uwagę:
+
+1. **Moc statystyczna**: Zdolność do wykrywania efektów, gdy rzeczywiście istnieją
+   * Zazwyczaj dąży się do 80% mocy (lub wyższej dla krytycznych decyzji)
+   * Przeprowadź formalne analizy mocy, gdy to możliwe
+
+2. **Precyzja**: Jak wąskie muszą być przedziały ufności
+   * Rozważ praktyczne znaczenie precyzji w swojej dziedzinie
+   * Większa precyzja wymaga większych prób
+
+3. **Ograniczenia zasobów**: Zrównoważ ideały statystyczne z praktycznymi ograniczeniami
+   * Budżet, czas, dostępność uczestników
+   * Rozważ sekwencyjne lub adaptacyjne pobieranie próbek, gdy jest to właściwe
+
+4. **Względy etyczne**: Zbieraj wystarczająco dużo danych, aby wiarygodnie odpowiedzieć na pytania, ale nie marnuj zasobów ani nie obciążaj niepotrzebnie uczestników
+
+Pamiętaj, że są to wytyczne, a konkretne pytania badawcze mogą wymagać konsultacji ze statystykiem w celu optymalnego określenia wielkości próby.
+
+
+### Przykład Maksymalnej Niepewności dla Proporcji: Dlaczego 50% to "Najgorszy Przypadek"
 
 Aby zrozumieć, dlaczego proporcje bliskie 50% wymagają większych prób, przyjrzyjmy się symulacji:
 
@@ -671,8 +916,6 @@ graph TD
 ```
 :::
 
-
-
 ## Parametry Populacji
 
 > **Ważne**
@@ -979,16 +1222,16 @@ Fundamentalnym problemem wnioskowania przyczynowego jest niemożność zaobserwo
 
 Przykład:
 
-- Obserwujemy osobę, która ukończyła studia i zarabia 8000 zł miesięcznie
-- Nie możemy zaobserwować, ile ta sama osoba zarabiałaby, gdyby nie ukończyła studiów
+-   Obserwujemy osobę, która ukończyła studia i zarabia 8000 zł miesięcznie
+-   Nie możemy zaobserwować, ile ta sama osoba zarabiałaby, gdyby nie ukończyła studiów
 
 Metody przyczynowe próbują rozwiązać ten problem poprzez:
 
-1. Eksperymenty randomizowane
-2. Zmienne instrumentalne
-3. Metody dopasowania (matching)
-4. Analizę nieciągłości regresji (ang. regression discontinuity)
-5. Różnicę w różnicach (ang. difference-in-differences)
+1.  Eksperymenty randomizowane
+2.  Zmienne instrumentalne
+3.  Metody dopasowania (matching)
+4.  Analizę nieciągłości regresji (ang. regression discontinuity)
+5.  Różnicę w różnicach (ang. difference-in-differences)
 
 Typowe problemy we wnioskowaniu przyczynowym:
 
@@ -1053,12 +1296,11 @@ Ogólna procedura testowania hipotez:
 >
 > Testowanie hipotez przypomina procedurę sądową:
 
-> - H₀ odpowiada zasadzie "niewinny, dopóki nie udowodni się winy"
-> - Dane stanowią "dowód" przeciwko H₀
-> - Wartość p określa, jak silny jest ten dowód
-> - Jeśli dowód jest wystarczająco silny (p \< α), "skazujemy" H₀ (odrzucamy ją)
-> - Jeśli dowód nie jest wystarczająco silny, nie odrzucamy H₀ (ale nie udowadniamy jej prawdziwości)
-
+> -   H₀ odpowiada zasadzie "niewinny, dopóki nie udowodni się winy"
+> -   Dane stanowią "dowód" przeciwko H₀
+> -   Wartość p określa, jak silny jest ten dowód
+> -   Jeśli dowód jest wystarczająco silny (p \< α), "skazujemy" H₀ (odrzucamy ją)
+> -   Jeśli dowód nie jest wystarczająco silny, nie odrzucamy H₀ (ale nie udowadniamy jej prawdziwości)
 
 ### Rodzaje Błędów w Testowaniu Hipotez
 
@@ -1101,8 +1343,6 @@ Aby przeprowadzić rzetelne badanie statystyczne, należy zapewnić:
 | **Błąd standardowy** | Miara zmienności estymatora między próbami | $SE(\bar{x}) = \frac{s}{\sqrt{n}}$ |
 | **Przedział ufności** | Zakres wartości, który z określonym prawdopodobieństwem zawiera parametr | (173 cm, 175 cm) |
 | **Wartość p** | Prawdopodobieństwo zaobserwowania danych przy założeniu prawdziwości H₀ | p = 0,03 |
-
-
 
 # Appendices: Additional Topics in Statistics and Data Science (\*)
 

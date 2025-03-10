@@ -68,9 +68,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -148,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rozdzial3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Od Próby do Populacji - Zrozumienie Losowości, Próbkowania i Wnioskowania</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Od Próby do Populacji - Zrozumienie Losowości, Pobierania Próby i Wnioskowania</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -257,25 +254,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction-to-randomness" id="toc-introduction-to-randomness" class="nav-link active" data-scroll-target="#introduction-to-randomness"><span class="header-section-number">5.1</span> Introduction to Randomness</a></li>
-  <li><a href="#sampling-bridging-sample-and-population" id="toc-sampling-bridging-sample-and-population" class="nav-link" data-scroll-target="#sampling-bridging-sample-and-population"><span class="header-section-number">5.2</span> Sampling: Bridging Sample and Population</a></li>
-  <li><a href="#sampling-methods" id="toc-sampling-methods" class="nav-link" data-scroll-target="#sampling-methods"><span class="header-section-number">5.3</span> Sampling Methods</a>
+  <li><a href="#sampling-methods" id="toc-sampling-methods" class="nav-link active" data-scroll-target="#sampling-methods"><span class="header-section-number">5.1</span> Sampling Methods</a>
   <ul class="collapse">
-  <li><a href="#probability-sampling" id="toc-probability-sampling" class="nav-link" data-scroll-target="#probability-sampling"><span class="header-section-number">5.3.1</span> Probability Sampling</a></li>
-  <li><a href="#non-probability-sampling" id="toc-non-probability-sampling" class="nav-link" data-scroll-target="#non-probability-sampling"><span class="header-section-number">5.3.2</span> Non-probability Sampling</a></li>
+  <li><a href="#probability-sampling" id="toc-probability-sampling" class="nav-link" data-scroll-target="#probability-sampling"><span class="header-section-number">5.1.1</span> Probability Sampling</a></li>
+  <li><a href="#non-probability-sampling" id="toc-non-probability-sampling" class="nav-link" data-scroll-target="#non-probability-sampling"><span class="header-section-number">5.1.2</span> Non-probability Sampling</a></li>
+  <li><a href="#why-pollsters-increasingly-use-quota-sampling" id="toc-why-pollsters-increasingly-use-quota-sampling" class="nav-link" data-scroll-target="#why-pollsters-increasingly-use-quota-sampling"><span class="header-section-number">5.1.3</span> Why Pollsters Increasingly Use Quota Sampling</a></li>
   </ul></li>
-  <li><a href="#making-inferences-from-samples" id="toc-making-inferences-from-samples" class="nav-link" data-scroll-target="#making-inferences-from-samples"><span class="header-section-number">5.4</span> Making Inferences from Samples</a></li>
-  <li><a href="#sampling-and-non-sampling-errors" id="toc-sampling-and-non-sampling-errors" class="nav-link" data-scroll-target="#sampling-and-non-sampling-errors"><span class="header-section-number">5.5</span> Sampling and Non-sampling Errors</a></li>
-  <li><a href="#sample-size-and-power" id="toc-sample-size-and-power" class="nav-link" data-scroll-target="#sample-size-and-power"><span class="header-section-number">5.6</span> Sample Size and Power</a></li>
-  <li><a href="#sampling-in-the-digital-age" id="toc-sampling-in-the-digital-age" class="nav-link" data-scroll-target="#sampling-in-the-digital-age"><span class="header-section-number">5.7</span> Sampling in the Digital Age</a></li>
-  <li><a href="#ethical-considerations-in-sampling" id="toc-ethical-considerations-in-sampling" class="nav-link" data-scroll-target="#ethical-considerations-in-sampling"><span class="header-section-number">5.8</span> Ethical Considerations in Sampling</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.9</span> Conclusion</a></li>
-  <li><a href="#statistical-errors---summary" id="toc-statistical-errors---summary" class="nav-link" data-scroll-target="#statistical-errors---summary"><span class="header-section-number">5.10</span> Statistical Errors - Summary</a>
+  <li><a href="#statistical-errors" id="toc-statistical-errors" class="nav-link" data-scroll-target="#statistical-errors"><span class="header-section-number">5.2</span> Statistical Errors</a>
   <ul class="collapse">
-  <li><a href="#systematic-error-vs.-random-error" id="toc-systematic-error-vs.-random-error" class="nav-link" data-scroll-target="#systematic-error-vs.-random-error"><span class="header-section-number">5.10.1</span> Systematic Error vs.&nbsp;Random Error</a></li>
-  <li><a href="#sampling-errors-vs.-non-sampling-errors" id="toc-sampling-errors-vs.-non-sampling-errors" class="nav-link" data-scroll-target="#sampling-errors-vs.-non-sampling-errors"><span class="header-section-number">5.10.2</span> Sampling Errors vs.&nbsp;Non-Sampling Errors</a></li>
+  <li><a href="#systematic-error-vs.-random-error" id="toc-systematic-error-vs.-random-error" class="nav-link" data-scroll-target="#systematic-error-vs.-random-error"><span class="header-section-number">5.2.1</span> Systematic Error vs.&nbsp;Random Error</a></li>
+  <li><a href="#sampling-errors-vs.-non-sampling-errors" id="toc-sampling-errors-vs.-non-sampling-errors" class="nav-link" data-scroll-target="#sampling-errors-vs.-non-sampling-errors"><span class="header-section-number">5.2.2</span> Sampling Errors vs.&nbsp;Non-Sampling Errors</a></li>
+  <li><a href="#the-total-survey-error-framework" id="toc-the-total-survey-error-framework" class="nav-link" data-scroll-target="#the-total-survey-error-framework"><span class="header-section-number">5.2.3</span> The Total Survey Error Framework</a></li>
   </ul></li>
-  <li><a href="#review-questions-and-exercises" id="toc-review-questions-and-exercises" class="nav-link" data-scroll-target="#review-questions-and-exercises"><span class="header-section-number">5.11</span> Review Questions and Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -301,348 +291,242 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="introduction-to-randomness" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="introduction-to-randomness"><span class="header-section-number">5.1</span> Introduction to Randomness</h2>
-<p>Randomness is a cornerstone concept in statistics and scientific research. It refers to the unpredictability of individual outcomes, even when the overall pattern may be predictable. In the social sciences, understanding randomness is crucial for designing studies, collecting data, and interpreting results.</p>
-<p>Consider flipping a fair coin. While we know that the probability of getting heads is 50%, we can’t predict with certainty the outcome of any single flip. This unpredictability is the essence of randomness.</p>
-<p>Examples of random phenomena in social sciences include:</p>
+<section id="sampling-methods" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="sampling-methods"><span class="header-section-number">5.1</span> Sampling Methods</h2>
+<section id="probability-sampling" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="probability-sampling"><span class="header-section-number">5.1.1</span> Probability Sampling</h3>
+<p>Probability sampling methods involve random selection, giving each member of the population a known, non-zero chance of being selected. These methods allow researchers to calculate sampling error and make statistical inferences about the population.</p>
 <ol type="1">
-<li><p><strong>Participant Selection</strong>: In a psychology experiment studying reaction times, the order in which participants arrive at the lab may be random.</p></li>
-<li><p><strong>Economic Behavior</strong>: The daily fluctuations in stock prices often exhibit random patterns, influenced by countless unpredictable factors.</p></li>
-<li><p><strong>Social Interactions</strong>: The occurrence of chance encounters between individuals in a community can be considered random events.</p></li>
-</ol>
-<p>Understanding randomness helps researchers distinguish between genuine effects and chance occurrences. For instance, if we observe a slight difference in test scores between two groups, randomness helps us determine whether this difference is likely due to a real effect or just chance variation.</p>
-</section>
-<section id="sampling-bridging-sample-and-population" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="sampling-bridging-sample-and-population"><span class="header-section-number">5.2</span> Sampling: Bridging Sample and Population</h2>
-<p>Sampling is the process of selecting a subset (sample) from a larger group (population) to make inferences about the population. It’s a critical skill in social science research, as studying entire populations is often impractical, too expensive, or sometimes impossible.</p>
-<p><strong>Key Terms:</strong></p>
+<li><strong>Simple Random Sampling (SRS)</strong>
 <ul>
-<li><strong>Population</strong>: The entire group about which we want to draw conclusions.</li>
-<li><strong>Sample</strong>: A subset of the population that we actually study.</li>
-<li><strong>Sampling Frame</strong>: The list or procedure used to identify all members of the population.</li>
-</ul>
-<p><strong>Example:</strong> Suppose we want to study the job satisfaction of all teachers in the United States (the population). Instead of surveying millions of teachers, we might select a sample of 5,000 teachers from various states, school districts, and grade levels.</p>
-<p>Randomness in sampling helps ensure that the sample is representative of the population, reducing bias and allowing for more accurate inferences. This is why probability sampling methods, which we’ll discuss next, are often preferred in scientific research.</p>
-</section>
-<section id="sampling-methods" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="sampling-methods"><span class="header-section-number">5.3</span> Sampling Methods</h2>
-<section id="probability-sampling" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="probability-sampling"><span class="header-section-number">5.3.1</span> Probability Sampling</h3>
-<p>Probability sampling methods involve random selection, giving each member of the population a known, non-zero chance of being selected.</p>
-<ol type="1">
-<li><p><strong>Simple Random Sampling</strong>: Each member of the population has an equal chance of being selected.</p>
-<p>Example: To select 100 students from a university with 10,000 students, you could assign each student a number from 1 to 10,000, then use a random number generator to select 100 numbers.</p></li>
-<li><p><strong>Stratified Random Sampling</strong>: The population is divided into subgroups (strata) based on shared characteristics, then samples are randomly selected from each stratum.</p>
-<p>Example: In a national political survey, you might divide the population into strata based on geographic regions (Northeast, Midwest, South, West) and then randomly sample from each region. This ensures representation from all areas of the country.</p></li>
-<li><p><strong>Cluster Sampling</strong>: The population is divided into clusters (usually geographic), some clusters are randomly selected, and all members within those clusters are studied.</p>
-<p>Example: To study high school students’ study habits, you might randomly select 20 high schools from across the country and then survey all students in those schools.</p></li>
-<li><p><strong>Systematic Sampling</strong>: Selecting every kth item from a list after a random start.</p>
-<p>Example: At a busy shopping mall, you might survey every 20th person who enters the mall, starting with a randomly chosen number between 1 and 20.</p></li>
-</ol>
-</section>
-<section id="non-probability-sampling" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="non-probability-sampling"><span class="header-section-number">5.3.2</span> Non-probability Sampling</h3>
-<p>Non-probability sampling doesn’t involve random selection. While it can introduce bias, it may be necessary in certain situations, especially when dealing with hard-to-reach populations or when resources are limited.</p>
-<ol type="1">
-<li><p><strong>Convenience Sampling</strong>: Selecting easily accessible subjects.</p>
-<p>Example: A researcher studying college students’ sleep patterns might survey students in their own classes or around campus.</p></li>
-<li><p><strong>Purposive Sampling</strong>: Selecting subjects based on specific characteristics.</p>
-<p>Example: For a study on the experiences of CEOs in the tech industry, a researcher might intentionally seek out and interview CEOs from various tech companies.</p></li>
-<li><p><strong>Snowball Sampling</strong>: Participants recruit other participants.</p>
-<p>Example: In a study of undocumented immigrants’ access to healthcare, researchers might ask initial participants to refer other potential participants from their community.</p></li>
-<li><p><strong>Quota Sampling</strong>: Selecting participants to meet specific quotas for certain characteristics.</p>
-<p>Example: In a market research study, researchers might ensure they interview a specific number of people from different age groups, genders, and income levels to match the demographics of the target market.</p></li>
-</ol>
-</section>
-</section>
-<section id="making-inferences-from-samples" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="making-inferences-from-samples"><span class="header-section-number">5.4</span> Making Inferences from Samples</h2>
-<p>Statistical inference is the process of drawing conclusions about a population based on a sample. This allows researchers to estimate characteristics of the entire population (parameters) using characteristics of the sample (statistics).</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The Soup Analogy: A Taste of Statistics</p>
-<p><img src="stat_imgs/soup-svgrepo-com.svg" class="img-fluid" style="width:30.0%"></p>
-<ul>
-<li>When you taste a spoonful of soup and decide it isn’t salty enough, that’s exploratory/descriptive analysis.</li>
-<li>If you generalize and conclude that your entire pot of soup needs salt, that’s an inference.</li>
-<li>For your inference to be valid, the spoonful you tasted (the sample) needs to be representative of the entire pot (the population).</li>
-<li>If the soup is not well stirred (heterogeneous population), it doesn’t matter how large a spoon you have (sample size), it will still not accurately represent the whole. If the soup is well stirred (homogeneous population), even a small spoon will suffice to test the soup.</li>
-</ul>
-</div>
-</div>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    DGP[Data Generating Process] --&gt;|Generates| A[Population]
-    A --&gt;|Random Selection| B[Sample]
-    B --&gt;|Statistical Inference| C[Estimates &amp; Conclusions]
-    C --&gt;|Generalize back to| A
-    C -.-&gt;|Attempt to understand| DGP
-
-    style DGP fill:#1E90FF,stroke:#000,stroke-width:4px,color:#FFF
-    style A fill:#DC143C,stroke:#000,stroke-width:4px,color:#FFF
-    style B fill:#228B22,stroke:#000,stroke-width:2px,color:#FFF
-    style C fill:#8B4513,stroke:#000,stroke-width:2px,color:#FFF
-    
-    classDef note fill:#F0F0F0,stroke:#000,stroke-width:1px;
-    D[["DGP:
-    Underlying process
-    that generates data"]]
-    E[["Population:
-    Entire group of interest"]]
-    F[["Sample:
-    Subset of population"]]
-    G[["Inference:
-    Drawing conclusions
-    about population
-    and DGP"]]
-    
-    class D,E,F,G note
-    
-    D --&gt; DGP
-    E --&gt; A
-    F --&gt; B
-    G --&gt; C
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p><strong>Key Concepts:</strong></p>
-<ol type="1">
-<li><p><strong>Point Estimates</strong>: A single value used to estimate a population parameter.</p>
-<p>Example: The mean income of a sample of 1000 workers might be used to estimate the mean income of all workers in a country.</p></li>
-<li><p><strong>Confidence Intervals</strong>: A range of values likely to contain the true population parameter.</p>
-<p>Example: We might say, “We are 95% confident that the true population mean income falls between $45,000 and $55,000.”</p></li>
-<li><p><strong>Margin of Error</strong>: The range of values above and below the sample statistic in a confidence interval.</p>
-<p>Example: In political polling, you might see a statement like “Candidate A is preferred by 52% of voters, with a margin of error of ±3%.”</p></li>
-<li><p><strong>Hypothesis Testing</strong>: A method for making decisions about population parameters based on sample data.</p>
-<p>Example: A researcher might test whether there’s a significant difference in test scores between students who study with music and those who study in silence.</p></li>
-</ol>
-</section>
-<section id="sampling-and-non-sampling-errors" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="sampling-and-non-sampling-errors"><span class="header-section-number">5.5</span> Sampling and Non-sampling Errors</h2>
-<p>Understanding potential errors in research is crucial for interpreting results accurately.</p>
-<p><strong>Sampling Error</strong>: The difference between a sample statistic and the true population parameter, occurring due to chance variations in the selection of sample members.</p>
-<p>Example: If we estimate the average height of all adult males in a country based on a sample, our estimate will likely differ somewhat from the true average due to sampling error.</p>
-<p><strong>Non-sampling Errors</strong>: Errors not due to chance, which can occur in both sample surveys and censuses.</p>
-<ol type="1">
-<li><p><strong>Coverage Error</strong>: When the sampling frame doesn’t accurately represent the population.</p>
-<p>Example: A telephone survey that only calls landlines would miss people who only have cell phones, potentially biasing the results.</p></li>
-<li><p><strong>Non-response Error</strong>: When selected participants fail to respond, potentially introducing bias.</p>
-<p>Example: In a survey about job satisfaction, highly satisfied or highly dissatisfied employees might be more likely to respond, skewing the results.</p></li>
-<li><p><strong>Measurement Error</strong>: Inaccuracies in the data collected.</p>
-<p>Example: A poorly worded survey question might be interpreted differently by different respondents, leading to inconsistent data.</p></li>
-<li><p><strong>Processing Error</strong>: Mistakes made during data entry, coding, or analysis.</p>
-<p>Example: Accidentally entering “99” instead of “9” for a participant’s response could significantly skew the results.</p></li>
-</ol>
-</section>
-<section id="sample-size-and-power" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="sample-size-and-power"><span class="header-section-number">5.6</span> Sample Size and Power</h2>
-<p>Determining the appropriate sample size involves balancing the need for precision with available resources.</p>
-<p><strong>Sample Size Considerations:</strong> - Larger samples generally provide more precise estimates but are more costly and time-consuming to obtain. - The required sample size depends on factors such as the desired level of precision, the variability in the population, and the type of analysis planned.</p>
-<p><strong>Example:</strong> To estimate the proportion of voters who support a particular policy with a margin of error of ±3% at a 95% confidence level, you would need a sample size of about 1067 voters (assuming maximum variability).</p>
-<p><strong>Statistical Power:</strong> The probability that a study will detect an effect when there is an effect to be detected.</p>
-<p>Factors affecting power: 1. Sample size 2. Effect size (the magnitude of the difference or relationship you’re trying to detect) 3. Chosen significance level (usually 0.05)</p>
-<p><strong>Example:</strong> In a study comparing two teaching methods, having a larger sample size would increase the likelihood of detecting a significant difference between the methods, if such a difference exists.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>What is Study Power?</p>
-<p>Study power is about how likely we are to find something if it really exists. It’s like having a good flashlight when you’re looking for something in the dark - the better your flashlight, the more likely you are to find what you’re looking for.</p>
-<ol type="1">
-<li><strong>Effect Size</strong>: How big the thing (effect, difference) we’re looking for is.</li>
-<li><strong>Sample Size</strong>: How many people or things we look at in our study.</li>
-<li><strong>Study Power</strong>: How likely we are to find the effect if it’s really there.</li>
-</ol>
-<p>The Relationship Between Effect Size and Sample Size:</p>
-<p>Imagine you’re trying to find coins hidden in sand:</p>
-<ol type="1">
-<li><strong>Big Effects (Big Coins)</strong>:
-<ul>
-<li>If you’re looking for big coins (like quarters), you don’t need to search through as much sand to find them.</li>
-<li>In research, if the effect is big, you can use a smaller sample.</li>
-</ul>
-Example: Testing if a new study method improves test scores by 20 points out of 100.
-<ul>
-<li>You might only need to test 30 students to see this big difference.</li>
+<li><strong>Definition</strong>: Each member of the population has an equal chance of being selected.</li>
+<li><strong>Advantages</strong>: Minimizes selection bias; allows straightforward statistical analysis.</li>
+<li><strong>Disadvantages</strong>: Requires a complete sampling frame; may not capture enough members of smaller subgroups.</li>
+<li><strong>Example</strong>: To select 100 students from a university with 10,000 students, assign each student a number and use a random number generator to select 100 numbers.</li>
+<li><strong>Best used when</strong>: The population is relatively homogeneous and a complete list of population members is available.</li>
 </ul></li>
-<li><strong>Small Effects (Small Coins)</strong>:
+<li><strong>Stratified Random Sampling</strong>
 <ul>
-<li>If you’re looking for tiny coins (like pennies), you’ll need to search through more sand.</li>
-<li>In research, if the effect is small, you need a larger sample.</li>
-</ul>
-Example: Seeing if using social media affects happiness by a tiny amount.
+<li><strong>Definition</strong>: The population is divided into mutually exclusive subgroups (strata) based on shared characteristics, then samples are randomly selected from each stratum.</li>
+<li><strong>Advantages</strong>: Ensures representation of key subgroups; can improve precision for same sample size as SRS; allows analysis within and between strata.</li>
+<li><strong>Disadvantages</strong>: Requires prior knowledge of population characteristics for stratification; more complex analysis.</li>
+<li><strong>Example</strong>: In a national political survey, divide the population into strata based on geographic regions (Northeast, Midwest, South, West) and then randomly sample from each region proportionally to their population size.</li>
+<li><strong>Best used when</strong>: The population contains distinct subgroups that might respond differently to the research question.</li>
+</ul></li>
+<li><strong>Cluster Sampling</strong>
 <ul>
-<li>You might need to study 500 or more people to detect this small effect.</li>
+<li><strong>Definition</strong>: The population is divided into clusters (usually geographic), some clusters are randomly selected, and all members within those clusters are studied.</li>
+<li><strong>Advantages</strong>: More cost-effective when population is geographically dispersed; doesn’t require a complete list of population members.</li>
+<li><strong>Disadvantages</strong>: Lower statistical precision than SRS or stratified sampling; clusters must be representative.</li>
+<li><strong>Example</strong>: To study high school students’ study habits, randomly select 20 high schools from across the country and survey all students in those schools.</li>
+<li><strong>Best used when</strong>: The population is widely dispersed geographically and traveling to all units would be costly.</li>
+</ul></li>
+<li><strong>Systematic Sampling</strong>
+<ul>
+<li><strong>Definition</strong>: Selecting every kth item from a list after a random start.</li>
+<li><strong>Advantages</strong>: Simple to implement; often more practical than SRS; can avoid neighbor effects.</li>
+<li><strong>Disadvantages</strong>: Can introduce bias if there’s a periodic pattern in the list.</li>
+<li><strong>Example</strong>: At a busy shopping mall, survey every 20th person who enters, starting with a randomly chosen number between 1 and 20.</li>
+<li><strong>Best used when</strong>: The population is ordered randomly or in a way unrelated to the study variables.</li>
+</ul></li>
+<li><strong>Multi-stage Sampling</strong>
+<ul>
+<li><strong>Definition</strong>: Combining multiple sampling methods in stages.</li>
+<li><strong>Advantages</strong>: Practical for large-scale surveys; balances cost and precision.</li>
+<li><strong>Disadvantages</strong>: Complex design and analysis; multiple stages can compound sampling errors.</li>
+<li><strong>Example</strong>: First randomly select counties (cluster sampling), then randomly select households within those counties (simple random sampling), and finally select one adult from each household (systematic sampling).</li>
+<li><strong>Best used when</strong>: Studying large, complex populations across wide geographical areas.</li>
 </ul></li>
 </ol>
-<p>Why Study Power Matters:</p>
+</section>
+<section id="non-probability-sampling" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="non-probability-sampling"><span class="header-section-number">5.1.2</span> Non-probability Sampling</h3>
+<p>Non-probability sampling doesn’t involve random selection, which means statistical inferences about the population must be made with caution. While it can introduce bias, it may be necessary in certain situations.</p>
 <ol type="1">
-<li><strong>Not Missing Real Effects</strong>:
+<li><strong>Convenience Sampling</strong>
 <ul>
-<li>With low power, you might miss real effects, like using a weak flashlight and missing something that’s actually there.</li>
+<li><strong>Definition</strong>: Selecting easily accessible subjects.</li>
+<li><strong>Advantages</strong>: Fast, inexpensive, and easy to implement.</li>
+<li><strong>Disadvantages</strong>: High risk of selection bias; limits generalizability.</li>
+<li><strong>Example</strong>: A researcher studying college students’ sleep patterns might survey students in their own classes.</li>
+<li><strong>Best used for</strong>: Pilot studies, exploratory research, or when resources are severely limited.</li>
 </ul></li>
-<li><strong>Confidence in Results</strong>:
+<li><strong>Purposive Sampling</strong>
 <ul>
-<li>Higher power gives you more confidence that what you found is real and not just luck.</li>
+<li><strong>Definition</strong>: Selecting subjects based on specific characteristics relevant to the research question.</li>
+<li><strong>Advantages</strong>: Focuses on relevant cases; useful for in-depth studies of specific groups.</li>
+<li><strong>Disadvantages</strong>: Researcher bias in selection; limited generalizability.</li>
+<li><strong>Example</strong>: For a study on the experiences of CEOs in the tech industry, intentionally seek out and interview CEOs from various tech companies.</li>
+<li><strong>Best used for</strong>: Qualitative research, case studies, or studying unique populations.</li>
+</ul></li>
+<li><strong>Snowball Sampling</strong>
+<ul>
+<li><strong>Definition</strong>: Participants recruit other participants from their networks.</li>
+<li><strong>Advantages</strong>: Access to hard-to-reach or hidden populations; builds on social networks.</li>
+<li><strong>Disadvantages</strong>: Sample biased toward those in certain social networks; cannot calculate selection probabilities.</li>
+<li><strong>Example</strong>: In a study of undocumented immigrants’ access to healthcare, researchers ask initial participants to refer other potential participants.</li>
+<li><strong>Best used for</strong>: Studying rare populations or sensitive topics where no sampling frame exists.</li>
+</ul></li>
+<li><strong>Quota Sampling</strong>
+<ul>
+<li><strong>Definition</strong>: Selecting participants to meet specific quotas for certain characteristics to match known population parameters.</li>
+<li><strong>Advantages</strong>: Ensures representation of key demographic groups; faster and cheaper than probability sampling; doesn’t require sampling frame.</li>
+<li><strong>Disadvantages</strong>: Non-random selection within quotas can introduce bias; inference is limited.</li>
+<li><strong>Example</strong>: In a market research study, researchers ensure they interview specific numbers of people from different age groups, genders, and income levels.</li>
+<li><strong>Best used for</strong>: Commercial polling, market research, or when probability sampling is not feasible.</li>
 </ul></li>
 </ol>
-<p>Example:</p>
-<p>Let’s say we want to study if a new teaching method helps students learn better:</p>
+</section>
+<section id="why-pollsters-increasingly-use-quota-sampling" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="why-pollsters-increasingly-use-quota-sampling"><span class="header-section-number">5.1.3</span> Why Pollsters Increasingly Use Quota Sampling</h3>
+<p>In recent years, many polling organizations have shifted toward quota sampling approaches for several key reasons:</p>
 <ol type="1">
-<li><strong>Small Study (Low Power)</strong>:
-<ul>
-<li>We try the method with just 10 students.</li>
-<li>Even if the method works, with such a small group, it’s hard to tell if improvements are due to the new method or just chance.</li>
-</ul></li>
-<li><strong>Larger Study (Higher Power)</strong>:
-<ul>
-<li>We use the method with 100 students.</li>
-<li>Now we’re more likely to see if the method really helps because we have more data to look at.</li>
-</ul></li>
+<li><p><strong>Declining Response Rates</strong>: Traditional probability-based telephone polls have seen response rates drop from about 36% in the 1990s to less than 10% today. This increases costs and potentially introduces non-response bias that can be worse than selection bias from non-probability methods.</p></li>
+<li><p><strong>Coverage Issues</strong>: Random digit dialing no longer reaches a representative sample of the population as many people have abandoned landlines for cell phones, and many don’t answer calls from unknown numbers.</p></li>
+<li><p><strong>Cost Efficiency</strong>: Probability-based polls have become prohibitively expensive as response rates decline, while online panels and quota sampling are more affordable.</p></li>
+<li><p><strong>Speed</strong>: In fast-moving political campaigns or rapidly evolving public opinion situations, quota sampling can deliver results much faster than probability methods.</p></li>
+<li><p><strong>Weighting and Modeling Improvements</strong>: Modern statistical techniques allow pollsters to adjust quota samples to better represent the target population by weighting responses based on known population parameters.</p></li>
+<li><p><strong>Hybrid Approaches</strong>: Many pollsters now use hybrid methods that combine elements of probability and non-probability sampling, with sophisticated weighting and modeling to improve accuracy.</p></li>
 </ol>
-</div>
-</div>
+<p>The 2016 US presidential election, where many polls failed to predict the outcome accurately, led to considerable soul-searching among pollsters. Rather than abandoning quota sampling, many organizations have refined their methods, focusing on better quota definitions, improved weighting techniques, and more transparent reporting of methodological limitations.</p>
+<p>Despite these trends, it’s important to note that probability sampling remains the gold standard for statistical inference. Well-designed probability samples still provide the most reliable foundation for generalizing from sample to population, especially for academic research where accuracy is prioritized over cost and speed.</p>
 </section>
-<section id="sampling-in-the-digital-age" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="sampling-in-the-digital-age"><span class="header-section-number">5.7</span> Sampling in the Digital Age</h2>
-<p>The advent of big data and digital technologies has transformed sampling practices in many fields.</p>
-<p><strong>Big Data Opportunities and Challenges:</strong> - Unprecedented volumes of information available - Potential lack of representativeness - Data quality concerns - Privacy and ethical issues</p>
-<p><strong>Example:</strong> Social media data can provide real-time insights into public opinion, but users of a particular platform may not be representative of the general population.</p>
-<p><strong>Web-based Surveys:</strong> - Offer new opportunities for data collection - Face challenges such as coverage bias (not everyone has internet access) and self-selection bias</p>
-<p><strong>Example:</strong> An online survey about internet usage habits would inherently exclude people without internet access, potentially biasing the results.</p>
 </section>
-<section id="ethical-considerations-in-sampling" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="ethical-considerations-in-sampling"><span class="header-section-number">5.8</span> Ethical Considerations in Sampling</h2>
-<p>Ethical sampling practices are crucial in social science research:</p>
+<section id="statistical-errors" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="statistical-errors"><span class="header-section-number">5.2</span> Statistical Errors</h2>
+<section id="systematic-error-vs.-random-error" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="systematic-error-vs.-random-error"><span class="header-section-number">5.2.1</span> Systematic Error vs.&nbsp;Random Error</h3>
+<p>Systematic errors and random errors represent fundamentally different ways measurements can deviate from true values:</p>
 <ol type="1">
-<li><p><strong>Informed Consent</strong>: Participants should understand the study’s purpose and agree to participate.</p>
-<p>Example: Before conducting interviews about sensitive topics like mental health, researchers must clearly explain the study’s aims and potential risks to participants.</p></li>
-<li><p><strong>Privacy and Confidentiality</strong>: Researchers must protect participants’ personal information.</p>
-<p>Example: In a study on workplace harassment, researchers might use code numbers instead of names to protect participants’ identities.</p></li>
-<li><p><strong>Representativeness and Inclusivity</strong>: Samples should fairly represent diverse populations, including marginalized groups.</p>
-<p>Example: A study on urban housing should make efforts to include participants from various socioeconomic backgrounds, ethnicities, and housing situations.</p></li>
-</ol>
-</section>
-<section id="conclusion" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.9</span> Conclusion</h2>
-<p>Sampling remains a cornerstone of social science research, even in the era of big data. Understanding sampling principles helps researchers design studies, interpret results, and make valid inferences about populations. As we’ve seen, the journey from sample to population involves careful consideration of sampling methods, potential errors, ethical issues, and the ever-evolving landscape of data collection in the digital age.</p>
-</section>
-<section id="statistical-errors---summary" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="statistical-errors---summary"><span class="header-section-number">5.10</span> Statistical Errors - Summary</h2>
-<section id="systematic-error-vs.-random-error" class="level3" data-number="5.10.1">
-<h3 data-number="5.10.1" class="anchored" data-anchor-id="systematic-error-vs.-random-error"><span class="header-section-number">5.10.1</span> Systematic Error vs.&nbsp;Random Error</h3>
-<p>Systematic errors and random errors are two fundamental types of errors in statistical measurements and experiments.</p>
-<ol type="1">
-<li>Systematic Error:
+<li><strong>Systematic Error (Bias)</strong>
 <ul>
-<li>Definition: Consistent, predictable deviations from the true value</li>
-<li>Characteristics:
+<li><strong>Definition</strong>: Consistent, predictable deviations from the true value in a specific direction.</li>
+<li><strong>Characteristics</strong>:
 <ul>
-<li>Biases the results in a specific direction</li>
-<li>Repeatable and often constant across measurements</li>
-<li>Can be corrected if identified</li>
+<li>Results in measurements that are consistently too high or too low</li>
+<li>Does not diminish with increased sample size</li>
+<li>Can often be corrected if identified</li>
 </ul></li>
-<li>Examples:
+<li><strong>Examples</strong>:
 <ul>
-<li>Miscalibrated measuring instrument</li>
-<li>Consistent rounding error in data entry</li>
-<li>Biased sampling method</li>
+<li>A scale that consistently reads 2 pounds heavier than actual weight</li>
+<li>Selection bias from excluding certain population groups</li>
+<li>Leading questions in a survey that push respondents toward particular answers</li>
+</ul></li>
+<li><strong>Detection and Correction</strong>:
+<ul>
+<li>Calibration against known standards</li>
+<li>Comparison with measurements using different methods</li>
+<li>Careful research design and pretesting</li>
 </ul></li>
 </ul></li>
-<li>Random Error:
+<li><strong>Random Error</strong>
 <ul>
-<li>Definition: Unpredictable fluctuations in measurements due to chance</li>
-<li>Characteristics:
+<li><strong>Definition</strong>: Unpredictable fluctuations in measurements due to chance factors.</li>
+<li><strong>Characteristics</strong>:
 <ul>
-<li>Varies in magnitude and direction</li>
+<li>Varies in both magnitude and direction across measurements</li>
 <li>Follows a probability distribution (often normal)</li>
-<li>Can be reduced by increasing sample size or repeated measurements</li>
+<li>Decreases as sample size increases (√n relationship)</li>
 </ul></li>
-<li>Examples:
+<li><strong>Examples</strong>:
 <ul>
-<li>Natural variations in the phenomenon being measured</li>
-<li>Small fluctuations in measuring instruments</li>
-<li>Human errors in reading or recording data</li>
+<li>Natural biological variations between subjects</li>
+<li>Minor fluctuations in measuring instruments</li>
+<li>Environmental conditions that vary randomly during measurement</li>
+</ul></li>
+<li><strong>Detection and Reduction</strong>:
+<ul>
+<li>Increasing sample size</li>
+<li>Taking repeated measurements</li>
+<li>Improving measurement precision</li>
 </ul></li>
 </ul></li>
 </ol>
 </section>
-<section id="sampling-errors-vs.-non-sampling-errors" class="level3" data-number="5.10.2">
-<h3 data-number="5.10.2" class="anchored" data-anchor-id="sampling-errors-vs.-non-sampling-errors"><span class="header-section-number">5.10.2</span> Sampling Errors vs.&nbsp;Non-Sampling Errors</h3>
-<p>Sampling and non-sampling errors are categories of errors that can occur in statistical studies, particularly in survey research.</p>
+<section id="sampling-errors-vs.-non-sampling-errors" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="sampling-errors-vs.-non-sampling-errors"><span class="header-section-number">5.2.2</span> Sampling Errors vs.&nbsp;Non-Sampling Errors</h3>
+<p>This distinction focuses on the source of errors in statistical studies:</p>
 <ol type="1">
-<li>Sampling Errors:
+<li><strong>Sampling Error</strong>
 <ul>
-<li>Definition: Errors that occur due to the sample not perfectly representing the population</li>
-<li>Characteristics:
+<li><strong>Definition</strong>: Difference between a sample statistic and the true population parameter due to random variation in selection.</li>
+<li><strong>Characteristics</strong>:
 <ul>
-<li>Inherent in any sample-based study</li>
-<li>Can be estimated and quantified using statistical methods</li>
-<li>Decreases as sample size increases</li>
+<li>Unavoidable in any sample-based study</li>
+<li>Quantifiable through statistical measures (standard error, confidence intervals)</li>
+<li>Decreases predictably as sample size increases</li>
+<li>Always random in nature (not systematic)</li>
 </ul></li>
-<li>Examples:
+<li><strong>Examples</strong>:
 <ul>
-<li>Random fluctuations in sample statistics</li>
-<li>Over- or under-representation of certain groups in the sample</li>
+<li>A random sample showing 52% support for a policy when the true population value is 50%</li>
+<li>Variation in mean income across different random samples from the same population</li>
+</ul></li>
+<li><strong>Control Methods</strong>:
+<ul>
+<li>Increasing sample size</li>
+<li>Using more efficient sampling designs (e.g., stratification)</li>
+<li>Statistical adjustments like weighting</li>
 </ul></li>
 </ul></li>
-<li>Non-Sampling Errors:
+<li><strong>Non-Sampling Error</strong>
 <ul>
-<li>Definition: All errors in a study that are not related to sampling</li>
-<li>Characteristics:
+<li><strong>Definition</strong>: All errors not attributable to sampling fluctuation, occurring in both sample surveys and complete censuses.</li>
+<li><strong>Characteristics</strong>:
 <ul>
-<li>Can occur in both sample and census studies</li>
-<li>Often more difficult to quantify and control than sampling errors</li>
-<li>Can introduce bias into results</li>
-<li>Can be either systematic or random</li>
+<li>Can be systematic or random</li>
+<li>Often harder to detect and quantify than sampling error</li>
+<li>Doesn’t necessarily decrease with larger samples</li>
+<li>Potentially more damaging to research validity than sampling error</li>
 </ul></li>
-<li>Examples:
+<li><strong>Types and Examples</strong>:
 <ul>
-<li>Response errors (e.g., misunderstanding questions, deliberate misreporting)</li>
-<li>Nonresponse bias (when certain groups are less likely to respond)</li>
-<li>Data processing errors (e.g., coding mistakes, data entry errors)</li>
-<li>Coverage errors (when the sampling frame doesn’t accurately represent the population)</li>
+<li><strong>Coverage Error</strong> (systematic): Using a voter registration list that omits recent registrants</li>
+<li><strong>Nonresponse Error</strong> (can be systematic or random): Higher refusal rates among certain demographics</li>
+<li><strong>Measurement Error</strong> (can be systematic or random):
+<ul>
+<li>Systematic: Poorly worded questions that consistently bias responses</li>
+<li>Random: Occasional data entry mistakes</li>
+</ul></li>
+<li><strong>Processing Error</strong> (can be systematic or random):
+<ul>
+<li>Systematic: Consistently miscoding certain responses</li>
+<li>Random: Occasional transcription errors</li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ol>
-<p>Important clarification: Non-sampling errors can indeed be either systematic or random. This is a crucial distinction that should have been included in the original description. Non-sampling errors encompass a wide range of potential errors that are not directly related to the sampling process. Some of these can be systematic (e.g., a miscalibrated measuring instrument), while others can be random (e.g., occasional mistakes in data entry).</p>
-<p>The distinction between sampling and non-sampling errors is independent of the division between systematic and random errors. In practice, non-sampling errors can fall into both of these categories, which makes their identification and control a particularly important aspect of statistical research.</p>
-<p>Understanding these types of errors is crucial for designing robust statistical studies, interpreting results accurately, and making valid inferences about populations based on sample data.</p>
+</section>
+<section id="the-total-survey-error-framework" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="the-total-survey-error-framework"><span class="header-section-number">5.2.3</span> The Total Survey Error Framework</h3>
+<p>Modern survey methodology approaches error through the Total Survey Error (TSE) framework, which considers all sources of error that can affect survey quality:</p>
+<ol type="1">
+<li><strong>Representation Errors</strong> (affecting who is included):
+<ul>
+<li>Coverage error</li>
+<li>Sampling error</li>
+<li>Nonresponse error</li>
+<li>Adjustment error (from weighting/imputation)</li>
+</ul></li>
+<li><strong>Measurement Errors</strong> (affecting the accuracy of responses):
+<ul>
+<li>Specification error (measuring the wrong concept)</li>
+<li>Measurement error (respondent, interviewer, questionnaire effects)</li>
+<li>Processing error (data entry, coding, editing)</li>
+</ul></li>
+</ol>
+<p>Understanding the interplay between these error types is crucial for designing high-quality research and appropriately interpreting results. While sampling error receives considerable attention because it’s easier to quantify, non-sampling errors often pose greater threats to validity in modern research.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="stat_imgs/ModelError.png" class="img-fluid figure-img"></p>
 <figcaption>Retrieved from: https://scientistcafe.com/ids/vbtradeoff</figcaption>
 </figure>
 </div>
-</section>
-</section>
-<section id="review-questions-and-exercises" class="level2" data-number="5.11">
-<h2 data-number="5.11" class="anchored" data-anchor-id="review-questions-and-exercises"><span class="header-section-number">5.11</span> Review Questions and Exercises</h2>
-<p>(…)</p>
+<p><em>Figure: The relationship between model complexity, bias, and variance. This illustrates how the balance between systematic error (bias) and random error (variance) affects overall model error.</em></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1073,8 +957,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./rozdzial3.html" class="pagination-link" aria-label="Od Próby do Populacji - Zrozumienie Losowości, Próbkowania i Wnioskowania">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Od Próby do Populacji - Zrozumienie Losowości, Próbkowania i Wnioskowania</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./rozdzial3.html" class="pagination-link" aria-label="Od Próby do Populacji - Zrozumienie Losowości, Pobierania Próby i Wnioskowania">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Od Próby do Populacji - Zrozumienie Losowości, Pobierania Próby i Wnioskowania</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

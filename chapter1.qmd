@@ -57,6 +57,51 @@ When pollsters survey just 1,000 voters to predict an election with 30,000,000 v
 
 It's similar to tasting soup. When you cook a large pot of soup and stir it thoroughly, you don't need to eat the entire pot to know how it tastes. A single spoonful is enough—as long as the soup is well-stirred.
 
+::: callout-note
+The Soup Analogy: A Taste of Statistics
+
+![](stat_imgs/soup-svgrepo-com.svg){width="30%"}
+
+-   When you taste a spoonful of soup and decide it isn't salty enough, that's exploratory/descriptive analysis.
+-   If you generalize and conclude that your entire pot of soup needs salt, that's an inference.
+-   For your inference to be valid, the spoonful you tasted (the sample) needs to be representative of the entire pot (the population).
+-   If the soup is not well stirred (heterogeneous population), it doesn't matter how large a spoon you have (sample size), it will still not accurately represent the whole. If the soup is well stirred (homogeneous population), even a small spoon will suffice to test the soup.
+:::
+
+```{mermaid}
+graph TD
+    DGP[Data Generating Process] -->|Generates| A[Population]
+    A -->|Random Selection| B[Sample]
+    B -->|Statistical Inference| C[Estimates & Conclusions]
+    C -->|Generalize back to| A
+    C -.->|Attempt to understand| DGP
+
+    style DGP fill:#1E90FF,stroke:#000,stroke-width:4px,color:#FFF
+    style A fill:#DC143C,stroke:#000,stroke-width:4px,color:#FFF
+    style B fill:#228B22,stroke:#000,stroke-width:2px,color:#FFF
+    style C fill:#8B4513,stroke:#000,stroke-width:2px,color:#FFF
+    
+    classDef note fill:#F0F0F0,stroke:#000,stroke-width:1px;
+    D[["DGP:
+    Underlying process
+    that generates data"]]
+    E[["Population:
+    Entire group of interest"]]
+    F[["Sample:
+    Subset of population"]]
+    G[["Inference:
+    Drawing conclusions
+    about population
+    and DGP"]]
+    
+    class D,E,F,G note
+    
+    D --> DGP
+    E --> A
+    F --> B
+    G --> C
+```
+
 #### Why Random Sampling Works
 
 Random sampling works because of three key principles:
@@ -73,41 +118,171 @@ Random sampling works because of three key principles:
 
 Without proper random sampling, you could easily end up with a biased sample. For instance, if you only surveyed people at a shopping mall during weekday mornings, you'd miss most working people and students, giving you a skewed picture of the population.
 
+::: {.callout-important}
+## Randomness as a Fundamental Law of Nature
+
+Randomness can be viewed as one of the fundamental laws of nature that shapes reality at multiple levels:
+
+- **In quantum mechanics**: Heisenberg's uncertainty principle and the probabilistic nature of quantum phenomena indicate that randomness is built into the fundamental structure of reality, rather than merely resulting from imperfections in our measurements or knowledge
+
+- **In genetics**: Random mutations and genetic recombinations constitute the basic mechanism of evolution and biological diversity
+
+- **In chaos theory**: Deterministic systems can exhibit unpredictable behaviors due to sensitivity to initial conditions (the so-called "butterfly effect")
+
+- **In statistical research**: Random sampling is the foundation for inferring properties of a population - without this natural property, we would not be able to formulate reliable generalizations from limited data sets
+
+This natural randomness becomes the foundation of empirical science methodology, particularly evident in two key aspects:
+
+**1. Randomization in Experiments**
+
+Randomization is the process of randomly assigning research units to experimental groups. It is a key element of experimental methodology that:
+- Minimizes the influence of confounding variables
+- Balances unknown factors between groups
+- Reduces the risk of systematic error
+- Enables the use of statistical tests for analyzing results
+
+Example in R:
+```{r}
+# Randomization in an experiment
+set.seed(42) # for reproducibility
+participants <- 1:30  # 30 study participants
+groups <- c(rep("Control", 15), rep("Experimental", 15))
+random_assignment <- sample(groups)  # random assignment to groups
+head(data.frame(ID = participants[1:6], Group = random_assignment[1:6]))
+```
+
+**2. Simple Random Sampling**
+
+Simple random sampling is the basic method of taking a sample in which each element of the population has an equal chance of being included in the sample. This property of randomness:
+- Ensures sample representativeness
+- Enables inference about population parameters
+- Allows for calculating random errors and constructing confidence intervals
+
+Example in R:
+```{r}
+# Drawing a simple random sample from a population
+population <- 1:1000  # population of 1000 elements
+sample_data <- sample(population, 50)  # random sample of 50 elements
+summary(sample_data)  # basic statistics of the drawn sample
+```
+
+Recognizing randomness as a law of nature changes our perception of reality - from a deterministic view, where everything is theoretically predictable with sufficient knowledge, to a stochastic one, where uncertainty and variability are inherent features of the world. This allows us to design studies that utilize this natural property to reliably understand the reality around us.
+:::
+
 ### Understanding Statistical Error
 
 When using a sample to learn about a population, we inevitably encounter statistical error:
 
-**Statistical error** is the difference between our sample estimate and the true population value. We can divide it into two main types:
+**Statistical error** is the difference between our sample estimate and the true population value. 
 
-1. **Random error (sampling error)**: The natural variation that occurs by chance when we select a random sample. This happens simply because we're looking at a portion rather than the whole population.
+::: {.callout-important}
+## Comprehensive Classification of Statistical Errors
 
-   **Standard error** measures this sampling error. It shows how much our sample statistics (like means or proportions) would vary if we repeatedly took different samples from the same population.
-   
-   * Smaller standard errors indicate more precise estimates
-   * Standard error decreases as sample size increases (roughly proportional to 1/√n)
-   * Standard error is affected by the variability in the population
+Statistical errors can compromise the validity and reliability of research findings. Understanding these errors is crucial for designing good studies, analyzing data correctly, and drawing appropriate conclusions. Here is a comprehensive classification of statistical errors:
 
-2. **Systematic error (non-sampling error)**: Occurs when our data collection methods systematically skew results in one direction. Unlike sampling error, systematic error CANNOT be reduced by increasing sample size.
+### Sampling Errors
 
-   Sources of systematic error include:
-   
-   * **Selection bias**: When the method of selecting your sample favors certain groups (e.g., phone surveys may miss people without phones)
-   * **Response bias**: When respondents provide inaccurate answers (e.g., over-reporting income)
-   * **Non-response bias**: When people who refuse to participate differ from those who do
-   * **Measurement error**: Stemming from inaccurate measuring tools or methods
+**Random Sampling Errors**
+- Think of these as the natural "luck of the draw" when selecting samples
+- Example: If you randomly select 30 students from a university to measure average height, you'll likely get a slightly different average each time you take a sample
+- These errors get smaller as you include more people in your sample
+- Can't be eliminated completely, but can be estimated using concepts like "margin of error"
 
-For example, if we calculate the average height from a sample, the standard error tells us how much that average might vary if we took many different random samples. However, if our measuring device is faulty and always adds 1 inch to each measurement, we have systematic error that increasing sample size won't fix.
+**Non-Random (Systematic) Sampling Errors (Bias)**
+- **Selection bias**: When your sample doesn't fairly represent everyone it should
+  - Example: Conducting a phone survey that only reaches people with landlines, missing those who only use cell phones
+- **Undercoverage**: When some groups are left out of your sample
+  - Example: A campus survey conducted only during daytime classes would miss evening students
+- **Self-selection bias**: When people choose whether to participate, potentially skewing results
+  - Example: Only people with strong opinions respond to a customer satisfaction survey
+- **Non-response bias**: When certain types of people tend not to answer surveys
+  - Example: Very busy people might not complete your questionnaire, giving you results that over-represent those with more free time
 
-A good study design must address both types of error:
+### Measurement Errors
 
-* Sampling error can be reduced by increasing sample size
-* Systematic error can only be reduced by improving data collection methods
+**Random Measurement Errors**
+- Unpredictable "noise" when measuring something
+- Example: A slightly shaky hand when measuring blood pressure gives slightly different readings each time
+- These tend to balance out with repeated measurements
+
+**Systematic Measurement Errors**
+- **Calibration errors**: When your measuring tool is consistently off
+  - Example: A scale that always adds 2 pounds to everyone's weight
+- **Observer bias**: When the person collecting data influences the measurements
+  - Example: A researcher unconsciously recording data in a way that supports their hypothesis
+- **Social desirability bias**: When people answer questions how they think they "should" respond, not truthfully
+  - Example: Underreporting how much junk food they eat in a nutrition study
+
+### Inference Errors
+
+**Hypothesis Testing Errors** (explained in simple terms)
+- **Type I error**: Seeing an effect or relationship that isn't really there (false alarm)
+  - Example: Concluding a medicine works when its benefits were just due to chance
+- **Type II error**: Missing an effect or relationship that actually exists (missed detection)
+  - Example: Concluding a medicine doesn't work when it actually does help patients
+- **Type III error**: Solving the wrong problem or asking the wrong question entirely
+  - Example: Studying whether a teaching method improves test scores when the real question should be about improving long-term understanding
+
+**Statistical Power Issues**
+- **Underpowered studies**: Not including enough participants to reliably detect effects
+  - Example: Trying to test a weight loss program with only 5 people—too few to draw reliable conclusions
+
+### Model Specification Errors
+
+**Variable Selection Errors**
+- **Omitted variable bias**: Leaving out important factors that affect your results
+  - Example: Studying the relationship between exercise and weight loss without accounting for participants' diets
+- **Confounding**: When an outside factor influences both what you're testing and the outcome
+  - Example: People who exercise (variable 1) might also tend to eat healthier (hidden factor), both of which affect weight loss (outcome)
+
+**Assumption Errors**
+- When the statistical test you're using doesn't match your data
+  - Example: Using a test that assumes your data follows a bell curve when it actually doesn't
+
+### Data Processing and Analysis Errors
+
+**Data Handling Errors**
+- **Data entry errors**: Simple mistakes when recording information
+  - Example: Typing "1050" instead of "150" for someone's weight
+- **Missing data problems**: Not properly accounting for incomplete information
+  - Example: Calculating the average test score while ignoring students who were absent
+
+**Analysis Execution Errors**
+- **Software bugs or user errors**: Mistakes in how statistical programs are used
+  - Example: Selecting the wrong type of test in your statistics software
+
+### Interpretation and Reporting Errors
+
+**Causal Inference Errors**
+- **Correlation-causation fallacy**: Assuming that when two things happen together, one must cause the other
+  - Example: Noticing that countries with more chocolate consumption have more Nobel Prize winners, and wrongly concluding that chocolate makes people smarter
+
+**Reporting and Communication Errors**
+- **p-hacking**: Trying many different analyses until you find something "significant"
+  - Example: Analyzing your data in 20 different ways and only reporting the one analysis that showed the result you wanted
+- **Cherry-picking**: Only sharing results that support your hypothesis
+  - Example: A diet pill company only publishing studies where their product worked, hiding studies where it didn't
+
+### Remedy Strategies
+
+Ways to reduce these errors:
+
+- **Proper research design**: Planning studies carefully before collecting data
+- **Adequate sample size**: Including enough participants based on statistical calculations
+- **Pre-registration**: Declaring what you'll analyze before seeing the data
+- **Transparency**: Sharing your data and analysis methods with others
+- **Replication**: Having different researchers repeat the study to see if they get similar results
+
+Understanding these errors helps ensure that research findings are trustworthy and that we don't draw false conclusions that could lead to poor decisions in fields like medicine, public policy, education, and business.
+:::
+
+
 
 ### Sample Size Considerations
 
 The necessary sample size depends on three main factors:
 
-1. **What type of estimate are you making?** (proportion or average)
+1. **What type of estimate are you making?** (proportion, average, regression parameter, etc.)
 2. **How accurate do you need your estimate to be?**
    
    * More accurate = larger sample
@@ -117,6 +292,7 @@ The necessary sample size depends on three main factors:
    
    * For proportions: Maximum variability occurs at 50%, minimum at 0% or 100%
    * For means: Check how much measurements differ from each other (variance)
+   * For regression models: Consider the variance of your predictors and outcome variables
 
 #### Small Population Considerations
 
@@ -135,7 +311,15 @@ When working with small populations (e.g., 1,000 people or fewer):
 * Standard formulas for standard errors based on sampling with replacement will overestimate error in small populations
 * Clearly document the sampling mechanism in research reports
 
-### Proportions vs. Averages: Understanding the Differences
+**Explaining the difference:**
+
+-   Sampling with replacement: each unit has a constant probability of selection in each draw (e.g., 1/N)
+-   Sampling without replacement: selection probability changes in subsequent draws (from 1/N to 1/(N-1), 1/(N-2), etc.)
+-   In large populations, the difference is minimal; in small ones - fundamental
+-   Sampling without replacement schemes often have lower estimator variance than sampling with replacement
+
+
+### Statistical Estimation Considerations
 
 #### Proportions (percentages)
 
@@ -165,6 +349,7 @@ This happens because proportions follow a binomial distribution, where the varia
 For a typical election poll with proportions near 50%, about 1,000 randomly selected people provide accuracy around ±3 percentage points. Surprisingly, this sample size remains roughly the same whether your population is 30,000 or 30 million. This counterintuitive fact is why national polls can be accurate with relatively small samples.
 
 #### Averages (means)
+
 When estimating an average (like typical household income or height):
 
 - An average summarizes continuous measurements that can take many different values
@@ -173,29 +358,87 @@ When estimating an average (like typical household income or height):
   * Populations with more varied measurements require larger samples
   * More precise estimates require larger samples
   * Unlike proportions, there is no "maximum uncertainty" at a certain value
+  * The necessary sample size is directly proportional to the variance of the variable
 
 - For example, estimating average income might require a larger sample than estimating average height because incomes typically vary more widely than heights
 
-#### Regression Model Parameters
-When estimating regression model parameters:
+#### Model Parameters and Complex Estimation
 
-- **What is regression?** Regression models describe how one variable (the dependent variable) relates to one or more other variables (the independent variables). For example, how sales depend on advertising spend, or how crop yield depends on rainfall and temperature.
+Statistical modeling extends beyond simple proportions and averages to examine relationships between variables and make predictions. Sample size requirements become more nuanced in these contexts.
 
-- These parameters show relationships between variables
-- Sample size for regression models is more complex than for simple means or proportions
-- Key factors affecting required sample size:
-  * Number of variables in the model (more variables = larger sample)
-  * Strength of the effects being studied (weaker effects require larger samples)
-  * Variability in the data (greater variability = larger sample)
-  * Model complexity (more complex models require larger samples)
+##### Regression Model Parameters
 
-**Simple rules for regression models:**
+Regression models describe how one variable (the dependent variable) relates to one or more other variables (the independent variables). Sample size considerations for regression include:
 
-- Basic rule of thumb: at least 10-20 observations per variable in your model
-- For detecting subtle effects: may need 100+ observations per variable
-- Multilevel or hierarchical models: require substantially larger samples
+**Key factors affecting required sample size:**
 
-### Maximum Uncertainty Example: Why 50% is the "Worst Case"
+- **Number of parameters**: Each predictor variable and interaction term consumes "degrees of freedom"
+  * More variables = larger sample needed
+  * Rule of thumb: 10-20 observations per variable is a minimum starting point
+  * For detecting subtle effects: may need 50-100+ observations per variable
+
+- **Effect size**: The strength of the relationships being studied
+  * Smaller effects require larger samples to detect reliably
+  * Power analysis should be conducted based on expected effect sizes
+
+- **Variability explanations**:
+  * $R^2$ values - higher values indicate models that explain more variance, potentially requiring smaller samples
+  * Residual variance - greater unexplained variability requires larger samples
+
+- **Model complexity**:
+  * Linear vs. non-linear relationships
+  * Interaction effects
+  * Nested or hierarchical data structures
+  * Non-normal distributions or heteroscedasticity
+
+##### Advanced Modeling Considerations
+
+**Multilevel and Hierarchical Models:**
+
+- These models handle nested data structures (e.g., students within classrooms within schools)
+- Sample size requirements operate at multiple levels:
+  * Level 1: Individual observations (e.g., students)
+  * Level 2: Grouping factors (e.g., classrooms)
+  * Level 3: Higher-level groups (e.g., schools)
+- Rule of thumb: Need at least 30+ groups at higher levels for reliable estimation
+- Power depends more on the number of higher-level units than on the total sample size
+
+**Structural Equation Models (SEM):**
+
+- Complex models examining relationships among latent variables
+- Sample size requirements typically larger than simple regression
+- Recommendations range from 200 minimum to 10-20 observations per estimated parameter
+- Model complexity and expected effect sizes heavily influence required sample sizes
+
+**Bayesian Approaches:**
+
+- Prior information can sometimes compensate for smaller sample sizes
+- However, still require sufficient data, especially for complex models
+- Posterior predictive checks help assess if sample size is adequate
+
+#### Sample Size Planning in Practice
+
+When planning studies, consider:
+
+1. **Statistical power**: The ability to detect effects when they truly exist
+   * Commonly aim for 80% power (or higher for critical decisions)
+   * Conduct formal power analyses when possible
+
+2. **Precision**: How narrow you need confidence intervals to be
+   * Consider the practical importance of precision in your field
+   * More precision requires larger samples
+
+3. **Resource constraints**: Balance statistical ideals with practical limitations
+   * Budget, time, participant availability
+   * Consider sequential or adaptive sampling when appropriate
+
+4. **Ethical considerations**: Collect enough data to answer questions reliably, but don't waste resources or unnecessarily burden participants
+
+Remember that these are guidelines, and specific research questions may require consulting with a statistician for optimal sample size determination.
+
+
+
+### Maximum Uncertainty for Proportion Example: Why 50% is the "Worst Case"
 
 To understand why proportions near 50% require larger samples, let's look at a simulation:
 
