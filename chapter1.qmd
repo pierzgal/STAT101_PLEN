@@ -85,6 +85,59 @@ graph TD
     G --> C
 ```
 
+::: {.callout-note}
+## Data Storage Methods in Data Science
+
+Data scientists commonly work with several storage formats:
+
+- **CSV (Comma-Separated Values)**: Simple text files where values are separated by commas.
+  - **Advantages**: Portable, human-readable, supported by all analytical tools, easy to share.
+  - **Disadvantages**: No support for complex data types, limited scalability for large datasets, no relationship handling, character encoding issues.
+
+```r
+# Reading CSV in R
+data <- read.csv("dataset.csv")
+```
+
+```python
+# Reading CSV in Python
+import pandas as pd
+data = pd.read_csv("dataset.csv")
+```
+
+- **SQL Databases**: Relational databases that store data in tables with defined relationships.
+  - **Advantages**: Excellent handling of complex relationships, support for transactions, concurrency and data integrity, optimized queries, scalability.
+  - **Disadvantages**: Higher complexity to manage, rigid data structure, higher maintenance costs, horizontal scaling challenges.
+
+```r
+# Connecting to SQL database in R
+library(DBI)
+con <- dbConnect(RSQLite::SQLite(), "database.db")
+data <- dbGetQuery(con, "SELECT * FROM table_name")
+```
+
+```python
+# Connecting to SQL database in Python
+import sqlite3
+import pandas as pd
+conn = sqlite3.connect("database.db")
+data = pd.read_sql_query("SELECT * FROM table_name", conn)
+```
+
+- **Other formats**:
+  - **Parquet**: 
+    - **Advantages**: Columnar storage increasing query performance, compression, efficient handling of large datasets.
+    - **Disadvantages**: Less flexibility for modifications, limited human readability.
+  
+  - **JSON**: 
+    - **Advantages**: Flexibility for nested data, widespread support, human readability.
+    - **Disadvantages**: Larger file sizes, slower parsing, lack of type standardization.
+  
+  - **NoSQL**: 
+    - **Advantages**: Schema flexibility, excellent horizontal scalability, performance for specific use cases.
+    - **Disadvantages**: Limited data consistency, less advanced querying, reduced support for complex relationships.
+:::
+
 
 ### Statistical Inference: How Can a Small Sample Represent a Large Population?
 
@@ -93,7 +146,7 @@ When pollsters survey just 1,000 voters to predict an election with 30,000,000 v
 It's similar to tasting soup. When you cook a large pot of soup and stir it thoroughly, you don't need to eat the entire pot to know how it tastes. A single spoonful is enough—as long as the soup is well-stirred.
 
 ::: callout-note
-The Soup Analogy: A Taste of Statistics
+**The Soup Analogy: A Taste of Statistics**
 
 ![](stat_imgs/soup-svgrepo-com.svg){width="30%"}
 
@@ -186,12 +239,14 @@ Statistical errors can compromise the validity and reliability of research findi
 ### Sampling Errors
 
 **Random Sampling Errors**
+
 - Think of these as the natural "luck of the draw" when selecting samples
 - Example: If you randomly select 30 students from a university to measure average height, you'll likely get a slightly different average each time you take a sample
 - These errors get smaller as you include more people in your sample
 - Can't be eliminated completely, but can be estimated using concepts like "margin of error"
 
 **Non-Random (Systematic) Sampling Errors (Bias)**
+
 - **Selection bias**: When your sample doesn't fairly represent everyone it should
   - Example: Conducting a phone survey that only reaches people with landlines, missing those who only use cell phones
 - **Undercoverage**: When some groups are left out of your sample
@@ -204,11 +259,13 @@ Statistical errors can compromise the validity and reliability of research findi
 ### Measurement Errors
 
 **Random Measurement Errors**
+
 - Unpredictable "noise" when measuring something
 - Example: A slightly shaky hand when measuring blood pressure gives slightly different readings each time
 - These tend to balance out with repeated measurements
 
 **Systematic Measurement Errors**
+
 - **Calibration errors**: When your measuring tool is consistently off
   - Example: A scale that always adds 2 pounds to everyone's weight
 - **Observer bias**: When the person collecting data influences the measurements
@@ -219,6 +276,7 @@ Statistical errors can compromise the validity and reliability of research findi
 ### Inference Errors
 
 **Hypothesis Testing Errors** (explained in simple terms)
+
 - **Type I error**: Seeing an effect or relationship that isn't really there (false alarm)
   - Example: Concluding a medicine works when its benefits were just due to chance
 - **Type II error**: Missing an effect or relationship that actually exists (missed detection)
@@ -227,40 +285,47 @@ Statistical errors can compromise the validity and reliability of research findi
   - Example: Studying whether a teaching method improves test scores when the real question should be about improving long-term understanding
 
 **Statistical Power Issues**
+
 - **Underpowered studies**: Not including enough participants to reliably detect effects
   - Example: Trying to test a weight loss program with only 5 people—too few to draw reliable conclusions
 
 ### Model Specification Errors
 
 **Variable Selection Errors**
+
 - **Omitted variable bias**: Leaving out important factors that affect your results
   - Example: Studying the relationship between exercise and weight loss without accounting for participants' diets
 - **Confounding**: When an outside factor influences both what you're testing and the outcome
   - Example: People who exercise (variable 1) might also tend to eat healthier (hidden factor), both of which affect weight loss (outcome)
 
 **Assumption Errors**
+
 - When the statistical test you're using doesn't match your data
   - Example: Using a test that assumes your data follows a bell curve when it actually doesn't
 
 ### Data Processing and Analysis Errors
 
 **Data Handling Errors**
+
 - **Data entry errors**: Simple mistakes when recording information
   - Example: Typing "1050" instead of "150" for someone's weight
 - **Missing data problems**: Not properly accounting for incomplete information
   - Example: Calculating the average test score while ignoring students who were absent
 
 **Analysis Execution Errors**
+
 - **Software bugs or user errors**: Mistakes in how statistical programs are used
   - Example: Selecting the wrong type of test in your statistics software
 
 ### Interpretation and Reporting Errors
 
 **Causal Inference Errors**
+
 - **Correlation-causation fallacy**: Assuming that when two things happen together, one must cause the other
   - Example: Noticing that countries with more chocolate consumption have more Nobel Prize winners, and wrongly concluding that chocolate makes people smarter
 
 **Reporting and Communication Errors**
+
 - **p-hacking**: Trying many different analyses until you find something "significant"
   - Example: Analyzing your data in 20 different ways and only reporting the one analysis that showed the result you wanted
 - **Cherry-picking**: Only sharing results that support your hypothesis
@@ -1158,6 +1223,7 @@ A statistical model is a mathematical representation of reality that describes r
 Example of a linear regression model: $y = \beta_0 + \beta_1x + \epsilon$, where $\epsilon \sim N(0, \sigma^2)$
 
 In this model:
+
 - $\beta_0$ and $\beta_1$ are parameters we want to estimate
 - $\epsilon$ is a random component representing unexplained variability
 - We assume normality of the error distribution

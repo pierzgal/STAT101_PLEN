@@ -89,6 +89,60 @@ graph TD
 ```
 
 
+::: {.callout-note}
+## Metody przechowywania danych w Data Science
+
+Naukowcy danych najczęściej pracują z następującymi formatami przechowywania:
+
+- **CSV (Comma-Separated Values)**: Simple text files where values are separated by commas.
+  - **Zalety**: Przenośne, czytelne dla człowieka, obsługiwane przez wszystkie narzędzia analityczne, łatwe w udostępnianiu.
+  - **Wady**: Brak wsparcia dla złożonych typów danych, ograniczona skalowalność dla dużych zbiorów danych, brak obsługi relacji, problemy z kodowaniem znaków.
+
+```r
+# Reading CSV in R
+data <- read.csv("dataset.csv")
+```
+
+```python
+# Reading CSV in Python
+import pandas as pd
+data = pd.read_csv("dataset.csv")
+```
+
+- **SQL Databases**: Relacyjne bazy danych przechowujące dane w tabelach z zdefiniowanymi relacjami.
+  - **Zalety**: Doskonała obsługa złożonych relacji, wsparcie dla transakcji, współbieżności i integralności danych, zoptymalizowane zapytania, skalowalność.
+  - **Wady**: Większa złożoność obsługi, sztywna struktura danych, wyższe koszty utrzymania, problemy z horyzontalnymi skalowaniem.
+
+```r
+# Connecting to SQL database in R
+library(DBI)
+con <- dbConnect(RSQLite::SQLite(), "database.db")
+data <- dbGetQuery(con, "SELECT * FROM table_name")
+```
+
+```python
+# Connecting to SQL database in Python
+import sqlite3
+import pandas as pd
+conn = sqlite3.connect("database.db")
+data = pd.read_sql_query("SELECT * FROM table_name", conn)
+```
+
+- **Inne formaty**:
+  - **Parquet**: 
+    - **Zalety**: Kolumnowe przechowywanie zwiększające wydajność zapytań, kompresja, efektywna obsługa dużych zbiorów danych.
+    - **Wady**: Mniejsza elastyczność modyfikacji, ograniczona czytelność dla człowieka.
+  
+  - **JSON**: 
+    - **Zalety**: Elastyczność dla danych zagnieżdżonych, powszechne wsparcie, czytelność dla człowieka.
+    - **Wady**: Większy rozmiar plików, wolniejsze parsowanie, brak standaryzacji typów.
+  
+  - **NoSQL**: 
+    - **Zalety**: Elastyczność schematów, doskonała skalowalność horyzontalna, wydajność dla określonych przypadków użycia.
+    - **Wady**: Ograniczona spójność danych, mniej zaawansowane zapytania, mniejsze wsparcie dla złożonych relacji.
+:::
+
+
 ### Wnioskowanie Statystyczne: Jak Mała Próba Może Reprezentować Dużą Populację?
 
 Kiedy ankieterzy badają tylko 1000 wyborców, aby przewidzieć wynik wyborów z 30 000 000 uprawnionych do głosowania (zaledwie 0,003% populacji), może się to wydawać zagadkowe. Jak tak niewielki ułamek może powiedzieć nam coś o całości?
@@ -96,7 +150,7 @@ Kiedy ankieterzy badają tylko 1000 wyborców, aby przewidzieć wynik wyborów z
 To podobne do próbowania zupy. Gdy gotujesz duży garnek zupy i dokładnie ją mieszasz, nie musisz zjeść całego garnka, aby wiedzieć, jak smakuje. Wystarczy jedna łyżka – o ile zupa jest dobrze wymieszana.
 
 ::: callout-note
-The Soup Analogy: A Taste of Statistics
+**The Soup Analogy: A Taste of Statistics**
 
 ![](stat_imgs/soup-svgrepo-com.svg){width="30%"}
 
@@ -143,6 +197,7 @@ Ta naturalna losowość staje się fundamentem metodologii nauk empirycznych, sz
 **1. Randomizacja w eksperymentach**
 
 Randomizacja to proces losowego przydzielania jednostek badawczych do grup eksperymentalnych. Jest to kluczowy element metodologii eksperymentalnej, który:
+
 - Minimalizuje wpływ zmiennych zakłócających
 - Równoważy nieznane czynniki między grupami
 - Zmniejsza ryzyko błędu systematycznego
@@ -161,6 +216,7 @@ head(data.frame(ID = uczestnicy[1:6], Grupa = przydział_losowy[1:6]))
 **2. Prosta próba losowa**
 
 Prosta próba losowa to podstawowa metoda pobierania próby, w której każdy element populacji ma taką samą szansę na włączenie do próby. Ta własność losowości:
+
 - Zapewnia reprezentatywność próby
 - Umożliwia wnioskowanie o parametrach populacji
 - Pozwala na obliczanie błędów losowych i konstruowanie przedziałów ufności
@@ -192,12 +248,14 @@ Błędy statystyczne mogą podważyć wiarygodność i rzetelność wyników bad
 ### Błędy pobierania próby
 
 **Losowe błędy próbkowania**
+
 - Możesz o nich myśleć jako o naturalnym "szczęściu w losowaniu" przy wyborze próby
 - Przykład: Jeśli losowo wybierzesz 30 studentów z uniwersytetu, aby zmierzyć średni wzrost, prawdopodobnie otrzymasz nieco inny wynik za każdym razem, gdy pobierzesz próbę
 - Te błędy zmniejszają się wraz ze zwiększaniem liczebności próby
 - Nie można ich całkowicie wyeliminować, ale można je oszacować za pomocą "marginesu błędu"
 
 **Nielosowe (systematyczne) błędy próbkowania**
+
 - **Błąd doboru próby**: Gdy próba nie reprezentuje uczciwie wszystkich, których powinna
   - Przykład: Przeprowadzenie ankiety telefonicznej docierającej tylko do osób posiadających telefony stacjonarne, pomijając tych, którzy korzystają wyłącznie z telefonów komórkowych
 - **Niepełne pokrycie**: Gdy niektóre grupy są pomijane w próbie
@@ -214,11 +272,13 @@ Na przykład, jeśli obliczamy średni wzrost z próby, błąd standardowy mówi
 ### Błędy pomiaru
 
 **Losowe błędy pomiaru**
+
 - Nieprzewidywalny "szum" podczas mierzenia czegokolwiek
 - Przykład: Lekko drżąca ręka przy pomiarze ciśnienia krwi daje nieco inne odczyty za każdym razem
 - Te błędy zazwyczaj równoważą się przy wielokrotnych pomiarach
 
 **Systematyczne błędy pomiaru**
+
 - **Błędy kalibracji**: Gdy narzędzie pomiarowe jest konsekwentnie niedokładne
   - Przykład: Waga, która zawsze dodaje 1 kg do wagi każdego
 - **Błąd obserwatora**: Gdy osoba zbierająca dane wpływa na pomiary
@@ -228,7 +288,8 @@ Na przykład, jeśli obliczamy średni wzrost z próby, błąd standardowy mówi
 
 ### Błędy wnioskowania
 
-**Błędy testowania hipotez** (wyjaśnione prosto)
+**Błędy testowania hipotez** (wyjaśnienie uproszczone)
+
 - **Błąd I rodzaju**: Dostrzeganie efektu lub związku, który tak naprawdę nie istnieje (fałszywy alarm)
   - Przykład: Wyciągnięcie wniosku, że lek działa, gdy jego korzyści wynikały tylko z przypadku
 - **Błąd II rodzaju**: Przeoczenie efektu lub związku, który faktycznie istnieje (przeoczenie)
@@ -237,40 +298,47 @@ Na przykład, jeśli obliczamy średni wzrost z próby, błąd standardowy mówi
   - Przykład: Badanie, czy metoda nauczania poprawia wyniki testów, gdy prawdziwe pytanie powinno dotyczyć długoterminowego zrozumienia materiału
 
 **Problemy z mocą statystyczną**
+
 - **Badania z niedostateczną mocą**: Nieuwzględnienie wystarczającej liczby uczestników, aby wiarygodnie wykryć efekty
   - Przykład: Próba przetestowania programu odchudzającego z udziałem tylko 5 osób — zbyt mało, aby wyciągnąć wiarygodne wnioski
 
 ### Błędy specyfikacji modelu
 
 **Błędy wyboru zmiennych**
+
 - **Błąd pominięcia zmiennej**: Pominięcie ważnych czynników wpływających na wyniki
   - Przykład: Badanie związku między ćwiczeniami a utratą wagi bez uwzględnienia diety uczestników
 - **Błąd zmiennej zakłócającej**: Gdy zewnętrzny czynnik wpływa zarówno na to, co testujesz, jak i na wynik
   - Przykład: Osoby, które ćwiczą (zmienna 1), mogą również mieć tendencję do zdrowszego odżywiania się (ukryty czynnik), co wpływa na utratę wagi (wynik)
 
 **Błędy założeń**
+
 - Gdy stosowany test statystyczny nie pasuje do twoich danych
   - Przykład: Używanie testu, który zakłada, że dane mają rozkład normalny (przypominający krzywą dzwonową), gdy w rzeczywistości tak nie jest
 
 ### Błędy przetwarzania i analizy danych
 
 **Błędy obsługi danych**
+
 - **Błędy wprowadzania danych**: Proste pomyłki przy zapisywaniu informacji
   - Przykład: Wpisanie "105" zamiast "15" jako wieku kogoś
 - **Problemy z brakującymi danymi**: Niewłaściwe uwzględnienie niekompletnych informacji
   - Przykład: Obliczanie średniego wyniku testu przy ignorowaniu nieobecnych uczniów
 
 **Błędy wykonania analizy**
+
 - **Błędy oprogramowania lub użytkownika**: Pomyłki w korzystaniu z programów statystycznych
   - Przykład: Wybranie niewłaściwego rodzaju testu w oprogramowaniu statystycznym
 
 ### Błędy interpretacji i raportowania
 
 **Błędy wnioskowania przyczynowego**
+
 - **Błąd mylenia korelacji z przyczynowością**: Założenie, że gdy dwie rzeczy występują razem, jedna musi powodować drugą
   - Przykład: Zauważenie, że kraje z większym spożyciem czekolady mają więcej laureatów Nagrody Nobla i błędne wnioskowanie, że czekolada zwiększa inteligencję
 
 **Błędy raportowania i komunikacji**
+
 - **p-hacking (manipulacja wartością p)**: Próbowanie wielu różnych analiz, aż znajdziesz coś "istotnego"
   - Przykład: Analizowanie danych na 20 różnych sposobów i raportowanie tylko tej analizy, która pokazała pożądany wynik
 - **Wybiórcze raportowanie**: Dzielenie się tylko wynikami potwierdzającymi hipotezę
@@ -1195,7 +1263,11 @@ Model statystyczny to matematyczna reprezentacja rzeczywistości, która opisuje
 
 Przykład modelu regresji liniowej: $y = \beta_0 + \beta_1x + \epsilon$, gdzie $\epsilon \sim N(0, \sigma^2)$
 
-W tym modelu: - $\beta_0$ i $\beta_1$ to parametry, które chcemy oszacować - $\epsilon$ to komponent losowy reprezentujący niewyjaśnioną zmienność - Zakładamy normalność rozkładu błędów
+W tym modelu:
+
+- $\beta_0$ i $\beta_1$ to parametry, które chcemy oszacować
+- $\epsilon$ to komponent losowy reprezentujący niewyjaśnioną zmienność
+- Zakładamy normalność rozkładu błędów
 
 ### Wnioskowanie Przyczynowe a Predykcyjne (korelacyjne)
 
