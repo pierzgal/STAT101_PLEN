@@ -187,34 +187,6 @@ This natural language distinction reflects the two fundamental types of numerica
 -   Volume of water: \_\_\_\_\_
 :::
 
-### R Code Example
-
-Here's a simple R code example to illustrate how we might analyze variables treated as continuous:
-
-```{r}
-# Generate some sample data
-set.seed(123)
-ages <- round(runif(1000, min = 18, max = 80))
-unemployment_rates <- round(runif(1000, min = 3, max = 10), 1)
-
-# Compare means and medians
-cat("Mean age:", mean(ages), "\n")
-cat("Median age:", median(ages), "\n")
-cat("Mean unemployment rate:", mean(unemployment_rates), "\n")
-cat("Median unemployment rate:", median(unemployment_rates), "\n")
-
-# Linear regression (treating both as continuous)
-income <- 20000 + 500 * ages + 1000 * unemployment_rates + rnorm(1000, 0, 5000)
-model <- lm(income ~ ages + unemployment_rates)
-summary(model)
-
-# Plot regression plane
-library(plotly)
-plot_ly(x = ages, y = unemployment_rates, z = income, type = "scatter3d", mode = "markers") %>%
-  add_trace(x = ages, y = unemployment_rates, z = fitted(model), type = "scatter3d", mode = "lines")
-```
-
-The 3D plot illustrates how both variables can be treated as continuous in a regression model.
 
 ## Introduction to Stevens' Data Typology
 
@@ -308,127 +280,183 @@ The ratio scale is the highest level of measurement. It has all the properties o
 -   Age
 -   Income
 
-::: callout-note
-### Understanding Operations with Data Types
+Oczywiście! Oto poprawiona i sprawdzona wersja Twojego materiału w języku angielskim, w formacie `callout-note`, gotowa do użycia w Quarto (pisana w RStudio). Skopiuj ten kod do swojego pliku `.qmd` i dostosuj ewentualnie stylowanie do swoich preferencji.
 
-### Fundamental Concepts
 
-#### Temperature Scale Conversions
+::: {.callout-note}
+### Why Some Statistics Work (and Others Don't) for Interval Scales
 
-Basic conversion formula: $F = \frac{9}{5}C + 32$
+#### Key Idea
+An interval scale is one where the distances between values are meaningful, but the zero point is arbitrary. For interval scales (e.g., temperature):
 
-#### Data Type Classifications
+- **Allowed**: Addition/subtraction of values and multiplication/division by constants.
+- **Not allowed**: Multiplication/division of values from the scale by each other, as this leads to results without physical interpretation.
 
--   **Interval Data** (e.g., temperature): Has equal intervals but no true zero
--   **Ratio Data** (e.g., length): Has equal intervals and a true zero point
+#### Properties of Interval Scales
 
-### Operations Analysis
+1. **Equal intervals represent the same differences**:
+   - The difference between 20°C and 25°C (5°C) represents the same change as between 30°C and 35°C.
+   - Proportions of differences are preserved: 10°C is twice the change of 5°C.
 
-#### Differences (Works for Both Types)
+2. **The zero point is arbitrary**:
+   - 0°C is the freezing point of water, not the absence of temperature.
+   - The same physical state has different values in different scales: 0°C = 32°F.
 
-##### Temperature Proof
+3. **Linear transformation**:
+   - General formula: $y = ax + b$, where $a \neq 0$.
+   - For temperature: $F = C \times \frac{9}{5} + 32$.
 
-For any two temperatures $C_1$ and $C_2$: \* $F_1 = \frac{9}{5}C_1 + 32$ \* $F_2 = \frac{9}{5}C_2 + 32$
+#### Why the Arithmetic Mean Works
+The arithmetic mean works because it relies on addition and division by a constant, which are allowed on interval scales. Example:
 
-Temperature difference: \* $\Delta F = F_2 - F_1$ \* $= (\frac{9}{5}C_2 + 32) - (\frac{9}{5}C_1 + 32)$ \* $= \frac{9}{5}(C_2 - C_1)$ \* $= \frac{9}{5}\Delta C$
+```markdown
+Data: 20°C and 30°C
 
-##### Why Differences Work
+Method 1: Mean in Celsius, then conversion
+1. Mean: (20°C + 30°C) ÷ 2 = 25°C
+2. Conversion: 25°C × (9/5) + 32 = 77°F
 
--   **Interval Data**: Constant terms (like +32) cancel out
--   **Ratio Data**: Conversion factors preserve both differences and ratios
-    -   Example: 20m - 10m = 10m converts to 65.6ft - 32.8ft = 32.8ft
-    -   Ratio preservation: 20m/10m = 65.6ft/32.8ft = 2
+Method 2: Conversion to °F, then mean
+1. Conversion: 20°C → 68°F, 30°C → 86°F
+2. Mean: (68°F + 86°F) ÷ 2 = 77°F
 
-#### Multiplication (Only Works for Ratio Data)
+Both methods give the same result! ✓
+```
 
-##### Temperature Example (Fails)
+**Mathematical proof of correctness**:
+\begin{align}
+\bar{F} &= \frac{F_1 + F_2}{2} \\
+&= \frac{(C_1 \times \frac{9}{5} + 32) + (C_2 \times \frac{9}{5} + 32)}{2} \\
+&= \frac{(C_1 + C_2) \times \frac{9}{5} + 64}{2} \\
+&= \left(\frac{C_1 + C_2}{2}\right) \times \frac{9}{5} + 32 \\
+&= \bar{C} \times \frac{9}{5} + 32
+\end{align}
 
-Method A: Convert after multiplication
+#### Why Variance is Problematic
+Variance is problematic because it relies on squared differences, leading to squared units (e.g., °C²) without clear physical interpretation. Example:
 
--   10°C × 2 = 20°C → 68°F
+```markdown
+Same temperatures: 20°C and 30°C
 
-Method B: Convert before multiplication
+Method 1: Variance in Celsius
+1. Mean: 25°C
+2. Deviations: (20 - 25)°C = -5°C, (30 - 25)°C = 5°C
+3. Squared deviations: (-5°C)² = 25(°C)², (5°C)² = 25(°C)²
+4. Mean: (25 + 25)(°C)² ÷ 2 = 25(°C)²
 
--   10°C → 50°F → 100°F
+Method 2: Variance in Fahrenheit
+1. Conversion: 20°C → 68°F, 30°C → 86°F
+2. Mean: 77°F
+3. Deviations: (68 - 77)°F = -9°F, (86 - 77)°F = 9°F
+4. Squared deviations: (-9°F)² = 81(°F)², (9°F)² = 81(°F)²
+5. Mean: (81 + 81)(°F)² ÷ 2 = 81(°F)²
 
-Results differ: 68°F ≠ 100°F
+Problem: 25(°C)² and 81(°F)² are not equivalent!
+```
 
-##### Length Example (Works)
+**Mathematical analysis of the problem**:
+\begin{align}
+(F_i - \bar{F})^2 &= [(C_i \times \frac{9}{5} + 32) - (\bar{C} \times \frac{9}{5} + 32)]^2 \\
+&= [(C_i - \bar{C}) \times \frac{9}{5}]^2 \\
+&= (C_i - \bar{C})^2 \times \left(\frac{9}{5}\right)^2
+\end{align}
 
-Method A: Convert after multiplication
+#### Theoretical Conclusions
 
--   10m × 2 = 20m → 65.6ft
+1. **Allowed operations**:
+   - Addition/subtraction (preserves differences).
+   - Multiplication/division by constants (scaling).
+   - Arithmetic means.
+   - Comparing temperature differences.
 
-Method B: Convert before multiplication
+2. **Not allowed operations**:
+   - Multiplying temperatures by each other.
+   - Dividing temperatures by each other.
+   - Geometric means.
+   - Coefficient of variation.
 
--   10m → 32.8ft × 2 = 65.6ft
+3. **Practical implications**:
+   - Variance and standard deviation require careful interpretation.
+   - Better to use measures based on differences (e.g., MAD - mean absolute deviation).
+   - When comparing variability, it is advisable to standardize the data.
 
-Results match: 65.6ft = 65.6ft
-
-### Statistical Measures
-
-#### Mean (Works for Both Types)
-
--   Uses only differences
--   Temperature example:
-    -   Celsius: (10°C + 20°C + 30°C)/3 = 20°C
-    -   Fahrenheit: (50°F + 68°F + 86°F)/3 = 68°F
--   Maintains proportional relationships
-
-#### Variance (Only Works for Ratio Data)
-
-##### Temperature Example (Fails)
-
-Celsius calculation:
-
--   Values: 10°C, 20°C, 30°C
--   Mean = 20°C
--   Variance = 66.67°C²
-
-Fahrenheit calculation:
-
--   Values: 50°F, 68°F, 86°F
--   Mean = 68°F
--   Variance = 216°F²
-
-Problem: No consistent relationship between variances
-
-##### Length Example (Works)
-
-Meters:
-
--   Values: 1.5m, 1.6m, 1.7m
--   Variance = 0.01m²
-
-Feet:
-
--   Values: 4.92ft, 5.25ft, 5.58ft
--   Variance = 0.108ft²
-
-Relationship preserved: 0.108ft² = 0.01m² × (3.28084)²
-
-### Key Principles
-
-#### Differences
-
--   Work for both types because equal steps remain equal after conversion
--   Constant terms cancel out
-
-#### Multiplication
-
--   Only works for ratio data because it requires true zero point
--   Must preserve proportional relationships
-
-#### Statistical Measures
-
--   Mean: Valid for both types (uses differences)
--   Variance: Only valid for ratio data (uses squares)
-
-#### Unit Conversions
-
--   Interval: Preserves differences but not ratios
--   Ratio: Preserves both differences and ratios
+#### Practical Rule
+If your calculations involve multiplying values from an interval scale by each other, be particularly cautious in interpreting the results!
 :::
+
+::: {.callout-note}
+### Proportions in Measurement Scales: The Case of Temperature
+
+#### Two Types of Proportions
+
+##### Proportions of values (DO NOT hold for interval scales):
+```markdown
+Take 80°C and 20°C:
+In Celsius: 80°C/20°C = 4
+In Fahrenheit: 176°F/68°F ≈ 2.59
+In Kelvin: 353.15K/293.15K ≈ 1.20
+
+The same temperatures give different proportions! 
+→ Proportions of values DO NOT make sense on interval scales; they only make sense on ratio scales.
+```
+
+##### Proportions of differences (hold for interval scales):
+```markdown
+Take two pairs of differences:
+Pair 1: 30°C - 20°C = 10°C
+Pair 2: 80°C - 60°C = 20°C
+
+Proportion of differences in Celsius:
+20°C/10°C = 2
+
+The same temperatures in Fahrenheit:
+Pair 1: 86°F - 68°F = 18°F
+Pair 2: 176°F - 140°F = 36°F
+
+Proportion of differences in Fahrenheit:
+36°F/18°F = 2
+
+The proportion of differences is the same! ✓
+```
+
+#### Mathematical Explanation
+For the transformation $F = \frac{9}{5}C + 32$:
+
+1. **Proportions of values DO NOT hold**:
+   \[
+   \frac{F_1}{F_2} = \frac{\frac{9}{5}C_1 + 32}{\frac{9}{5}C_2 + 32} \neq \frac{C_1}{C_2}
+   \]
+
+2. **Proportions of differences hold**:
+   \[
+   \frac{F_1 - F_2}{F_3 - F_4} = \frac{\frac{9}{5}(C_1 - C_2)}{\frac{9}{5}(C_3 - C_4)} = \frac{C_1 - C_2}{C_3 - C_4}
+   \]
+
+#### Why This Matters
+
+1. **For values**:
+   - In Celsius: 40°C is not "twice as hot" as 20°C.
+   - In Fahrenheit: 100°F is not "twice as hot" as 50°F.
+   - Only in Kelvin do proportions of values have physical meaning.
+
+2. **For differences**:
+   - An increase of 20°C is always twice as large as an increase of 10°C.
+   - An increase of 36°F is always twice as large as an increase of 18°F.
+   - Proportions of differences are scale-independent.
+
+#### Implications for Statistics
+
+1. **Operations based on differences (WORK)**:
+   - Arithmetic mean.
+   - Mean absolute deviation.
+   - Range.
+
+2. **Operations based on proportions of values (DO NOT WORK)**:
+   - Geometric mean.
+   - Coefficient of variation.
+   - Variance (because it uses squared values).
+:::
+
 
 ### Importance in Research and Analysis
 

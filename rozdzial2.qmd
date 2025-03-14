@@ -184,48 +184,6 @@ To rozróżnienie doskonale odzwierciedla dwa podstawowe typy danych liczbowych:
 -   \_\_\_\_\_ temperatury (liczba/ilość): typ \_\_\_\_\_
 :::
 
-### Przykład Kodu R
-
-Oto prosty przykład kodu R ilustrujący, jak możemy analizować zmienne traktowane jako ciągłe:
-
-```{r}
-# Generowanie przykładowych danych
-set.seed(123)
-wiek <- round(runif(1000, min = 18, max = 80))
-stopy_bezrobocia <- round(runif(1000, min = 3, max = 10), 1)
-
-# Traktowanie wieku jako dyskretnego
-tabela_wieku <- table(wiek)
-barplot(tabela_wieku, main = "Rozkład Wieku (Dyskretny)", xlab = "Wiek", ylab = "Częstotliwość")
-
-# Traktowanie wieku jako ciągłego
-hist(wiek, main = "Rozkład Wieku (Ciągły)", xlab = "Wiek", ylab = "Częstotliwość")
-
-# Traktowanie stopy bezrobocia jako dyskretnej
-tabela_stopy <- table(stopy_bezrobocia)
-barplot(tabela_stopy, main = "Stopy Bezrobocia (Dyskretne)", xlab = "Stopa (%)", ylab = "Częstotliwość")
-
-# Traktowanie stopy bezrobocia jako ciągłej
-hist(stopy_bezrobocia, breaks = 30, main = "Stopy Bezrobocia (Ciągłe)", xlab = "Stopa (%)", ylab = "Częstotliwość")
-
-# Porównanie średnich i median
-cat("Średni wiek:", mean(wiek), "\n")
-cat("Mediana wieku:", median(wiek), "\n")
-cat("Średnia stopa bezrobocia:", mean(stopy_bezrobocia), "\n")
-cat("Mediana stopy bezrobocia:", median(stopy_bezrobocia), "\n")
-
-# Regresja liniowa (traktowanie obu jako ciągłych)
-dochod <- 20000 + 500 * wiek + 1000 * stopy_bezrobocia + rnorm(1000, 0, 5000)
-model <- lm(dochod ~ wiek + stopy_bezrobocia)
-summary(model)
-
-# Wykres płaszczyzny regresji
-library(plotly)
-plot_ly(x = wiek, y = stopy_bezrobocia, z = dochod, type = "scatter3d", mode = "markers") %>%
-  add_trace(x = wiek, y = stopy_bezrobocia, z = fitted(model), type = "scatter3d", mode = "lines")
-```
-
-Wykres 3D ilustruje, jak obie zmienne mogą być traktowane jako ciągłe w modelu regresji.
 
 ## Wprowadzenie do Typologii Danych Stevensa
 
@@ -320,30 +278,36 @@ Skala ilorazowa jest najwyższym poziomem pomiaru. Ma wszystkie właściwości s
 -   Dochód
 
 
-::: callout-note
+Oczywiście! Poniżej znajdziesz poprawioną i sprawdzoną wersję Twojego materiału w formacie `callout-note`, gotową do użycia w Quarto (pisana w RStudio). Skopiuj ten kod do swojego pliku `.qmd` i dostosuj ewentualnie stylowanie do swoich preferencji.
+
+
+::: {.callout-note}
 ### Dlaczego Niektóre Statystyki Działają (a Inne Nie) dla Skal Interwałowych
 
 #### Kluczowa Idea
-W przypadku skal interwałowych (np. temperatury):
+Skala interwałowa to taka, w której odległości między wartościami są znaczące, ale punkt zerowy jest umowny. W przypadku skal interwałowych (np. temperatury):
 
-- Dozwolone jest dodawanie/odejmowanie wartości oraz mnożenie/dzielenie przez stałe
-- Niedozwolone jest mnożenie/dzielenie wartości ze skali przez siebie
+- **Dozwolone** jest dodawanie/odejmowanie wartości oraz mnożenie/dzielenie przez stałe.
+- **Niedozwolone** jest mnożenie/dzielenie wartości ze skali przez siebie, ponieważ prowadzi to do wyników bez interpretacji fizycznej.
 
 #### Własności Skali Interwałowej
 
-1. Równe interwały reprezentują takie same różnice:
-   - Różnica między 20°C a 25°C (5°C) reprezentuje taką samą zmianę jak między 30°C a 35°C
-   - Proporcje różnic są zachowane: 10°C to dwa razy większa zmiana niż 5°C
-2. Punkt zero jest umowny:
-   - 0°C to punkt zamarzania wody, a nie brak temperatury
-   - Ten sam stan fizyczny ma różne wartości w różnych skalach: 0°C = 32°F
-3. Transformacja liniowa:
-   - Wzór ogólny: $y = ax + b$, gdzie $a \neq 0$
-   - Dla temperatury: $F = C \times \frac{9}{5} + 32$
+1. **Równe interwały reprezentują takie same różnice**:
+   - Różnica między 20°C a 25°C (5°C) reprezentuje taką samą zmianę jak między 30°C a 35°C.
+   - Proporcje różnic są zachowane: 10°C to dwa razy większa zmiana niż 5°C.
+
+2. **Punkt zero jest umowny**:
+   - 0°C to punkt zamarzania wody, a nie brak temperatury.
+   - Ten sam stan fizyczny ma różne wartości w różnych skalach: 0°C = 32°F.
+
+3. **Transformacja liniowa**:
+   - Wzór ogólny: $y = ax + b$, gdzie $a \neq 0$.
+   - Dla temperatury: $F = C \times \frac{9}{5} + 32$.
 
 #### Dlaczego Średnia Arytmetyczna Działa
-Przykład analizy dla dwóch temperatur:
-```
+Średnia arytmetyczna działa, ponieważ opiera się na dodawaniu i dzieleniu przez stałą, które są dozwolone w skali interwałowej. Przykład:
+
+```markdown
 Dane: 20°C i 30°C
 
 Metoda 1: Średnia w Celsjuszach, potem konwersja
@@ -357,24 +321,19 @@ Metoda 2: Konwersja na °F, potem średnia
 Obie metody dają ten sam wynik! ✓
 ```
 
-Matematyczny dowód poprawności:
-
+**Matematyczny dowód poprawności**:
 \begin{align}
-\bar{F} &= \frac{F_1 + F_2}{2} = \frac{(C_1 \times \frac{9}{5} + 32) + (C_2 \times \frac{9}{5} + 32)}{2} \\
+\bar{F} &= \frac{F_1 + F_2}{2} \\
+&= \frac{(C_1 \times \frac{9}{5} + 32) + (C_2 \times \frac{9}{5} + 32)}{2} \\
 &= \frac{(C_1 + C_2) \times \frac{9}{5} + 64}{2} \\
 &= \left(\frac{C_1 + C_2}{2}\right) \times \frac{9}{5} + 32 \\
 &= \bar{C} \times \frac{9}{5} + 32
 \end{align}
 
-
-To działa ponieważ:
-- Używamy tylko dozwolonych operacji (dodawanie, dzielenie przez stałą)
-- Zachowana jest liniowość transformacji
-- Umowny punkt zero nie wpływa na wynik
-
 #### Dlaczego Wariancja Jest Problematyczna
-Analiza na tym samym przykładzie:
-```
+Wariancja jest problematyczna, ponieważ opiera się na kwadratach różnic, co prowadzi do jednostek kwadratowych (np. °C²) bez jasnej interpretacji fizycznej. Przykład:
+
+```markdown
 Te same temperatury: 20°C i 30°C
 
 Metoda 1: Wariancja w Celsjuszach
@@ -393,64 +352,54 @@ Metoda 2: Wariancja w Fahrenheitach
 Problem: 25(°C)² i 81(°F)² nie są równoważne!
 ```
 
-Matematyczna analiza problemu:
-
+**Matematyczna analiza problemu**:
 \begin{align}
 (F_i - \bar{F})^2 &= [(C_i \times \frac{9}{5} + 32) - (\bar{C} \times \frac{9}{5} + 32)]^2 \\
 &= [(C_i - \bar{C}) \times \frac{9}{5}]^2 \\
 &= (C_i - \bar{C})^2 \times \left(\frac{9}{5}\right)^2
 \end{align}
 
-
-To nie działa dobrze ponieważ:
-
-- Mnożymy temperatury przez siebie (niedozwolone dla skali interwałowej)
-- Powstają jednostki kwadratowe (°C² lub °F²) bez jasnej interpretacji fizycznej
-- Wyniki w różnych skalach nie są bezpośrednio porównywalne
-- Kwadrat współczynnika skalowania $\left(\frac{9}{5}\right)^2$ zmienia relacje w nieinterpretowany sposób
-
 #### Wnioski Teoretyczne
 
-1. Operacje dozwolone:
-   - Dodawanie/odejmowanie (zachowuje różnice)
-   - Mnożenie/dzielenie przez stałe (skalowanie)
-   - Średnie arytmetyczne
-   - Porównywanie różnic temperatur
-2. Operacje niedozwolone:
-   - Mnożenie temperatur przez siebie
-   - Dzielenie temperatur przez siebie
-   - Średnie geometryczne
-   - Współczynnik zmienności
-3. Implikacje praktyczne:
-   - Wariancja i odchylenie standardowe wymagają ostrożnej interpretacji
-   - Lepiej używać miar opartych na różnicach (np. MAD - średnie odchylenie bezwzględne)
-   - Przy porównywaniu zmienności warto standaryzować dane
+1. **Operacje dozwolone**:
+   - Dodawanie/odejmowanie (zachowuje różnice).
+   - Mnożenie/dzielenie przez stałe (skalowanie).
+   - Średnie arytmetyczne.
+   - Porównywanie różnic temperatur.
+
+2. **Operacje niedozwolone**:
+   - Mnożenie temperatur przez siebie.
+   - Dzielenie temperatur przez siebie.
+   - Średnie geometryczne.
+   - Współczynnik zmienności.
+
+3. **Implikacje praktyczne**:
+   - Wariancja i odchylenie standardowe wymagają ostrożnej interpretacji.
+   - Lepiej używać miar opartych na różnicach (np. MAD - średnie odchylenie bezwzględne).
+   - Przy porównywaniu zmienności warto standaryzować dane.
 
 #### Zasada Praktyczna
 Jeśli w obliczeniach pojawia się mnożenie wartości ze skali interwałowej przez siebie, należy zachować szczególną ostrożność w interpretacji wyników!
 :::
 
-
-::: callout-note
+::: {.callout-note}
 ### Proporcje w Skalach Pomiarowych: Przypadek Temperatury
 
 #### Dwa Rodzaje Proporcji
 
-##### A) Proporcje wartości (NIE zachowują się w skali interwałowej):
-
-```         
+##### Proporcje wartości (NIE zachowują się w skali interwałowej):
+```markdown
 Weźmy 80°C i 20°C:
 W Celsjuszach: 80°C/20°C = 4
 W Fahrenheitach: 176°F/68°F ≈ 2.59
 W Kelwinach: 353.15K/293.15K ≈ 1.20
 
 Te same temperatury dają różne proporcje! 
-→ Proporcje wartości NIE mają sensu na skalach interwałowych; sens mają tylko na skali ilorazowej
+→ Proporcje wartości NIE mają sensu na skalach interwałowych; sens mają tylko na skali ilorazowej.
 ```
 
-##### B) Proporcje różnic (zachowują się w skali interwałowej):
-
-```         
+##### Proporcje różnic (zachowują się w skali interwałowej):
+```markdown
 Weźmy dwie pary różnic:
 Para 1: 30°C - 20°C = 10°C
 Para 2: 80°C - 60°C = 20°C
@@ -469,41 +418,43 @@ Proporcja różnic jest taka sama! ✓
 ```
 
 #### Matematyczne Wyjaśnienie
-
 Dla transformacji $F = \frac{9}{5}C + 32$:
 
-1.  Proporcje wartości NIE zachowują się: $\frac{F_1}{F_2} = \frac{\frac{9}{5}C_1 + 32}{\frac{9}{5}C_2 + 32} \neq \frac{C_1}{C_2}$
+1. **Proporcje wartości NIE zachowują się**:
+   \[
+   \frac{F_1}{F_2} = \frac{\frac{9}{5}C_1 + 32}{\frac{9}{5}C_2 + 32} \neq \frac{C_1}{C_2}
+   \]
 
-2.  Proporcje różnic zachowują się: $\frac{F_1 - F_2}{F_3 - F_4} = \frac{(\frac{9}{5}C_1 + 32) - (\frac{9}{5}C_2 + 32)}{(\frac{9}{5}C_3 + 32) - (\frac{9}{5}C_4 + 32)} = \frac{\frac{9}{5}(C_1 - C_2)}{\frac{9}{5}(C_3 - C_4)} = \frac{C_1 - C_2}{C_3 - C_4}$
+2. **Proporcje różnic zachowują się**:
+   \[
+   \frac{F_1 - F_2}{F_3 - F_4} = \frac{\frac{9}{5}(C_1 - C_2)}{\frac{9}{5}(C_3 - C_4)} = \frac{C_1 - C_2}{C_3 - C_4}
+   \]
 
 #### Dlaczego To Jest Ważne?
 
-1.  Dla wartości:
+1. **Dla wartości**:
+   - W skali Celsjusza: 40°C nie jest "dwa razy cieplejsze" niż 20°C.
+   - W skali Fahrenheita: 100°F nie jest "dwa razy cieplejsze" niż 50°F.
+   - Tylko w Kelwinach proporcje wartości mają sens fizyczny.
 
-    -   W skali Celsjusza: 40°C nie jest "dwa razy cieplejsze" niż 20°C
-    -   W skali Fahrenheita: 100°F nie jest "dwa razy cieplejsze" niż 50°F
-    -   Tylko w Kelwinach proporcje wartości mają sens fizyczny
-
-2.  Dla różnic:
-
-    -   Wzrost o 20°C jest zawsze dwa razy większy niż wzrost o 10°C
-    -   Wzrost o 36°F jest zawsze dwa razy większy niż wzrost o 18°F
-    -   Proporcje różnic są niezależne od skali
+2. **Dla różnic**:
+   - Wzrost o 20°C jest zawsze dwa razy większy niż wzrost o 10°C.
+   - Wzrost o 36°F jest zawsze dwa razy większy niż wzrost o 18°F.
+   - Proporcje różnic są niezależne od skali.
 
 #### Implikacje dla Statystyk
 
-1.  Operacje bazujące na różnicach (DZIAŁAJĄ):
+1. **Operacje bazujące na różnicach (DZIAŁAJĄ)**:
+   - Średnia arytmetyczna.
+   - Odchylenie bezwzględne.
+   - Rozstęp.
 
-    -   Średnia arytmetyczna
-    -   Odchylenie bezwzględne
-    -   Rozstęp
-
-2.  Operacje bazujące na proporcjach wartości (NIE DZIAŁAJĄ):
-
-    -   Średnia geometryczna
-    -   Współczynnik zmienności
-    -   Wariancja (bo używa kwadratu wartości)
+2. **Operacje bazujące na proporcjach wartości (NIE DZIAŁAJĄ)**:
+   - Średnia geometryczna.
+   - Współczynnik zmienności.
+   - Wariancja (bo używa kwadratu wartości).
 :::
+
 
 ### Znaczenie w Badaniach i Analizie
 
@@ -526,6 +477,7 @@ Chociaż typologia Stevensa jest szeroko stosowana, spotkała się z pewnymi kry
 2.  **Traktowanie danych porządkowych**: Trwa debata na temat tego, kiedy właściwe jest traktowanie danych porządkowych jako interwałowych dla pewnych analiz.
 
 3.  **Skalowanie psychologiczne**: Niektóre konstrukty psychologiczne (jak inteligencja) są trudne do jednoznacznego skategoryzowania w ramach tego systemu.
+
 
 ### Podsumowanie
 

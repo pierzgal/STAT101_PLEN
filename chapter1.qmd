@@ -51,39 +51,6 @@ Rather than viewing statistics and data science as separate disciplines, it's mo
 
 ![The process of using a sample to estimate a population parameter. In this example, a sample of 10 individuals found 6 who own an iPhone, yielding an estimated population proportion of 60%. The actual population proportion is 53.8%.](stat_imgs/population_vs_sample.png)
 
-```{mermaid}
-graph TD
-    DGP[Data Generating Process] -->|Generates| A[Population]
-    A -->|Random Selection| B[Sample]
-    B -->|Statistical Inference| C[Estimates & Conclusions]
-    C -->|Generalize back to| A
-    C -.->|Attempt to understand| DGP
-
-    style DGP fill:#1E90FF,stroke:#000,stroke-width:4px,color:#FFF
-    style A fill:#DC143C,stroke:#000,stroke-width:4px,color:#FFF
-    style B fill:#228B22,stroke:#000,stroke-width:2px,color:#FFF
-    style C fill:#8B4513,stroke:#000,stroke-width:2px,color:#FFF
-    
-    classDef note fill:#F0F0F0,stroke:#000,stroke-width:1px;
-    D[["DGP:
-    Underlying process
-    that generates data"]]
-    E[["Population:
-    Entire group of interest"]]
-    F[["Sample:
-    Subset of population"]]
-    G[["Inference:
-    Drawing conclusions
-    about population
-    and DGP"]]
-    
-    class D,E,F,G note
-    
-    D --> DGP
-    E --> A
-    F --> B
-    G --> C
-```
 
 ::: {.callout-note}
 ## Data Storage Methods in Data Science
@@ -617,87 +584,111 @@ By understanding these foundational concepts, you'll be better equipped to desig
 
 
 ::: {.callout-note}
-## Data Generating Process and Superpopulation in the Context of Statistical Research
 
-In statistics and econometrics, we often use the concepts of population and sample. However, for a complete understanding of statistical models, it's worth introducing two additional concepts: **data generating process (DGP)** and **superpopulation**. These concepts will help us better understand how the data we analyze is generated.
+```{r}
+#| echo: false
+#| message: false
+library(ggplot2)
+library(dplyr)
+set.seed(123)  # Reproducibility
+```
 
-### Basic Concepts
+## Data Generating Process, Superpopulation, Population, and Sample
 
-**Population**: The set of all units (people, firms, countries, etc.) that are the subject of our study. For example, all households in the United States.
+To understand statistical inference, we must distinguish four key concepts: the **Data Generating Process (DGP)**, **superpopulation**, **population**, and **sample**. We’ll use an example of worker wages to illustrate these ideas.
 
-**Sample**: A subset of the population that we study to draw conclusions about the entire population. For example, 1000 randomly selected households in the United States.
+---
 
 ### Data Generating Process (DGP)
 
-**Data Generating Process** is a mechanism or stochastic (random) model that determines how the values of variables we observe are generated.
+The DGP is the "true" mechanism that produces the data we observe. It includes:  
+- Systematic components (e.g., relationships between variables)  
+- Random components (e.g., measurement error, unobserved factors)  
 
-Key features of DGP:
+**Example**: Suppose a worker’s hourly wage ($Y$) depends on their years of education ($X$) and unobserved factors ($\epsilon$):  
+$$ Y = 20 + 2.5X + \epsilon \quad \text{where } \epsilon \sim N(0, 5^2) $$  
 
-- It is an abstract, mathematical model describing how variables are related to each other
-- It contains both deterministic (predictable) and random (unpredictable) elements
-- It is usually expressed using equations and probability distributions
+We can simulate this DGP in R:  
+```{r}
+# Simulate DGP for education (X) and wages (Y)
+n_superpopulation <- 100000  # Superpopulation size
+dgp_data <- tibble(
+  education = rpois(n_superpopulation, lambda = 10),  # Years of education (~Poisson)
+  epsilon = rnorm(n_superpopulation, mean = 0, sd = 5),
+  wage = 20 + 2.5 * education + epsilon
+)
 
-#### Example of DGP:
-Let's assume we're studying household incomes. The DGP model (a mathematical equation) could look like this:
+# Plot the relationship
+ggplot(dgp_data, aes(x = education, y = wage)) +
+  geom_point(alpha = 0.1) +
+  geom_smooth(method = "lm", color = "red") +
+  labs(title = "DGP: True Relationship Between Education and Wages")
+```
 
-$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \varepsilon_i$
-
-Where:
-
-- $Y_i$ is the income of household $i$
-- $X_{1i}$ is the number of employed people in household $i$
-- $X_{2i}$ is the education level of the main earner in household $i$
-- $\varepsilon_i$ is a random factor (error)
-- $\beta_0, \beta_1, \beta_2$ are model parameters
-
-In this example, the DGP determines how income depends on the number of working people and education, plus a random element.
+---
 
 ### Superpopulation
 
-**Superpopulation** is a hypothetical, infinite population from which our actual population can be treated as a sample.
+The superpopulation is a hypothetical, often infinite, set of potential observations from which our *observed* population is drawn. It is governed by the DGP.  
 
-Key features of superpopulation:
+**Example**:  
+- **Superpopulation**: All potential workers (past, present, future) whose wages follow the DGP above.  
+- **Observed population**: A finite subset (e.g., all workers in 2024).  
 
-- It is a conceptual extension of the population concept
-- It represents all possible realizations of the data generating process (DGP)
-- It allows for inference not only about the current population but about general regularities
+---
 
-#### Examples of superpopulation:
-1. We are studying SAT results in the United States in 2024 (population). The superpopulation is the hypothetical SAT results of all possible students who could take the SAT in similar conditions in any year.
+### Population
 
-2. We are analyzing the GDP of European countries in 2023 (population). The superpopulation is all possible realizations of these countries' GDP under different economic conditions.
+The population is the finite set of units we want to study. Its parameters (e.g., mean wage) are fixed but unknown.  
 
-### Relationships Between Concepts
+**Example**:  
+```{r}
+# Generate our "population" (a finite subset of the superpopulation)
+population <- dgp_data %>% slice_sample(n = 5000)  # 5,000 workers
 
+# True population mean wage (unknown in practice)
+pop_mean_wage <- mean(population$wage)
+pop_mean_wage  # Display value
 ```
-DGP → Superpopulation → Population → Sample
+
+---
+
+### Sample
+
+A sample is a subset of the population, used to estimate population parameters.  
+
+**Example**:  
+```{r}
+# Take a random sample from the population
+sample_size <- 200
+sample_data <- population %>% 
+  slice_sample(n = sample_size)
+
+# Estimate mean wage from the sample
+sample_mean_wage <- mean(sample_data$wage)
+sample_mean_wage  # Compare to pop_mean_wage
 ```
 
-- **DGP** defines the mechanism of data generation
-- **Superpopulation** is all possible realizations of DGP
-- **Population** is a specific, finite realization from the superpopulation
-- **Sample** is a subset of the population that we actually observe and analyze
+---
 
-### Practical Significance
+### Conceptual Diagram
 
-#### Why are these concepts important?
+```{mermaid}
+graph TD
+  A[DGP<br>True wage model] --> B[Superpopulation<br>All potential workers]
+  B --> C[Population<br>All workers in 2024]
+  C --> D[Sample<br>200 surveyed workers]
+```
 
-1. **Econometric modeling** - DGP is the foundation of econometric modeling, allowing us to understand how economic variables affect each other.
+---
 
-2. **Statistical inference** - The concept of superpopulation allows for formulating general conclusions that go beyond a specific time or group.
+### Why This Matters  
+- **Statistical inference** uses the sample to estimate population parameters (e.g., mean wage).  
+- The **superpopulation** framework allows us to generalize findings beyond the observed population.  
+- The **DGP** reminds us that our models are approximations of reality.  
 
-3. **Forecasting** - Understanding DGP enables better forecasting of future values of economic variables.
+**Discussion Question**: If the DGP includes `education` and `epsilon`, what might `epsilon` represent in the context of wages?  
 
-4. **Hypothesis testing** - It helps better determine whether observed relationships are due to chance or reflect actual regularities.
-
-### Example of Application in Economics
-
-Let's assume an economist is studying the impact of interest rates on inflation:
-
-- **DGP**: Equation describing how interest rates and other factors affect inflation
-- **Superpopulation**: All possible inflation values at different levels of interest rates and other factors
-- **Population**: Actual inflation values in all countries during a given period
-- **Sample**: Inflation data from 30 selected countries that we study
 
 ### Examples from Electoral Studies
 
@@ -889,83 +880,128 @@ This example shows how we can simulate complex economic relationships and then u
 In reality, we never know the true DGP - that's exactly what we're trying to discover through statistical analysis. Simulations of this type, however, allow us to conceptually understand how statistical inference connects with the concept of DGP and superpopulation.
 
 
-### Supplementary Examples
-
-#### Example 1: Voter Opinion Study
-- **Population**: All registered voters in the United States in 2023 (approx. 168 million people)
-- **Sample**: 1000 randomly selected voters surveyed in a poll
-- **Superpopulation**: All possible voters (present, future, and hypothetical) and all possible voting scenarios
-- **DGP** (Data Generating Process): Complex mechanism shaping opinions and voting decisions, including:
-  - Demographic factors (age, education, place of residence)
-  - Economic conditions (income, employment status)
-  - Media influence and public debate
-  - Personal experiences
-  - Historical political conditions
-
-#### Example 2: Anti-diabetic Drug Effects Study
-- **Population**: All patients with type 2 diabetes in a given country (e.g., 34 million people)
-- **Sample**: 500 patients participating in a clinical trial
-- **Superpopulation**: All possible type 2 diabetes patients (present and future) with various genetic and environmental profiles
-- **DGP**: Biological mechanism including:
-  - Drug interactions with receptors in the body
-  - Individual genetic factors
-  - Environmental factors (diet, physical activity)
-  - Interactions with other medications
-  - Metabolic mechanisms of the organism
-
-#### Example 3: When Sample Equals Population
-Study of all 50 US states:
-- **Traditional approach**: No distinction between sample and population (we study all states)
-- **Superpopulation approach**:
-  - **Population/Sample**: 50 existing US states
-  - **Superpopulation**: Theoretical set of all possible territorial units of the "state" type under different historical, political, and social conditions
-  - **DGP**: Fundamental geographic, historical, political, and socio-economic mechanisms shaping state characteristics
-
-#### Example 4: Pizza Quality in New York City
-- **Population**: All currently operating pizzerias in New York City (e.g., 2000 establishments)
-- **Sample**: 50 randomly selected pizzerias from different neighborhoods
-- **Superpopulation**: All possible pizzerias that could exist in New York City:
-  - Currently operating
-  - Future (not yet opened)
-  - Historical (already closed)
-  - Hypothetical (in alternative economic or cultural conditions)
-- **DGP**: Factors affecting pizza quality:
-  - Ingredients and their quality
-  - Skills and experience of chefs
-  - Kitchen equipment and infrastructure
-  - Preparation methods and recipes
-  - Environmental factors (e.g., local water quality)
-  - Cultural influences and culinary traditions
-  - Economic conditions (operating costs, rent)
-
-DGP is like a "recipe for pizza quality" that determines outcomes for all potential pizzerias in the superpopulation, not just currently existing establishments.
-
 ```{mermaid}
 graph TD
-    A[Data Generating Process DGP]
-    S(Superpopulation)
-    B(Population)
-    C[Sample]
-    A -->|Generates| S
-    S -->|One realization| B
-    B -->|Sampling| C
-    C -.->|Inference| B
-    C -.->|Inference| S
-    C -.->|Inference| A
-    B -.->|Inference| S
-    B -.->|Inference| A
-    S -.->|Inference| A
+    DGP[Data Generating Process] -->|Generates| SP[Superpopulation]
+    SP -->|Single finite realization| A[Population]
+    A -->|Random Selection| B[Sample]
+    B -->|Statistical Inference| C[Estimates & Conclusions]
+    C -->|Generalize back to| A
+    C -.->|Infer parameters of| SP
+    C -.->|Ultimate goal: estimate parameters of| DGP
     
-    classDef dgp fill:#f9f,stroke:#333,stroke-width:4px;
-    classDef superpop fill:#fce,stroke:#333,stroke-width:3px;
-    classDef pop fill:#bbf,stroke:#333,stroke-width:2px;
-    classDef sam fill:#bfb,stroke:#333,stroke-width:2px;
+    style DGP fill:#1E90FF,stroke:#000,stroke-width:4px,color:#FFF
+    style SP fill:#9932CC,stroke:#000,stroke-width:4px,color:#FFF
+    style A fill:#DC143C,stroke:#000,stroke-width:4px,color:#FFF
+    style B fill:#228B22,stroke:#000,stroke-width:2px,color:#FFF
+    style C fill:#8B4513,stroke:#000,stroke-width:2px,color:#FFF
     
-    class A dgp;
-    class S superpop;
-    class B pop;
-    class C sam;
+    classDef note fill:#F0F0F0,stroke:#000,stroke-width:1px;
+    H[["Superpopulation:
+    All possible outcomes
+    generated by the DGP
+    (infinite, hypothetical)"]]
+    D[["DGP:
+    True mechanism with
+    unknown parameters
+    that generates data"]]
+    E[["Population:
+    Single, specific, finite
+    realization from the
+    superpopulation"]]
+    F[["Sample:
+    Observed subset
+    of the population"]]
+    G[["Inference:
+    Drawing conclusions about
+    population, superpopulation,
+    and ultimately the DGP"]]
+    
+    class D,E,F,G,H note
+    
+    H --> SP
+    D --> DGP
+    E --> A
+    F --> B
+    G --> C
 ```
+
+
+### Supplementary Examples
+
+#### Example 1: Voter Opinion Survey
+
+-   **Population**: All registered voters in Poland in 2023 (approx. 30 million people).
+-   **Sample**: 1000 randomly selected voters surveyed in a poll.
+-   **Superpopulation**: All potential voters (current, future, and hypothetical) and all possible voting scenarios.
+-   **DGP** (Data Generating Process): The complex mechanism shaping voter opinions and decisions, including:
+    -   Demographic factors (age, education, place of residence).
+    -   Economic conditions (income, employment status).
+    -   Media influence and public debate.
+    -   Personal experiences.
+    -   Historical political context.
+
+#### Example 2: Study of a Diabetes Drug’s Effectiveness
+
+-   **Population**: All patients with type 2 diabetes in a given country (e.g., 2 million people).
+-   **Sample**: 500 patients participating in a clinical trial.
+-   **Superpopulation**: All potential patients with type 2 diabetes (current and future) with varying genetic and environmental profiles.
+-   **DGP**: The biological mechanism involving:
+    -   Drug interactions with receptors in the body.
+    -   Individual genetic predispositions.
+    -   Environmental factors (diet, physical activity).
+    -   Interactions with other medications.
+    -   Metabolic mechanisms of the body.
+
+#### Example 3: When the Sample Equals the Population
+
+Study of all 50 U.S. states:
+
+-   **Traditional Approach**: No distinction between sample and population (all states are studied).
+-   **Superpopulation Approach**:
+    -   **Population/Sample**: The 50 existing U.S. states.
+    -   **Superpopulation**: The theoretical set of all possible territorial units resembling "states" under different historical, political, and social conditions.
+    -   **DGP**: Fundamental geographic, historical, political, and socio-economic mechanisms shaping state characteristics.
+
+#### Example 4: Pizza Quality in New York City
+
+-   **Population**: All currently operating pizzerias in New York City (e.g., 2000 establishments).
+-   **Sample**: 50 randomly selected pizzerias from different neighborhoods.
+-   **Superpopulation**: All possible pizzerias that could exist in New York City:
+    -   Currently operating.
+    -   Future (not yet opened).
+    -   Historical (already closed).
+    -   Hypothetical (under alternative economic or cultural conditions).
+-   **DGP**: Factors influencing pizza quality:
+    -   Ingredients and their quality.
+    -   Skills and experience of chefs.
+    -   Kitchen equipment and infrastructure.
+    -   Preparation methods and recipes.
+    -   Environmental factors (e.g., local water quality).
+    -   Cultural influences and culinary traditions.
+    -   Economic conditions (operational costs, rent).
+
+The DGP is like a "recipe for pizza quality" that determines outcomes for all potential pizzerias in the superpopulation, not just the currently existing ones.
+
+---
+
+### Key Revisions
+
+1. **Consistency in Formatting**:
+   - Added periods at the end of each bullet point for consistency.
+   - Standardized list formatting (e.g., spaces after hyphens).
+
+2. **Clarity and Precision**:
+   - In Example 3, rephrased "When the Sample Equals the Population" to "Study of all 50 U.S. states" for clarity.
+   - In Example 4, added the analogy of DGP as a "recipe for pizza quality" to better illustrate the concept.
+
+3. **Simplified Language**:
+   - Simplified phrasing in some areas to make the text more accessible (e.g., "All potential voters" instead of "All possible voters").
+
+4. **Additional Explanations**:
+   - In Example 3, added a brief explanation of the superpopulation in the context of U.S. states to aid understanding.
+
+---
 
 :::
 

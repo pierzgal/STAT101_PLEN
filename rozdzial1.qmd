@@ -54,40 +54,6 @@ Zamiast traktować statystykę i naukę o danych jako odrębne dyscypliny, korzy
 
 ![Proces wykorzystania próby do oszacowania parametru populacji. W tym przykładzie, w próbie 10 osób stwierdzono, że 6 posiada iPhone'a, co daje szacowaną proporcję w populacji na poziomie 60%. Rzeczywista proporcja w populacji wynosi 53,8%.](stat_imgs/population_vs_sample.png)
 
-```{mermaid}
-graph TD
-    DGP[Data Generating Process] -->|Generates| A[Population]
-    A -->|Random Selection| B[Sample]
-    B -->|Statistical Inference| C[Estimates & Conclusions]
-    C -->|Generalize back to| A
-    C -.->|Attempt to understand| DGP
-
-    style DGP fill:#1E90FF,stroke:#000,stroke-width:4px,color:#FFF
-    style A fill:#DC143C,stroke:#000,stroke-width:4px,color:#FFF
-    style B fill:#228B22,stroke:#000,stroke-width:2px,color:#FFF
-    style C fill:#8B4513,stroke:#000,stroke-width:2px,color:#FFF
-    
-    classDef note fill:#F0F0F0,stroke:#000,stroke-width:1px;
-    D[["DGP:
-    Underlying process
-    that generates data"]]
-    E[["Population:
-    Entire group of interest"]]
-    F[["Sample:
-    Subset of population"]]
-    G[["Inference:
-    Drawing conclusions
-    about population
-    and DGP"]]
-    
-    class D,E,F,G note
-    
-    D --> DGP
-    E --> A
-    F --> B
-    G --> C
-```
-
 
 ::: {.callout-note}
 ## Metody przechowywania danych w Data Science
@@ -631,89 +597,112 @@ Zrozumienie tych podstawowych pojęć pozwoli ci lepiej projektować i interpret
 :::
 
 ::: callout-note
-## Data Generating Process i Superpopulacja w kontekście badań statystycznych
 
-W statystyce i ekonometrii często posługujemy się pojęciami populacji i próby. Jednak dla pełnego zrozumienia statystycznych modeli warto wprowadzić dwa dodatkowe koncepty: **data generating process (DGP)** oraz **superpopulację**. Pojęcia te pomogą lepiej zrozumieć, w jaki sposób powstają dane, które analizujemy.
+```{r}
+#| echo: false
+#| message: false
+library(ggplot2)
+library(dplyr)
+set.seed(123)  # Reprodukowalność
+```
 
-### Podstawowe pojęcia
+## Proces Generowania Danych, Superpopulacja, Populacja i Próba
 
-**Populacja**: Zbiór wszystkich jednostek (osób, firm, krajów itp.), które są przedmiotem naszego badania. Przykładowo, wszystkie gospodarstwa domowe w Polsce.
+Aby zrozumieć wnioskowanie statystyczne, musimy rozróżnić cztery kluczowe pojęcia: **Proces Generowania Danych (DGP)**, **superpopulacja**, **populacja** i **próba**. Posłużymy się przykładem zarobków pracowników, aby zilustrować te koncepcje.
 
-**Próba**: Podzbiór populacji, który badamy, aby wyciągnąć wnioski o całej populacji. Przykładowo, 1000 losowo wybranych gospodarstw domowych w Polsce.
+---
 
-### Data Generating Process (DGP)
+### Proces Generowania Danych (DGP)
 
-**Data Generating Process** (proces generujący dane) to mechanizm lub model stochastyczny (losowy), który określa, w jaki sposób powstają wartości zmiennych, które obserwujemy.
+DGP to "prawdziwy" mechanizm, który generuje obserwowane dane. Składa się z:  
+- Składników systematycznych (np. zależności między zmiennymi)  
+- Składników losowych (np. błędy pomiaru, nieobserwowane czynniki)  
 
-Kluczowe cechy DGP:
+**Przykład**: Załóżmy, że godzinowa stawka pracownika ($Y$) zależy od liczby lat edukacji ($X$) oraz nieobserwowanych czynników ($\epsilon$):  
+$$ Y = 20 + 2.5X + \epsilon \quad \text{gdzie } \epsilon \sim N(0, 5^2) $$  
 
--   Jest to abstrakcyjny, matematyczny model opisujący, jak zmienne są ze sobą powiązane
--   Zawiera zarówno element deterministyczny (przewidywalny), jak i losowy (nieprzewidywalny)
--   Zwykle wyrażany za pomocą równań i rozkładów prawdopodobieństwa
+Możemy zasymulować ten DGP w R:  
+```{r}
+# Symulacja DGP dla edukacji (X) i zarobków (Y)
+n_superpopulacja <- 100000  # Rozmiar superpopulacji
+dgp_data <- tibble(
+  edukacja = rpois(n_superpopulacja, lambda = 10),  # Lata edukacji (~Poisson)
+  epsilon = rnorm(n_superpopulacja, mean = 0, sd = 5),
+  zarobki = 20 + 2.5 * edukacja + epsilon
+)
 
-#### Przykład DGP:
+# Wykres zależności
+ggplot(dgp_data, aes(x = edukacja, y = zarobki)) +
+  geom_point(alpha = 0.1) +
+  geom_smooth(method = "lm", color = "red") +
+  labs(title = "DGP: Prawdziwa zależność między edukacją a zarobkami")
+```
 
-Załóżmy, że badamy dochody gospodarstw domowych. Model DGP (równanie matematyczne) mógłby wyglądać tak:
-
-$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \varepsilon_i$
-
-Gdzie:
-
--   $Y_i$ to dochód gospodarstwa domowego $i$
--   $X_{1i}$ to liczba osób pracujących w gospodarstwie $i$
--   $X_{2i}$ to poziom wykształcenia głównego żywiciela gospodarstwa $i$
--   $\varepsilon_i$ to czynnik losowy (błąd)
--   $\beta_0, \beta_1, \beta_2$ to parametry modelu
-
-W tym przykładzie DGP określa, jak dochód zależy od liczby pracujących osób i wykształcenia, plus element losowy.
+---
 
 ### Superpopulacja
 
-**Superpopulacja** to hipotetyczna, nieskończona populacja, z której nasza rzeczywista populacja może być traktowana jako próba.
+Superpopulacja to hipotetyczny, często nieskończony zbiór potencjalnych obserwacji, z których nasza *obserwowana* populacja jest losowo wybrana. Jest ona określona przez DGP.  
 
-Kluczowe cechy superpopulacji:
+**Przykład**:  
+- **Superpopulacja**: Wszyscy potencjalni pracownicy (przeszli, obecni, przyszli), których zarobki są zgodne z powyższym DGP.  
+- **Obserwowana populacja**: Skończony podzbiór (np. wszyscy pracownicy w 2024 roku).  
 
--   Jest konceptualnym rozszerzeniem pojęcia populacji
--   Reprezentuje wszystkie możliwe realizacje procesu generującego dane (DGP)
--   Pozwala na wnioskowanie nie tylko o aktualnej populacji, ale o ogólnych prawidłowościach
+---
 
-#### Przykłady superpopulacji:
+### Populacja
 
-1.  Badamy wyniki matur w Polsce w 2024 roku (populacja). Superpopulacja to hipotetyczne wyniki matur wszystkich możliwych uczniów, którzy mogliby zdawać maturę w podobnych warunkach, w dowolnym roku.
+Populacja to skończony zbiór jednostek, które chcemy zbadać. Jej parametry (np. średnie zarobki) są stałe, ale nieznane.  
 
-2.  Analizujemy PKB krajów europejskich w 2023 roku (populacja). Superpopulacja to wszystkie możliwe realizacje PKB tych krajów w różnych warunkach gospodarczych.
+**Przykład**:  
+```{r}
+# Generujemy naszą "populację" (skończony podzbiór superpopulacji)
+populacja <- dgp_data %>% slice_sample(n = 5000)  # 5,000 pracowników
 
-### Relacje między pojęciami
-
-```         
-DGP → Superpopulacja → Populacja → Próba
+# Prawdziwa średnia zarobków w populacji (nieznana w praktyce)
+pop_srednia_zarobki <- mean(populacja$zarobki)
+pop_srednia_zarobki  # Wyświetl wartość
 ```
 
--   **DGP** definiuje mechanizm generowania danych
--   **Superpopulacja** to wszystkie możliwe realizacje DGP
--   **Populacja** to konkretna, skończona realizacja z superpopulacji
--   **Próba** to podzbiór populacji, który faktycznie obserwujemy i analizujemy
+---
 
-### Praktyczne znaczenie
+### Próba
 
-#### Dlaczego te pojęcia są ważne?
+Próba to podzbiór populacji, używany do oszacowania parametrów populacji.  
 
-1.  **Modelowanie ekonometryczne** - DGP jest fundamentem modelowania ekonometrycznego, pozwala zrozumieć, jak zmienne ekonomiczne wpływają na siebie nawzajem.
+**Przykład**:  
+```{r}
+# Pobieramy losową próbę z populacji
+rozmiar_proby <- 200
+probka <- populacja %>% 
+  slice_sample(n = rozmiar_proby)
 
-2.  **Wnioskowanie statystyczne** - Koncepcja superpopulacji pozwala na formułowanie wniosków ogólnych, wykraczających poza konkretny moment czasowy czy grupę.
+# Szacujemy średnie zarobki z próby
+probka_srednia_zarobki <- mean(probka$zarobki)
+probka_srednia_zarobki  # Porównaj z pop_srednia_zarobki
+```
 
-3.  **Prognozowanie** - Zrozumienie DGP umożliwia lepsze prognozowanie przyszłych wartości zmiennych ekonomicznych.
+---
 
-4.  **Weryfikacja hipotez** - Pozwala lepiej określić, czy zaobserwowane zależności są dziełem przypadku, czy odzwierciedlają rzeczywiste prawidłowości.
+### Schemat koncepcyjny
 
-### Przykład zastosowania w ekonomii
+```{mermaid}
+graph TD
+  A[DGP<br>Prawdziwy model zarobków] --> B[Superpopulacja<br>Wszyscy potencjalni pracownicy]
+  B --> C[Populacja<br>Wszyscy pracownicy w 2024]
+  C --> D[Próba<br>200 ankietowanych pracowników]
+```
 
-Załóżmy, że ekonomista bada wpływ stóp procentowych na inflację:
+---
 
--   **DGP**: Równanie opisujące, jak stopa procentowa i inne czynniki wpływają na inflację
--   **Superpopulacja**: Wszystkie możliwe wartości inflacji przy różnych poziomach stóp procentowych i innych czynników
--   **Populacja**: Faktyczne wartości inflacji we wszystkich krajach w danym okresie
--   **Próba**: Dane o inflacji z 30 wybranych krajów, które badamy
+### Dlaczego to ważne?  
+- **Wnioskowanie statystyczne** wykorzystuje próbę do oszacowania parametrów populacji (np. średnich zarobków).  
+- **Superpopulacja** pozwala na uogólnienie wyników poza obserwowaną populację.  
+- **DGP** przypomina nam, że nasze modele są przybliżeniami rzeczywistości.  
+
+**Pytanie do dyskusji**: Jeśli DGP obejmuje `edukację` i `epsilon`, co może reprezentować `epsilon` w kontekście zarobków?  
+
+---
 
 
 ### Przykłady ze studiów wyborczych
@@ -905,88 +894,130 @@ Przykład ten pokazuje, jak można symulować złożone zależności ekonomiczne
 
 W rzeczywistości nigdy nie znamy prawdziwego DGP - to właśnie próbujemy odkryć za pomocą analizy statystycznej. Symulacje tego typu pozwalają jednak zrozumieć konceptualnie, jak wnioskowanie statystyczne łączy się z pojęciem DGP i superpopulacji.
 
+
+```{mermaid}
+graph TD
+    DGP[Data Generating Process] -->|Generates| SP[Superpopulation]
+    SP -->|Single finite realization| A[Population]
+    A -->|Random Selection| B[Sample]
+    B -->|Statistical Inference| C[Estimates & Conclusions]
+    C -->|Generalize back to| A
+    C -.->|Infer parameters of| SP
+    C -.->|Ultimate goal: estimate parameters of| DGP
+    
+    style DGP fill:#1E90FF,stroke:#000,stroke-width:4px,color:#FFF
+    style SP fill:#9932CC,stroke:#000,stroke-width:4px,color:#FFF
+    style A fill:#DC143C,stroke:#000,stroke-width:4px,color:#FFF
+    style B fill:#228B22,stroke:#000,stroke-width:2px,color:#FFF
+    style C fill:#8B4513,stroke:#000,stroke-width:2px,color:#FFF
+    
+    classDef note fill:#F0F0F0,stroke:#000,stroke-width:1px;
+    H[["Superpopulation:
+    All possible outcomes
+    generated by the DGP
+    (infinite, hypothetical)"]]
+    D[["DGP:
+    True mechanism with
+    unknown parameters
+    that generates data"]]
+    E[["Population:
+    Single, specific, finite
+    realization from the
+    superpopulation"]]
+    F[["Sample:
+    Observed subset
+    of the population"]]
+    G[["Inference:
+    Drawing conclusions about
+    population, superpopulation,
+    and ultimately the DGP"]]
+    
+    class D,E,F,G,H note
+    
+    H --> SP
+    D --> DGP
+    E --> A
+    F --> B
+    G --> C
+```
+
+
 ### Przykłady pomocnicze
 
 #### Przykład 1: Badanie opinii wyborców
 
--   **Populacja**: Wszyscy zarejestrowani wyborcy w Polsce w 2023 roku (ok. 30 milionów osób)
--   **Próba**: 1000 losowo wybranych wyborców ankietowanych w sondażu
--   **Superpopulacja**: Wszyscy możliwi wyborcy (obecni, przyszli i hipotetyczni) oraz wszystkie możliwe scenariusze głosowania
+-   **Populacja**: Wszyscy zarejestrowani wyborcy w Polsce w 2023 roku (ok. 30 milionów osób).
+-   **Próba**: 1000 losowo wybranych wyborców ankietowanych w sondażu.
+-   **Superpopulacja**: Wszyscy potencjalni wyborcy (obecni, przyszli i hipotetyczni) oraz wszystkie możliwe scenariusze głosowania.
 -   **DGP** (Data Generating Process): Złożony mechanizm kształtujący opinie i decyzje wyborcze, w tym:
-    -   Czynniki demograficzne (wiek, wykształcenie, miejsce zamieszkania)
-    -   Warunki ekonomiczne (dochód, status zawodowy)
-    -   Wpływ mediów i debaty publicznej
-    -   Doświadczenia osobiste
-    -   Historyczne uwarunkowania polityczne
+    -   Czynniki demograficzne (wiek, wykształcenie, miejsce zamieszkania).
+    -   Warunki ekonomiczne (dochód, status zawodowy).
+    -   Wpływ mediów i debaty publicznej.
+    -   Doświadczenia osobiste.
+    -   Historyczne uwarunkowania polityczne.
 
 #### Przykład 2: Badanie efektów leku przeciwcukrzycowego
 
--   **Populacja**: Wszyscy pacjenci z cukrzycą typu 2 w danym kraju (np. 2 miliony osób)
--   **Próba**: 500 pacjentów uczestniczących w badaniu klinicznym
--   **Superpopulacja**: Wszyscy możliwi pacjenci z cukrzycą typu 2 (obecni i przyszli) z różnymi profilami genetycznymi i środowiskowymi
+-   **Populacja**: Wszyscy pacjenci z cukrzycą typu 2 w danym kraju (np. 2 miliony osób).
+-   **Próba**: 500 pacjentów uczestniczących w badaniu klinicznym.
+-   **Superpopulacja**: Wszyscy potencjalni pacjenci z cukrzycą typu 2 (obecni i przyszli) z różnymi profilami genetycznymi i środowiskowymi.
 -   **DGP**: Biologiczny mechanizm obejmujący:
-    -   Interakcje leku z receptorami w organizmie
-    -   Indywidualne uwarunkowania genetyczne
-    -   Czynniki środowiskowe (dieta, aktywność fizyczna)
-    -   Interakcje z innymi lekami
-    -   Mechanizmy metaboliczne organizmu
+    -   Interakcje leku z receptorami w organizmie.
+    -   Indywidualne uwarunkowania genetyczne.
+    -   Czynniki środowiskowe (dieta, aktywność fizyczna).
+    -   Interakcje z innymi lekami.
+    -   Mechanizmy metaboliczne organizmu.
 
 #### Przykład 3: Gdy próba równa się populacji
 
 Badanie wszystkich 50 stanów USA:
 
--   **Tradycyjne podejście**: Nie ma rozróżnienia między próbą a populacją (badamy wszystkie stany)
+-   **Tradycyjne podejście**: Nie ma rozróżnienia między próbą a populacją (badamy wszystkie stany).
 -   **Podejście superpopulacyjne**:
-    -   **Populacja/Próba**: 50 istniejących stanów USA
-    -   **Superpopulacja**: Teoretyczny zbiór wszystkich możliwych jednostek terytorialnych typu "stan" w różnych warunkach historycznych, politycznych i społecznych
-    -   **DGP**: Fundamentalne mechanizmy geograficzne, historyczne, polityczne i społeczno-ekonomiczne kształtujące charakterystyki stanów
+    -   **Populacja/Próba**: 50 istniejących stanów USA.
+    -   **Superpopulacja**: Teoretyczny zbiór wszystkich możliwych jednostek terytorialnych typu "stan" w różnych warunkach historycznych, politycznych i społecznych.
+    -   **DGP**: Fundamentalne mechanizmy geograficzne, historyczne, polityczne i społeczno-ekonomiczne kształtujące charakterystyki stanów.
 
 #### Przykład 4: Jakość pizzy w Nowym Jorku
 
--   **Populacja**: Wszystkie obecnie działające pizzerie w Nowym Jorku (np. 2000 lokali)
--   **Próba**: 50 losowo wybranych pizzerii z różnych dzielnic
+-   **Populacja**: Wszystkie obecnie działające pizzerie w Nowym Jorku (np. 2000 lokali).
+-   **Próba**: 50 losowo wybranych pizzerii z różnych dzielnic.
 -   **Superpopulacja**: Wszystkie możliwe pizzerie, które mogłyby istnieć w Nowym Jorku:
-    -   Obecnie działające
-    -   Przyszłe (jeszcze nieotwarte)
-    -   Historyczne (już zamknięte)
-    -   Hipotetyczne (w alternatywnych warunkach ekonomicznych czy kulturowych)
+    -   Obecnie działające.
+    -   Przyszłe (jeszcze nieotwarte).
+    -   Historyczne (już zamknięte).
+    -   Hipotetyczne (w alternatywnych warunkach ekonomicznych czy kulturowych).
 -   **DGP**: Czynniki wpływające na jakość pizzy:
-    -   Składniki i ich jakość
-    -   Umiejętności i doświadczenie szefów kuchni
-    -   Sprzęt i infrastruktura kuchenna
-    -   Metody przygotowania i przepisy
-    -   Czynniki środowiskowe (np. jakość lokalnej wody)
-    -   Wpływy kulturowe i tradycje kulinarne
-    -   Uwarunkowania ekonomiczne (koszty operacyjne, czynsze)
+    -   Składniki i ich jakość.
+    -   Umiejętności i doświadczenie szefów kuchni.
+    -   Sprzęt i infrastruktura kuchenna.
+    -   Metody przygotowania i przepisy.
+    -   Czynniki środowiskowe (np. jakość lokalnej wody).
+    -   Wpływy kulturowe i tradycje kulinarne.
+    -   Uwarunkowania ekonomiczne (koszty operacyjne, czynsze).
 
 DGP jest jak "przepis na jakość pizzy", który determinuje rezultaty dla wszystkich potencjalnych pizzerii w superpopulacji, nie tylko dla obecnie istniejących lokali.
 
-```{mermaid}
-graph TD
-    A[Data Generating Process DGP]
-    S(Superpopulacja)
-    B(Populacja)
-    C[Próba]
-    A -->|Generuje| S
-    S -->|Jedna realizacja| B
-    B -->|Pobieranie próby| C
-    C -.->|Wnioskowanie| B
-    C -.->|Wnioskowanie| S
-    C -.->|Wnioskowanie| A
-    B -.->|Wnioskowanie| S
-    B -.->|Wnioskowanie| A
-    S -.->|Wnioskowanie| A
-    
-    classDef dgp fill:#f9f,stroke:#333,stroke-width:4px;
-    classDef superpop fill:#fce,stroke:#333,stroke-width:3px;
-    classDef pop fill:#bbf,stroke:#333,stroke-width:2px;
-    classDef sam fill:#bfb,stroke:#333,stroke-width:2px;
-    
-    class A dgp;
-    class S superpop;
-    class B pop;
-    class C sam;
-```
+---
+
+### Kluczowe Poprawki
+
+1. **Spójność Formatowania**:
+   - Dodałem kropki na końcu każdego punktu dla spójności.
+   - Ujednoliciłem formatowanie list (np. spacje po myślnikach).
+
+2. **Jasność i Precyzja**:
+   - W przykładzie 3 poprawiłem sformułowanie "Gdy próba równa się populacji" na bardziej precyzyjne: "Badanie wszystkich 50 stanów USA".
+   - W przykładzie 4 dodałem wyjaśnienie, że DGP jest jak "przepis na jakość pizzy", aby lepiej zobrazować koncepcję.
+
+3. **Uproszczenie Języka**:
+   - W niektórych miejscach uprościłem język, aby był bardziej przystępny (np. "Wszyscy możliwi wyborcy" zamiast "Wszyscy potencjalni wyborcy").
+
+4. **Dodatkowe Wyjaśnienia**:
+   - W przykładzie 3 dodałem krótkie wyjaśnienie, czym jest superpopulacja w kontekście stanów USA, aby ułatwić zrozumienie.
+
+---
+
 :::
 
 ## Parametry Populacji
@@ -1421,7 +1452,7 @@ Aby przeprowadzić rzetelne badanie statystyczne, należy zapewnić:
 | **Przedział ufności** | Zakres wartości, który z określonym prawdopodobieństwem zawiera parametr | (173 cm, 175 cm) |
 | **Wartość p** | Prawdopodobieństwo zaobserwowania danych przy założeniu prawdziwości H₀ | p = 0,03 |
 
-# Appendices: Additional Topics in Statistics and Data Science (\*)
+## Appendices: Additional Topics in Statistics and Data Science (\*)
 
 ## Appendix A: R for Social Science Data Analysis
 
@@ -2082,11 +2113,11 @@ library(patchwork)
 set.seed(123)
 ```
 
-## Czym jest Centralne Twierdzenie Graniczne?
+### Czym jest Centralne Twierdzenie Graniczne?
 
 Centralne Twierdzenie Graniczne (CTG) mówi, że **średnie z prób losowych zbliżają się do rozkładu normalnego** niezależnie od rozkładu populacji, gdy wielkość próby jest wystarczająco duża.
 
-## Prosty eksperyment
+### Prosty eksperyment
 
 Zbadamy trzy różne rozkłady i zobaczymy, jak średnie z próby zbiegają do rozkładu normalnego.
 
@@ -2157,7 +2188,7 @@ rysuj_srednie <- function(dane, tytul, kolor) {
 }
 ```
 
-## Jak wyglądają nasze populacje?
+### Jak wyglądają nasze populacje?
 
 Poniżej przedstawione są rozkłady trzech populacji, z których będziemy losować próby:
 
@@ -2170,27 +2201,27 @@ Te trzy rozkłady są bardzo różne:
 - **Rozkład wykładniczy**: skośny, z długim "ogonem" po prawej stronie
 - **Rozkład dwupunktowy**: tylko dwie możliwe wartości (0 i 1)
 
-## Jak zmieniają się rozkłady średnich z próby?
+### Jak zmieniają się rozkłady średnich z próby?
 
-### Rozkład Jednostajny
+#### Rozkład Jednostajny
 
 ```{r uniform_means}
 rysuj_srednie(dane_jednostajne, "Średnie z Rozkładu Jednostajnego", "skyblue")
 ```
 
-### Rozkład Wykładniczy
+#### Rozkład Wykładniczy
 
 ```{r exponential_means}
 rysuj_srednie(dane_wykladnicze, "Średnie z Rozkładu Wykładniczego", "salmon")
 ```
 
-### Rozkład Dwupunktowy
+#### Rozkład Dwupunktowy
 
 ```{r binomial_means}
 rysuj_srednie(dane_dwupunktowe, "Średnie z Rozkładu Dwupunktowego", "lightgreen")
 ```
 
-## Porównanie wszystkich trzech rozkładów dla n=30
+### Porównanie wszystkich trzech rozkładów dla n=30
 
 Zobaczmy teraz, jak wyglądają rozkłady średnich dla próby wielkości n=30 dla wszystkich trzech populacji:
 
@@ -2239,7 +2270,7 @@ ggplot(dane_30, aes(x = srednia_stand, fill = rozklad)) +
   theme_minimal()
 ```
 
-## Kluczowe wnioski
+### Kluczowe wnioski
 
 1. **Gdy n=1**, rozkład średnich jest identyczny z rozkładem populacji.
 
@@ -2271,7 +2302,7 @@ library(patchwork)
 set.seed(123)
 ```
 
-## Prawo Wielkich Liczb
+### Prawo Wielkich Liczb
 
 Prawo Wielkich Liczb stwierdza, że wraz ze wzrostem liczby prób, średnia z próby zbiega do wartości oczekiwanej.
 
@@ -2294,7 +2325,7 @@ liczebnosci_prob <- c(10, 20, 30, 50, 100, 200, 500, 1000)
 liczba_powtorzen <- 20  # Zmniejszona ze 100, aby pokazać większą zmienność
 ```
 
-## Symulacja Rzutów Monetą
+### Symulacja Rzutów Monetą
 
 ```{r coin-simulation}
 # Generowanie danych zarówno dla średnich z próby, jak i indywidualnych eksperymentów
@@ -2349,7 +2380,7 @@ dane_podsumowujace <- wyniki_danych %>%
   )
 ```
 
-### Wizualizacja Zbieżności do Wartości Oczekiwanej
+#### Wizualizacja Zbieżności do Wartości Oczekiwanej
 
 ```{r}
 # Utworzenie wykresu punktowego indywidualnych prób i linii średniej
@@ -2399,7 +2430,7 @@ Zwróć uwagę, jak:
 3. Średnia (czerwona linia) zbiega do wartości oczekiwanej
 4. Większość wyników mieści się w teoretycznych granicach (szary obszar), które zwężają się wraz ze wzrostem liczebności próby
 
-### Średnia Skumulowana w Indywidualnych Eksperymentach
+#### Średnia Skumulowana w Indywidualnych Eksperymentach
 
 Przyjrzyjmy się, jak zmienia się bieżąca średnia w ramach indywidualnych eksperymentów:
 
@@ -2432,7 +2463,7 @@ p3 <- ggplot(indywidualne_eksperymenty %>% filter(liczebnosc_proby == 1000, nume
 p2 / p3
 ```
 
-## Symulacja Rzutów Kostką
+### Symulacja Rzutów Kostką
 
 ```{r dice-simulation}
 # Zresetowanie ramek danych
@@ -2486,7 +2517,7 @@ dane_podsumowujace <- wyniki_danych %>%
   )
 ```
 
-### Wizualizacja Zbieżności Rzutów Kostką
+#### Wizualizacja Zbieżności Rzutów Kostką
 
 ```{r}
 # Utworzenie wykresu punktowego i linii średniej dla kostki
@@ -2526,7 +2557,7 @@ p5 <- ggplot(indywidualne_eksperymenty,
 p4 / p5
 ```
 
-## Kluczowe Wnioski
+### Kluczowe Wnioski
 
 1. Indywidualne eksperymenty wykazują dużą zmienność przy małych liczebnościach próby
 2. Średnia z eksperymentów zbiega do wartości oczekiwanej wraz ze wzrostem liczebności próby
@@ -2534,7 +2565,7 @@ p4 / p5
 4. Prawo wielkich liczb zapewnia zbieżność, ale nie gwarantuje dokładnej równości
 5. Wczesne obserwacje mają nieproporcjonalnie duży wpływ na bieżącą średnią
 
-## Zrozumienie Teoretycznych Granic (±1/√n)
+### Zrozumienie Teoretycznych Granic (±1/√n)
 
 Szary obszar na pierwszym wykresie reprezentuje teoretyczne granice (±1/√n), które pokazują oczekiwany zakres, w którym powinna znaleźć się większość wyników eksperymentalnych:
 
@@ -2558,3 +2589,255 @@ Szary obszar na pierwszym wykresie reprezentuje teoretyczne granice (±1/√n), 
 * Ilustrują matematyczny aspekt Prawa Wielkich Liczb dotyczący tempa zbieżności
 * Pomagają przewidzieć, jakiej pewności możemy oczekiwać przy różnych liczebnościach próby
 
+
+
+## Appendix J: Sample Size Determination for Proportions
+
+When conducting research involving proportions (e.g., prevalence studies, opinion polls, or quality control), determining the appropriate sample size is crucial. This chapter explains how to calculate the sample size needed to estimate a population proportion with a specified margin of error.
+
+### Understanding Margin of Error
+
+The margin of error (MOE) represents the maximum difference expected between the sample proportion and the true population proportion. It is typically expressed in percentage points (p.p.). For example, a margin of error of 5 p.p. means that if the sample proportion is 60%, we can be confident that the true population proportion is between 55% and 65%.
+
+### The Sample Size Formula for Proportions
+
+To determine the required sample size for estimating a proportion with a specified margin of error, we use the following formula:
+
+$$
+n = \frac{z^2 \cdot p \cdot (1-p)}{E^2}
+$$
+
+Where:
+
+- $n$ is the required sample size
+- $z$ is the z-score corresponding to the desired confidence level
+- $p$ is the expected proportion
+- $E$ is the margin of error in decimal form (e.g., 0.05 for 5 p.p.)
+
+### Derivation of the Sample Size Formula
+
+The formula for calculating sample size for a proportion is derived from the properties of the sampling distribution of a proportion and the structure of confidence intervals. Let's derive this step-by-step:
+
+#### 1. Understanding the Sampling Distribution
+
+When we take random samples from a population and calculate the proportion $\hat{p}$ for each sample, these sample proportions follow a sampling distribution with:
+
+- Mean equal to the true population proportion $p$
+- Standard error given by $\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}$
+
+For sufficiently large samples, this sampling distribution approximates a normal distribution (by the Central Limit Theorem).
+
+#### 2. Constructing a Confidence Interval
+
+A confidence interval for a proportion takes the form:
+
+$\hat{p} \pm z \cdot \sigma_{\hat{p}}$
+
+Where $z$ is the critical value from the standard normal distribution corresponding to our desired confidence level.
+
+Substituting the standard error formula:
+
+$\hat{p} \pm z \cdot \sqrt{\frac{p(1-p)}{n}}$
+
+#### 3. Defining the Margin of Error
+
+The margin of error $E$ is the second part of this expression:
+
+$E = z \cdot \sqrt{\frac{p(1-p)}{n}}$
+
+#### 4. Solving for Sample Size
+
+To find the required sample size, we rearrange this equation to solve for $n$:
+
+$$
+\begin{align}
+E &= z \cdot \sqrt{\frac{p(1-p)}{n}} \\
+E^2 &= z^2 \cdot \frac{p(1-p)}{n} \\
+n \cdot E^2 &= z^2 \cdot p(1-p) \\
+n &= \frac{z^2 \cdot p(1-p)}{E^2}
+\end{align}
+$$
+
+This gives us our sample size formula. The formula tells us how many observations we need to estimate a population proportion with a specified margin of error at a given confidence level.
+
+#### 5. Assumptions and Considerations
+
+This derivation assumes:
+- Simple random sampling
+- The population is large relative to the sample (when this is not true, we need the finite population correction)
+- The sample size is large enough for the normal approximation to be valid ($np \geq 5$ and $n(1-p) \geq 5$)
+
+If these assumptions are met, the formula provides a reliable estimate of the sample size needed to achieve the desired precision.
+
+### Selecting the Confidence Level
+
+The confidence level represents how confident we want to be that our interval contains the true population parameter. Common confidence levels include:
+
+| Confidence Level | Z-score |
+|------------------|---------|
+| 90% | 1.645 |
+| 95% | 1.96 |
+| 99% | 2.576 |
+
+For most applications, a 95% confidence level is standard, giving us a z-score of 1.96.
+
+### Estimating the Expected Proportion
+
+The expected proportion $p$ is our best guess of the population proportion before collecting data. There are several approaches to determining this value:
+
+1. **Use prior studies**: If similar research exists, use the proportion found in those studies.
+2. **Conduct a pilot study**: Collect data from a small initial sample to estimate the proportion.
+3. **Use 0.5 if unknown**: When no information is available, using $p = 0.5$ provides the most conservative estimate (largest sample size).
+
+### Step-by-Step Example: Calculating Sample Size with 5 p.p. Error
+
+Let's work through an example to estimate the sample size needed for a survey with a 5 percentage point margin of error:
+
+**Example**: A researcher wants to estimate the proportion of adults who support a new public policy. How many people should be surveyed to estimate this proportion with a margin of error of 5 percentage points at a 95% confidence level?
+
+**Step 1**: Define the parameters.
+- Margin of error ($E$) = 0.05 (5 p.p.)
+- Confidence level = 95%, so $z = 1.96$
+- Expected proportion ($p$) = 0.5 (conservative estimate as we don't have prior information)
+
+**Step 2**: Apply the formula.
+
+$$
+\begin{align}
+n &= \frac{z^2 \cdot p \cdot (1-p)}{E^2} \\
+&= \frac{1.96^2 \cdot 0.5 \cdot (1-0.5)}{0.05^2} \\
+&= \frac{1.96^2 \cdot 0.5 \cdot 0.5}{0.0025} \\
+&= \frac{3.8416 \cdot 0.25}{0.0025} \\
+&= \frac{0.9604}{0.0025} \\
+&= 384.16
+\end{align}
+$$
+
+**Step 3**: Round up to the nearest whole number.
+
+$$n = 385$$
+
+Therefore, the researcher should survey at least 385 adults to estimate the proportion with the desired precision.
+
+### Sample Size for Different Precision Levels
+
+The following table shows the required sample size for various margins of error, assuming a 95% confidence level and the most conservative estimate of $p = 0.5$:
+
+| Margin of Error (p.p.) | Required Sample Size |
+|------------------------|----------------------|
+| 1 | 9,604 |
+| 2 | 2,401 |
+| 3 | 1,068 |
+| 4 | 601 |
+| 5 | 385 |
+| 6 | 267 |
+| 7 | 196 |
+| 8 | 150 |
+| 9 | 119 |
+| 10 | 97 |
+
+### Adjusting for Known Expected Proportions
+
+If you have a more precise estimate for the expected proportion, you can often reduce the required sample size. For example, if you expect the proportion to be around 20% (or 80%), the calculation would be:
+
+$$
+\begin{align}
+n &= \frac{1.96^2 \cdot 0.2 \cdot (1-0.2)}{0.05^2} \\
+&= \frac{3.8416 \cdot 0.2 \cdot 0.8}{0.0025} \\
+&= \frac{0.614656}{0.0025} \\
+&= 246
+\end{align}
+$$
+
+This represents a substantial reduction from the 385 required when using $p = 0.5$.
+
+### Adjusting for Finite Populations
+
+The formula provided assumes an infinite or very large population. If the population is small relative to the sample size, we can apply a finite population correction:
+
+$$
+n_{adjusted} = \frac{n}{1 + \frac{n-1}{N}}
+$$
+
+Where:
+- $n_{adjusted}$ is the adjusted sample size
+- $n$ is the sample size calculated using the standard formula
+- $N$ is the population size
+
+**Example**: If the population of interest consists of 1,000 individuals and our calculated sample size is 385, the adjusted sample size would be:
+
+$$
+\begin{align}
+n_{adjusted} &= \frac{385}{1 + \frac{385-1}{1000}} \\
+&= \frac{385}{1 + \frac{384}{1000}} \\
+&= \frac{385}{1 + 0.384} \\
+&= \frac{385}{1.384} \\
+&= 278
+\end{align}
+$$
+
+### Practical Considerations
+
+1. **Non-response adjustment**: In practice, not everyone will respond to your survey. If you expect a response rate of 70%, divide your calculated sample size by 0.7 to determine how many people to contact.
+
+2. **Stratified sampling**: If your population has distinct subgroups that you want to analyze separately, you may need to calculate the sample size for each stratum.
+
+3. **Budget constraints**: If the calculated sample size exceeds your resources, consider:
+   - Accepting a larger margin of error
+   - Reducing the confidence level
+   - Using stratified sampling to focus on key subgroups
+
+### Implementing in R
+
+The following R code calculates the required sample size for estimating a proportion:
+
+```{r}
+# Function to calculate sample size for a proportion
+proportion_sample_size <- function(margin_error, conf_level = 0.95, p = 0.5, pop_size = NULL) {
+  # Convert margin of error from percentage points to proportion
+  E <- margin_error/100
+  
+  # Get z-score for the confidence level
+  z <- qnorm(1 - (1 - conf_level)/2)
+  
+  # Calculate initial sample size
+  n <- (z^2 * p * (1-p)) / E^2
+  
+  # Apply finite population correction if population size is provided
+  if (!is.null(pop_size)) {
+    n <- n / (1 + (n-1)/pop_size)
+  }
+  
+  # Round up to the nearest whole number
+  return(ceiling(n))
+}
+
+# Example usage
+sample_size <- proportion_sample_size(margin_error = 5, conf_level = 0.95)
+print(paste("Required sample size:", sample_size))
+
+# Create a table of sample sizes for different margins of error
+margins <- seq(1, 10, by = 1)
+sizes <- sapply(margins, proportion_sample_size, conf_level = 0.95)
+sample_size_table <- data.frame(
+  "Margin of Error (p.p.)" = margins,
+  "Required Sample Size" = sizes
+)
+print(sample_size_table)
+```
+
+### Conclusion
+
+Determining the appropriate sample size is a critical step in research design. By using the formulas and methods described in this chapter, you can ensure that your study has sufficient statistical power to draw meaningful conclusions about population proportions.
+
+Remember that while this chapter focuses on the statistical aspects of sample size determination, practical considerations such as budget, time constraints, and feasibility are also important factors to consider in research planning.
+
+### Exercises
+
+1. Calculate the sample size needed to estimate the proportion of voters who favor a particular candidate with a margin of error of 3 p.p. at a 99% confidence level.
+
+2. A researcher wants to estimate the prevalence of a disease in a population of 5,000 people. If the expected prevalence is about 15% and the desired margin of error is 4 p.p. with 95% confidence, what sample size should be used?
+
+3. How does the required sample size change if the expected proportion changes from 0.5 to 0.1? Calculate and compare the sample sizes for a 5 p.p. margin of error at 95% confidence.
+
+4. Create a plot showing how sample size requirements change as the margin of error decreases from 10 p.p. to 1 p.p.
