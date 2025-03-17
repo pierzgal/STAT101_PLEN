@@ -350,21 +350,16 @@ window.Quarto = {
   <li><a href="#distribution-of-sample-statistics" id="toc-distribution-of-sample-statistics" class="nav-link" data-scroll-target="#distribution-of-sample-statistics"><span class="header-section-number">1.4.5</span> <strong>Distribution of Sample Statistics</strong></a></li>
   <li><a href="#types-of-data-and-variables" id="toc-types-of-data-and-variables" class="nav-link" data-scroll-target="#types-of-data-and-variables"><span class="header-section-number">1.4.6</span> <strong>Types of Data and Variables</strong></a></li>
   </ul></li>
-  <li><a href="#statistical-models-and-inference" id="toc-statistical-models-and-inference" class="nav-link" data-scroll-target="#statistical-models-and-inference"><span class="header-section-number">1.5</span> Statistical Models and Inference</a>
+  <li><a href="#statistical-inference" id="toc-statistical-inference" class="nav-link" data-scroll-target="#statistical-inference"><span class="header-section-number">1.5</span> Statistical Inference</a>
   <ul class="collapse">
-  <li><a href="#statistical-models" id="toc-statistical-models" class="nav-link" data-scroll-target="#statistical-models"><span class="header-section-number">1.5.1</span> Statistical Models</a></li>
-  <li><a href="#causal-vs.-predictive-inference" id="toc-causal-vs.-predictive-inference" class="nav-link" data-scroll-target="#causal-vs.-predictive-inference"><span class="header-section-number">1.5.2</span> Causal vs.&nbsp;Predictive Inference</a></li>
-  <li><a href="#challenges-of-causal-inference" id="toc-challenges-of-causal-inference" class="nav-link" data-scroll-target="#challenges-of-causal-inference"><span class="header-section-number">1.5.3</span> Challenges of Causal Inference</a></li>
+  <li><a href="#estimation" id="toc-estimation" class="nav-link" data-scroll-target="#estimation"><span class="header-section-number">1.5.1</span> 1. Estimation</a></li>
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing"><span class="header-section-number">1.5.2</span> 2. Hypothesis Testing</a></li>
+  <li><a href="#types-of-errors-in-hypothesis-testing" id="toc-types-of-errors-in-hypothesis-testing" class="nav-link" data-scroll-target="#types-of-errors-in-hypothesis-testing"><span class="header-section-number">1.5.3</span> Types of Errors in Hypothesis Testing</a></li>
   </ul></li>
-  <li><a href="#statistical-inference" id="toc-statistical-inference" class="nav-link" data-scroll-target="#statistical-inference"><span class="header-section-number">1.6</span> Statistical Inference</a>
+  <li><a href="#statistical-models-and-inference" id="toc-statistical-models-and-inference" class="nav-link" data-scroll-target="#statistical-models-and-inference"><span class="header-section-number">1.6</span> Statistical Models and Inference</a>
   <ul class="collapse">
-  <li><a href="#estimation" id="toc-estimation" class="nav-link" data-scroll-target="#estimation"><span class="header-section-number">1.6.1</span> 1. Estimation</a></li>
-  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing"><span class="header-section-number">1.6.2</span> 2. Hypothesis Testing</a></li>
-  <li><a href="#types-of-errors-in-hypothesis-testing" id="toc-types-of-errors-in-hypothesis-testing" class="nav-link" data-scroll-target="#types-of-errors-in-hypothesis-testing"><span class="header-section-number">1.6.3</span> Types of Errors in Hypothesis Testing</a></li>
-  </ul></li>
-  <li><a href="#foundations-for-good-statistical-research" id="toc-foundations-for-good-statistical-research" class="nav-link" data-scroll-target="#foundations-for-good-statistical-research"><span class="header-section-number">1.7</span> Foundations for Good Statistical Research</a>
-  <ul class="collapse">
-  <li><a href="#summary-of-key-concepts" id="toc-summary-of-key-concepts" class="nav-link" data-scroll-target="#summary-of-key-concepts"><span class="header-section-number">1.7.1</span> Summary of Key Concepts</a></li>
+  <li><a href="#causal-vs.-predictive-inference" id="toc-causal-vs.-predictive-inference" class="nav-link" data-scroll-target="#causal-vs.-predictive-inference"><span class="header-section-number">1.6.1</span> Causal vs.&nbsp;Predictive Inference</a></li>
+  <li><a href="#challenges-of-causal-inference" id="toc-challenges-of-causal-inference" class="nav-link" data-scroll-target="#challenges-of-causal-inference"><span class="header-section-number">1.6.2</span> Challenges of Causal Inference</a></li>
   </ul></li>
   <li><a href="#appendices-additional-topics-in-statistics-and-data-science" id="toc-appendices-additional-topics-in-statistics-and-data-science" class="nav-link" data-scroll-target="#appendices-additional-topics-in-statistics-and-data-science"><span class="header-section-number">2</span> Appendices: Additional Topics in Statistics and Data Science (*)</a>
   <ul class="collapse">
@@ -784,109 +779,11 @@ where <span class="math inline">x_1, x_2, ..., x_n</span> are observations in a 
 </section>
 </section>
 </section>
-<section id="statistical-models-and-inference" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="statistical-models-and-inference"><span class="header-section-number">1.5</span> Statistical Models and Inference</h2>
-<section id="statistical-models" class="level3" data-number="1.5.1">
-<h3 data-number="1.5.1" class="anchored" data-anchor-id="statistical-models"><span class="header-section-number">1.5.1</span> Statistical Models</h3>
-<p>A <strong>statistical model</strong> is a mathematical framework that represents the relationships between variables and the structure of data. It helps describe the <strong>data-generating process (DGP)</strong> and enables us to make inferences about unknown parameters.</p>
-<blockquote class="blockquote">
-<p><strong>Components of a Statistical Model</strong></p>
-<p>A complete statistical model consists of the following elements:</p>
-<ol type="1">
-<li><strong>Functional form</strong>: The mathematical structure that defines the relationship between variables (e.g., linear, quadratic, exponential).</li>
-<li><strong>Variables</strong>:
-<ul>
-<li><strong>Dependent variable(s)</strong>: The outcome we aim to predict or explain.</li>
-<li><strong>Independent/explanatory variables</strong>: The factors that may influence the dependent variable.</li>
-</ul></li>
-<li><strong>Parameters</strong>: Unknown quantities that we estimate from the data (e.g., regression coefficients like <span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span>).</li>
-<li><strong>Random component</strong>: The error term (<span class="math inline">\epsilon</span>) that accounts for unexplained variability in the data.</li>
-<li><strong>Probability distribution assumptions</strong>: Assumptions about the distribution of the random component (e.g., normality, homoscedasticity).</li>
-</ol>
-</blockquote>
-<p><strong>Example of a Linear Regression Model</strong>: <span class="math display">
-y = \beta_0 + \beta_1x + \epsilon, \quad \text{where} \quad \epsilon \sim N(0, \sigma^2)
-</span></p>
-<p>In this model: - <span class="math inline">\beta_0</span> (intercept) and <span class="math inline">\beta_1</span> (slope) are parameters to be estimated. - <span class="math inline">\epsilon</span> represents the random error term, capturing variability not explained by the model. - The error term is assumed to follow a normal distribution with a mean of 0 and variance <span class="math inline">\sigma^2</span>.</p>
-<hr>
-</section>
-<section id="causal-vs.-predictive-inference" class="level3" data-number="1.5.2">
-<h3 data-number="1.5.2" class="anchored" data-anchor-id="causal-vs.-predictive-inference"><span class="header-section-number">1.5.2</span> Causal vs.&nbsp;Predictive Inference</h3>
-<p>In statistical modelling, there are two primary goals:</p>
-<ol type="1">
-<li><strong>Causal Inference</strong>:
-<ul>
-<li><strong>Goal</strong>: Determine whether a change in variable <strong>X</strong> <em>causes</em> a change in variable <strong>Y</strong>.</li>
-<li><strong>Requirements</strong>: Strong assumptions or specialized research designs (e.g., randomized controlled trials, instrumental variables).</li>
-<li><strong>Application</strong>: Used to predict the effects of interventions or policy changes.</li>
-<li><strong>Example</strong>: Does increasing the minimum wage (X) cause a reduction in employment (Y)?</li>
-</ul></li>
-<li><strong>Predictive Inference</strong>:
-<ul>
-<li><strong>Goal</strong>: Predict the values of <strong>Y</strong> based on <strong>X</strong>.</li>
-<li><strong>Requirements</strong>: No need to assume a causal relationship between variables.</li>
-<li><strong>Focus</strong>: Maximizing prediction accuracy, often using machine learning techniques.</li>
-<li><strong>Example</strong>: Predicting house prices (Y) based on features like size, location, and number of bedrooms (X).</li>
-</ul></li>
-</ol>
-<blockquote class="blockquote">
-<p><strong>Warning: Correlation ≠ Causation</strong></p>
-<p>A <strong>spurious relationship</strong> (or spurious correlation) occurs when two variables are statistically associated but not causally related. This can happen due to:</p>
-<ol type="1">
-<li><strong>Confounding</strong>: A third variable influences both X and Y.
-<ul>
-<li><em>Example</em>: Ice cream sales (X) and drowning incidents (Y) are correlated because both increase in summer (confounder: temperature).</li>
-</ul></li>
-<li><strong>Reverse Causality</strong>: Y affects X, not the other way around.
-<ul>
-<li><em>Example</em>: Higher crime rates (Y) lead to more police presence (X), not vice versa.</li>
-</ul></li>
-<li><strong>Chance</strong>: Random correlations that occur by coincidence.
-<ul>
-<li><em>Example</em>: A correlation between the number of pirates and global temperature (purely coincidental).</li>
-</ul></li>
-</ol>
-</blockquote>
-<hr>
-</section>
-<section id="challenges-of-causal-inference" class="level3" data-number="1.5.3">
-<h3 data-number="1.5.3" class="anchored" data-anchor-id="challenges-of-causal-inference"><span class="header-section-number">1.5.3</span> Challenges of Causal Inference</h3>
-<p>The fundamental problem of causal inference is the impossibility of observing <strong>counterfactuals</strong> (alternative scenarios). For a given unit, we can observe only one potential outcome.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="stat_imgs/meme_horse.svg" class="img-fluid figure-img"></p>
-<figcaption>The fundamental problem of causal inference: We can think of causal inference as a PREDICTION problem. How can we predict the counterfactual given that we never observe it?</figcaption>
-</figure>
-</div>
-<p>Example: - We observe a person who completed college and earns $8,000 per month - We cannot observe how much the same person would earn if they had not completed college</p>
-<p>Causal methods attempt to solve this problem through:</p>
-<ol type="1">
-<li>Randomized experiments</li>
-<li>Instrumental variables</li>
-<li>Matching methods</li>
-<li>Regression discontinuity analysis</li>
-<li>Difference-in-differences</li>
-</ol>
-<p>Common problems in causal inference:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="stat_imgs/IMG_4337.jpg" class="img-fluid figure-img"></p>
-<figcaption>Confounding bias: drinking the night before is a common cause of sleeping with shoes on and waking up with a headache</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="stat_imgs/ff13-23.png" class="img-fluid figure-img"></p>
-<figcaption>Reverse causality</figcaption>
-</figure>
-</div>
-</section>
-</section>
-<section id="statistical-inference" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="statistical-inference"><span class="header-section-number">1.6</span> Statistical Inference</h2>
+<section id="statistical-inference" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="statistical-inference"><span class="header-section-number">1.5</span> Statistical Inference</h2>
 <p>Statistical inference is the process of drawing conclusions about a population based on sample data. It encompasses two main areas:</p>
-<section id="estimation" class="level3" data-number="1.6.1">
-<h3 data-number="1.6.1" class="anchored" data-anchor-id="estimation"><span class="header-section-number">1.6.1</span> 1. Estimation</h3>
+<section id="estimation" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="estimation"><span class="header-section-number">1.5.1</span> 1. Estimation</h3>
 <p>Estimation is the process of using sample data to estimate unknown population parameters. We distinguish:</p>
 <ul>
 <li><strong>Point estimation</strong>: Providing a single value as the best approximation of the parameter</li>
@@ -896,8 +793,8 @@ y = \beta_0 + \beta_1x + \epsilon, \quad \text{where} \quad \epsilon \sim N(0, \
 <p><strong>Correct interpretation of confidence interval</strong>: If we were to repeatedly take samples from the same population and construct a 95% confidence interval for each sample using the same method, about 95% of these intervals would contain the true population parameter value.</p>
 <p><strong>Incorrect interpretation</strong>: “There is a 95% chance that the true mean is in the interval (173 cm, 175 cm)” – this is incorrect because the population parameter is a fixed (though unknown) value, not a random variable.</p>
 </section>
-<section id="hypothesis-testing" class="level3" data-number="1.6.2">
-<h3 data-number="1.6.2" class="anchored" data-anchor-id="hypothesis-testing"><span class="header-section-number">1.6.2</span> 2. Hypothesis Testing</h3>
+<section id="hypothesis-testing" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="hypothesis-testing"><span class="header-section-number">1.5.2</span> 2. Hypothesis Testing</h3>
 <p>Hypothesis testing is a formal procedure for verifying claims about population parameters.</p>
 <blockquote class="blockquote">
 <p><strong>Example: Binomial test for a coin</strong></p>
@@ -954,8 +851,8 @@ y = \beta_0 + \beta_1x + \epsilon, \quad \text{where} \quad \epsilon \sim N(0, \
 <p><strong>Definition of p-value</strong>: The probability of observing a result at least as extreme as the one obtained, assuming the null hypothesis is true.</p>
 </blockquote>
 </section>
-<section id="types-of-errors-in-hypothesis-testing" class="level3" data-number="1.6.3">
-<h3 data-number="1.6.3" class="anchored" data-anchor-id="types-of-errors-in-hypothesis-testing"><span class="header-section-number">1.6.3</span> Types of Errors in Hypothesis Testing</h3>
+<section id="types-of-errors-in-hypothesis-testing" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="types-of-errors-in-hypothesis-testing"><span class="header-section-number">1.5.3</span> Types of Errors in Hypothesis Testing</h3>
 <ul>
 <li><strong>Type I error (α)</strong>: Rejecting a true null hypothesis (“convicting an innocent”)
 <ul>
@@ -969,64 +866,99 @@ y = \beta_0 + \beta_1x + \epsilon, \quad \text{where} \quad \epsilon \sim N(0, \
 </ul>
 </section>
 </section>
-<section id="foundations-for-good-statistical-research" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="foundations-for-good-statistical-research"><span class="header-section-number">1.7</span> Foundations for Good Statistical Research</h2>
-<p>To conduct reliable statistical research, ensure:</p>
+<section id="statistical-models-and-inference" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="statistical-models-and-inference"><span class="header-section-number">1.6</span> Statistical Models and Inference</h2>
+<p>A <strong>statistical model</strong> is a mathematical framework that represents the relationships between variables and the structure of data. It helps describe the <strong>data-generating process (DGP)</strong> and enables us to make inferences about unknown parameters.</p>
+<blockquote class="blockquote">
+<p><strong>Components of a Statistical Model</strong></p>
+<p>A complete statistical model consists of the following elements:</p>
 <ol type="1">
-<li><strong>Representativeness of the sample</strong>: The sample should well reflect the studied population</li>
-<li><strong>Adequate sample size</strong>: Larger samples provide more accurate estimates and greater statistical power</li>
-<li><strong>Control of confounding variables</strong>: Both in research design and data analysis</li>
-<li><strong>Appropriate statistical methods</strong>: Matched to the type of data and research questions</li>
-<li><strong>Clear interpretation</strong>: Taking into account study limitations and alternative explanations</li>
+<li><strong>Functional form</strong>: The mathematical structure that defines the relationship between variables (e.g., linear, quadratic, exponential).</li>
+<li><strong>Variables</strong>:
+<ul>
+<li><strong>Dependent variable(s)</strong>: The outcome we aim to predict or explain.</li>
+<li><strong>Independent/explanatory variables</strong>: The factors that may influence the dependent variable.</li>
+</ul></li>
+<li><strong>Parameters</strong>: Unknown quantities that we estimate from the data (e.g., regression coefficients like <span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span>).</li>
+<li><strong>Random component</strong>: The error term (<span class="math inline">\epsilon</span>) that accounts for unexplained variability in the data.</li>
+<li><strong>Probability distribution assumptions</strong>: Assumptions about the distribution of the random component (e.g., normality, homoscedasticity).</li>
 </ol>
-<section id="summary-of-key-concepts" class="level3" data-number="1.7.1">
-<h3 data-number="1.7.1" class="anchored" data-anchor-id="summary-of-key-concepts"><span class="header-section-number">1.7.1</span> Summary of Key Concepts</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 36%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Concept</th>
-<th>Definition</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Population parameter (Estimand)</strong></td>
-<td>Value characterizing the population, usually unknown</td>
-<td>μ (population mean)</td>
-</tr>
-<tr class="even">
-<td><strong>Estimator (Statistic)</strong></td>
-<td>Function/procedure for estimating a parameter based on a sample</td>
-<td><span class="math inline">\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i</span></td>
-</tr>
-<tr class="odd">
-<td><strong>Estimate</strong></td>
-<td>Specific value obtained after applying an estimator to a sample</td>
-<td><span class="math inline">\bar{x} = 173.5</span> cm</td>
-</tr>
-<tr class="even">
-<td><strong>Standard error</strong></td>
-<td>Measure of estimator variability between samples</td>
-<td><span class="math inline">SE(\bar{x}) = \frac{s}{\sqrt{n}}</span></td>
-</tr>
-<tr class="odd">
-<td><strong>Confidence interval</strong></td>
-<td>Range of values that, with specified probability, contains the parameter</td>
-<td>(173 cm, 175 cm)</td>
-</tr>
-<tr class="even">
-<td><strong>P-value</strong></td>
-<td>Probability of observing the data assuming H₀ is true</td>
-<td>p = 0.03</td>
-</tr>
-</tbody>
-</table>
+</blockquote>
+<p><strong>Example of a Linear Regression Model</strong>: <span class="math display">
+y = \beta_0 + \beta_1x + \epsilon, \quad \text{where} \quad \epsilon \sim N(0, \sigma^2)
+</span></p>
+<p>In this model: - <span class="math inline">\beta_0</span> (intercept) and <span class="math inline">\beta_1</span> (slope) are parameters to be estimated. - <span class="math inline">\epsilon</span> represents the random error term, capturing variability not explained by the model. - The error term is assumed to follow a normal distribution with a mean of 0 and variance <span class="math inline">\sigma^2</span>.</p>
+<hr>
+<section id="causal-vs.-predictive-inference" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="causal-vs.-predictive-inference"><span class="header-section-number">1.6.1</span> Causal vs.&nbsp;Predictive Inference</h3>
+<p>In statistical modelling, there are two primary goals:</p>
+<ol type="1">
+<li><strong>Causal Inference</strong>:
+<ul>
+<li><strong>Goal</strong>: Determine whether a change in variable <strong>X</strong> <em>causes</em> a change in variable <strong>Y</strong>.</li>
+<li><strong>Requirements</strong>: Strong assumptions or specialized research designs (e.g., randomized controlled trials, instrumental variables).</li>
+<li><strong>Application</strong>: Used to predict the effects of interventions or policy changes.</li>
+<li><strong>Example</strong>: Does increasing the minimum wage (X) cause a reduction in employment (Y)?</li>
+</ul></li>
+<li><strong>Predictive Inference</strong>:
+<ul>
+<li><strong>Goal</strong>: Predict the values of <strong>Y</strong> based on <strong>X</strong>.</li>
+<li><strong>Requirements</strong>: No need to assume a causal relationship between variables.</li>
+<li><strong>Focus</strong>: Maximizing prediction accuracy, often using machine learning techniques.</li>
+<li><strong>Example</strong>: Predicting house prices (Y) based on features like size, location, and number of bedrooms (X).</li>
+</ul></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Warning: Correlation ≠ Causation</strong></p>
+<p>A <strong>spurious relationship</strong> (or spurious correlation) occurs when two variables are statistically associated but not causally related. This can happen due to:</p>
+<ol type="1">
+<li><strong>Confounding</strong>: A third variable influences both X and Y.
+<ul>
+<li><em>Example</em>: Ice cream sales (X) and drowning incidents (Y) are correlated because both increase in summer (confounder: temperature).</li>
+</ul></li>
+<li><strong>Reverse Causality</strong>: Y affects X, not the other way around.
+<ul>
+<li><em>Example</em>: Higher crime rates (Y) lead to more police presence (X), not vice versa.</li>
+</ul></li>
+<li><strong>Chance</strong>: Random correlations that occur by coincidence.
+<ul>
+<li><em>Example</em>: A correlation between the number of pirates and global temperature (purely coincidental).</li>
+</ul></li>
+</ol>
+</blockquote>
+<hr>
+</section>
+<section id="challenges-of-causal-inference" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="challenges-of-causal-inference"><span class="header-section-number">1.6.2</span> Challenges of Causal Inference</h3>
+<p>The fundamental problem of causal inference is the impossibility of observing <strong>counterfactuals</strong> (alternative scenarios). For a given unit, we can observe only one potential outcome.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stat_imgs/meme_horse.svg" class="img-fluid figure-img"></p>
+<figcaption>The fundamental problem of causal inference: We can think of causal inference as a PREDICTION problem. How can we predict the counterfactual given that we never observe it?</figcaption>
+</figure>
+</div>
+<p>Example: - We observe a person who completed college and earns $8,000 per month - We cannot observe how much the same person would earn if they had not completed college</p>
+<p>Causal methods attempt to solve this problem through:</p>
+<ol type="1">
+<li>Randomized experiments</li>
+<li>Instrumental variables</li>
+<li>Matching methods</li>
+<li>Regression discontinuity analysis</li>
+<li>Difference-in-differences</li>
+</ol>
+<p>Common problems in causal inference:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stat_imgs/IMG_4337.jpg" class="img-fluid figure-img"></p>
+<figcaption>Confounding bias: drinking the night before is a common cause of sleeping with shoes on and waking up with a headache</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stat_imgs/ff13-23.png" class="img-fluid figure-img"></p>
+<figcaption>Reverse causality</figcaption>
+</figure>
+</div>
 <hr>
 </section>
 </section>

@@ -46,106 +46,7 @@ Zamiast traktować statystykę i naukę o danych jako odrębne dyscypliny, korzy
 
 4.  **Dobór próby**: Procedura wybierania jednostek z populacji do badania. Nieobciążona metoda doboru próby daje każdej jednostce w populacji równą szansę wyboru, zapewniając reprezentatywne wyniki.
 
-5.  **Wnioskowanie statystyczne**: Proces wyciągania wniosków o populacji na podstawie danych z próby. Obejmuje:
-
-    -   Obliczanie oszacowań parametrów populacji
-    -   Ocenę wiarygodności tych oszacowań
-    -   Testowanie hipotez dotyczących cech populacji
-
-![Proces wykorzystania próby do oszacowania parametru populacji. W tym przykładzie, w próbie 10 osób stwierdzono, że 6 posiada iPhone'a, co daje szacowaną proporcję w populacji na poziomie 60%. Rzeczywista proporcja w populacji wynosi 53,8%.](stat_imgs/population_vs_sample.png)
-
-
-### Wnioskowanie Statystyczne: Jak Mała Próba Może Reprezentować Dużą Populację?
-
-Kiedy ankieterzy badają tylko 1000 wyborców, aby przewidzieć wynik wyborów z 30 000 000 uprawnionych do głosowania (zaledwie 0,003% populacji), może się to wydawać zagadkowe. Jak tak niewielki ułamek może powiedzieć nam coś o całości?
-
-To podobne do próbowania zupy. Gdy gotujesz duży garnek zupy i dokładnie ją mieszasz, nie musisz zjeść całego garnka, aby wiedzieć, jak smakuje. Wystarczy jedna łyżka – o ile zupa jest dobrze wymieszana.
-
-
-::: callout-note
-**The Soup Analogy: A Taste of Statistics**
-
-![](stat_imgs/soup-svgrepo-com.svg){width="30%"}
-
--   When you taste a spoonful of soup and decide it isn't salty enough, that's exploratory/descriptive analysis.
--   If you generalize and conclude that your entire pot of soup needs salt, that's an inference.
--   For your inference to be valid, the spoonful you tasted (the sample) needs to be representative of the entire pot (the population).
--   If the soup is not well stirred (heterogeneous population), it doesn't matter how large a spoon you have (sample size), it will still not accurately represent the whole. If the soup is well stirred (homogeneous population), even a small spoon will suffice to test the soup.
-:::
-
-
-
-#### Dlaczego Losowy Dobór Próby Działa
-
-Losowy dobór próby działa dzięki trzem kluczowym zasadom:
-
-1.  **Równe szanse**: Każda osoba w populacji ma taką samą szansę na wybór, co zapobiega systematycznemu błędowi.
-
-2.  **Reprezentatywna różnorodność**: Gdy każdy ma równą szansę, naturalnie otrzymujesz osoby ze wszystkich różnych grup w mniej więcej takich samych proporcjach, w jakich występują w populacji.
-
-    *Przykład*: Jeśli 51% wyborców to kobiety, to około 51% twojej losowej próby prawdopodobnie będą stanowić kobiety (plus minus pewne losowe wahania).
-
-3.  **Prawo wielkich liczb**: Wraz ze wzrostem wielkości próby (n), losowe wahania stają się mniej istotne, a statystyki próby zbliżają się do prawdziwych wartości populacji.
-
-    *Przykład*: Jeśli rzucisz monetą 10 razy, możesz otrzymać 7 orłów (70%). Ale jeśli rzucisz nią 1000 razy, jest znacznie bardziej prawdopodobne, że otrzymasz około 500 orłów (50%).
-
-Bez właściwego losowego doboru próby można łatwo uzyskać próbę obciążoną. Na przykład, gdybyś przeprowadzał ankiety tylko wśród osób w centrum handlowym w dni powszednie rano, pominąłbyś większość pracujących osób i studentów, co dałoby zniekształcony obraz populacji.
-
-
-
-::: {.callout-important}
-## Losowość jako fundamentalne prawo natury
-
-Losowość można postrzegać jako jedno z podstawowych praw natury, które kształtuje rzeczywistość na wielu poziomach:
-
-- **W mechanice kwantowej**: Zasada nieoznaczoności Heisenberga i probabilistyczna natura zjawisk kwantowych wskazują, że losowość jest wbudowana w fundamentalną strukturę rzeczywistości, a nie wynika jedynie z niedoskonałości naszych pomiarów czy wiedzy
-
-- **W genetyce**: Losowe mutacje i rekombinacje genetyczne stanowią podstawowy mechanizm ewolucji i różnorodności biologicznej
-
-- **W teorii chaosu**: Systemy deterministyczne mogą wykazywać nieprzewidywalne zachowania ze względu na wrażliwość na warunki początkowe (tzw. "efekt motyla")
-
-- **W badaniach statystycznych**: Losowy dobór próby jest podstawą wnioskowania o populacji - bez tej własności natury, nie bylibyśmy w stanie formułować wiarygodnych uogólnień z ograniczonych zbiorów danych
-
-Ta naturalna losowość staje się fundamentem metodologii nauk empirycznych, szczególnie widocznym w dwóch kluczowych aspektach:
-
-**1. Randomizacja w eksperymentach**
-
-Randomizacja to proces losowego przydzielania jednostek badawczych do grup eksperymentalnych. Jest to kluczowy element metodologii eksperymentalnej, który:
-
-- Minimalizuje wpływ zmiennych zakłócających
-- Równoważy nieznane czynniki między grupami
-- Zmniejsza ryzyko błędu systematycznego
-- Umożliwia stosowanie testów statystycznych do analizy wyników
-
-Przykład w R:
-```{r}
-# Randomizacja w eksperymencie
-set.seed(42) # dla odtwarzalności
-uczestnicy <- 1:30  # 30 uczestników badania
-grupy <- c(rep("Kontrolna", 15), rep("Eksperymentalna", 15))
-przydział_losowy <- sample(grupy)  # losowy przydział do grup
-head(data.frame(ID = uczestnicy[1:6], Grupa = przydział_losowy[1:6]))
-```
-
-**2. Prosta próba losowa**
-
-Prosta próba losowa to podstawowa metoda pobierania próby, w której każdy element populacji ma taką samą szansę na włączenie do próby. Ta własność losowości:
-
-- Zapewnia reprezentatywność próby
-- Umożliwia wnioskowanie o parametrach populacji
-- Pozwala na obliczanie błędów losowych i konstruowanie przedziałów ufności
-
-Przykład w R:
-```{r}
-# Losowanie prostej próby losowej z populacji
-populacja <- 1:1000  # populacja 1000 elementów
-próba <- sample(populacja, 50)  # losowa próba 50 elementów
-summary(próba)  # podstawowe statystyki wylosowanej próby
-```
-
-Uznanie losowości za prawo natury zmienia nasze postrzeganie rzeczywistości - z deterministycznego poglądu, gdzie wszystko jest teoretycznie przewidywalne przy wystarczającej wiedzy, na stochastyczny, gdzie niepewność i zmienność są nieodłącznymi cechami świata. Dzięki temu możemy projektować badania, które wykorzystują tę naturalną własność do wiarygodnego poznawania otaczającej nas rzeczywistości.
-:::
-
+Wybrane schematy losowego doboru próby:
 
 ::: {.panel-tabset group="language"}
 ## Prosty Dobór Losowy
@@ -167,132 +68,238 @@ Uznanie losowości za prawo natury zmienia nasze postrzeganie rzeczywistości - 
 ![Dobór Grupowy. Źródło: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Cluster2.svg)
 :::
 
+5.  **Wnioskowanie statystyczne**: Proces wyciągania wniosków o populacji na podstawie danych z próby. Obejmuje:
 
+    -   Obliczanie oszacowań parametrów populacji
+    -   Ocenę wiarygodności tych oszacowań
+    -   Testowanie hipotez dotyczących cech populacji
+
+![Proces wykorzystania próby do oszacowania parametru populacji. W tym przykładzie, w próbie 10 osób stwierdzono, że 6 posiada iPhone'a, co daje szacowaną proporcję w populacji na poziomie 60%. Rzeczywista proporcja w populacji wynosi 53,8%.](stat_imgs/population_vs_sample.png)
+
+### Wnioskowanie Statystyczne: Jak Mała Próba Może Reprezentować Dużą Populację?
+
+Kiedy ankieterzy badają tylko 1000 wyborców, aby przewidzieć wynik wyborów z 30 000 000 uprawnionych do głosowania (zaledwie 0,003% populacji), może się to wydawać zagadkowe. Jak tak niewielki ułamek może powiedzieć nam coś o całości?
+
+To podobne do próbowania zupy. Gdy gotujesz duży garnek zupy i dokładnie ją mieszasz, nie musisz zjeść całego garnka, aby wiedzieć, jak smakuje. Wystarczy jedna łyżka – o ile zupa jest dobrze wymieszana.
+
+::: callout-note
+**The Soup Analogy: A Taste of Statistics**
+
+![](stat_imgs/soup-svgrepo-com.svg){width="30%"}
+
+-   When you taste a spoonful of soup and decide it isn't salty enough, that's exploratory/descriptive analysis.
+-   If you generalize and conclude that your entire pot of soup needs salt, that's an inference.
+-   For your inference to be valid, the spoonful you tasted (the sample) needs to be representative of the entire pot (the population).
+-   If the soup is not well stirred (heterogeneous population), it doesn't matter how large a spoon you have (sample size), it will still not accurately represent the whole. If the soup is well stirred (homogeneous population), even a small spoon will suffice to test the soup.
+:::
+
+#### Dlaczego Losowy Dobór Próby Działa
+
+Losowy dobór próby działa dzięki trzem kluczowym zasadom:
+
+1.  **Równe szanse**: Każda osoba w populacji ma taką samą szansę na wybór, co zapobiega systematycznemu błędowi.
+
+2.  **Reprezentatywna różnorodność**: Gdy każdy ma równą szansę, naturalnie otrzymujesz osoby ze wszystkich różnych grup w mniej więcej takich samych proporcjach, w jakich występują w populacji.
+
+    *Przykład*: Jeśli 51% wyborców to kobiety, to około 51% twojej losowej próby prawdopodobnie będą stanowić kobiety (plus minus pewne losowe wahania).
+
+3.  **Prawo wielkich liczb**: Wraz ze wzrostem wielkości próby (n), losowe wahania stają się mniej istotne, a statystyki próby zbliżają się do prawdziwych wartości populacji.
+
+    *Przykład*: Jeśli rzucisz monetą 10 razy, możesz otrzymać 7 orłów (70%). Ale jeśli rzucisz nią 1000 razy, jest znacznie bardziej prawdopodobne, że otrzymasz około 500 orłów (50%).
+
+Bez właściwego losowego doboru próby można łatwo uzyskać próbę obciążoną. Na przykład, gdybyś przeprowadzał ankiety tylko wśród osób w centrum handlowym w dni powszednie rano, pominąłbyś większość pracujących osób i studentów, co dałoby zniekształcony obraz populacji.
+
+::: callout-important
+## Losowość jako fundamentalne prawo natury
+
+Losowość można postrzegać jako jedno z podstawowych praw natury, które kształtuje rzeczywistość na wielu poziomach:
+
+-   **W mechanice kwantowej**: Zasada nieoznaczoności Heisenberga i probabilistyczna natura zjawisk kwantowych wskazują, że losowość jest wbudowana w fundamentalną strukturę rzeczywistości, a nie wynika jedynie z niedoskonałości naszych pomiarów czy wiedzy
+
+-   **W genetyce**: Losowe mutacje i rekombinacje genetyczne stanowią podstawowy mechanizm ewolucji i różnorodności biologicznej
+
+-   **W teorii chaosu**: Systemy deterministyczne mogą wykazywać nieprzewidywalne zachowania ze względu na wrażliwość na warunki początkowe (tzw. "efekt motyla")
+
+-   **W badaniach statystycznych**: Losowy dobór próby jest podstawą wnioskowania o populacji - bez tej własności natury, nie bylibyśmy w stanie formułować wiarygodnych uogólnień z ograniczonych zbiorów danych
+
+Ta naturalna losowość staje się fundamentem metodologii nauk empirycznych, szczególnie widocznym w dwóch kluczowych aspektach:
+
+**1. Randomizacja w eksperymentach**
+
+Randomizacja to proces losowego przydzielania jednostek badawczych do grup eksperymentalnych. Jest to kluczowy element metodologii eksperymentalnej, który:
+
+-   Minimalizuje wpływ zmiennych zakłócających
+-   Równoważy nieznane czynniki między grupami
+-   Zmniejsza ryzyko błędu systematycznego
+-   Umożliwia stosowanie testów statystycznych do analizy wyników
+
+Przykład w R:
+
+```{r}
+# Randomizacja w eksperymencie
+set.seed(42) # dla odtwarzalności
+uczestnicy <- 1:30  # 30 uczestników badania
+grupy <- c(rep("Kontrolna", 15), rep("Eksperymentalna", 15))
+przydział_losowy <- sample(grupy)  # losowy przydział do grup
+head(data.frame(ID = uczestnicy[1:6], Grupa = przydział_losowy[1:6]))
+```
+
+**2. Prosta próba losowa**
+
+Prosta próba losowa to podstawowa metoda pobierania próby, w której każdy element populacji ma taką samą szansę na włączenie do próby. Ta własność losowości:
+
+-   Zapewnia reprezentatywność próby
+-   Umożliwia wnioskowanie o parametrach populacji
+-   Pozwala na obliczanie błędów losowych i konstruowanie przedziałów ufności
+
+Przykład w R:
+
+```{r}
+# Losowanie prostej próby losowej z populacji
+populacja <- 1:1000  # populacja 1000 elementów
+próba <- sample(populacja, 50)  # losowa próba 50 elementów
+summary(próba)  # podstawowe statystyki wylosowanej próby
+```
+
+Uznanie losowości za prawo natury zmienia nasze postrzeganie rzeczywistości - z deterministycznego poglądu, gdzie wszystko jest teoretycznie przewidywalne przy wystarczającej wiedzy, na stochastyczny, gdzie niepewność i zmienność są nieodłącznymi cechami świata. Dzięki temu możemy projektować badania, które wykorzystują tę naturalną własność do wiarygodnego poznawania otaczającej nas rzeczywistości.
+:::
 
 
 ## **Parametry Populacji i Estymacja Statystyczna**
 
 ### **Parametry Populacji**
+
 **Parametr populacji** ($\theta$) to wartość liczbowa opisująca określoną cechę całej populacji. Parametry te są zazwyczaj nieznane i szacowane na podstawie danych z próby.
 
 #### **Typowe Parametry Populacji**
-- **$\mu$ (Średnia populacji)**: Średnia wartość w populacji.  
-- **$\sigma^2$ (Wariancja populacji)**: Średnie kwadratowe odchylenie od średniej.  
-- **$\sigma$ (Odchylenie standardowe populacji)**: Pierwiastek kwadratowy z wariancji, mierzący rozproszenie populacji.  
-- **$p$ (Proporcja populacji)**: Ułamek populacji posiadający określoną cechę.
+
+-   $\mu$ (Średnia populacji): Średnia wartość w populacji.\
+-   $\sigma^2$ (Wariancja populacji): Średnie kwadratowe odchylenie od średniej.\
+-   $\sigma$ (Odchylenie standardowe populacji): Pierwiastek kwadratowy z wariancji, mierzący rozproszenie populacji.\
+-   $p$ (Proporcja populacji): Ułamek populacji posiadający określoną cechę.
 
 Ponieważ badanie całej populacji jest często niepraktyczne, polegamy na próbach do oszacowania tych parametrów.
 
----
+------------------------------------------------------------------------
 
 ### **Pojęcia Estymacji Statystycznej**
 
 #### **Estymand**
-**Estymand** to konkretny parametr populacji (lub funkcja parametrów), który chcemy oszacować. Reprezentuje nieznaną wartość w populacji, którą chcemy określić.  
 
-> **Kluczowe Rozróżnienie**  
+**Estymand** to konkretny parametr populacji (lub funkcja parametrów), który chcemy oszacować. Reprezentuje nieznaną wartość w populacji, którą chcemy określić.
+
+> **Kluczowe Rozróżnienie**\
 > Estymand to nieznany parametr populacji (np. $\mu$, $\sigma^2$, $p$), podczas gdy estymator to metoda używana do obliczenia oszacowania.
 
----
+------------------------------------------------------------------------
 
 #### **Estymator (Statystyka)**
-**Estymator** to funkcja matematyczna lub procedura używana do oszacowania parametru populacji na podstawie danych z próby. Jest to zmienna losowa, ponieważ jego wartość zależy od konkretnej próby.  
+
+**Estymator** to funkcja matematyczna lub procedura używana do oszacowania parametru populacji na podstawie danych z próby. Jest to zmienna losowa, ponieważ jego wartość zależy od konkretnej próby.
 
 **Statystyka** to dowolna miara obliczona z danych próby. Gdy jest używana do oszacowania parametru populacji, nazywana jest estymatorem.
 
 ##### **Przykłady Estymatorów**
-- **Średnia z próby**: $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ (estymator $\mu$).  
-- **Wariancja z próby**: $s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$ (estymator $\sigma^2$).  
-- **Proporcja z próby**: $\hat{p} = \frac{x}{n}$ (estymator $p$).
 
-> **Uwaga**  
+-   **Średnia z próby**: $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ (estymator $\mu$).\
+-   **Wariancja z próby**: $s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$ (estymator $\sigma^2$).\
+-   **Proporcja z próby**: $\hat{p} = \frac{x}{n}$ (estymator $p$).
+
+> **Uwaga**\
 > Estymator to **procedura** obliczania wartości na podstawie próby. Zastosowanie tego samego estymatora do różnych prób da różne oszacowania.
 
----
+------------------------------------------------------------------------
 
-#### **Oszacowanie**
+#### **Oszacowanie (Estymata)**
+
 **Oszacowanie** to konkretna wartość liczbowa uzyskana przez zastosowanie estymatora do próby. Jest to realizacja zmiennej losowej (estymatora).
 
 ##### **Przykład**
-- **Estymand**: Średni wzrost wszystkich dorosłych w kraju ($\mu$).  
-- **Estymator**: Wzór na średnią z próby ($\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$).  
-- **Oszacowanie**: 173,5 cm (konkretna wartość z próby).
 
----
+-   **Estymand**: Średni wzrost wszystkich dorosłych w kraju ($\mu$).\
+-   **Estymator**: Wzór na średnią z próby ($\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$).\
+-   **Oszacowanie**: 173,5 cm (konkretna wartość z próby).
+
+------------------------------------------------------------------------
 
 ### **Właściwości Dobrych Estymatorów**
-Dobry estymator powinien mieć następujące właściwości:  
-1. **Nieobciążoność**: Oczekiwana wartość estymatora równa się parametrowi populacji ($E(\hat{\theta}) = \theta$).  
-2. **Efektywność**: Estymator ma najmniejszą możliwą wariancję spośród wszystkich nieobciążonych estymatorów.  
-3. **Zgodność**: Wraz ze wzrostem liczebności próby estymator zbliża się do prawdziwej wartości parametru.  
+
+Dobry estymator powinien mieć następujące właściwości:\
+1. **Nieobciążoność**: Oczekiwana wartość estymatora równa się parametrowi populacji ($E(\hat{\theta}) = \theta$).\
+2. **Efektywność**: Estymator ma najmniejszą możliwą wariancję spośród wszystkich nieobciążonych estymatorów.\
+3. **Zgodność**: Wraz ze wzrostem liczebności próby estymator zbliża się do prawdziwej wartości parametru.\
 4. **Wystarczalność**: Estymator wykorzystuje wszystkie dostępne informacje z próby dotyczące parametru.
 
----
+------------------------------------------------------------------------
 
 ### **Wartość Oczekiwana Estymatora**
+
 **Wartość oczekiwana** zmiennej losowej to średnia wartość, jaką przyjmowałaby w długim okresie, gdyby eksperyment był powtarzany nieskończenie wiele razy. Dla estymatora wartość oczekiwana reprezentuje średnią wartość statystyki w wielu próbach z populacji.
 
-Dla dobrze skonstruowanego estymatora wartość oczekiwana równa się parametrowi populacji:  
+Dla dobrze skonstruowanego estymatora wartość oczekiwana równa się parametrowi populacji:\
 $$
 E(\hat{\theta}) = \theta
-$$  
+$$\
 Taki estymator nazywamy **nieobciążonym**.
 
 ##### **Przykład: Estymatory Nieobciążone i Obciążone**
-- Średnia z próby ($\bar{x}$) jest nieobciążonym estymatorem średniej populacji ($\mu$).  
-- Wariancja z próby ($s^2$) wymaga poprawki ($\frac{1}{n-1}$ zamiast $\frac{1}{n}$), aby była nieobciążona.
 
----
+-   Średnia z próby ($\bar{x}$) jest nieobciążonym estymatorem średniej populacji ($\mu$).\
+-   Wariancja z próby ($s^2$) wymaga poprawki ($\frac{1}{n-1}$ zamiast $\frac{1}{n}$), aby była nieobciążona.
+
+------------------------------------------------------------------------
 
 ### **Rozkład Statystyk z Próby**
-**Statystyka z próby** ($\hat{\theta}$) to wartość obliczona z danych próby i używana do oszacowania parametru populacji ($\theta$).  
+
+**Statystyka z próby** ($\hat{\theta}$) to wartość obliczona z danych próby i używana do oszacowania parametru populacji ($\theta$).
 
 **Rozkład statystyki** opisuje, jak jej wartości zmieniają się przy wielokrotnym losowaniu prób o tej samej liczebności ($n$) z tej samej populacji. Koncepcja ta jest kluczowa dla wnioskowania statystycznego.
 
 #### **Kluczowe Punkty Dotyczące Rozkładu Statystyki**
-1. Pokazuje, jak statystyka zmienia się w różnych próbach.  
-2. Pomaga określić błąd próby i niepewność.  
-3. Umożliwia tworzenie probabilistycznych stwierdzeń o dokładności oszacowań.  
-4. Stanowi podstawę wnioskowania statystycznego.
+
+1.  Pokazuje, jak statystyka zmienia się w różnych próbach.\
+2.  Pomaga określić błąd próby i niepewność.\
+3.  Umożliwia tworzenie probabilistycznych stwierdzeń o dokładności oszacowań.\
+4.  Stanowi podstawę wnioskowania statystycznego.
 
 #### **Przykład: Średnia z Próby**
-Średnia z próby ($\bar{x}$) jest estymatorem średniej populacji ($\mu$). Oblicza się ją jako:  
+
+Średnia z próby ($\bar{x}$) jest estymatorem średniej populacji ($\mu$). Oblicza się ją jako:\
 $$
 \bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
-$$  
+$$\
 gdzie $x_1, x_2, ..., x_n$ to obserwacje w losowej próbie.
 
----
+------------------------------------------------------------------------
 
 ### **Rodzaje Danych i Zmiennych**
 
 Dane są podstawą analizy statystycznej. Zrozumienie ich rodzajów i charakterystyki jest kluczowe.
 
 #### **Źródła Danych**
-1. **Dane Pierwotne**: Zbierane bezpośrednio dla konkretnego celu badawczego (np. ankiety, eksperymenty).  
-2. **Dane Wtórne**: Pozyskiwane z istniejących źródeł (np. bazy danych, statystyki rządowe).
+
+1.  **Dane Pierwotne**: Zbierane bezpośrednio dla konkretnego celu badawczego (np. ankiety, eksperymenty).\
+2.  **Dane Wtórne**: Pozyskiwane z istniejących źródeł (np. bazy danych, statystyki rządowe).
 
 #### **Zmienne i Stałe**
-- **Zmienne**: Cechy, które mogą przyjmować różne wartości w zbiorze danych.  
-- **Stałe**: Wartości, które pozostają niezmienne w trakcie analizy.
+
+-   **Zmienne**: Cechy, które mogą przyjmować różne wartości w zbiorze danych.\
+-   **Stałe**: Wartości, które pozostają niezmienne w trakcie analizy.
 
 #### **Klasyfikacja Zmiennych**
-1. **Zmienne Ilościowe** (reprezentują ilości lub pomiary):  
-   - **Ciągłe**: Mogą przyjmować dowolną wartość w określonym zakresie (np. wzrost, temperatura).  
-   - **Dyskretne**: Przyjmują określone, często całkowite wartości (np. liczba dzieci, błędy).  
 
-2. **Zmienne Jakościowe** (reprezentują kategorie lub cechy):  
-   - **Nominalne**: Kategorie bez naturalnego porządku (np. grupa krwi, płeć).  
-   - **Porządkowe**: Kategorie z naturalnym porządkiem (np. poziom wykształcenia, oceny satysfakcji).
+1.  **Zmienne Ilościowe** (reprezentują ilości lub pomiary):
+    -   **Ciągłe**: Mogą przyjmować dowolną wartość w określonym zakresie (np. wzrost, temperatura).\
+    -   **Dyskretne**: Przyjmują określone, często całkowite wartości (np. liczba dzieci, błędy).
+2.  **Zmienne Jakościowe** (reprezentują kategorie lub cechy):
+    -   **Nominalne**: Kategorie bez naturalnego porządku (np. grupa krwi, płeć).\
+    -   **Porządkowe**: Kategorie z naturalnym porządkiem (np. poziom wykształcenia, oceny satysfakcji).
 
----
-
-
+------------------------------------------------------------------------
 
 ## Wnioskowanie Statystyczne
 
 Wnioskowanie statystyczne to proces wyciągania wniosków o populacji na podstawie danych z próby. Obejmuje dwa główne obszary:
-
 
 ### Estymacja
 
@@ -306,7 +313,6 @@ Przykład przedziału ufności: "95% przedział ufności dla średniego wzrostu 
 **Poprawna interpretacja przedziału ufności**: Gdybyśmy wielokrotnie pobierali próby z tej samej populacji i dla każdej z nich konstruowali 95% przedział ufności tą samą metodą, około 95% tak skonstruowanych przedziałów zawierałoby prawdziwą wartość parametru populacji.
 
 **Błędna interpretacja**: "Istnieje 95% szans, że prawdziwa średnia znajduje się w przedziale (173 cm, 175 cm)" – jest to niepoprawne, ponieważ parametr populacji jest stałą (choć nieznaną) wartością, a nie zmienną losową.
-
 
 ### Testowanie Hipotez
 
@@ -375,31 +381,8 @@ W testowaniu hipotez statystycznych możemy popełnić dwa rodzaje błędów:
 >
 > **Definicja wartości p**: Prawdopodobieństwo zaobserwowania wyniku co najmniej tak skrajnego jak uzyskany, przy założeniu, że hipoteza zerowa jest prawdziwa.
 
-## Podstawy Dobrego Badania Statystycznego
-
-Aby przeprowadzić rzetelne badanie statystyczne, należy zapewnić:
-
-1.  **Reprezentatywność próby**: Próba powinna dobrze odzwierciedlać badaną populację
-2.  **Odpowiednią wielkość próby**: Większe próby zapewniają dokładniejsze oszacowania i większą moc statystyczną
-3.  **Kontrolę zmiennych zakłócających**: Zarówno w projektowaniu badań, jak i w analizie danych
-4.  **Odpowiednie metody statystyczne**: Dopasowane do rodzaju danych i pytań badawczych
-5.  **Jasną interpretację**: Uwzględniającą ograniczenia badania i alternatywne wyjaśnienia
-
-### Podsumowanie Kluczowych Pojęć
-
-| Pojęcie | Definicja | Przykład |
-|----------------------|--------------------------|------------------------|
-| **Parametr populacji (Estymand)** | Wartość charakteryzująca populację, zwykle nieznana | μ (średnia populacji) |
-| **Estymator (Statystyka)** | Funkcja/procedura szacowania parametru na podstawie próby | $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ |
-| **Oszacowanie (Estymata)** | Konkretna wartość uzyskana po zastosowaniu estymatora do próby | $\bar{x} = 173,5$ cm |
-| **Błąd standardowy** | Miara zmienności estymatora między próbami | $SE(\bar{x}) = \frac{s}{\sqrt{n}}$ |
-| **Przedział ufności** | Zakres wartości, który z określonym prawdopodobieństwem zawiera parametr | (173 cm, 175 cm) |
-| **Wartość p** | Prawdopodobieństwo zaobserwowania danych przy założeniu prawdziwości H₀ | p = 0,03 |
-
 
 ## Modele Statystyczne i Wnioskowanie
-
-### Modele Statystyczne
 
 **Model statystyczny** to matematyczna reprezentacja rzeczywistości, która opisuje relacje między zmiennymi oraz strukturę danych. Pozwala on opisać **proces generowania danych (DGP)** oraz umożliwia wnioskowanie o nieznanych parametrach.
 
@@ -407,55 +390,51 @@ Aby przeprowadzić rzetelne badanie statystyczne, należy zapewnić:
 >
 > Kompletny model statystyczny składa się z następujących elementów:
 >
-> 1. **Forma funkcjonalna**: Struktura matematyczna definiująca relację między zmiennymi (np. liniowa, kwadratowa, wykładnicza).
-> 2. **Zmienne**:
->    - **Zmienna zależna**: Wynik, który chcemy przewidzieć lub wyjaśnić.
->    - **Zmienne niezależne/objaśniające**: Czynniki, które mogą wpływać na zmienną zależną.
-> 3. **Parametry**: Nieznane wielkości, które szacujemy na podstawie danych (np. współczynniki regresji, takie jak $\beta_0$ i $\beta_1$).
-> 4. **Składnik losowy**: Składnik błędu ($\epsilon$), który uwzględnia niewyjaśnioną zmienność w danych.
-> 5. **Założenia dotyczące rozkładu prawdopodobieństwa**: Założenia dotyczące rozkładu składnika losowego (np. normalność, homoskedastyczność).
+> 1.  **Forma funkcjonalna**: Struktura matematyczna definiująca relację między zmiennymi (np. liniowa, kwadratowa, wykładnicza).
+> 2.  **Zmienne**:
+>     -   **Zmienna zależna**: Wynik, który chcemy przewidzieć lub wyjaśnić.
+>     -   **Zmienne niezależne/objaśniające**: Czynniki, które mogą wpływać na zmienną zależną.
+> 3.  **Parametry**: Nieznane wielkości, które szacujemy na podstawie danych (np. współczynniki regresji, takie jak $\beta_0$ i $\beta_1$).
+> 4.  **Składnik losowy**: Składnik błędu ($\epsilon$), który uwzględnia niewyjaśnioną zmienność w danych.
+> 5.  **Założenia dotyczące rozkładu prawdopodobieństwa**: Założenia dotyczące rozkładu składnika losowego (np. normalność, homoskedastyczność).
 
 **Przykład modelu regresji liniowej**:
+
 $$
 y = \beta_0 + \beta_1x + \epsilon, \quad \text{gdzie} \quad \epsilon \sim N(0, \sigma^2)
 $$
 
-W tym modelu:
-- $\beta_0$ (wyraz wolny) i $\beta_1$ (współczynnik nachylenia) to parametry, które szacujemy.
-- $\epsilon$ reprezentuje składnik losowy, który przechwytuje zmienność niewyjaśnioną przez model.
-- Zakładamy, że składnik losowy ma rozkład normalny o średniej 0 i wariancji $\sigma^2$.
+W tym modelu: - $\beta_0$ (wyraz wolny) i $\beta_1$ (współczynnik nachylenia) to parametry, które szacujemy. - $\epsilon$ reprezentuje składnik losowy, który przechwytuje zmienność niewyjaśnioną przez model. - Zakładamy, że składnik losowy ma rozkład normalny o średniej 0 i wariancji $\sigma^2$.
 
----
+------------------------------------------------------------------------
 
 ### Wnioskowanie Przyczynowe vs. Predykcyjne
 
 W modelowaniu statystycznym można wyróżnić dwa główne cele:
 
-1. **Wnioskowanie Przyczynowe**:
-   - **Cel**: Określenie, czy zmiana zmiennej **X** *powoduje* zmianę zmiennej **Y**.
-   - **Wymagania**: Silne założenia lub specjalne projekty badawcze (np. randomizowane badania kontrolowane, zmienne instrumentalne).
-   - **Zastosowanie**: Używane do przewidywania efektów interwencji lub zmian politycznych.
-   - **Przykład**: Czy podniesienie płacy minimalnej (X) powoduje spadek zatrudnienia (Y)?
-
-2. **Wnioskowanie Predykcyjne**:
-   - **Cel**: Przewidywanie wartości **Y** na podstawie **X**.
-   - **Wymagania**: Nie ma potrzeby zakładania związku przyczynowego między zmiennymi.
-   - **Skupienie**: Maksymalizacja dokładności predykcji, często z wykorzystaniem technik uczenia maszynowego.
-   - **Przykład**: Przewidywanie cen domów (Y) na podstawie cech takich jak powierzchnia, lokalizacja i liczba sypialni (X).
+1.  **Wnioskowanie Przyczynowe**:
+    -   **Cel**: Określenie, czy zmiana zmiennej **X** *powoduje* zmianę zmiennej **Y**.
+    -   **Wymagania**: Silne założenia lub specjalne projekty badawcze (np. randomizowane badania kontrolowane, zmienne instrumentalne).
+    -   **Zastosowanie**: Używane do przewidywania efektów interwencji lub zmian politycznych.
+    -   **Przykład**: Czy podniesienie płacy minimalnej (X) powoduje spadek zatrudnienia (Y)?
+2.  **Wnioskowanie Predykcyjne**:
+    -   **Cel**: Przewidywanie wartości **Y** na podstawie **X**.
+    -   **Wymagania**: Nie ma potrzeby zakładania związku przyczynowego między zmiennymi.
+    -   **Skupienie**: Maksymalizacja dokładności predykcji, często z wykorzystaniem technik uczenia maszynowego.
+    -   **Przykład**: Przewidywanie cen domów (Y) na podstawie cech takich jak powierzchnia, lokalizacja i liczba sypialni (X).
 
 > **Ostrzeżenie: Korelacja ≠ Przyczynowość**
 >
 > **Fałszywa zależność** (lub fałszywa korelacja) występuje, gdy dwie zmienne są statystycznie powiązane, ale nie mają związku przyczynowego. Może to wynikać z:
 >
-> 1. **Zmiennej zakłócającej**: Trzecia zmienna wpływa na zarówno X, jak i Y.
->    - *Przykład*: Sprzedaż lodów (X) i liczba utonięć (Y) są skorelowane, ponieważ oba zjawiska nasilają się latem (zmienna zakłócająca: temperatura).
-> 2. **Odwrotnej przyczynowości**: Y wpływa na X, a nie odwrotnie.
->    - *Przykład*: Wyższa przestępczość (Y) prowadzi do większej obecności policji (X), a nie na odwrót.
-> 3. **Przypadku**: Losowe korelacje, które występują przez przypadek.
->    - *Przykład*: Korelacja między liczbą piratów a globalną temperaturą (czysty przypadek).
+> 1.  **Zmiennej zakłócającej**: Trzecia zmienna wpływa na zarówno X, jak i Y.
+>     -   *Przykład*: Sprzedaż lodów (X) i liczba utonięć (Y) są skorelowane, ponieważ oba zjawiska nasilają się latem (zmienna zakłócająca: temperatura).
+> 2.  **Odwrotnej przyczynowości**: Y wpływa na X, a nie odwrotnie.
+>     -   *Przykład*: Wyższa przestępczość (Y) prowadzi do większej obecności policji (X), a nie na odwrót.
+> 3.  **Przypadku**: Losowe korelacje, które występują przez przypadek.
+>     -   *Przykład*: Korelacja między liczbą piratów a globalną temperaturą (czysty przypadek).
 
----
-
+------------------------------------------------------------------------
 
 ### Wyzwania Wnioskowania Przyczynowego
 
@@ -482,876 +461,9 @@ Typowe problemy we wnioskowaniu przyczynowym:
 
 ![Odwrotna przyczynowość](stat_imgs/ff13-23.png)
 
+------------------------------------------------------------------------
 
----
 
-::: {.callout-note}
-## Popularna Notacja Statystyczna
-
-Zrozumienie symboli używanych w statystyce jest niezbędne do śledzenia pojęć i wzorów statystycznych. Oto tabela referencyjna najczęściej używanej notacji:
-
-| Symbol | Opis | Przykład |
-|--------------------|------------------------------|----------------------|
-| $n$ | Liczebność próby (liczba obserwacji w próbie) | "Zebraliśmy dane od $n = 30$ uczestników" |
-| $N$ | Liczebność populacji (całkowita liczba jednostek w populacji) | "Miasto ma $N = 5000$ mieszkańców" |
-| $\bar{x}$ | Średnia z próby (średnia obserwacji w próbie) | "$\bar{x} = 25,3$ lat" |
-| $\mu$ | Średnia populacji (średnia wartość w całej populacji) | "Średni wzrost w populacji to $\mu = 175$ cm" |
-| $s$ | Odchylenie standardowe z próby | "Odchylenie standardowe w próbie wynosi $s = 4,2$ punktu" |
-| $s^2$ | Wariancja z próby | "Wariancja w próbie wynosi $s^2 = 17,64$ kwadratu punktu" |
-| $\sigma$ | Odchylenie standardowe populacji | "Odchylenie standardowe populacji wynosi $\sigma = 15$ minut" |
-| $\sigma^2$ | Wariancja populacji | "Wariancja populacji wynosi $\sigma^2 = 225$ kwadratów minut" |
-| $\hat{p}$ | Frakcja w próbie | "$\hat{p} = 0,35$ respondentów zgodziło się" |
-| $p$ | Frakcja w populacji | "Prawdziwa proporcja $p$ osób leworęcznych" |
-| $H_0$ | Hipoteza zerowa | "$H_0: \mu = 100$" |
-| $H_1$ lub $H_a$ | Hipoteza alternatywna | "$H_1: \mu \neq 100$" |
-| $\alpha$ | Poziom istotności (prawdopodobieństwo błędu I rodzaju) | "Zastosowaliśmy $\alpha = 0,05$ w naszym teście" |
-| $\beta$ | Prawdopodobieństwo błędu II rodzaju | "Test miał $\beta = 0,2$" |
-| $1-\beta$ | Moc statystyczna | "Test miał moc $1-\beta = 0,8$" |
-| $\sum$ | Suma | "$\sum_{i=1}^{n} x_i$ oznacza dodanie wszystkich wartości od $x_1$ do $x_n$" |
-| $\rho$ | Współczynnik korelacji w populacji | "Korelacja w populacji wynosi $\rho = 0,75$" |
-| $r$ | Współczynnik korelacji w próbie | "Korelacja w próbie wynosi $r = 0,72$" |
-| $df$ | Stopnie swobody | "Test $t$ miał $df = 29$" |
-| $SE$ | Błąd standardowy | "$SE(\bar{x}) = \frac{s}{\sqrt{n}}$" |
-| $CI$ | Przedział ufności | "95% $CI = [42,1, 45,7]$" |
-| $\hat{\theta}$ | Ogólna notacja dla estymatora parametru $\theta$ | "$\hat{\theta}$ to nasz estymator" |
-
-Przy czytaniu wzorów i pojęć statystycznych zwracaj zawsze uwagę na rozróżnienie między: - **Statystykami z próby** (zazwyczaj litery łacińskie: $\bar{x}$, $s$, $r$) - **Parametrami populacji** (zazwyczaj litery greckie: $\mu$, $\sigma$, $\rho$)
-
-Ta konwencja pomaga wyjaśnić, czy mówimy o wartości obliczonej z naszych danych z próby, czy o prawdziwej (zwykle nieznanej) charakterystyce całej populacji.
-
-:::
-
-
-::: {.callout-note}
-## Jak przechowywane są dane w Data Science?
-
-Data scientists (analitycy danych) korzystają z różnych sposobów przechowywania danych. Oto najpopularniejsze z nich:
-
----
-
-### **Pliki CSV**
-To proste pliki tekstowe, w których dane są zapisane w wierszach, a wartości oddzielone przecinkami.
-
-- **Plusy**:
-  - Łatwe do otwarcia i edycji nawet w zwykłym notatniku.
-  - Działają z większością programów do analizy danych.
-  - Proste do udostępniania innym.
-
-- **Minusy**:
-  - Nie nadają się do przechowywania skomplikowanych danych (np. zdjęć czy filmów).
-  - Mogą być wolne w pracy z bardzo dużymi zbiorami danych.
-  - Czasem pojawiają się problemy z polskimi znakami.
-
----
-
-### **Bazy Danych SQL**
-To zaawansowane systemy do przechowywania danych w tabelach, które mogą być ze sobą powiązane.
-
-- **Plusy**:
-  - Idealne do zarządzania skomplikowanymi danymi (np. zamówieniami i klientami).
-  - Szybkie wyszukiwanie i analiza danych.
-  - Bezpieczeństwo i niezawodność.
-
-- **Minusy**:
-  - Wymagają więcej wiedzy do zarządzania.
-  - Trudniejsze w dostosowaniu do zmian w strukturze danych.
-  - Mogą być kosztowne w utrzymaniu.
-
----
-
-### **Inne formaty**
-
-#### **Parquet**
-- **Plusy**:
-  - Szybki i wydajny, szczególnie do dużych zbiorów danych.
-  - Oszczędza miejsce dzięki kompresji.
-
-- **Minusy**:
-  - Trudniejszy do bezpośredniego przeglądania przez człowieka.
-
-#### **JSON**
-- **Plusy**:
-  - Elastyczny, idealny do przechowywania danych o złożonej strukturze (np. zagnieżdżonych).
-  - Czytelny dla człowieka.
-
-- **Minusy**:
-  - Zajmuje więcej miejsca niż CSV.
-  - Wolniejszy w przetwarzaniu.
-
-#### **NoSQL**
-- **Plusy**:
-  - Bardzo elastyczny, nie wymaga ustalonej struktury danych.
-  - Skalowalny, nadaje się do ogromnych zbiorów danych.
-
-- **Minusy**:
-  - Mniej odpowiedni do złożonych relacji między danymi.
-:::
-
- 
-::: {.callout-note}
-## Rozkład Normalny - Krzywa Dzwonowa
-
-> **Uwaga**
->
-> Rozkład normalny (znany również jako rozkład Gaussa lub krzywa dzwonowa) jest jednym z najważniejszych rozkładów prawdopodobieństwa w statystyce. Ma symetryczny dzwonowaty kształt i jest w pełni opisany przez dwa parametry:
->
-> -   Średnią $\mu$ (określającą środek rozkładu)
-> -   Odchylenie standardowe $\sigma$ (określające szerokość "dzwonu")
->
-> Rozkład normalny występuje często w przyrodzie i systemach ludzkich (wysokość, błędy pomiarowe, wyniki testów).
-
-### Reprezentacja Matematyczna
-
-Funkcja gęstości prawdopodobieństwa (PDF) rozkładu normalnego to:
-
-$$f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}$$
-
-Gdzie:
-
--   $x$ to zmienna losowa
--   $\mu$ to średnia (parametr położenia)
--   $\sigma$ to odchylenie standardowe (parametr skali)
--   $e$ to liczba Eulera (około 2,71828)
--   $\pi$ to stała matematyczna pi (około 3,14159)
-
-### Praktyczne Znaczenie
-
-Rozkład normalny jest szczególnie ważny ze względu na:
-
-1.  **Regułę 68-95-99,7**: Około 68% wartości mieści się w odległości jednego odchylenia standardowego od średniej, 95% w odległości dwóch odchyleń standardowych, a 99,7% w odległości trzech odchyleń standardowych.
-
-2.  **Centralne Twierdzenie Graniczne**: Średnie z próby mają tendencję do podążania za rozkładem normalnym niezależnie od kształtu oryginalnego rozkładu (przy wystarczająco dużej wielkości próby).
-
-3.  **Wnioskowanie Statystyczne**: Rozkład normalny stanowi podstawę dla wielu testów statystycznych i przedziałów ufności.
-
-:::
-
----
-
-
-::: {.callout-important}
-## Błąd Statystyczny
-
-Korzystając z próby do poznania populacji, nieuchronnie napotykamy błąd statystyczny:
-
-**Błąd statystyczny** to różnica między naszym oszacowaniem z próby a prawdziwą wartością w populacji.
-
-Błędy statystyczne mogą wpływać na wiarygodność i trafność wyników badań. Zrozumienie tych błędów jest kluczowe dla projektowania solidnych badań, poprawnej analizy danych i wyciągania właściwych wniosków. Poniżej znajduje się szczegółowa klasyfikacja błędów statystycznych:
-
----
-
-### Błędy Próbkowania
-
-**Błędy Losowe Próbkowania**
-
-- Wynikają z naturalnej zmienności związanej z losowym doborem próby.
-- *Przykład*: Jeśli losowo wybierzesz 30 studentów z uniwersytetu, aby zmierzyć średni wzrost, średnia będzie się nieznacznie różnić w każdej próbie.
-- Te błędy zmniejszają się wraz ze wzrostem liczebności próby i można je oszacować za pomocą miar takich jak *margines błędu*.
-- Choć nie da się ich całkowicie wyeliminować, można je kontrolować poprzez odpowiednie techniki próbkowania.
-
-**Błędy Nielosowe (Systematyczne) Próbkowania (Błąd Przesunięcia)**
-
-- **Błąd selekcji**: Występuje, gdy próba nie reprezentuje właściwie populacji docelowej.
-  - *Przykład*: Badanie telefoniczne, które obejmuje tylko osoby posiadające telefony stacjonarne, pomijając tych, którzy używają wyłącznie komórek.
-- **Niedostateczne pokrycie**: Pewne grupy są systematycznie pomijane w próbie.
-  - *Przykład*: Badanie na kampusie przeprowadzone tylko w godzinach porannych, pomijające studentów wieczorowych.
-- **Błąd samowyboru**: Wyniki są zniekształcone, ponieważ uczestnicy sami decydują, czy wziąć udział.
-  - *Przykład*: Tylko osoby z silnymi opiniami odpowiadają na ankietę dotyczącą satysfakcji klientów.
-- **Błąd nieodpowiedzi**: Występuje, gdy określone grupy są mniej skłonne do udzielenia odpowiedzi.
-  - *Przykład*: Osoby zapracowane mogą nie wypełnić ankiety, co prowadzi do nadreprezentacji osób z większą ilością wolnego czasu.
-
----
-
-### Błędy Pomiaru
-
-**Losowe Błędy Pomiaru**
-
-- Nieprzewidywalne wahania w pomiarach spowodowane "szumem."
-  - *Przykład*: Drżąca ręka przy pomiarze ciśnienia krwi daje nieco różne wyniki za każdym razem.
-- Te błędy zazwyczaj równoważą się przy wielokrotnych pomiarach.
-
-**Systematyczne Błędy Pomiaru**
-
-- **Błędy kalibracji**: Stałe niedokładności w narzędziach pomiarowych.
-  - *Przykład*: Waga, która zawsze dodaje 2 funty do każdego pomiaru.
-- **Błąd obserwatora**: Oczekiwania badacza wpływają na zbieranie danych.
-  - *Przykład*: Badacz nieświadomie zapisuje dane w sposób, który potwierdza jego hipotezę.
-- **Błąd związany z pożądaną odpowiedzią społeczną**: Uczestnicy odpowiadają w sposób, który uważają za społecznie akceptowalny.
-  - *Przykład*: Zaniżanie ilości spożywanego fast foodu w badaniu dotyczącym odżywiania.
-
----
-
-### Błędy Wnioskowania
-
-**Błędy Testowania Hipotez**
-
-- **Błąd I rodzaju (Fałszywie Pozytywny)**: Wnioskowanie, że efekt istnieje, gdy w rzeczywistości go nie ma.
-  - *Przykład*: Twierdzenie, że nowy lek jest skuteczny, gdy jego korzyści wynikają z przypadku.
-- **Błąd II rodzaju (Fałszywie Negatywny)**: Nie wykrycie efektu, który faktycznie istnieje.
-  - *Przykład*: Wnioskowanie, że nowy lek jest nieskuteczny, podczas gdy rzeczywiście pomaga pacjentom.
-- **Błąd III rodzaju**: Rozwiązywanie niewłaściwego problemu lub odpowiadanie na niewłaściwe pytanie.
-  - *Wyjaśnienie*: Występuje, gdy badacze skupiają się na pytaniu lub hipotezie, która jest nieistotna lub niezgodna z rzeczywistym problemem. Nie chodzi o błąd w analizie statystycznej, ale o postawienie niewłaściwego pytania.
-  - *Przykład*: Firma bada, czy nowa strategia marketingowa zwiększa ruch na stronie internetowej (niewłaściwe pytanie), podczas gdy prawdziwym problemem jest to, czy zwiększa sprzedaż (właściwe pytanie).
-  - *Inny przykład*: Badacz analizuje, czy metoda nauczania poprawia wyniki testów (niewłaściwe pytanie), podczas gdy celem jest poprawa długoterminowego zrozumienia materiału (właściwe pytanie).
-
-**Problemy Związane z Mocą Statystyczną**
-
-- **Badania o zbyt małej mocy**: Zbyt mała liczebność próby, aby wykryć prawdziwe efekty.
-  - *Przykład*: Testowanie programu odchudzającego na zaledwie 5 osobach.
-
----
-
-### Błędy Specyfikacji Modelu
-
-**Błędy Wyboru Zmiennych**
-
-- **Błąd pominięcia zmiennej**: Pominięcie ważnych zmiennych wpływających na wyniki.
-  - *Przykład*: Badanie wpływu ćwiczeń na utratę wagi bez uwzględnienia diety.
-- **Zmienne zakłócające**: Czynniki zewnętrzne wpływające zarówno na zmienną niezależną, jak i zależną.
-  - *Przykład*: Osoby ćwiczące mogą również zdrowiej się odżywiać, co wpływa na wyniki utraty wagi.
-
-**Błędy Założeń**
-
-- Używanie testów statystycznych, które nie pasują do charakterystyki danych.
-  - *Przykład*: Zakładanie rozkładu normalnego, gdy dane są skośne.
-
----
-
-### Błędy Przetwarzania i Analizy Danych
-
-**Błędy w Przetwarzaniu Danych**
-
-- **Błędy wprowadzania danych**: Pomyłki podczas zapisywania informacji.
-  - *Przykład*: Wpisanie "1050" zamiast "150" jako wagi uczestnika.
-- **Problemy z brakującymi danymi**: Nieuwzględnianie niekompletnych danych.
-  - *Przykład*: Obliczanie średniej ocen bez uwzględnienia nieobecnych studentów.
-
-**Błędy Wykonania Analizy**
-
-- **Błędy w oprogramowaniu lub użytkownika**: Pomyłki w korzystaniu z programów statystycznych.
-  - *Przykład*: Wybranie niewłaściwego testu statystycznego w programie do analizy danych.
-
----
-
-### Błędy Interpretacji i Raportowania
-
-**Błędy Wnioskowania Przyczynowego**
-
-- **Błąd korelacji i przyczynowości**: Przyjmowanie związku przyczynowego na podstawie korelacji.
-  - *Przykład*: Wnioskowanie, że spożycie czekolady powoduje zdobywanie Nagród Nobla, ponieważ oba zjawiska są skorelowane.
-
-**Błędy Raportowania i Komunikacji**
-
-- **p-hacking**: Przeprowadzanie wielu analiz, aż do uzyskania znaczącego wyniku.
-  - *Przykład*: Analizowanie danych na 20 sposobów i raportowanie tylko tego, który dał pożądany wynik.
-- **Selekcjonowanie wyników**: Wybiórcze raportowanie wyników wspierających hipotezę.
-  - *Przykład*: Firma produkująca tabletki odchudzające publikuje tylko te badania, w których jej produkt działał.
-
----
-
-### Strategie Zapobiegania Błędom
-
-Aby zminimalizować błędy statystyczne:
-
-- **Właściwe planowanie badań**: Dokładne zaplanowanie badania przed zbieraniem danych.
-- **Odpowiednia liczebność próby**: Zapewnienie wystarczającej liczby uczestników na podstawie obliczeń mocy statystycznej.
-- **Przedrejestracja**: Zadeklarowanie planów analizy przed zapoznaniem się z danymi.
-- **Przejrzystość**: Udostępnianie danych i metod analizy.
-- **Replikacja**: Zachęcanie do niezależnego powtarzania badań.
-
-Zrozumienie i eliminowanie tych błędów zapewnia wiarygodność wyników badań, zapobiegając błędnym decyzjom w dziedzinach takich jak medycyna, polityka publiczna, edukacja i biznes.
-:::
-
-
-::: callout-note
-
-```{r}
-#| echo: false
-#| message: false
-library(ggplot2)
-library(dplyr)
-set.seed(123)  # Reprodukowalność
-```
-
-## Proces Generowania Danych, Superpopulacja, Populacja i Próba
-
-Aby zrozumieć wnioskowanie statystyczne, musimy rozróżnić cztery kluczowe pojęcia: **Proces Generowania Danych (DGP)**, **superpopulacja**, **populacja** i **próba**. Posłużymy się przykładem zarobków pracowników, aby zilustrować te koncepcje.
-
----
-
-### Proces Generowania Danych (DGP)
-
-DGP to "prawdziwy" mechanizm, który generuje obserwowane dane. Składa się z:  
-- Składników systematycznych (np. zależności między zmiennymi)  
-- Składników losowych (np. błędy pomiaru, nieobserwowane czynniki)  
-
-**Przykład**: Załóżmy, że godzinowa stawka pracownika ($Y$) zależy od liczby lat edukacji ($X$) oraz nieobserwowanych czynników ($\epsilon$):  
-$$ Y = 20 + 2.5X + \epsilon \quad \text{gdzie } \epsilon \sim N(0, 5^2) $$  
-
-Możemy zasymulować ten DGP w R:  
-```{r}
-# Symulacja DGP dla edukacji (X) i zarobków (Y)
-n_superpopulacja <- 100000  # Rozmiar superpopulacji
-dgp_data <- tibble(
-  edukacja = rpois(n_superpopulacja, lambda = 10),  # Lata edukacji (~Poisson)
-  epsilon = rnorm(n_superpopulacja, mean = 0, sd = 5),
-  zarobki = 20 + 2.5 * edukacja + epsilon
-)
-
-# Wykres zależności
-ggplot(dgp_data, aes(x = edukacja, y = zarobki)) +
-  geom_point(alpha = 0.1) +
-  geom_smooth(method = "lm", color = "red") +
-  labs(title = "DGP: Prawdziwa zależność między edukacją a zarobkami")
-```
-
----
-
-### Superpopulacja
-
-Superpopulacja to hipotetyczny, często nieskończony zbiór potencjalnych obserwacji, z których nasza *obserwowana* populacja jest losowo wybrana. Jest ona określona przez DGP.  
-
-**Przykład**:  
-- **Superpopulacja**: Wszyscy potencjalni pracownicy (przeszli, obecni, przyszli), których zarobki są zgodne z powyższym DGP.  
-- **Obserwowana populacja**: Skończony podzbiór (np. wszyscy pracownicy w 2024 roku).  
-
----
-
-### Populacja
-
-Populacja to skończony zbiór jednostek, które chcemy zbadać. Jej parametry (np. średnie zarobki) są stałe, ale nieznane.  
-
-**Przykład**:  
-```{r}
-# Generujemy naszą "populację" (skończony podzbiór superpopulacji)
-populacja <- dgp_data %>% slice_sample(n = 5000)  # 5,000 pracowników
-
-# Prawdziwa średnia zarobków w populacji (nieznana w praktyce)
-pop_srednia_zarobki <- mean(populacja$zarobki)
-pop_srednia_zarobki  # Wyświetl wartość
-```
-
----
-
-### Próba
-
-Próba to podzbiór populacji, używany do oszacowania parametrów populacji.  
-
-**Przykład**:  
-```{r}
-# Pobieramy losową próbę z populacji
-rozmiar_proby <- 200
-probka <- populacja %>% 
-  slice_sample(n = rozmiar_proby)
-
-# Szacujemy średnie zarobki z próby
-probka_srednia_zarobki <- mean(probka$zarobki)
-probka_srednia_zarobki  # Porównaj z pop_srednia_zarobki
-```
-
----
-
-### Schemat koncepcyjny
-
-```{mermaid}
-graph TD
-  A[DGP<br>Prawdziwy model zarobków] --> B[Superpopulacja<br>Wszyscy potencjalni pracownicy]
-  B --> C[Populacja<br>Wszyscy pracownicy w 2024]
-  C --> D[Próba<br>200 ankietowanych pracowników]
-```
-
----
-
-### Dlaczego to ważne?  
-- **Wnioskowanie statystyczne** wykorzystuje próbę do oszacowania parametrów populacji (np. średnich zarobków).  
-- **Superpopulacja** pozwala na uogólnienie wyników poza obserwowaną populację.  
-- **DGP** przypomina nam, że nasze modele są przybliżeniami rzeczywistości.  
-
-**Pytanie do dyskusji**: Jeśli DGP obejmuje `edukację` i `epsilon`, co może reprezentować `epsilon` w kontekście zarobków?  
-
----
-
-
-### Przykłady ze studiów wyborczych
-
-**Przykład 1: Frekwencja wyborcza**
-
--   **DGP**: $Frekwencja_i = \beta_0 + \beta_1 Wiek_i + \beta_2 Wykształcenie_i + \beta_3 Dochód_i + \varepsilon_i$
--   **Superpopulacja**: Wszystkie możliwe decyzje o udziale w wyborach, które mogliby podjąć wyborcy o różnych cechach społeczno-demograficznych w różnych warunkach
--   **Populacja**: Wszyscy uprawnieni do głosowania w wyborach prezydenckich 2020
--   **Próba**: 1500 respondentów ankiety exit poll po wyborach
-
-**Przykład 2: Poparcie dla partii politycznych**
-
--   **DGP**: $Poparcie_{ij} = \beta_0 + \beta_1 Ideologia_i + \beta_2 SytuacjaEkonomiczna_i + \beta_3 Wiek_i + \varepsilon_i$
--   **Superpopulacja**: Wszystkie możliwe preferencje wyborcze osób o różnych cechach w różnych warunkach społeczno-ekonomicznych
--   **Populacja**: Wszyscy wyborcy w Polsce w 2023 roku
--   **Próba**: Respondenci sondażu przedwyborczego (n=1000)
-
-### Symulacja i estymacja funkcji popytu jako DGP w R
-
-Poniższy kod ilustruje, jak można zasymulować funkcję popytu z wieloma predyktorami jako DGP i estymować jej parametry za pomocą regresji OLS:
-
-```{r}
-#| warning: false
-#| message: false
-
-# Załadowanie potrzebnych pakietów
-library(tidyverse)
-
-# Ustawienie ziarna losowości dla powtarzalnych wyników
-set.seed(123)
-
-# 1. Zdefiniowanie "prawdziwego" DGP: Funkcja popytu na produkt
-# Model: Q = beta0 + beta1*P + beta2*I + beta3*P_sub + beta4*P_comp + beta5*A + epsilon
-# Gdzie:
-# Q = ilość popytu na produkt
-# P = cena produktu
-# I = dochód konsumentów
-# P_sub = cena dobra substytucyjnego
-# P_comp = cena dobra komplementarnego
-# A = wydatki na reklamę
-
-# Prawdziwe wartości parametrów (zgodne z teorią ekonomiczną)
-beta0_true <- 100      # Stała
-beta1_true <- -2.5     # Efekt własnej ceny (ujemny - zgodnie z prawem popytu)
-beta2_true <- 0.8      # Efekt dochodu (dodatni - dobro normalne)
-beta3_true <- 1.2      # Efekt ceny substytutu (dodatni)
-beta4_true <- -0.7     # Efekt ceny dobra komplementarnego (ujemny)
-beta5_true <- 0.5      # Efekt reklamy (dodatni)
-sigma_true <- 5        # Odchylenie standardowe błędu losowego
-
-# 2. Symulacja superpopulacji (5000 potencjalnych rynków/okresów)
-n_super <- 5000
-
-# Generowanie predyktorów
-cena <- runif(n_super, min = 5, max = 15)               # Cena produktu (zł)
-dochod <- rnorm(n_super, mean = 3000, sd = 500)         # Średni dochód (zł)
-cena_substytutu <- runif(n_super, min = 4, max = 16)    # Cena substytutu (zł)
-cena_komplementu <- runif(n_super, min = 2, max = 8)    # Cena komplementu (zł)
-reklama <- runif(n_super, min = 0, max = 100)           # Wydatki na reklamę (tys. zł)
-
-# Dodanie korelacji między zmiennymi (np. cena i cena substytutu)
-cena_substytutu <- cena_substytutu + rnorm(n_super, mean = 0.2 * cena, sd = 1)
-
-# Generowanie popytu zgodnie z DGP
-epsilon <- rnorm(n_super, mean = 0, sd = sigma_true)  # Składnik losowy
-popyt <- beta0_true + 
-         beta1_true * cena + 
-         beta2_true * (dochod/1000) +  # skalowanie dochodu dla lepszej interpretacji
-         beta3_true * cena_substytutu + 
-         beta4_true * cena_komplementu + 
-         beta5_true * (reklama/10) +    # skalowanie reklamy dla lepszej interpretacji
-         epsilon
-
-# Tworzenie ramki danych superpopulacji
-superpopulacja <- tibble(
-  id = 1:n_super,
-  cena = cena,
-  dochod = dochod,
-  cena_substytutu = cena_substytutu,
-  cena_komplementu = cena_komplementu,
-  reklama = reklama,
-  popyt = popyt
-)
-
-# Pokaż kilka pierwszych obserwacji
-head(superpopulacja)
-
-# 3. Pobieranie próby z superpopulacji (np. 200 obserwacji)
-n_sample <- 200
-indeksy_proby <- sample(1:n_super, n_sample)
-proba <- superpopulacja[indeksy_proby, ]
-
-# 4. Estymacja modelu OLS na podstawie próby
-model_ols <- lm(popyt ~ cena + I(dochod/1000) + cena_substytutu + 
-                cena_komplementu + I(reklama/10), data = proba)
-
-# 5. Wyświetlenie podsumowania modelu
-summary(model_ols)
-
-# 6. Porównanie prawdziwych parametrów z estymowanymi
-parametry_prawdziwe <- c(beta0_true, beta1_true, beta2_true, 
-                         beta3_true, beta4_true, beta5_true)
-parametry_estymowane <- coef(model_ols)
-
-porownanie <- tibble(
-  parametr = c("Stała", "Cena", "Dochód (tys.)", "Cena substytutu", 
-               "Cena komplementu", "Reklama (10 tys.)"),
-  prawdziwa_wartość = parametry_prawdziwe,
-  estymowana_wartość = parametry_estymowane,
-  różnica = estymowana_wartość - prawdziwa_wartość,
-  błąd_procentowy = abs(różnica / prawdziwa_wartość) * 100
-)
-
-# Wyświetlenie porównania
-print(porownanie)
-
-# 7. Wizualizacja porównania prawdziwych i estymowanych parametrów
-ggplot(porownanie, aes(x = parametr, y = prawdziwa_wartość)) +
-  geom_point(color = "blue", size = 3) +
-  geom_point(aes(y = estymowana_wartość), color = "red", size = 3) +
-  geom_segment(aes(xend = parametr, y = prawdziwa_wartość, 
-                   yend = estymowana_wartość), color = "gray") +
-  labs(title = "Porównanie prawdziwego DGP z estymowanym modelem",
-       subtitle = "Niebieskie punkty: prawdziwe wartości, czerwone punkty: estymowane wartości",
-       x = "Parametr", y = "Wartość") +
-  theme_minimal() +
-  coord_flip()
-
-# 8. Sprawdzenie zdolności predykcyjnej modelu na nowych danych
-# Pobieramy nowe dane z superpopulacji (nie używane w estymacji)
-nowe_indeksy <- sample(setdiff(1:n_super, indeksy_proby), 100)
-nowe_dane <- superpopulacja[nowe_indeksy, ]
-
-# Predykcja na nowych danych
-nowe_dane$przewidywany_popyt <- predict(model_ols, newdata = nowe_dane)
-
-# Obliczenie błędu średniokwadratowego (MSE) predykcji
-mse <- mean((nowe_dane$popyt - nowe_dane$przewidywany_popyt)^2)
-rmse <- sqrt(mse)
-cat("Pierwiastek błędu średniokwadratowego (RMSE):", round(rmse, 2), "\n")
-
-# 9. Wizualizacja relacji między ceną a popytem
-# (efekt ceteris paribus - przy kontroli innych zmiennych)
-ceteris_paribus <- tibble(
-  cena = seq(5, 15, length.out = 100),
-  dochod = mean(proba$dochod),
-  cena_substytutu = mean(proba$cena_substytutu),
-  cena_komplementu = mean(proba$cena_komplementu),
-  reklama = mean(proba$reklama)
-)
-
-# Obliczenie przewidywanego popytu według prawdziwego DGP
-ceteris_paribus$popyt_prawdziwy <- beta0_true + 
-                                 beta1_true * ceteris_paribus$cena + 
-                                 beta2_true * (ceteris_paribus$dochod/1000) + 
-                                 beta3_true * ceteris_paribus$cena_substytutu + 
-                                 beta4_true * ceteris_paribus$cena_komplementu + 
-                                 beta5_true * (ceteris_paribus$reklama/10)
-
-# Obliczenie przewidywanego popytu według estymowanego modelu
-ceteris_paribus$popyt_estymowany <- predict(model_ols, newdata = ceteris_paribus)
-
-# Wizualizacja
-ggplot(ceteris_paribus, aes(x = cena)) +
-  geom_line(aes(y = popyt_prawdziwy, color = "Prawdziwy DGP"), size = 1.2) +
-  geom_line(aes(y = popyt_estymowany, color = "Estymowany model"), size = 1.2) +
-  scale_color_manual(values = c("Prawdziwy DGP" = "blue", "Estymowany model" = "red")) +
-  labs(title = "Krzywa popytu: Prawdziwy DGP vs. Estymowany model",
-       subtitle = "Efekt ceteris paribus (przy stałych wartościach innych zmiennych)",
-       x = "Cena produktu (zł)",
-       y = "Popyt (ilość)",
-       color = "Model") +
-  theme_minimal()
-```
-
-Ten kod pokazuje:
-
-1.  Definiowanie złożonego DGP dla funkcji popytu z wieloma predyktorami zgodnej z teorią ekonomiczną
-2.  Symulowanie superpopulacji zgodnie z tym DGP
-3.  Pobieranie próby z superpopulacji
-4.  Estymację parametrów modelu za pomocą regresji OLS
-5.  Porównanie estymowanych parametrów z ich prawdziwymi wartościami
-6.  Wizualizację porównania prawdziwych i estymowanych parametrów
-7.  Sprawdzenie zdolności predykcyjnej modelu na nowych danych
-8.  Wizualizację relacji między ceną a popytem z efektem ceteris paribus
-
-Przykład ten pokazuje, jak można symulować złożone zależności ekonomiczne, a następnie używać metod ekonometrycznych do odkrywania tych zależności na podstawie próby danych. Jest to doskonała ilustracja, jak teoria ekonomiczna, DGP i metody statystyczne są ze sobą powiązane.
-
-W rzeczywistości nigdy nie znamy prawdziwego DGP - to właśnie próbujemy odkryć za pomocą analizy statystycznej. Symulacje tego typu pozwalają jednak zrozumieć konceptualnie, jak wnioskowanie statystyczne łączy się z pojęciem DGP i superpopulacji.
-
-
-```{mermaid}
-graph TD
-    DGP[Data Generating Process] -->|Generates| SP[Superpopulation]
-    SP -->|Single finite realization| A[Population]
-    A -->|Random Selection| B[Sample]
-    B -->|Statistical Inference| C[Estimates & Conclusions]
-    C -->|Generalize back to| A
-    C -.->|Infer parameters of| SP
-    C -.->|Ultimate goal: estimate parameters of| DGP
-    
-    style DGP fill:#1E90FF,stroke:#000,stroke-width:4px,color:#FFF
-    style SP fill:#9932CC,stroke:#000,stroke-width:4px,color:#FFF
-    style A fill:#DC143C,stroke:#000,stroke-width:4px,color:#FFF
-    style B fill:#228B22,stroke:#000,stroke-width:2px,color:#FFF
-    style C fill:#8B4513,stroke:#000,stroke-width:2px,color:#FFF
-    
-    classDef note fill:#F0F0F0,stroke:#000,stroke-width:1px;
-    H[["Superpopulation:
-    All possible outcomes
-    generated by the DGP
-    (infinite, hypothetical)"]]
-    D[["DGP:
-    True mechanism with
-    unknown parameters
-    that generates data"]]
-    E[["Population:
-    Single, specific, finite
-    realization from the
-    superpopulation"]]
-    F[["Sample:
-    Observed subset
-    of the population"]]
-    G[["Inference:
-    Drawing conclusions about
-    population, superpopulation,
-    and ultimately the DGP"]]
-    
-    class D,E,F,G,H note
-    
-    H --> SP
-    D --> DGP
-    E --> A
-    F --> B
-    G --> C
-```
-
-
-### Przykłady pomocnicze
-
-#### Przykład 1: Badanie opinii wyborców
-
--   **Populacja**: Wszyscy zarejestrowani wyborcy w Polsce w 2023 roku (ok. 30 milionów osób).
--   **Próba**: 1000 losowo wybranych wyborców ankietowanych w sondażu.
--   **Superpopulacja**: Wszyscy potencjalni wyborcy (obecni, przyszli i hipotetyczni) oraz wszystkie możliwe scenariusze głosowania.
--   **DGP** (Data Generating Process): Złożony mechanizm kształtujący opinie i decyzje wyborcze, w tym:
-    -   Czynniki demograficzne (wiek, wykształcenie, miejsce zamieszkania).
-    -   Warunki ekonomiczne (dochód, status zawodowy).
-    -   Wpływ mediów i debaty publicznej.
-    -   Doświadczenia osobiste.
-    -   Historyczne uwarunkowania polityczne.
-
-#### Przykład 2: Badanie efektów leku przeciwcukrzycowego
-
--   **Populacja**: Wszyscy pacjenci z cukrzycą typu 2 w danym kraju (np. 2 miliony osób).
--   **Próba**: 500 pacjentów uczestniczących w badaniu klinicznym.
--   **Superpopulacja**: Wszyscy potencjalni pacjenci z cukrzycą typu 2 (obecni i przyszli) z różnymi profilami genetycznymi i środowiskowymi.
--   **DGP**: Biologiczny mechanizm obejmujący:
-    -   Interakcje leku z receptorami w organizmie.
-    -   Indywidualne uwarunkowania genetyczne.
-    -   Czynniki środowiskowe (dieta, aktywność fizyczna).
-    -   Interakcje z innymi lekami.
-    -   Mechanizmy metaboliczne organizmu.
-
-#### Przykład 3: Gdy próba równa się populacji
-
-Badanie wszystkich 50 stanów USA:
-
--   **Tradycyjne podejście**: Nie ma rozróżnienia między próbą a populacją (badamy wszystkie stany).
--   **Podejście superpopulacyjne**:
-    -   **Populacja/Próba**: 50 istniejących stanów USA.
-    -   **Superpopulacja**: Teoretyczny zbiór wszystkich możliwych jednostek terytorialnych typu "stan" w różnych warunkach historycznych, politycznych i społecznych.
-    -   **DGP**: Fundamentalne mechanizmy geograficzne, historyczne, polityczne i społeczno-ekonomiczne kształtujące charakterystyki stanów.
-
-#### Przykład 4: Jakość pizzy w Nowym Jorku
-
--   **Populacja**: Wszystkie obecnie działające pizzerie w Nowym Jorku (np. 2000 lokali).
--   **Próba**: 50 losowo wybranych pizzerii z różnych dzielnic.
--   **Superpopulacja**: Wszystkie możliwe pizzerie, które mogłyby istnieć w Nowym Jorku:
-    -   Obecnie działające.
-    -   Przyszłe (jeszcze nieotwarte).
-    -   Historyczne (już zamknięte).
-    -   Hipotetyczne (w alternatywnych warunkach ekonomicznych czy kulturowych).
--   **DGP**: Czynniki wpływające na jakość pizzy:
-    -   Składniki i ich jakość.
-    -   Umiejętności i doświadczenie szefów kuchni.
-    -   Sprzęt i infrastruktura kuchenna.
-    -   Metody przygotowania i przepisy.
-    -   Czynniki środowiskowe (np. jakość lokalnej wody).
-    -   Wpływy kulturowe i tradycje kulinarne.
-    -   Uwarunkowania ekonomiczne (koszty operacyjne, czynsze).
-
-DGP jest jak "przepis na jakość pizzy", który determinuje rezultaty dla wszystkich potencjalnych pizzerii w superpopulacji, nie tylko dla obecnie istniejących lokali.
-
-:::
-
-
-::: {.callout-note}
-Here’s the Polish version of the improved notes:
-
----
-
-### Zagadnienia dotyczące wielkości próby
-
-Określenie odpowiedniej wielkości próby jest kluczowe dla wiarygodnej analizy statystycznej. Wymagana wielkość próby zależy od trzech głównych czynników:
-
-1. **Rodzaj szacowanego parametru**  
-   - Co chcesz oszacować? (np. proporcja, średnia, parametr regresji itp.)
-
-2. **Pożądana dokładność**  
-   - Wyższa dokładność wymaga większej próby.  
-   - Przykład: Szacowanie z dokładnością ±1% wymaga około 9 razy więcej obserwacji niż szacowanie z dokładnością ±3%.
-
-3. **Zmienność populacji**  
-   - Dla **proporcji**: Maksymalna zmienność występuje przy 50%, a zmienność maleje, gdy proporcje zbliżają się do 0% lub 100%.  
-   - Dla **średnich**: Zmienność zależy od wariancji pomiarów.  
-   - Dla **modeli regresji**: Należy uwzględnić wariancję predyktorów i zmiennych wynikowych.
-
----
-
-### Problem małych populacji
-
-Podczas pracy z małymi populacjami (np. mniej niż 1000 osób) należy wziąć pod uwagę specjalne kwestie:
-
-- **Metody pobierania próby**:  
-  - Proste losowanie próby tradycyjnie zakłada pobieranie **z zamianą**.  
-  - W praktyce częściej stosuje się pobieranie **bez zamiany**.  
-  - Różnica między tymi metodami staje się istotna w małych populacjach.
-
-- **Poprawka na skończoną populację (FPC)**:  
-  - Niezbędna przy pobieraniu próby większej niż 5-10% populacji.  
-  - Dostosowuje obliczenia błędu standardowego, uwzględniając zmniejszoną zmienność w małych populacjach.
-
-#### Praktyczne zalecenia dla małych populacji:
-- Dla populacji poniżej 200 osób rozważ przeprowadzenie **pełnego spisu**.  
-- Używaj wzorów statystycznych przeznaczonych do pobierania próby bez zamiany.  
-- Standardowe wzory (oparte na pobieraniu z zamianą) zawyżają błąd w małych populacjach.  
-- Jasno dokumentuj metodologię pobierania próby w raportach badawczych.
-
-#### Kluczowe różnice między metodami pobierania próby:
-- **Pobieranie z zamianą**: Każda jednostka ma stałe prawdopodobieństwo wyboru (np. 1/N) w każdym losowaniu.  
-- **Pobieranie bez zamiany**: Prawdopodobieństwo wyboru zmienia się w kolejnych losowaniach (np. 1/N, 1/(N-1), 1/(N-2) itd.).  
-- W dużych populacjach różnica jest nieznaczna; w małych populacjach jest istotna.  
-- Pobieranie bez zamiany zazwyczaj skutkuje mniejszą wariancją estymatora.
-
----
-
-### Estymacja statystyczna a wielkość próby
-
-#### Proporcje (procenty)
-Przy szacowaniu proporcji (np. odsetek wyborców popierających kandydata) wymagana wielkość próby zależy od tego, jak blisko proporcja jest wartości 50%.
-
-**Dlaczego proporcje bliskie 50% wymagają większych prób**:  
-Proporcje podlegają rozkładowi dwumianowemu, gdzie wariancja jest maksymalna przy 50% i minimalna przy 0% lub 100%. Oznacza to większą niepewność i konieczność użycia większych prób dla proporcji bliskich 50%.
-
-**Przykład**:  
-| Prawdziwa proporcja populacji | Wielkość próby | Margines błędu |
-|-------------------------------|----------------|----------------|
-| 50%                           | 100            | ±10%           |
-| 50%                           | 400            | ±5%            |
-| 50%                           | 1000           | ±3%            |
-| 10%                           | 100            | ±6%            |
-| 10%                           | 400            | ±3%            |
-| 10%                           | 1000           | ±2%            |
-
-**Kluczowe obserwacje**:  
-1. **Większe próby zmniejszają margines błędu**.  
-2. **Proporcje bliskie 50% mają większy margines błędu** niż te bliskie 0% lub 100%.
-
-**Wpływ wielkości populacji**:  
-Dla proporcji bliskich 50%, próba o wielkości ~1000 zapewnia margines błędu ±3%, niezależnie od tego, czy populacja liczy 30 000 czy 30 milionów. To wyjaśnia, dlaczego sondaże ogólnokrajowe mogą być dokładne przy stosunkowo małych próbach.
-
----
-
-#### Średnie
-Przy szacowaniu średniej (np. średni dochód gospodarstwa domowego lub wzrost):
-
-- Wielkość próby zależy od **wariancji** pomiarów.  
-- Populacje o większej zmienności wymagają większych prób.  
-- W przeciwieństwie do proporcji, nie ma „maksymalnej niepewności” przy konkretnej wartości.  
-- Wielkość próby jest wprost proporcjonalna do wariancji zmiennej.
-
-**Przykład**:  
-Szacowanie średniego dochodu zazwyczaj wymaga większej próby niż szacowanie średniego wzrostu, ponieważ dochody są bardziej zróżnicowane.
-
----
-
-#### Parametry modeli i złożona estymacja
-Modelowanie statystyczne (np. regresja) obejmuje szacowanie zależności między zmiennymi. Wymagania dotyczące wielkości próby stają się bardziej złożone w tych kontekstach.
-
-**Kluczowe czynniki dla modeli regresji**:  
-1. **Liczba parametrów**:  
-   - Każda zmienna predykcyjna i interakcja zużywa stopnie swobody.  
-   - Zasada ogólna: 10-20 obserwacji na zmienną (minimum).  
-   - Do wykrywania subtelnych efektów: może być potrzebne 50-100+ obserwacji na zmienną.
-
-2. **Wielkość efektu**:  
-   - Mniejsze efekty wymagają większych prób do ich wykrycia.  
-   - Należy przeprowadzić analizę mocy na podstawie oczekiwanych wielkości efektów.
-
-3. **Złożoność modelu**:  
-   - Zależności liniowe vs. nieliniowe.  
-   - Efekty interakcji, struktury danych hierarchicznych.  
-   - Rozkłady nienormalne lub heteroskedastyczność.
-
-4. **Wyjaśniona zmienność**:  
-   - Wyższe wartości \(R^2\) mogą zmniejszyć wymaganą wielkość próby.  
-   - Większa wariancja resztowa zwiększa wymagania dotyczące próby.
-
----
-
-### Planowanie wielkości próby w praktyce
-
-Planując badanie, należy wziąć pod uwagę:
-
-1. **Moc statystyczna**:  
-   - Celuj w co najmniej 80% mocy do wykrycia efektów.  
-   - Przeprowadź formalną analizę mocy, aby określić wielkość próby.
-
-2. **Dokładność**:  
-   - Określ pożądaną szerokość przedziałów ufności.  
-   - Większa dokładność wymaga większych prób.
-
-3. **Ograniczenia zasobów**:  
-   - Zrównoważ wymagania statystyczne z budżetem, czasem i dostępnością uczestników.  
-   - Rozważ sekwencyjne lub adaptacyjne plany pobierania próby.
-
-4. **Kwestie etyczne**:  
-   - Zbierz wystarczającą ilość danych, aby odpowiedzieć na pytania badawcze w sposób wiarygodny.  
-   - Unikaj niepotrzebnego obciążania uczestników lub marnowania zasobów.
-
----
-
-### Dlaczego 50% oznacza maksymalną niepewność dla proporcji
-
-**Przykład symulacji**:  
-Wyobraź sobie worek z 100 monetami (złote lub srebrne). Chcesz oszacować odsetek złotych monet, losując 20 monet wielokrotnie.
-
-**Scenariusz A: 50% złotych (maksymalna niepewność)**  
-- Wyniki wahają się znacznie (35% do 70%), ze średnim błędem 10 punktów procentowych.
-
-**Scenariusz B: 10% złotych (mniejsza niepewność)**  
-- Wyniki są bliższe prawdziwej wartości (0% do 15%), ze średnim błędem 4 punktów procentowych.
-
-**Wniosek**:  
-Proporcje bliskie 50% charakteryzują się większą naturalną zmiennością, co wymaga większych prób do dokładnego oszacowania.
-
----
-
-### Przykład sondażu: Popularni vs. niszowi kandydaci
-
-W sondażu na 1000 osób:  
-- **Popularny kandydat z poparciem 40%**: Dokładność ±3% (poparcie między 37% a 43%).  
-- **Niszowy kandydat z poparciem 3%**: Dokładność ±1% (poparcie między 2% a 4%).
-
-**Kluczowe spostrzeżenie**:  
-- **Dokładność bezwzględna** zależy od proporcji.  
-- **Dokładność względna** (jako procent oszacowania) jest wyższa dla niszowych kandydatów.
-
----
-
-### Podsumowanie: Kluczowe wnioski
-
-1. **Wielkość próby zależy od**:  
-   - Rodzaju szacowanego parametru (proporcja, średnia, parametr regresji).  
-   - Pożądanej dokładności i zmienności populacji.  
-   - Dla proporcji wartości bliskie 50% wymagają większych prób.
-
-2. **Małe populacje wymagają specjalnych rozwiązań**:  
-   - Używaj poprawki na skończoną populację.  
-   - Rozważ pełne spisy dla bardzo małych populacji.
-
-3. **Moc statystyczna i dokładność**:  
-   - Zapewnij wystarczającą moc i dokładność, uwzględniając ograniczenia zasobów.
-
-4. **Równowaga etyczna i praktyczna**:  
-   - Zapewnij wiarygodne wyniki bez nadmiernego obciążania uczestników lub zasobów.
-
-Zrozumienie tych zasad pozwala na projektowanie badań, które dostarczają dokładnych i wartościowych wniosków.
-
-:::
 
 ## Appendices: Additional Topics in Statistics and Data Science (\*)
 
@@ -2004,7 +1116,6 @@ The best way to learn R is through practice. Start with small, manageable projec
 
 ## Appendix H: Symulacja Centralnego Twierdzenia Granicznego
 
-
 ```{r setup_clt}
 # Załadowanie bibliotek
 library(tidyverse)
@@ -2097,10 +1208,7 @@ Poniżej przedstawione są rozkłady trzech populacji, z których będziemy loso
 rysuj_populacje()
 ```
 
-Te trzy rozkłady są bardzo różne:
-- **Rozkład jednostajny**: wszystkie wartości między 0 a 1 są równie prawdopodobne
-- **Rozkład wykładniczy**: skośny, z długim "ogonem" po prawej stronie
-- **Rozkład dwupunktowy**: tylko dwie możliwe wartości (0 i 1)
+Te trzy rozkłady są bardzo różne: - **Rozkład jednostajny**: wszystkie wartości między 0 a 1 są równie prawdopodobne - **Rozkład wykładniczy**: skośny, z długim "ogonem" po prawej stronie - **Rozkład dwupunktowy**: tylko dwie możliwe wartości (0 i 1)
 
 ### Jak zmieniają się rozkłady średnich z próby?
 
@@ -2173,26 +1281,21 @@ ggplot(dane_30, aes(x = srednia_stand, fill = rozklad)) +
 
 ### Kluczowe wnioski
 
-1. **Gdy n=1**, rozkład średnich jest identyczny z rozkładem populacji.
+1.  **Gdy n=1**, rozkład średnich jest identyczny z rozkładem populacji.
 
-2. **Gdy n rośnie**, rozkład średnich:
-   - Staje się coraz bardziej normalny (dzwonowaty)
-   - Skupia się wokół wartości oczekiwanej populacji
-   - Ma coraz mniejszą wariancję
+2.  **Gdy n rośnie**, rozkład średnich:
 
-3. **Niezależnie od rozkładu populacji**, średnie z próby zbiegają do rozkładu normalnego.
+    -   Staje się coraz bardziej normalny (dzwonowaty)
+    -   Skupia się wokół wartości oczekiwanej populacji
+    -   Ma coraz mniejszą wariancję
 
-4. **Po standaryzacji** wszystkie rozkłady średnich zbiegają do standardowego rozkładu normalnego N(0,1).
+3.  **Niezależnie od rozkładu populacji**, średnie z próby zbiegają do rozkładu normalnego.
 
-Ten efekt jest fundamentem wielu metod statystycznych, w tym:
-- Estymacji przedziałowej
-- Testów statystycznych
-- Kontroli jakości
-- Badań próbkowych
+4.  **Po standaryzacji** wszystkie rozkłady średnich zbiegają do standardowego rozkładu normalnego N(0,1).
 
+Ten efekt jest fundamentem wielu metod statystycznych, w tym: - Estymacji przedziałowej - Testów statystycznych - Kontroli jakości - Badań próbkowych
 
 ## Appendix I: Symulacja Prawa Wielkich Liczb
-
 
 ```{r setup}
 # Załadowanie wymaganych bibliotek
@@ -2209,14 +1312,15 @@ Prawo Wielkich Liczb stwierdza, że wraz ze wzrostem liczby prób, średnia z pr
 
 **Kluczowe pojęcia:**
 
-* **Wartość oczekiwana:** Teoretyczna średnia wyników, której spodziewamy się w losowym eksperymencie (0,5 dla uczciwej monety, 3,5 dla uczciwej kostki)
+-   **Wartość oczekiwana:** Teoretyczna średnia wyników, której spodziewamy się w losowym eksperymencie (0,5 dla uczciwej monety, 3,5 dla uczciwej kostki)
 
-* **Średnia z próby:** Średnia z zaobserwowanych wyników z ograniczonej liczby prób
+-   **Średnia z próby:** Średnia z zaobserwowanych wyników z ograniczonej liczby prób
 
-* **Skumulowana proporcja/średnia:** Bieżąca średnia liczona po każdej nowej obserwacji. Na przykład, po 3 rzutach monetą dających Orzeł, Reszka, Orzeł, skumulowane proporcje wynosiłyby:
-  - Po 1 rzucie: 1/1 = 1,0
-  - Po 2 rzutach: (1+0)/2 = 0,5
-  - Po 3 rzutach: (1+0+1)/3 = 0,67
+-   **Skumulowana proporcja/średnia:** Bieżąca średnia liczona po każdej nowej obserwacji. Na przykład, po 3 rzutach monetą dających Orzeł, Reszka, Orzeł, skumulowane proporcje wynosiłyby:
+
+    -   Po 1 rzucie: 1/1 = 1,0
+    -   Po 2 rzutach: (1+0)/2 = 0,5
+    -   Po 3 rzutach: (1+0+1)/3 = 0,67
 
 Ta bieżąca średnia początkowo silnie się waha, ale stopniowo stabilizuje się wokół wartości oczekiwanej wraz z dodawaniem kolejnych obserwacji.
 
@@ -2319,17 +1423,17 @@ p1
 
 Powyższy wykres pokazuje:
 
-- **Niebieskie punkty**: Indywidualne eksperymenty (każdy z różną liczebnością próby)
-- **Czerwona linia**: Średnia z eksperymentów dla każdej liczebności próby
-- **Czarna przerywana linia**: Wartość oczekiwana (0,5)
-- **Szary obszar**: Teoretyczne granice (±1/√n) - reprezentuje oczekiwany zakres wyników
+-   **Niebieskie punkty**: Indywidualne eksperymenty (każdy z różną liczebnością próby)
+-   **Czerwona linia**: Średnia z eksperymentów dla każdej liczebności próby
+-   **Czarna przerywana linia**: Wartość oczekiwana (0,5)
+-   **Szary obszar**: Teoretyczne granice (±1/√n) - reprezentuje oczekiwany zakres wyników
 
 Zwróć uwagę, jak:
 
-1. Indywidualne wyniki (niebieskie punkty) wykazują dużą zmienność przy małych próbach
-2. Zmienność maleje wraz ze wzrostem liczebności próby
-3. Średnia (czerwona linia) zbiega do wartości oczekiwanej
-4. Większość wyników mieści się w teoretycznych granicach (szary obszar), które zwężają się wraz ze wzrostem liczebności próby
+1.  Indywidualne wyniki (niebieskie punkty) wykazują dużą zmienność przy małych próbach
+2.  Zmienność maleje wraz ze wzrostem liczebności próby
+3.  Średnia (czerwona linia) zbiega do wartości oczekiwanej
+4.  Większość wyników mieści się w teoretycznych granicach (szary obszar), które zwężają się wraz ze wzrostem liczebności próby
 
 #### Średnia Skumulowana w Indywidualnych Eksperymentach
 
@@ -2460,11 +1564,11 @@ p4 / p5
 
 ### Kluczowe Wnioski
 
-1. Indywidualne eksperymenty wykazują dużą zmienność przy małych liczebnościach próby
-2. Średnia z eksperymentów zbiega do wartości oczekiwanej wraz ze wzrostem liczebności próby
-3. W ramach każdego eksperymentu, bieżąca średnia ostatecznie stabilizuje się w pobliżu wartości oczekiwanej
-4. Prawo wielkich liczb zapewnia zbieżność, ale nie gwarantuje dokładnej równości
-5. Wczesne obserwacje mają nieproporcjonalnie duży wpływ na bieżącą średnią
+1.  Indywidualne eksperymenty wykazują dużą zmienność przy małych liczebnościach próby
+2.  Średnia z eksperymentów zbiega do wartości oczekiwanej wraz ze wzrostem liczebności próby
+3.  W ramach każdego eksperymentu, bieżąca średnia ostatecznie stabilizuje się w pobliżu wartości oczekiwanej
+4.  Prawo wielkich liczb zapewnia zbieżność, ale nie gwarantuje dokładnej równości
+5.  Wczesne obserwacje mają nieproporcjonalnie duży wpływ na bieżącą średnią
 
 ### Zrozumienie Teoretycznych Granic (±1/√n)
 
@@ -2472,25 +1576,23 @@ Szary obszar na pierwszym wykresie reprezentuje teoretyczne granice (±1/√n), 
 
 **Co reprezentują te granice:**
 
-* Wywodzą się z Centralnego Twierdzenia Granicznego i przybliżają ±2 błędy standardowe
-* Dla uczciwej monety, błąd standardowy proporcji wynosi √[0,5×(1-0,5)/n] = 0,5/√n
-* Granice ±1/√n są uproszczeniem, które dobrze ilustruje zbieżność
+-   Wywodzą się z Centralnego Twierdzenia Granicznego i przybliżają ±2 błędy standardowe
+-   Dla uczciwej monety, błąd standardowy proporcji wynosi √\[0,5×(1-0,5)/n\] = 0,5/√n
+-   Granice ±1/√n są uproszczeniem, które dobrze ilustruje zbieżność
 
 **Jak interpretować te granice:**
 
-* Około 95% wyników eksperymentalnych powinno mieścić się w tych granicach
-* Wraz ze wzrostem liczebności próby (n), granice te przewidywalnie się zwężają:
-  - Przy n=100: granice wynoszą 0,5 ± 0,1 (między 0,4 a 0,6)
-  - Przy n=1000: granice wynoszą 0,5 ± 0,032 (między 0,468 a 0,532)
-  - Przy n=10000: granice wynoszą 0,5 ± 0,01 (między 0,49 a 0,51)
+-   Około 95% wyników eksperymentalnych powinno mieścić się w tych granicach
+-   Wraz ze wzrostem liczebności próby (n), granice te przewidywalnie się zwężają:
+    -   Przy n=100: granice wynoszą 0,5 ± 0,1 (między 0,4 a 0,6)
+    -   Przy n=1000: granice wynoszą 0,5 ± 0,032 (między 0,468 a 0,532)
+    -   Przy n=10000: granice wynoszą 0,5 ± 0,01 (między 0,49 a 0,51)
 
 **Dlaczego są ważne:**
 
-* Stanowią wizualną reprezentację tego, jak zmienność maleje wraz z liczebnością próby
-* Ilustrują matematyczny aspekt Prawa Wielkich Liczb dotyczący tempa zbieżności
-* Pomagają przewidzieć, jakiej pewności możemy oczekiwać przy różnych liczebnościach próby
-
-
+-   Stanowią wizualną reprezentację tego, jak zmienność maleje wraz z liczebnością próby
+-   Ilustrują matematyczny aspekt Prawa Wielkich Liczb dotyczący tempa zbieżności
+-   Pomagają przewidzieć, jakiej pewności możemy oczekiwać przy różnych liczebnościach próby
 
 ## Appendix J: Sample Size Determination for Proportions
 
@@ -2510,25 +1612,23 @@ $$
 
 Where:
 
-- $n$ is the required sample size
-- $z$ is the z-score corresponding to the desired confidence level
-- $p$ is the expected proportion
-- $E$ is the margin of error in decimal form (e.g., 0.05 for 5 p.p.)
+-   $n$ is the required sample size
+-   $z$ is the z-score corresponding to the desired confidence level
+-   $p$ is the expected proportion
+-   $E$ is the margin of error in decimal form (e.g., 0.05 for 5 p.p.)
 
 ### Derivation of the Sample Size Formula
 
 The formula for calculating sample size for a proportion is derived from the properties of the sampling distribution of a proportion and the structure of confidence intervals. Let's derive this step-by-step:
 
-
 #### 1. Understanding the Sampling Distribution
 
 When we take random samples from a population and calculate the proportion $\hat{p}$ for each sample, these sample proportions follow a sampling distribution with:
 
-- Mean equal to the true population proportion $p$
-- Standard error given by $\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}$
+-   Mean equal to the true population proportion $p$
+-   Standard error given by $\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}$
 
 For sufficiently large samples, this sampling distribution approximates a normal distribution (by the Central Limit Theorem).
-
 
 #### 2. Constructing a Confidence Interval
 
@@ -2563,16 +1663,11 @@ $$
 
 This gives us our sample size formula. The formula tells us how many observations we need to estimate a population proportion with a specified margin of error at a given confidence level.
 
-
 #### 5. Assumptions and Considerations
 
-This derivation assumes:
-- Simple random sampling
-- The population is large relative to the sample (when this is not true, we need the finite population correction)
-- The sample size is large enough for the normal approximation to be valid ($np \geq 5$ and $n(1-p) \geq 5$)
+This derivation assumes: - Simple random sampling - The population is large relative to the sample (when this is not true, we need the finite population correction) - The sample size is large enough for the normal approximation to be valid ($np \geq 5$ and $n(1-p) \geq 5$)
 
 If these assumptions are met, the formula provides a reliable estimate of the sample size needed to achieve the desired precision.
-
 
 ### Selecting the Confidence Level
 
@@ -2580,9 +1675,9 @@ The confidence level represents how confident we want to be that our interval co
 
 | Confidence Level | Z-score |
 |------------------|---------|
-| 90% | 1.645 |
-| 95% | 1.96 |
-| 99% | 2.576 |
+| 90%              | 1.645   |
+| 95%              | 1.96    |
+| 99%              | 2.576   |
 
 For most applications, a 95% confidence level is standard, giving us a z-score of 1.96.
 
@@ -2590,9 +1685,9 @@ For most applications, a 95% confidence level is standard, giving us a z-score o
 
 The expected proportion $p$ is our best guess of the population proportion before collecting data. There are several approaches to determining this value:
 
-1. **Use prior studies**: If similar research exists, use the proportion found in those studies.
-2. **Conduct a pilot study**: Collect data from a small initial sample to estimate the proportion.
-3. **Use 0.5 if unknown**: When no information is available, using $p = 0.5$ provides the most conservative estimate (largest sample size).
+1.  **Use prior studies**: If similar research exists, use the proportion found in those studies.
+2.  **Conduct a pilot study**: Collect data from a small initial sample to estimate the proportion.
+3.  **Use 0.5 if unknown**: When no information is available, using $p = 0.5$ provides the most conservative estimate (largest sample size).
 
 ### Step-by-Step Example: Calculating Sample Size with 5 p.p. Error
 
@@ -2600,10 +1695,7 @@ Let's work through an example to estimate the sample size needed for a survey wi
 
 **Example**: A researcher wants to estimate the proportion of adults who support a new public policy. How many people should be surveyed to estimate this proportion with a margin of error of 5 percentage points at a 95% confidence level?
 
-**Step 1**: Define the parameters.
-- Margin of error ($E$) = 0.05 (5 p.p.)
-- Confidence level = 95%, so $z = 1.96$
-- Expected proportion ($p$) = 0.5 (conservative estimate as we don't have prior information)
+**Step 1**: Define the parameters. - Margin of error ($E$) = 0.05 (5 p.p.) - Confidence level = 95%, so $z = 1.96$ - Expected proportion ($p$) = 0.5 (conservative estimate as we don't have prior information)
 
 **Step 2**: Apply the formula.
 
@@ -2630,16 +1722,16 @@ The following table shows the required sample size for various margins of error,
 
 | Margin of Error (p.p.) | Required Sample Size |
 |------------------------|----------------------|
-| 1 | 9,604 |
-| 2 | 2,401 |
-| 3 | 1,068 |
-| 4 | 601 |
-| 5 | 385 |
-| 6 | 267 |
-| 7 | 196 |
-| 8 | 150 |
-| 9 | 119 |
-| 10 | 97 |
+| 1                      | 9,604                |
+| 2                      | 2,401                |
+| 3                      | 1,068                |
+| 4                      | 601                  |
+| 5                      | 385                  |
+| 6                      | 267                  |
+| 7                      | 196                  |
+| 8                      | 150                  |
+| 9                      | 119                  |
+| 10                     | 97                   |
 
 ### Adjusting for Known Expected Proportions
 
@@ -2664,10 +1756,7 @@ $$
 n_{adjusted} = \frac{n}{1 + \frac{n-1}{N}}
 $$
 
-Where:
-- $n_{adjusted}$ is the adjusted sample size
-- $n$ is the sample size calculated using the standard formula
-- $N$ is the population size
+Where: - $n_{adjusted}$ is the adjusted sample size - $n$ is the sample size calculated using the standard formula - $N$ is the population size
 
 **Example**: If the population of interest consists of 1,000 individuals and our calculated sample size is 385, the adjusted sample size would be:
 
@@ -2683,14 +1772,15 @@ $$
 
 ### Practical Considerations
 
-1. **Non-response adjustment**: In practice, not everyone will respond to your survey. If you expect a response rate of 70%, divide your calculated sample size by 0.7 to determine how many people to contact.
+1.  **Non-response adjustment**: In practice, not everyone will respond to your survey. If you expect a response rate of 70%, divide your calculated sample size by 0.7 to determine how many people to contact.
 
-2. **Stratified sampling**: If your population has distinct subgroups that you want to analyze separately, you may need to calculate the sample size for each stratum.
+2.  **Stratified sampling**: If your population has distinct subgroups that you want to analyze separately, you may need to calculate the sample size for each stratum.
 
-3. **Budget constraints**: If the calculated sample size exceeds your resources, consider:
-   - Accepting a larger margin of error
-   - Reducing the confidence level
-   - Using stratified sampling to focus on key subgroups
+3.  **Budget constraints**: If the calculated sample size exceeds your resources, consider:
+
+    -   Accepting a larger margin of error
+    -   Reducing the confidence level
+    -   Using stratified sampling to focus on key subgroups
 
 ### Implementing in R
 
@@ -2739,14 +1829,868 @@ Remember that while this chapter focuses on the statistical aspects of sample si
 
 ### Exercises
 
-1. Calculate the sample size needed to estimate the proportion of voters who favor a particular candidate with a margin of error of 3 p.p. at a 99% confidence level.
+1.  Calculate the sample size needed to estimate the proportion of voters who favor a particular candidate with a margin of error of 3 p.p. at a 99% confidence level.
 
-2. A researcher wants to estimate the prevalence of a disease in a population of 5,000 people. If the expected prevalence is about 15% and the desired margin of error is 4 p.p. with 95% confidence, what sample size should be used?
+2.  A researcher wants to estimate the prevalence of a disease in a population of 5,000 people. If the expected prevalence is about 15% and the desired margin of error is 4 p.p. with 95% confidence, what sample size should be used?
 
-3. How does the required sample size change if the expected proportion changes from 0.5 to 0.1? Calculate and compare the sample sizes for a 5 p.p. margin of error at 95% confidence.
+3.  How does the required sample size change if the expected proportion changes from 0.5 to 0.1? Calculate and compare the sample sizes for a 5 p.p. margin of error at 95% confidence.
 
-4. Create a plot showing how sample size requirements change as the margin of error decreases from 10 p.p. to 1 p.p.
+4.  Create a plot showing how sample size requirements change as the margin of error decreases from 10 p.p. to 1 p.p.
+
+------------------------------------------------------------------------
 
 
----
+## Appendix G: Treści uzupełniające (*)
+
+::: callout-note
+## Popularne Symbole Stosowane w Statystyce
+
+Oto tabela referencyjna często używanych symboli:
+
+| Symbol | Opis | Przykład |
+|--------------------|------------------------------|----------------------|
+| $n$ | Liczebność próby (liczba obserwacji w próbie) | "Zebraliśmy dane od $n = 30$ uczestników" |
+| $N$ | Liczebność populacji (całkowita liczba jednostek w populacji) | "Miasto ma $N = 5000$ mieszkańców" |
+| $\bar{x}$ | Średnia z próby (średnia obserwacji w próbie) | "$\bar{x} = 25,3$ lat" |
+| $\mu$ | Średnia populacji (średnia wartość w całej populacji) | "Średni wzrost w populacji to $\mu = 175$ cm" |
+| $s$ | Odchylenie standardowe z próby | "Odchylenie standardowe w próbie wynosi $s = 4,2$ punktu" |
+| $s^2$ | Wariancja z próby | "Wariancja w próbie wynosi $s^2 = 17,64$ kwadratu punktu" |
+| $\sigma$ | Odchylenie standardowe populacji | "Odchylenie standardowe populacji wynosi $\sigma = 15$ minut" |
+| $\sigma^2$ | Wariancja populacji | "Wariancja populacji wynosi $\sigma^2 = 225$ kwadratów minut" |
+| $\hat{p}$ | Frakcja w próbie | "$\hat{p} = 0,35$ respondentów zgodziło się" |
+| $p$ | Frakcja w populacji | "Prawdziwa proporcja $p$ osób leworęcznych" |
+| $H_0$ | Hipoteza zerowa | "$H_0: \mu = 100$" |
+| $H_1$ lub $H_a$ | Hipoteza alternatywna | "$H_1: \mu \neq 100$" |
+| $\alpha$ | Poziom istotności (prawdopodobieństwo błędu I rodzaju) | "Zastosowaliśmy $\alpha = 0,05$ w naszym teście" |
+| $\beta$ | Prawdopodobieństwo błędu II rodzaju | "Test miał $\beta = 0,2$" |
+| $1-\beta$ | Moc statystyczna | "Test miał moc $1-\beta = 0,8$" |
+| $\sum$ | Suma | "$\sum_{i=1}^{n} x_i$ oznacza dodanie wszystkich wartości od $x_1$ do $x_n$" |
+| $\rho$ | Współczynnik korelacji w populacji | "Korelacja w populacji wynosi $\rho = 0,75$" |
+| $r$ | Współczynnik korelacji w próbie | "Korelacja w próbie wynosi $r = 0,72$" |
+| $df$ | Stopnie swobody | "Test $t$ miał $df = 29$" |
+| $SE$ | Błąd standardowy | "$SE(\bar{x}) = \frac{s}{\sqrt{n}}$" |
+| $CI$ | Przedział ufności | "95% $CI = [42,1, 45,7]$" |
+| $\hat{\theta}$ | Ogólna notacja dla estymatora parametru $\theta$ | "$\hat{\theta}$ to nasz estymator" |
+
+Przy czytaniu wzorów i pojęć statystycznych zwracaj zawsze uwagę na rozróżnienie między: - **Statystykami z próby** (zazwyczaj litery łacińskie: $\bar{x}$, $s$, $r$) - **Parametrami populacji** (zazwyczaj litery greckie: $\mu$, $\sigma$, $\rho$)
+
+Ta konwencja pomaga wyjaśnić, czy mówimy o wartości obliczonej z naszych danych z próby, czy o prawdziwej (zwykle nieznanej) charakterystyce całej populacji.
+:::
+
+::: callout-note
+## Jak przechowywane są dane w Data Science?
+
+Data scientists (analitycy danych) korzystają z różnych sposobów przechowywania danych. Oto najpopularniejsze z nich:
+
+------------------------------------------------------------------------
+
+### **Pliki CSV**
+
+To proste pliki tekstowe, w których dane są zapisane w wierszach, a wartości oddzielone przecinkami.
+
+-   **Plusy**:
+    -   Łatwe do otwarcia i edycji nawet w zwykłym notatniku.
+    -   Działają z większością programów do analizy danych.
+    -   Proste do udostępniania innym.
+-   **Minusy**:
+    -   Nie nadają się do przechowywania skomplikowanych danych (np. zdjęć czy filmów).
+    -   Mogą być wolne w pracy z bardzo dużymi zbiorami danych.
+    -   Czasem pojawiają się problemy z polskimi znakami.
+
+------------------------------------------------------------------------
+
+### **Bazy Danych SQL**
+
+To zaawansowane systemy do przechowywania danych w tabelach, które mogą być ze sobą powiązane.
+
+-   **Plusy**:
+    -   Idealne do zarządzania skomplikowanymi danymi (np. zamówieniami i klientami).
+    -   Szybkie wyszukiwanie i analiza danych.
+    -   Bezpieczeństwo i niezawodność.
+-   **Minusy**:
+    -   Wymagają więcej wiedzy do zarządzania.
+    -   Trudniejsze w dostosowaniu do zmian w strukturze danych.
+    -   Mogą być kosztowne w utrzymaniu.
+
+------------------------------------------------------------------------
+
+### **Inne formaty**
+
+#### **Parquet**
+
+-   **Plusy**:
+    -   Szybki i wydajny, szczególnie do dużych zbiorów danych.
+    -   Oszczędza miejsce dzięki kompresji.
+-   **Minusy**:
+    -   Trudniejszy do bezpośredniego przeglądania przez człowieka.
+
+#### **JSON**
+
+-   **Plusy**:
+    -   Elastyczny, idealny do przechowywania danych o złożonej strukturze (np. zagnieżdżonych).
+    -   Czytelny dla człowieka.
+-   **Minusy**:
+    -   Zajmuje więcej miejsca niż CSV.
+    -   Wolniejszy w przetwarzaniu.
+
+#### **NoSQL**
+
+-   **Plusy**:
+    -   Bardzo elastyczny, nie wymaga ustalonej struktury danych.
+    -   Skalowalny, nadaje się do ogromnych zbiorów danych.
+-   **Minusy**:
+    -   Mniej odpowiedni do złożonych relacji między danymi.
+:::
+
+::: callout-note
+## Rozkład Normalny - Krzywa Dzwonowa
+
+> **Uwaga**
+>
+> Rozkład normalny (znany również jako rozkład Gaussa lub krzywa dzwonowa) jest jednym z najważniejszych rozkładów prawdopodobieństwa w statystyce. Ma symetryczny dzwonowaty kształt i jest w pełni opisany przez dwa parametry:
+>
+> -   Średnią $\mu$ (określającą środek rozkładu)
+> -   Odchylenie standardowe $\sigma$ (określające szerokość "dzwonu")
+>
+> Rozkład normalny występuje często w przyrodzie i systemach ludzkich (wysokość, błędy pomiarowe, wyniki testów).
+
+### Reprezentacja Matematyczna
+
+Funkcja gęstości prawdopodobieństwa (PDF) rozkładu normalnego to:
+
+$$f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}$$
+
+Gdzie:
+
+-   $x$ to zmienna losowa
+-   $\mu$ to średnia (parametr położenia)
+-   $\sigma$ to odchylenie standardowe (parametr skali)
+-   $e$ to liczba Eulera (około 2,71828)
+-   $\pi$ to stała matematyczna pi (około 3,14159)
+
+### Praktyczne Znaczenie
+
+Rozkład normalny jest szczególnie ważny ze względu na:
+
+1.  **Regułę 68-95-99,7**: Około 68% wartości mieści się w odległości jednego odchylenia standardowego od średniej, 95% w odległości dwóch odchyleń standardowych, a 99,7% w odległości trzech odchyleń standardowych.
+
+2.  **Centralne Twierdzenie Graniczne**: Średnie z próby mają tendencję do podążania za rozkładem normalnym niezależnie od kształtu oryginalnego rozkładu (przy wystarczająco dużej wielkości próby).
+
+3.  **Wnioskowanie Statystyczne**: Rozkład normalny stanowi podstawę dla wielu testów statystycznych i przedziałów ufności.
+:::
+
+------------------------------------------------------------------------
+
+::: callout-important
+## Błąd Statystyczny
+
+Korzystając z próby do poznania populacji, nieuchronnie napotykamy błąd statystyczny:
+
+**Błąd statystyczny** to różnica między naszym oszacowaniem z próby a prawdziwą wartością w populacji.
+
+Błędy statystyczne mogą wpływać na wiarygodność i trafność wyników badań. Zrozumienie tych błędów jest kluczowe dla projektowania solidnych badań, poprawnej analizy danych i wyciągania właściwych wniosków. Poniżej znajduje się szczegółowa klasyfikacja błędów statystycznych:
+
+------------------------------------------------------------------------
+
+### Błędy Próbkowania
+
+**Błędy Losowe Próbkowania**
+
+-   Wynikają z naturalnej zmienności związanej z losowym doborem próby.
+-   *Przykład*: Jeśli losowo wybierzesz 30 studentów z uniwersytetu, aby zmierzyć średni wzrost, średnia będzie się nieznacznie różnić w każdej próbie.
+-   Te błędy zmniejszają się wraz ze wzrostem liczebności próby i można je oszacować za pomocą miar takich jak *margines błędu*.
+-   Choć nie da się ich całkowicie wyeliminować, można je kontrolować poprzez odpowiednie techniki próbkowania.
+
+**Błędy Nielosowe (Systematyczne) Próbkowania (Błąd Przesunięcia)**
+
+-   **Błąd selekcji**: Występuje, gdy próba nie reprezentuje właściwie populacji docelowej.
+    -   *Przykład*: Badanie telefoniczne, które obejmuje tylko osoby posiadające telefony stacjonarne, pomijając tych, którzy używają wyłącznie komórek.
+-   **Niedostateczne pokrycie**: Pewne grupy są systematycznie pomijane w próbie.
+    -   *Przykład*: Badanie na kampusie przeprowadzone tylko w godzinach porannych, pomijające studentów wieczorowych.
+-   **Błąd samowyboru**: Wyniki są zniekształcone, ponieważ uczestnicy sami decydują, czy wziąć udział.
+    -   *Przykład*: Tylko osoby z silnymi opiniami odpowiadają na ankietę dotyczącą satysfakcji klientów.
+-   **Błąd nieodpowiedzi**: Występuje, gdy określone grupy są mniej skłonne do udzielenia odpowiedzi.
+    -   *Przykład*: Osoby zapracowane mogą nie wypełnić ankiety, co prowadzi do nadreprezentacji osób z większą ilością wolnego czasu.
+
+------------------------------------------------------------------------
+
+### Błędy Pomiaru
+
+**Losowe Błędy Pomiaru**
+
+-   Nieprzewidywalne wahania w pomiarach spowodowane "szumem."
+    -   *Przykład*: Drżąca ręka przy pomiarze ciśnienia krwi daje nieco różne wyniki za każdym razem.
+-   Te błędy zazwyczaj równoważą się przy wielokrotnych pomiarach.
+
+**Systematyczne Błędy Pomiaru**
+
+-   **Błędy kalibracji**: Stałe niedokładności w narzędziach pomiarowych.
+    -   *Przykład*: Waga, która zawsze dodaje 2 funty do każdego pomiaru.
+-   **Błąd obserwatora**: Oczekiwania badacza wpływają na zbieranie danych.
+    -   *Przykład*: Badacz nieświadomie zapisuje dane w sposób, który potwierdza jego hipotezę.
+-   **Błąd związany z pożądaną odpowiedzią społeczną**: Uczestnicy odpowiadają w sposób, który uważają za społecznie akceptowalny.
+    -   *Przykład*: Zaniżanie ilości spożywanego fast foodu w badaniu dotyczącym odżywiania.
+
+------------------------------------------------------------------------
+
+### Błędy Wnioskowania
+
+**Błędy Testowania Hipotez**
+
+-   **Błąd I rodzaju (Fałszywie Pozytywny)**: Wnioskowanie, że efekt istnieje, gdy w rzeczywistości go nie ma.
+    -   *Przykład*: Twierdzenie, że nowy lek jest skuteczny, gdy jego korzyści wynikają z przypadku.
+-   **Błąd II rodzaju (Fałszywie Negatywny)**: Nie wykrycie efektu, który faktycznie istnieje.
+    -   *Przykład*: Wnioskowanie, że nowy lek jest nieskuteczny, podczas gdy rzeczywiście pomaga pacjentom.
+-   **Błąd III rodzaju**: Rozwiązywanie niewłaściwego problemu lub odpowiadanie na niewłaściwe pytanie.
+    -   *Wyjaśnienie*: Występuje, gdy badacze skupiają się na pytaniu lub hipotezie, która jest nieistotna lub niezgodna z rzeczywistym problemem. Nie chodzi o błąd w analizie statystycznej, ale o postawienie niewłaściwego pytania.
+    -   *Przykład*: Firma bada, czy nowa strategia marketingowa zwiększa ruch na stronie internetowej (niewłaściwe pytanie), podczas gdy prawdziwym problemem jest to, czy zwiększa sprzedaż (właściwe pytanie).
+    -   *Inny przykład*: Badacz analizuje, czy metoda nauczania poprawia wyniki testów (niewłaściwe pytanie), podczas gdy celem jest poprawa długoterminowego zrozumienia materiału (właściwe pytanie).
+
+**Problemy Związane z Mocą Statystyczną**
+
+-   **Badania o zbyt małej mocy**: Zbyt mała liczebność próby, aby wykryć prawdziwe efekty.
+    -   *Przykład*: Testowanie programu odchudzającego na zaledwie 5 osobach.
+
+------------------------------------------------------------------------
+
+### Błędy Specyfikacji Modelu
+
+**Błędy Wyboru Zmiennych**
+
+-   **Błąd pominięcia zmiennej**: Pominięcie ważnych zmiennych wpływających na wyniki.
+    -   *Przykład*: Badanie wpływu ćwiczeń na utratę wagi bez uwzględnienia diety.
+-   **Zmienne zakłócające**: Czynniki zewnętrzne wpływające zarówno na zmienną niezależną, jak i zależną.
+    -   *Przykład*: Osoby ćwiczące mogą również zdrowiej się odżywiać, co wpływa na wyniki utraty wagi.
+
+**Błędy Założeń**
+
+-   Używanie testów statystycznych, które nie pasują do charakterystyki danych.
+    -   *Przykład*: Zakładanie rozkładu normalnego, gdy dane są skośne.
+
+------------------------------------------------------------------------
+
+### Błędy Przetwarzania i Analizy Danych
+
+**Błędy w Przetwarzaniu Danych**
+
+-   **Błędy wprowadzania danych**: Pomyłki podczas zapisywania informacji.
+    -   *Przykład*: Wpisanie "1050" zamiast "150" jako wagi uczestnika.
+-   **Problemy z brakującymi danymi**: Nieuwzględnianie niekompletnych danych.
+    -   *Przykład*: Obliczanie średniej ocen bez uwzględnienia nieobecnych studentów.
+
+**Błędy Wykonania Analizy**
+
+-   **Błędy w oprogramowaniu lub użytkownika**: Pomyłki w korzystaniu z programów statystycznych.
+    -   *Przykład*: Wybranie niewłaściwego testu statystycznego w programie do analizy danych.
+
+------------------------------------------------------------------------
+
+### Błędy Interpretacji i Raportowania
+
+**Błędy Wnioskowania Przyczynowego**
+
+-   **Błąd korelacji i przyczynowości**: Przyjmowanie związku przyczynowego na podstawie korelacji.
+    -   *Przykład*: Wnioskowanie, że spożycie czekolady powoduje zdobywanie Nagród Nobla, ponieważ oba zjawiska są skorelowane.
+
+**Błędy Raportowania i Komunikacji**
+
+-   **p-hacking**: Przeprowadzanie wielu analiz, aż do uzyskania znaczącego wyniku.
+    -   *Przykład*: Analizowanie danych na 20 sposobów i raportowanie tylko tego, który dał pożądany wynik.
+-   **Selekcjonowanie wyników**: Wybiórcze raportowanie wyników wspierających hipotezę.
+    -   *Przykład*: Firma produkująca tabletki odchudzające publikuje tylko te badania, w których jej produkt działał.
+
+------------------------------------------------------------------------
+
+### Strategie Zapobiegania Błędom
+
+Aby zminimalizować błędy statystyczne:
+
+-   **Właściwe planowanie badań**: Dokładne zaplanowanie badania przed zbieraniem danych.
+-   **Odpowiednia liczebność próby**: Zapewnienie wystarczającej liczby uczestników na podstawie obliczeń mocy statystycznej.
+-   **Przedrejestracja**: Zadeklarowanie planów analizy przed zapoznaniem się z danymi.
+-   **Przejrzystość**: Udostępnianie danych i metod analizy.
+-   **Replikacja**: Zachęcanie do niezależnego powtarzania badań.
+
+Zrozumienie i eliminowanie tych błędów zapewnia wiarygodność wyników badań, zapobiegając błędnym decyzjom w dziedzinach takich jak medycyna, polityka publiczna, edukacja i biznes.
+:::
+
+::: callout-note
+```{r}
+#| echo: false
+#| message: false
+library(ggplot2)
+library(dplyr)
+set.seed(123)  # Reprodukowalność
+```
+
+## Proces Generowania Danych, Superpopulacja, Populacja i Próba
+
+Aby zrozumieć wnioskowanie statystyczne, musimy rozróżnić cztery kluczowe pojęcia: **Proces Generowania Danych (DGP)**, **superpopulacja**, **populacja** i **próba**. Posłużymy się przykładem zarobków pracowników, aby zilustrować te koncepcje.
+
+------------------------------------------------------------------------
+
+### Proces Generowania Danych (DGP)
+
+DGP to "prawdziwy" mechanizm, który generuje obserwowane dane. Składa się z:\
+- Składników systematycznych (np. zależności między zmiennymi)\
+- Składników losowych (np. błędy pomiaru, nieobserwowane czynniki)
+
+**Przykład**: Załóżmy, że godzinowa stawka pracownika ($Y$) zależy od liczby lat edukacji ($X$) oraz nieobserwowanych czynników ($\epsilon$):\
+$$ Y = 20 + 2.5X + \epsilon \quad \text{gdzie } \epsilon \sim N(0, 5^2) $$
+
+Możemy zasymulować ten DGP w R:
+
+```{r}
+# Symulacja DGP dla edukacji (X) i zarobków (Y)
+n_superpopulacja <- 100000  # Rozmiar superpopulacji
+dgp_data <- tibble(
+  edukacja = rpois(n_superpopulacja, lambda = 10),  # Lata edukacji (~Poisson)
+  epsilon = rnorm(n_superpopulacja, mean = 0, sd = 5),
+  zarobki = 20 + 2.5 * edukacja + epsilon
+)
+
+# Wykres zależności
+ggplot(dgp_data, aes(x = edukacja, y = zarobki)) +
+  geom_point(alpha = 0.1) +
+  geom_smooth(method = "lm", color = "red") +
+  labs(title = "DGP: Prawdziwa zależność między edukacją a zarobkami")
+```
+
+------------------------------------------------------------------------
+
+### Superpopulacja
+
+Superpopulacja to hipotetyczny, często nieskończony zbiór potencjalnych obserwacji, z których nasza *obserwowana* populacja jest losowo wybrana. Jest ona określona przez DGP.
+
+**Przykład**:\
+- **Superpopulacja**: Wszyscy potencjalni pracownicy (przeszli, obecni, przyszli), których zarobki są zgodne z powyższym DGP.\
+- **Obserwowana populacja**: Skończony podzbiór (np. wszyscy pracownicy w 2024 roku).
+
+------------------------------------------------------------------------
+
+### Populacja
+
+Populacja to skończony zbiór jednostek, które chcemy zbadać. Jej parametry (np. średnie zarobki) są stałe, ale nieznane.
+
+**Przykład**:
+
+```{r}
+# Generujemy naszą "populację" (skończony podzbiór superpopulacji)
+populacja <- dgp_data %>% slice_sample(n = 5000)  # 5,000 pracowników
+
+# Prawdziwa średnia zarobków w populacji (nieznana w praktyce)
+pop_srednia_zarobki <- mean(populacja$zarobki)
+pop_srednia_zarobki  # Wyświetl wartość
+```
+
+------------------------------------------------------------------------
+
+### Próba
+
+Próba to podzbiór populacji, używany do oszacowania parametrów populacji.
+
+**Przykład**:
+
+```{r}
+# Pobieramy losową próbę z populacji
+rozmiar_proby <- 200
+probka <- populacja %>% 
+  slice_sample(n = rozmiar_proby)
+
+# Szacujemy średnie zarobki z próby
+probka_srednia_zarobki <- mean(probka$zarobki)
+probka_srednia_zarobki  # Porównaj z pop_srednia_zarobki
+```
+
+------------------------------------------------------------------------
+
+### Schemat koncepcyjny
+
+```{mermaid}
+graph TD
+  A[DGP<br>Prawdziwy model zarobków] --> B[Superpopulacja<br>Wszyscy potencjalni pracownicy]
+  B --> C[Populacja<br>Wszyscy pracownicy w 2024]
+  C --> D[Próba<br>200 ankietowanych pracowników]
+```
+
+------------------------------------------------------------------------
+
+### Dlaczego to ważne?
+
+-   **Wnioskowanie statystyczne** wykorzystuje próbę do oszacowania parametrów populacji (np. średnich zarobków).\
+-   **Superpopulacja** pozwala na uogólnienie wyników poza obserwowaną populację.\
+-   **DGP** przypomina nam, że nasze modele są przybliżeniami rzeczywistości.
+
+**Pytanie do dyskusji**: Jeśli DGP obejmuje `edukację` i `epsilon`, co może reprezentować `epsilon` w kontekście zarobków?
+
+------------------------------------------------------------------------
+
+### Przykłady ze studiów wyborczych
+
+**Przykład 1: Frekwencja wyborcza**
+
+-   **DGP**: $Frekwencja_i = \beta_0 + \beta_1 Wiek_i + \beta_2 Wykształcenie_i + \beta_3 Dochód_i + \varepsilon_i$
+-   **Superpopulacja**: Wszystkie możliwe decyzje o udziale w wyborach, które mogliby podjąć wyborcy o różnych cechach społeczno-demograficznych w różnych warunkach
+-   **Populacja**: Wszyscy uprawnieni do głosowania w wyborach prezydenckich 2020
+-   **Próba**: 1500 respondentów ankiety exit poll po wyborach
+
+**Przykład 2: Poparcie dla partii politycznych**
+
+-   **DGP**: $Poparcie_{ij} = \beta_0 + \beta_1 Ideologia_i + \beta_2 SytuacjaEkonomiczna_i + \beta_3 Wiek_i + \varepsilon_i$
+-   **Superpopulacja**: Wszystkie możliwe preferencje wyborcze osób o różnych cechach w różnych warunkach społeczno-ekonomicznych
+-   **Populacja**: Wszyscy wyborcy w Polsce w 2023 roku
+-   **Próba**: Respondenci sondażu przedwyborczego (n=1000)
+
+### Symulacja i estymacja funkcji popytu jako DGP w R
+
+Poniższy kod ilustruje, jak można zasymulować funkcję popytu z wieloma predyktorami jako DGP i estymować jej parametry za pomocą regresji OLS:
+
+```{r}
+#| warning: false
+#| message: false
+
+# Załadowanie potrzebnych pakietów
+library(tidyverse)
+
+# Ustawienie ziarna losowości dla powtarzalnych wyników
+set.seed(123)
+
+# 1. Zdefiniowanie "prawdziwego" DGP: Funkcja popytu na produkt
+# Model: Q = beta0 + beta1*P + beta2*I + beta3*P_sub + beta4*P_comp + beta5*A + epsilon
+# Gdzie:
+# Q = ilość popytu na produkt
+# P = cena produktu
+# I = dochód konsumentów
+# P_sub = cena dobra substytucyjnego
+# P_comp = cena dobra komplementarnego
+# A = wydatki na reklamę
+
+# Prawdziwe wartości parametrów (zgodne z teorią ekonomiczną)
+beta0_true <- 100      # Stała
+beta1_true <- -2.5     # Efekt własnej ceny (ujemny - zgodnie z prawem popytu)
+beta2_true <- 0.8      # Efekt dochodu (dodatni - dobro normalne)
+beta3_true <- 1.2      # Efekt ceny substytutu (dodatni)
+beta4_true <- -0.7     # Efekt ceny dobra komplementarnego (ujemny)
+beta5_true <- 0.5      # Efekt reklamy (dodatni)
+sigma_true <- 5        # Odchylenie standardowe błędu losowego
+
+# 2. Symulacja superpopulacji (5000 potencjalnych rynków/okresów)
+n_super <- 5000
+
+# Generowanie predyktorów
+cena <- runif(n_super, min = 5, max = 15)               # Cena produktu (zł)
+dochod <- rnorm(n_super, mean = 3000, sd = 500)         # Średni dochód (zł)
+cena_substytutu <- runif(n_super, min = 4, max = 16)    # Cena substytutu (zł)
+cena_komplementu <- runif(n_super, min = 2, max = 8)    # Cena komplementu (zł)
+reklama <- runif(n_super, min = 0, max = 100)           # Wydatki na reklamę (tys. zł)
+
+# Dodanie korelacji między zmiennymi (np. cena i cena substytutu)
+cena_substytutu <- cena_substytutu + rnorm(n_super, mean = 0.2 * cena, sd = 1)
+
+# Generowanie popytu zgodnie z DGP
+epsilon <- rnorm(n_super, mean = 0, sd = sigma_true)  # Składnik losowy
+popyt <- beta0_true + 
+         beta1_true * cena + 
+         beta2_true * (dochod/1000) +  # skalowanie dochodu dla lepszej interpretacji
+         beta3_true * cena_substytutu + 
+         beta4_true * cena_komplementu + 
+         beta5_true * (reklama/10) +    # skalowanie reklamy dla lepszej interpretacji
+         epsilon
+
+# Tworzenie ramki danych superpopulacji
+superpopulacja <- tibble(
+  id = 1:n_super,
+  cena = cena,
+  dochod = dochod,
+  cena_substytutu = cena_substytutu,
+  cena_komplementu = cena_komplementu,
+  reklama = reklama,
+  popyt = popyt
+)
+
+# Pokaż kilka pierwszych obserwacji
+head(superpopulacja)
+
+# 3. Pobieranie próby z superpopulacji (np. 200 obserwacji)
+n_sample <- 200
+indeksy_proby <- sample(1:n_super, n_sample)
+proba <- superpopulacja[indeksy_proby, ]
+
+# 4. Estymacja modelu OLS na podstawie próby
+model_ols <- lm(popyt ~ cena + I(dochod/1000) + cena_substytutu + 
+                cena_komplementu + I(reklama/10), data = proba)
+
+# 5. Wyświetlenie podsumowania modelu
+summary(model_ols)
+
+# 6. Porównanie prawdziwych parametrów z estymowanymi
+parametry_prawdziwe <- c(beta0_true, beta1_true, beta2_true, 
+                         beta3_true, beta4_true, beta5_true)
+parametry_estymowane <- coef(model_ols)
+
+porownanie <- tibble(
+  parametr = c("Stała", "Cena", "Dochód (tys.)", "Cena substytutu", 
+               "Cena komplementu", "Reklama (10 tys.)"),
+  prawdziwa_wartość = parametry_prawdziwe,
+  estymowana_wartość = parametry_estymowane,
+  różnica = estymowana_wartość - prawdziwa_wartość,
+  błąd_procentowy = abs(różnica / prawdziwa_wartość) * 100
+)
+
+# Wyświetlenie porównania
+print(porownanie)
+
+# 7. Wizualizacja porównania prawdziwych i estymowanych parametrów
+ggplot(porownanie, aes(x = parametr, y = prawdziwa_wartość)) +
+  geom_point(color = "blue", size = 3) +
+  geom_point(aes(y = estymowana_wartość), color = "red", size = 3) +
+  geom_segment(aes(xend = parametr, y = prawdziwa_wartość, 
+                   yend = estymowana_wartość), color = "gray") +
+  labs(title = "Porównanie prawdziwego DGP z estymowanym modelem",
+       subtitle = "Niebieskie punkty: prawdziwe wartości, czerwone punkty: estymowane wartości",
+       x = "Parametr", y = "Wartość") +
+  theme_minimal() +
+  coord_flip()
+
+# 8. Sprawdzenie zdolności predykcyjnej modelu na nowych danych
+# Pobieramy nowe dane z superpopulacji (nie używane w estymacji)
+nowe_indeksy <- sample(setdiff(1:n_super, indeksy_proby), 100)
+nowe_dane <- superpopulacja[nowe_indeksy, ]
+
+# Predykcja na nowych danych
+nowe_dane$przewidywany_popyt <- predict(model_ols, newdata = nowe_dane)
+
+# Obliczenie błędu średniokwadratowego (MSE) predykcji
+mse <- mean((nowe_dane$popyt - nowe_dane$przewidywany_popyt)^2)
+rmse <- sqrt(mse)
+cat("Pierwiastek błędu średniokwadratowego (RMSE):", round(rmse, 2), "\n")
+
+# 9. Wizualizacja relacji między ceną a popytem
+# (efekt ceteris paribus - przy kontroli innych zmiennych)
+ceteris_paribus <- tibble(
+  cena = seq(5, 15, length.out = 100),
+  dochod = mean(proba$dochod),
+  cena_substytutu = mean(proba$cena_substytutu),
+  cena_komplementu = mean(proba$cena_komplementu),
+  reklama = mean(proba$reklama)
+)
+
+# Obliczenie przewidywanego popytu według prawdziwego DGP
+ceteris_paribus$popyt_prawdziwy <- beta0_true + 
+                                 beta1_true * ceteris_paribus$cena + 
+                                 beta2_true * (ceteris_paribus$dochod/1000) + 
+                                 beta3_true * ceteris_paribus$cena_substytutu + 
+                                 beta4_true * ceteris_paribus$cena_komplementu + 
+                                 beta5_true * (ceteris_paribus$reklama/10)
+
+# Obliczenie przewidywanego popytu według estymowanego modelu
+ceteris_paribus$popyt_estymowany <- predict(model_ols, newdata = ceteris_paribus)
+
+# Wizualizacja
+ggplot(ceteris_paribus, aes(x = cena)) +
+  geom_line(aes(y = popyt_prawdziwy, color = "Prawdziwy DGP"), size = 1.2) +
+  geom_line(aes(y = popyt_estymowany, color = "Estymowany model"), size = 1.2) +
+  scale_color_manual(values = c("Prawdziwy DGP" = "blue", "Estymowany model" = "red")) +
+  labs(title = "Krzywa popytu: Prawdziwy DGP vs. Estymowany model",
+       subtitle = "Efekt ceteris paribus (przy stałych wartościach innych zmiennych)",
+       x = "Cena produktu (zł)",
+       y = "Popyt (ilość)",
+       color = "Model") +
+  theme_minimal()
+```
+
+Ten kod pokazuje:
+
+1.  Definiowanie złożonego DGP dla funkcji popytu z wieloma predyktorami zgodnej z teorią ekonomiczną
+2.  Symulowanie superpopulacji zgodnie z tym DGP
+3.  Pobieranie próby z superpopulacji
+4.  Estymację parametrów modelu za pomocą regresji OLS
+5.  Porównanie estymowanych parametrów z ich prawdziwymi wartościami
+6.  Wizualizację porównania prawdziwych i estymowanych parametrów
+7.  Sprawdzenie zdolności predykcyjnej modelu na nowych danych
+8.  Wizualizację relacji między ceną a popytem z efektem ceteris paribus
+
+Przykład ten pokazuje, jak można symulować złożone zależności ekonomiczne, a następnie używać metod ekonometrycznych do odkrywania tych zależności na podstawie próby danych. Jest to doskonała ilustracja, jak teoria ekonomiczna, DGP i metody statystyczne są ze sobą powiązane.
+
+W rzeczywistości nigdy nie znamy prawdziwego DGP - to właśnie próbujemy odkryć za pomocą analizy statystycznej. Symulacje tego typu pozwalają jednak zrozumieć konceptualnie, jak wnioskowanie statystyczne łączy się z pojęciem DGP i superpopulacji.
+
+```{mermaid}
+graph TD
+    DGP[Data Generating Process] -->|Generates| SP[Superpopulation]
+    SP -->|Single finite realization| A[Population]
+    A -->|Random Selection| B[Sample]
+    B -->|Statistical Inference| C[Estimates & Conclusions]
+    C -->|Generalize back to| A
+    C -.->|Infer parameters of| SP
+    C -.->|Ultimate goal: estimate parameters of| DGP
+    
+    style DGP fill:#1E90FF,stroke:#000,stroke-width:4px,color:#FFF
+    style SP fill:#9932CC,stroke:#000,stroke-width:4px,color:#FFF
+    style A fill:#DC143C,stroke:#000,stroke-width:4px,color:#FFF
+    style B fill:#228B22,stroke:#000,stroke-width:2px,color:#FFF
+    style C fill:#8B4513,stroke:#000,stroke-width:2px,color:#FFF
+    
+    classDef note fill:#F0F0F0,stroke:#000,stroke-width:1px;
+    H[["Superpopulation:
+    All possible outcomes
+    generated by the DGP
+    (infinite, hypothetical)"]]
+    D[["DGP:
+    True mechanism with
+    unknown parameters
+    that generates data"]]
+    E[["Population:
+    Single, specific, finite
+    realization from the
+    superpopulation"]]
+    F[["Sample:
+    Observed subset
+    of the population"]]
+    G[["Inference:
+    Drawing conclusions about
+    population, superpopulation,
+    and ultimately the DGP"]]
+    
+    class D,E,F,G,H note
+    
+    H --> SP
+    D --> DGP
+    E --> A
+    F --> B
+    G --> C
+```
+
+### Przykłady pomocnicze
+
+#### Przykład 1: Badanie opinii wyborców
+
+-   **Populacja**: Wszyscy zarejestrowani wyborcy w Polsce w 2023 roku (ok. 30 milionów osób).
+-   **Próba**: 1000 losowo wybranych wyborców ankietowanych w sondażu.
+-   **Superpopulacja**: Wszyscy potencjalni wyborcy (obecni, przyszli i hipotetyczni) oraz wszystkie możliwe scenariusze głosowania.
+-   **DGP** (Data Generating Process): Złożony mechanizm kształtujący opinie i decyzje wyborcze, w tym:
+    -   Czynniki demograficzne (wiek, wykształcenie, miejsce zamieszkania).
+    -   Warunki ekonomiczne (dochód, status zawodowy).
+    -   Wpływ mediów i debaty publicznej.
+    -   Doświadczenia osobiste.
+    -   Historyczne uwarunkowania polityczne.
+
+#### Przykład 2: Badanie efektów leku przeciwcukrzycowego
+
+-   **Populacja**: Wszyscy pacjenci z cukrzycą typu 2 w danym kraju (np. 2 miliony osób).
+-   **Próba**: 500 pacjentów uczestniczących w badaniu klinicznym.
+-   **Superpopulacja**: Wszyscy potencjalni pacjenci z cukrzycą typu 2 (obecni i przyszli) z różnymi profilami genetycznymi i środowiskowymi.
+-   **DGP**: Biologiczny mechanizm obejmujący:
+    -   Interakcje leku z receptorami w organizmie.
+    -   Indywidualne uwarunkowania genetyczne.
+    -   Czynniki środowiskowe (dieta, aktywność fizyczna).
+    -   Interakcje z innymi lekami.
+    -   Mechanizmy metaboliczne organizmu.
+
+#### Przykład 3: Gdy próba równa się populacji
+
+Badanie wszystkich 50 stanów USA:
+
+-   **Tradycyjne podejście**: Nie ma rozróżnienia między próbą a populacją (badamy wszystkie stany).
+-   **Podejście superpopulacyjne**:
+    -   **Populacja/Próba**: 50 istniejących stanów USA.
+    -   **Superpopulacja**: Teoretyczny zbiór wszystkich możliwych jednostek terytorialnych typu "stan" w różnych warunkach historycznych, politycznych i społecznych.
+    -   **DGP**: Fundamentalne mechanizmy geograficzne, historyczne, polityczne i społeczno-ekonomiczne kształtujące charakterystyki stanów.
+
+#### Przykład 4: Jakość pizzy w Nowym Jorku
+
+-   **Populacja**: Wszystkie obecnie działające pizzerie w Nowym Jorku (np. 2000 lokali).
+-   **Próba**: 50 losowo wybranych pizzerii z różnych dzielnic.
+-   **Superpopulacja**: Wszystkie możliwe pizzerie, które mogłyby istnieć w Nowym Jorku:
+    -   Obecnie działające.
+    -   Przyszłe (jeszcze nieotwarte).
+    -   Historyczne (już zamknięte).
+    -   Hipotetyczne (w alternatywnych warunkach ekonomicznych czy kulturowych).
+-   **DGP**: Czynniki wpływające na jakość pizzy:
+    -   Składniki i ich jakość.
+    -   Umiejętności i doświadczenie szefów kuchni.
+    -   Sprzęt i infrastruktura kuchenna.
+    -   Metody przygotowania i przepisy.
+    -   Czynniki środowiskowe (np. jakość lokalnej wody).
+    -   Wpływy kulturowe i tradycje kulinarne.
+    -   Uwarunkowania ekonomiczne (koszty operacyjne, czynsze).
+
+DGP jest jak "przepis na jakość pizzy", który determinuje rezultaty dla wszystkich potencjalnych pizzerii w superpopulacji, nie tylko dla obecnie istniejących lokali.
+:::
+
+
+::: callout-note
+### Zagadnienia dotyczące wielkości próby
+
+Określenie odpowiedniej wielkości próby jest kluczowe dla wiarygodnej analizy statystycznej. Wymagana wielkość próby zależy od trzech głównych czynników:
+
+1.  **Rodzaj szacowanego parametru**
+    -   Co chcesz oszacować? (np. proporcja, średnia, parametr regresji itp.)
+2.  **Pożądana dokładność**
+    -   Wyższa dokładność wymaga większej próby.\
+    -   Przykład: Szacowanie z dokładnością ±1% wymaga około 9 razy więcej obserwacji niż szacowanie z dokładnością ±3%.
+3.  **Zmienność populacji**
+    -   Dla **proporcji**: Maksymalna zmienność występuje przy 50%, a zmienność maleje, gdy proporcje zbliżają się do 0% lub 100%.\
+    -   Dla **średnich**: Zmienność zależy od wariancji pomiarów.\
+    -   Dla **modeli regresji**: Należy uwzględnić wariancję predyktorów i zmiennych wynikowych.
+
+------------------------------------------------------------------------
+
+### Problem małych populacji
+
+Podczas pracy z małymi populacjami (np. mniej niż 1000 osób) należy wziąć pod uwagę specjalne kwestie:
+
+-   **Metody pobierania próby**:
+    -   Proste losowanie próby tradycyjnie zakłada pobieranie **z zamianą**.\
+    -   W praktyce częściej stosuje się pobieranie **bez zamiany**.\
+    -   Różnica między tymi metodami staje się istotna w małych populacjach.
+-   **Poprawka na skończoną populację (FPC)**:
+    -   Niezbędna przy pobieraniu próby większej niż 5-10% populacji.\
+    -   Dostosowuje obliczenia błędu standardowego, uwzględniając zmniejszoną zmienność w małych populacjach.
+
+#### Praktyczne zalecenia dla małych populacji:
+
+-   Dla populacji poniżej 200 osób rozważ przeprowadzenie **pełnego spisu**.\
+-   Używaj wzorów statystycznych przeznaczonych do pobierania próby bez zamiany.\
+-   Standardowe wzory (oparte na pobieraniu z zamianą) zawyżają błąd w małych populacjach.\
+-   Jasno dokumentuj metodologię pobierania próby w raportach badawczych.
+
+#### Kluczowe różnice między metodami pobierania próby:
+
+-   **Pobieranie z zamianą**: Każda jednostka ma stałe prawdopodobieństwo wyboru (np. 1/N) w każdym losowaniu.\
+-   **Pobieranie bez zamiany**: Prawdopodobieństwo wyboru zmienia się w kolejnych losowaniach (np. 1/N, 1/(N-1), 1/(N-2) itd.).\
+-   W dużych populacjach różnica jest nieznaczna; w małych populacjach jest istotna.\
+-   Pobieranie bez zamiany zazwyczaj skutkuje mniejszą wariancją estymatora.
+
+------------------------------------------------------------------------
+
+### Estymacja statystyczna a wielkość próby
+
+#### Proporcje (procenty)
+
+Przy szacowaniu proporcji (np. odsetek wyborców popierających kandydata) wymagana wielkość próby zależy od tego, jak blisko proporcja jest wartości 50%.
+
+**Dlaczego proporcje bliskie 50% wymagają większych prób**:\
+Proporcje podlegają rozkładowi dwumianowemu, gdzie wariancja jest maksymalna przy 50% i minimalna przy 0% lub 100%. Oznacza to większą niepewność i konieczność użycia większych prób dla proporcji bliskich 50%.
+
+**Przykład**:
+
+| Prawdziwa proporcja populacji | Wielkość próby | Margines błędu |
+|-------------------------------|----------------|----------------|
+| 50%                           | 100            | ±10%           |
+| 50%                           | 400            | ±5%            |
+| 50%                           | 1000           | ±3%            |
+| 10%                           | 100            | ±6%            |
+| 10%                           | 400            | ±3%            |
+| 10%                           | 1000           | ±2%            |
+
+**Kluczowe obserwacje**:\
+1. **Większe próby zmniejszają margines błędu**.\
+2. **Proporcje bliskie 50% mają większy margines błędu** niż te bliskie 0% lub 100%.
+
+**Wpływ wielkości populacji**:\
+Dla proporcji bliskich 50%, próba o wielkości \~1000 zapewnia margines błędu ±3%, niezależnie od tego, czy populacja liczy 30 000 czy 30 milionów. To wyjaśnia, dlaczego sondaże ogólnokrajowe mogą być dokładne przy stosunkowo małych próbach.
+
+------------------------------------------------------------------------
+
+#### Średnie
+
+Przy szacowaniu średniej (np. średni dochód gospodarstwa domowego lub wzrost):
+
+-   Wielkość próby zależy od **wariancji** pomiarów.\
+-   Populacje o większej zmienności wymagają większych prób.\
+-   W przeciwieństwie do proporcji, nie ma „maksymalnej niepewności” przy konkretnej wartości.\
+-   Wielkość próby jest wprost proporcjonalna do wariancji zmiennej.
+
+**Przykład**:\
+Szacowanie średniego dochodu zazwyczaj wymaga większej próby niż szacowanie średniego wzrostu, ponieważ dochody są bardziej zróżnicowane.
+
+------------------------------------------------------------------------
+
+#### Parametry modeli i złożona estymacja
+
+Modelowanie statystyczne (np. regresja) obejmuje szacowanie zależności między zmiennymi. Wymagania dotyczące wielkości próby stają się bardziej złożone w tych kontekstach.
+
+**Kluczowe czynniki dla modeli regresji**:\
+1. **Liczba parametrów**:\
+- Każda zmienna predykcyjna i interakcja zużywa stopnie swobody.\
+- Zasada ogólna: 10-20 obserwacji na zmienną (minimum).\
+- Do wykrywania subtelnych efektów: może być potrzebne 50-100+ obserwacji na zmienną.
+
+2.  **Wielkość efektu**:
+    -   Mniejsze efekty wymagają większych prób do ich wykrycia.\
+    -   Należy przeprowadzić analizę mocy na podstawie oczekiwanych wielkości efektów.
+3.  **Złożoność modelu**:
+    -   Zależności liniowe vs. nieliniowe.\
+    -   Efekty interakcji, struktury danych hierarchicznych.\
+    -   Rozkłady nienormalne lub heteroskedastyczność.
+4.  **Wyjaśniona zmienność**:
+    -   Wyższe wartości (R\^2) mogą zmniejszyć wymaganą wielkość próby.\
+    -   Większa wariancja resztowa zwiększa wymagania dotyczące próby.
+
+------------------------------------------------------------------------
+
+### Planowanie wielkości próby w praktyce
+
+Planując badanie, należy wziąć pod uwagę:
+
+1.  **Moc statystyczna**:
+    -   Celuj w co najmniej 80% mocy do wykrycia efektów.\
+    -   Przeprowadź formalną analizę mocy, aby określić wielkość próby.
+2.  **Dokładność**:
+    -   Określ pożądaną szerokość przedziałów ufności.\
+    -   Większa dokładność wymaga większych prób.
+3.  **Ograniczenia zasobów**:
+    -   Zrównoważ wymagania statystyczne z budżetem, czasem i dostępnością uczestników.\
+    -   Rozważ sekwencyjne lub adaptacyjne plany pobierania próby.
+4.  **Kwestie etyczne**:
+    -   Zbierz wystarczającą ilość danych, aby odpowiedzieć na pytania badawcze w sposób wiarygodny.\
+    -   Unikaj niepotrzebnego obciążania uczestników lub marnowania zasobów.
+
+------------------------------------------------------------------------
+
+### Dlaczego 50% oznacza maksymalną niepewność dla proporcji
+
+**Przykład symulacji**:\
+Wyobraź sobie worek z 100 monetami (złote lub srebrne). Chcesz oszacować odsetek złotych monet, losując 20 monet wielokrotnie.
+
+**Scenariusz A: 50% złotych (maksymalna niepewność)**\
+- Wyniki wahają się znacznie (35% do 70%), ze średnim błędem 10 punktów procentowych.
+
+**Scenariusz B: 10% złotych (mniejsza niepewność)**\
+- Wyniki są bliższe prawdziwej wartości (0% do 15%), ze średnim błędem 4 punktów procentowych.
+
+**Wniosek**:\
+Proporcje bliskie 50% charakteryzują się większą naturalną zmiennością, co wymaga większych prób do dokładnego oszacowania.
+
+------------------------------------------------------------------------
+
+### Przykład sondażu: Popularni vs. niszowi kandydaci
+
+W sondażu na 1000 osób:\
+- **Popularny kandydat z poparciem 40%**: Dokładność ±3% (poparcie między 37% a 43%).\
+- **Niszowy kandydat z poparciem 3%**: Dokładność ±1% (poparcie między 2% a 4%).
+
+**Kluczowe spostrzeżenie**:\
+- **Dokładność bezwzględna** zależy od proporcji.\
+- **Dokładność względna** (jako procent oszacowania) jest wyższa dla niszowych kandydatów.
+
+------------------------------------------------------------------------
+
+### Podsumowanie: Kluczowe wnioski
+
+1.  **Wielkość próby zależy od**:
+    -   Rodzaju szacowanego parametru (proporcja, średnia, parametr regresji).\
+    -   Pożądanej dokładności i zmienności populacji.\
+    -   Dla proporcji wartości bliskie 50% wymagają większych prób.
+2.  **Małe populacje wymagają specjalnych rozwiązań**:
+    -   Używaj poprawki na skończoną populację.\
+    -   Rozważ pełne spisy dla bardzo małych populacji.
+3.  **Moc statystyczna i dokładność**:
+    -   Zapewnij wystarczającą moc i dokładność, uwzględniając ograniczenia zasobów.
+4.  **Równowaga etyczna i praktyczna**:
+    -   Zapewnij wiarygodne wyniki bez nadmiernego obciążania uczestników lub zasobów.
+
+Zrozumienie tych zasad pozwala na projektowanie badań, które dostarczają dokładnych i wartościowych wniosków.
+:::
+
 

@@ -40,9 +40,30 @@ Rather than viewing statistics and data science as separate disciplines, it's mo
 3. **Sample**: A subset of the population selected for study. A **representative** sample reflects the key characteristics of the target population in appropriate proportions.
    - *Example*: Instead of studying all eligible voters, researchers might analyze 1,500 randomly selected individuals, accounting for the appropriate distribution of age, gender, education, and region of residence.
 
-   A properly selected sample enables inference about the entire population while significantly reducing research costs and time.
+A properly selected sample enables inference about the entire population while significantly reducing research costs and time.
 
 4. **Sampling**: The procedure of selecting individuals from a population for investigation. An unbiased sampling method gives every individual in the population an equal chance of selection, ensuring representative results.
+
+
+Essential methods of random sampling from a population:
+
+::: {.panel-tabset group="language"}
+## Simple Random Sampling
+
+**Simple Random Sampling**: Every individual has an equal probability of selection. The entire population is randomly sampled without any predetermined pattern.
+
+![Simple Random Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Simple_Random_Sampling2.svg)
+
+## Stratified sampling
+**Stratified Sampling**: The population is divided into distinct subgroups (strata) before random samples are drawn from each stratum proportionally.
+
+![Stratified Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Stratified2.svg)
+
+## Cluster sampling
+**Cluster Sampling**: The population is divided into clusters, and entire clusters are randomly selected for analysis rather than individuals.
+
+![Cluster Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Cluster2.svg)
+:::
 
 5. **Statistical inference**: The process of drawing conclusions about a population based on data from a sample. It involves:
    - Calculating estimates for population parameters
@@ -50,7 +71,6 @@ Rather than viewing statistics and data science as separate disciplines, it's mo
    - Testing hypotheses about population characteristics
 
 ![The process of using a sample to estimate a population parameter. In this example, a sample of 10 individuals found 6 who own an iPhone, yielding an estimated population proportion of 60%. The actual population proportion is 53.8%.](stat_imgs/population_vs_sample.png)
-
 
 
 ### Statistical Inference: How Can a Small Sample Represent a Large Population?
@@ -138,25 +158,6 @@ summary(sample_data)  # basic statistics of the drawn sample
 ```
 
 Recognizing randomness as a law of nature changes our perception of reality - from a deterministic view, where everything is theoretically predictable with sufficient knowledge, to a stochastic one, where uncertainty and variability are inherent features of the world. This allows us to design studies that utilize this natural property to reliably understand the reality around us.
-:::
-
-
-::: {.panel-tabset group="language"}
-## Simple Random Sampling
-
-**Simple Random Sampling**: Every individual has an equal probability of selection. The entire population is randomly sampled without any predetermined pattern.
-
-![Simple Random Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Simple_Random_Sampling2.svg)
-
-## Stratified sampling
-**Stratified Sampling**: The population is divided into distinct subgroups (strata) before random samples are drawn from each stratum proportionally.
-
-![Stratified Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Stratified2.svg)
-
-## Cluster sampling
-**Cluster Sampling**: The population is divided into clusters, and entire clusters are randomly selected for analysis rather than individuals.
-
-![Cluster Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Cluster2.svg)
 :::
 
 
@@ -279,12 +280,91 @@ Data is the foundation of statistical analysis. Understanding its types and char
 
 
 
-
 ---
 
-## Statistical Models and Inference
 
-### Statistical Models
+## Statistical Inference
+
+Statistical inference is the process of drawing conclusions about a population based on sample data. It encompasses two main areas:
+
+### 1. Estimation
+
+Estimation is the process of using sample data to estimate unknown population parameters. We distinguish:
+
+- **Point estimation**: Providing a single value as the best approximation of the parameter
+- **Interval estimation**: Constructing a confidence interval that indicates the range of possible parameter values consistent with our data
+
+Example of a confidence interval: "The 95% confidence interval for the average height of adults is (173 cm, 175 cm)."
+
+**Correct interpretation of confidence interval**: If we were to repeatedly take samples from the same population and construct a 95% confidence interval for each sample using the same method, about 95% of these intervals would contain the true population parameter value.
+
+**Incorrect interpretation**: "There is a 95% chance that the true mean is in the interval (173 cm, 175 cm)" – this is incorrect because the population parameter is a fixed (though unknown) value, not a random variable.
+
+### 2. Hypothesis Testing
+
+Hypothesis testing is a formal procedure for verifying claims about population parameters.
+
+> **Example: Binomial test for a coin**
+>
+> Imagine we want to check if a coin is fair.
+>
+> 1. **Research question**: Is the coin fair (probability of heads = 0.5)?
+>
+> 2. **Formulate hypotheses**:
+>    - **Null hypothesis (H₀)**: p = 0.5 (the coin is fair)
+>    - **Alternative hypothesis (H₁)**: p ≠ 0.5 (the coin is not fair)
+>
+> 3. **Collect data**: We flip the coin 100 times and get 65 heads.
+>
+> 4. **Analyze**: Is 65 heads out of 100 flips evidence against the hypothesis that the coin is fair?
+>
+> 5. **Reasoning**:
+>    - If the coin were fair (p = 0.5), the number of heads in 100 flips should follow a binomial distribution B(100, 0.5)
+>    - For this distribution, we expect an average of 50 heads, with a standard deviation of √(100 × 0.5 × 0.5) = 5
+>    - Getting 65 heads means a deviation of 3 standard deviations from the expected value
+>    - The probability of getting 65 or more heads with a fair coin is very small (p < 0.01)
+>
+> 6. **Conclusion**: Since the observed result is very unlikely under the assumption that the coin is fair, we reject the null hypothesis and conclude that the coin is most likely not fair.
+
+General hypothesis testing procedure:
+
+1. Formulate the null hypothesis (H₀) and alternative hypothesis (H₁)
+2. Choose a significance level α (usually 0.05)
+3. Collect data and calculate the appropriate test statistic
+4. Calculate the p-value (the probability of obtaining our data or more extreme results, assuming H₀ is true)
+5. Make a decision: if p < α, reject H₀ in favor of H₁
+
+> **Note: Intuition behind hypothesis testing**
+>
+> Hypothesis testing resembles a court procedure:
+
+> - H₀ corresponds to the principle of "innocent until proven guilty"
+> - Data constitutes "evidence" against H₀
+> - P-value determines how strong this evidence is
+> - If the evidence is strong enough (p < α), we "convict" H₀ (reject it)
+> - If the evidence is not strong enough, we do not reject H₀ (but we do not prove its truth)
+
+> **Important: Common errors in interpreting p-values and tests**
+>
+> 1. P-value is **NOT** the probability that the null hypothesis is true
+> 2. P-value is **NOT** the probability of making an error when rejecting H₀
+> 3. Failing to reject H₀ does **NOT** mean proving it
+> 4. A very small p-value does **NOT** indicate a large practical effect (statistical significance ≠ practical significance)
+> 5. P-value depends on sample size - with very large samples, even small, practically insignificant differences can be statistically significant
+>
+> **Definition of p-value**: The probability of observing a result at least as extreme as the one obtained, assuming the null hypothesis is true.
+
+### Types of Errors in Hypothesis Testing
+
+- **Type I error (α)**: Rejecting a true null hypothesis ("convicting an innocent")
+  - The probability of this error is controlled by the significance level α
+- **Type II error (β)**: Failing to reject a false null hypothesis ("acquitting the guilty")
+  - The probability of avoiding this error (1-β) is called the power of the test
+  - Test power increases with sample size and effect size
+  
+  
+
+## Statistical Models and Inference
 
 A **statistical model** is a mathematical framework that represents the relationships between variables and the structure of data. It helps describe the **data-generating process (DGP)** and enables us to make inferences about unknown parameters.
 
@@ -367,108 +447,666 @@ Common problems in causal inference:
 
 ![Reverse causality](stat_imgs/ff13-23.png)
 
-## Statistical Inference
-
-Statistical inference is the process of drawing conclusions about a population based on sample data. It encompasses two main areas:
-
-### 1. Estimation
-
-Estimation is the process of using sample data to estimate unknown population parameters. We distinguish:
-
-- **Point estimation**: Providing a single value as the best approximation of the parameter
-- **Interval estimation**: Constructing a confidence interval that indicates the range of possible parameter values consistent with our data
-
-Example of a confidence interval: "The 95% confidence interval for the average height of adults is (173 cm, 175 cm)."
-
-**Correct interpretation of confidence interval**: If we were to repeatedly take samples from the same population and construct a 95% confidence interval for each sample using the same method, about 95% of these intervals would contain the true population parameter value.
-
-**Incorrect interpretation**: "There is a 95% chance that the true mean is in the interval (173 cm, 175 cm)" – this is incorrect because the population parameter is a fixed (though unknown) value, not a random variable.
-
-### 2. Hypothesis Testing
-
-Hypothesis testing is a formal procedure for verifying claims about population parameters.
-
-> **Example: Binomial test for a coin**
->
-> Imagine we want to check if a coin is fair.
->
-> 1. **Research question**: Is the coin fair (probability of heads = 0.5)?
->
-> 2. **Formulate hypotheses**:
->    - **Null hypothesis (H₀)**: p = 0.5 (the coin is fair)
->    - **Alternative hypothesis (H₁)**: p ≠ 0.5 (the coin is not fair)
->
-> 3. **Collect data**: We flip the coin 100 times and get 65 heads.
->
-> 4. **Analyze**: Is 65 heads out of 100 flips evidence against the hypothesis that the coin is fair?
->
-> 5. **Reasoning**:
->    - If the coin were fair (p = 0.5), the number of heads in 100 flips should follow a binomial distribution B(100, 0.5)
->    - For this distribution, we expect an average of 50 heads, with a standard deviation of √(100 × 0.5 × 0.5) = 5
->    - Getting 65 heads means a deviation of 3 standard deviations from the expected value
->    - The probability of getting 65 or more heads with a fair coin is very small (p < 0.01)
->
-> 6. **Conclusion**: Since the observed result is very unlikely under the assumption that the coin is fair, we reject the null hypothesis and conclude that the coin is most likely not fair.
-
-General hypothesis testing procedure:
-
-1. Formulate the null hypothesis (H₀) and alternative hypothesis (H₁)
-2. Choose a significance level α (usually 0.05)
-3. Collect data and calculate the appropriate test statistic
-4. Calculate the p-value (the probability of obtaining our data or more extreme results, assuming H₀ is true)
-5. Make a decision: if p < α, reject H₀ in favor of H₁
-
-> **Note: Intuition behind hypothesis testing**
->
-> Hypothesis testing resembles a court procedure:
-
-> - H₀ corresponds to the principle of "innocent until proven guilty"
-> - Data constitutes "evidence" against H₀
-> - P-value determines how strong this evidence is
-> - If the evidence is strong enough (p < α), we "convict" H₀ (reject it)
-> - If the evidence is not strong enough, we do not reject H₀ (but we do not prove its truth)
-
-> **Important: Common errors in interpreting p-values and tests**
->
-> 1. P-value is **NOT** the probability that the null hypothesis is true
-> 2. P-value is **NOT** the probability of making an error when rejecting H₀
-> 3. Failing to reject H₀ does **NOT** mean proving it
-> 4. A very small p-value does **NOT** indicate a large practical effect (statistical significance ≠ practical significance)
-> 5. P-value depends on sample size - with very large samples, even small, practically insignificant differences can be statistically significant
->
-> **Definition of p-value**: The probability of observing a result at least as extreme as the one obtained, assuming the null hypothesis is true.
-
-### Types of Errors in Hypothesis Testing
-
-- **Type I error (α)**: Rejecting a true null hypothesis ("convicting an innocent")
-  - The probability of this error is controlled by the significance level α
-- **Type II error (β)**: Failing to reject a false null hypothesis ("acquitting the guilty")
-  - The probability of avoiding this error (1-β) is called the power of the test
-  - Test power increases with sample size and effect size
-
-## Foundations for Good Statistical Research
-
-To conduct reliable statistical research, ensure:
-
-1. **Representativeness of the sample**: The sample should well reflect the studied population
-2. **Adequate sample size**: Larger samples provide more accurate estimates and greater statistical power
-3. **Control of confounding variables**: Both in research design and data analysis
-4. **Appropriate statistical methods**: Matched to the type of data and research questions
-5. **Clear interpretation**: Taking into account study limitations and alternative explanations
-
-### Summary of Key Concepts
-
-| Concept | Definition | Example |
-|----------------------|--------------------------|------------------------|
-| **Population parameter (Estimand)** | Value characterizing the population, usually unknown | μ (population mean) |
-| **Estimator (Statistic)** | Function/procedure for estimating a parameter based on a sample | $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ |
-| **Estimate** | Specific value obtained after applying an estimator to a sample | $\bar{x} = 173.5$ cm |
-| **Standard error** | Measure of estimator variability between samples | $SE(\bar{x}) = \frac{s}{\sqrt{n}}$ |
-| **Confidence interval** | Range of values that, with specified probability, contains the parameter | (173 cm, 175 cm) |
-| **P-value** | Probability of observing the data assuming H₀ is true | p = 0.03 |
-
 
 ---
+
+
+# Appendices: Additional Topics in Statistics and Data Science (*)
+
+## Appendix A: R for Social Science Data Analysis
+
+R offers powerful capabilities for social science research, from data manipulation to advanced statistical modeling.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Click to show/hide R code"
+
+library(tidyverse)
+
+# Set seed for reproducibility
+set.seed(42)
+
+# Generate example data with a Simpson's Paradox
+n <- 1000
+data <- tibble(
+  age_group = sample(c("Young", "Middle", "Old"), n, replace = TRUE, prob = c(0.3, 0.4, 0.3)),
+  education_years = case_when(
+    age_group == "Young" ~ rnorm(n, mean = 10, sd = 1),
+    age_group == "Middle" ~ rnorm(n, mean = 13, sd = 1),
+    age_group == "Old" ~ rnorm(n, mean = 16, sd = 1)
+  ),
+  income = case_when(
+    age_group == "Young" ~ 70000 + 1000 * education_years + rnorm(n, mean = 0, sd = 5000),
+    age_group == "Middle" ~ 50000 + 1000 * education_years + rnorm(n, mean = 0, sd = 5000),
+    age_group == "Old" ~ 30000 + 1000 * education_years + rnorm(n, mean = 0, sd = 5000)
+  )
+)
+
+# Basic data summary
+summary(data)
+
+# Correlation analysis
+cor(data %>% select(education_years, income))
+
+# Overall trend (Simpson's Paradox)
+overall_plot <- ggplot(data, aes(x = education_years, y = income)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "Overall Relationship between Education and Income",
+       subtitle = "Simpson's Paradox: Appears negative",
+       x = "Years of Education", y = "Income") +
+  theme_minimal()
+
+# Trend by age group (Resolving Simpson's Paradox)
+grouped_plot <- ggplot(data, aes(x = education_years, y = income, color = age_group)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Relationship between Education and Income by Age Group",
+       subtitle = "Resolving Simpson's Paradox: Positive relationship within groups",
+       x = "Years of Education", y = "Income") +
+  theme_minimal()
+
+# Print results
+print(overall_plot)
+print(grouped_plot)
+```
+
+This example demonstrates Simpson's Paradox, where the overall relationship between education and income appears negative, but when grouped by age, the relationship within each group is positive. This illustrates how critical it is to consider confounding variables in your analysis.
+
+## Appendix B: Causal Inference vs. Observational Studies
+
+Understanding the relationship between variables is crucial in social sciences. Two key approaches are causal inference and observational studies, each with distinct strengths and limitations.
+
+### Causal Inference
+
+- Aims to establish cause-and-effect relationships
+- Often involves experimental designs or advanced statistical techniques
+- Seeks to answer "What if?" questions and determine the impact of interventions
+- Examples: Randomized controlled trials, quasi-experimental designs, instrumental variables
+
+### Observational Studies
+
+- Examine relationships between variables without direct intervention
+- Rely on data collected from natural settings or existing datasets
+- Can identify correlations and patterns but struggle to establish causation
+- Examples: Cohort studies, case-control studies, cross-sectional surveys
+
+> **Important: Correlation Does Not Imply Causation**
+>
+> - **Correlation**: Measures the strength and direction of a relationship between variables
+> - **Causation**: Indicates that changes in one variable directly cause changes in another
+>
+> While strong correlations can suggest potential causal links, additional evidence and rigorous methods are required to establish causality.
+
+### Challenges in Establishing Causality
+
+- **Confounding variables**: Unmeasured factors that affect both the presumed cause and effect
+- **Reverse causality**: The presumed effect might actually be causing the presumed cause
+- **Selection bias**: Non-random selection of subjects into study groups
+
+### Methods to Strengthen Causal Claims
+
+1. Randomized controlled trials (when ethical and feasible)
+2. Natural experiments or quasi-experimental designs
+3. Propensity score matching
+4. Difference-in-differences analysis
+5. Instrumental variable approaches
+6. Directed acyclic graphs (DAGs) for visualizing causal relationships
+
+Understanding these distinctions is crucial in social sciences, where ethical considerations often limit experimental manipulation.
+
+
+## Appendix C: Understanding Spurious Correlations, Confounders, and Colliders
+
+These concepts are essential for avoiding misinterpretations in statistical analysis. Let's explore them with R examples.
+
+```{r}
+#| message: false
+#| code-fold: true
+#| code-summary: "Load required libraries"
+
+library(tidyverse)
+library(viridis)
+set.seed(123) # for reproducibility
+```
+
+### Spurious Correlations
+
+Spurious correlations are relationships between variables that appear to be causal but are actually coincidental or caused by an unseen third factor.
+
+**Example: Ice Cream Sales and Drowning Incidents**
+
+```{r}
+#| code-fold: true
+#| code-summary: "R code for spurious correlation example"
+
+# Create dataset
+n <- 100
+spurious_data <- tibble(
+  temperature = rnorm(n, mean = 25, sd = 5),
+  ice_cream_sales = 100 + 5 * temperature + rnorm(n, sd = 10),
+  drowning_incidents = 1 + 0.5 * temperature + rnorm(n, sd = 2)
+)
+
+# Plot the apparent correlation
+p1 <- ggplot(spurious_data, aes(x = ice_cream_sales, y = drowning_incidents)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, color = "#0072B2") +
+  labs(title = "Spurious Correlation: Ice Cream Sales vs. Drowning",
+       x = "Ice Cream Sales", 
+       y = "Drowning Incidents") +
+  theme_minimal()
+
+# Show the common cause
+p2 <- ggplot(spurious_data, aes(x = temperature)) +
+  geom_point(aes(y = ice_cream_sales), color = "#D55E00", alpha = 0.7) +
+  geom_point(aes(y = drowning_incidents * 10), color = "#0072B2", alpha = 0.7) +
+  geom_smooth(aes(y = ice_cream_sales), method = "lm", 
+              se = FALSE, color = "#D55E00") +
+  geom_smooth(aes(y = drowning_incidents * 10), method = "lm", 
+              se = FALSE, color = "#0072B2") +
+  scale_y_continuous(
+    name = "Ice Cream Sales",
+    sec.axis = sec_axis(~./10, name = "Drowning Incidents")
+  ) +
+  labs(title = "Temperature as the Common Cause",
+       x = "Temperature (°C)") +
+  theme_minimal() +
+  theme(
+    axis.title.y.left = element_text(color = "#D55E00"),
+    axis.title.y.right = element_text(color = "#0072B2")
+  )
+
+# Calculate correlation
+cor_value <- cor(spurious_data$ice_cream_sales, spurious_data$drowning_incidents)
+
+# Display plots
+print(p1)
+print(p2)
+cat("Correlation between ice cream sales and drowning incidents:", round(cor_value, 3))
+```
+
+In this example, temperature is the common cause (confounder) that influences both ice cream sales and drowning incidents. When we plot them against each other, they appear correlated (r ≈ 0.5), but this is spurious. The relationship disappears when we control for temperature.
+
+### Confounders
+
+A confounder is a variable that influences both the dependent variable and independent variable, causing a spurious association.
+
+**Example: Education, Income, and Age**
+
+```{r}
+#| code-fold: true
+#| code-summary: "R code for confounder example"
+
+# Create dataset
+n <- 1000
+confounder_data <- tibble(
+  age = runif(n, 25, 65),
+  education = round(10 + 0.1 * age + rnorm(n, sd = 2)),
+  income = 20000 + 1000 * education + 500 * age + rnorm(n, sd = 5000)
+)
+
+# Create age groups for visualization
+confounder_data <- confounder_data %>%
+  mutate(age_group = cut(age, breaks = 3, 
+                         labels = c("Young", "Middle", "Older")))
+
+# Models with and without controlling for the confounder
+model_naive <- lm(income ~ education, data = confounder_data)
+model_adjusted <- lm(income ~ education + age, data = confounder_data)
+
+# Visualization
+ggplot(confounder_data, aes(x = education, y = income)) +
+  geom_point(aes(color = age), alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "black", linewidth = 1.2) +
+  geom_smooth(aes(group = age_group, color = as.numeric(age_group)), 
+              method = "lm", se = FALSE, linewidth = 1) +
+  scale_color_viridis_c(name = "Age", 
+                      breaks = c(30, 45, 60), 
+                      labels = c("Young", "Middle", "Older")) +
+  labs(title = "Education vs Income, Confounded by Age",
+       subtitle = paste("Without controlling for age: effect =", 
+                        round(coef(model_naive)["education"], 1),
+                        "| With age control: effect =", 
+                        round(coef(model_adjusted)["education"], 1)),
+       x = "Years of Education", 
+       y = "Income") +
+  theme_minimal()
+```
+
+In this example, age is a confounder in the relationship between education and income. Without controlling for age, we overestimate the effect of education on income (the black line). When we examine the relationship within specific age groups (colored lines), we see a more accurate representation of the true effect.
+
+### Colliders
+
+A collider is a variable that is influenced by both the independent variable and the dependent variable. Controlling for a collider can introduce a spurious correlation.
+
+**Example: Job Satisfaction, Salary, and Work-Life Balance**
+
+```{r}
+#| code-fold: true
+#| code-summary: "R code for collider example"
+
+# Create dataset
+n <- 1000
+collider_data <- tibble(
+  job_satisfaction = rnorm(n),
+  salary = rnorm(n),
+  # Both job satisfaction and salary negatively affect work-life balance
+  work_life_balance = -0.5 * job_satisfaction - 0.5 * salary + rnorm(n, sd = 0.5)
+)
+
+# Without controlling for work-life balance
+model_correct <- lm(salary ~ job_satisfaction, data = collider_data)
+
+# Incorrectly controlling for the collider
+model_collider <- lm(salary ~ job_satisfaction + work_life_balance, data = collider_data)
+
+# Visualization
+p <- ggplot(collider_data, aes(x = job_satisfaction, y = salary, 
+                          color = work_life_balance)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "black") +
+  scale_color_viridis_c(name = "Work-Life\nBalance") +
+  labs(title = "Job Satisfaction vs Salary, with Work-Life Balance as Collider",
+       subtitle = paste("Without controlling: correlation =", 
+                        round(coef(model_correct)["job_satisfaction"], 3),
+                        "| With control: correlation =", 
+                        round(coef(model_collider)["job_satisfaction"], 3)),
+       x = "Job Satisfaction", 
+       y = "Salary") +
+  theme_minimal()
+
+print(p)
+```
+
+In this example, there's no inherent relationship between job satisfaction and salary (the black line shows near-zero correlation). However, both variables negatively impact work-life balance. If we control for work-life balance (the collider), we introduce a positive correlation between job satisfaction and salary that doesn't actually exist.
+
+### Simpson's Paradox
+
+Simpson's paradox occurs when a trend appears in different groups of data but disappears or reverses when these groups are combined.
+
+**Example: Treatment Effectiveness Across Age Groups**
+
+```{r}
+#| code-fold: true
+#| code-summary: "R code for Simpson's paradox example"
+
+# Create example dataset
+set.seed(123)
+n <- 1000
+
+simpson_data <- tibble(
+  age_group = sample(c("Young", "Older"), n, replace = TRUE, 
+                     prob = c(0.7, 0.3)),
+  treatment = sample(c("Treatment A", "Treatment B"), n, replace = TRUE,
+                    prob = c(0.5, 0.5))
+) %>%
+  mutate(
+    # Different recovery rates based on age and treatment
+    recovery_prob = case_when(
+      age_group == "Young" & treatment == "Treatment A" ~ 0.70,
+      age_group == "Young" & treatment == "Treatment B" ~ 0.80,
+      age_group == "Older" & treatment == "Treatment A" ~ 0.50,
+      age_group == "Older" & treatment == "Treatment B" ~ 0.40,
+      TRUE ~ 0
+    ),
+    # More older people get Treatment A
+    treatment = if_else(
+      age_group == "Older" & runif(n) < 0.7, 
+      "Treatment A", 
+      treatment
+    ),
+    # Generate recovery outcomes
+    recovered = rbinom(n, 1, recovery_prob)
+  )
+
+# Aggregate data
+overall_rates <- simpson_data %>%
+  group_by(treatment) %>%
+  summarize(
+    total_patients = n(),
+    recovered_patients = sum(recovered),
+    recovery_rate = mean(recovered)
+  )
+
+by_age_rates <- simpson_data %>%
+  group_by(treatment, age_group) %>%
+  summarize(
+    total_patients = n(),
+    recovered_patients = sum(recovered),
+    recovery_rate = mean(recovered)
+  )
+
+# Create visualization
+overall_plot <- ggplot(overall_rates, 
+                      aes(x = treatment, y = recovery_rate, fill = treatment)) +
+  geom_col() +
+  geom_text(aes(label = paste0(round(recovery_rate*100, 1), "%")), 
+            vjust = -0.5) +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 0.8)) +
+  labs(title = "Overall Recovery Rates",
+       subtitle = "Simpson's Paradox: Treatment B appears worse overall",
+       x = "", y = "Recovery Rate") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+by_age_plot <- ggplot(by_age_rates, 
+                     aes(x = treatment, y = recovery_rate, fill = treatment)) +
+  geom_col() +
+  geom_text(aes(label = paste0(round(recovery_rate*100, 1), "%")), 
+            vjust = -0.5) +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 0.8)) +
+  labs(title = "Recovery Rates by Age Group",
+       subtitle = "Within each age group, Treatment B is actually better",
+       x = "", y = "Recovery Rate") +
+  facet_wrap(~age_group) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+# Display tables and plots
+knitr::kable(overall_rates, caption = "Overall Recovery Rates by Treatment")
+knitr::kable(by_age_rates, caption = "Recovery Rates by Treatment and Age Group")
+print(overall_plot)
+print(by_age_plot)
+```
+
+Simpson's paradox is occurring here because:
+
+1. **Within each age group**: Treatment B has a higher recovery rate than Treatment A
+2. **Overall**: Treatment A appears to have a higher recovery rate than Treatment B
+
+This paradox happens because:
+- Treatment A is given more frequently to older patients
+- Older patients have lower recovery rates regardless of treatment
+- This skews the overall average to make Treatment A look better, even though Treatment B is better for both young and older patients
+
+### Directed Acyclic Graphs (DAGs)
+
+DAGs are powerful tools for visualizing causal relationships and identifying potential biases in statistical analyses.
+
+```{r}
+#| code-fold: true
+#| code-summary: "R code for DAG examples"
+
+# Try to load dagitty and ggdag if available
+if (requireNamespace("dagitty", quietly = TRUE) && 
+    requireNamespace("ggdag", quietly = TRUE)) {
+  
+  library(dagitty)
+  library(ggdag)
+  
+  # Example 1: Confounder
+  confounder_dag <- dagitty('dag {
+    X -> Y
+    Z -> X
+    Z -> Y
+  }')
+  
+  # Example 2: Collider
+  collider_dag <- dagitty('dag {
+    X -> Z
+    Y -> Z
+    X -- Y [unobserved]
+  }')
+  
+  # Example 3: Simpson's Paradox
+  simpson_dag <- dagitty('dag {
+    Treatment -> Recovery
+    Age -> Treatment
+    Age -> Recovery
+  }')
+  
+  # Plot the DAGs
+  p1 <- ggdag(confounder_dag) + 
+    theme_dag() + 
+    labs(title = "Confounder (Z)")
+  
+  p2 <- ggdag(collider_dag) + 
+    theme_dag() + 
+    labs(title = "Collider (Z)")
+  
+  p3 <- ggdag(simpson_dag) + 
+    theme_dag() + 
+    labs(title = "Simpson's Paradox Structure")
+  
+  print(p1)
+  print(p2)
+  print(p3)
+  
+} else {
+  cat("DAG visualization packages not installed. Install dagitty and ggdag packages for these examples.")
+}
+```
+
+DAGs help us visualize different causal structures:
+
+1. **Confounder**: A variable (Z) that affects both the exposure (X) and outcome (Y)
+2. **Collider**: A variable (Z) that is affected by both the exposure (X) and another variable (Y)
+3. **Simpson's Paradox**: Often involves a confounder that influences both the treatment/exposure and the outcome
+
+Understanding these structures helps us decide which variables to control for in our analyses and which to leave out.
+
+
+## Appendix D: Models in Science: From Deterministic to Stochastic
+
+Models are essential tools in scientific research, helping scientists to represent, understand, and predict complex phenomena.
+
+### Types of Models
+
+#### Mathematical Models
+
+Mathematical models use equations to describe and analyze systems. They can be divided into:
+
+##### Deterministic Models
+
+Deterministic models provide precise predictions based on a set of variables, without incorporating randomness.
+
+**Example:** Newton's laws of motion, which can precisely predict the motion of objects under known forces:
+
+$$x(t) = x_0 + v_0t + \frac{1}{2}at^2$$
+
+Where $x(t)$ is the position at time $t$, $x_0$ is the initial position, $v_0$ is the initial velocity, and $a$ is the acceleration.
+
+##### Stochastic Models
+
+Stochastic models incorporate randomness and probability. They come in two fundamentally different types:
+
+**Classical Stochastic Models**: Deal with randomness arising from incomplete information or complex interactions in classical systems. The underlying system is deterministic, but practical limitations lead to probabilistic descriptions.
+
+**Example:** Regression models in statistics, where the randomness represents unexplained variation:
+
+$$y = \beta_0 + \beta_1x + \varepsilon$$
+
+Where $y$ is the dependent variable, $x$ is the independent variable, $\beta_0$ and $\beta_1$ are parameters, and $\varepsilon$ is the error term.
+
+**Quantum Stochastic Models**: Deal with the fundamental, irreducible randomness inherent in quantum mechanical systems.
+
+**Example:** The decay of a radioactive particle follows a probability distribution:
+
+$$P(t) = e^{-t/\tau}$$
+
+Where $P(t)$ is the probability that the particle has not decayed after time $t$, and $\tau$ is the mean lifetime of the particle.
+
+#### Other Model Types
+
+- **Computer Simulation Models**: Use algorithms to simulate complex systems
+- **Conceptual Models**: Abstract representations using diagrams or flowcharts
+- **Physical Models**: Tangible representations like scale models
+- **Theoretical Models**: Abstract frameworks based on fundamental principles
+
+### Model Error and Bias-Variance Tradeoff
+
+All models involve some degree of error. Understanding the balance between bias and variance is crucial:
+
+- **Bias**: Systematic error from simplifying assumptions
+- **Variance**: Error from sensitivity to small fluctuations in the training data
+
+![Bias-Variance Tradeoff in Models](stat_imgs/ModelError.png)
+
+The ideal model balances complexity to minimize both bias and variance, leading to the best predictive performance.
+
+## Appendix E: Classical vs Quantum Randomness
+
+To understand how randomness differs across scientific disciplines, we need to examine the origins and implications of different types of uncertainty.
+
+### Origin of Randomness
+
+#### Classical Randomness (e.g., Regression Models)
+
+- **Source**: Incomplete information or complex interactions in an otherwise deterministic system
+- **Nature**: Epistemic uncertainty (due to lack of knowledge)
+- **Example**: In a regression model, the error term represents unexplained variation
+
+#### Quantum Randomness
+
+- **Source**: Fundamental property of quantum systems
+- **Nature**: Ontic uncertainty (inherent to the system, not due to lack of knowledge)
+- **Example**: The exact time of decay of a radioactive atom cannot be predicted
+
+### Philosophical Implications
+
+#### Classical Randomness
+
+- **Determinism**: Underlying reality is deterministic; randomness reflects our ignorance
+- **Hidden Variables**: In principle, with complete information, we could predict outcomes precisely
+
+#### Quantum Randomness
+
+- **Indeterminism**: Randomness is a fundamental feature of reality
+- **No Hidden Variables**: Even with complete information, some outcomes remain unpredictable (as suggested by Bell's theorem)
+
+### Practical Implications
+
+#### Classical Randomness
+
+- **Reducible**: Can be reduced by gathering more data or improving measurement precision
+- **Controllable**: Systematic errors can be identified and corrected
+
+#### Quantum Randomness
+
+- **Irreducible**: Cannot be eliminated even with perfect measurements
+- **Fundamentally Uncontrollable**: The act of measurement itself affects the system
+
+Understanding these differences is crucial for correctly interpreting statistical models in different scientific contexts.
+
+
+## Appendix F: Ethical Considerations in Social Science Data Analysis
+
+Ethics play a vital role in social science research. Key considerations include:
+
+### 1. Privacy and Consent
+
+- Ensure participants understand how their data will be used
+- Obtain informed consent before collecting data
+- Protect personally identifiable information
+- Consider cultural differences in privacy expectations
+
+### 2. Data Protection
+
+- Securely store sensitive data
+- Implement appropriate access controls
+- Follow relevant regulations (e.g., GDPR, HIPAA)
+- Have a data management plan that includes secure disposal
+
+### 3. Bias and Representation
+
+- Address sampling bias that could exclude marginalized groups
+- Ensure diverse representation in research
+- Consider how variable definitions might reflect social biases
+- Be transparent about limitations in population coverage
+
+### 4. Transparency and Reproducibility
+
+- Clearly document research methods
+- Share code and data when possible
+- Pre-register studies when appropriate
+- Acknowledge limitations and potential biases
+
+### 5. Social Impact
+
+- Consider the potential societal implications of research findings
+- Avoid reinforcing harmful stereotypes
+- Think about how results might be misinterpreted or misused
+- Engage with communities being studied
+
+Ethical considerations should be integrated throughout the research process, from study design to data collection, analysis, and reporting of results.
+
+## Appendix G: Introduction to RStudio and the tidyverse
+
+R is a powerful programming language for statistical computing and graphics. RStudio provides an integrated development environment that makes working with R easier.
+
+### Getting Started with RStudio
+
+RStudio has four main panes:
+
+1. **Source Editor**: Where you write and edit your R scripts
+2. **Console**: Where you run R commands and see output
+3. **Environment/History**: Shows your workspace objects and command history
+4. **Files/Plots/Packages/Help**: For file management, viewing plots, managing packages, and accessing help
+
+### The tidyverse Ecosystem
+
+The tidyverse is a collection of R packages designed for data science with a consistent design philosophy.
+
+Key packages include:
+
+- **ggplot2**: Data visualization
+- **dplyr**: Data manipulation
+- **tidyr**: Data tidying
+- **readr**: Data import
+- **purrr**: Functional programming
+- **tibble**: Modern data frames
+
+### Basic tidyverse Workflow
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Click to show/hide R code"
+
+# Load tidyverse
+library(tidyverse)
+
+# Read data
+data <- read_csv("my_data.csv")
+
+# Clean and transform
+cleaned_data <- data %>%
+  filter(!is.na(important_variable)) %>%
+  select(var1, var2, var3) %>%
+  mutate(new_var = var1 / var2)
+
+# Group and summarize
+summary_stats <- cleaned_data %>%
+  group_by(category) %>%
+  summarize(
+    mean_val = mean(var3),
+    count = n()
+  )
+
+# Visualize
+ggplot(cleaned_data, aes(x = var1, y = var2, color = category)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title = "Relationship between Variables",
+       x = "Variable 1",
+       y = "Variable 2") +
+  theme_minimal()
+```
+
+This workflow demonstrates the power of the tidyverse's pipe operator (`%>%`), which allows you to chain operations together in a readable way.
+
+### Resources for Learning R
+
+- [R for Data Science](https://r4ds.had.co.nz/)
+- [tidyverse documentation](https://www.tidyverse.org/)
+- [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)
+- [Quarto Guide](https://quarto.org/docs/guide/)
+
+The best way to learn R is through practice. Start with small, manageable projects and gradually build your skills.
+
+
+## Appendix G: Supplementary Content (*)
 
 ::: {.callout-important}
 ## Understanding Statistical Error
@@ -1218,7 +1856,8 @@ When estimating a proportion (e.g., percentage of voters supporting a candidate)
 **Why Proportions Near 50% Require Larger Samples**:  
 Proportions follow a binomial distribution, where variance is maximized at 50% and minimized at 0% or 100%. This means greater uncertainty and larger sample sizes are needed for proportions near 50%.
 
-**Example**:  
+**Example**:
+
 | True Population Proportion | Sample Size | Margin of Error |
 |----------------------------|-------------|-----------------|
 | 50%                        | 100         | ±10%            |
@@ -1344,657 +1983,4 @@ In a poll of 1,000 people:
 By understanding these principles, you can design studies that yield accurate and meaningful insights.
 :::
 
-
----
-
-# Appendices: Additional Topics in Statistics and Data Science (*)
-
-## Appendix A: R for Social Science Data Analysis
-
-R offers powerful capabilities for social science research, from data manipulation to advanced statistical modeling.
-
-```{r}
-#| code-fold: true
-#| code-summary: "Click to show/hide R code"
-
-library(tidyverse)
-
-# Set seed for reproducibility
-set.seed(42)
-
-# Generate example data with a Simpson's Paradox
-n <- 1000
-data <- tibble(
-  age_group = sample(c("Young", "Middle", "Old"), n, replace = TRUE, prob = c(0.3, 0.4, 0.3)),
-  education_years = case_when(
-    age_group == "Young" ~ rnorm(n, mean = 10, sd = 1),
-    age_group == "Middle" ~ rnorm(n, mean = 13, sd = 1),
-    age_group == "Old" ~ rnorm(n, mean = 16, sd = 1)
-  ),
-  income = case_when(
-    age_group == "Young" ~ 70000 + 1000 * education_years + rnorm(n, mean = 0, sd = 5000),
-    age_group == "Middle" ~ 50000 + 1000 * education_years + rnorm(n, mean = 0, sd = 5000),
-    age_group == "Old" ~ 30000 + 1000 * education_years + rnorm(n, mean = 0, sd = 5000)
-  )
-)
-
-# Basic data summary
-summary(data)
-
-# Correlation analysis
-cor(data %>% select(education_years, income))
-
-# Overall trend (Simpson's Paradox)
-overall_plot <- ggplot(data, aes(x = education_years, y = income)) +
-  geom_point(alpha = 0.5) +
-  geom_smooth(method = "lm", se = FALSE, color = "red") +
-  labs(title = "Overall Relationship between Education and Income",
-       subtitle = "Simpson's Paradox: Appears negative",
-       x = "Years of Education", y = "Income") +
-  theme_minimal()
-
-# Trend by age group (Resolving Simpson's Paradox)
-grouped_plot <- ggplot(data, aes(x = education_years, y = income, color = age_group)) +
-  geom_point(alpha = 0.5) +
-  geom_smooth(method = "lm", se = FALSE) +
-  labs(title = "Relationship between Education and Income by Age Group",
-       subtitle = "Resolving Simpson's Paradox: Positive relationship within groups",
-       x = "Years of Education", y = "Income") +
-  theme_minimal()
-
-# Print results
-print(overall_plot)
-print(grouped_plot)
-```
-
-This example demonstrates Simpson's Paradox, where the overall relationship between education and income appears negative, but when grouped by age, the relationship within each group is positive. This illustrates how critical it is to consider confounding variables in your analysis.
-
-## Appendix B: Causal Inference vs. Observational Studies
-
-Understanding the relationship between variables is crucial in social sciences. Two key approaches are causal inference and observational studies, each with distinct strengths and limitations.
-
-### Causal Inference
-
-- Aims to establish cause-and-effect relationships
-- Often involves experimental designs or advanced statistical techniques
-- Seeks to answer "What if?" questions and determine the impact of interventions
-- Examples: Randomized controlled trials, quasi-experimental designs, instrumental variables
-
-### Observational Studies
-
-- Examine relationships between variables without direct intervention
-- Rely on data collected from natural settings or existing datasets
-- Can identify correlations and patterns but struggle to establish causation
-- Examples: Cohort studies, case-control studies, cross-sectional surveys
-
-> **Important: Correlation Does Not Imply Causation**
->
-> - **Correlation**: Measures the strength and direction of a relationship between variables
-> - **Causation**: Indicates that changes in one variable directly cause changes in another
->
-> While strong correlations can suggest potential causal links, additional evidence and rigorous methods are required to establish causality.
-
-### Challenges in Establishing Causality
-
-- **Confounding variables**: Unmeasured factors that affect both the presumed cause and effect
-- **Reverse causality**: The presumed effect might actually be causing the presumed cause
-- **Selection bias**: Non-random selection of subjects into study groups
-
-### Methods to Strengthen Causal Claims
-
-1. Randomized controlled trials (when ethical and feasible)
-2. Natural experiments or quasi-experimental designs
-3. Propensity score matching
-4. Difference-in-differences analysis
-5. Instrumental variable approaches
-6. Directed acyclic graphs (DAGs) for visualizing causal relationships
-
-Understanding these distinctions is crucial in social sciences, where ethical considerations often limit experimental manipulation.
-
-## Appendix C: Understanding Spurious Correlations, Confounders, and Colliders
-
-These concepts are essential for avoiding misinterpretations in statistical analysis. Let's explore them with R examples.
-
-```{r}
-#| message: false
-#| code-fold: true
-#| code-summary: "Load required libraries"
-
-library(tidyverse)
-library(viridis)
-set.seed(123) # for reproducibility
-```
-
-### Spurious Correlations
-
-Spurious correlations are relationships between variables that appear to be causal but are actually coincidental or caused by an unseen third factor.
-
-**Example: Ice Cream Sales and Drowning Incidents**
-
-```{r}
-#| code-fold: true
-#| code-summary: "R code for spurious correlation example"
-
-# Create dataset
-n <- 100
-spurious_data <- tibble(
-  temperature = rnorm(n, mean = 25, sd = 5),
-  ice_cream_sales = 100 + 5 * temperature + rnorm(n, sd = 10),
-  drowning_incidents = 1 + 0.5 * temperature + rnorm(n, sd = 2)
-)
-
-# Plot the apparent correlation
-p1 <- ggplot(spurious_data, aes(x = ice_cream_sales, y = drowning_incidents)) +
-  geom_point(alpha = 0.7) +
-  geom_smooth(method = "lm", se = FALSE, color = "#0072B2") +
-  labs(title = "Spurious Correlation: Ice Cream Sales vs. Drowning",
-       x = "Ice Cream Sales", 
-       y = "Drowning Incidents") +
-  theme_minimal()
-
-# Show the common cause
-p2 <- ggplot(spurious_data, aes(x = temperature)) +
-  geom_point(aes(y = ice_cream_sales), color = "#D55E00", alpha = 0.7) +
-  geom_point(aes(y = drowning_incidents * 10), color = "#0072B2", alpha = 0.7) +
-  geom_smooth(aes(y = ice_cream_sales), method = "lm", 
-              se = FALSE, color = "#D55E00") +
-  geom_smooth(aes(y = drowning_incidents * 10), method = "lm", 
-              se = FALSE, color = "#0072B2") +
-  scale_y_continuous(
-    name = "Ice Cream Sales",
-    sec.axis = sec_axis(~./10, name = "Drowning Incidents")
-  ) +
-  labs(title = "Temperature as the Common Cause",
-       x = "Temperature (°C)") +
-  theme_minimal() +
-  theme(
-    axis.title.y.left = element_text(color = "#D55E00"),
-    axis.title.y.right = element_text(color = "#0072B2")
-  )
-
-# Calculate correlation
-cor_value <- cor(spurious_data$ice_cream_sales, spurious_data$drowning_incidents)
-
-# Display plots
-print(p1)
-print(p2)
-cat("Correlation between ice cream sales and drowning incidents:", round(cor_value, 3))
-```
-
-In this example, temperature is the common cause (confounder) that influences both ice cream sales and drowning incidents. When we plot them against each other, they appear correlated (r ≈ 0.5), but this is spurious. The relationship disappears when we control for temperature.
-
-### Confounders
-
-A confounder is a variable that influences both the dependent variable and independent variable, causing a spurious association.
-
-**Example: Education, Income, and Age**
-
-```{r}
-#| code-fold: true
-#| code-summary: "R code for confounder example"
-
-# Create dataset
-n <- 1000
-confounder_data <- tibble(
-  age = runif(n, 25, 65),
-  education = round(10 + 0.1 * age + rnorm(n, sd = 2)),
-  income = 20000 + 1000 * education + 500 * age + rnorm(n, sd = 5000)
-)
-
-# Create age groups for visualization
-confounder_data <- confounder_data %>%
-  mutate(age_group = cut(age, breaks = 3, 
-                         labels = c("Young", "Middle", "Older")))
-
-# Models with and without controlling for the confounder
-model_naive <- lm(income ~ education, data = confounder_data)
-model_adjusted <- lm(income ~ education + age, data = confounder_data)
-
-# Visualization
-ggplot(confounder_data, aes(x = education, y = income)) +
-  geom_point(aes(color = age), alpha = 0.5) +
-  geom_smooth(method = "lm", se = FALSE, color = "black", linewidth = 1.2) +
-  geom_smooth(aes(group = age_group, color = as.numeric(age_group)), 
-              method = "lm", se = FALSE, linewidth = 1) +
-  scale_color_viridis_c(name = "Age", 
-                      breaks = c(30, 45, 60), 
-                      labels = c("Young", "Middle", "Older")) +
-  labs(title = "Education vs Income, Confounded by Age",
-       subtitle = paste("Without controlling for age: effect =", 
-                        round(coef(model_naive)["education"], 1),
-                        "| With age control: effect =", 
-                        round(coef(model_adjusted)["education"], 1)),
-       x = "Years of Education", 
-       y = "Income") +
-  theme_minimal()
-```
-
-In this example, age is a confounder in the relationship between education and income. Without controlling for age, we overestimate the effect of education on income (the black line). When we examine the relationship within specific age groups (colored lines), we see a more accurate representation of the true effect.
-
-### Colliders
-
-A collider is a variable that is influenced by both the independent variable and the dependent variable. Controlling for a collider can introduce a spurious correlation.
-
-**Example: Job Satisfaction, Salary, and Work-Life Balance**
-
-```{r}
-#| code-fold: true
-#| code-summary: "R code for collider example"
-
-# Create dataset
-n <- 1000
-collider_data <- tibble(
-  job_satisfaction = rnorm(n),
-  salary = rnorm(n),
-  # Both job satisfaction and salary negatively affect work-life balance
-  work_life_balance = -0.5 * job_satisfaction - 0.5 * salary + rnorm(n, sd = 0.5)
-)
-
-# Without controlling for work-life balance
-model_correct <- lm(salary ~ job_satisfaction, data = collider_data)
-
-# Incorrectly controlling for the collider
-model_collider <- lm(salary ~ job_satisfaction + work_life_balance, data = collider_data)
-
-# Visualization
-p <- ggplot(collider_data, aes(x = job_satisfaction, y = salary, 
-                          color = work_life_balance)) +
-  geom_point(alpha = 0.5) +
-  geom_smooth(method = "lm", se = FALSE, color = "black") +
-  scale_color_viridis_c(name = "Work-Life\nBalance") +
-  labs(title = "Job Satisfaction vs Salary, with Work-Life Balance as Collider",
-       subtitle = paste("Without controlling: correlation =", 
-                        round(coef(model_correct)["job_satisfaction"], 3),
-                        "| With control: correlation =", 
-                        round(coef(model_collider)["job_satisfaction"], 3)),
-       x = "Job Satisfaction", 
-       y = "Salary") +
-  theme_minimal()
-
-print(p)
-```
-
-In this example, there's no inherent relationship between job satisfaction and salary (the black line shows near-zero correlation). However, both variables negatively impact work-life balance. If we control for work-life balance (the collider), we introduce a positive correlation between job satisfaction and salary that doesn't actually exist.
-
-### Simpson's Paradox
-
-Simpson's paradox occurs when a trend appears in different groups of data but disappears or reverses when these groups are combined.
-
-**Example: Treatment Effectiveness Across Age Groups**
-
-```{r}
-#| code-fold: true
-#| code-summary: "R code for Simpson's paradox example"
-
-# Create example dataset
-set.seed(123)
-n <- 1000
-
-simpson_data <- tibble(
-  age_group = sample(c("Young", "Older"), n, replace = TRUE, 
-                     prob = c(0.7, 0.3)),
-  treatment = sample(c("Treatment A", "Treatment B"), n, replace = TRUE,
-                    prob = c(0.5, 0.5))
-) %>%
-  mutate(
-    # Different recovery rates based on age and treatment
-    recovery_prob = case_when(
-      age_group == "Young" & treatment == "Treatment A" ~ 0.70,
-      age_group == "Young" & treatment == "Treatment B" ~ 0.80,
-      age_group == "Older" & treatment == "Treatment A" ~ 0.50,
-      age_group == "Older" & treatment == "Treatment B" ~ 0.40,
-      TRUE ~ 0
-    ),
-    # More older people get Treatment A
-    treatment = if_else(
-      age_group == "Older" & runif(n) < 0.7, 
-      "Treatment A", 
-      treatment
-    ),
-    # Generate recovery outcomes
-    recovered = rbinom(n, 1, recovery_prob)
-  )
-
-# Aggregate data
-overall_rates <- simpson_data %>%
-  group_by(treatment) %>%
-  summarize(
-    total_patients = n(),
-    recovered_patients = sum(recovered),
-    recovery_rate = mean(recovered)
-  )
-
-by_age_rates <- simpson_data %>%
-  group_by(treatment, age_group) %>%
-  summarize(
-    total_patients = n(),
-    recovered_patients = sum(recovered),
-    recovery_rate = mean(recovered)
-  )
-
-# Create visualization
-overall_plot <- ggplot(overall_rates, 
-                      aes(x = treatment, y = recovery_rate, fill = treatment)) +
-  geom_col() +
-  geom_text(aes(label = paste0(round(recovery_rate*100, 1), "%")), 
-            vjust = -0.5) +
-  scale_y_continuous(labels = scales::percent, limits = c(0, 0.8)) +
-  labs(title = "Overall Recovery Rates",
-       subtitle = "Simpson's Paradox: Treatment B appears worse overall",
-       x = "", y = "Recovery Rate") +
-  theme_minimal() +
-  theme(legend.position = "none")
-
-by_age_plot <- ggplot(by_age_rates, 
-                     aes(x = treatment, y = recovery_rate, fill = treatment)) +
-  geom_col() +
-  geom_text(aes(label = paste0(round(recovery_rate*100, 1), "%")), 
-            vjust = -0.5) +
-  scale_y_continuous(labels = scales::percent, limits = c(0, 0.8)) +
-  labs(title = "Recovery Rates by Age Group",
-       subtitle = "Within each age group, Treatment B is actually better",
-       x = "", y = "Recovery Rate") +
-  facet_wrap(~age_group) +
-  theme_minimal() +
-  theme(legend.position = "none")
-
-# Display tables and plots
-knitr::kable(overall_rates, caption = "Overall Recovery Rates by Treatment")
-knitr::kable(by_age_rates, caption = "Recovery Rates by Treatment and Age Group")
-print(overall_plot)
-print(by_age_plot)
-```
-
-Simpson's paradox is occurring here because:
-
-1. **Within each age group**: Treatment B has a higher recovery rate than Treatment A
-2. **Overall**: Treatment A appears to have a higher recovery rate than Treatment B
-
-This paradox happens because:
-- Treatment A is given more frequently to older patients
-- Older patients have lower recovery rates regardless of treatment
-- This skews the overall average to make Treatment A look better, even though Treatment B is better for both young and older patients
-
-### Directed Acyclic Graphs (DAGs)
-
-DAGs are powerful tools for visualizing causal relationships and identifying potential biases in statistical analyses.
-
-```{r}
-#| code-fold: true
-#| code-summary: "R code for DAG examples"
-
-# Try to load dagitty and ggdag if available
-if (requireNamespace("dagitty", quietly = TRUE) && 
-    requireNamespace("ggdag", quietly = TRUE)) {
-  
-  library(dagitty)
-  library(ggdag)
-  
-  # Example 1: Confounder
-  confounder_dag <- dagitty('dag {
-    X -> Y
-    Z -> X
-    Z -> Y
-  }')
-  
-  # Example 2: Collider
-  collider_dag <- dagitty('dag {
-    X -> Z
-    Y -> Z
-    X -- Y [unobserved]
-  }')
-  
-  # Example 3: Simpson's Paradox
-  simpson_dag <- dagitty('dag {
-    Treatment -> Recovery
-    Age -> Treatment
-    Age -> Recovery
-  }')
-  
-  # Plot the DAGs
-  p1 <- ggdag(confounder_dag) + 
-    theme_dag() + 
-    labs(title = "Confounder (Z)")
-  
-  p2 <- ggdag(collider_dag) + 
-    theme_dag() + 
-    labs(title = "Collider (Z)")
-  
-  p3 <- ggdag(simpson_dag) + 
-    theme_dag() + 
-    labs(title = "Simpson's Paradox Structure")
-  
-  print(p1)
-  print(p2)
-  print(p3)
-  
-} else {
-  cat("DAG visualization packages not installed. Install dagitty and ggdag packages for these examples.")
-}
-```
-
-DAGs help us visualize different causal structures:
-
-1. **Confounder**: A variable (Z) that affects both the exposure (X) and outcome (Y)
-2. **Collider**: A variable (Z) that is affected by both the exposure (X) and another variable (Y)
-3. **Simpson's Paradox**: Often involves a confounder that influences both the treatment/exposure and the outcome
-
-Understanding these structures helps us decide which variables to control for in our analyses and which to leave out.
-
-## Appendix D: Models in Science: From Deterministic to Stochastic
-
-Models are essential tools in scientific research, helping scientists to represent, understand, and predict complex phenomena.
-
-### Types of Models
-
-#### Mathematical Models
-
-Mathematical models use equations to describe and analyze systems. They can be divided into:
-
-##### Deterministic Models
-
-Deterministic models provide precise predictions based on a set of variables, without incorporating randomness.
-
-**Example:** Newton's laws of motion, which can precisely predict the motion of objects under known forces:
-
-$$x(t) = x_0 + v_0t + \frac{1}{2}at^2$$
-
-Where $x(t)$ is the position at time $t$, $x_0$ is the initial position, $v_0$ is the initial velocity, and $a$ is the acceleration.
-
-##### Stochastic Models
-
-Stochastic models incorporate randomness and probability. They come in two fundamentally different types:
-
-**Classical Stochastic Models**: Deal with randomness arising from incomplete information or complex interactions in classical systems. The underlying system is deterministic, but practical limitations lead to probabilistic descriptions.
-
-**Example:** Regression models in statistics, where the randomness represents unexplained variation:
-
-$$y = \beta_0 + \beta_1x + \varepsilon$$
-
-Where $y$ is the dependent variable, $x$ is the independent variable, $\beta_0$ and $\beta_1$ are parameters, and $\varepsilon$ is the error term.
-
-**Quantum Stochastic Models**: Deal with the fundamental, irreducible randomness inherent in quantum mechanical systems.
-
-**Example:** The decay of a radioactive particle follows a probability distribution:
-
-$$P(t) = e^{-t/\tau}$$
-
-Where $P(t)$ is the probability that the particle has not decayed after time $t$, and $\tau$ is the mean lifetime of the particle.
-
-#### Other Model Types
-
-- **Computer Simulation Models**: Use algorithms to simulate complex systems
-- **Conceptual Models**: Abstract representations using diagrams or flowcharts
-- **Physical Models**: Tangible representations like scale models
-- **Theoretical Models**: Abstract frameworks based on fundamental principles
-
-### Model Error and Bias-Variance Tradeoff
-
-All models involve some degree of error. Understanding the balance between bias and variance is crucial:
-
-- **Bias**: Systematic error from simplifying assumptions
-- **Variance**: Error from sensitivity to small fluctuations in the training data
-
-![Bias-Variance Tradeoff in Models](stat_imgs/ModelError.png)
-
-The ideal model balances complexity to minimize both bias and variance, leading to the best predictive performance.
-
-## Appendix E: Classical vs Quantum Randomness
-
-To understand how randomness differs across scientific disciplines, we need to examine the origins and implications of different types of uncertainty.
-
-### Origin of Randomness
-
-#### Classical Randomness (e.g., Regression Models)
-
-- **Source**: Incomplete information or complex interactions in an otherwise deterministic system
-- **Nature**: Epistemic uncertainty (due to lack of knowledge)
-- **Example**: In a regression model, the error term represents unexplained variation
-
-#### Quantum Randomness
-
-- **Source**: Fundamental property of quantum systems
-- **Nature**: Ontic uncertainty (inherent to the system, not due to lack of knowledge)
-- **Example**: The exact time of decay of a radioactive atom cannot be predicted
-
-### Philosophical Implications
-
-#### Classical Randomness
-
-- **Determinism**: Underlying reality is deterministic; randomness reflects our ignorance
-- **Hidden Variables**: In principle, with complete information, we could predict outcomes precisely
-
-#### Quantum Randomness
-
-- **Indeterminism**: Randomness is a fundamental feature of reality
-- **No Hidden Variables**: Even with complete information, some outcomes remain unpredictable (as suggested by Bell's theorem)
-
-### Practical Implications
-
-#### Classical Randomness
-
-- **Reducible**: Can be reduced by gathering more data or improving measurement precision
-- **Controllable**: Systematic errors can be identified and corrected
-
-#### Quantum Randomness
-
-- **Irreducible**: Cannot be eliminated even with perfect measurements
-- **Fundamentally Uncontrollable**: The act of measurement itself affects the system
-
-Understanding these differences is crucial for correctly interpreting statistical models in different scientific contexts.
-
-## Appendix F: Ethical Considerations in Social Science Data Analysis
-
-Ethics play a vital role in social science research. Key considerations include:
-
-### 1. Privacy and Consent
-
-- Ensure participants understand how their data will be used
-- Obtain informed consent before collecting data
-- Protect personally identifiable information
-- Consider cultural differences in privacy expectations
-
-### 2. Data Protection
-
-- Securely store sensitive data
-- Implement appropriate access controls
-- Follow relevant regulations (e.g., GDPR, HIPAA)
-- Have a data management plan that includes secure disposal
-
-### 3. Bias and Representation
-
-- Address sampling bias that could exclude marginalized groups
-- Ensure diverse representation in research
-- Consider how variable definitions might reflect social biases
-- Be transparent about limitations in population coverage
-
-### 4. Transparency and Reproducibility
-
-- Clearly document research methods
-- Share code and data when possible
-- Pre-register studies when appropriate
-- Acknowledge limitations and potential biases
-
-### 5. Social Impact
-
-- Consider the potential societal implications of research findings
-- Avoid reinforcing harmful stereotypes
-- Think about how results might be misinterpreted or misused
-- Engage with communities being studied
-
-Ethical considerations should be integrated throughout the research process, from study design to data collection, analysis, and reporting of results.
-
-## Appendix G: Introduction to RStudio and the tidyverse
-
-R is a powerful programming language for statistical computing and graphics. RStudio provides an integrated development environment that makes working with R easier.
-
-### Getting Started with RStudio
-
-RStudio has four main panes:
-
-1. **Source Editor**: Where you write and edit your R scripts
-2. **Console**: Where you run R commands and see output
-3. **Environment/History**: Shows your workspace objects and command history
-4. **Files/Plots/Packages/Help**: For file management, viewing plots, managing packages, and accessing help
-
-### The tidyverse Ecosystem
-
-The tidyverse is a collection of R packages designed for data science with a consistent design philosophy.
-
-Key packages include:
-
-- **ggplot2**: Data visualization
-- **dplyr**: Data manipulation
-- **tidyr**: Data tidying
-- **readr**: Data import
-- **purrr**: Functional programming
-- **tibble**: Modern data frames
-
-### Basic tidyverse Workflow
-
-```{r}
-#| eval: false
-#| code-fold: true
-#| code-summary: "Click to show/hide R code"
-
-# Load tidyverse
-library(tidyverse)
-
-# Read data
-data <- read_csv("my_data.csv")
-
-# Clean and transform
-cleaned_data <- data %>%
-  filter(!is.na(important_variable)) %>%
-  select(var1, var2, var3) %>%
-  mutate(new_var = var1 / var2)
-
-# Group and summarize
-summary_stats <- cleaned_data %>%
-  group_by(category) %>%
-  summarize(
-    mean_val = mean(var3),
-    count = n()
-  )
-
-# Visualize
-ggplot(cleaned_data, aes(x = var1, y = var2, color = category)) +
-  geom_point() +
-  geom_smooth(method = "lm") +
-  labs(title = "Relationship between Variables",
-       x = "Variable 1",
-       y = "Variable 2") +
-  theme_minimal()
-```
-
-This workflow demonstrates the power of the tidyverse's pipe operator (`%>%`), which allows you to chain operations together in a readable way.
-
-### Resources for Learning R
-
-- [R for Data Science](https://r4ds.had.co.nz/)
-- [tidyverse documentation](https://www.tidyverse.org/)
-- [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)
-- [Quarto Guide](https://quarto.org/docs/guide/)
-
-The best way to learn R is through practice. Start with small, manageable projects and gradually build your skills.
 
