@@ -52,59 +52,6 @@ Rather than viewing statistics and data science as separate disciplines, it's mo
 ![The process of using a sample to estimate a population parameter. In this example, a sample of 10 individuals found 6 who own an iPhone, yielding an estimated population proportion of 60%. The actual population proportion is 53.8%.](stat_imgs/population_vs_sample.png)
 
 
-::: {.callout-note}
-## Data Storage Methods in Data Science
-
-Data scientists commonly work with several storage formats:
-
-- **CSV (Comma-Separated Values)**: Simple text files where values are separated by commas.
-  - **Advantages**: Portable, human-readable, supported by all analytical tools, easy to share.
-  - **Disadvantages**: No support for complex data types, limited scalability for large datasets, no relationship handling, character encoding issues.
-
-```r
-# Reading CSV in R
-data <- read.csv("dataset.csv")
-```
-
-```python
-# Reading CSV in Python
-import pandas as pd
-data = pd.read_csv("dataset.csv")
-```
-
-- **SQL Databases**: Relational databases that store data in tables with defined relationships.
-  - **Advantages**: Excellent handling of complex relationships, support for transactions, concurrency and data integrity, optimized queries, scalability.
-  - **Disadvantages**: Higher complexity to manage, rigid data structure, higher maintenance costs, horizontal scaling challenges.
-
-```r
-# Connecting to SQL database in R
-library(DBI)
-con <- dbConnect(RSQLite::SQLite(), "database.db")
-data <- dbGetQuery(con, "SELECT * FROM table_name")
-```
-
-```python
-# Connecting to SQL database in Python
-import sqlite3
-import pandas as pd
-conn = sqlite3.connect("database.db")
-data = pd.read_sql_query("SELECT * FROM table_name", conn)
-```
-
-- **Other formats**:
-  - **Parquet**: 
-    - **Advantages**: Columnar storage increasing query performance, compression, efficient handling of large datasets.
-    - **Disadvantages**: Less flexibility for modifications, limited human readability.
-  
-  - **JSON**: 
-    - **Advantages**: Flexibility for nested data, widespread support, human readability.
-    - **Disadvantages**: Larger file sizes, slower parsing, lack of type standardization.
-  
-  - **NoSQL**: 
-    - **Advantages**: Schema flexibility, excellent horizontal scalability, performance for specific use cases.
-    - **Disadvantages**: Limited data consistency, less advanced querying, reduced support for complex relationships.
-:::
-
 
 ### Statistical Inference: How Can a Small Sample Represent a Large Population?
 
@@ -140,6 +87,7 @@ Random sampling works because of three key principles:
    *Example*: If you flip a fair coin 10 times, you might get 7 heads (70%). But if you flip it 1,000 times, you're much more likely to get close to 500 heads (50%).
 
 Without proper random sampling, you could easily end up with a biased sample. For instance, if you only surveyed people at a shopping mall during weekday mornings, you'd miss most working people and students, giving you a skewed picture of the population.
+
 
 ::: {.callout-important}
 ## Randomness as a Fundamental Law of Nature
@@ -194,7 +142,8 @@ Recognizing randomness as a law of nature changes our perception of reality - fr
 
 
 ::: {.panel-tabset group="language"}
-## SRS
+## Simple Random Sampling
+
 **Simple Random Sampling**: Every individual has an equal probability of selection. The entire population is randomly sampled without any predetermined pattern.
 
 ![Simple Random Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Simple_Random_Sampling2.svg)
@@ -208,357 +157,606 @@ Recognizing randomness as a law of nature changes our perception of reality - fr
 **Cluster Sampling**: The population is divided into clusters, and entire clusters are randomly selected for analysis rather than individuals.
 
 ![Cluster Sampling. Retrieved from: https://app.passyourmath.com/courses/theory/116/1750/26640/en](stat_imgs/Cluster2.svg)
-
 :::
 
 
-### Understanding Statistical Error
+---
+
+## **Population Parameters and Statistical Estimation**
+
+### **Population Parameters**
+A **population parameter** ($\theta$) is a numerical value that describes a specific characteristic of an entire population. These parameters are typically unknown and are estimated using sample data.
+
+#### **Common Population Parameters**
+- **$\mu$ (Population Mean)**: The average value of the population.  
+- **$\sigma^2$ (Population Variance)**: The average squared deviation from the mean.  
+- **$\sigma$ (Population Standard Deviation)**: The square root of the variance, measuring the spread of the population.  
+- **$p$ (Population Proportion)**: The fraction of the population that exhibits a specific characteristic.
+
+Since studying an entire population is often impractical, we rely on samples to estimate these parameters.
+
+---
+
+### **Statistical Estimation Concepts**
+
+#### **Estimand**
+An **estimand** is the specific population parameter (or function of parameters) that we aim to estimate. It represents the unknown value in the population that we want to determine.  
+
+> **Key Distinction**  
+> The estimand is the unknown population parameter (e.g., $\mu$, $\sigma^2$, $p$), while the estimator is the method used to calculate the estimate.
+
+---
+
+#### **Estimator (Statistic)**
+An **estimator** is a mathematical function or procedure used to estimate a population parameter based on sample data. It is a random variable because its value depends on the specific sample.  
+
+A **statistic** is any measure calculated from sample data. When used to estimate a population parameter, it is called an estimator.
+
+##### **Examples of Estimators**
+- **Sample Mean**: $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ (estimator of $\mu$).  
+- **Sample Variance**: $s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$ (estimator of $\sigma^2$).  
+- **Sample Proportion**: $\hat{p} = \frac{x}{n}$ (estimator of $p$).
+
+> **Note**  
+> An estimator is a **procedure** for calculating a value based on a sample. Applying the same estimator to different samples yields different estimates.
+
+---
+
+#### **Estimate**
+An **estimate** is a specific numerical value obtained by applying an estimator to a sample. It is a realization of the random variable (the estimator).
+
+##### **Example**
+- **Estimand**: Average height of all adults in a country ($\mu$).  
+- **Estimator**: Sample mean formula ($\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$).  
+- **Estimate**: 173.5 cm (specific value from a sample).
+
+---
+
+### **Properties of Good Estimators**
+A good estimator should have the following properties:  
+1. **Unbiasedness**: The expected value of the estimator equals the population parameter ($E(\hat{\theta}) = \theta$).  
+2. **Efficiency**: The estimator has the smallest possible variance among all unbiased estimators.  
+3. **Consistency**: As the sample size increases, the estimator converges to the true parameter value.  
+4. **Sufficiency**: The estimator uses all available information in the sample about the parameter.
+
+---
+
+### **Expected Value of an Estimator**
+The **expected value** of a random variable is the long-run average value it would take if the experiment were repeated infinitely. For an estimator, the expected value represents the average value of the statistic across repeated samples from the population.
+
+For a well-constructed estimator, the expected value equals the population parameter:  
+$$
+E(\hat{\theta}) = \theta
+$$  
+Such an estimator is called **unbiased**.
+
+##### **Example: Unbiased vs. Biased Estimators**
+- The sample mean ($\bar{x}$) is an unbiased estimator of the population mean ($\mu$).  
+- The sample variance ($s^2$) requires a correction factor ($\frac{1}{n-1}$ instead of $\frac{1}{n}$) to be unbiased.
+
+---
+
+### **Distribution of Sample Statistics**
+A **sample statistic** ($\hat{\theta}$) is a value calculated from sample data and used to estimate a population parameter ($\theta$).  
+
+The **distribution of a statistic** describes how its values vary when repeatedly drawing samples of the same size ($n$) from the same population. This concept is central to statistical inference.
+
+#### **Key Points About the Distribution of a Statistic**
+1. It shows how the statistic varies across different samples.  
+2. It helps quantify sampling error and uncertainty.  
+3. It enables probabilistic statements about the accuracy of estimates.  
+4. It forms the basis for statistical inference.
+
+#### **Example: Sample Mean**
+The sample mean ($\bar{x}$) is an estimator of the population mean ($\mu$). It is calculated as:  
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
+$$  
+where $x_1, x_2, ..., x_n$ are observations in a random sample.
+
+---
+
+### **Types of Data and Variables**
+
+Data is the foundation of statistical analysis. Understanding its types and characteristics is essential.
+
+#### **Sources of Data**
+1. **Primary Data**: Collected directly for a specific research purpose (e.g., surveys, experiments).  
+2. **Secondary Data**: Obtained from existing sources (e.g., databases, government records).
+
+#### **Variables and Constants**
+- **Variables**: Characteristics that can take on different values in a dataset.  
+- **Constants**: Values that remain unchanged throughout the analysis.
+
+#### **Classification of Variables**
+1. **Quantitative Variables** (represent quantities or measurements):  
+   - **Continuous**: Can take any value within a range (e.g., height, temperature).  
+   - **Discrete**: Take specific, often integer values (e.g., number of children, errors).  
+
+2. **Qualitative Variables** (represent categories or qualities):  
+   - **Nominal**: Categories with no inherent order (e.g., blood type, gender).  
+   - **Ordinal**: Categories with a natural order (e.g., education level, satisfaction ratings).
+
+
+
+
+---
+
+## Statistical Models and Inference
+
+### Statistical Models
+
+A **statistical model** is a mathematical framework that represents the relationships between variables and the structure of data. It helps describe the **data-generating process (DGP)** and enables us to make inferences about unknown parameters.
+
+> **Components of a Statistical Model**
+>
+> A complete statistical model consists of the following elements:
+>
+> 1. **Functional form**: The mathematical structure that defines the relationship between variables (e.g., linear, quadratic, exponential).
+> 2. **Variables**:
+>    - **Dependent variable(s)**: The outcome we aim to predict or explain.
+>    - **Independent/explanatory variables**: The factors that may influence the dependent variable.
+> 3. **Parameters**: Unknown quantities that we estimate from the data (e.g., regression coefficients like $\beta_0$ and $\beta_1$).
+> 4. **Random component**: The error term ($\epsilon$) that accounts for unexplained variability in the data.
+> 5. **Probability distribution assumptions**: Assumptions about the distribution of the random component (e.g., normality, homoscedasticity).
+
+**Example of a Linear Regression Model**:
+$$
+y = \beta_0 + \beta_1x + \epsilon, \quad \text{where} \quad \epsilon \sim N(0, \sigma^2)
+$$
+
+In this model:
+- $\beta_0$ (intercept) and $\beta_1$ (slope) are parameters to be estimated.
+- $\epsilon$ represents the random error term, capturing variability not explained by the model.
+- The error term is assumed to follow a normal distribution with a mean of 0 and variance $\sigma^2$.
+
+---
+
+### Causal vs. Predictive Inference
+
+In statistical modelling, there are two primary goals:
+
+1. **Causal Inference**:
+   - **Goal**: Determine whether a change in variable **X** *causes* a change in variable **Y**.
+   - **Requirements**: Strong assumptions or specialized research designs (e.g., randomized controlled trials, instrumental variables).
+   - **Application**: Used to predict the effects of interventions or policy changes.
+   - **Example**: Does increasing the minimum wage (X) cause a reduction in employment (Y)?
+
+2. **Predictive Inference**:
+   - **Goal**: Predict the values of **Y** based on **X**.
+   - **Requirements**: No need to assume a causal relationship between variables.
+   - **Focus**: Maximizing prediction accuracy, often using machine learning techniques.
+   - **Example**: Predicting house prices (Y) based on features like size, location, and number of bedrooms (X).
+
+> **Warning: Correlation ≠ Causation**
+>
+> A **spurious relationship** (or spurious correlation) occurs when two variables are statistically associated but not causally related. This can happen due to:
+>
+> 1. **Confounding**: A third variable influences both X and Y.
+>    - *Example*: Ice cream sales (X) and drowning incidents (Y) are correlated because both increase in summer (confounder: temperature).
+> 2. **Reverse Causality**: Y affects X, not the other way around.
+>    - *Example*: Higher crime rates (Y) lead to more police presence (X), not vice versa.
+> 3. **Chance**: Random correlations that occur by coincidence.
+>    - *Example*: A correlation between the number of pirates and global temperature (purely coincidental).
+
+---
+
+
+
+### Challenges of Causal Inference
+
+The fundamental problem of causal inference is the impossibility of observing **counterfactuals** (alternative scenarios). For a given unit, we can observe only one potential outcome.
+
+![The fundamental problem of causal inference: We can think of causal inference as a PREDICTION problem. How can we predict the counterfactual given that we never observe it?](stat_imgs/meme_horse.svg)
+
+Example:
+- We observe a person who completed college and earns $8,000 per month
+- We cannot observe how much the same person would earn if they had not completed college
+
+Causal methods attempt to solve this problem through:
+
+1. Randomized experiments
+2. Instrumental variables
+3. Matching methods
+4. Regression discontinuity analysis
+5. Difference-in-differences
+
+Common problems in causal inference:
+
+![Confounding bias: drinking the night before is a common cause of sleeping with shoes on and waking up with a headache](stat_imgs/IMG_4337.jpg)
+
+![Reverse causality](stat_imgs/ff13-23.png)
+
+## Statistical Inference
+
+Statistical inference is the process of drawing conclusions about a population based on sample data. It encompasses two main areas:
+
+### 1. Estimation
+
+Estimation is the process of using sample data to estimate unknown population parameters. We distinguish:
+
+- **Point estimation**: Providing a single value as the best approximation of the parameter
+- **Interval estimation**: Constructing a confidence interval that indicates the range of possible parameter values consistent with our data
+
+Example of a confidence interval: "The 95% confidence interval for the average height of adults is (173 cm, 175 cm)."
+
+**Correct interpretation of confidence interval**: If we were to repeatedly take samples from the same population and construct a 95% confidence interval for each sample using the same method, about 95% of these intervals would contain the true population parameter value.
+
+**Incorrect interpretation**: "There is a 95% chance that the true mean is in the interval (173 cm, 175 cm)" – this is incorrect because the population parameter is a fixed (though unknown) value, not a random variable.
+
+### 2. Hypothesis Testing
+
+Hypothesis testing is a formal procedure for verifying claims about population parameters.
+
+> **Example: Binomial test for a coin**
+>
+> Imagine we want to check if a coin is fair.
+>
+> 1. **Research question**: Is the coin fair (probability of heads = 0.5)?
+>
+> 2. **Formulate hypotheses**:
+>    - **Null hypothesis (H₀)**: p = 0.5 (the coin is fair)
+>    - **Alternative hypothesis (H₁)**: p ≠ 0.5 (the coin is not fair)
+>
+> 3. **Collect data**: We flip the coin 100 times and get 65 heads.
+>
+> 4. **Analyze**: Is 65 heads out of 100 flips evidence against the hypothesis that the coin is fair?
+>
+> 5. **Reasoning**:
+>    - If the coin were fair (p = 0.5), the number of heads in 100 flips should follow a binomial distribution B(100, 0.5)
+>    - For this distribution, we expect an average of 50 heads, with a standard deviation of √(100 × 0.5 × 0.5) = 5
+>    - Getting 65 heads means a deviation of 3 standard deviations from the expected value
+>    - The probability of getting 65 or more heads with a fair coin is very small (p < 0.01)
+>
+> 6. **Conclusion**: Since the observed result is very unlikely under the assumption that the coin is fair, we reject the null hypothesis and conclude that the coin is most likely not fair.
+
+General hypothesis testing procedure:
+
+1. Formulate the null hypothesis (H₀) and alternative hypothesis (H₁)
+2. Choose a significance level α (usually 0.05)
+3. Collect data and calculate the appropriate test statistic
+4. Calculate the p-value (the probability of obtaining our data or more extreme results, assuming H₀ is true)
+5. Make a decision: if p < α, reject H₀ in favor of H₁
+
+> **Note: Intuition behind hypothesis testing**
+>
+> Hypothesis testing resembles a court procedure:
+
+> - H₀ corresponds to the principle of "innocent until proven guilty"
+> - Data constitutes "evidence" against H₀
+> - P-value determines how strong this evidence is
+> - If the evidence is strong enough (p < α), we "convict" H₀ (reject it)
+> - If the evidence is not strong enough, we do not reject H₀ (but we do not prove its truth)
+
+> **Important: Common errors in interpreting p-values and tests**
+>
+> 1. P-value is **NOT** the probability that the null hypothesis is true
+> 2. P-value is **NOT** the probability of making an error when rejecting H₀
+> 3. Failing to reject H₀ does **NOT** mean proving it
+> 4. A very small p-value does **NOT** indicate a large practical effect (statistical significance ≠ practical significance)
+> 5. P-value depends on sample size - with very large samples, even small, practically insignificant differences can be statistically significant
+>
+> **Definition of p-value**: The probability of observing a result at least as extreme as the one obtained, assuming the null hypothesis is true.
+
+### Types of Errors in Hypothesis Testing
+
+- **Type I error (α)**: Rejecting a true null hypothesis ("convicting an innocent")
+  - The probability of this error is controlled by the significance level α
+- **Type II error (β)**: Failing to reject a false null hypothesis ("acquitting the guilty")
+  - The probability of avoiding this error (1-β) is called the power of the test
+  - Test power increases with sample size and effect size
+
+## Foundations for Good Statistical Research
+
+To conduct reliable statistical research, ensure:
+
+1. **Representativeness of the sample**: The sample should well reflect the studied population
+2. **Adequate sample size**: Larger samples provide more accurate estimates and greater statistical power
+3. **Control of confounding variables**: Both in research design and data analysis
+4. **Appropriate statistical methods**: Matched to the type of data and research questions
+5. **Clear interpretation**: Taking into account study limitations and alternative explanations
+
+### Summary of Key Concepts
+
+| Concept | Definition | Example |
+|----------------------|--------------------------|------------------------|
+| **Population parameter (Estimand)** | Value characterizing the population, usually unknown | μ (population mean) |
+| **Estimator (Statistic)** | Function/procedure for estimating a parameter based on a sample | $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ |
+| **Estimate** | Specific value obtained after applying an estimator to a sample | $\bar{x} = 173.5$ cm |
+| **Standard error** | Measure of estimator variability between samples | $SE(\bar{x}) = \frac{s}{\sqrt{n}}$ |
+| **Confidence interval** | Range of values that, with specified probability, contains the parameter | (173 cm, 175 cm) |
+| **P-value** | Probability of observing the data assuming H₀ is true | p = 0.03 |
+
+
+---
+
+::: {.callout-important}
+## Understanding Statistical Error
 
 When using a sample to learn about a population, we inevitably encounter statistical error:
 
-**Statistical error** is the difference between our sample estimate and the true population value. 
+**Statistical error** is the difference between our sample estimate and the true population value.
 
-::: {.callout-important}
-## Comprehensive Classification of Statistical Errors
+Statistical errors can compromise the validity and reliability of research findings. Understanding these errors is crucial for designing robust studies, analyzing data accurately, and drawing appropriate conclusions. Below is a detailed classification of statistical errors:
 
-Statistical errors can compromise the validity and reliability of research findings. Understanding these errors is crucial for designing good studies, analyzing data correctly, and drawing appropriate conclusions. Here is a comprehensive classification of statistical errors:
+---
 
 ### Sampling Errors
 
 **Random Sampling Errors**
 
-- Think of these as the natural "luck of the draw" when selecting samples
-- Example: If you randomly select 30 students from a university to measure average height, you'll likely get a slightly different average each time you take a sample
-- These errors get smaller as you include more people in your sample
-- Can't be eliminated completely, but can be estimated using concepts like "margin of error"
+- These arise from the natural variability inherent in random sampling.
+- *Example*: If you randomly select 30 students from a university to measure average height, the average will vary slightly with each sample.
+- These errors decrease as the sample size increases and can be estimated using metrics like the *margin of error*.
+- While unavoidable, they can be managed through proper sampling techniques.
 
 **Non-Random (Systematic) Sampling Errors (Bias)**
 
-- **Selection bias**: When your sample doesn't fairly represent everyone it should
-  - Example: Conducting a phone survey that only reaches people with landlines, missing those who only use cell phones
-- **Undercoverage**: When some groups are left out of your sample
-  - Example: A campus survey conducted only during daytime classes would miss evening students
-- **Self-selection bias**: When people choose whether to participate, potentially skewing results
-  - Example: Only people with strong opinions respond to a customer satisfaction survey
-- **Non-response bias**: When certain types of people tend not to answer surveys
-  - Example: Very busy people might not complete your questionnaire, giving you results that over-represent those with more free time
+- **Selection bias**: Occurs when the sample does not represent the target population.
+  - *Example*: A phone survey that only reaches individuals with landlines, excluding those who rely solely on cell phones.
+- **Undercoverage**: Certain groups are systematically excluded from the sample.
+  - *Example*: A campus survey conducted only during daytime classes misses evening students.
+- **Self-selection bias**: Results are skewed because participants choose whether to participate.
+  - *Example*: Only individuals with strong opinions respond to a customer satisfaction survey.
+- **Non-response bias**: Occurs when specific groups are less likely to respond.
+  - *Example*: Busy individuals may not complete a questionnaire, leading to overrepresentation of those with more free time.
+
+---
 
 ### Measurement Errors
 
 **Random Measurement Errors**
 
-- Unpredictable "noise" when measuring something
-- Example: A slightly shaky hand when measuring blood pressure gives slightly different readings each time
-- These tend to balance out with repeated measurements
+- Unpredictable fluctuations in measurements due to "noise."
+  - *Example*: A shaky hand measuring blood pressure yields slightly different readings each time.
+- These errors tend to cancel out with repeated measurements.
 
 **Systematic Measurement Errors**
 
-- **Calibration errors**: When your measuring tool is consistently off
-  - Example: A scale that always adds 2 pounds to everyone's weight
-- **Observer bias**: When the person collecting data influences the measurements
-  - Example: A researcher unconsciously recording data in a way that supports their hypothesis
-- **Social desirability bias**: When people answer questions how they think they "should" respond, not truthfully
-  - Example: Underreporting how much junk food they eat in a nutrition study
+- **Calibration errors**: Consistent inaccuracies in measurement tools.
+  - *Example*: A scale that always adds 2 pounds to every measurement.
+- **Observer bias**: The researcher’s expectations influence data collection.
+  - *Example*: A researcher unconsciously records data in a way that supports their hypothesis.
+- **Social desirability bias**: Participants respond in a way they perceive as socially acceptable.
+  - *Example*: Underreporting junk food consumption in a nutrition study.
+
+---
 
 ### Inference Errors
 
-**Hypothesis Testing Errors** (explained in simple terms)
+**Hypothesis Testing Errors**
 
-- **Type I error**: Seeing an effect or relationship that isn't really there (false alarm)
-  - Example: Concluding a medicine works when its benefits were just due to chance
-- **Type II error**: Missing an effect or relationship that actually exists (missed detection)
-  - Example: Concluding a medicine doesn't work when it actually does help patients
-- **Type III error**: Solving the wrong problem or asking the wrong question entirely
-  - Example: Studying whether a teaching method improves test scores when the real question should be about improving long-term understanding
+- **Type I error (False Positive)**: Concluding an effect exists when it does not.
+  - *Example*: Claiming a new drug is effective when its benefits are due to random chance.
+- **Type II error (False Negative)**: Failing to detect an effect that actually exists.
+  - *Example*: Concluding a new drug is ineffective when it actually helps patients.
+- **Type III error**: Solving the wrong problem or answering the wrong question entirely.
+  - *Explanation*: This occurs when researchers focus on a question or hypothesis that is irrelevant or misaligned with the actual problem they need to address. It’s not about statistical analysis being wrong, but about asking the wrong question in the first place.
+  - *Example*: A company studies whether a new marketing strategy increases website traffic (the wrong question) when the real issue is whether it increases sales (the right question).
+  - *Another Example*: A researcher investigates whether a teaching method improves test scores (the wrong question) when the real goal is to improve long-term student understanding (the right question).
 
 **Statistical Power Issues**
 
-- **Underpowered studies**: Not including enough participants to reliably detect effects
-  - Example: Trying to test a weight loss program with only 5 people—too few to draw reliable conclusions
+- **Underpowered studies**: Insufficient sample size to detect true effects.
+  - *Example*: Testing a weight loss program with only 5 participants.
+
+---
 
 ### Model Specification Errors
 
 **Variable Selection Errors**
 
-- **Omitted variable bias**: Leaving out important factors that affect your results
-  - Example: Studying the relationship between exercise and weight loss without accounting for participants' diets
-- **Confounding**: When an outside factor influences both what you're testing and the outcome
-  - Example: People who exercise (variable 1) might also tend to eat healthier (hidden factor), both of which affect weight loss (outcome)
+- **Omitted variable bias**: Excluding important variables that influence the outcome.
+  - *Example*: Studying exercise and weight loss without accounting for diet.
+- **Confounding**: An external factor influences both the predictor and outcome.
+  - *Example*: People who exercise may also eat healthier, affecting weight loss results.
 
 **Assumption Errors**
 
-- When the statistical test you're using doesn't match your data
-  - Example: Using a test that assumes your data follows a bell curve when it actually doesn't
+- Using statistical tests that do not align with the data’s characteristics.
+  - *Example*: Assuming a normal distribution when the data is skewed.
+
+---
 
 ### Data Processing and Analysis Errors
 
 **Data Handling Errors**
 
-- **Data entry errors**: Simple mistakes when recording information
-  - Example: Typing "1050" instead of "150" for someone's weight
-- **Missing data problems**: Not properly accounting for incomplete information
-  - Example: Calculating the average test score while ignoring students who were absent
+- **Data entry errors**: Mistakes during data recording.
+  - *Example*: Typing "1050" instead of "150" for a participant’s weight.
+- **Missing data problems**: Failing to account for incomplete data.
+  - *Example*: Calculating average test scores while ignoring absent students.
 
 **Analysis Execution Errors**
 
-- **Software bugs or user errors**: Mistakes in how statistical programs are used
-  - Example: Selecting the wrong type of test in your statistics software
+- **Software bugs or user errors**: Mistakes in using statistical software.
+  - *Example*: Selecting the wrong statistical test in analysis software.
+
+---
 
 ### Interpretation and Reporting Errors
 
 **Causal Inference Errors**
 
-- **Correlation-causation fallacy**: Assuming that when two things happen together, one must cause the other
-  - Example: Noticing that countries with more chocolate consumption have more Nobel Prize winners, and wrongly concluding that chocolate makes people smarter
+- **Correlation-causation fallacy**: Assuming causation from correlation.
+  - *Example*: Concluding that chocolate consumption causes Nobel Prizes because the two are correlated.
 
 **Reporting and Communication Errors**
 
-- **p-hacking**: Trying many different analyses until you find something "significant"
-  - Example: Analyzing your data in 20 different ways and only reporting the one analysis that showed the result you wanted
-- **Cherry-picking**: Only sharing results that support your hypothesis
-  - Example: A diet pill company only publishing studies where their product worked, hiding studies where it didn't
+- **p-hacking**: Conducting multiple analyses until a significant result is found.
+  - *Example*: Analyzing data in 20 ways and reporting only the significant outcome.
+- **Cherry-picking**: Selectively reporting results that support a hypothesis.
+  - *Example*: A diet pill company only publishing studies where their product worked.
+
+---
 
 ### Remedy Strategies
 
-Ways to reduce these errors:
+To minimize statistical errors:
 
-- **Proper research design**: Planning studies carefully before collecting data
-- **Adequate sample size**: Including enough participants based on statistical calculations
-- **Pre-registration**: Declaring what you'll analyze before seeing the data
-- **Transparency**: Sharing your data and analysis methods with others
-- **Replication**: Having different researchers repeat the study to see if they get similar results
+- **Proper research design**: Plan studies carefully before data collection.
+- **Adequate sample size**: Ensure sufficient participants based on power calculations.
+- **Pre-registration**: Declare analysis plans before examining the data.
+- **Transparency**: Share data and methods openly.
+- **Replication**: Encourage independent replication of studies.
 
-Understanding these errors helps ensure that research findings are trustworthy and that we don't draw false conclusions that could lead to poor decisions in fields like medicine, public policy, education, and business.
+Understanding and addressing these errors ensures research findings are trustworthy, preventing poor decisions in fields like medicine, public policy, education, and business.
+:::
+
+::: {.callout-note}
+## Optional: Proof that the sample mean is an unbiased estimator
+
+For the sample mean $\bar{x}$, we can prove it's an unbiased estimator of the population mean $\mu$ as follows:
+
+$E(\bar{x}) = E\left(\frac{1}{n}\sum_{i=1}^{n}x_i\right)$
+
+Using the linearity property of expected values (the expected value of a sum equals the sum of expected values):
+
+$E(\bar{x}) = \frac{1}{n}\sum_{i=1}^{n}E(x_i)$
+
+Since each $x_i$ is a random observation from the population with mean $\mu$:
+
+$E(x_i) = \mu \text{ for all } i$
+
+Therefore:
+
+$E(\bar{x}) = \frac{1}{n}\sum_{i=1}^{n}\mu = \frac{1}{n} \cdot n \cdot \mu = \mu$
+
+This proves that the sample mean is an unbiased estimator of the population mean.
+:::
+
+::: {.callout-note}
+## Optional: Understanding why the sample variance needs n-1 in the denominator
+
+The sample variance is commonly defined as:
+
+$s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$
+
+Why do we use $n-1$ in the denominator rather than $n$?
+
+Let's consider what happens if we used $n$ instead:
+
+$\tilde{s}^2 = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^2$
+
+To check if this is unbiased, we need to find $E(\tilde{s}^2)$ and see if it equals $\sigma^2$.
+
+Without going through all the mathematical steps, the key insight is:
+1. When we calculate $(x_i - \bar{x})^2$, we're using $\bar{x}$ (the sample mean) instead of $\mu$ (the population mean)
+2. The sample mean $\bar{x}$ is itself estimated from the same data
+3. This introduces a dependency that makes our variance estimator systematically underestimate the true variance
+4. Specifically, $E(\tilde{s}^2) = \frac{n-1}{n}\sigma^2$, which means it's biased by a factor of $\frac{n-1}{n}$
+5. To correct this bias, we divide by $n-1$ instead of $n$, giving us:
+   $E(s^2) = E\left(\frac{n}{n-1}\tilde{s}^2\right) = \frac{n}{n-1}E(\tilde{s}^2) = \frac{n}{n-1}\frac{n-1}{n}\sigma^2 = \sigma^2$
+
+Intuitively, we're using $n-1$ because we've already "used up" one degree of freedom when estimating the mean. The denominator $n-1$ is called the "degrees of freedom" - the number of independent pieces of information available for estimating the variance after estimating the mean.
+:::
+
+
+::: {.callout-note}
+## Data Storage Methods in Data Science
+
+Data scientists use various methods to store data. Here are the most common ones:
+
+---
+
+### **CSV Files**
+These are simple text files where data is stored in rows, with values separated by commas.
+
+- **Pros**:
+  - Easy to open and edit, even in a basic text editor.
+  - Works with most data analysis tools.
+  - Simple to share with others.
+
+- **Cons**:
+  - Not suitable for complex data (e.g., images or videos).
+  - Can be slow with very large datasets.
+  - Sometimes issues with special characters (e.g., accents).
+
+---
+
+### **SQL Databases**
+These are advanced systems for storing data in tables that can be linked together.
+
+- **Pros**:
+  - Ideal for managing complex data (e.g., orders and customers).
+  - Fast searching and analysis.
+  - Secure and reliable.
+
+- **Cons**:
+  - Requires more expertise to manage.
+  - Harder to adapt to changes in data structure.
+  - Can be costly to maintain.
+  
+---
+
+### **Other Formats**
+
+#### **Parquet**
+- **Pros**:
+  - Fast and efficient, especially for large datasets.
+  - Saves space through compression.
+
+- **Cons**:
+  - Harder to directly view or edit by humans.
+
+#### **JSON**
+- **Pros**:
+  - Flexible, great for storing nested or complex data.
+  - Human-readable.
+
+- **Cons**:
+  - Takes up more space than CSV.
+  - Slower to process.
+
+#### **NoSQL**
+- **Pros**:
+  - Highly flexible, no fixed structure required.
+  - Scalable, great for huge datasets.
+
+- **Cons**:
+  - Less suitable for complex relationships between data.
 :::
 
 
 
-### Sample Size Considerations
+::: {.callout-note}
+## The Normal Distribution - The Bell Curve
 
-The necessary sample size depends on three main factors:
+> **Note**
+>
+> The normal distribution (also known as the Gaussian distribution or bell curve) is one of the most important probability distributions in statistics. It has a symmetric bell shape and is fully described by two parameters:
+> 
+> - The mean $\mu$ (centers the distribution)
+> - The standard deviation $\sigma$ (determines the width of the "bell")
+>
+> The normal distribution appears frequently in nature and human systems (heights, measurement errors, test scores). 
 
-1. **What type of estimate are you making?** (proportion, average, regression parameter, etc.)
-2. **How accurate do you need your estimate to be?**
-   
-   * More accurate = larger sample
-   * Example: Estimating within ±1% requires about 9 times more people than estimating within ±3%
+### Mathematical Representation
 
-3. **How diverse is your population?**
-   
-   * For proportions: Maximum variability occurs at 50%, minimum at 0% or 100%
-   * For means: Check how much measurements differ from each other (variance)
-   * For regression models: Consider the variance of your predictors and outcome variables
+The probability density function (PDF) of the normal distribution is:
 
-#### Small Population Considerations
+$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
+$$
 
-When working with small populations (e.g., 1,000 people or fewer):
+Where:
 
-- There are significant methodological differences compared to large populations
-- A simple random sample traditionally assumes sampling with replacement
-- In research practice, sampling without replacement is typically used
-- The smaller the population, the greater the difference between these approaches
-- The **finite population correction factor** becomes essential when studying more than 5-10% of the population
+- $x$ is a random variable
+- $\mu$ is the mean (location parameter)
+- $\sigma$ is the standard deviation (scale parameter)
+- $e$ is Euler's number (approximately 2.71828)
+- $\pi$ is the mathematical constant pi (approximately 3.14159)
 
-**Practical recommendations for small populations:**
+### Practical Significance
 
-* For populations under 200 units, consider a complete census
-* Use appropriate statistical formulas that account for sampling without replacement
-* Standard formulas for standard errors based on sampling with replacement will overestimate error in small populations
-* Clearly document the sampling mechanism in research reports
+The normal distribution is especially important because of:
 
-**Explaining the difference:**
+1. The **68-95-99.7 Rule**: Approximately 68% of values fall within 1 standard deviation of the mean, 95% within 2 standard deviations, and 99.7% within 3 standard deviations.
 
--   Sampling with replacement: each unit has a constant probability of selection in each draw (e.g., 1/N)
--   Sampling without replacement: selection probability changes in subsequent draws (from 1/N to 1/(N-1), 1/(N-2), etc.)
--   In large populations, the difference is minimal; in small ones - fundamental
--   Sampling without replacement schemes often have lower estimator variance than sampling with replacement
+2. The **Central Limit Theorem**: Sample means tend to follow a normal distribution regardless of the original distribution's shape (given a sufficiently large sample size).
 
-
-### Statistical Estimation Considerations
-
-#### Proportions (percentages)
-
-When estimating a proportion (like the percentage of voters supporting a candidate), the required sample size depends heavily on how close that proportion is to 50%.
-
-**Why proportions near 50% need larger samples:**
-
-Let's use a concrete example with different sample sizes to see why:
-
-| True Population Proportion | Sample Size | Typical Margin of Error |
-|----------------------------|-------------|-------------------------|
-| 50% (maximum uncertainty)  | 100         | ±10 percentage points   |
-| 50% (maximum uncertainty)  | 400         | ±5 percentage points    |
-| 50% (maximum uncertainty)  | 1,000       | ±3 percentage points    |
-| 10% (less uncertainty)     | 100         | ±6 percentage points    |
-| 10% (less uncertainty)     | 400         | ±3 percentage points    |
-| 10% (less uncertainty)     | 1,000       | ±2 percentage points    |
-
-These numbers demonstrate two important patterns:
-1. **As sample size increases, margin of error decreases** (comparing across rows)
-2. **At the same sample size, proportions near 50% have larger margins of error** than proportions near 0% or 100% (comparing 50% vs 10%)
-
-This happens because proportions follow a binomial distribution, where the variance is maximum at p=0.5 (50%) and minimum at p=0 or p=1 (0% or 100%).
-
-**Population size has minimal impact:**
-
-For a typical election poll with proportions near 50%, about 1,000 randomly selected people provide accuracy around ±3 percentage points. Surprisingly, this sample size remains roughly the same whether your population is 30,000 or 30 million. This counterintuitive fact is why national polls can be accurate with relatively small samples.
-
-#### Averages (means)
-
-When estimating an average (like typical household income or height):
-
-- An average summarizes continuous measurements that can take many different values
-- Sample size depends primarily on how much these measurements vary from person to person
-- Key considerations:
-  * Populations with more varied measurements require larger samples
-  * More precise estimates require larger samples
-  * Unlike proportions, there is no "maximum uncertainty" at a certain value
-  * The necessary sample size is directly proportional to the variance of the variable
-
-- For example, estimating average income might require a larger sample than estimating average height because incomes typically vary more widely than heights
-
-#### Model Parameters and Complex Estimation
-
-Statistical modeling extends beyond simple proportions and averages to examine relationships between variables and make predictions. Sample size requirements become more nuanced in these contexts.
-
-##### Regression Model Parameters
-
-Regression models describe how one variable (the dependent variable) relates to one or more other variables (the independent variables). Sample size considerations for regression include:
-
-**Key factors affecting required sample size:**
-
-- **Number of parameters**: Each predictor variable and interaction term consumes "degrees of freedom"
-  * More variables = larger sample needed
-  * Rule of thumb: 10-20 observations per variable is a minimum starting point
-  * For detecting subtle effects: may need 50-100+ observations per variable
-
-- **Effect size**: The strength of the relationships being studied
-  * Smaller effects require larger samples to detect reliably
-  * Power analysis should be conducted based on expected effect sizes
-
-- **Variability explanations**:
-  * $R^2$ values - higher values indicate models that explain more variance, potentially requiring smaller samples
-  * Residual variance - greater unexplained variability requires larger samples
-
-- **Model complexity**:
-  * Linear vs. non-linear relationships
-  * Interaction effects
-  * Nested or hierarchical data structures
-  * Non-normal distributions or heteroscedasticity
-
-
-#### Sample Size Planning in Practice
-
-When planning studies, consider:
-
-1. **Statistical power**: The ability to detect effects when they truly exist
-   * Commonly aim for 80% power (or higher for critical decisions)
-   * Conduct formal power analyses when possible
-
-2. **Precision**: How narrow you need confidence intervals to be
-   * Consider the practical importance of precision in your field
-   * More precision requires larger samples
-
-3. **Resource constraints**: Balance statistical ideals with practical limitations
-   * Budget, time, participant availability
-   * Consider sequential or adaptive sampling when appropriate
-
-4. **Ethical considerations**: Collect enough data to answer questions reliably, but don't waste resources or unnecessarily burden participants
-
-Remember that these are guidelines, and specific research questions may require consulting with a statistician for optimal sample size determination.
-
-
-
-### Maximum Uncertainty for Proportion Example: Why 50% is the "Worst Case"
-
-To understand why proportions near 50% require larger samples, let's look at a simulation:
-
-Imagine you have 100 coins in a bag that are either gold or silver. You want to estimate what percentage are gold by randomly selecting 20 coins.
-
-**Scenario A: 50% Gold (Maximum Uncertainty)**
-
-- The bag contains 50 gold and 50 silver coins (50% gold)
-- Let's simulate drawing 20 coins 10 different times:
-  * Draw 1: 8 gold coins (40% - off by 10%)
-  * Draw 2: 12 gold coins (60% - off by 10%)
-  * Draw 3: 9 gold coins (45% - off by 5%)
-  * Draw 4: 7 gold coins (35% - off by 15%)
-  * Draw 5: 11 gold coins (55% - off by 5%)
-  * Draw 6: 14 gold coins (70% - off by 20%)
-  * Draw 7: 8 gold coins (40% - off by 10%)
-  * Draw 8: 10 gold coins (50% - perfect!)
-  * Draw 9: 7 gold coins (35% - off by 15%)
-  * Draw 10: 12 gold coins (60% - off by 10%)
-
-These results vary widely, from 35% to 70%, with an average error of 10 percentage points!
-
-**Scenario B: 10% Gold (Less Uncertainty)**
-
-- The bag contains 10 gold and 90 silver coins (10% gold)
-- Let's simulate drawing 20 coins 10 different times:
-  * Draw 1: 1 gold coin (5% - off by 5%)
-  * Draw 2: 2 gold coins (10% - perfect!)
-  * Draw 3: 3 gold coins (15% - off by 5%)
-  * Draw 4: 1 gold coin (5% - off by 5%)
-  * Draw 5: 2 gold coins (10% - perfect!)
-  * Draw 6: 0 gold coins (0% - off by 10%)
-  * Draw 7: 3 gold coins (15% - off by 5%)
-  * Draw 8: 2 gold coins (10% - perfect!)
-  * Draw 9: 1 gold coin (5% - off by 5%)
-  * Draw 10: 2 gold coins (10% - perfect!)
-
-These results stay much closer to the true 10%, ranging from 0% to 15%, with an average error of just 4 percentage points.
-
-This demonstrates why we need larger samples when the proportion is close to 50% - the natural variability is much greater. When the true proportion is 50%, any deviation from this perfect balance is equally likely in either direction, creating maximum uncertainty.
-
-#### Opinion Poll Example: Popular vs. Unpopular Candidates
-
-In an election poll with 1,000 people:
-
-**For a major candidate polling at 40%:**
-
-- Our accuracy would be about ±3 percentage points
-- We can estimate their support is between 37% and 43%
-
-**For a minor candidate polling at 3%:**
-
-- Our accuracy would be about ±1 percentage point
-- We can estimate their support is between 2% and 4%
-
-**Important clarification about accuracy:** 
-
-1. **Absolute accuracy (in percentage points):**
-   
-   - For a minor candidate (3%): ±1 percentage point (smaller absolute error)
-   - For a major candidate (40%): ±3 percentage points (larger absolute error)
-
-2. **Relative accuracy (as a proportion of the estimate):**
-   
-   - For a minor candidate (3%): ±1 percentage point is 33% of their support level
-   - For a major candidate (40%): ±3 percentage points is only 7.5% of their support level
-
-This explains why polls can reliably detect the presence of minor candidates but might have difficulty precisely measuring small changes in their support levels. The same sample size gives different absolute accuracies depending on how close the proportion is to 50%.
-
-### Summary: Key Points to Remember
-
-1. **Statistics and data science** provide essential tools for understanding social phenomena through data analysis.
-
-2. **Properly selected samples** allow us to make reliable inferences about entire populations without studying everyone.
-
-3. **Statistical error** comes in two forms:
-   - Random error (reduced by larger samples)
-   - Systematic error (reduced by better methodology)
-
-4. **Sample size needs** vary based on:
-   - What you're measuring (proportions vs. averages)
-   - Desired accuracy
-   - Population variability
-   - For proportions specifically, values near 50% require larger samples
-
-5. **Small populations** require special sampling considerations and may benefit from using the finite population correction factor.
-
-By understanding these foundational concepts, you'll be better equipped to design and interpret research in the social sciences.
-
+3. **Statistical Inference**: The normal distribution forms the foundation for many statistical tests and confidence intervals.
+:::
 
 
 ::: {.callout-note}
@@ -961,417 +1159,193 @@ Study of all 50 U.S. states:
 
 The DGP is like a "recipe for pizza quality" that determines outcomes for all potential pizzerias in the superpopulation, not just the currently existing ones.
 
+:::
+
+
 ---
 
-:::
-
-
-
-## Population Parameters
-
-> **Important**
->
-> A **population parameter** ($\theta$) is a numerical value that characterizes a specific feature of the entire population. Population parameters are usually unknown and are the subject of estimation based on a sample.
-
-Common population parameters include:
-
-- $\mu$ (population mean): The average value in the population
-- $\sigma^2$ (population variance): The average squared deviation from the mean
-- $\sigma$ (population standard deviation): The square root of the variance
-- $p$ (population proportion): The fraction of the population with a certain characteristic
-
-Since studying an entire population is usually impractical, we use samples to estimate these parameters.
-
-## Distribution of Sample Statistics
-
-A **sample statistic** ($\hat{\theta}$) is a value calculated from sample observations used to estimate a population parameter $\theta$. 
-
-The distribution of a statistic describes how its values vary when repeatedly drawing samples of the same size $n$ from the same population. This concept is fundamental to understanding statistical inference.
-
-Think of it this way: When we take a sample and calculate a statistic (like a sample mean), we get one specific value. But if we repeated this process many times—taking different random samples of the same size from the same population—we would get different values each time. The distribution of the statistic describes this pattern of variability.
-
-![Various random samples of equal size and their statistics. Retrieved from: https://allmodelsarewrong.github.io/mse.html](stat_imgs/sampling-estimators.svg)
-
-Key points about the distribution of a statistic:
-
-1. It shows how the statistic varies from sample to sample
-2. It helps us understand sampling error and uncertainty 
-3. It allows us to make probabilistic statements about how close our estimate is to the true population parameter
-4. It forms the foundation for statistical inference
-
-Example: If we're interested in the population mean $\mu$, its estimator is the sample mean $\bar{x}$, calculated as:
-
-$\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i$
-
-where $x_1, x_2, ..., x_n$ are observations in a random sample.
-
-## Expected Value of the Sample Statistic
-
-Before going further, let's briefly explain what we mean by "expected value":
-
-The **expected value** (or mean) of a random variable is the long-run average value we would observe if we could repeat a random experiment infinitely many times. It's essentially the "center of gravity" of a probability distribution - the value around which the distribution balances.
-
-For a discrete random variable X, the expected value is calculated as:
-
-$E(X) = \sum_i x_i \cdot P(X = x_i)$
-
-Where $x_i$ are the possible values and $P(X = x_i)$ are their probabilities.
-
-With this in mind, the expected value of a sample statistic $E(\hat{\theta})$ is the average value that the statistic takes when repeatedly drawing samples from the population.
-
-For well-constructed estimators, the expected value equals the parameter we're trying to estimate:
-
-$E(\hat{\theta}) = \theta$
-
-This means a "good" estimator will, on average, give us the right answer. Such an estimator is called **unbiased**.
-
 ::: {.callout-note}
-## Optional: Proof that the sample mean is an unbiased estimator
+### Sample Size Considerations
 
-For the sample mean $\bar{x}$, we can prove it's an unbiased estimator of the population mean $\mu$ as follows:
+Determining the appropriate sample size is critical for reliable statistical analysis. The required sample size depends on three key factors:
 
-$E(\bar{x}) = E\left(\frac{1}{n}\sum_{i=1}^{n}x_i\right)$
+1. **Type of Estimate**  
+   - What are you estimating? (e.g., proportion, mean, regression parameter, etc.)
+   
+2. **Desired Accuracy**  
+   - Higher accuracy requires a larger sample size.  
+   - Example: Estimating within ±1% requires approximately 9 times more observations than estimating within ±3%.
 
-Using the linearity property of expected values (the expected value of a sum equals the sum of expected values):
+3. **Population Variability**  
+   - For **proportions**: Maximum variability occurs at 50%, while variability decreases as proportions approach 0% or 100%.  
+   - For **means**: Variability depends on the variance of the measurements.  
+   - For **regression models**: Consider the variance of predictors and outcome variables.
 
-$E(\bar{x}) = \frac{1}{n}\sum_{i=1}^{n}E(x_i)$
+---
 
-Since each $x_i$ is a random observation from the population with mean $\mu$:
+### Small Population Considerations
 
-$E(x_i) = \mu \text{ for all } i$
+When working with small populations (e.g., fewer than 1,000 individuals), special considerations apply:
 
-Therefore:
+- **Sampling Methods**:  
+  - Simple random sampling traditionally assumes sampling **with replacement**.  
+  - In practice, sampling **without replacement** is more common.  
+  - The difference between these methods becomes significant in small populations.
 
-$E(\bar{x}) = \frac{1}{n}\sum_{i=1}^{n}\mu = \frac{1}{n} \cdot n \cdot \mu = \mu$
+- **Finite Population Correction (FPC)**:  
+  - Essential when sampling more than 5-10% of the population.  
+  - Adjusts standard error calculations to account for the reduced variability in small populations.
 
-This proves that the sample mean is an unbiased estimator of the population mean.
+#### Practical Recommendations for Small Populations:
+- For populations under 200, consider conducting a **complete census**.  
+- Use statistical formulas designed for sampling without replacement.  
+- Standard formulas (based on sampling with replacement) overestimate error in small populations.  
+- Clearly document the sampling methodology in research reports.
+
+#### Key Differences Between Sampling Methods:
+- **Sampling with replacement**: Each unit has a constant probability of selection (e.g., 1/N) in each draw.  
+- **Sampling without replacement**: Selection probability changes in subsequent draws (e.g., 1/N, 1/(N-1), 1/(N-2), etc.).  
+- In large populations, the difference is negligible; in small populations, it is significant.  
+- Sampling without replacement generally results in lower estimator variance.
+
+---
+
+### Statistical Estimation and Sample Size
+
+#### Proportions (Percentages)
+When estimating a proportion (e.g., percentage of voters supporting a candidate), the required sample size depends on how close the proportion is to 50%.
+
+**Why Proportions Near 50% Require Larger Samples**:  
+Proportions follow a binomial distribution, where variance is maximized at 50% and minimized at 0% or 100%. This means greater uncertainty and larger sample sizes are needed for proportions near 50%.
+
+**Example**:  
+| True Population Proportion | Sample Size | Margin of Error |
+|----------------------------|-------------|-----------------|
+| 50%                        | 100         | ±10%            |
+| 50%                        | 400         | ±5%             |
+| 50%                        | 1,000       | ±3%             |
+| 10%                        | 100         | ±6%             |
+| 10%                        | 400         | ±3%             |
+| 10%                        | 1,000       | ±2%             |
+
+**Key Observations**:  
+1. **Larger sample sizes reduce margin of error**.  
+2. **Proportions near 50% have larger margins of error** than those near 0% or 100%.
+
+**Population Size Impact**:  
+For proportions near 50%, a sample size of ~1,000 provides a margin of error of ±3%, regardless of whether the population is 30,000 or 30 million. This explains why national polls can be accurate with relatively small samples.
+
+---
+
+#### Averages (Means)
+When estimating an average (e.g., household income or height):
+
+- Sample size depends on the **variance** of the measurements.  
+- Populations with greater variability require larger samples.  
+- Unlike proportions, there is no "maximum uncertainty" at a specific value.  
+- Sample size is directly proportional to the variance of the variable.
+
+**Example**:  
+Estimating average income typically requires a larger sample than estimating average height because income varies more widely.
+
+---
+
+#### Model Parameters and Complex Estimation
+Statistical modeling (e.g., regression) involves estimating relationships between variables. Sample size requirements become more nuanced in these contexts.
+
+**Key Factors for Regression Models**:  
+1. **Number of Parameters**:  
+   - Each predictor variable and interaction term consumes degrees of freedom.  
+   - Rule of thumb: 10-20 observations per variable (minimum).  
+   - For detecting subtle effects: 50-100+ observations per variable may be needed.
+
+2. **Effect Size**:  
+   - Smaller effects require larger samples to detect reliably.  
+   - Conduct power analysis based on expected effect sizes.
+
+3. **Model Complexity**:  
+   - Linear vs. non-linear relationships.  
+   - Interaction effects, nested/hierarchical data structures.  
+   - Non-normal distributions or heteroscedasticity.
+
+4. **Explained Variability**:  
+   - Higher \(R^2\) values may reduce sample size requirements.  
+   - Greater residual variance increases sample size needs.
+
+---
+
+### Sample Size Planning in Practice
+
+When planning a study, consider the following:
+
+1. **Statistical Power**:  
+   - Aim for at least 80% power to detect effects.  
+   - Conduct formal power analyses to determine sample size.
+
+2. **Precision**:  
+   - Define the desired width of confidence intervals.  
+   - Greater precision requires larger samples.
+
+3. **Resource Constraints**:  
+   - Balance statistical ideals with budget, time, and participant availability.  
+   - Consider sequential or adaptive sampling designs.
+
+4. **Ethical Considerations**:  
+   - Collect enough data to answer research questions reliably.  
+   - Avoid unnecessary burden on participants or resource waste.
+
+---
+
+### Why 50% Represents Maximum Uncertainty for Proportions
+
+**Simulation Example**:  
+Imagine a bag of 100 coins (gold or silver). You estimate the percentage of gold coins by drawing 20 coins repeatedly.
+
+**Scenario A: 50% Gold (Maximum Uncertainty)**  
+- Results vary widely (35% to 70%), with an average error of 10 percentage points.
+
+**Scenario B: 10% Gold (Less Uncertainty)**  
+- Results stay closer to the true value (0% to 15%), with an average error of 4 percentage points.
+
+**Conclusion**:  
+Proportions near 50% have higher natural variability, requiring larger samples for accurate estimation.
+
+---
+
+### Opinion Poll Example: Popular vs. Unpopular Candidates
+
+In a poll of 1,000 people:  
+- **Major candidate polling at 40%**: Accuracy of ±3% (support between 37% and 43%).  
+- **Minor candidate polling at 3%**: Accuracy of ±1% (support between 2% and 4%).
+
+**Key Insight**:  
+- **Absolute accuracy** varies with the proportion.  
+- **Relative accuracy** (as a percentage of the estimate) is higher for minor candidates.
+
+---
+
+### Summary: Key Takeaways
+
+1. **Sample Size Depends On**:  
+   - Type of estimate (proportion, mean, regression parameter).  
+   - Desired accuracy and population variability.  
+   - For proportions, values near 50% require larger samples.
+
+2. **Small Populations Require Special Considerations**:  
+   - Use finite population correction.  
+   - Consider complete censuses for very small populations.
+
+3. **Statistical Power and Precision**:  
+   - Aim for sufficient power and precision while balancing resource constraints.
+
+4. **Ethical and Practical Balance**:  
+   - Ensure reliable results without overburdening participants or resources.
+
+By understanding these principles, you can design studies that yield accurate and meaningful insights.
 :::
 
-::: {.callout-note}
-## Optional: Understanding why the sample variance needs n-1 in the denominator
 
-The sample variance is commonly defined as:
-
-$s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$
-
-Why do we use $n-1$ in the denominator rather than $n$?
-
-Let's consider what happens if we used $n$ instead:
-
-$\tilde{s}^2 = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^2$
-
-To check if this is unbiased, we need to find $E(\tilde{s}^2)$ and see if it equals $\sigma^2$.
-
-Without going through all the mathematical steps, the key insight is:
-1. When we calculate $(x_i - \bar{x})^2$, we're using $\bar{x}$ (the sample mean) instead of $\mu$ (the population mean)
-2. The sample mean $\bar{x}$ is itself estimated from the same data
-3. This introduces a dependency that makes our variance estimator systematically underestimate the true variance
-4. Specifically, $E(\tilde{s}^2) = \frac{n-1}{n}\sigma^2$, which means it's biased by a factor of $\frac{n-1}{n}$
-5. To correct this bias, we divide by $n-1$ instead of $n$, giving us:
-   $E(s^2) = E\left(\frac{n}{n-1}\tilde{s}^2\right) = \frac{n}{n-1}E(\tilde{s}^2) = \frac{n}{n-1}\frac{n-1}{n}\sigma^2 = \sigma^2$
-
-Intuitively, we're using $n-1$ because we've already "used up" one degree of freedom when estimating the mean. The denominator $n-1$ is called the "degrees of freedom" - the number of independent pieces of information available for estimating the variance after estimating the mean.
-:::
-
-Not all estimators are unbiased. For instance, as we just saw, the simple variance estimator needs a correction ($\frac{1}{n-1}$ instead of $\frac{1}{n}$) to be unbiased.
-
-## The Normal Distribution - The Bell Curve
-
-> **Note**
->
-> The normal distribution (also known as the Gaussian distribution or bell curve) is one of the most important probability distributions in statistics. It has a symmetric bell shape and is fully described by two parameters:
-> 
-> - The mean $\mu$ (centers the distribution)
-> - The standard deviation $\sigma$ (determines the width of the "bell")
->
-> The normal distribution appears frequently in nature and human systems (heights, measurement errors, test scores). 
-
-### Mathematical Representation
-
-The probability density function (PDF) of the normal distribution is:
-
-$$
-f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
-$$
-
-Where:
-
-- $x$ is a random variable
-- $\mu$ is the mean (location parameter)
-- $\sigma$ is the standard deviation (scale parameter)
-- $e$ is Euler's number (approximately 2.71828)
-- $\pi$ is the mathematical constant pi (approximately 3.14159)
-
-### Practical Significance
-
-The normal distribution is especially important because of:
-
-1. The **68-95-99.7 Rule**: Approximately 68% of values fall within 1 standard deviation of the mean, 95% within 2 standard deviations, and 99.7% within 3 standard deviations.
-
-2. The **Central Limit Theorem**: Sample means tend to follow a normal distribution regardless of the original distribution's shape (given a sufficiently large sample size).
-
-3. **Statistical Inference**: The normal distribution forms the foundation for many statistical tests and confidence intervals.
-
-## Types of Data and Variables
-
-Data forms the foundation of statistical analysis. To better understand its role, it's important to familiarize yourself with key concepts.
-
-## Sources of Data
-
-- **Primary data**: Collected directly for a specific research purpose (e.g., conducting your own survey)
-- **Secondary data**: Obtained from existing sources (e.g., databases or government statistics)
-
-## Variables and Constants
-
-**Variables** are characteristics that can take on different values in a dataset. They are the objects of our research and analysis.
-
-### Classification of Variables
-
-1. **Quantitative Variables** (represent quantities or measurements):
-   - **Continuous**: Can take any value within a specific range (e.g., height, weight, temperature)
-   - **Discrete**: Take only specific values, usually integers (e.g., number of children, errors)
-
-2. **Qualitative Variables** (represent categories or qualities):
-   - **Nominal**: Categories with no natural order (e.g., blood type, gender, region)
-   - **Ordinal**: Categories with a natural order (e.g., education level, satisfaction ratings)
-
-**Constants** are values that remain unchanged throughout the analysis and often serve as reference points.
-
-## Statistical Estimation Concepts
-
-In statistics, several similar-sounding concepts are often confused. Here's a clear distinction between these key terms:
-
-## Population Parameter (Estimand)
-
-A **population parameter** is a numerical value describing a characteristic of the entire population:
-
-1. It concerns the *entire* population, not just a sample
-2. Usually denoted by Greek letters (μ, σ, π, ρ)
-3. In most cases remains **unknown** (we cannot study the entire population)
-4. Is determined by the actual Data Generating Process (DGP)
-
-An **estimand** is the specific population parameter or function of parameters that we want to estimate. It is the *goal of our estimation*.
-
-> **Important distinction!**
->
-> The estimand (population parameter) is a value in the population that we want to know but that remains unknown to us. It is our research target.
-
-## Estimator (Statistic)
-
-An **estimator** is a mathematical function (formula, procedure) that provides an estimate of a population parameter based on sample data. **An estimator is a random variable** because its value depends on the specific sample.
-
-A **statistic** is any measure calculated from sample data. When a statistic is used to estimate a population parameter, we call it an estimator.
-
-Examples of estimators:
-
-- Sample mean: $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ (estimator of population mean μ)
-- Sample variance: $s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$ (estimator of population variance σ²)
-- Sample proportion: $\hat{p} = \frac{x}{n}$ (estimator of population proportion p)
-
-> **Note: Estimator as a procedure**
->
-> An estimator should be understood as a **recipe** for calculating a value based on a sample. The same estimator applied to different samples will yield different results.
->
-> Example: The mean estimator $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ is a procedure of "sum all values and divide by their count."
-
-## Estimate
-
-An **estimate** is a specific numerical value obtained after applying an estimator to a particular sample. It is a single number, being a realization of the random variable that is the estimator.
-
-> **Example distinguishing these concepts**
->
-> - **Estimand**: Average height of all adults in a country (μ) - unknown value
-> - **Estimator**: Formula for sample mean $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ - computational procedure
-> - **Estimate**: 173.5 cm - specific value obtained from a sample
->
-> Different samples will give different estimates of the same estimand using the same estimator.
-
-## Properties of Good Estimators
-
-A good estimator should have favorable statistical properties:
-
-1. **Unbiasedness**: An estimator is unbiased if its expected value equals the parameter it's estimating. Formally: E($\hat{\theta}$) = $\theta$
-
-2. **Efficiency**: An estimator is efficient if it has the smallest possible variance among all unbiased estimators
-
-3. **Consistency**: An estimator is consistent if, as the sample size increases, its value approaches the true parameter value
-
-4. **Sufficiency**: An estimator is sufficient if it uses all available information from the sample regarding the parameter being estimated
-
-## Statistical Models and Inference
-
-### Statistical Models
-
-A statistical model is a mathematical representation of reality that describes relationships between variables and the structure of data. It allows for describing the data generating process (DGP) and making inferences about parameters.
-
-> **Components of a Statistical Model**
->
-> A complete statistical model consists of:
->
-> 1. **Functional form**: The mathematical structure defining the relationship between variables (e.g., linear, quadratic)
-> 2. **Variables**: 
->    - Dependent variable(s): What we're trying to predict or explain
->    - Independent/explanatory variables: Factors that might influence the dependent variable
-> 3. **Parameters**: Unknown values we estimate from data (e.g., regression coefficients)
-> 4. **Random component**: The error term accounting for unexplained variability
-> 5. **Probability distribution assumptions**: Specifications about how the random component is distributed
-
-Example of a linear regression model: $y = \beta_0 + \beta_1x + \epsilon$, where $\epsilon \sim N(0, \sigma^2)$
-
-In this model:
-
-- $\beta_0$ and $\beta_1$ are parameters we want to estimate
-- $\epsilon$ is a random component representing unexplained variability
-- We assume normality of the error distribution
-
-### Causal vs. Predictive Inference
-
-In statistical analysis, we may have two main goals:
-
-1. **Causal inference**: Determining whether variable X *causes* a change in variable Y
-   - Requires additional assumptions or special research designs
-   - Enables predicting the effects of interventions
-
-2. **Predictive inference**: Predicting Y values based on X
-   - Does not need to assume a causal relationship
-   - Focuses on prediction accuracy
-
-> **Warning: Correlation ≠ Causation**
->
-> A spurious relationship or spurious correlation occurs when two or more variables are associated but not causally related.
->
-> Two variables can be strongly correlated because of:
->
-> 1. A confounding variable that affects both variables
-> 2. Reverse causality (Y affects X, not vice versa)
-> 3. Chance (spurious correlation)
-
-### Challenges of Causal Inference
-
-The fundamental problem of causal inference is the impossibility of observing **counterfactuals** (alternative scenarios). For a given unit, we can observe only one potential outcome.
-
-![The fundamental problem of causal inference: We can think of causal inference as a PREDICTION problem. How can we predict the counterfactual given that we never observe it?](stat_imgs/meme_horse.svg)
-
-Example:
-- We observe a person who completed college and earns $8,000 per month
-- We cannot observe how much the same person would earn if they had not completed college
-
-Causal methods attempt to solve this problem through:
-
-1. Randomized experiments
-2. Instrumental variables
-3. Matching methods
-4. Regression discontinuity analysis
-5. Difference-in-differences
-
-Common problems in causal inference:
-
-![Confounding bias: drinking the night before is a common cause of sleeping with shoes on and waking up with a headache](stat_imgs/IMG_4337.jpg)
-
-![Reverse causality](stat_imgs/ff13-23.png)
-
-## Statistical Inference
-
-Statistical inference is the process of drawing conclusions about a population based on sample data. It encompasses two main areas:
-
-### 1. Estimation
-
-Estimation is the process of using sample data to estimate unknown population parameters. We distinguish:
-
-- **Point estimation**: Providing a single value as the best approximation of the parameter
-- **Interval estimation**: Constructing a confidence interval that indicates the range of possible parameter values consistent with our data
-
-Example of a confidence interval: "The 95% confidence interval for the average height of adults is (173 cm, 175 cm)."
-
-**Correct interpretation of confidence interval**: If we were to repeatedly take samples from the same population and construct a 95% confidence interval for each sample using the same method, about 95% of these intervals would contain the true population parameter value.
-
-**Incorrect interpretation**: "There is a 95% chance that the true mean is in the interval (173 cm, 175 cm)" – this is incorrect because the population parameter is a fixed (though unknown) value, not a random variable.
-
-### 2. Hypothesis Testing
-
-Hypothesis testing is a formal procedure for verifying claims about population parameters.
-
-> **Example: Binomial test for a coin**
->
-> Imagine we want to check if a coin is fair.
->
-> 1. **Research question**: Is the coin fair (probability of heads = 0.5)?
->
-> 2. **Formulate hypotheses**:
->    - **Null hypothesis (H₀)**: p = 0.5 (the coin is fair)
->    - **Alternative hypothesis (H₁)**: p ≠ 0.5 (the coin is not fair)
->
-> 3. **Collect data**: We flip the coin 100 times and get 65 heads.
->
-> 4. **Analyze**: Is 65 heads out of 100 flips evidence against the hypothesis that the coin is fair?
->
-> 5. **Reasoning**:
->    - If the coin were fair (p = 0.5), the number of heads in 100 flips should follow a binomial distribution B(100, 0.5)
->    - For this distribution, we expect an average of 50 heads, with a standard deviation of √(100 × 0.5 × 0.5) = 5
->    - Getting 65 heads means a deviation of 3 standard deviations from the expected value
->    - The probability of getting 65 or more heads with a fair coin is very small (p < 0.01)
->
-> 6. **Conclusion**: Since the observed result is very unlikely under the assumption that the coin is fair, we reject the null hypothesis and conclude that the coin is most likely not fair.
-
-General hypothesis testing procedure:
-
-1. Formulate the null hypothesis (H₀) and alternative hypothesis (H₁)
-2. Choose a significance level α (usually 0.05)
-3. Collect data and calculate the appropriate test statistic
-4. Calculate the p-value (the probability of obtaining our data or more extreme results, assuming H₀ is true)
-5. Make a decision: if p < α, reject H₀ in favor of H₁
-
-> **Note: Intuition behind hypothesis testing**
->
-> Hypothesis testing resembles a court procedure:
-
-> - H₀ corresponds to the principle of "innocent until proven guilty"
-> - Data constitutes "evidence" against H₀
-> - P-value determines how strong this evidence is
-> - If the evidence is strong enough (p < α), we "convict" H₀ (reject it)
-> - If the evidence is not strong enough, we do not reject H₀ (but we do not prove its truth)
-
-> **Important: Common errors in interpreting p-values and tests**
->
-> 1. P-value is **NOT** the probability that the null hypothesis is true
-> 2. P-value is **NOT** the probability of making an error when rejecting H₀
-> 3. Failing to reject H₀ does **NOT** mean proving it
-> 4. A very small p-value does **NOT** indicate a large practical effect (statistical significance ≠ practical significance)
-> 5. P-value depends on sample size - with very large samples, even small, practically insignificant differences can be statistically significant
->
-> **Definition of p-value**: The probability of observing a result at least as extreme as the one obtained, assuming the null hypothesis is true.
-
-### Types of Errors in Hypothesis Testing
-
-- **Type I error (α)**: Rejecting a true null hypothesis ("convicting an innocent")
-  - The probability of this error is controlled by the significance level α
-- **Type II error (β)**: Failing to reject a false null hypothesis ("acquitting the guilty")
-  - The probability of avoiding this error (1-β) is called the power of the test
-  - Test power increases with sample size and effect size
-
-## Foundations for Good Statistical Research
-
-To conduct reliable statistical research, ensure:
-
-1. **Representativeness of the sample**: The sample should well reflect the studied population
-2. **Adequate sample size**: Larger samples provide more accurate estimates and greater statistical power
-3. **Control of confounding variables**: Both in research design and data analysis
-4. **Appropriate statistical methods**: Matched to the type of data and research questions
-5. **Clear interpretation**: Taking into account study limitations and alternative explanations
-
-### Summary of Key Concepts
-
-| Concept | Definition | Example |
-|----------------------|--------------------------|------------------------|
-| **Population parameter (Estimand)** | Value characterizing the population, usually unknown | μ (population mean) |
-| **Estimator (Statistic)** | Function/procedure for estimating a parameter based on a sample | $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ |
-| **Estimate** | Specific value obtained after applying an estimator to a sample | $\bar{x} = 173.5$ cm |
-| **Standard error** | Measure of estimator variability between samples | $SE(\bar{x}) = \frac{s}{\sqrt{n}}$ |
-| **Confidence interval** | Range of values that, with specified probability, contains the parameter | (173 cm, 175 cm) |
-| **P-value** | Probability of observing the data assuming H₀ is true | p = 0.03 |
-
-
-
+---
 
 # Appendices: Additional Topics in Statistics and Data Science (*)
 
