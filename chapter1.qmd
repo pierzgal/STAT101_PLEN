@@ -257,6 +257,63 @@ where $x_1, x_2, ..., x_n$ are observations in a random sample.
 
 ---
 
+
+::: {.callout-note}
+## The Normal Distribution - The Bell Curve
+> Note
+>
+> The normal distribution, often called the "bell curve," is one of the most important concepts in statistics. It describes how data is spread out and appears everywhere in the real world—like in people’s heights, test scores, or even measurement errors. The curve is shaped like a bell, with most of the data clustered around the middle and less data as you move away from the center.
+
+### What Defines the Bell Curve?
+The bell curve is defined by two key numbers:
+1. **The Mean ($\mu$)**: This is the average value, and it’s where the center of the bell sits.
+2. **The Standard Deviation ($\sigma$)**: This tells you how spread out the data is. A small standard deviation means the data is close to the mean, while a large one means the data is more spread out.
+
+### Why Is It Important?
+The normal distribution is super useful because:
+1. **The 68-95-99.7 Rule**:
+   - About 68% of the data falls within 1 standard deviation of the mean.
+   - About 95% falls within 2 standard deviations.
+   - About 99.7% falls within 3 standard deviations.
+2. **The Central Limit Theorem**:  
+   Imagine you have some data that doesn’t look like a typical bell curve (e.g., it might be irregularly scattered). If you start taking many small samples from this data and calculate their averages each time, those averages will start to form a bell curve—even if the original data didn’t look like one!  
+   In other words:  
+   - No matter how your data looks at first,  
+   - If you take averages from many small groups of that data,  
+   - Those averages will create a bell curve when you collect enough of them.  
+   This is why the normal distribution is so important—even if something doesn’t seem "normal" at first glance, the averages of that thing often behave like a bell curve.
+3. **Statistical Tools**: Many statistical tests and methods rely on the normal distribution to make predictions and draw conclusions.
+
+### Let’s See It in Action!
+Here’s how you can create and visualize a bell curve using R:
+
+```{R}
+# Load necessary library
+library(ggplot2)
+
+# Define the mean and standard deviation
+mean <- 0
+sd <- 1
+
+# Create a sequence of x values
+x <- seq(-4, 4, length.out = 1000)
+
+# Calculate the corresponding y values (probability density)
+y <- dnorm(x, mean, sd)
+
+# Plot the normal curve
+ggplot(data.frame(x, y), aes(x, y)) +
+  geom_line(color = "blue", size = 1) +
+  labs(title = "The Normal Distribution (Bell Curve)",
+       x = "Values",
+       y = "Probability Density") +
+  theme_minimal()
+```
+
+This code generates a smooth bell curve centered at 0 with a standard deviation of 1. You can tweak the `mean` and `sd` values to see how the curve changes!
+:::
+
+
 ### **Types of Data and Variables**
 
 Data is the foundation of statistical analysis. Understanding its types and characteristics is essential.
@@ -364,7 +421,7 @@ General hypothesis testing procedure:
   
   
 
-## Statistical Models and Inference
+## Statistical Models
 
 A **statistical model** is a mathematical framework that represents the relationships between variables and the structure of data. It helps describe the **data-generating process (DGP)** and enables us to make inferences about unknown parameters.
 
@@ -451,7 +508,7 @@ Common problems in causal inference:
 ---
 
 
-# Appendices: Additional Topics in Statistics and Data Science (*)
+## Appendices: Additional Topics in Statistics and Data Science (*)
 
 ## Appendix A: R for Social Science Data Analysis
 
@@ -1106,139 +1163,160 @@ This workflow demonstrates the power of the tidyverse's pipe operator (`%>%`), w
 The best way to learn R is through practice. Start with small, manageable projects and gradually build your skills.
 
 
-## Appendix G: Supplementary Content (*)
+## Appendix H: Supplementary Content (*)
 
 ::: {.callout-important}
 ## Understanding Statistical Error
 
 When using a sample to learn about a population, we inevitably encounter statistical error:
 
-**Statistical error** is the difference between our sample estimate and the true population value.
+> **Statistical error** is the difference between our sample estimate and the true population value.
 
-Statistical errors can compromise the validity and reliability of research findings. Understanding these errors is crucial for designing robust studies, analyzing data accurately, and drawing appropriate conclusions. Below is a detailed classification of statistical errors:
+Statistical errors can compromise the validity and reliability of research findings. Understanding these errors is crucial for designing robust studies, analyzing data accurately, and drawing appropriate conclusions.
 
----
+## Types of Statistical Errors
 
 ### Sampling Errors
 
-**Random Sampling Errors**
+#### Random Sampling Errors
+- **Definition**: Natural variability that occurs when taking random samples
+- **Example**: Average height measurements varying slightly across different random samples of 30 university students
+- **Properties**:
+  - Unavoidable but manageable
+  - Decrease as sample size increases
+  - Can be quantified using margin of error
+  - Follow predictable patterns based on sampling theory
 
-- These arise from the natural variability inherent in random sampling.
-- *Example*: If you randomly select 30 students from a university to measure average height, the average will vary slightly with each sample.
-- These errors decrease as the sample size increases and can be estimated using metrics like the *margin of error*.
-- While unavoidable, they can be managed through proper sampling techniques.
-
-**Non-Random (Systematic) Sampling Errors (Bias)**
-
-- **Selection bias**: Occurs when the sample does not represent the target population.
-  - *Example*: A phone survey that only reaches individuals with landlines, excluding those who rely solely on cell phones.
-- **Undercoverage**: Certain groups are systematically excluded from the sample.
-  - *Example*: A campus survey conducted only during daytime classes misses evening students.
-- **Self-selection bias**: Results are skewed because participants choose whether to participate.
-  - *Example*: Only individuals with strong opinions respond to a customer satisfaction survey.
-- **Non-response bias**: Occurs when specific groups are less likely to respond.
-  - *Example*: Busy individuals may not complete a questionnaire, leading to overrepresentation of those with more free time.
-
----
+#### Non-Random (Systematic) Sampling Errors (Bias)
+- **Selection bias**: Sample doesn't represent the target population
+  - **Example**: Phone survey reaching only people with landlines, missing those who use only cell phones
+  
+- **Undercoverage**: Systematic exclusion of specific groups
+  - **Example**: Campus survey during daytime classes missing evening students
+  
+- **Self-selection bias**: Skewed results from participant choice
+  - **Example**: Customer satisfaction surveys completed primarily by those with strong opinions
+  
+- **Non-response bias**: Specific groups less likely to respond
+  - **Example**: Busy individuals not completing questionnaires, leading to overrepresentation of those with more free time
 
 ### Measurement Errors
 
-**Random Measurement Errors**
+#### Random Measurement Errors
+- **Definition**: Unpredictable fluctuations in measurements due to random variability (often called "noise")
+- **Explanation**: Similar to the error term (ε) in regression models, these are the unexplained variations that occur by chance
+- **Examples**: 
+  - Slightly different blood pressure readings due to a shaky hand
+  - Small fluctuations in instrument readings due to environmental factors
+  - Minor variations when the same person takes repeated measurements
+- **Key characteristic**: Tend to cancel out with repeated measurements (positive errors balance negative errors)
 
-- Unpredictable fluctuations in measurements due to "noise."
-  - *Example*: A shaky hand measuring blood pressure yields slightly different readings each time.
-- These errors tend to cancel out with repeated measurements.
-
-**Systematic Measurement Errors**
-
-- **Calibration errors**: Consistent inaccuracies in measurement tools.
-  - *Example*: A scale that always adds 2 pounds to every measurement.
-- **Observer bias**: The researcher’s expectations influence data collection.
-  - *Example*: A researcher unconsciously records data in a way that supports their hypothesis.
-- **Social desirability bias**: Participants respond in a way they perceive as socially acceptable.
-  - *Example*: Underreporting junk food consumption in a nutrition study.
-
----
+#### Systematic Measurement Errors
+- **Calibration errors**: Consistent inaccuracies in measurement tools
+  - **Example**: Scale consistently adding 2 pounds to every measurement
+  
+- **Observer bias**: Researcher expectations influencing data collection
+  - **Example**: Unconsciously recording data in ways that support a hypothesis
+  
+- **Social desirability bias**: Participants giving socially acceptable responses
+  - **Example**: Underreporting junk food consumption in nutrition studies
 
 ### Inference Errors
 
-**Hypothesis Testing Errors**
+#### Hypothesis Testing Errors
+- **Type I error (False Positive)**: Concluding an effect exists when it doesn't
+  - **Example**: Claiming a new drug works when its benefits are due to chance
+  - **Context**: Related to significance level (α)
+  
+- **Type II error (False Negative)**: Missing an effect that actually exists
+  - **Example**: Concluding a new drug doesn't work when it actually helps patients
+  - **Context**: Related to statistical power (1-β)
+  
+- **Type III error**: Solving the wrong problem altogether
+  - **Definition**: Asking the wrong question or focusing on an irrelevant hypothesis
+  - **Example**: Studying whether a marketing strategy increases website traffic when the real issue is whether it increases sales
 
-- **Type I error (False Positive)**: Concluding an effect exists when it does not.
-  - *Example*: Claiming a new drug is effective when its benefits are due to random chance.
-- **Type II error (False Negative)**: Failing to detect an effect that actually exists.
-  - *Example*: Concluding a new drug is ineffective when it actually helps patients.
-- **Type III error**: Solving the wrong problem or answering the wrong question entirely.
-  - *Explanation*: This occurs when researchers focus on a question or hypothesis that is irrelevant or misaligned with the actual problem they need to address. It’s not about statistical analysis being wrong, but about asking the wrong question in the first place.
-  - *Example*: A company studies whether a new marketing strategy increases website traffic (the wrong question) when the real issue is whether it increases sales (the right question).
-  - *Another Example*: A researcher investigates whether a teaching method improves test scores (the wrong question) when the real goal is to improve long-term student understanding (the right question).
-
-**Statistical Power Issues**
-
-- **Underpowered studies**: Insufficient sample size to detect true effects.
-  - *Example*: Testing a weight loss program with only 5 participants.
-
----
+#### Statistical Power Issues
+- **Underpowered studies**: Insufficient sample size to detect true effects
+  - **Example**: Testing a weight loss program with only 5 participants
+  - **Prevention**: Conducting proper power analysis before data collection
 
 ### Model Specification Errors
 
-**Variable Selection Errors**
+#### Variable Selection Errors
+- **Omitted variable bias**: Excluding important influential variables
+  - **Example**: Studying exercise and weight loss without accounting for diet
+  
+- **Confounding**: External factors influencing both predictor and outcome
+  - **Example**: People who exercise also eating healthier, affecting weight loss results
+  - **Solution**: Randomization, stratification, or statistical control techniques
 
-- **Omitted variable bias**: Excluding important variables that influence the outcome.
-  - *Example*: Studying exercise and weight loss without accounting for diet.
-- **Confounding**: An external factor influences both the predictor and outcome.
-  - *Example*: People who exercise may also eat healthier, affecting weight loss results.
-
-**Assumption Errors**
-
-- Using statistical tests that do not align with the data’s characteristics.
-  - *Example*: Assuming a normal distribution when the data is skewed.
-
----
+#### Assumption Errors
+- **Definition**: Using statistical tests that don't align with data characteristics
+- **Example**: Assuming normal distribution when data is heavily skewed
+- **Prevention**: Verifying assumptions through diagnostic tests before analysis
 
 ### Data Processing and Analysis Errors
 
-**Data Handling Errors**
+#### Data Handling Errors
+- **Data entry errors**: Mistakes during recording
+  - **Example**: Typing "1050" instead of "150" for weight
+  - **Prevention**: Double entry, range checks, validation procedures
+  
+- **Missing data problems**: Improper handling of incomplete data
+  - **Example**: Calculating average test scores while ignoring absent students
+  - **Solutions**: Imputation methods, sensitivity analyses
 
-- **Data entry errors**: Mistakes during data recording.
-  - *Example*: Typing "1050" instead of "150" for a participant’s weight.
-- **Missing data problems**: Failing to account for incomplete data.
-  - *Example*: Calculating average test scores while ignoring absent students.
-
-**Analysis Execution Errors**
-
-- **Software bugs or user errors**: Mistakes in using statistical software.
-  - *Example*: Selecting the wrong statistical test in analysis software.
-
----
+#### Analysis Execution Errors
+- **Software bugs or user errors**: Mistakes in using statistical software
+  - **Example**: Selecting the wrong test in analysis software
+  - **Prevention**: Code review, reproducible workflows, documentation
 
 ### Interpretation and Reporting Errors
 
-**Causal Inference Errors**
+#### Causal Inference Errors
+- **Correlation-causation fallacy**: Mistaking correlation for causation
+  - **Example**: Concluding chocolate consumption causes Nobel Prizes because they correlate
+  - **Prevention**: Understanding research design limitations, proper framing of results
 
-- **Correlation-causation fallacy**: Assuming causation from correlation.
-  - *Example*: Concluding that chocolate consumption causes Nobel Prizes because the two are correlated.
+#### Reporting and Communication Errors
+- **p-hacking**: Running multiple analyses until finding significance
+  - **Example**: Analyzing data in 20 different ways and reporting only significant outcomes
+  - **Prevention**: Pre-registration, correction for multiple comparisons
+  
+- **Cherry-picking**: Selectively reporting supportive results
+  - **Example**: Diet pill company publishing only successful studies
+  - **Prevention**: Comprehensive reporting, registered reports
 
-**Reporting and Communication Errors**
+## Strategies to Minimize Statistical Errors
 
-- **p-hacking**: Conducting multiple analyses until a significant result is found.
-  - *Example*: Analyzing data in 20 ways and reporting only the significant outcome.
-- **Cherry-picking**: Selectively reporting results that support a hypothesis.
-  - *Example*: A diet pill company only publishing studies where their product worked.
+1. **Proper research design**: Careful planning before data collection
+   - Use appropriate sampling methods
+   - Randomize when possible
+   - Control for confounding variables
 
----
+2. **Adequate sample size**: Base on power calculations
+   - Consider practical significance, not just statistical significance
+   - Account for potential dropouts or missing data
 
-### Remedy Strategies
+3. **Pre-registration**: Declare analysis plans before examining data
+   - Specify primary outcomes and methods
+   - Document any deviations from the plan
 
-To minimize statistical errors:
+4. **Transparency**: Share data and methods openly
+   - Provide access to raw data when possible
+   - Clearly document analytical decisions
 
-- **Proper research design**: Plan studies carefully before data collection.
-- **Adequate sample size**: Ensure sufficient participants based on power calculations.
-- **Pre-registration**: Declare analysis plans before examining the data.
-- **Transparency**: Share data and methods openly.
-- **Replication**: Encourage independent replication of studies.
+5. **Replication**: Encourage independent verification
+   - Conduct internal replications
+   - Support external replication efforts
+   - Value reproducibility as much as novelty
 
-Understanding and addressing these errors ensures research findings are trustworthy, preventing poor decisions in fields like medicine, public policy, education, and business.
+6. **Continuous education**: Stay updated on best practices
+   - Follow field-specific guidelines
+   - Engage with methodological innovations
+
+Understanding and addressing these errors ensures research findings are trustworthy, preventing poor decisions across fields like medicine, public policy, education, and business.
 :::
 
 ::: {.callout-note}
@@ -1353,47 +1431,6 @@ These are advanced systems for storing data in tables that can be linked togethe
 
 - **Cons**:
   - Less suitable for complex relationships between data.
-:::
-
-
-
-::: {.callout-note}
-## The Normal Distribution - The Bell Curve
-
-> **Note**
->
-> The normal distribution (also known as the Gaussian distribution or bell curve) is one of the most important probability distributions in statistics. It has a symmetric bell shape and is fully described by two parameters:
-> 
-> - The mean $\mu$ (centers the distribution)
-> - The standard deviation $\sigma$ (determines the width of the "bell")
->
-> The normal distribution appears frequently in nature and human systems (heights, measurement errors, test scores). 
-
-### Mathematical Representation
-
-The probability density function (PDF) of the normal distribution is:
-
-$$
-f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
-$$
-
-Where:
-
-- $x$ is a random variable
-- $\mu$ is the mean (location parameter)
-- $\sigma$ is the standard deviation (scale parameter)
-- $e$ is Euler's number (approximately 2.71828)
-- $\pi$ is the mathematical constant pi (approximately 3.14159)
-
-### Practical Significance
-
-The normal distribution is especially important because of:
-
-1. The **68-95-99.7 Rule**: Approximately 68% of values fall within 1 standard deviation of the mean, 95% within 2 standard deviations, and 99.7% within 3 standard deviations.
-
-2. The **Central Limit Theorem**: Sample means tend to follow a normal distribution regardless of the original distribution's shape (given a sufficiently large sample size).
-
-3. **Statistical Inference**: The normal distribution forms the foundation for many statistical tests and confidence intervals.
 :::
 
 

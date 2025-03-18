@@ -272,6 +272,64 @@ gdzie $x_1, x_2, ..., x_n$ to obserwacje w losowej próbie.
 
 ------------------------------------------------------------------------
 
+
+::: {.callout-note}
+## Rozkład Normalny - Krzywa Dzwonowa
+> Uwaga
+>
+> Rozkład normalny, często nazywany „krzywą dzwonową”, to jedno z najważniejszych pojęć w statystyce. Opisuje, jak dane są rozłożone, i pojawia się wszędzie w rzeczywistym świecie—np. w przypadku wzrostu ludzi, wyników testów, a nawet błędów pomiarowych. Krzywa ma kształt dzwonu, z większością danych skupionych wokół średniej i coraz mniejszą liczbą danych w miarę oddalania się od środka.
+
+### Co Definiuje Krzywą Dzwonową?
+Krzywa dzwonowa jest określona przez dwie kluczowe liczby:
+1. **Średnia ($\mu$)**: To wartość średnia, która wyznacza środek krzywej.
+2. **Odchylenie standardowe ($\sigma$)**: Określa, jak bardzo dane są rozproszone. Małe odchylenie standardowe oznacza, że dane są blisko średniej, a duże—że są bardziej rozrzucone.
+
+### Dlaczego Jest Ważna?
+Rozkład normalny jest niezwykle użyteczny, ponieważ:
+1. **Zasada 68-95-99.7**:
+   - Około 68% danych znajduje się w odległości 1 odchylenia standardowego od średniej.
+   - Około 95% danych znajduje się w odległości 2 odchyleń standardowych.
+   - Około 99,7% danych znajduje się w odległości 3 odchyleń standardowych.
+2. **Centralne Twierdzenie Graniczne**:  
+   Wyobraź sobie, że masz jakieś dane, które nie wyglądają jak typowa krzywa dzwonowa (np. mogą być rozrzucone nieregularnie). Jeśli zaczniesz wielokrotnie losować próbki z tych danych i za każdym razem obliczać ich średnią, to te średnie zaczną układać się w kształt krzywej dzwonowej—nawet jeśli oryginalne dane nie miały takiego kształtu!  
+   Innymi słowy:  
+   - Niezależnie od tego, jak wyglądają Twoje dane na początku,  
+   - Jeśli będziesz brał średnie z wielu małych grup tych danych,  
+   - To te średnie będą tworzyć krzywą dzwonową, gdy zbierzesz ich wystarczająco dużo.  
+   To właśnie dlatego rozkład normalny jest tak ważny—nawet jeśli coś nie wydaje się "normalne" na pierwszy rzut oka, to średnie z tego czegoś często zachowują się zgodnie z krzywą dzwonową.
+3. **Narzędzia Statystyczne**: Wiele testów i metod statystycznych opiera się na rozkładzie normalnym do przewidywania i wyciągania wniosków.
+
+### Zobaczmy to w Działaniu!
+Oto jak można stworzyć i zwizualizować krzywą dzwonową za pomocą R:
+
+```{R}
+# Załaduj niezbędną bibliotekę
+library(ggplot2)
+
+# Zdefiniuj średnią i odchylenie standardowe
+mean <- 0
+sd <- 1
+
+# Stwórz sekwencję wartości x
+x <- seq(-4, 4, length.out = 1000)
+
+# Oblicz odpowiadające wartości y (gęstość prawdopodobieństwa)
+y <- dnorm(x, mean, sd)
+
+# Narysuj krzywą normalną
+ggplot(data.frame(x, y), aes(x, y)) +
+  geom_line(color = "blue", size = 1) +
+  labs(title = "Rozkład Normalny (Krzywa Dzwonowa)",
+       x = "Wartości",
+       y = "Gęstość Prawdopodobieństwa") +
+  theme_minimal()
+```
+
+Ten kod generuje gładką krzywą dzwonową wyśrodkowaną na 0 z odchyleniem standardowym równym 1. Możesz zmienić wartości `mean` i `sd`, aby zobaczyć, jak zmienia się krzywa!
+:::
+
+
+
 ### **Rodzaje Danych i Zmiennych**
 
 Dane są podstawą analizy statystycznej. Zrozumienie ich rodzajów i charakterystyki jest kluczowe.
@@ -382,7 +440,7 @@ W testowaniu hipotez statystycznych możemy popełnić dwa rodzaje błędów:
 > **Definicja wartości p**: Prawdopodobieństwo zaobserwowania wyniku co najmniej tak skrajnego jak uzyskany, przy założeniu, że hipoteza zerowa jest prawdziwa.
 
 
-## Modele Statystyczne i Wnioskowanie
+## Modele Statystyczne
 
 **Model statystyczny** to matematyczna reprezentacja rzeczywistości, która opisuje relacje między zmiennymi oraz strukturę danych. Pozwala on opisać **proces generowania danych (DGP)** oraz umożliwia wnioskowanie o nieznanych parametrach.
 
@@ -1756,7 +1814,11 @@ $$
 n_{adjusted} = \frac{n}{1 + \frac{n-1}{N}}
 $$
 
-Where: - $n_{adjusted}$ is the adjusted sample size - $n$ is the sample size calculated using the standard formula - $N$ is the population size
+Where:
+
+- $n_{adjusted}$ is the adjusted sample size
+- $n$ is the sample size calculated using the standard formula
+- $N$ is the population size
 
 **Example**: If the population of interest consists of 1,000 individuals and our calculated sample size is 385, the adjusted sample size would be:
 
@@ -1982,136 +2044,157 @@ Rozkład normalny jest szczególnie ważny ze względu na:
 ------------------------------------------------------------------------
 
 ::: callout-important
-## Błąd Statystyczny
+## Błąd statystyczny
 
-Korzystając z próby do poznania populacji, nieuchronnie napotykamy błąd statystyczny:
+Używając próby do poznania populacji, nieuchronnie napotykamy błąd statystyczny:
 
-**Błąd statystyczny** to różnica między naszym oszacowaniem z próby a prawdziwą wartością w populacji.
+> **Błąd statystyczny** to różnica między oszacowaniem z próby a prawdziwą wartością w populacji.
 
-Błędy statystyczne mogą wpływać na wiarygodność i trafność wyników badań. Zrozumienie tych błędów jest kluczowe dla projektowania solidnych badań, poprawnej analizy danych i wyciągania właściwych wniosków. Poniżej znajduje się szczegółowa klasyfikacja błędów statystycznych:
+Błędy statystyczne mogą zagrozić trafności i wiarygodności wyników badań. Zrozumienie tych błędów jest kluczowe dla projektowania solidnych badań, właściwej analizy danych i wyciągania odpowiednich wniosków.
 
-------------------------------------------------------------------------
+## Rodzaje błędów statystycznych
 
-### Błędy Próbkowania
+### Błędy próbkowania
 
-**Błędy Losowe Próbkowania**
+#### Losowe błędy próbkowania
+- **Definicja**: Naturalna zmienność występująca przy pobieraniu losowych prób
+- **Przykład**: Średnie pomiary wzrostu różniące się nieznacznie w różnych losowych próbach 30 studentów uniwersytetu
+- **Właściwości**:
+  - Nieuniknione, ale możliwe do zarządzania
+  - Zmniejszają się wraz ze wzrostem wielkości próby
+  - Można je oszacować za pomocą marginesu błędu
+  - Podlegają przewidywalnym wzorcom opartym na teorii próbkowania
 
--   Wynikają z naturalnej zmienności związanej z losowym doborem próby.
--   *Przykład*: Jeśli losowo wybierzesz 30 studentów z uniwersytetu, aby zmierzyć średni wzrost, średnia będzie się nieznacznie różnić w każdej próbie.
--   Te błędy zmniejszają się wraz ze wzrostem liczebności próby i można je oszacować za pomocą miar takich jak *margines błędu*.
--   Choć nie da się ich całkowicie wyeliminować, można je kontrolować poprzez odpowiednie techniki próbkowania.
+#### Nielosowe (systematyczne) błędy próbkowania (Obciążenie)
+- **Błąd selekcji**: Próba nie reprezentuje populacji docelowej
+  - **Przykład**: Ankieta telefoniczna docierająca tylko do osób posiadających telefony stacjonarne, pomijając tych, którzy korzystają wyłącznie z telefonów komórkowych
+  
+- **Niedostateczne pokrycie**: Systematyczne wykluczanie określonych grup
+  - **Przykład**: Ankieta na kampusie przeprowadzana tylko podczas dziennych zajęć, pomijająca studentów wieczorowych
+  
+- **Błąd autoselekcji**: Zniekształcone wyniki wynikające z wyboru uczestników
+  - **Przykład**: Ankiety zadowolenia klientów wypełniane głównie przez osoby o silnych opiniach
+  
+- **Błąd braku odpowiedzi**: Określone grupy mniej skłonne do odpowiedzi
+  - **Przykład**: Zajęte osoby nie wypełniają kwestionariuszy, co prowadzi do nadreprezentacji osób z większą ilością wolnego czasu
 
-**Błędy Nielosowe (Systematyczne) Próbkowania (Błąd Przesunięcia)**
+### Błędy pomiaru
 
--   **Błąd selekcji**: Występuje, gdy próba nie reprezentuje właściwie populacji docelowej.
-    -   *Przykład*: Badanie telefoniczne, które obejmuje tylko osoby posiadające telefony stacjonarne, pomijając tych, którzy używają wyłącznie komórek.
--   **Niedostateczne pokrycie**: Pewne grupy są systematycznie pomijane w próbie.
-    -   *Przykład*: Badanie na kampusie przeprowadzone tylko w godzinach porannych, pomijające studentów wieczorowych.
--   **Błąd samowyboru**: Wyniki są zniekształcone, ponieważ uczestnicy sami decydują, czy wziąć udział.
-    -   *Przykład*: Tylko osoby z silnymi opiniami odpowiadają na ankietę dotyczącą satysfakcji klientów.
--   **Błąd nieodpowiedzi**: Występuje, gdy określone grupy są mniej skłonne do udzielenia odpowiedzi.
-    -   *Przykład*: Osoby zapracowane mogą nie wypełnić ankiety, co prowadzi do nadreprezentacji osób z większą ilością wolnego czasu.
+#### Losowe błędy pomiaru
+- **Definicja**: Nieprzewidywalne wahania w pomiarach spowodowane losową zmiennością (często nazywaną "szumem")
+- **Wyjaśnienie**: Podobne do składnika błędu (ε) w modelach regresji, są to niewyjaśnione wahania występujące przypadkowo
+- **Przykłady**: 
+  - Nieznacznie różne odczyty ciśnienia krwi z powodu drżącej ręki
+  - Małe wahania odczytów instrumentów z powodu czynników środowiskowych
+  - Drobne różnice, gdy ta sama osoba wykonuje powtarzane pomiary
+- **Kluczowa cecha**: Mają tendencję do znoszenia się przy powtarzanych pomiarach (błędy dodatnie równoważą błędy ujemne)
 
-------------------------------------------------------------------------
+#### Systematyczne błędy pomiaru
+- **Błędy kalibracji**: Konsekwentne niedokładności narzędzi pomiarowych
+  - **Przykład**: Waga konsekwentnie dodająca 2 funty do każdego pomiaru
+  
+- **Błąd obserwatora**: Oczekiwania badacza wpływające na zbieranie danych
+  - **Przykład**: Nieświadome rejestrowanie danych w sposób potwierdzający hipotezę
+  
+- **Błąd pożądanej społecznie odpowiedzi**: Uczestnicy udzielający społecznie akceptowanych odpowiedzi
+  - **Przykład**: Zaniżanie zgłaszanego spożycia śmieciowego jedzenia w badaniach żywieniowych
 
-### Błędy Pomiaru
+### Błędy wnioskowania
 
-**Losowe Błędy Pomiaru**
+#### Błędy testowania hipotez
+- **Błąd typu I (Fałszywie pozytywny)**: Wnioskowanie o istnieniu efektu, gdy go nie ma
+  - **Przykład**: Twierdzenie, że nowy lek działa, gdy jego korzyści wynikają z przypadku
+  - **Kontekst**: Związany z poziomem istotności (α)
+  
+- **Błąd typu II (Fałszywie negatywny)**: Przeoczenie efektu, który faktycznie istnieje
+  - **Przykład**: Wnioskowanie, że nowy lek nie działa, gdy faktycznie pomaga pacjentom
+  - **Kontekst**: Związany z mocą statystyczną (1-β)
+  
+- **Błąd typu III**: Rozwiązywanie niewłaściwego problemu
+  - **Definicja**: Zadawanie niewłaściwego pytania lub skupianie się na nieistotnej hipotezie
+  - **Przykład**: Badanie, czy strategia marketingowa zwiększa ruch na stronie internetowej, gdy prawdziwym problemem jest to, czy zwiększa sprzedaż
 
--   Nieprzewidywalne wahania w pomiarach spowodowane "szumem."
-    -   *Przykład*: Drżąca ręka przy pomiarze ciśnienia krwi daje nieco różne wyniki za każdym razem.
--   Te błędy zazwyczaj równoważą się przy wielokrotnych pomiarach.
+#### Problemy z mocą statystyczną
+- **Badania z niewystarczającą mocą**: Niewystarczająca wielkość próby do wykrycia prawdziwych efektów
+  - **Przykład**: Testowanie programu odchudzania z zaledwie 5 uczestnikami
+  - **Zapobieganie**: Przeprowadzanie odpowiedniej analizy mocy przed zbieraniem danych
 
-**Systematyczne Błędy Pomiaru**
+### Błędy specyfikacji modelu
 
--   **Błędy kalibracji**: Stałe niedokładności w narzędziach pomiarowych.
-    -   *Przykład*: Waga, która zawsze dodaje 2 funty do każdego pomiaru.
--   **Błąd obserwatora**: Oczekiwania badacza wpływają na zbieranie danych.
-    -   *Przykład*: Badacz nieświadomie zapisuje dane w sposób, który potwierdza jego hipotezę.
--   **Błąd związany z pożądaną odpowiedzią społeczną**: Uczestnicy odpowiadają w sposób, który uważają za społecznie akceptowalny.
-    -   *Przykład*: Zaniżanie ilości spożywanego fast foodu w badaniu dotyczącym odżywiania.
+#### Błędy wyboru zmiennych
+- **Błąd pominiętej zmiennej**: Wykluczenie ważnych wpływowych zmiennych
+  - **Przykład**: Badanie ćwiczeń i utraty wagi bez uwzględnienia diety
+  
+- **Czynniki zakłócające**: Czynniki zewnętrzne wpływające zarówno na predyktor, jak i na wynik
+  - **Przykład**: Osoby, które ćwiczą, również jedzą zdrowiej, co wpływa na wyniki utraty wagi
+  - **Rozwiązanie**: Randomizacja, stratyfikacja lub techniki kontroli statystycznej
 
-------------------------------------------------------------------------
+#### Błędy założeń
+- **Definicja**: Stosowanie testów statystycznych, które nie są zgodne z charakterystyką danych
+- **Przykład**: Zakładanie rozkładu normalnego, gdy dane są silnie skośne
+- **Zapobieganie**: Weryfikacja założeń poprzez testy diagnostyczne przed analizą
 
-### Błędy Wnioskowania
+### Błędy przetwarzania i analizy danych
 
-**Błędy Testowania Hipotez**
+#### Błędy obsługi danych
+- **Błędy wprowadzania danych**: Pomyłki podczas rejestrowania
+  - **Przykład**: Wpisanie "1050" zamiast "150" dla wagi
+  - **Zapobieganie**: Podwójne wprowadzanie, kontrole zakresu, procedury walidacji
+  
+- **Problemy z brakującymi danymi**: Niewłaściwe postępowanie z niekompletnymi danymi
+  - **Przykład**: Obliczanie średnich wyników testów przy ignorowaniu nieobecnych uczniów
+  - **Rozwiązania**: Metody imputacji, analizy wrażliwości
 
--   **Błąd I rodzaju (Fałszywie Pozytywny)**: Wnioskowanie, że efekt istnieje, gdy w rzeczywistości go nie ma.
-    -   *Przykład*: Twierdzenie, że nowy lek jest skuteczny, gdy jego korzyści wynikają z przypadku.
--   **Błąd II rodzaju (Fałszywie Negatywny)**: Nie wykrycie efektu, który faktycznie istnieje.
-    -   *Przykład*: Wnioskowanie, że nowy lek jest nieskuteczny, podczas gdy rzeczywiście pomaga pacjentom.
--   **Błąd III rodzaju**: Rozwiązywanie niewłaściwego problemu lub odpowiadanie na niewłaściwe pytanie.
-    -   *Wyjaśnienie*: Występuje, gdy badacze skupiają się na pytaniu lub hipotezie, która jest nieistotna lub niezgodna z rzeczywistym problemem. Nie chodzi o błąd w analizie statystycznej, ale o postawienie niewłaściwego pytania.
-    -   *Przykład*: Firma bada, czy nowa strategia marketingowa zwiększa ruch na stronie internetowej (niewłaściwe pytanie), podczas gdy prawdziwym problemem jest to, czy zwiększa sprzedaż (właściwe pytanie).
-    -   *Inny przykład*: Badacz analizuje, czy metoda nauczania poprawia wyniki testów (niewłaściwe pytanie), podczas gdy celem jest poprawa długoterminowego zrozumienia materiału (właściwe pytanie).
+#### Błędy wykonania analizy
+- **Błędy oprogramowania lub użytkownika**: Pomyłki w korzystaniu z oprogramowania statystycznego
+  - **Przykład**: Wybór niewłaściwego testu w oprogramowaniu analitycznym
+  - **Zapobieganie**: Przegląd kodu, odtwarzalne przepływy pracy, dokumentacja
 
-**Problemy Związane z Mocą Statystyczną**
+### Błędy interpretacji i raportowania
 
--   **Badania o zbyt małej mocy**: Zbyt mała liczebność próby, aby wykryć prawdziwe efekty.
-    -   *Przykład*: Testowanie programu odchudzającego na zaledwie 5 osobach.
+#### Błędy wnioskowania przyczynowego
+- **Błąd korelacji-przyczynowości**: Mylenie korelacji z przyczynowością
+  - **Przykład**: Wnioskowanie, że konsumpcja czekolady powoduje Nagrody Nobla, ponieważ są skorelowane
+  - **Zapobieganie**: Zrozumienie ograniczeń projektu badawczego, właściwe formułowanie wyników
 
-------------------------------------------------------------------------
+#### Błędy raportowania i komunikacji
+- **p-hacking**: Przeprowadzanie wielu analiz, aż do znalezienia istotności
+  - **Przykład**: Analizowanie danych na 20 różnych sposobów i raportowanie tylko istotnych wyników
+  - **Zapobieganie**: Wstępna rejestracja, korekta dla wielokrotnych porównań
+  
+- **Wybieranie wisienek** (cherry-picking): Selektywne raportowanie wyników potwierdzających
+  - **Przykład**: Firma produkująca tabletki odchudzające publikująca tylko udane badania
+  - **Zapobieganie**: Kompleksowe raportowanie, zarejestrowane raporty
 
-### Błędy Specyfikacji Modelu
+## Strategie minimalizacji błędów statystycznych
 
-**Błędy Wyboru Zmiennych**
+1. **Właściwy projekt badawczy**: Staranne planowanie przed zbieraniem danych
+   - Stosowanie odpowiednich metod próbkowania
+   - Randomizacja gdy to możliwe
+   - Kontrola zmiennych zakłócających
 
--   **Błąd pominięcia zmiennej**: Pominięcie ważnych zmiennych wpływających na wyniki.
-    -   *Przykład*: Badanie wpływu ćwiczeń na utratę wagi bez uwzględnienia diety.
--   **Zmienne zakłócające**: Czynniki zewnętrzne wpływające zarówno na zmienną niezależną, jak i zależną.
-    -   *Przykład*: Osoby ćwiczące mogą również zdrowiej się odżywiać, co wpływa na wyniki utraty wagi.
+2. **Odpowiednia wielkość próby**: Oparta na obliczeniach mocy
+   - Rozważenie praktycznej istotności, nie tylko istotności statystycznej
+   - Uwzględnienie potencjalnych rezygnacji lub brakujących danych
 
-**Błędy Założeń**
+3. **Wstępna rejestracja**: Deklaracja planów analizy przed badaniem danych
+   - Określenie głównych wyników i metod
+   - Dokumentowanie wszelkich odstępstw od planu
 
--   Używanie testów statystycznych, które nie pasują do charakterystyki danych.
-    -   *Przykład*: Zakładanie rozkładu normalnego, gdy dane są skośne.
+4. **Przejrzystość**: Otwarte udostępnianie danych i metod
+   - Zapewnienie dostępu do surowych danych, gdy to możliwe
+   - Jasne dokumentowanie decyzji analitycznych
 
-------------------------------------------------------------------------
+5. **Replikacja**: Zachęcanie do niezależnej weryfikacji
+   - Przeprowadzanie wewnętrznych replikacji
+   - Wspieranie zewnętrznych wysiłków replikacyjnych
+   - Wartościowanie odtwarzalności tak samo jak nowości
 
-### Błędy Przetwarzania i Analizy Danych
+6. **Ciągła edukacja**: Aktualizacja najlepszych praktyk
+   - Przestrzeganie wytycznych specyficznych dla dziedziny
+   - Zaangażowanie w innowacje metodologiczne
 
-**Błędy w Przetwarzaniu Danych**
-
--   **Błędy wprowadzania danych**: Pomyłki podczas zapisywania informacji.
-    -   *Przykład*: Wpisanie "1050" zamiast "150" jako wagi uczestnika.
--   **Problemy z brakującymi danymi**: Nieuwzględnianie niekompletnych danych.
-    -   *Przykład*: Obliczanie średniej ocen bez uwzględnienia nieobecnych studentów.
-
-**Błędy Wykonania Analizy**
-
--   **Błędy w oprogramowaniu lub użytkownika**: Pomyłki w korzystaniu z programów statystycznych.
-    -   *Przykład*: Wybranie niewłaściwego testu statystycznego w programie do analizy danych.
-
-------------------------------------------------------------------------
-
-### Błędy Interpretacji i Raportowania
-
-**Błędy Wnioskowania Przyczynowego**
-
--   **Błąd korelacji i przyczynowości**: Przyjmowanie związku przyczynowego na podstawie korelacji.
-    -   *Przykład*: Wnioskowanie, że spożycie czekolady powoduje zdobywanie Nagród Nobla, ponieważ oba zjawiska są skorelowane.
-
-**Błędy Raportowania i Komunikacji**
-
--   **p-hacking**: Przeprowadzanie wielu analiz, aż do uzyskania znaczącego wyniku.
-    -   *Przykład*: Analizowanie danych na 20 sposobów i raportowanie tylko tego, który dał pożądany wynik.
--   **Selekcjonowanie wyników**: Wybiórcze raportowanie wyników wspierających hipotezę.
-    -   *Przykład*: Firma produkująca tabletki odchudzające publikuje tylko te badania, w których jej produkt działał.
-
-------------------------------------------------------------------------
-
-### Strategie Zapobiegania Błędom
-
-Aby zminimalizować błędy statystyczne:
-
--   **Właściwe planowanie badań**: Dokładne zaplanowanie badania przed zbieraniem danych.
--   **Odpowiednia liczebność próby**: Zapewnienie wystarczającej liczby uczestników na podstawie obliczeń mocy statystycznej.
--   **Przedrejestracja**: Zadeklarowanie planów analizy przed zapoznaniem się z danymi.
--   **Przejrzystość**: Udostępnianie danych i metod analizy.
--   **Replikacja**: Zachęcanie do niezależnego powtarzania badań.
-
-Zrozumienie i eliminowanie tych błędów zapewnia wiarygodność wyników badań, zapobiegając błędnym decyzjom w dziedzinach takich jak medycyna, polityka publiczna, edukacja i biznes.
+Zrozumienie i rozwiązywanie tych błędów zapewnia wiarygodność wyników badań, zapobiegając podejmowaniu złych decyzji w takich dziedzinach jak medycyna, polityka publiczna, edukacja i biznes.
 :::
 
 ::: callout-note
