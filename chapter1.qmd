@@ -334,41 +334,43 @@ An **estimate** is the specific numerical value obtained when an estimator **$\h
 
 ---
 
+
 ### What Makes a Good Estimator?  
 
-A good estimator **$\hat{\theta}$** should have the following properties:  
+When we use data to estimate something—like the average height of students in a school—we want our estimate to be as **accurate and reliable** as possible. A **good estimator** should have these four key properties:  
 
 #### 1️⃣ Unbiasedness: No Systematic Error  
-A good estimator should, on average, be correct. This means that if we take many different samples and compute their estimates, the average of these estimates should be equal to the true population value **$\theta$**.  
+A good estimator should, on average, get the right answer! If we take many different samples and compute their estimates, the **average of all these estimates** should be equal to the true value we’re trying to estimate (**$\theta$**).  
 
-An estimator **$\hat{\theta}$** is **unbiased** if:  
+Mathematically, this means:  
 $$
 E(\hat{\theta}) = \theta
 $$  
+Here, **$E(\hat{\theta})$** (called the **expectation operator**) represents the **average value of $\hat{\theta}$ over many samples**. In simple terms, if we repeated our study over and over, the long-run average of our estimates should be the true value **$\theta$**. This ensures our estimator isn’t **systematically too high or too low**—it doesn’t have built-in bias.  
 
-#### 2️⃣ Efficiency: The Least Variability  
-An efficient estimator has **the smallest possible variance**, meaning it gives results that are more tightly clustered around the true value **$\theta$**.  
+#### 2️⃣ Efficiency: As Little Variability as Possible  
+Even if an estimator is unbiased, it can still be **all over the place**. A **good** estimator is one that has the least variability—it tends to give values **close together** rather than being spread out. The less it jumps around, the more **trustworthy** it is.  
 
-#### 3️⃣ Consistency: Gets Closer to the True Value with More Data  
-As the sample size increases, a **consistent estimator** gets closer to **$\theta$**.  
+#### 3️⃣ Consistency: More Data = Better Accuracy  
+A **consistent estimator** gets closer to the true value **as we collect more data**. If we take a tiny sample, our estimate might be way off, but if we collect **more and more data**, our estimate should settle down near the true value **$\theta$**.  
 
 #### 4️⃣ Sufficiency: Uses All the Information in the Data  
-A **sufficient estimator** extracts all the relevant information from the sample.  
+A **sufficient estimator** makes the best possible use of the data. It doesn’t **waste information** or leave anything important out. If we have all the numbers from our sample, a sufficient estimator ensures we’re squeezing out every useful bit of insight.  
 
 ---
 
-### Why Do Estimates Vary? (Distribution of Sample Statistics)  
+### Why Do Estimates Vary? (The Sampling Distribution)  
 
-Since different samples give different estimates, we study the **distribution of an estimator** (called a **sampling distribution**) to understand how much it varies.  
+If we take different samples from a population, we’ll get different estimates. To understand this variation, we look at something called the **sampling distribution**—which tells us how our estimates behave across many samples.  
 
-#### Key Ideas About Sample Distributions  
-1. **Sample estimates vary**—Different samples give different estimates.  
-2. **The variation follows a pattern**—The **sampling distribution** describes how estimates behave.  
-3. **Larger samples reduce variation**—Bigger samples give more stable estimates.  
-4. **Sampling distributions allow us to quantify uncertainty**—This is why confidence intervals and hypothesis tests work.  
+#### Key Ideas About Sampling Distributions  
+1. **Every sample gives a different estimate**—If two people take separate surveys, they’ll probably get slightly different results.  
+2. **These differences follow a pattern**—The **sampling distribution** describes how estimates are spread out.  
+3. **Bigger samples give more stable estimates**—Larger samples tend to produce estimates that are closer to the true value.  
+4. **Understanding sampling distributions helps us measure uncertainty**—That’s why we use them for confidence intervals and hypothesis tests.  
 
-#### Example: Sample Mean  
-If we take many samples and compute their means, they will form a **sampling distribution** centered around **$\theta = \mu$**.  
+#### Example: The Sample Mean  
+Imagine we take many samples from a population and calculate the **average** each time. These sample means will form a **sampling distribution**, centered around the true population mean **$\mu$**.  
 
 Mathematically, the sample mean is:  
 $$
@@ -376,8 +378,9 @@ $$
 $$  
 where **$x_1, x_2, ..., x_n$** are the sample values.  
 
----
+This tells us that if we keep taking samples, the **average of our sample means** will be close to the real population mean **$\mu$**.  
 
+---
 
 
 
@@ -553,6 +556,7 @@ Think of the null hypothesis as the "default" or "innocent until proven guilty" 
 ### Intuition Behind Hypothesis Testing
 
 Think of hypothesis testing like a court trial:
+
 - **Null Hypothesis (H₀)**: The defendant is innocent.
 - **Alternative Hypothesis (H₁)**: The defendant is guilty.
 - **Data**: The evidence presented in court.
@@ -633,6 +637,7 @@ y = \beta_0 + \beta_1x + \epsilon, \quad \text{where} \quad \epsilon \sim N(0, \
 $$
 
 In this model:
+
 - $\beta_0$ (intercept) and $\beta_1$ (slope) are parameters to be estimated.
 - $\epsilon$ represents the random error term, capturing variability not explained by the model.
 - The error term is assumed to follow a normal distribution with a mean of 0 and variance $\sigma^2$.
@@ -676,10 +681,11 @@ The fundamental problem of causal inference is the impossibility of observing **
 ![The fundamental problem of causal inference: We can think of causal inference as a PREDICTION problem. How can we predict the counterfactual given that we never observe it?](stat_imgs/meme_horse.svg)
 
 Example:
+
 - We observe a person who completed college and earns $8,000 per month
 - We cannot observe how much the same person would earn if they had not completed college
 
-Causal methods attempt to solve this problem through:
+Causal methods attempt to solve this problem through, e.g.:
 
 1. Randomized experiments
 2. Instrumental variables
@@ -695,6 +701,151 @@ Common problems in causal inference:
 
 
 ---
+
+## Understanding Statistical Error
+
+When using a sample to infer information about a population, statistical errors inevitably arise:
+
+> **Statistical error** is the difference between a sample estimate and the true population value.
+
+These errors can affect research validity and reliability. Understanding them is crucial for designing robust studies, analyzing data accurately, and drawing valid conclusions.
+
+## Types of Statistical Errors
+
+### Sampling Errors
+
+#### Random Sampling Errors
+- **Definition**: Natural variability in sample estimates due to random selection.
+- **Example**: The average height of 30 randomly selected university students fluctuates across different samples.
+- **Properties**:
+  - Unavoidable but manageable
+  - Decrease with larger sample sizes
+  - Quantified using the margin of error
+  - Follow predictable statistical patterns
+
+#### Systematic Sampling Errors (Bias)
+- **Selection bias**: Sample does not represent the target population.
+  - *Example*: A phone survey reaches only landline users, excluding cell phone users.
+- **Undercoverage**: Systematic exclusion of groups.
+  - *Example*: A campus survey conducted during daytime misses evening students.
+- **Self-selection bias**: Results skewed by participant choice.
+  - *Example*: Customer satisfaction surveys filled out mainly by those with strong opinions.
+- **Non-response bias**: Certain groups are less likely to respond.
+  - *Example*: Busy individuals skipping surveys, leading to overrepresentation of those with more free time.
+
+### Measurement Errors
+
+#### Random Measurement Errors
+- **Definition**: Unpredictable fluctuations in measurements due to chance variability.
+- **Examples**:
+  - Slight variations in blood pressure readings due to a shaky hand.
+  - Small environmental fluctuations affecting instrument readings.
+  - Minor inconsistencies in repeated measurements.
+- **Key Property**: These errors tend to cancel out over multiple measurements.
+
+#### Systematic Measurement Errors
+- **Calibration errors**: Measurement tools consistently producing incorrect values.
+  - *Example*: A scale that always adds 2 pounds.
+- **Observer bias**: Researcher expectations subtly influencing data collection.
+  - *Example*: Unintentionally recording data that supports a hypothesis.
+- **Social desirability bias**: Participants altering responses to appear favorable.
+  - *Example*: Underreporting junk food intake in nutrition studies.
+
+### Inference Errors
+
+#### Hypothesis Testing Errors
+- **Type I error (False Positive)**: Incorrectly concluding an effect exists.
+  - *Example*: Claiming a new drug is effective when its benefits are due to chance.
+  - *Context*: Linked to significance level (α).
+- **Type II error (False Negative)**: Failing to detect a real effect.
+  - *Example*: Concluding a drug is ineffective when it actually helps patients.
+  - *Context*: Related to statistical power (1-β).
+- **Type III error**: Addressing the wrong research question.
+  - *Example*: Studying whether a marketing strategy increases website traffic instead of sales.
+
+#### Statistical Power Issues
+- **Underpowered studies**: Sample size too small to detect real effects.
+  - *Example*: Evaluating a weight loss program with only five participants.
+  - *Prevention*: Conducting power analyses before data collection.
+
+### Model Specification Errors
+
+#### Variable Selection Errors
+- **Omitted variable bias**: Important variables are excluded.
+  - *Example*: Studying exercise and weight loss without considering diet.
+- **Confounding**: External factors influence both predictor and outcome.
+  - *Example*: Health-conscious individuals exercise and eat well, affecting weight loss results.
+  - *Solution*: Use randomization, stratification, or statistical controls.
+
+#### Assumption Violations
+- **Definition**: Using statistical tests that do not fit the data characteristics.
+- **Example**: Assuming normal distribution for highly skewed data.
+- **Prevention**: Conduct diagnostic tests before analysis.
+
+### Data Processing and Analysis Errors
+
+#### Data Handling Errors
+- **Data entry errors**: Mistakes in recording information.
+  - *Example*: Entering "1050" instead of "150" for weight.
+  - *Prevention*: Double-entry verification, range checks.
+- **Missing data issues**: Improper handling of incomplete datasets.
+  - *Example*: Ignoring absent students when calculating test score averages.
+  - *Solution*: Use imputation methods, conduct sensitivity analyses.
+
+#### Analysis Execution Errors
+- **Software or user errors**: Misuse of statistical software.
+  - *Example*: Applying the wrong statistical test.
+  - *Prevention*: Code review, reproducible workflows, thorough documentation.
+
+### Interpretation and Reporting Errors
+
+#### Causal Inference Errors
+- **Correlation ≠ Causation**: Mistaking association for causation.
+  - *Example*: Assuming chocolate consumption causes Nobel Prizes because they correlate.
+  - *Prevention*: Use proper research designs and causal inference methods.
+
+#### Reporting and Communication Errors
+- **p-hacking**: Conducting multiple analyses until finding significant results.
+  - *Example*: Running 20 tests and reporting only the one significant outcome.
+  - *Prevention*: Pre-registration, correcting for multiple comparisons.
+- **Cherry-picking**: Selectively reporting favorable results.
+  - *Example*: A diet pill company publishing only successful studies.
+  - *Prevention*: Comprehensive reporting, registered reports.
+
+## Strategies to Minimize Statistical Errors
+
+1. **Robust study design**
+   - Use proper sampling techniques.
+   - Randomize when possible.
+   - Control for confounders.
+
+2. **Sufficient sample size**
+   - Base on power calculations.
+   - Consider practical significance, not just statistical significance.
+   - Account for potential dropouts or missing data.
+
+3. **Pre-registration**
+   - Define analysis plans before examining data.
+   - Specify primary outcomes and methods.
+   - Document any deviations from the plan.
+
+4. **Transparency**
+   - Share data and methods openly.
+   - Provide access to raw data when possible.
+   - Clearly document analytical decisions.
+
+5. **Replication**
+   - Encourage independent verification.
+   - Conduct internal replications.
+   - Support external replication efforts.
+
+6. **Ongoing education**
+   - Stay informed on best practices.
+   - Follow field-specific guidelines.
+   - Engage with methodological advancements.
+
+By understanding and mitigating statistical errors, researchers can ensure their findings are reliable, reducing the risk of flawed conclusions in fields like medicine, policy, education, and business.
+
 
 
 ## Appendices: Additional Topics in Statistics and Data Science (*)
@@ -1354,159 +1505,6 @@ The best way to learn R is through practice. Start with small, manageable projec
 
 ## Appendix H: Supplementary Content (*)
 
-::: {.callout-important}
-## Understanding Statistical Error
-
-When using a sample to learn about a population, we inevitably encounter statistical error:
-
-> **Statistical error** is the difference between our sample estimate and the true population value.
-
-Statistical errors can compromise the validity and reliability of research findings. Understanding these errors is crucial for designing robust studies, analyzing data accurately, and drawing appropriate conclusions.
-
-## Types of Statistical Errors
-
-### Sampling Errors
-
-#### Random Sampling Errors
-- **Definition**: Natural variability that occurs when taking random samples
-- **Example**: Average height measurements varying slightly across different random samples of 30 university students
-- **Properties**:
-  - Unavoidable but manageable
-  - Decrease as sample size increases
-  - Can be quantified using margin of error
-  - Follow predictable patterns based on sampling theory
-
-#### Non-Random (Systematic) Sampling Errors (Bias)
-- **Selection bias**: Sample doesn't represent the target population
-  - **Example**: Phone survey reaching only people with landlines, missing those who use only cell phones
-  
-- **Undercoverage**: Systematic exclusion of specific groups
-  - **Example**: Campus survey during daytime classes missing evening students
-  
-- **Self-selection bias**: Skewed results from participant choice
-  - **Example**: Customer satisfaction surveys completed primarily by those with strong opinions
-  
-- **Non-response bias**: Specific groups less likely to respond
-  - **Example**: Busy individuals not completing questionnaires, leading to overrepresentation of those with more free time
-
-### Measurement Errors
-
-#### Random Measurement Errors
-- **Definition**: Unpredictable fluctuations in measurements due to random variability (often called "noise")
-- **Explanation**: Similar to the error term (ε) in regression models, these are the unexplained variations that occur by chance
-- **Examples**: 
-  - Slightly different blood pressure readings due to a shaky hand
-  - Small fluctuations in instrument readings due to environmental factors
-  - Minor variations when the same person takes repeated measurements
-- **Key characteristic**: Tend to cancel out with repeated measurements (positive errors balance negative errors)
-
-#### Systematic Measurement Errors
-- **Calibration errors**: Consistent inaccuracies in measurement tools
-  - **Example**: Scale consistently adding 2 pounds to every measurement
-  
-- **Observer bias**: Researcher expectations influencing data collection
-  - **Example**: Unconsciously recording data in ways that support a hypothesis
-  
-- **Social desirability bias**: Participants giving socially acceptable responses
-  - **Example**: Underreporting junk food consumption in nutrition studies
-
-### Inference Errors
-
-#### Hypothesis Testing Errors
-- **Type I error (False Positive)**: Concluding an effect exists when it doesn't
-  - **Example**: Claiming a new drug works when its benefits are due to chance
-  - **Context**: Related to significance level (α)
-  
-- **Type II error (False Negative)**: Missing an effect that actually exists
-  - **Example**: Concluding a new drug doesn't work when it actually helps patients
-  - **Context**: Related to statistical power (1-β)
-  
-- **Type III error**: Solving the wrong problem altogether
-  - **Definition**: Asking the wrong question or focusing on an irrelevant hypothesis
-  - **Example**: Studying whether a marketing strategy increases website traffic when the real issue is whether it increases sales
-
-#### Statistical Power Issues
-- **Underpowered studies**: Insufficient sample size to detect true effects
-  - **Example**: Testing a weight loss program with only 5 participants
-  - **Prevention**: Conducting proper power analysis before data collection
-
-### Model Specification Errors
-
-#### Variable Selection Errors
-- **Omitted variable bias**: Excluding important influential variables
-  - **Example**: Studying exercise and weight loss without accounting for diet
-  
-- **Confounding**: External factors influencing both predictor and outcome
-  - **Example**: People who exercise also eating healthier, affecting weight loss results
-  - **Solution**: Randomization, stratification, or statistical control techniques
-
-#### Assumption Errors
-- **Definition**: Using statistical tests that don't align with data characteristics
-- **Example**: Assuming normal distribution when data is heavily skewed
-- **Prevention**: Verifying assumptions through diagnostic tests before analysis
-
-### Data Processing and Analysis Errors
-
-#### Data Handling Errors
-- **Data entry errors**: Mistakes during recording
-  - **Example**: Typing "1050" instead of "150" for weight
-  - **Prevention**: Double entry, range checks, validation procedures
-  
-- **Missing data problems**: Improper handling of incomplete data
-  - **Example**: Calculating average test scores while ignoring absent students
-  - **Solutions**: Imputation methods, sensitivity analyses
-
-#### Analysis Execution Errors
-- **Software bugs or user errors**: Mistakes in using statistical software
-  - **Example**: Selecting the wrong test in analysis software
-  - **Prevention**: Code review, reproducible workflows, documentation
-
-### Interpretation and Reporting Errors
-
-#### Causal Inference Errors
-- **Correlation-causation fallacy**: Mistaking correlation for causation
-  - **Example**: Concluding chocolate consumption causes Nobel Prizes because they correlate
-  - **Prevention**: Understanding research design limitations, proper framing of results
-
-#### Reporting and Communication Errors
-- **p-hacking**: Running multiple analyses until finding significance
-  - **Example**: Analyzing data in 20 different ways and reporting only significant outcomes
-  - **Prevention**: Pre-registration, correction for multiple comparisons
-  
-- **Cherry-picking**: Selectively reporting supportive results
-  - **Example**: Diet pill company publishing only successful studies
-  - **Prevention**: Comprehensive reporting, registered reports
-
-## Strategies to Minimize Statistical Errors
-
-1. **Proper research design**: Careful planning before data collection
-   - Use appropriate sampling methods
-   - Randomize when possible
-   - Control for confounding variables
-
-2. **Adequate sample size**: Base on power calculations
-   - Consider practical significance, not just statistical significance
-   - Account for potential dropouts or missing data
-
-3. **Pre-registration**: Declare analysis plans before examining data
-   - Specify primary outcomes and methods
-   - Document any deviations from the plan
-
-4. **Transparency**: Share data and methods openly
-   - Provide access to raw data when possible
-   - Clearly document analytical decisions
-
-5. **Replication**: Encourage independent verification
-   - Conduct internal replications
-   - Support external replication efforts
-   - Value reproducibility as much as novelty
-
-6. **Continuous education**: Stay updated on best practices
-   - Follow field-specific guidelines
-   - Engage with methodological innovations
-
-Understanding and addressing these errors ensures research findings are trustworthy, preventing poor decisions across fields like medicine, public policy, education, and business.
-:::
 
 ::: {.callout-note}
 ## Optional: Proof that the sample mean is an unbiased estimator
