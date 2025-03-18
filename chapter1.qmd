@@ -34,6 +34,83 @@ Rather than viewing statistics and data science as separate disciplines, it's mo
 
 1. **Data**: Information collected during research – this includes survey responses, experimental results, economic indicators, social media content, or any other measurable observations.
 
+::: callout-warning
+## Understanding Different Types of Data Sets and Their Formats
+
+### Cross-sectional Data
+
+Observations collected at a single point in time across multiple entities/individuals:
+
+| Individual | Age | Income | Education  |
+|------------|-----|--------|------------|
+| 1          | 25  | 50000  | Bachelor's |
+| 2          | 35  | 75000  | Master's   |
+| 3          | 45  | 90000  | PhD        |
+
+### Time Series Data
+
+Observations of a single entity tracked over multiple time points:
+
+| Year | GDP (in billions) | Unemployment Rate |
+|------|-------------------|-------------------|
+| 2018 | 20,580            | 3.9%              |
+| 2019 | 21,433            | 3.7%              |
+| 2020 | 20,933            | 8.1%              |
+
+### Panel Data (Longitudinal Data)
+
+Observations of multiple entities tracked over time:
+
+| Country | Year | GDP per capita | Life Expectancy |
+|---------|------|----------------|-----------------|
+| USA     | 2018 | 62,794         | 78.7            |
+| USA     | 2019 | 65,118         | 78.8            |
+| Canada  | 2018 | 46,194         | 81.9            |
+| Canada  | 2019 | 46,194         | 82.0            |
+
+### Time-series Cross-sectional (TSCS) Data
+
+A special case of panel data where:
+
+-   Number of time points \> Number of entities
+-   Similar structure to panel data but with emphasis on temporal depth
+-   Common in political science and economics research
+
+### Data Formats
+
+#### Wide Format
+
+Each row represents an entity; columns represent variables/time points:
+
+| Country | GDP_2018 | GDP_2019 | LE_2018 | LE_2019 |
+|---------|----------|----------|---------|---------|
+| USA     | 62,794   | 65,118   | 78.7    | 78.8    |
+| Canada  | 46,194   | 46,194   | 81.9    | 82.0    |
+
+#### Long Format
+
+Each row represents a unique entity-time-variable combination:
+
+| Country | Year | Variable        | Value  |
+|---------|------|-----------------|--------|
+| USA     | 2018 | GDP per capita  | 62,794 |
+| USA     | 2019 | GDP per capita  | 65,118 |
+| USA     | 2018 | Life Expectancy | 78.7   |
+| USA     | 2019 | Life Expectancy | 78.8   |
+| Canada  | 2018 | GDP per capita  | 46,194 |
+| Canada  | 2019 | GDP per capita  | 46,194 |
+| Canada  | 2018 | Life Expectancy | 81.9   |
+| Canada  | 2019 | Life Expectancy | 82.0   |
+
+**Note:** Long format is generally preferred for:
+
+-   Data manipulation in R and Python
+-   Statistical analysis
+-   Data visualization
+-   Mixed-effects modeling
+-   Repeated measures analyses
+:::
+
 2. **Population**: The complete set of units (individuals, institutions, events) that the research concerns – the entire group about which the researcher wants to draw conclusions.
    - *Example*: In a study of voting preferences, the population consists of all citizens eligible to vote in a given country.
 
@@ -178,84 +255,130 @@ Since studying an entire population is often impractical, we rely on samples to 
 
 ---
 
-### **Statistical Estimation Concepts**
+## Statistical Estimation Concepts  
 
-#### **Estimand**
-An **estimand** is the specific population parameter (or function of parameters) that we aim to estimate. It represents the unknown value in the population that we want to determine.  
+### Population Parameters vs. Sample Statistics  
 
-> **Key Distinction**  
-> The estimand is the unknown population parameter (e.g., $\mu$, $\sigma^2$, $p$), while the estimator is the method used to calculate the estimate.
+In statistics, we often want to learn about an entire **population**, but we usually can’t measure everyone. Instead, we take a **sample** and compute values from it. These sample-based values help us estimate **population parameters**.  
 
----
+::: {.callout-tip}
+**Key Difference:**  
+- A **population parameter** (denoted by **$\theta$**) is a fixed but unknown value that describes the entire population.  
+- A **sample statistic** (denoted by **$\hat{\theta}$** when used for estimation) is calculated from sample data and used to estimate the population parameter.  
+:::
 
-#### **Estimator (Statistic)**
-An **estimator** is a mathematical function or procedure used to estimate a population parameter based on sample data. It is a random variable because its value depends on the specific sample.  
+#### Examples of Population Parameters and Sample Statistics  
 
-A **statistic** is any measure calculated from sample data. When used to estimate a population parameter, it is called an estimator.
+| **Concept**        | **Population Parameter (Unknown, Fixed)** | **Sample Statistic (Computed from Sample Data)** |
+|--------------------|--------------------------------|---------------------------------|
+| Mean (average)    | **$\theta = \mu$** (true population mean) | **$\hat{\theta} = \bar{x}$** (sample mean) |
+| Variance          | **$\theta = \sigma^2$** (true population variance) | **$\hat{\theta} = s^2$** (sample variance) |
+| Proportion        | **$\theta = p$** (true proportion) | **$\hat{\theta} = \hat{p}$** (sample proportion) |
 
-##### **Examples of Estimators**
-- **Sample Mean**: $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ (estimator of $\mu$).  
-- **Sample Variance**: $s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$ (estimator of $\sigma^2$).  
-- **Sample Proportion**: $\hat{p} = \frac{x}{n}$ (estimator of $p$).
-
-> **Note**  
-> An estimator is a **procedure** for calculating a value based on a sample. Applying the same estimator to different samples yields different estimates.
-
----
-
-#### **Estimate**
-An **estimate** is a specific numerical value obtained by applying an estimator to a sample. It is a realization of the random variable (the estimator).
-
-##### **Example**
-- **Estimand**: Average height of all adults in a country ($\mu$).  
-- **Estimator**: Sample mean formula ($\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$).  
-- **Estimate**: 173.5 cm (specific value from a sample).
+Since we **cannot observe** $\theta$ directly, we use a **sample statistic** (like **$\hat{\theta}$**) to estimate it.  
 
 ---
 
-### **Properties of Good Estimators**
-A good estimator should have the following properties:  
-1. **Unbiasedness**: The expected value of the estimator equals the population parameter ($E(\hat{\theta}) = \theta$).  
-2. **Efficiency**: The estimator has the smallest possible variance among all unbiased estimators.  
-3. **Consistency**: As the sample size increases, the estimator converges to the true parameter value.  
-4. **Sufficiency**: The estimator uses all available information in the sample about the parameter.
+### What is an Estimand?  
+
+An **estimand** is the specific population parameter **$\theta$** that we aim to estimate. It represents the unknown quantity in the population that we are trying to determine.  
+
+::: {.callout-note}
+**Example:**  
+- If we want to know the **average height of all adults in a country**, the true population mean **($\theta = \mu$)** is the **estimand**.  
+- If we want to estimate the **proportion of voters supporting a candidate**, the true population proportion **($\theta = p$)** is the **estimand**.  
+:::
 
 ---
 
-### **Expected Value of an Estimator**
-The **expected value** of a random variable is the long-run average value it would take if the experiment were repeated infinitely. For an estimator, the expected value represents the average value of the statistic across repeated samples from the population.
+### What is an Estimator?  
 
-For a well-constructed estimator, the expected value equals the population parameter:  
+An **estimator** is a **rule, formula, or function** that we apply to a sample to estimate the population parameter **$\theta$**.  
+
+::: {.callout-tip}
+**Key Idea:**  
+- **An estimator is a procedure, not a specific number!**  
+- Since different samples give different results, an estimator is a **random variable**, meaning its value depends on the sample chosen.  
+:::
+
+#### Notation  
+- **$\theta$** = True population parameter (unknown)  
+- **$\hat{\theta}$** = Estimator (a function of sample data)  
+
+#### Common Estimators  
+- **Sample Mean (Estimator of $\mu$):**  
+  $$
+  \hat{\theta} = \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+  $$  
+
+- **Sample Variance (Estimator of $\sigma^2$):**  
+  $$
+  \hat{\theta} = s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2
+  $$  
+
+- **Sample Proportion (Estimator of $p$):**  
+  $$
+  \hat{\theta} = \hat{p} = \frac{x}{n}
+  $$  
+
+---
+
+### What is an Estimate?  
+
+An **estimate** is the specific numerical value obtained when an estimator **$\hat{\theta}$** is applied to a sample.  
+
+#### Example: Estimating the Average Height of Adults  
+- **Estimand**: The true population mean height **($\theta = \mu$)** (unknown).  
+- **Estimator**: The formula for the sample mean **$\hat{\theta} = \bar{x} = \frac{1}{n} \sum x_i$**.  
+- **Estimate**: A specific number, like **173.5 cm**, obtained from one sample.  
+
+---
+
+### What Makes a Good Estimator?  
+
+A good estimator **$\hat{\theta}$** should have the following properties:  
+
+#### 1️⃣ Unbiasedness: No Systematic Error  
+A good estimator should, on average, be correct. This means that if we take many different samples and compute their estimates, the average of these estimates should be equal to the true population value **$\theta$**.  
+
+An estimator **$\hat{\theta}$** is **unbiased** if:  
 $$
 E(\hat{\theta}) = \theta
 $$  
-Such an estimator is called **unbiased**.
 
-##### **Example: Unbiased vs. Biased Estimators**
-- The sample mean ($\bar{x}$) is an unbiased estimator of the population mean ($\mu$).  
-- The sample variance ($s^2$) requires a correction factor ($\frac{1}{n-1}$ instead of $\frac{1}{n}$) to be unbiased.
+#### 2️⃣ Efficiency: The Least Variability  
+An efficient estimator has **the smallest possible variance**, meaning it gives results that are more tightly clustered around the true value **$\theta$**.  
+
+#### 3️⃣ Consistency: Gets Closer to the True Value with More Data  
+As the sample size increases, a **consistent estimator** gets closer to **$\theta$**.  
+
+#### 4️⃣ Sufficiency: Uses All the Information in the Data  
+A **sufficient estimator** extracts all the relevant information from the sample.  
 
 ---
 
-### **Distribution of Sample Statistics**
-A **sample statistic** ($\hat{\theta}$) is a value calculated from sample data and used to estimate a population parameter ($\theta$).  
+### Why Do Estimates Vary? (Distribution of Sample Statistics)  
 
-The **distribution of a statistic** describes how its values vary when repeatedly drawing samples of the same size ($n$) from the same population. This concept is central to statistical inference.
+Since different samples give different estimates, we study the **distribution of an estimator** (called a **sampling distribution**) to understand how much it varies.  
 
-#### **Key Points About the Distribution of a Statistic**
-1. It shows how the statistic varies across different samples.  
-2. It helps quantify sampling error and uncertainty.  
-3. It enables probabilistic statements about the accuracy of estimates.  
-4. It forms the basis for statistical inference.
+#### Key Ideas About Sample Distributions  
+1. **Sample estimates vary**—Different samples give different estimates.  
+2. **The variation follows a pattern**—The **sampling distribution** describes how estimates behave.  
+3. **Larger samples reduce variation**—Bigger samples give more stable estimates.  
+4. **Sampling distributions allow us to quantify uncertainty**—This is why confidence intervals and hypothesis tests work.  
 
-#### **Example: Sample Mean**
-The sample mean ($\bar{x}$) is an estimator of the population mean ($\mu$). It is calculated as:  
+#### Example: Sample Mean  
+If we take many samples and compute their means, they will form a **sampling distribution** centered around **$\theta = \mu$**.  
+
+Mathematically, the sample mean is:  
 $$
-\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
+\hat{\theta} = \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
 $$  
-where $x_1, x_2, ..., x_n$ are observations in a random sample.
+where **$x_1, x_2, ..., x_n$** are the sample values.  
 
 ---
+
+
 
 
 ::: {.callout-note}
@@ -271,17 +394,25 @@ The bell curve is defined by two key numbers:
 
 ### Why Is It Important?
 The normal distribution is super useful because:
+
 1. **The 68-95-99.7 Rule**:
+
    - About 68% of the data falls within 1 standard deviation of the mean.
    - About 95% falls within 2 standard deviations.
    - About 99.7% falls within 3 standard deviations.
+
 2. **The Central Limit Theorem**:  
+
    Imagine you have some data that doesn’t look like a typical bell curve (e.g., it might be irregularly scattered). If you start taking many small samples from this data and calculate their averages each time, those averages will start to form a bell curve—even if the original data didn’t look like one!  
-   In other words:  
+
+In other words:
+
    - No matter how your data looks at first,  
    - If you take averages from many small groups of that data,  
-   - Those averages will create a bell curve when you collect enough of them.  
+   - Those averages will create a bell curve when you collect enough of them.
+   
    This is why the normal distribution is so important—even if something doesn’t seem "normal" at first glance, the averages of that thing often behave like a bell curve.
+
 3. **Statistical Tools**: Many statistical tests and methods rely on the normal distribution to make predictions and draw conclusions.
 
 ### Let’s See It in Action!
@@ -303,7 +434,7 @@ y <- dnorm(x, mean, sd)
 
 # Plot the normal curve
 ggplot(data.frame(x, y), aes(x, y)) +
-  geom_line(color = "blue", size = 1) +
+  geom_line(color = "blue", linewidth = 1) +
   labs(title = "The Normal Distribution (Bell Curve)",
        x = "Values",
        y = "Probability Density") +
@@ -344,7 +475,7 @@ Data is the foundation of statistical analysis. Understanding its types and char
 
 Statistical inference is the process of drawing conclusions about a population based on sample data. It encompasses two main areas:
 
-### 1. Estimation
+### Estimation
 
 Estimation is the process of using sample data to estimate unknown population parameters. We distinguish:
 
@@ -357,67 +488,126 @@ Example of a confidence interval: "The 95% confidence interval for the average h
 
 **Incorrect interpretation**: "There is a 95% chance that the true mean is in the interval (173 cm, 175 cm)" – this is incorrect because the population parameter is a fixed (though unknown) value, not a random variable.
 
-### 2. Hypothesis Testing
 
-Hypothesis testing is a formal procedure for verifying claims about population parameters.
 
-> **Example: Binomial test for a coin**
->
-> Imagine we want to check if a coin is fair.
->
-> 1. **Research question**: Is the coin fair (probability of heads = 0.5)?
->
-> 2. **Formulate hypotheses**:
->    - **Null hypothesis (H₀)**: p = 0.5 (the coin is fair)
->    - **Alternative hypothesis (H₁)**: p ≠ 0.5 (the coin is not fair)
->
-> 3. **Collect data**: We flip the coin 100 times and get 65 heads.
->
-> 4. **Analyze**: Is 65 heads out of 100 flips evidence against the hypothesis that the coin is fair?
->
-> 5. **Reasoning**:
->    - If the coin were fair (p = 0.5), the number of heads in 100 flips should follow a binomial distribution B(100, 0.5)
->    - For this distribution, we expect an average of 50 heads, with a standard deviation of √(100 × 0.5 × 0.5) = 5
->    - Getting 65 heads means a deviation of 3 standard deviations from the expected value
->    - The probability of getting 65 or more heads with a fair coin is very small (p < 0.01)
->
-> 6. **Conclusion**: Since the observed result is very unlikely under the assumption that the coin is fair, we reject the null hypothesis and conclude that the coin is most likely not fair.
+### Hypothesis Testing
 
-General hypothesis testing procedure:
+Hypothesis testing is a way to check if a claim about a group (or population) is likely true or not. It’s like being a detective: you gather evidence (data) and decide whether the evidence supports your claim.
 
-1. Formulate the null hypothesis (H₀) and alternative hypothesis (H₁)
-2. Choose a significance level α (usually 0.05)
-3. Collect data and calculate the appropriate test statistic
-4. Calculate the p-value (the probability of obtaining our data or more extreme results, assuming H₀ is true)
-5. Make a decision: if p < α, reject H₀ in favor of H₁
+---
 
-> **Note: Intuition behind hypothesis testing**
->
-> Hypothesis testing resembles a court procedure:
+### Example: Testing if a Coin is Fair
 
-> - H₀ corresponds to the principle of "innocent until proven guilty"
-> - Data constitutes "evidence" against H₀
-> - P-value determines how strong this evidence is
-> - If the evidence is strong enough (p < α), we "convict" H₀ (reject it)
-> - If the evidence is not strong enough, we do not reject H₀ (but we do not prove its truth)
+Let’s say you want to check if a coin is fair (i.e., has an equal chance of landing heads or tails).
 
-> **Important: Common errors in interpreting p-values and tests**
->
-> 1. P-value is **NOT** the probability that the null hypothesis is true
-> 2. P-value is **NOT** the probability of making an error when rejecting H₀
-> 3. Failing to reject H₀ does **NOT** mean proving it
-> 4. A very small p-value does **NOT** indicate a large practical effect (statistical significance ≠ practical significance)
-> 5. P-value depends on sample size - with very large samples, even small, practically insignificant differences can be statistically significant
->
-> **Definition of p-value**: The probability of observing a result at least as extreme as the one obtained, assuming the null hypothesis is true.
+#### Step 1: Ask the Research Question
+- **Question**: Is the coin fair? (Is the probability of heads = 0.5?)
+
+#### Step 2: Set Up Two Hypotheses
+- **Null Hypothesis (H₀)**: The coin is fair. (Probability of heads = 0.5)
+- **Alternative Hypothesis (H₁)**: The coin is not fair. (Probability of heads ≠ 0.5)
+
+Think of the null hypothesis as the "default" or "innocent until proven guilty" position. The alternative is what you’re trying to prove.
+
+#### Step 3: Collect Data
+- You flip the coin 100 times and get **65 heads**.
+
+#### Step 4: Analyze the Data
+- If the coin were fair, you’d expect around 50 heads in 100 flips.
+- The number of heads should follow a **binomial distribution** (a fancy term for the pattern of outcomes you’d expect from repeated coin flips).
+- The standard deviation (a measure of how much the results can vary) is 5.
+- Getting 65 heads is **3 standard deviations away** from the expected 50 heads. This is unusual!
+
+#### Step 5: Calculate the p-value
+- The **p-value** is the probability of getting 65 or more heads (or a result this extreme) if the coin were fair.
+- In this case, the p-value is very small (less than 0.01), meaning it’s very unlikely to happen by chance.
+
+#### Step 6: Make a Decision
+- If the p-value is small (usually less than 0.05), we **reject the null hypothesis**.
+- Here, the p-value is very small, so we conclude the coin is **not fair**.
+
+---
+
+### General Steps for Hypothesis Testing
+
+1. **Formulate Hypotheses**:
+   - Null Hypothesis (H₀): The default or "no effect" claim.
+   - Alternative Hypothesis (H₁): The claim you’re testing.
+
+2. **Choose a Significance Level (α)**:
+   - This is the threshold for deciding if the p-value is small enough to reject H₀. Common choices are 0.05 or 0.01.
+
+3. **Collect Data**:
+   - Gather evidence (e.g., flip a coin 100 times).
+
+4. **Calculate the Test Statistic and p-value**:
+   - The **test statistic** measures how far your data is from what H₀ predicts.
+   - The **p-value** tells you how likely it is to see your data (or something more extreme) if H₀ is true.
+
+5. **Make a Decision**:
+   - If p-value < α, reject H₀ and accept H₁.
+   - If p-value ≥ α, do not reject H₀ (but this doesn’t prove H₀ is true).
+
+---
+
+### Intuition Behind Hypothesis Testing
+
+Think of hypothesis testing like a court trial:
+- **Null Hypothesis (H₀)**: The defendant is innocent.
+- **Alternative Hypothesis (H₁)**: The defendant is guilty.
+- **Data**: The evidence presented in court.
+- **p-value**: How strong the evidence is against the defendant.
+- **Significance Level (α)**: The standard of proof needed to convict.
+
+If the evidence is strong enough (p-value < α), we reject H₀ (convict the defendant). If not, we don’t reject H₀ (but we don’t prove innocence either).
+
+---
+
+### Common Mistakes with p-values
+
+1. **The p-value is NOT the probability that H₀ is true**.
+   - It’s the probability of seeing your data (or something more extreme) **if H₀ were true**.
+
+2. **The p-value is NOT the chance of making a mistake**.
+   - It doesn’t tell you the probability of being wrong when rejecting H₀.
+
+3. **Failing to reject H₀ does NOT prove it’s true**.
+   - It just means there’s not enough evidence to reject it.
+
+4. **A small p-value does NOT mean the result is important**.
+   - It only means the result is statistically significant. The effect might still be tiny in real life.
+
+5. **p-values depend on sample size**.
+   - With very large samples, even small differences can look statistically significant.
+
+---
 
 ### Types of Errors in Hypothesis Testing
 
-- **Type I error (α)**: Rejecting a true null hypothesis ("convicting an innocent")
-  - The probability of this error is controlled by the significance level α
-- **Type II error (β)**: Failing to reject a false null hypothesis ("acquitting the guilty")
-  - The probability of avoiding this error (1-β) is called the power of the test
-  - Test power increases with sample size and effect size
+1. **Type I Error (False Positive)**:
+   - Rejecting H₀ when it’s actually true.
+   - Example: Convicting an innocent person.
+   - Probability of this error = α (the significance level).
+
+2. **Type II Error (False Negative)**:
+   - Failing to reject H₀ when it’s actually false.
+   - Example: Letting a guilty person go free.
+   - Probability of this error = β.
+
+3. **Power of the Test (1 - β)**:
+   - The probability of correctly rejecting H₀ when it’s false.
+   - Power increases with larger sample sizes and bigger effect sizes.
+
+---
+
+### Key Takeaways
+
+- Hypothesis testing helps you decide if your data supports a claim.
+- The p-value tells you how surprising your data is, assuming H₀ is true.
+- Always interpret p-values carefully and avoid common mistakes.
+- Remember: Statistical significance ≠ practical importance.
+
+---
   
   
 
@@ -477,7 +667,6 @@ In statistical modelling, there are two primary goals:
 >    - *Example*: A correlation between the number of pirates and global temperature (purely coincidental).
 
 ---
-
 
 
 ### Challenges of Causal Inference

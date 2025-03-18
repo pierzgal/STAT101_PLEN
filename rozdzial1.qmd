@@ -34,6 +34,83 @@ Zamiast traktować statystykę i naukę o danych jako odrębne dyscypliny, korzy
 
 1.  **Dane**: Informacje zebrane podczas badania – obejmują odpowiedzi z ankiet, wyniki eksperymentów, wskaźniki ekonomiczne, treści z mediów społecznościowych lub wszelkie inne mierzalne obserwacje.
 
+::: callout-warning
+## Rodzaje i Formaty Zbiorów Danych
+
+### Dane Przekrojowe
+
+Obserwacje zebrane w jednym punkcie czasowym dla wielu podmiotów:
+
+| Osoba | Wiek | Dochód | Wykształcenie |
+|-------|------|--------|---------------|
+| 1     | 25   | 5000   | Licencjat     |
+| 2     | 35   | 7500   | Magister      |
+| 3     | 45   | 9000   | Doktorat      |
+
+### Szeregi Czasowe
+
+Obserwacje jednego podmiotu w kolejnych punktach czasowych:
+
+| Rok  | PKB (w mld) | Stopa Bezrobocia |
+|------|-------------|------------------|
+| 2018 | 20.580      | 3,9%             |
+| 2019 | 21.433      | 3,7%             |
+| 2020 | 20.933      | 8,1%             |
+
+### Dane Panelowe (Longitudinalne)
+
+Obserwacje wielu podmiotów w czasie:
+
+| Kraj   | Rok  | PKB per capita | Długość życia |
+|--------|------|----------------|---------------|
+| Polska | 2018 | 32.794         | 76,7          |
+| Polska | 2019 | 35.118         | 76,8          |
+| Niemcy | 2018 | 46.194         | 81,9          |
+| Niemcy | 2019 | 46.194         | 82,0          |
+
+### Dane Przekrojowo-Czasowe (TSCS)
+
+Szczególny przypadek danych panelowych gdzie:
+
+-   Liczba punktów czasowych \> liczba podmiotów
+-   Struktura podobna do danych panelowych
+-   Często stosowane w ekonomii i naukach politycznych
+
+### Formaty Danych
+
+#### Format Szeroki
+
+Każdy wiersz to podmiot; kolumny to zmienne/punkty czasowe:
+
+| Kraj   | PKB_2018 | PKB_2019 | DŻ_2018 | DŻ_2019 |
+|--------|----------|----------|---------|---------|
+| Polska | 32.794   | 35.118   | 76,7    | 76,8    |
+| Niemcy | 46.194   | 46.194   | 81,9    | 82,0    |
+
+#### Format Długi
+
+Każdy wiersz to unikalna kombinacja podmiot-czas-zmienna:
+
+| Kraj   | Rok  | Zmienna        | Wartość |
+|--------|------|----------------|---------|
+| Polska | 2018 | PKB per capita | 32.794  |
+| Polska | 2019 | PKB per capita | 35.118  |
+| Polska | 2018 | Długość życia  | 76,7    |
+| Polska | 2019 | Długość życia  | 76,8    |
+| Niemcy | 2018 | PKB per capita | 46.194  |
+| Niemcy | 2019 | PKB per capita | 46.194  |
+| Niemcy | 2018 | Długość życia  | 81,9    |
+| Niemcy | 2019 | Długość życia  | 82,0    |
+
+**Uwaga:** Format długi jest zazwyczaj preferowany do:
+
+-   Manipulacji danymi w R i Pythonie
+-   Analiz statystycznych
+-   Wizualizacji danych
+-   Modelowania efektów mieszanych
+-   Analiz powtarzanych pomiarów
+:::
+
 2.  **Populacja**: Pełny zbiór jednostek (osób, instytucji, zdarzeń), których dotyczy badanie – cała grupa, na temat której badacz chce wyciągnąć wnioski.
 
     -   *Przykład*: W badaniu preferencji wyborczych populację stanowią wszyscy obywatele uprawnieni do głosowania w danym kraju.
@@ -165,112 +242,130 @@ Uznanie losowości za prawo natury zmienia nasze postrzeganie rzeczywistości - 
 :::
 
 
-## **Parametry Populacji i Estymacja Statystyczna**
+## Podstawowe Pojęcia Estymacji Statystycznej  
 
-### **Parametry Populacji**
+### Parametry populacji vs. Statystyki próby  
 
-**Parametr populacji** ($\theta$) to wartość liczbowa opisująca określoną cechę całej populacji. Parametry te są zazwyczaj nieznane i szacowane na podstawie danych z próby.
+W statystyce często chcemy poznać pewne wartości opisujące całą **populację**, ale zwykle nie możemy zbadać wszystkich jej elementów. Zamiast tego pobieramy **próbę** i obliczamy z niej wartości, które pomagają nam oszacować **parametry populacyjne**.  
 
-#### **Typowe Parametry Populacji**
+::: {.callout-tip}
+**Kluczowa różnica:**  
+- **Parametr populacji** (oznaczany jako **$\theta$**) to stała, ale **nieznana** wartość opisująca całą populację.  
+- **Statystyka próby** (oznaczana jako **$\hat{\theta}$** podczas estymacji) to wartość obliczona na podstawie próby, używana do oszacowania parametru populacyjnego.  
+:::
 
--   $\mu$ (Średnia populacji): Średnia wartość w populacji.\
--   $\sigma^2$ (Wariancja populacji): Średnie kwadratowe odchylenie od średniej.\
--   $\sigma$ (Odchylenie standardowe populacji): Pierwiastek kwadratowy z wariancji, mierzący rozproszenie populacji.\
--   $p$ (Proporcja populacji): Ułamek populacji posiadający określoną cechę.
+#### Przykłady parametrów populacyjnych i statystyk próby  
 
-Ponieważ badanie całej populacji jest często niepraktyczne, polegamy na próbach do oszacowania tych parametrów.
+| **Koncepcja**         | **Parametr populacji (Nieznany, stały)** | **Statystyka próby (Obliczona z próby)** |
+|----------------------|---------------------------------|---------------------------------|
+| Średnia (średnia arytmetyczna) | **$\theta = \mu$** (prawdziwa średnia populacji) | **$\hat{\theta} = \bar{x}$** (średnia z próby) |
+| Wariancja           | **$\theta = \sigma^2$** (prawdziwa wariancja populacji) | **$\hat{\theta} = s^2$** (wariancja z próby) |
+| Proporcja           | **$\theta = p$** (prawdziwa proporcja) | **$\hat{\theta} = \hat{p}$** (proporcja w próbie) |
 
-------------------------------------------------------------------------
+Ponieważ **nie możemy bezpośrednio zaobserwować** wartości **$\theta$**, używamy **statystyki próby** (np. **$\hat{\theta}$**) do jej oszacowania.  
 
-### **Pojęcia Estymacji Statystycznej**
+---
 
-#### **Estymand**
+### Czym jest Estymand?  
 
-**Estymand** to konkretny parametr populacji (lub funkcja parametrów), który chcemy oszacować. Reprezentuje nieznaną wartość w populacji, którą chcemy określić.
+**Estymand** to konkretny parametr populacyjny **$\theta$**, który chcemy oszacować. Reprezentuje nieznaną wartość w populacji, którą próbujemy określić.  
 
-> **Kluczowe Rozróżnienie**\
-> Estymand to nieznany parametr populacji (np. $\mu$, $\sigma^2$, $p$), podczas gdy estymator to metoda używana do obliczenia oszacowania.
+::: {.callout-note}
+**Przykład:**  
+- Jeśli chcemy poznać **średni wzrost dorosłych w Polsce**, to prawdziwa średnia **($\theta = \mu$)** jest **estymandem**.  
+- Jeśli chcemy oszacować **proporcję wyborców popierających kandydata**, to prawdziwa proporcja **($\theta = p$)** jest **estymandem**.  
+:::
 
-------------------------------------------------------------------------
+---
 
-#### **Estymator (Statystyka)**
+### Czym jest Estymator?  
 
-**Estymator** to funkcja matematyczna lub procedura używana do oszacowania parametru populacji na podstawie danych z próby. Jest to zmienna losowa, ponieważ jego wartość zależy od konkretnej próby.
+**Estymator** to **reguła, wzór lub funkcja**, którą stosujemy do próby, aby oszacować parametr populacyjny **$\theta$**.  
 
-**Statystyka** to dowolna miara obliczona z danych próby. Gdy jest używana do oszacowania parametru populacji, nazywana jest estymatorem.
+::: {.callout-tip}
+**Kluczowa idea:**  
+- **Estymator to procedura, a nie konkretna liczba!**  
+- Ponieważ różne próby dają różne wyniki, estymator jest **zmienną losową**, czyli jego wartość zależy od wybranej próby.  
+:::
 
-##### **Przykłady Estymatorów**
+#### Notacja  
+- **$\theta$** = Prawdziwy parametr populacji (nieznany)  
+- **$\hat{\theta}$** = Estymator (funkcja danych z próby)  
 
--   **Średnia z próby**: $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ (estymator $\mu$).\
--   **Wariancja z próby**: $s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$ (estymator $\sigma^2$).\
--   **Proporcja z próby**: $\hat{p} = \frac{x}{n}$ (estymator $p$).
+#### Przykłady estymatorów  
+- **Średnia z próby (estymator $\mu$):**  
+  $$
+  \hat{\theta} = \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+  $$  
 
-> **Uwaga**\
-> Estymator to **procedura** obliczania wartości na podstawie próby. Zastosowanie tego samego estymatora do różnych prób da różne oszacowania.
+- **Wariancja z próby (estymator $\sigma^2$):**  
+  $$
+  \hat{\theta} = s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2
+  $$  
 
-------------------------------------------------------------------------
+- **Proporcja z próby (estymator $p$):**  
+  $$
+  \hat{\theta} = \hat{p} = \frac{x}{n}
+  $$  
 
-#### **Oszacowanie (Estymata)**
+---
 
-**Oszacowanie** to konkretna wartość liczbowa uzyskana przez zastosowanie estymatora do próby. Jest to realizacja zmiennej losowej (estymatora).
+### Czym jest Estymata?  
 
-##### **Przykład**
+**Estymata** to konkretna wartość liczbowa, którą uzyskujemy po zastosowaniu estymatora **$\hat{\theta}$** do próby.  
 
--   **Estymand**: Średni wzrost wszystkich dorosłych w kraju ($\mu$).\
--   **Estymator**: Wzór na średnią z próby ($\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$).\
--   **Oszacowanie**: 173,5 cm (konkretna wartość z próby).
+#### Przykład: Oszacowanie średniego wzrostu dorosłych  
+- **Estymand**: Prawdziwa średnia wzrostu **($\theta = \mu$)** (nieznana).  
+- **Estymator**: Wzór na średnią z próby **$\hat{\theta} = \bar{x} = \frac{1}{n} \sum x_i$**.  
+- **Estymata**: Konkretna wartość, np. **173,5 cm**, uzyskana na podstawie jednej próby.  
 
-------------------------------------------------------------------------
+---
 
-### **Właściwości Dobrych Estymatorów**
+### Jakie cechy powinien mieć dobry estymator?  
 
-Dobry estymator powinien mieć następujące właściwości:\
-1. **Nieobciążoność**: Oczekiwana wartość estymatora równa się parametrowi populacji ($E(\hat{\theta}) = \theta$).\
-2. **Efektywność**: Estymator ma najmniejszą możliwą wariancję spośród wszystkich nieobciążonych estymatorów.\
-3. **Zgodność**: Wraz ze wzrostem liczebności próby estymator zbliża się do prawdziwej wartości parametru.\
-4. **Wystarczalność**: Estymator wykorzystuje wszystkie dostępne informacje z próby dotyczące parametru.
+Dobry **$\hat{\theta}$** powinien spełniać następujące warunki:  
 
-------------------------------------------------------------------------
+#### 1️⃣ Nieobciążoność (Unbiasedness): Brak systematycznego błędu  
+Dobry estymator powinien, **średnio**, dawać poprawny wynik. Oznacza to, że jeśli wielokrotnie pobieramy różne próby i obliczamy ich estymaty, to ich średnia powinna być równa prawdziwej wartości **$\theta$**.  
 
-### **Wartość Oczekiwana Estymatora**
-
-**Wartość oczekiwana** zmiennej losowej to średnia wartość, jaką przyjmowałaby w długim okresie, gdyby eksperyment był powtarzany nieskończenie wiele razy. Dla estymatora wartość oczekiwana reprezentuje średnią wartość statystyki w wielu próbach z populacji.
-
-Dla dobrze skonstruowanego estymatora wartość oczekiwana równa się parametrowi populacji:\
+Estymator **$\hat{\theta}$** jest **nieobciążony**, jeśli:  
 $$
 E(\hat{\theta}) = \theta
-$$\
-Taki estymator nazywamy **nieobciążonym**.
+$$  
 
-##### **Przykład: Estymatory Nieobciążone i Obciążone**
+#### 2️⃣ Efektywność (Efficiency): Najmniejsza wariancja  
+Efektywny estymator ma **najmniejszą możliwą wariancję**, czyli jego wyniki są bardziej skupione wokół prawdziwej wartości **$\theta$**.  
 
--   Średnia z próby ($\bar{x}$) jest nieobciążonym estymatorem średniej populacji ($\mu$).\
--   Wariancja z próby ($s^2$) wymaga poprawki ($\frac{1}{n-1}$ zamiast $\frac{1}{n}$), aby była nieobciążona.
+#### 3️⃣ Zbieżność (Consistency): Coraz lepsze oszacowanie przy większej próbie  
+Gdy liczba obserwacji rośnie, **zbieżny estymator** coraz lepiej przybliża **$\theta$**.  
 
-------------------------------------------------------------------------
+#### 4️⃣ Dostateczność (Sufficiency): Wykorzystuje wszystkie informacje  
+**Estymator dostateczny** uwzględnia całą dostępną informację zawartą w próbie.  
 
-### **Rozkład Statystyk z Próby**
+---
 
-**Statystyka z próby** ($\hat{\theta}$) to wartość obliczona z danych próby i używana do oszacowania parametru populacji ($\theta$).
+### Dlaczego estymaty się różnią? (Rozkład statystyk próby)  
 
-**Rozkład statystyki** opisuje, jak jej wartości zmieniają się przy wielokrotnym losowaniu prób o tej samej liczebności ($n$) z tej samej populacji. Koncepcja ta jest kluczowa dla wnioskowania statystycznego.
+Ponieważ różne próby dają różne estymaty, badamy **rozkład estymatora** (zwany **rozkładem próbkowania**), aby zrozumieć, jak bardzo wyniki mogą się różnić.  
 
-#### **Kluczowe Punkty Dotyczące Rozkładu Statystyki**
+#### Kluczowe pojęcia dotyczące rozkładu statystyk  
+1. **Estymaty zmieniają się między próbami**—Różne próby dają różne wyniki.  
+2. **Ta zmienność podlega pewnym regułom**—**Rozkład próbkowania** opisuje, jak estymaty się zachowują.  
+3. **Większa próba oznacza mniejszą zmienność**—Duże próby dają stabilniejsze wyniki.  
+4. **Rozkład próbkowania pozwala oszacować niepewność**—To podstawa przedziałów ufności i testów statystycznych.  
 
-1.  Pokazuje, jak statystyka zmienia się w różnych próbach.\
-2.  Pomaga określić błąd próby i niepewność.\
-3.  Umożliwia tworzenie probabilistycznych stwierdzeń o dokładności oszacowań.\
-4.  Stanowi podstawę wnioskowania statystycznego.
+#### Przykład: Średnia z próby  
+Jeśli wielokrotnie pobieramy próby i obliczamy ich średnie, ich wartości tworzą **rozkład próbkowania** skupiony wokół **$\theta = \mu$**.  
 
-#### **Przykład: Średnia z Próby**
-
-Średnia z próby ($\bar{x}$) jest estymatorem średniej populacji ($\mu$). Oblicza się ją jako:\
+Matematycznie, średnia z próby to:  
 $$
-\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
-$$\
-gdzie $x_1, x_2, ..., x_n$ to obserwacje w losowej próbie.
+\hat{\theta} = \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+$$  
+gdzie **$x_1, x_2, ..., x_n$** to wartości w próbie.  
 
-------------------------------------------------------------------------
+---
+
+
 
 
 ::: {.callout-note}
@@ -281,22 +376,30 @@ gdzie $x_1, x_2, ..., x_n$ to obserwacje w losowej próbie.
 
 ### Co Definiuje Krzywą Dzwonową?
 Krzywa dzwonowa jest określona przez dwie kluczowe liczby:
+
 1. **Średnia ($\mu$)**: To wartość średnia, która wyznacza środek krzywej.
 2. **Odchylenie standardowe ($\sigma$)**: Określa, jak bardzo dane są rozproszone. Małe odchylenie standardowe oznacza, że dane są blisko średniej, a duże—że są bardziej rozrzucone.
 
 ### Dlaczego Jest Ważna?
+
 Rozkład normalny jest niezwykle użyteczny, ponieważ:
+
 1. **Zasada 68-95-99.7**:
    - Około 68% danych znajduje się w odległości 1 odchylenia standardowego od średniej.
    - Około 95% danych znajduje się w odległości 2 odchyleń standardowych.
    - Około 99,7% danych znajduje się w odległości 3 odchyleń standardowych.
+
 2. **Centralne Twierdzenie Graniczne**:  
    Wyobraź sobie, że masz jakieś dane, które nie wyglądają jak typowa krzywa dzwonowa (np. mogą być rozrzucone nieregularnie). Jeśli zaczniesz wielokrotnie losować próbki z tych danych i za każdym razem obliczać ich średnią, to te średnie zaczną układać się w kształt krzywej dzwonowej—nawet jeśli oryginalne dane nie miały takiego kształtu!  
-   Innymi słowy:  
+
+Innymi słowy:
+   
    - Niezależnie od tego, jak wyglądają Twoje dane na początku,  
    - Jeśli będziesz brał średnie z wielu małych grup tych danych,  
-   - To te średnie będą tworzyć krzywą dzwonową, gdy zbierzesz ich wystarczająco dużo.  
-   To właśnie dlatego rozkład normalny jest tak ważny—nawet jeśli coś nie wydaje się "normalne" na pierwszy rzut oka, to średnie z tego czegoś często zachowują się zgodnie z krzywą dzwonową.
+   - To te średnie będą tworzyć krzywą dzwonową, gdy zbierzesz ich wystarczająco dużo.
+   
+To właśnie dlatego rozkład normalny jest tak ważny—nawet jeśli coś nie wydaje się "normalne" na pierwszy rzut oka, to średnie z tego czegoś często zachowują się zgodnie z krzywą dzwonową.
+
 3. **Narzędzia Statystyczne**: Wiele testów i metod statystycznych opiera się na rozkładzie normalnym do przewidywania i wyciągania wniosków.
 
 ### Zobaczmy to w Działaniu!
@@ -318,7 +421,7 @@ y <- dnorm(x, mean, sd)
 
 # Narysuj krzywą normalną
 ggplot(data.frame(x, y), aes(x, y)) +
-  geom_line(color = "blue", size = 1) +
+  geom_line(color = "blue", linewidth = 1) +
   labs(title = "Rozkład Normalny (Krzywa Dzwonowa)",
        x = "Wartości",
        y = "Gęstość Prawdopodobieństwa") +
@@ -372,72 +475,124 @@ Przykład przedziału ufności: "95% przedział ufności dla średniego wzrostu 
 
 **Błędna interpretacja**: "Istnieje 95% szans, że prawdziwa średnia znajduje się w przedziale (173 cm, 175 cm)" – jest to niepoprawne, ponieważ parametr populacji jest stałą (choć nieznaną) wartością, a nie zmienną losową.
 
+
+
 ### Testowanie Hipotez
 
-Testowanie hipotez to formalna procedura weryfikacji przypuszczeń dotyczących parametrów populacji.
+Testowanie hipotez to sposób na sprawdzenie, czy dane twierdzenie dotyczące grupy (lub populacji) jest prawdopodobnie prawdziwe, czy nie. To trochę jak bycie detektywem: zbierasz dowody (dane) i decydujesz, czy dowody potwierdzają twoje twierdzenie.
 
-> **Przykład: Test dwumianowy dla monety**
->
-> Wyobraźmy sobie, że chcemy sprawdzić, czy moneta jest uczciwa.
->
-> 1.  **Pytanie badawcze**: Czy moneta jest uczciwa (prawdopodobieństwo orła = 0,5)?
->
-> 2.  **Sformułowanie hipotez**:
->
->     -   **Hipoteza zerowa (H₀)**: p = 0,5 (moneta jest uczciwa)
->     -   **Hipoteza alternatywna (H₁)**: p ≠ 0,5 (moneta nie jest uczciwa)
->
-> 3.  **Zebranie danych**: Rzucamy monetą 100 razy i otrzymujemy 65 orłów.
->
-> 4.  **Analiza**: Czy 65 orłów na 100 rzutów stanowi dowód przeciwko hipotezie, że moneta jest uczciwa?
->
-> 5.  **Rozumowanie**:
->
->     -   Jeśli moneta byłaby uczciwa (p = 0,5), liczba orłów w 100 rzutach powinna podążać za rozkładem dwumianowym B(100, 0,5)
->     -   Dla tego rozkładu oczekujemy średnio 50 orłów, z odchyleniem standardowym √(100 × 0,5 × 0,5) = 5
->     -   Otrzymanie 65 orłów oznacza odchylenie o 3 odchylenia standardowe od wartości oczekiwanej
->     -   Prawdopodobieństwo otrzymania 65 lub więcej orłów przy uczciwej monecie jest bardzo małe (p \< 0,01)
->
-> 6.  **Wniosek**: Ponieważ zaobserwowany wynik jest bardzo mało prawdopodobny przy założeniu, że moneta jest uczciwa, odrzucamy hipotezę zerową i wnioskujemy, że moneta najprawdopodobniej nie jest uczciwa.
+---
 
-Ogólna procedura testowania hipotez:
+### Przykład: Testowanie, czy moneta jest sprawiedliwa
 
-1.  Sformułuj hipotezę zerową (H₀) i hipotezę alternatywną (H₁)
-2.  Wybierz poziom istotności α (zwykle 0,05)
-3.  Zbierz dane i oblicz odpowiednią statystykę testową
-4.  Oblicz wartość p (prawdopodobieństwo uzyskania naszych danych lub bardziej skrajnych wyników przy założeniu, że H₀ jest prawdziwa)
-5.  Podejmij decyzję: jeśli p \< α, odrzuć H₀ na korzyść H₁
+Załóżmy, że chcesz sprawdzić, czy moneta jest sprawiedliwa (czyli czy ma równe szanse na wypadnięcie orła lub reszki).
 
-> **Uwaga: Intuicja stojąca za testowaniem hipotez**
->
-> Testowanie hipotez przypomina procedurę sądową:
+#### Krok 1: Zadaj pytanie badawcze
+- **Pytanie**: Czy moneta jest sprawiedliwa? (Czy prawdopodobieństwo orła = 0,5?)
 
-> -   H₀ odpowiada zasadzie "niewinny, dopóki nie udowodni się winy"
-> -   Dane stanowią "dowód" przeciwko H₀
-> -   Wartość p określa, jak silny jest ten dowód
-> -   Jeśli dowód jest wystarczająco silny (p \< α), "skazujemy" H₀ (odrzucamy ją)
-> -   Jeśli dowód nie jest wystarczająco silny, nie odrzucamy H₀ (ale nie udowadniamy jej prawdziwości)
+#### Krok 2: Ustal dwie hipotezy
+- **Hipoteza zerowa (H₀)**: Moneta jest sprawiedliwa. (Prawdopodobieństwo orła = 0,5)
+- **Hipoteza alternatywna (H₁)**: Moneta nie jest sprawiedliwa. (Prawdopodobieństwo orła ≠ 0,5)
+
+Hipotezę zerową traktujemy jako domyślne założenie, czyli „niewinny, dopóki nie udowodniono winy”. Hipoteza alternatywna to to, co próbujemy udowodnić.
+
+#### Krok 3: Zbierz dane
+- Rzucasz monetą 100 razy i otrzymujesz **65 orłów**.
+
+#### Krok 4: Przeanalizuj dane
+- Gdyby moneta była sprawiedliwa, oczekiwałbyś około 50 orłów w 100 rzutach.
+- Liczba orłów powinna podlegać **rozkładowi dwumianowemu** (to wzór, który opisuje, jak wyniki powinny wyglądać przy wielokrotnym rzucaniu monetą).
+- Odchylenie standardowe (miara tego, jak bardzo wyniki mogą się różnić) wynosi 5.
+- Uzyskanie 65 orłów oznacza wynik **3 odchylenia standardowe** od oczekiwanego wyniku 50 orłów. To bardzo nietypowe!
+
+#### Krok 5: Oblicz wartość p
+- **Wartość p** to prawdopodobieństwo uzyskania 65 lub więcej orłów (lub wyniku równie ekstremalnego), jeśli moneta byłaby sprawiedliwa.
+- W tym przypadku wartość p jest bardzo mała (mniej niż 0,01), co oznacza, że taki wynik jest bardzo mało prawdopodobny, gdyby moneta była sprawiedliwa.
+
+#### Krok 6: Podjąć decyzję
+- Jeśli wartość p jest mała (zwykle mniejsza niż 0,05), **odrzucamy hipotezę zerową**.
+- Tutaj wartość p jest bardzo mała, więc wnioskujemy, że moneta **nie jest sprawiedliwa**.
+
+---
+
+### Ogólne Kroki Testowania Hipotez
+
+1. **Sformułuj hipotezy**:
+   - Hipoteza zerowa (H₀): Domyślne twierdzenie (brak efektu).
+   - Hipoteza alternatywna (H₁): Twierdzenie, które testujesz.
+
+2. **Wybierz poziom istotności (α)**:
+   - To próg, który decyduje, czy wartość p jest wystarczająco mała, aby odrzucić H₀. Typowe wartości to 0,05 lub 0,01.
+
+3. **Zbierz dane**:
+   - Zbierz dowody (np. rzuć monetą 100 razy).
+
+4. **Oblicz statystykę testową i wartość p**:
+   - **Statystyka testowa** mierzy, jak bardzo twoje dane odbiegają od tego, co przewiduje H₀.
+   - **Wartość p** mówi, jak prawdopodobne jest uzyskanie twoich danych (lub czegoś bardziej ekstremalnego), jeśli H₀ jest prawdziwa.
+
+5. **Podejmij decyzję**:
+   - Jeśli wartość p < α, odrzuć H₀ i przyjmij H₁.
+   - Jeśli wartość p ≥ α, nie odrzucaj H₀ (ale to nie oznacza, że H₀ jest prawdziwa).
+
+---
+
+### Intuicja Za Testowaniem Hipotez
+
+Testowanie hipotez można porównać do procesu sądowego:
+- **Hipoteza zerowa (H₀)**: Oskarżony jest niewinny.
+- **Hipoteza alternatywna (H₁)**: Oskarżony jest winny.
+- **Dane**: Dowody przedstawione w sądzie.
+- **Wartość p**: Jak silne są dowody przeciwko oskarżonemu.
+- **Poziom istotności (α)**: Standard dowodu potrzebny do skazania.
+
+Jeśli dowody są wystarczająco silne (wartość p < α), odrzucamy H₀ (skazujemy oskarżonego). Jeśli nie, nie odrzucamy H₀ (ale to nie oznacza, że udowodniliśmy jego niewinność).
+
+---
+
+### Częste Błędy w Interpretacji Wartości p
+
+1. **Wartość p NIE jest prawdopodobieństwem, że H₀ jest prawdziwa**.
+   - To prawdopodobieństwo uzyskania twoich danych (lub czegoś bardziej ekstremalnego), **jeśli H₀ jest prawdziwa**.
+
+2. **Wartość p NIE jest prawdopodobieństwem popełnienia błędu**.
+   - Nie mówi, jakie jest prawdopodobieństwo, że się mylisz, odrzucając H₀.
+
+3. **Nieodrzucenie H₀ NIE oznacza, że jest ona prawdziwa**.
+   - To tylko oznacza, że nie ma wystarczających dowodów, aby ją odrzucić.
+
+4. **Mała wartość p NIE oznacza, że wynik jest ważny w praktyce**.
+   - To tylko oznacza, że wynik jest statystycznie istotny. Efekt może być w rzeczywistości bardzo mały.
+
+5. **Wartość p zależy od wielkości próby**.
+   - Przy bardzo dużych próbach nawet małe różnice mogą być statystycznie istotne.
+
+---
 
 ### Rodzaje Błędów w Testowaniu Hipotez
 
-W testowaniu hipotez statystycznych możemy popełnić dwa rodzaje błędów:
+1. **Błąd I rodzaju (Fałszywie pozytywny)**:
+   - Odrzucenie H₀, gdy jest ona prawdziwa.
+   - Przykład: Skazanie niewinnej osoby.
+   - Prawdopodobieństwo tego błędu = α (poziom istotności).
 
--   **Błąd I rodzaju (α)**: Odrzucenie prawdziwej hipotezy zerowej ("skazanie niewinnego")
-    -   Prawdopodobieństwo tego błędu jest kontrolowane przez poziom istotności α
-    -   Typowo przyjmuje się α = 0,05, co oznacza, że akceptujemy 5% ryzyko odrzucenia prawdziwej hipotezy zerowej
--   **Błąd II rodzaju (β)**: Nieodrzucenie fałszywej hipotezy zerowej ("uniewinnienie winnego")
-    -   Prawdopodobieństwo uniknięcia tego błędu (1-β) nazywane jest mocą testu
-    -   Moc testu wzrasta wraz z wielkością próby i wielkością efektu
+2. **Błąd II rodzaju (Fałszywie negatywny)**:
+   - Nieodrzucenie H₀, gdy jest ona fałszywa.
+   - Przykład: Uniewinnienie winnej osoby.
+   - Prawdopodobieństwo tego błędu = β.
 
-> **Ważne: Częste błędy w interpretacji wartości p i testów**
->
-> 1.  Wartość p to **NIE** prawdopodobieństwo, że hipoteza zerowa jest prawdziwa
-> 2.  Wartość p to **NIE** prawdopodobieństwo popełnienia błędu przy odrzucaniu H₀
-> 3.  Nieodrzucenie H₀ **NIE** oznacza udowodnienia jej prawdziwości (brak dowodów przeciwko oskarżonemu nie dowodzi niewinności)
-> 4.  Bardzo mała wartość p **NIE** wskazuje na duży efekt praktyczny (istotność statystyczna ≠ istotność praktyczna)
-> 5.  Wartość p zależy od wielkości próby - przy bardzo dużych próbach nawet małe, praktycznie nieistotne różnice mogą być statystycznie istotne
->
-> **Definicja wartości p**: Prawdopodobieństwo zaobserwowania wyniku co najmniej tak skrajnego jak uzyskany, przy założeniu, że hipoteza zerowa jest prawdziwa.
+3. **Moc testu (1 - β)**:
+   - Prawdopodobieństwo poprawnego odrzucenia H₀, gdy jest ona fałszywa.
+   - Moc testu rośnie wraz z większą próbą i większym efektem.
+
+---
+
+### Kluczowe Wnioski
+
+- Testowanie hipotez pomaga zdecydować, czy dane potwierdzają twierdzenie.
+- Wartość p mówi, jak bardzo zaskakujące są twoje dane, zakładając, że H₀ jest prawdziwa.
+- Zawsze interpretuj wartość p ostrożnie i unikaj częstych błędów.
+- Pamiętaj: Istotność statystyczna ≠ ważność praktyczna.
 
 
 ## Modele Statystyczne
