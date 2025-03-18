@@ -789,11 +789,10 @@ Understanding Different Types of Data Sets and Their Formats
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+The Soup Analogy: A Taste of Statistics
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>The Soup Analogy: A Taste of Statistics</strong></p>
 <p><img src="stat_imgs/soup-svgrepo-com.svg" class="img-fluid" style="width:30.0%"></p>
 <ul>
 <li>When you taste a spoonful of soup and decide it isn’t salty enough, that’s exploratory/descriptive analysis.</li>
@@ -804,7 +803,7 @@ Note
 </div>
 </div>
 <section id="why-random-sampling-works" class="level4" data-number="1.3.7.1">
-<h4 data-number="1.3.7.1" class="anchored" data-anchor-id="why-random-sampling-works"><span class="header-section-number">1.3.7.1</span> Why Random Sampling Works</h4>
+<h4 data-number="1.3.7.1" class="anchored"><span class="header-section-number">1.3.7.1</span> Why Random Sampling Works</h4>
 <p>Random sampling works because of three key principles:</p>
 <ol type="1">
 <li><p><strong>Equal opportunity</strong>: Every person in the population has the same chance of being selected, which prevents systematic bias.</p></li>
@@ -820,28 +819,33 @@ Note
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Randomness as a Fundamental Law of Nature
+Randomness: A Fundamental Law of Nature
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Randomness can be viewed as one of the fundamental laws of nature that shapes reality at multiple levels:</p>
+<p>Randomness is not just a limitation of our knowledge—it is a fundamental part of how nature operates. It shapes reality in multiple ways:</p>
 <ul>
-<li><p><strong>In quantum mechanics</strong>: Heisenberg’s uncertainty principle and the probabilistic nature of quantum phenomena indicate that randomness is built into the fundamental structure of reality, rather than merely resulting from imperfections in our measurements or knowledge</p></li>
-<li><p><strong>In genetics</strong>: Random mutations and genetic recombinations constitute the basic mechanism of evolution and biological diversity</p></li>
-<li><p><strong>In chaos theory</strong>: Deterministic systems can exhibit unpredictable behaviors due to sensitivity to initial conditions (the so-called “butterfly effect”)</p></li>
-<li><p><strong>In statistical research</strong>: Random sampling is the foundation for inferring properties of a population - without this natural property, we would not be able to formulate reliable generalizations from limited data sets</p></li>
+<li><p><strong>Quantum Mechanics:</strong> At the smallest scales, nature behaves probabilistically. The Heisenberg uncertainty principle shows that we cannot precisely measure both position and momentum at the same time. When we observe a quantum system, its wave function “collapses” into a definite state, following probability rather than certainty.</p></li>
+<li><p><strong>Genetics &amp; Evolution:</strong> Mutations and genetic recombination occur randomly, providing the raw material for evolution. These random changes drive adaptation and the diversity of life on Earth.</p></li>
+<li><p><strong>Chaos Theory:</strong> Even in systems that follow strict mathematical rules, small differences in initial conditions can lead to unpredictable outcomes (the “butterfly effect”). This makes even deterministic systems appear random over time.</p></li>
+<li><p><strong>Statistics &amp; Scientific Research:</strong> Many scientific methods rely on randomness. In experiments, randomization ensures fairness and reduces bias. In data analysis, random sampling allows us to make accurate predictions about entire populations from small samples.</p></li>
 </ul>
-<p>This natural randomness becomes the foundation of empirical science methodology, particularly evident in two key aspects:</p>
-<p><strong>1. Randomization in Experiments</strong></p>
-<p>Randomization is the process of randomly assigning research units to experimental groups. It is a key element of experimental methodology that: - Minimizes the influence of confounding variables - Balances unknown factors between groups - Reduces the risk of systematic error - Enables the use of statistical tests for analyzing results</p>
+<section id="randomness-in-scientific-methodology" class="level3" data-number="1.3.8">
+<h3 data-number="1.3.8" class="anchored" data-anchor-id="randomness-in-scientific-methodology"><span class="header-section-number">1.3.8</span> Randomness in Scientific Methodology</h3>
+<section id="randomization-in-experiments" class="level4" data-number="1.3.8.1">
+<h4 data-number="1.3.8.1" class="anchored" data-anchor-id="randomization-in-experiments"><span class="header-section-number">1.3.8.1</span> Randomization in Experiments</h4>
+<p>In scientific experiments, <strong>random assignment</strong> ensures that different groups are comparable, helping us determine cause-and-effect relationships. It:</p>
+<p>✅ Reduces bias<br>
+✅ Balances unknown factors<br>
+✅ Enables valid statistical comparisons</p>
 <p>Example in R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Randomization in an experiment</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>) <span class="co"># for reproducibility</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>participants <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>  <span class="co"># 30 study participants</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>groups <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Control"</span>, <span class="dv">15</span>), <span class="fu">rep</span>(<span class="st">"Experimental"</span>, <span class="dv">15</span>))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>random_assignment <span class="ot">&lt;-</span> <span class="fu">sample</span>(groups)  <span class="co"># random assignment to groups</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">data.frame</span>(<span class="at">ID =</span> participants[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>], <span class="at">Group =</span> random_assignment[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)  <span class="co"># Ensures reproducibility</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>participants <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>  <span class="co"># 30 study participants</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>groups <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Control"</span>, <span class="dv">15</span>), <span class="fu">rep</span>(<span class="st">"Experimental"</span>, <span class="dv">15</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>random_assignment <span class="ot">&lt;-</span> <span class="fu">sample</span>(groups)  <span class="co"># Assign participants randomly</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> participants, <span class="at">Group =</span> random_assignment)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)  <span class="co"># View the first few assignments</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  ID        Group
 1  1 Experimental
@@ -852,20 +856,24 @@ Randomness as a Fundamental Law of Nature
 6  6      Control</code></pre>
 </div>
 </div>
-<p><strong>2. Simple Random Sampling</strong></p>
-<p>Simple random sampling is the basic method of taking a sample in which each element of the population has an equal chance of being included in the sample. This property of randomness: - Ensures sample representativeness - Enables inference about population parameters - Allows for calculating random errors and constructing confidence intervals</p>
+</section>
+<section id="simple-random-sampling-1" class="level4" data-number="1.3.8.2">
+<h4 data-number="1.3.8.2" class="anchored" data-anchor-id="simple-random-sampling-1"><span class="header-section-number">1.3.8.2</span> Simple Random Sampling</h4>
+<p>When researchers take a <strong>random sample</strong>, every individual in the population has an equal chance of being chosen. This ensures fair representation, allowing us to generalize findings.</p>
 <p>Example in R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drawing a simple random sample from a population</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>  <span class="co"># population of 1000 elements</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">sample</span>(population, <span class="dv">50</span>)  <span class="co"># random sample of 50 elements</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_data)  <span class="co"># basic statistics of the drawn sample</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>  <span class="co"># Population of 1000 individuals</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sample_size <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">sample</span>(population, sample_size)  <span class="co"># Draw 50 random samples</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_data)  <span class="co"># Show basic statistics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
     3.0   249.2   405.5   473.7   719.8   993.0 </code></pre>
 </div>
 </div>
-<p>Recognizing randomness as a law of nature changes our perception of reality - from a deterministic view, where everything is theoretically predictable with sufficient knowledge, to a stochastic one, where uncertainty and variability are inherent features of the world. This allows us to design studies that utilize this natural property to reliably understand the reality around us.</p>
+<p>Understanding randomness changes how we view reality. Instead of a <strong>fully predictable world</strong>, we recognize that uncertainty is built into nature itself. This shift has profound implications for science, philosophy, and decision-making. By embracing randomness, we develop more <strong>accurate models, reliable experiments, and better ways to understand complexity.</strong></p>
+</section>
+</section>
 </div>
 </div>
 <hr>
