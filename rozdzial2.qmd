@@ -25,7 +25,6 @@ Zrozumienie właściwości zbiorów liczbowych jest kluczowe dla uchwycenia natu
 
 4.  **Zbiory Gęste**: Zbiory, w których między dowolnymi dwoma elementami zawsze znajduje się inny element zbioru. Liczby wymierne i rzeczywiste są zbiorami gęstymi.
 
-
 ## Dane Dyskretne vs. Ciągłe
 
 W nauce o danych i statystyce często kategoryzujemy zmienne jako dyskretne lub ciągłe. Jednak rozróżnienie to nie zawsze jest jednoznaczne, a niektóre zmienne wykazują cechy obu typów. Ta sekcja bada koncepcje danych dyskretnych i ciągłych, ich różnice oraz interesujące przypadki zmiennych, które można traktować jako oba typy lub które kwestionują nasze intuicyjne rozumienie.
@@ -184,7 +183,6 @@ To rozróżnienie doskonale odzwierciedla dwa podstawowe typy danych liczbowych:
 -   \_\_\_\_\_ temperatury (liczba/ilość): typ \_\_\_\_\_
 :::
 
-
 ## Wprowadzenie do Typologii Danych Stevensa
 
 Stanley S. Stevens, amerykański psycholog, wprowadził system klasyfikacji skal pomiarowych w swoim artykule z 1946 roku "On the Theory of Scales of Measurement". Ten system, znany jako typologia danych Stevensa lub poziomy pomiaru, stał się fundamentalny dla zrozumienia, jak różne typy danych powinny być analizowane i interpretowane.
@@ -277,37 +275,35 @@ Skala ilorazowa jest najwyższym poziomem pomiaru. Ma wszystkie właściwości s
 -   Wiek
 -   Dochód
 
-
 Oczywiście! Poniżej znajdziesz poprawioną i sprawdzoną wersję Twojego materiału w formacie `callout-note`, gotową do użycia w Quarto (pisana w RStudio). Skopiuj ten kod do swojego pliku `.qmd` i dostosuj ewentualnie stylowanie do swoich preferencji.
 
-
-::: {.callout-note}
+::: callout-note
 ### Dlaczego Niektóre Statystyki Działają (a Inne Nie) dla Skal Interwałowych
 
 #### Kluczowa Idea
+
 Skala interwałowa to taka, w której odległości między wartościami są znaczące, ale punkt zerowy jest umowny. W przypadku skal interwałowych (np. temperatury):
 
-- **Dozwolone** jest dodawanie/odejmowanie wartości oraz mnożenie/dzielenie przez stałe.
-- **Niedozwolone** jest mnożenie/dzielenie wartości ze skali przez siebie, ponieważ prowadzi to do wyników bez interpretacji fizycznej.
+-   **Dozwolone** jest dodawanie/odejmowanie wartości oraz mnożenie/dzielenie przez stałe.
+-   **Niedozwolone** jest mnożenie/dzielenie wartości ze skali przez siebie, ponieważ prowadzi to do wyników bez interpretacji fizycznej.
 
 #### Własności Skali Interwałowej
 
-1. **Równe interwały reprezentują takie same różnice**:
-   - Różnica między 20°C a 25°C (5°C) reprezentuje taką samą zmianę jak między 30°C a 35°C.
-   - Proporcje różnic są zachowane: 10°C to dwa razy większa zmiana niż 5°C.
-
-2. **Punkt zero jest umowny**:
-   - 0°C to punkt zamarzania wody, a nie brak temperatury.
-   - Ten sam stan fizyczny ma różne wartości w różnych skalach: 0°C = 32°F.
-
-3. **Transformacja liniowa**:
-   - Wzór ogólny: $y = ax + b$, gdzie $a \neq 0$.
-   - Dla temperatury: $F = C \times \frac{9}{5} + 32$.
+1.  **Równe interwały reprezentują takie same różnice**:
+    -   Różnica między 20°C a 25°C (5°C) reprezentuje taką samą zmianę jak między 30°C a 35°C.
+    -   Proporcje różnic są zachowane: 10°C to dwa razy większa zmiana niż 5°C.
+2.  **Punkt zero jest umowny**:
+    -   0°C to punkt zamarzania wody, a nie brak temperatury.
+    -   Ten sam stan fizyczny ma różne wartości w różnych skalach: 0°C = 32°F.
+3.  **Transformacja liniowa**:
+    -   Wzór ogólny: $y = ax + b$, gdzie $a \neq 0$.
+    -   Dla temperatury: $F = C \times \frac{9}{5} + 32$.
 
 #### Dlaczego Średnia Arytmetyczna Działa
+
 Średnia arytmetyczna działa, ponieważ opiera się na dodawaniu i dzieleniu przez stałą, które są dozwolone w skali interwałowej. Przykład:
 
-```markdown
+``` markdown
 Dane: 20°C i 30°C
 
 Metoda 1: Średnia w Celsjuszach, potem konwersja
@@ -321,8 +317,7 @@ Metoda 2: Konwersja na °F, potem średnia
 Obie metody dają ten sam wynik! ✓
 ```
 
-**Matematyczny dowód poprawności**:
-\begin{align}
+**Matematyczny dowód poprawności**: \begin{align}
 \bar{F} &= \frac{F_1 + F_2}{2} \\
 &= \frac{(C_1 \times \frac{9}{5} + 32) + (C_2 \times \frac{9}{5} + 32)}{2} \\
 &= \frac{(C_1 + C_2) \times \frac{9}{5} + 64}{2} \\
@@ -331,9 +326,10 @@ Obie metody dają ten sam wynik! ✓
 \end{align}
 
 #### Dlaczego Wariancja Jest Problematyczna
+
 Wariancja jest problematyczna, ponieważ opiera się na kwadratach różnic, co prowadzi do jednostek kwadratowych (np. °C²) bez jasnej interpretacji fizycznej. Przykład:
 
-```markdown
+``` markdown
 Te same temperatury: 20°C i 30°C
 
 Metoda 1: Wariancja w Celsjuszach
@@ -352,8 +348,7 @@ Metoda 2: Wariancja w Fahrenheitach
 Problem: 25(°C)² i 81(°F)² nie są równoważne!
 ```
 
-**Matematyczna analiza problemu**:
-\begin{align}
+**Matematyczna analiza problemu**: \begin{align}
 (F_i - \bar{F})^2 &= [(C_i \times \frac{9}{5} + 32) - (\bar{C} \times \frac{9}{5} + 32)]^2 \\
 &= [(C_i - \bar{C}) \times \frac{9}{5}]^2 \\
 &= (C_i - \bar{C})^2 \times \left(\frac{9}{5}\right)^2
@@ -361,34 +356,34 @@ Problem: 25(°C)² i 81(°F)² nie są równoważne!
 
 #### Wnioski Teoretyczne
 
-1. **Operacje dozwolone**:
-   - Dodawanie/odejmowanie (zachowuje różnice).
-   - Mnożenie/dzielenie przez stałe (skalowanie).
-   - Średnie arytmetyczne.
-   - Porównywanie różnic temperatur.
-
-2. **Operacje niedozwolone**:
-   - Mnożenie temperatur przez siebie.
-   - Dzielenie temperatur przez siebie.
-   - Średnie geometryczne.
-   - Współczynnik zmienności.
-
-3. **Implikacje praktyczne**:
-   - Wariancja i odchylenie standardowe wymagają ostrożnej interpretacji.
-   - Lepiej używać miar opartych na różnicach (np. MAD - średnie odchylenie bezwzględne).
-   - Przy porównywaniu zmienności warto standaryzować dane.
+1.  **Operacje dozwolone**:
+    -   Dodawanie/odejmowanie (zachowuje różnice).
+    -   Mnożenie/dzielenie przez stałe (skalowanie).
+    -   Średnie arytmetyczne.
+    -   Porównywanie różnic temperatur.
+2.  **Operacje niedozwolone**:
+    -   Mnożenie temperatur przez siebie.
+    -   Dzielenie temperatur przez siebie.
+    -   Średnie geometryczne.
+    -   Współczynnik zmienności.
+3.  **Implikacje praktyczne**:
+    -   Wariancja i odchylenie standardowe wymagają ostrożnej interpretacji.
+    -   Lepiej używać miar opartych na różnicach (np. MAD - średnie odchylenie bezwzględne).
+    -   Przy porównywaniu zmienności warto standaryzować dane.
 
 #### Zasada Praktyczna
+
 Jeśli w obliczeniach pojawia się mnożenie wartości ze skali interwałowej przez siebie, należy zachować szczególną ostrożność w interpretacji wyników!
 :::
 
-::: {.callout-note}
+::: callout-note
 ### Proporcje w Skalach Pomiarowych: Przypadek Temperatury
 
 #### Dwa Rodzaje Proporcji
 
 ##### Proporcje wartości (NIE zachowują się w skali interwałowej):
-```markdown
+
+``` markdown
 Weźmy 80°C i 20°C:
 W Celsjuszach: 80°C/20°C = 4
 W Fahrenheitach: 176°F/68°F ≈ 2.59
@@ -399,7 +394,8 @@ Te same temperatury dają różne proporcje!
 ```
 
 ##### Proporcje różnic (zachowują się w skali interwałowej):
-```markdown
+
+``` markdown
 Weźmy dwie pary różnic:
 Para 1: 30°C - 20°C = 10°C
 Para 2: 80°C - 60°C = 20°C
@@ -418,43 +414,35 @@ Proporcja różnic jest taka sama! ✓
 ```
 
 #### Matematyczne Wyjaśnienie
+
 Dla transformacji $F = \frac{9}{5}C + 32$:
 
-1. **Proporcje wartości NIE zachowują się**:
-   \[
-   \frac{F_1}{F_2} = \frac{\frac{9}{5}C_1 + 32}{\frac{9}{5}C_2 + 32} \neq \frac{C_1}{C_2}
-   \]
+1.  **Proporcje wartości NIE zachowują się**: \[ \frac{F_1}{F_2} = \frac{\frac{9}{5}C_1 + 32}{\frac{9}{5}C_2 + 32} \neq \frac{C_1}{C_2} \]
 
-2. **Proporcje różnic zachowują się**:
-   \[
-   \frac{F_1 - F_2}{F_3 - F_4} = \frac{\frac{9}{5}(C_1 - C_2)}{\frac{9}{5}(C_3 - C_4)} = \frac{C_1 - C_2}{C_3 - C_4}
-   \]
+2.  **Proporcje różnic zachowują się**: \[ \frac{F_1 - F_2}{F_3 - F_4} = \frac{\frac{9}{5}(C_1 - C_2)}{\frac{9}{5}(C_3 - C_4)} = \frac{C_1 - C_2}{C_3 - C_4} \]
 
 #### Dlaczego To Jest Ważne?
 
-1. **Dla wartości**:
-   - W skali Celsjusza: 40°C nie jest "dwa razy cieplejsze" niż 20°C.
-   - W skali Fahrenheita: 100°F nie jest "dwa razy cieplejsze" niż 50°F.
-   - Tylko w Kelwinach proporcje wartości mają sens fizyczny.
-
-2. **Dla różnic**:
-   - Wzrost o 20°C jest zawsze dwa razy większy niż wzrost o 10°C.
-   - Wzrost o 36°F jest zawsze dwa razy większy niż wzrost o 18°F.
-   - Proporcje różnic są niezależne od skali.
+1.  **Dla wartości**:
+    -   W skali Celsjusza: 40°C nie jest "dwa razy cieplejsze" niż 20°C.
+    -   W skali Fahrenheita: 100°F nie jest "dwa razy cieplejsze" niż 50°F.
+    -   Tylko w Kelwinach proporcje wartości mają sens fizyczny.
+2.  **Dla różnic**:
+    -   Wzrost o 20°C jest zawsze dwa razy większy niż wzrost o 10°C.
+    -   Wzrost o 36°F jest zawsze dwa razy większy niż wzrost o 18°F.
+    -   Proporcje różnic są niezależne od skali.
 
 #### Implikacje dla Statystyk
 
-1. **Operacje bazujące na różnicach (DZIAŁAJĄ)**:
-   - Średnia arytmetyczna.
-   - Odchylenie bezwzględne.
-   - Rozstęp.
-
-2. **Operacje bazujące na proporcjach wartości (NIE DZIAŁAJĄ)**:
-   - Średnia geometryczna.
-   - Współczynnik zmienności.
-   - Wariancja (bo używa kwadratu wartości).
+1.  **Operacje bazujące na różnicach (DZIAŁAJĄ)**:
+    -   Średnia arytmetyczna.
+    -   Odchylenie bezwzględne.
+    -   Rozstęp.
+2.  **Operacje bazujące na proporcjach wartości (NIE DZIAŁAJĄ)**:
+    -   Średnia geometryczna.
+    -   Współczynnik zmienności.
+    -   Wariancja (bo używa kwadratu wartości).
 :::
-
 
 ### Znaczenie w Badaniach i Analizie
 
@@ -477,7 +465,6 @@ Chociaż typologia Stevensa jest szeroko stosowana, spotkała się z pewnymi kry
 2.  **Traktowanie danych porządkowych**: Trwa debata na temat tego, kiedy właściwe jest traktowanie danych porządkowych jako interwałowych dla pewnych analiz.
 
 3.  **Skalowanie psychologiczne**: Niektóre konstrukty psychologiczne (jak inteligencja) są trudne do jednoznacznego skategoryzowania w ramach tego systemu.
-
 
 ### Podsumowanie
 
@@ -598,6 +585,21 @@ Pełnią wyłącznie funkcję etykiet/identyfikatorów Nie mają naturalnego upo
 Mimo że numery domów są liczbami, w systemie adresowym funkcjonują jako etykiety, a nie wartości ilościowe. Liczba 100 w adresie "ul. Kilińskiego 100" nie jest używana matematycznie - równie dobrze mogłaby to być "ul. Jabłkowa" czy "ul. Zeusa", jeśli chodzi o jej funkcję w adresie.
 :::
 
+
+## Appendix A: Miary Statystyczne dla Różnych Typów Zmiennych
+
+| Typ zmiennej | Tendencja centralna | Miary rozproszenia | Wzory | Odpowiednie testy | Wizualizacja |
+|--------------|---------------------|-------------------|-------|-------------------|--------------|
+| **Nominalna** | Dominanta (moda) | Wskaźnik zróżnicowania | $VR = 1 - \frac{f_m}{n}$ gdzie $f_m$ to częstość modalnej, $n$ to liczba obserwacji | Chi-kwadrat, testy dokładne Fishera | Wykresy słupkowe, kołowe |
+| | | Indeks różnorodności (Simpsona) | $D = 1 - \sum_{i=1}^{k} p_i^2$ gdzie $p_i$ to proporcja i-tej kategorii | Test zgodności, testy niezależności | Mozaikowe wykresy |
+| | | Entropia Shannona | $H = -\sum_{i=1}^{k} p_i \log_2(p_i)$ gdzie $p_i$ to proporcja i-tej kategorii | Testy oparte na entropii | Wykresy entropii, dendrogram |
+| **Porządkowa** | Mediana | Rozstęp | $R = \max(X) - \min(X)$ | Mann-Whitney, Kruskal-Wallis | Wykresy skumulowane, wykresy rozbieżne |
+| | | Rozstęp międzykwartylowy (IQR) | $IQR = Q_3 - Q_1$ gdzie $Q_1$ i $Q_3$ to pierwszy i trzeci kwartyl | Testy rangowe, testy mediany | Wykresy pudełkowe |
+| | | Odchylenie ćwiartkowe | $Q_D = \frac{Q_3 - Q_1}{2}$ | Test Jonckheere-Terpstra | Wykresy porządkowe, skumulowane histogramy |
+| **Interwałowa/ Ilorazowa** | Średnia arytmetyczna | Wariancja | $\sigma^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i - \mu)^2$ gdzie $\mu$ to średnia | Testy t, ANOVA, regresja | Histogramy, wykresy rozrzutu |
+| | | Odchylenie standardowe | $\sigma = \sqrt{\sigma^2}$ | F-test, test Levene'a | Wykresy pudełkowe |
+| | | Współczynnik zmienności | $CV = \frac{\sigma}{\mu} \times 100\%$ | Testy równości wariancji | Wykresy QQ, wykresy przedziałowe |
+
 ::: callout-note
 ## Statistical Measures Applicability / Zastosowanie miar statystycznych
 
@@ -640,3 +642,4 @@ Mimo że numery domów są liczbami, w systemie adresowym funkcjonują jako etyk
 -   Choice of measure should consider both theoretical appropriateness and practical utility / Wybór miary powinien uwzględniać zarówno poprawność teoretyczną jak i użyteczność praktyczną
 -   More restrictive scales (ratio) allow all measures from less restrictive scales / Bardziej restrykcyjne skale (ilorazowe) pozwalają na wszystkie miary z mniej restrykcyjnych skal
 :::
+
