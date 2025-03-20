@@ -362,6 +362,7 @@ window.Quarto = {
   <li><a href="#implikacje-dla-analizy" id="toc-implikacje-dla-analizy" class="nav-link" data-scroll-target="#implikacje-dla-analizy"><span class="header-section-number">4.4.3</span> Implikacje dla Analizy</a></li>
   <li><a href="#podsumowanie-1" id="toc-podsumowanie-1" class="nav-link" data-scroll-target="#podsumowanie-1"><span class="header-section-number">4.4.4</span> Podsumowanie</a></li>
   </ul></li>
+  <li><a href="#appendix-a-miary-statystyczne-dla-różnych-typów-zmiennych" id="toc-appendix-a-miary-statystyczne-dla-różnych-typów-zmiennych" class="nav-link" data-scroll-target="#appendix-a-miary-statystyczne-dla-różnych-typów-zmiennych"><span class="header-section-number">4.5</span> Appendix A: Miary Statystyczne dla Różnych Typów Zmiennych</a></li>
   </ul>
 </nav>
     </div>
@@ -1097,6 +1098,104 @@ pH as an Interval Scale
 <p>Mimo że numery domów są liczbami, w systemie adresowym funkcjonują jako etykiety, a nie wartości ilościowe. Liczba 100 w adresie “ul. Kilińskiego 100” nie jest używana matematycznie - równie dobrze mogłaby to być “ul. Jabłkowa” czy “ul. Zeusa”, jeśli chodzi o jej funkcję w adresie.</p>
 </div>
 </div>
+</section>
+</section>
+<section id="appendix-a-miary-statystyczne-dla-różnych-typów-zmiennych" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="appendix-a-miary-statystyczne-dla-różnych-typów-zmiennych"><span class="header-section-number">4.5</span> Appendix A: Miary Statystyczne dla Różnych Typów Zmiennych</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 22%">
+<col style="width: 20%">
+<col style="width: 7%">
+<col style="width: 20%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Typ zmiennej</th>
+<th>Tendencja centralna</th>
+<th>Miary rozproszenia</th>
+<th>Wzory</th>
+<th>Odpowiednie testy</th>
+<th>Wizualizacja</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Nominalna</strong></td>
+<td>Dominanta (moda)</td>
+<td>Wskaźnik zróżnicowania</td>
+<td><span class="math inline">VR = 1 - \frac{f_m}{n}</span> gdzie <span class="math inline">f_m</span> to częstość modalnej, <span class="math inline">n</span> to liczba obserwacji</td>
+<td>Chi-kwadrat, testy dokładne Fishera</td>
+<td>Wykresy słupkowe, kołowe</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>Indeks różnorodności (Simpsona)</td>
+<td><span class="math inline">D = 1 - \sum_{i=1}^{k} p_i^2</span> gdzie <span class="math inline">p_i</span> to proporcja i-tej kategorii</td>
+<td>Test zgodności, testy niezależności</td>
+<td>Mozaikowe wykresy</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>Entropia Shannona</td>
+<td><span class="math inline">H = -\sum_{i=1}^{k} p_i \log_2(p_i)</span> gdzie <span class="math inline">p_i</span> to proporcja i-tej kategorii</td>
+<td>Testy oparte na entropii</td>
+<td>Wykresy entropii, dendrogram</td>
+</tr>
+<tr class="even">
+<td><strong>Porządkowa</strong></td>
+<td>Mediana</td>
+<td>Rozstęp</td>
+<td><span class="math inline">R = \max(X) - \min(X)</span></td>
+<td>Mann-Whitney, Kruskal-Wallis</td>
+<td>Wykresy skumulowane, wykresy rozbieżne</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>Rozstęp międzykwartylowy (IQR)</td>
+<td><span class="math inline">IQR = Q_3 - Q_1</span> gdzie <span class="math inline">Q_1</span> i <span class="math inline">Q_3</span> to pierwszy i trzeci kwartyl</td>
+<td>Testy rangowe, testy mediany</td>
+<td>Wykresy pudełkowe</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>Odchylenie ćwiartkowe</td>
+<td><span class="math inline">Q_D = \frac{Q_3 - Q_1}{2}</span></td>
+<td>Test Jonckheere-Terpstra</td>
+<td>Wykresy porządkowe, skumulowane histogramy</td>
+</tr>
+<tr class="odd">
+<td><strong>Interwałowa/ Ilorazowa</strong></td>
+<td>Średnia arytmetyczna</td>
+<td>Wariancja</td>
+<td><span class="math inline">\sigma^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i - \mu)^2</span> gdzie <span class="math inline">\mu</span> to średnia</td>
+<td>Testy t, ANOVA, regresja</td>
+<td>Histogramy, wykresy rozrzutu</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>Odchylenie standardowe</td>
+<td><span class="math inline">\sigma = \sqrt{\sigma^2}</span></td>
+<td>F-test, test Levene’a</td>
+<td>Wykresy pudełkowe</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>Współczynnik zmienności</td>
+<td><span class="math inline">CV = \frac{\sigma}{\mu} \times 100\%</span></td>
+<td>Testy równości wariancji</td>
+<td>Wykresy QQ, wykresy przedziałowe</td>
+</tr>
+</tbody>
+</table>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1282,8 +1381,8 @@ Statistical Measures Applicability / Zastosowanie miar statystycznych
 </tbody>
 </table>
 <p>* Theoretically problematic but commonly used in practice / Teoretycznie problematyczne, ale powszechnie stosowane w praktyce</p>
-<section id="notes-uwagi" class="level3" data-number="4.4.5">
-<h3 data-number="4.4.5" class="anchored" data-anchor-id="notes-uwagi"><span class="header-section-number">4.4.5</span> Notes / Uwagi:</h3>
+<section id="notes-uwagi" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="notes-uwagi"><span class="header-section-number">4.5.1</span> Notes / Uwagi:</h3>
 <ol type="1">
 <li>Measurement Scales / Skale pomiarowe:</li>
 </ol>
@@ -1306,7 +1405,6 @@ Statistical Measures Applicability / Zastosowanie miar statystycznych
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

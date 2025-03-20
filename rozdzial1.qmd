@@ -34,6 +34,83 @@ Zamiast traktować statystykę i naukę o danych jako odrębne dyscypliny, korzy
 
 1.  **Dane**: Informacje zebrane podczas badania – obejmują odpowiedzi z ankiet, wyniki eksperymentów, wskaźniki ekonomiczne, treści z mediów społecznościowych lub wszelkie inne mierzalne obserwacje.
 
+::: callout-warning
+## Rodzaje i Formaty Zbiorów Danych
+
+### Dane Przekrojowe
+
+Obserwacje zebrane w jednym punkcie czasowym dla wielu podmiotów:
+
+| Osoba | Wiek | Dochód | Wykształcenie |
+|-------|------|--------|---------------|
+| 1     | 25   | 5000   | Licencjat     |
+| 2     | 35   | 7500   | Magister      |
+| 3     | 45   | 9000   | Doktorat      |
+
+### Szeregi Czasowe
+
+Obserwacje jednego podmiotu w kolejnych punktach czasowych:
+
+| Rok  | PKB (w mld) | Stopa Bezrobocia |
+|------|-------------|------------------|
+| 2018 | 20.580      | 3,9%             |
+| 2019 | 21.433      | 3,7%             |
+| 2020 | 20.933      | 8,1%             |
+
+### Dane Panelowe (Longitudinalne)
+
+Obserwacje wielu podmiotów w czasie:
+
+| Kraj   | Rok  | PKB per capita | Długość życia |
+|--------|------|----------------|---------------|
+| Polska | 2018 | 32.794         | 76,7          |
+| Polska | 2019 | 35.118         | 76,8          |
+| Niemcy | 2018 | 46.194         | 81,9          |
+| Niemcy | 2019 | 46.194         | 82,0          |
+
+### Dane Przekrojowo-Czasowe (TSCS)
+
+Szczególny przypadek danych panelowych gdzie:
+
+-   Liczba punktów czasowych \> liczba podmiotów
+-   Struktura podobna do danych panelowych
+-   Często stosowane w ekonomii i naukach politycznych
+
+### Formaty Danych
+
+#### Format Szeroki
+
+Każdy wiersz to podmiot; kolumny to zmienne/punkty czasowe:
+
+| Kraj   | PKB_2018 | PKB_2019 | DŻ_2018 | DŻ_2019 |
+|--------|----------|----------|---------|---------|
+| Polska | 32.794   | 35.118   | 76,7    | 76,8    |
+| Niemcy | 46.194   | 46.194   | 81,9    | 82,0    |
+
+#### Format Długi
+
+Każdy wiersz to unikalna kombinacja podmiot-czas-zmienna:
+
+| Kraj   | Rok  | Zmienna        | Wartość |
+|--------|------|----------------|---------|
+| Polska | 2018 | PKB per capita | 32.794  |
+| Polska | 2019 | PKB per capita | 35.118  |
+| Polska | 2018 | Długość życia  | 76,7    |
+| Polska | 2019 | Długość życia  | 76,8    |
+| Niemcy | 2018 | PKB per capita | 46.194  |
+| Niemcy | 2019 | PKB per capita | 46.194  |
+| Niemcy | 2018 | Długość życia  | 81,9    |
+| Niemcy | 2019 | Długość życia  | 82,0    |
+
+**Uwaga:** Format długi jest zazwyczaj preferowany do:
+
+-   Manipulacji danymi w R i Pythonie
+-   Analiz statystycznych
+-   Wizualizacji danych
+-   Modelowania efektów mieszanych
+-   Analiz powtarzanych pomiarów
+:::
+
 2.  **Populacja**: Pełny zbiór jednostek (osób, instytucji, zdarzeń), których dotyczy badanie – cała grupa, na temat której badacz chce wyciągnąć wnioski.
 
     -   *Przykład*: W badaniu preferencji wyborczych populację stanowią wszyscy obywatele uprawnieni do głosowania w danym kraju.
@@ -165,112 +242,134 @@ Uznanie losowości za prawo natury zmienia nasze postrzeganie rzeczywistości - 
 :::
 
 
-## **Parametry Populacji i Estymacja Statystyczna**
+## Podstawowe Pojęcia Estymacji Statystycznej  
 
-### **Parametry Populacji**
+### Parametry populacji vs. Statystyki próby  
 
-**Parametr populacji** ($\theta$) to wartość liczbowa opisująca określoną cechę całej populacji. Parametry te są zazwyczaj nieznane i szacowane na podstawie danych z próby.
+W statystyce często chcemy poznać pewne wartości opisujące całą **populację**, ale zwykle nie możemy zbadać wszystkich jej elementów. Zamiast tego pobieramy **próbę** i obliczamy z niej wartości, które pomagają nam oszacować **parametry populacyjne**.  
 
-#### **Typowe Parametry Populacji**
+::: {.callout-tip}
+**Kluczowa różnica:**  
+- **Parametr populacji** (oznaczany jako **$\theta$**) to stała, ale **nieznana** wartość opisująca całą populację.  
+- **Statystyka próby** (oznaczana jako **$\hat{\theta}$** podczas estymacji) to wartość obliczona na podstawie próby, używana do oszacowania parametru populacyjnego.  
+:::
 
--   $\mu$ (Średnia populacji): Średnia wartość w populacji.\
--   $\sigma^2$ (Wariancja populacji): Średnie kwadratowe odchylenie od średniej.\
--   $\sigma$ (Odchylenie standardowe populacji): Pierwiastek kwadratowy z wariancji, mierzący rozproszenie populacji.\
--   $p$ (Proporcja populacji): Ułamek populacji posiadający określoną cechę.
+#### Przykłady parametrów populacyjnych i statystyk próby  
 
-Ponieważ badanie całej populacji jest często niepraktyczne, polegamy na próbach do oszacowania tych parametrów.
+| **Koncepcja**         | **Parametr populacji (Nieznany, stały)** | **Statystyka próby (Obliczona z próby)** |
+|----------------------|---------------------------------|---------------------------------|
+| Średnia (średnia arytmetyczna) | **$\theta = \mu$** (prawdziwa średnia populacji) | **$\hat{\theta} = \bar{x}$** (średnia z próby) |
+| Wariancja           | **$\theta = \sigma^2$** (prawdziwa wariancja populacji) | **$\hat{\theta} = s^2$** (wariancja z próby) |
+| Proporcja           | **$\theta = p$** (prawdziwa proporcja) | **$\hat{\theta} = \hat{p}$** (proporcja w próbie) |
 
-------------------------------------------------------------------------
+Ponieważ **nie możemy bezpośrednio zaobserwować** wartości **$\theta$**, używamy **statystyki próby** (np. **$\hat{\theta}$**) do jej oszacowania.  
 
-### **Pojęcia Estymacji Statystycznej**
+---
 
-#### **Estymand**
+### Czym jest Estymand?  
 
-**Estymand** to konkretny parametr populacji (lub funkcja parametrów), który chcemy oszacować. Reprezentuje nieznaną wartość w populacji, którą chcemy określić.
+**Estymand** to konkretny parametr populacyjny **$\theta$**, który chcemy oszacować. Reprezentuje nieznaną wartość w populacji, którą próbujemy określić.  
 
-> **Kluczowe Rozróżnienie**\
-> Estymand to nieznany parametr populacji (np. $\mu$, $\sigma^2$, $p$), podczas gdy estymator to metoda używana do obliczenia oszacowania.
+::: {.callout-note}
+**Przykład:**  
+- Jeśli chcemy poznać **średni wzrost dorosłych w Polsce**, to prawdziwa średnia **($\theta = \mu$)** jest **estymandem**.  
+- Jeśli chcemy oszacować **proporcję wyborców popierających kandydata**, to prawdziwa proporcja **($\theta = p$)** jest **estymandem**.  
+:::
 
-------------------------------------------------------------------------
+---
 
-#### **Estymator (Statystyka)**
+### Czym jest Estymator?  
 
-**Estymator** to funkcja matematyczna lub procedura używana do oszacowania parametru populacji na podstawie danych z próby. Jest to zmienna losowa, ponieważ jego wartość zależy od konkretnej próby.
+**Estymator** to **reguła, wzór lub funkcja**, którą stosujemy do próby, aby oszacować parametr populacyjny **$\theta$**.  
 
-**Statystyka** to dowolna miara obliczona z danych próby. Gdy jest używana do oszacowania parametru populacji, nazywana jest estymatorem.
+::: {.callout-tip}
+**Kluczowa idea:**  
+- **Estymator to procedura, a nie konkretna liczba!**  
+- Ponieważ różne próby dają różne wyniki, estymator jest **zmienną losową**, czyli jego wartość zależy od wybranej próby.  
+:::
 
-##### **Przykłady Estymatorów**
+#### Notacja  
+- **$\theta$** = Prawdziwy parametr populacji (nieznany)  
+- **$\hat{\theta}$** = Estymator (funkcja danych z próby)  
 
--   **Średnia z próby**: $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ (estymator $\mu$).\
--   **Wariancja z próby**: $s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$ (estymator $\sigma^2$).\
--   **Proporcja z próby**: $\hat{p} = \frac{x}{n}$ (estymator $p$).
+#### Przykłady estymatorów  
+- **Średnia z próby (estymator $\mu$):**  
+  $$
+  \hat{\theta} = \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+  $$  
 
-> **Uwaga**\
-> Estymator to **procedura** obliczania wartości na podstawie próby. Zastosowanie tego samego estymatora do różnych prób da różne oszacowania.
+- **Wariancja z próby (estymator $\sigma^2$):**  
+  $$
+  \hat{\theta} = s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2
+  $$  
 
-------------------------------------------------------------------------
+- **Proporcja z próby (estymator $p$):**  
+  $$
+  \hat{\theta} = \hat{p} = \frac{x}{n}
+  $$  
 
-#### **Oszacowanie (Estymata)**
+---
 
-**Oszacowanie** to konkretna wartość liczbowa uzyskana przez zastosowanie estymatora do próby. Jest to realizacja zmiennej losowej (estymatora).
+### Czym jest Estymata?  
 
-##### **Przykład**
+**Estymata** to konkretna wartość liczbowa, którą uzyskujemy po zastosowaniu estymatora **$\hat{\theta}$** do próby.  
 
--   **Estymand**: Średni wzrost wszystkich dorosłych w kraju ($\mu$).\
--   **Estymator**: Wzór na średnią z próby ($\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$).\
--   **Oszacowanie**: 173,5 cm (konkretna wartość z próby).
+#### Przykład: Oszacowanie średniego wzrostu dorosłych  
+- **Estymand**: Prawdziwa średnia wzrostu **($\theta = \mu$)** (nieznana).  
+- **Estymator**: Wzór na średnią z próby **$\hat{\theta} = \bar{x} = \frac{1}{n} \sum x_i$**.  
+- **Estymata**: Konkretna wartość, np. **173,5 cm**, uzyskana na podstawie jednej próby.  
 
-------------------------------------------------------------------------
+---
 
-### **Właściwości Dobrych Estymatorów**
 
-Dobry estymator powinien mieć następujące właściwości:\
-1. **Nieobciążoność**: Oczekiwana wartość estymatora równa się parametrowi populacji ($E(\hat{\theta}) = \theta$).\
-2. **Efektywność**: Estymator ma najmniejszą możliwą wariancję spośród wszystkich nieobciążonych estymatorów.\
-3. **Zgodność**: Wraz ze wzrostem liczebności próby estymator zbliża się do prawdziwej wartości parametru.\
-4. **Wystarczalność**: Estymator wykorzystuje wszystkie dostępne informacje z próby dotyczące parametru.
 
-------------------------------------------------------------------------
+### Co Czyni Estymator Dobrym?  
 
-### **Wartość Oczekiwana Estymatora**
+Gdy używamy danych do oszacowania jakiejś wartości (np. średniego wzrostu uczniów w szkole), chcemy, aby nasze oszacowanie było jak **najdokładniejsze i najbardziej wiarygodne**. Dobry **estymator** powinien spełniać cztery kluczowe cechy:  
 
-**Wartość oczekiwana** zmiennej losowej to średnia wartość, jaką przyjmowałaby w długim okresie, gdyby eksperyment był powtarzany nieskończenie wiele razy. Dla estymatora wartość oczekiwana reprezentuje średnią wartość statystyki w wielu próbach z populacji.
+#### 1️⃣ Nieobciążoność: Brak Systematycznego Błędu  
+Dobry estymator powinien średnio dawać **poprawny wynik**! Oznacza to, że jeśli wielokrotnie pobierzemy próbki i obliczymy oszacowania, **średnia wszystkich oszacowań** powinna być równa rzeczywistej wartości, którą próbujemy oszacować (**$\theta$**).  
 
-Dla dobrze skonstruowanego estymatora wartość oczekiwana równa się parametrowi populacji:\
+Matematycznie:  
 $$
 E(\hat{\theta}) = \theta
-$$\
-Taki estymator nazywamy **nieobciążonym**.
+$$  
+Tutaj **$E(\hat{\theta})$** (tzw. **operator wartości oczekiwanej**) oznacza **średnią wartość estymatora $\hat{\theta}$ w wielu próbkach**. Mówiąc prościej, jeśli powtarzalibyśmy badanie wiele razy, średnia naszych oszacowań powinna być równa prawdziwej wartości **$\theta$**. To zapewnia, że estymator **nie ma systematycznej tendencji do zawyżania lub zaniżania** wyników.  
 
-##### **Przykład: Estymatory Nieobciążone i Obciążone**
+#### 2️⃣ Efektywność: Jak Najmniejsza Zmienność  
+Nawet jeśli estymator jest nieobciążony, jego wyniki mogą być **rozproszone**. **Dobry** estymator powinien dawać **możliwie najmniejszą wariancję**, czyli wyniki blisko siebie, a nie zbyt rozrzucone. Im mniej "skacze" wokół prawdziwej wartości, tym jest bardziej **wiarygodny**.  
 
--   Średnia z próby ($\bar{x}$) jest nieobciążonym estymatorem średniej populacji ($\mu$).\
--   Wariancja z próby ($s^2$) wymaga poprawki ($\frac{1}{n-1}$ zamiast $\frac{1}{n}$), aby była nieobciążona.
+#### 3️⃣ Zbieżność: Więcej Danych = Większa Dokładność  
+**Zbieżny estymator** poprawia się w miarę zwiększania liczby obserwacji. Gdy mamy małą próbkę, oszacowanie może być niedokładne, ale jeśli zbierzemy **więcej danych**, nasz estymator powinien coraz bardziej **zbliżać się do prawdziwej wartości $\theta$**.  
 
-------------------------------------------------------------------------
+#### 4️⃣ Dostateczność: Wykorzystuje Całą Informację z Próby  
+**Dostateczny estymator** maksymalnie wykorzystuje dostępne dane. Nie **marnuje informacji**, ani nie pomija niczego istotnego. Jeśli mamy pełny zestaw danych, dostateczny estymator zapewnia, że uzyskujemy **wszystkie możliwe informacje** o **$\theta$** z naszej próbki.  
 
-### **Rozkład Statystyk z Próby**
+---
 
-**Statystyka z próby** ($\hat{\theta}$) to wartość obliczona z danych próby i używana do oszacowania parametru populacji ($\theta$).
+### Dlaczego Szacowania Się Różnią? (Rozkład Próbkowania)  
 
-**Rozkład statystyki** opisuje, jak jej wartości zmieniają się przy wielokrotnym losowaniu prób o tej samej liczebności ($n$) z tej samej populacji. Koncepcja ta jest kluczowa dla wnioskowania statystycznego.
+Jeśli pobierzemy różne próbki z populacji, dostaniemy **różne oszacowania**. Aby zrozumieć te różnice, analizujemy **rozkład próbkowania**—czyli rozkład wartości estymatora w różnych próbkach.  
 
-#### **Kluczowe Punkty Dotyczące Rozkładu Statystyki**
+#### Kluczowe Fakty o Rozkładach Próbkowania  
+1. **Każda próbka daje inne oszacowanie** – Dwie osoby, które przeprowadzą niezależne badania, mogą uzyskać różne wyniki.  
+2. **Różnice te nie są przypadkowe** – **Rozkład próbkowania** opisuje, jak te oszacowania są rozłożone.  
+3. **Większa próba oznacza mniejszą zmienność** – Im więcej danych, tym dokładniejsze oszacowanie.  
+4. **Rozkład próbkowania pozwala mierzyć niepewność** – Dzięki niemu możemy wyznaczać przedziały ufności i przeprowadzać testy statystyczne.  
 
-1.  Pokazuje, jak statystyka zmienia się w różnych próbach.\
-2.  Pomaga określić błąd próby i niepewność.\
-3.  Umożliwia tworzenie probabilistycznych stwierdzeń o dokładności oszacowań.\
-4.  Stanowi podstawę wnioskowania statystycznego.
+#### Przykład: Średnia Próby  
+Załóżmy, że wielokrotnie losujemy próbki z populacji i za każdym razem obliczamy średnią. Otrzymane wartości utworzą **rozkład próbkowania średniej**, którego centrum będzie się znajdować w pobliżu prawdziwej wartości **$\mu$**.  
 
-#### **Przykład: Średnia z Próby**
-
-Średnia z próby ($\bar{x}$) jest estymatorem średniej populacji ($\mu$). Oblicza się ją jako:\
+Matematycznie, średnia z próby to:  
 $$
-\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
-$$\
-gdzie $x_1, x_2, ..., x_n$ to obserwacje w losowej próbie.
+\hat{\theta} = \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+$$  
+gdzie **$x_1, x_2, ..., x_n$** to wartości w naszej próbie.  
 
-------------------------------------------------------------------------
+Oznacza to, że jeśli wielokrotnie pobieramy próbki, **średnia wszystkich średnich próbkowych** powinna być bliska rzeczywistej średniej **$\mu$** populacji.  
+
+---
+
 
 
 ::: {.callout-note}
@@ -281,22 +380,30 @@ gdzie $x_1, x_2, ..., x_n$ to obserwacje w losowej próbie.
 
 ### Co Definiuje Krzywą Dzwonową?
 Krzywa dzwonowa jest określona przez dwie kluczowe liczby:
+
 1. **Średnia ($\mu$)**: To wartość średnia, która wyznacza środek krzywej.
 2. **Odchylenie standardowe ($\sigma$)**: Określa, jak bardzo dane są rozproszone. Małe odchylenie standardowe oznacza, że dane są blisko średniej, a duże—że są bardziej rozrzucone.
 
 ### Dlaczego Jest Ważna?
+
 Rozkład normalny jest niezwykle użyteczny, ponieważ:
+
 1. **Zasada 68-95-99.7**:
    - Około 68% danych znajduje się w odległości 1 odchylenia standardowego od średniej.
    - Około 95% danych znajduje się w odległości 2 odchyleń standardowych.
    - Około 99,7% danych znajduje się w odległości 3 odchyleń standardowych.
+
 2. **Centralne Twierdzenie Graniczne**:  
    Wyobraź sobie, że masz jakieś dane, które nie wyglądają jak typowa krzywa dzwonowa (np. mogą być rozrzucone nieregularnie). Jeśli zaczniesz wielokrotnie losować próbki z tych danych i za każdym razem obliczać ich średnią, to te średnie zaczną układać się w kształt krzywej dzwonowej—nawet jeśli oryginalne dane nie miały takiego kształtu!  
-   Innymi słowy:  
+
+Innymi słowy:
+   
    - Niezależnie od tego, jak wyglądają Twoje dane na początku,  
    - Jeśli będziesz brał średnie z wielu małych grup tych danych,  
-   - To te średnie będą tworzyć krzywą dzwonową, gdy zbierzesz ich wystarczająco dużo.  
-   To właśnie dlatego rozkład normalny jest tak ważny—nawet jeśli coś nie wydaje się "normalne" na pierwszy rzut oka, to średnie z tego czegoś często zachowują się zgodnie z krzywą dzwonową.
+   - To te średnie będą tworzyć krzywą dzwonową, gdy zbierzesz ich wystarczająco dużo.
+   
+To właśnie dlatego rozkład normalny jest tak ważny—nawet jeśli coś nie wydaje się "normalne" na pierwszy rzut oka, to średnie z tego czegoś często zachowują się zgodnie z krzywą dzwonową.
+
 3. **Narzędzia Statystyczne**: Wiele testów i metod statystycznych opiera się na rozkładzie normalnym do przewidywania i wyciągania wniosków.
 
 ### Zobaczmy to w Działaniu!
@@ -318,7 +425,7 @@ y <- dnorm(x, mean, sd)
 
 # Narysuj krzywą normalną
 ggplot(data.frame(x, y), aes(x, y)) +
-  geom_line(color = "blue", size = 1) +
+  geom_line(color = "blue", linewidth = 1) +
   labs(title = "Rozkład Normalny (Krzywa Dzwonowa)",
        x = "Wartości",
        y = "Gęstość Prawdopodobieństwa") +
@@ -372,72 +479,125 @@ Przykład przedziału ufności: "95% przedział ufności dla średniego wzrostu 
 
 **Błędna interpretacja**: "Istnieje 95% szans, że prawdziwa średnia znajduje się w przedziale (173 cm, 175 cm)" – jest to niepoprawne, ponieważ parametr populacji jest stałą (choć nieznaną) wartością, a nie zmienną losową.
 
+
+
 ### Testowanie Hipotez
 
-Testowanie hipotez to formalna procedura weryfikacji przypuszczeń dotyczących parametrów populacji.
+Testowanie hipotez to sposób na sprawdzenie, czy dane twierdzenie dotyczące grupy (lub populacji) jest prawdopodobnie prawdziwe, czy nie. To trochę jak bycie detektywem: zbierasz dowody (dane) i decydujesz, czy dowody potwierdzają twoje twierdzenie.
 
-> **Przykład: Test dwumianowy dla monety**
->
-> Wyobraźmy sobie, że chcemy sprawdzić, czy moneta jest uczciwa.
->
-> 1.  **Pytanie badawcze**: Czy moneta jest uczciwa (prawdopodobieństwo orła = 0,5)?
->
-> 2.  **Sformułowanie hipotez**:
->
->     -   **Hipoteza zerowa (H₀)**: p = 0,5 (moneta jest uczciwa)
->     -   **Hipoteza alternatywna (H₁)**: p ≠ 0,5 (moneta nie jest uczciwa)
->
-> 3.  **Zebranie danych**: Rzucamy monetą 100 razy i otrzymujemy 65 orłów.
->
-> 4.  **Analiza**: Czy 65 orłów na 100 rzutów stanowi dowód przeciwko hipotezie, że moneta jest uczciwa?
->
-> 5.  **Rozumowanie**:
->
->     -   Jeśli moneta byłaby uczciwa (p = 0,5), liczba orłów w 100 rzutach powinna podążać za rozkładem dwumianowym B(100, 0,5)
->     -   Dla tego rozkładu oczekujemy średnio 50 orłów, z odchyleniem standardowym √(100 × 0,5 × 0,5) = 5
->     -   Otrzymanie 65 orłów oznacza odchylenie o 3 odchylenia standardowe od wartości oczekiwanej
->     -   Prawdopodobieństwo otrzymania 65 lub więcej orłów przy uczciwej monecie jest bardzo małe (p \< 0,01)
->
-> 6.  **Wniosek**: Ponieważ zaobserwowany wynik jest bardzo mało prawdopodobny przy założeniu, że moneta jest uczciwa, odrzucamy hipotezę zerową i wnioskujemy, że moneta najprawdopodobniej nie jest uczciwa.
+---
 
-Ogólna procedura testowania hipotez:
+### Przykład: Testowanie, czy moneta jest sprawiedliwa
 
-1.  Sformułuj hipotezę zerową (H₀) i hipotezę alternatywną (H₁)
-2.  Wybierz poziom istotności α (zwykle 0,05)
-3.  Zbierz dane i oblicz odpowiednią statystykę testową
-4.  Oblicz wartość p (prawdopodobieństwo uzyskania naszych danych lub bardziej skrajnych wyników przy założeniu, że H₀ jest prawdziwa)
-5.  Podejmij decyzję: jeśli p \< α, odrzuć H₀ na korzyść H₁
+Załóżmy, że chcesz sprawdzić, czy moneta jest sprawiedliwa (czyli czy ma równe szanse na wypadnięcie orła lub reszki).
 
-> **Uwaga: Intuicja stojąca za testowaniem hipotez**
->
-> Testowanie hipotez przypomina procedurę sądową:
+#### Krok 1: Zadaj pytanie badawcze
+- **Pytanie**: Czy moneta jest sprawiedliwa? (Czy prawdopodobieństwo orła = 0,5?)
 
-> -   H₀ odpowiada zasadzie "niewinny, dopóki nie udowodni się winy"
-> -   Dane stanowią "dowód" przeciwko H₀
-> -   Wartość p określa, jak silny jest ten dowód
-> -   Jeśli dowód jest wystarczająco silny (p \< α), "skazujemy" H₀ (odrzucamy ją)
-> -   Jeśli dowód nie jest wystarczająco silny, nie odrzucamy H₀ (ale nie udowadniamy jej prawdziwości)
+#### Krok 2: Ustal dwie hipotezy
+- **Hipoteza zerowa (H₀)**: Moneta jest sprawiedliwa. (Prawdopodobieństwo orła = 0,5)
+- **Hipoteza alternatywna (H₁)**: Moneta nie jest sprawiedliwa. (Prawdopodobieństwo orła ≠ 0,5)
+
+Hipotezę zerową traktujemy jako domyślne założenie, czyli „niewinny, dopóki nie udowodniono winy”. Hipoteza alternatywna to to, co próbujemy udowodnić.
+
+#### Krok 3: Zbierz dane
+- Rzucasz monetą 100 razy i otrzymujesz **65 orłów**.
+
+#### Krok 4: Przeanalizuj dane
+- Gdyby moneta była sprawiedliwa, oczekiwałbyś około 50 orłów w 100 rzutach.
+- Liczba orłów powinna podlegać **rozkładowi dwumianowemu** (to wzór, który opisuje, jak wyniki powinny wyglądać przy wielokrotnym rzucaniu monetą).
+- Odchylenie standardowe (miara tego, jak bardzo wyniki mogą się różnić) wynosi 5.
+- Uzyskanie 65 orłów oznacza wynik **3 odchylenia standardowe** od oczekiwanego wyniku 50 orłów. To bardzo nietypowe!
+
+#### Krok 5: Oblicz wartość p
+- **Wartość p** to prawdopodobieństwo uzyskania 65 lub więcej orłów (lub wyniku równie ekstremalnego), jeśli moneta byłaby sprawiedliwa.
+- W tym przypadku wartość p jest bardzo mała (mniej niż 0,01), co oznacza, że taki wynik jest bardzo mało prawdopodobny, gdyby moneta była sprawiedliwa.
+
+#### Krok 6: Podjąć decyzję
+- Jeśli wartość p jest mała (zwykle mniejsza niż 0,05), **odrzucamy hipotezę zerową**.
+- Tutaj wartość p jest bardzo mała, więc wnioskujemy, że moneta **nie jest sprawiedliwa**.
+
+---
+
+### Ogólne Kroki Testowania Hipotez
+
+1. **Sformułuj hipotezy**:
+   - Hipoteza zerowa (H₀): Domyślne twierdzenie (brak efektu).
+   - Hipoteza alternatywna (H₁): Twierdzenie, które testujesz.
+
+2. **Wybierz poziom istotności (α)**:
+   - To próg, który decyduje, czy wartość p jest wystarczająco mała, aby odrzucić H₀. Typowe wartości to 0,05 lub 0,01.
+
+3. **Zbierz dane**:
+   - Zbierz dowody (np. rzuć monetą 100 razy).
+
+4. **Oblicz statystykę testową i wartość p**:
+   - **Statystyka testowa** mierzy, jak bardzo twoje dane odbiegają od tego, co przewiduje H₀.
+   - **Wartość p** mówi, jak prawdopodobne jest uzyskanie twoich danych (lub czegoś bardziej ekstremalnego), jeśli H₀ jest prawdziwa.
+
+5. **Podejmij decyzję**:
+   - Jeśli wartość p < α, odrzuć H₀ i przyjmij H₁.
+   - Jeśli wartość p ≥ α, nie odrzucaj H₀ (ale to nie oznacza, że H₀ jest prawdziwa).
+
+---
+
+### Intuicja Za Testowaniem Hipotez
+
+Testowanie hipotez można porównać do procesu sądowego:
+
+- **Hipoteza zerowa (H₀)**: Oskarżony jest niewinny.
+- **Hipoteza alternatywna (H₁)**: Oskarżony jest winny.
+- **Dane**: Dowody przedstawione w sądzie.
+- **Wartość p**: Jak silne są dowody przeciwko oskarżonemu.
+- **Poziom istotności (α)**: Standard dowodu potrzebny do skazania.
+
+Jeśli dowody są wystarczająco silne (wartość p < α), odrzucamy H₀ (skazujemy oskarżonego). Jeśli nie, nie odrzucamy H₀ (ale to nie oznacza, że udowodniliśmy jego niewinność).
+
+---
+
+### Częste Błędy w Interpretacji Wartości p
+
+1. **Wartość p NIE jest prawdopodobieństwem, że H₀ jest prawdziwa**.
+   - To prawdopodobieństwo uzyskania twoich danych (lub czegoś bardziej ekstremalnego), **jeśli H₀ jest prawdziwa**.
+
+2. **Wartość p NIE jest prawdopodobieństwem popełnienia błędu**.
+   - Nie mówi, jakie jest prawdopodobieństwo, że się mylisz, odrzucając H₀.
+
+3. **Nieodrzucenie H₀ NIE oznacza, że jest ona prawdziwa**.
+   - To tylko oznacza, że nie ma wystarczających dowodów, aby ją odrzucić.
+
+4. **Mała wartość p NIE oznacza, że wynik jest ważny w praktyce**.
+   - To tylko oznacza, że wynik jest statystycznie istotny. Efekt może być w rzeczywistości bardzo mały.
+
+5. **Wartość p zależy od wielkości próby**.
+   - Przy bardzo dużych próbach nawet małe różnice mogą być statystycznie istotne.
+
+---
 
 ### Rodzaje Błędów w Testowaniu Hipotez
 
-W testowaniu hipotez statystycznych możemy popełnić dwa rodzaje błędów:
+1. **Błąd I rodzaju (Fałszywie pozytywny)**:
+   - Odrzucenie H₀, gdy jest ona prawdziwa.
+   - Przykład: Skazanie niewinnej osoby.
+   - Prawdopodobieństwo tego błędu = α (poziom istotności).
 
--   **Błąd I rodzaju (α)**: Odrzucenie prawdziwej hipotezy zerowej ("skazanie niewinnego")
-    -   Prawdopodobieństwo tego błędu jest kontrolowane przez poziom istotności α
-    -   Typowo przyjmuje się α = 0,05, co oznacza, że akceptujemy 5% ryzyko odrzucenia prawdziwej hipotezy zerowej
--   **Błąd II rodzaju (β)**: Nieodrzucenie fałszywej hipotezy zerowej ("uniewinnienie winnego")
-    -   Prawdopodobieństwo uniknięcia tego błędu (1-β) nazywane jest mocą testu
-    -   Moc testu wzrasta wraz z wielkością próby i wielkością efektu
+2. **Błąd II rodzaju (Fałszywie negatywny)**:
+   - Nieodrzucenie H₀, gdy jest ona fałszywa.
+   - Przykład: Uniewinnienie winnej osoby.
+   - Prawdopodobieństwo tego błędu = β.
 
-> **Ważne: Częste błędy w interpretacji wartości p i testów**
->
-> 1.  Wartość p to **NIE** prawdopodobieństwo, że hipoteza zerowa jest prawdziwa
-> 2.  Wartość p to **NIE** prawdopodobieństwo popełnienia błędu przy odrzucaniu H₀
-> 3.  Nieodrzucenie H₀ **NIE** oznacza udowodnienia jej prawdziwości (brak dowodów przeciwko oskarżonemu nie dowodzi niewinności)
-> 4.  Bardzo mała wartość p **NIE** wskazuje na duży efekt praktyczny (istotność statystyczna ≠ istotność praktyczna)
-> 5.  Wartość p zależy od wielkości próby - przy bardzo dużych próbach nawet małe, praktycznie nieistotne różnice mogą być statystycznie istotne
->
-> **Definicja wartości p**: Prawdopodobieństwo zaobserwowania wyniku co najmniej tak skrajnego jak uzyskany, przy założeniu, że hipoteza zerowa jest prawdziwa.
+3. **Moc testu (1 - β)**:
+   - Prawdopodobieństwo poprawnego odrzucenia H₀, gdy jest ona fałszywa.
+   - Moc testu rośnie wraz z większą próbą i większym efektem.
+
+---
+
+### Kluczowe Wnioski
+
+- Testowanie hipotez pomaga zdecydować, czy dane potwierdzają twierdzenie.
+- Wartość p mówi, jak bardzo zaskakujące są twoje dane, zakładając, że H₀ jest prawdziwa.
+- Zawsze interpretuj wartość p ostrożnie i unikaj częstych błędów.
+- Pamiętaj: Istotność statystyczna ≠ ważność praktyczna.
 
 
 ## Modele Statystyczne
@@ -462,7 +622,11 @@ $$
 y = \beta_0 + \beta_1x + \epsilon, \quad \text{gdzie} \quad \epsilon \sim N(0, \sigma^2)
 $$
 
-W tym modelu: - $\beta_0$ (wyraz wolny) i $\beta_1$ (współczynnik nachylenia) to parametry, które szacujemy. - $\epsilon$ reprezentuje składnik losowy, który przechwytuje zmienność niewyjaśnioną przez model. - Zakładamy, że składnik losowy ma rozkład normalny o średniej 0 i wariancji $\sigma^2$.
+W tym modelu:
+
+- $\beta_0$ (wyraz wolny) i $\beta_1$ (współczynnik nachylenia) to parametry, które szacujemy.
+- $\epsilon$ reprezentuje składnik losowy, który przechwytuje zmienność niewyjaśnioną przez model.
+- Zakładamy, że składnik losowy ma rozkład normalny o średniej 0 i wariancji $\sigma^2$.
 
 ------------------------------------------------------------------------
 
@@ -505,11 +669,11 @@ Przykład:
 -   Obserwujemy osobę, która ukończyła studia i zarabia 8000 zł miesięcznie
 -   Nie możemy zaobserwować, ile ta sama osoba zarabiałaby, gdyby nie ukończyła studiów
 
-Metody przyczynowe próbują rozwiązać ten problem poprzez:
+Metody przyczynowe próbują rozwiązać ten problem, na przykład, poprzez:
 
 1.  Eksperymenty randomizowane
 2.  Zmienne instrumentalne
-3.  Metody dopasowania (matching)
+3.  Metody dopasowania (ang. matching methods)
 4.  Analizę nieciągłości regresji (ang. regression discontinuity)
 5.  Różnicę w różnicach (ang. difference-in-differences)
 
@@ -521,6 +685,121 @@ Typowe problemy we wnioskowaniu przyczynowym:
 
 ------------------------------------------------------------------------
 
+
+## Zrozumienie błędów statystycznych
+
+Podczas używania próby do wnioskowania o populacji nieuniknione są błędy statystyczne:
+
+> **Błąd statystyczny** to różnica między oszacowaniem na podstawie próby a rzeczywistą wartością populacyjną.
+
+Błędy te mogą wpływać na wiarygodność i rzetelność badań. Ich zrozumienie jest kluczowe dla projektowania solidnych badań, dokładnej analizy danych i wyciągania poprawnych wniosków.
+
+## Rodzaje błędów statystycznych
+
+### Błędy próbkowania
+
+#### Losowe błędy próbkowania
+- **Definicja**: Naturalna zmienność oszacowań wynikająca z losowego doboru próby.
+- **Przykład**: Średni wzrost 30 losowo wybranych studentów uniwersytetu różni się między próbkami.
+- **Właściwości**:
+  - Nieuniknione, ale kontrolowalne
+  - Zmniejszają się wraz ze wzrostem wielkości próby
+  - Kwantyfikowane za pomocą marginesu błędu
+  - Podlegają przewidywalnym wzorcom statystycznym
+
+#### Systematyczne błędy próbkowania (stronniczość)
+- **Stronniczość selekcji**: Próba nie reprezentuje docelowej populacji.
+  - *Przykład*: Ankieta telefoniczna dociera tylko do użytkowników telefonów stacjonarnych, pomijając użytkowników telefonów komórkowych.
+- **Niedoreprezentowanie**: Systematyczne wykluczenie grup.
+  - *Przykład*: Ankieta na kampusie przeprowadzona w ciągu dnia pomija studentów uczących się wieczorami.
+- **Stronniczość autoselekcji**: Wyniki są zniekształcone przez wybór uczestników.
+  - *Przykład*: Ankiety dotyczące satysfakcji klientów wypełniają głównie osoby o silnych opiniach.
+- **Stronniczość braku odpowiedzi**: Niektóre grupy rzadziej odpowiadają.
+  - *Przykład*: Zapracowane osoby nie wypełniają ankiet, co prowadzi do nadreprezentacji osób z większą ilością wolnego czasu.
+
+### Błędy pomiarowe
+
+#### Losowe błędy pomiarowe
+- **Definicja**: Nieprzewidywalne wahania pomiarów wynikające z przypadkowej zmienności.
+- **Przykłady**: 
+  - Niewielkie różnice w pomiarach ciśnienia krwi z powodu drżącej ręki.
+  - Małe zmiany wynikające z warunków środowiskowych wpływających na instrumenty pomiarowe.
+  - Drobne nieścisłości w powtarzanych pomiarach.
+- **Kluczowa cecha**: Błędy te mają tendencję do równoważenia się przy wielokrotnych pomiarach.
+
+#### Systematyczne błędy pomiarowe
+- **Błędy kalibracji**: Narzędzia pomiarowe systematycznie dostarczają nieprawidłowe wartości.
+  - *Przykład*: Waga, która zawsze dodaje 2 kg.
+- **Stronniczość obserwatora**: Oczekiwania badacza subtelnie wpływają na zbieranie danych.
+  - *Przykład*: Nieświadome rejestrowanie danych zgodnych z hipotezą.
+- **Stronniczość społecznej aprobaty**: Uczestnicy zmieniają odpowiedzi, aby wyglądać lepiej.
+  - *Przykład*: Niedoszacowanie spożycia niezdrowej żywności w badaniach żywieniowych.
+
+### Błędy wnioskowania
+
+#### Błędy testowania hipotez
+- **Błąd typu I (fałszywie pozytywny)**: Błędne stwierdzenie, że istnieje efekt.
+  - *Przykład*: Twierdzenie, że nowy lek działa, gdy w rzeczywistości jego korzyści wynikają z przypadku.
+  - *Kontekst*: Powiązany z poziomem istotności (α).
+- **Błąd typu II (fałszywie negatywny)**: Niezauważenie rzeczywistego efektu.
+  - *Przykład*: Wniosek, że lek jest nieskuteczny, gdy faktycznie pomaga pacjentom.
+  - *Kontekst*: Związany z mocą statystyczną (1-β).
+- **Błąd typu III**: Analizowanie niewłaściwego problemu badawczego.
+  - *Przykład*: Badanie wpływu strategii marketingowej na ruch na stronie zamiast na sprzedaż.
+
+#### Problemy z mocą statystyczną
+- **Badania o niskiej mocy**: Zbyt mała próba, aby wykryć rzeczywiste efekty.
+  - *Przykład*: Ocena programu odchudzania na podstawie pięciu uczestników.
+  - *Zapobieganie*: Przeprowadzanie analizy mocy przed zbieraniem danych.
+
+### Błędy modelowania statystycznego
+
+#### Błędy wyboru zmiennych
+- **Pominięcie istotnych zmiennych**.
+  - *Przykład*: Analiza wpływu ćwiczeń na utratę wagi bez uwzględnienia diety.
+- **Zmienne zakłócające**: Czynniki zewnętrzne wpływają na predyktor i wynik.
+  - *Przykład*: Osoby ćwiczące często jedzą zdrowiej, co wpływa na wyniki.
+  - *Rozwiązanie*: Randomizacja, stratyfikacja lub kontrola statystyczna.
+
+#### Naruszenie założeń
+- **Definicja**: Stosowanie testów statystycznych niepasujących do charakterystyki danych.
+- **Przykład**: Zakładanie normalnego rozkładu przy silnym skośności danych.
+- **Zapobieganie**: Weryfikacja założeń przed analizą.
+
+## Strategie minimalizowania błędów statystycznych
+
+1. **Solidne projektowanie badań**
+   - Używanie odpowiednich metod próbkowania.
+   - Randomizacja tam, gdzie to możliwe.
+   - Kontrola zmiennych zakłócających.
+
+2. **Wystarczająca wielkość próby**
+   - Opieranie na analizie mocy.
+   - Uwzględnianie znaczenia praktycznego, a nie tylko statystycznego.
+   - Branie pod uwagę potencjalnych braków danych.
+
+3. **Przedrejestracja**
+   - Definiowanie planu analizy przed rozpoczęciem badań.
+   - Określenie głównych wyników i metod.
+   - Dokumentowanie wszelkich odstępstw od planu.
+
+4. **Przejrzystość**
+   - Udostępnianie danych i metod.
+   - Jasna dokumentacja decyzji analitycznych.
+
+5. **Replikacja**
+   - Zachęcanie do niezależnej weryfikacji wyników.
+   - Wspieranie powtórzeń badań.
+
+6. **Ciągłe kształcenie**
+   - Śledzenie najlepszych praktyk.
+   - Przestrzeganie wytycznych danej dziedziny.
+   - Angażowanie się w innowacje metodologiczne.
+
+Zrozumienie i minimalizowanie błędów statystycznych zwiększa wiarygodność wyników badań, zapobiegając błędnym decyzjom w dziedzinach takich jak medycyna, polityka, edukacja i biznes.
+
+
+---
 
 
 ## Appendices: Additional Topics in Statistics and Data Science (\*)
@@ -1934,7 +2213,10 @@ Oto tabela referencyjna często używanych symboli:
 | $CI$ | Przedział ufności | "95% $CI = [42,1, 45,7]$" |
 | $\hat{\theta}$ | Ogólna notacja dla estymatora parametru $\theta$ | "$\hat{\theta}$ to nasz estymator" |
 
-Przy czytaniu wzorów i pojęć statystycznych zwracaj zawsze uwagę na rozróżnienie między: - **Statystykami z próby** (zazwyczaj litery łacińskie: $\bar{x}$, $s$, $r$) - **Parametrami populacji** (zazwyczaj litery greckie: $\mu$, $\sigma$, $\rho$)
+Przy czytaniu wzorów i pojęć statystycznych zwracaj zawsze uwagę na rozróżnienie między:
+
+- **Statystykami z próby** (zazwyczaj litery łacińskie: $\bar{x}$, $s$, $r$)
+- **Parametrami populacji** (zazwyczaj litery greckie: $\mu$, $\sigma$, $\rho$)
 
 Ta konwencja pomaga wyjaśnić, czy mówimy o wartości obliczonej z naszych danych z próby, czy o prawdziwej (zwykle nieznanej) charakterystyce całej populacji.
 :::
@@ -2004,198 +2286,7 @@ To zaawansowane systemy do przechowywania danych w tabelach, które mogą być z
     -   Mniej odpowiedni do złożonych relacji między danymi.
 :::
 
-::: callout-note
-## Rozkład Normalny - Krzywa Dzwonowa
-
-> **Uwaga**
->
-> Rozkład normalny (znany również jako rozkład Gaussa lub krzywa dzwonowa) jest jednym z najważniejszych rozkładów prawdopodobieństwa w statystyce. Ma symetryczny dzwonowaty kształt i jest w pełni opisany przez dwa parametry:
->
-> -   Średnią $\mu$ (określającą środek rozkładu)
-> -   Odchylenie standardowe $\sigma$ (określające szerokość "dzwonu")
->
-> Rozkład normalny występuje często w przyrodzie i systemach ludzkich (wysokość, błędy pomiarowe, wyniki testów).
-
-### Reprezentacja Matematyczna
-
-Funkcja gęstości prawdopodobieństwa (PDF) rozkładu normalnego to:
-
-$$f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}$$
-
-Gdzie:
-
--   $x$ to zmienna losowa
--   $\mu$ to średnia (parametr położenia)
--   $\sigma$ to odchylenie standardowe (parametr skali)
--   $e$ to liczba Eulera (około 2,71828)
--   $\pi$ to stała matematyczna pi (około 3,14159)
-
-### Praktyczne Znaczenie
-
-Rozkład normalny jest szczególnie ważny ze względu na:
-
-1.  **Regułę 68-95-99,7**: Około 68% wartości mieści się w odległości jednego odchylenia standardowego od średniej, 95% w odległości dwóch odchyleń standardowych, a 99,7% w odległości trzech odchyleń standardowych.
-
-2.  **Centralne Twierdzenie Graniczne**: Średnie z próby mają tendencję do podążania za rozkładem normalnym niezależnie od kształtu oryginalnego rozkładu (przy wystarczająco dużej wielkości próby).
-
-3.  **Wnioskowanie Statystyczne**: Rozkład normalny stanowi podstawę dla wielu testów statystycznych i przedziałów ufności.
-:::
-
-------------------------------------------------------------------------
-
-::: callout-important
-## Błąd statystyczny
-
-Używając próby do poznania populacji, nieuchronnie napotykamy błąd statystyczny:
-
-> **Błąd statystyczny** to różnica między oszacowaniem z próby a prawdziwą wartością w populacji.
-
-Błędy statystyczne mogą zagrozić trafności i wiarygodności wyników badań. Zrozumienie tych błędów jest kluczowe dla projektowania solidnych badań, właściwej analizy danych i wyciągania odpowiednich wniosków.
-
-## Rodzaje błędów statystycznych
-
-### Błędy próbkowania
-
-#### Losowe błędy próbkowania
-- **Definicja**: Naturalna zmienność występująca przy pobieraniu losowych prób
-- **Przykład**: Średnie pomiary wzrostu różniące się nieznacznie w różnych losowych próbach 30 studentów uniwersytetu
-- **Właściwości**:
-  - Nieuniknione, ale możliwe do zarządzania
-  - Zmniejszają się wraz ze wzrostem wielkości próby
-  - Można je oszacować za pomocą marginesu błędu
-  - Podlegają przewidywalnym wzorcom opartym na teorii próbkowania
-
-#### Nielosowe (systematyczne) błędy próbkowania (Obciążenie)
-- **Błąd selekcji**: Próba nie reprezentuje populacji docelowej
-  - **Przykład**: Ankieta telefoniczna docierająca tylko do osób posiadających telefony stacjonarne, pomijając tych, którzy korzystają wyłącznie z telefonów komórkowych
-  
-- **Niedostateczne pokrycie**: Systematyczne wykluczanie określonych grup
-  - **Przykład**: Ankieta na kampusie przeprowadzana tylko podczas dziennych zajęć, pomijająca studentów wieczorowych
-  
-- **Błąd autoselekcji**: Zniekształcone wyniki wynikające z wyboru uczestników
-  - **Przykład**: Ankiety zadowolenia klientów wypełniane głównie przez osoby o silnych opiniach
-  
-- **Błąd braku odpowiedzi**: Określone grupy mniej skłonne do odpowiedzi
-  - **Przykład**: Zajęte osoby nie wypełniają kwestionariuszy, co prowadzi do nadreprezentacji osób z większą ilością wolnego czasu
-
-### Błędy pomiaru
-
-#### Losowe błędy pomiaru
-- **Definicja**: Nieprzewidywalne wahania w pomiarach spowodowane losową zmiennością (często nazywaną "szumem")
-- **Wyjaśnienie**: Podobne do składnika błędu (ε) w modelach regresji, są to niewyjaśnione wahania występujące przypadkowo
-- **Przykłady**: 
-  - Nieznacznie różne odczyty ciśnienia krwi z powodu drżącej ręki
-  - Małe wahania odczytów instrumentów z powodu czynników środowiskowych
-  - Drobne różnice, gdy ta sama osoba wykonuje powtarzane pomiary
-- **Kluczowa cecha**: Mają tendencję do znoszenia się przy powtarzanych pomiarach (błędy dodatnie równoważą błędy ujemne)
-
-#### Systematyczne błędy pomiaru
-- **Błędy kalibracji**: Konsekwentne niedokładności narzędzi pomiarowych
-  - **Przykład**: Waga konsekwentnie dodająca 2 funty do każdego pomiaru
-  
-- **Błąd obserwatora**: Oczekiwania badacza wpływające na zbieranie danych
-  - **Przykład**: Nieświadome rejestrowanie danych w sposób potwierdzający hipotezę
-  
-- **Błąd pożądanej społecznie odpowiedzi**: Uczestnicy udzielający społecznie akceptowanych odpowiedzi
-  - **Przykład**: Zaniżanie zgłaszanego spożycia śmieciowego jedzenia w badaniach żywieniowych
-
-### Błędy wnioskowania
-
-#### Błędy testowania hipotez
-- **Błąd typu I (Fałszywie pozytywny)**: Wnioskowanie o istnieniu efektu, gdy go nie ma
-  - **Przykład**: Twierdzenie, że nowy lek działa, gdy jego korzyści wynikają z przypadku
-  - **Kontekst**: Związany z poziomem istotności (α)
-  
-- **Błąd typu II (Fałszywie negatywny)**: Przeoczenie efektu, który faktycznie istnieje
-  - **Przykład**: Wnioskowanie, że nowy lek nie działa, gdy faktycznie pomaga pacjentom
-  - **Kontekst**: Związany z mocą statystyczną (1-β)
-  
-- **Błąd typu III**: Rozwiązywanie niewłaściwego problemu
-  - **Definicja**: Zadawanie niewłaściwego pytania lub skupianie się na nieistotnej hipotezie
-  - **Przykład**: Badanie, czy strategia marketingowa zwiększa ruch na stronie internetowej, gdy prawdziwym problemem jest to, czy zwiększa sprzedaż
-
-#### Problemy z mocą statystyczną
-- **Badania z niewystarczającą mocą**: Niewystarczająca wielkość próby do wykrycia prawdziwych efektów
-  - **Przykład**: Testowanie programu odchudzania z zaledwie 5 uczestnikami
-  - **Zapobieganie**: Przeprowadzanie odpowiedniej analizy mocy przed zbieraniem danych
-
-### Błędy specyfikacji modelu
-
-#### Błędy wyboru zmiennych
-- **Błąd pominiętej zmiennej**: Wykluczenie ważnych wpływowych zmiennych
-  - **Przykład**: Badanie ćwiczeń i utraty wagi bez uwzględnienia diety
-  
-- **Czynniki zakłócające**: Czynniki zewnętrzne wpływające zarówno na predyktor, jak i na wynik
-  - **Przykład**: Osoby, które ćwiczą, również jedzą zdrowiej, co wpływa na wyniki utraty wagi
-  - **Rozwiązanie**: Randomizacja, stratyfikacja lub techniki kontroli statystycznej
-
-#### Błędy założeń
-- **Definicja**: Stosowanie testów statystycznych, które nie są zgodne z charakterystyką danych
-- **Przykład**: Zakładanie rozkładu normalnego, gdy dane są silnie skośne
-- **Zapobieganie**: Weryfikacja założeń poprzez testy diagnostyczne przed analizą
-
-### Błędy przetwarzania i analizy danych
-
-#### Błędy obsługi danych
-- **Błędy wprowadzania danych**: Pomyłki podczas rejestrowania
-  - **Przykład**: Wpisanie "1050" zamiast "150" dla wagi
-  - **Zapobieganie**: Podwójne wprowadzanie, kontrole zakresu, procedury walidacji
-  
-- **Problemy z brakującymi danymi**: Niewłaściwe postępowanie z niekompletnymi danymi
-  - **Przykład**: Obliczanie średnich wyników testów przy ignorowaniu nieobecnych uczniów
-  - **Rozwiązania**: Metody imputacji, analizy wrażliwości
-
-#### Błędy wykonania analizy
-- **Błędy oprogramowania lub użytkownika**: Pomyłki w korzystaniu z oprogramowania statystycznego
-  - **Przykład**: Wybór niewłaściwego testu w oprogramowaniu analitycznym
-  - **Zapobieganie**: Przegląd kodu, odtwarzalne przepływy pracy, dokumentacja
-
-### Błędy interpretacji i raportowania
-
-#### Błędy wnioskowania przyczynowego
-- **Błąd korelacji-przyczynowości**: Mylenie korelacji z przyczynowością
-  - **Przykład**: Wnioskowanie, że konsumpcja czekolady powoduje Nagrody Nobla, ponieważ są skorelowane
-  - **Zapobieganie**: Zrozumienie ograniczeń projektu badawczego, właściwe formułowanie wyników
-
-#### Błędy raportowania i komunikacji
-- **p-hacking**: Przeprowadzanie wielu analiz, aż do znalezienia istotności
-  - **Przykład**: Analizowanie danych na 20 różnych sposobów i raportowanie tylko istotnych wyników
-  - **Zapobieganie**: Wstępna rejestracja, korekta dla wielokrotnych porównań
-  
-- **Wybieranie wisienek** (cherry-picking): Selektywne raportowanie wyników potwierdzających
-  - **Przykład**: Firma produkująca tabletki odchudzające publikująca tylko udane badania
-  - **Zapobieganie**: Kompleksowe raportowanie, zarejestrowane raporty
-
-## Strategie minimalizacji błędów statystycznych
-
-1. **Właściwy projekt badawczy**: Staranne planowanie przed zbieraniem danych
-   - Stosowanie odpowiednich metod próbkowania
-   - Randomizacja gdy to możliwe
-   - Kontrola zmiennych zakłócających
-
-2. **Odpowiednia wielkość próby**: Oparta na obliczeniach mocy
-   - Rozważenie praktycznej istotności, nie tylko istotności statystycznej
-   - Uwzględnienie potencjalnych rezygnacji lub brakujących danych
-
-3. **Wstępna rejestracja**: Deklaracja planów analizy przed badaniem danych
-   - Określenie głównych wyników i metod
-   - Dokumentowanie wszelkich odstępstw od planu
-
-4. **Przejrzystość**: Otwarte udostępnianie danych i metod
-   - Zapewnienie dostępu do surowych danych, gdy to możliwe
-   - Jasne dokumentowanie decyzji analitycznych
-
-5. **Replikacja**: Zachęcanie do niezależnej weryfikacji
-   - Przeprowadzanie wewnętrznych replikacji
-   - Wspieranie zewnętrznych wysiłków replikacyjnych
-   - Wartościowanie odtwarzalności tak samo jak nowości
-
-6. **Ciągła edukacja**: Aktualizacja najlepszych praktyk
-   - Przestrzeganie wytycznych specyficznych dla dziedziny
-   - Zaangażowanie w innowacje metodologiczne
-
-Zrozumienie i rozwiązywanie tych błędów zapewnia wiarygodność wyników badań, zapobiegając podejmowaniu złych decyzji w takich dziedzinach jak medycyna, polityka publiczna, edukacja i biznes.
-:::
+---
 
 ::: callout-note
 ```{r}
