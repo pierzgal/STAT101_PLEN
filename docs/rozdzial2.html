@@ -737,207 +737,6 @@ Dane Dyskretne vs.&nbsp;Ciągłe: Analogia Językowa
 <li>Wiek</li>
 <li>Dochód</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Dlaczego Niektóre Statystyki Działają (a Inne Nie) dla Skal Interwałowych
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<section id="kluczowa-idea" class="level4" data-number="4.3.4.4">
-<h4 data-number="4.3.4.4" class="anchored" data-anchor-id="kluczowa-idea"><span class="header-section-number">4.3.4.4</span> Kluczowa Idea</h4>
-<p>Skala interwałowa to taka, w której odległości między wartościami są znaczące, ale punkt zerowy jest umowny. W przypadku skal interwałowych (np. temperatury):</p>
-<ul>
-<li><strong>Dozwolone</strong> jest dodawanie/odejmowanie wartości oraz mnożenie/dzielenie przez stałe.</li>
-<li><strong>Niedozwolone</strong> jest mnożenie/dzielenie wartości ze skali przez siebie, ponieważ prowadzi to do wyników bez interpretacji fizycznej.</li>
-</ul>
-</section>
-<section id="własności-skali-interwałowej" class="level4" data-number="4.3.4.5">
-<h4 data-number="4.3.4.5" class="anchored" data-anchor-id="własności-skali-interwałowej"><span class="header-section-number">4.3.4.5</span> Własności Skali Interwałowej</h4>
-<ol type="1">
-<li><strong>Równe interwały reprezentują takie same różnice</strong>:
-<ul>
-<li>Różnica między 20°C a 25°C (5°C) reprezentuje taką samą zmianę jak między 30°C a 35°C.</li>
-<li>Proporcje różnic są zachowane: 10°C to dwa razy większa zmiana niż 5°C.</li>
-</ul></li>
-<li><strong>Punkt zero jest umowny</strong>:
-<ul>
-<li>0°C to punkt zamarzania wody, a nie brak temperatury.</li>
-<li>Ten sam stan fizyczny ma różne wartości w różnych skalach: 0°C = 32°F.</li>
-</ul></li>
-<li><strong>Transformacja liniowa</strong>:
-<ul>
-<li>Wzór ogólny: <span class="math inline">y = ax + b</span>, gdzie <span class="math inline">a \neq 0</span>.</li>
-<li>Dla temperatury: <span class="math inline">F = C \times \frac{9}{5} + 32</span>.</li>
-</ul></li>
-</ol>
-</section>
-<section id="dlaczego-średnia-arytmetyczna-działa" class="level4" data-number="4.3.4.6">
-<h4 data-number="4.3.4.6" class="anchored" data-anchor-id="dlaczego-średnia-arytmetyczna-działa"><span class="header-section-number">4.3.4.6</span> Dlaczego Średnia Arytmetyczna Działa</h4>
-<p>Średnia arytmetyczna działa, ponieważ opiera się na dodawaniu i dzieleniu przez stałą, które są dozwolone w skali interwałowej. Przykład:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">Dane:</span><span class="co"> 20°C i 30°C</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Metoda 1: Średnia w Celsjuszach, potem konwersja</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Średnia: (20°C + 30°C) ÷ 2 = 25°C</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Konwersja: 25°C × (9/5) + 32 = 77°F</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Metoda 2: Konwersja na °F, potem średnia</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Konwersja: 20°C → 68°F, 30°C → 86°F</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Średnia: (68°F + 86°F) ÷ 2 = 77°F</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Obie metody dają ten sam wynik! ✓</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Matematyczny dowód poprawności</strong>: <span class="math display">\begin{align}
-\bar{F} &amp;= \frac{F_1 + F_2}{2} \\
-&amp;= \frac{(C_1 \times \frac{9}{5} + 32) + (C_2 \times \frac{9}{5} + 32)}{2} \\
-&amp;= \frac{(C_1 + C_2) \times \frac{9}{5} + 64}{2} \\
-&amp;= \left(\frac{C_1 + C_2}{2}\right) \times \frac{9}{5} + 32 \\
-&amp;= \bar{C} \times \frac{9}{5} + 32
-\end{align}</span></p>
-</section>
-<section id="dlaczego-wariancja-jest-problematyczna" class="level4" data-number="4.3.4.7">
-<h4 data-number="4.3.4.7" class="anchored" data-anchor-id="dlaczego-wariancja-jest-problematyczna"><span class="header-section-number">4.3.4.7</span> Dlaczego Wariancja Jest Problematyczna</h4>
-<p>Wariancja jest problematyczna, ponieważ opiera się na kwadratach różnic, co prowadzi do jednostek kwadratowych (np. °C²) bez jasnej interpretacji fizycznej. Przykład:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="an">Te same temperatury:</span><span class="co"> 20°C i 30°C</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Metoda 1: Wariancja w Celsjuszach</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Średnia: 25°C</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Odchylenia: (20 - 25)°C = -5°C, (30 - 25)°C = 5°C</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Kwadraty odchyleń: (-5°C)² = 25(°C)², (5°C)² = 25(°C)²</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Średnia: (25 + 25)(°C)² ÷ 2 = 25(°C)²</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>Metoda 2: Wariancja w Fahrenheitach</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Konwersja: 20°C → 68°F, 30°C → 86°F</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Średnia: 77°F</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Odchylenia: (68 - 77)°F = -9°F, (86 - 77)°F = 9°F</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Kwadraty odchyleń: (-9°F)² = 81(°F)², (9°F)² = 81(°F)²</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Średnia: (81 + 81)(°F)² ÷ 2 = 81(°F)²</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>Problem: 25(°C)² i 81(°F)² nie są równoważne!</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Matematyczna analiza problemu</strong>: <span class="math display">\begin{align}
-(F_i - \bar{F})^2 &amp;= [(C_i \times \frac{9}{5} + 32) - (\bar{C} \times \frac{9}{5} + 32)]^2 \\
-&amp;= [(C_i - \bar{C}) \times \frac{9}{5}]^2 \\
-&amp;= (C_i - \bar{C})^2 \times \left(\frac{9}{5}\right)^2
-\end{align}</span></p>
-</section>
-<section id="wnioski-teoretyczne" class="level4" data-number="4.3.4.8">
-<h4 data-number="4.3.4.8" class="anchored" data-anchor-id="wnioski-teoretyczne"><span class="header-section-number">4.3.4.8</span> Wnioski Teoretyczne</h4>
-<ol type="1">
-<li><strong>Operacje dozwolone</strong>:
-<ul>
-<li>Dodawanie/odejmowanie (zachowuje różnice).</li>
-<li>Mnożenie/dzielenie przez stałe (skalowanie).</li>
-<li>Średnie arytmetyczne.</li>
-<li>Porównywanie różnic temperatur.</li>
-</ul></li>
-<li><strong>Operacje niedozwolone</strong>:
-<ul>
-<li>Mnożenie temperatur przez siebie.</li>
-<li>Dzielenie temperatur przez siebie.</li>
-<li>Średnie geometryczne.</li>
-<li>Współczynnik zmienności.</li>
-</ul></li>
-<li><strong>Implikacje praktyczne</strong>:
-<ul>
-<li>Wariancja i odchylenie standardowe wymagają ostrożnej interpretacji.</li>
-<li>Lepiej używać miar opartych na różnicach (np. MAD - średnie odchylenie bezwzględne).</li>
-<li>Przy porównywaniu zmienności warto standaryzować dane.</li>
-</ul></li>
-</ol>
-</section>
-<section id="zasada-praktyczna" class="level4" data-number="4.3.4.9">
-<h4 data-number="4.3.4.9" class="anchored" data-anchor-id="zasada-praktyczna"><span class="header-section-number">4.3.4.9</span> Zasada Praktyczna</h4>
-<p>Jeśli w obliczeniach pojawia się mnożenie wartości ze skali interwałowej przez siebie, należy zachować szczególną ostrożność w interpretacji wyników!</p>
-</section>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Proporcje w Skalach Pomiarowych: Przypadek Temperatury
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<section id="dwa-rodzaje-proporcji" class="level4" data-number="4.3.4.10">
-<h4 data-number="4.3.4.10" class="anchored" data-anchor-id="dwa-rodzaje-proporcji"><span class="header-section-number">4.3.4.10</span> Dwa Rodzaje Proporcji</h4>
-<section id="proporcje-wartości-nie-zachowują-się-w-skali-interwałowej" class="level5" data-number="4.3.4.10.1">
-<h5 data-number="4.3.4.10.1" class="anchored" data-anchor-id="proporcje-wartości-nie-zachowują-się-w-skali-interwałowej"><span class="header-section-number">4.3.4.10.1</span> Proporcje wartości (NIE zachowują się w skali interwałowej):</h5>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Weźmy 80°C i 20°C:</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>W Celsjuszach: 80°C/20°C = 4</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>W Fahrenheitach: 176°F/68°F ≈ 2.59</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>W Kelwinach: 353.15K/293.15K ≈ 1.20</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Te same temperatury dają różne proporcje! </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>→ Proporcje wartości NIE mają sensu na skalach interwałowych; sens mają tylko na skali ilorazowej.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="proporcje-różnic-zachowują-się-w-skali-interwałowej" class="level5" data-number="4.3.4.10.2">
-<h5 data-number="4.3.4.10.2" class="anchored" data-anchor-id="proporcje-różnic-zachowują-się-w-skali-interwałowej"><span class="header-section-number">4.3.4.10.2</span> Proporcje różnic (zachowują się w skali interwałowej):</h5>
-<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="an">Weźmy dwie pary różnic:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">Para 1:</span><span class="co"> 30°C - 20°C = 10°C</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">Para 2:</span><span class="co"> 80°C - 60°C = 20°C</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>Proporcja różnic w Celsjuszach:</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>20°C/10°C = 2</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Te same temperatury w Fahrenheitach:</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>Para 1: 86°F - 68°F = 18°F</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Para 2: 176°F - 140°F = 36°F</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>Proporcja różnic w Fahrenheitach:</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>36°F/18°F = 2</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>Proporcja różnic jest taka sama! ✓</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="matematyczne-wyjaśnienie" class="level4" data-number="4.3.4.11">
-<h4 data-number="4.3.4.11" class="anchored" data-anchor-id="matematyczne-wyjaśnienie"><span class="header-section-number">4.3.4.11</span> Matematyczne Wyjaśnienie</h4>
-<p>Dla transformacji <span class="math inline">F = \frac{9}{5}C + 32</span>:</p>
-<ol type="1">
-<li><p><strong>Proporcje wartości NIE zachowują się</strong>: [ = ]</p></li>
-<li><p><strong>Proporcje różnic zachowują się</strong>: [ = = ]</p></li>
-</ol>
-</section>
-<section id="dlaczego-to-jest-ważne" class="level4" data-number="4.3.4.12">
-<h4 data-number="4.3.4.12" class="anchored" data-anchor-id="dlaczego-to-jest-ważne"><span class="header-section-number">4.3.4.12</span> Dlaczego To Jest Ważne?</h4>
-<ol type="1">
-<li><strong>Dla wartości</strong>:
-<ul>
-<li>W skali Celsjusza: 40°C nie jest “dwa razy cieplejsze” niż 20°C.</li>
-<li>W skali Fahrenheita: 100°F nie jest “dwa razy cieplejsze” niż 50°F.</li>
-<li>Tylko w Kelwinach proporcje wartości mają sens fizyczny.</li>
-</ul></li>
-<li><strong>Dla różnic</strong>:
-<ul>
-<li>Wzrost o 20°C jest zawsze dwa razy większy niż wzrost o 10°C.</li>
-<li>Wzrost o 36°F jest zawsze dwa razy większy niż wzrost o 18°F.</li>
-<li>Proporcje różnic są niezależne od skali.</li>
-</ul></li>
-</ol>
-</section>
-<section id="implikacje-dla-statystyk" class="level4" data-number="4.3.4.13">
-<h4 data-number="4.3.4.13" class="anchored" data-anchor-id="implikacje-dla-statystyk"><span class="header-section-number">4.3.4.13</span> Implikacje dla Statystyk</h4>
-<ol type="1">
-<li><strong>Operacje bazujące na różnicach (DZIAŁAJĄ)</strong>:
-<ul>
-<li>Średnia arytmetyczna.</li>
-<li>Odchylenie bezwzględne.</li>
-<li>Rozstęp.</li>
-</ul></li>
-<li><strong>Operacje bazujące na proporcjach wartości (NIE DZIAŁAJĄ)</strong>:
-<ul>
-<li>Średnia geometryczna.</li>
-<li>Współczynnik zmienności.</li>
-<li>Wariancja (bo używa kwadratu wartości).</li>
-</ul></li>
-</ol>
-</section>
-</div>
-</div>
 </section>
 </section>
 <section id="znaczenie-w-badaniach-i-analizie" class="level3" data-number="4.3.5">
@@ -1166,6 +965,204 @@ Skale pomiarowe według typologii Stevensa: zmienne ilościowe vs.&nbsp;porządk
 <p><strong>Dla przykładu</strong>: W typologii skal pomiarowych Stevensa, adresy uliczne są danymi nominalnymi. Dlaczego?</p>
 <p>Pełnią wyłącznie funkcję etykiet/identyfikatorów Nie mają naturalnego uporządkowania (ul. Mickiewicza 5 nie jest “większa” niż ul. Słowackiego 10) Nie można wykonywać na nich sensownych operacji matematycznych Jedyna dozwolona operacja to sprawdzanie równości/nierówności (czy to ten sam adres czy inny?)</p>
 <p>Mimo że numery domów są liczbami, w systemie adresowym funkcjonują jako etykiety, a nie wartości ilościowe. Liczba 100 w adresie “ul. Kilińskiego 100” nie jest używana matematycznie - równie dobrze mogłaby to być “ul. Jabłkowa” czy “ul. Zeusa”, jeśli chodzi o jej funkcję w adresie.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dlaczego Niektóre Statystyki Działają (a Inne Nie) dla Skal Interwałowych
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Skala interwałowa to taka, w której odległości między wartościami są znaczące, ale punkt zerowy jest umowny. W przypadku skal interwałowych (np. temperatury):</p>
+<ul>
+<li><strong>Dozwolone</strong> jest dodawanie/odejmowanie wartości oraz mnożenie/dzielenie przez stałe.</li>
+<li><strong>Niedozwolone</strong> jest mnożenie/dzielenie wartości ze skali przez siebie, ponieważ prowadzi to do wyników bez interpretacji fizycznej.</li>
+</ul>
+<section id="własności-skali-interwałowej" class="level4" data-number="4.4.7.1">
+<h4 data-number="4.4.7.1" class="anchored" data-anchor-id="własności-skali-interwałowej"><span class="header-section-number">4.4.7.1</span> Własności Skali Interwałowej</h4>
+<ol type="1">
+<li><strong>Równe interwały reprezentują takie same różnice</strong>:
+<ul>
+<li>Różnica między 20°C a 25°C (5°C) reprezentuje taką samą zmianę jak między 30°C a 35°C.</li>
+<li>Proporcje różnic są zachowane: 10°C to dwa razy większa zmiana niż 5°C.</li>
+</ul></li>
+<li><strong>Punkt zero jest umowny</strong>:
+<ul>
+<li>0°C to punkt zamarzania wody, a nie brak temperatury.</li>
+<li>Ten sam stan fizyczny ma różne wartości w różnych skalach: 0°C = 32°F.</li>
+</ul></li>
+<li><strong>Transformacja liniowa</strong>:
+<ul>
+<li>Wzór ogólny: <span class="math inline">y = ax + b</span>, gdzie <span class="math inline">a \neq 0</span>.</li>
+<li>Dla temperatury: <span class="math inline">F = C \times \frac{9}{5} + 32</span>.</li>
+</ul></li>
+</ol>
+</section>
+<section id="dlaczego-średnia-arytmetyczna-działa" class="level4" data-number="4.4.7.2">
+<h4 data-number="4.4.7.2" class="anchored" data-anchor-id="dlaczego-średnia-arytmetyczna-działa"><span class="header-section-number">4.4.7.2</span> Dlaczego Średnia Arytmetyczna Działa</h4>
+<p>Średnia arytmetyczna działa, ponieważ opiera się na dodawaniu i dzieleniu przez stałą, które są dozwolone w skali interwałowej. Przykład:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">Dane:</span><span class="co"> 20°C i 30°C</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Metoda 1: Średnia w Celsjuszach, potem konwersja</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Średnia: (20°C + 30°C) ÷ 2 = 25°C</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Konwersja: 25°C × (9/5) + 32 = 77°F</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Metoda 2: Konwersja na °F, potem średnia</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Konwersja: 20°C → 68°F, 30°C → 86°F</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Średnia: (68°F + 86°F) ÷ 2 = 77°F</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Obie metody dają ten sam wynik! ✓</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Matematyczny dowód poprawności</strong>: <span class="math display">\begin{align}
+\bar{F} &amp;= \frac{F_1 + F_2}{2} \\
+&amp;= \frac{(C_1 \times \frac{9}{5} + 32) + (C_2 \times \frac{9}{5} + 32)}{2} \\
+&amp;= \frac{(C_1 + C_2) \times \frac{9}{5} + 64}{2} \\
+&amp;= \left(\frac{C_1 + C_2}{2}\right) \times \frac{9}{5} + 32 \\
+&amp;= \bar{C} \times \frac{9}{5} + 32
+\end{align}</span></p>
+</section>
+<section id="dlaczego-wariancja-jest-problematyczna" class="level4" data-number="4.4.7.3">
+<h4 data-number="4.4.7.3" class="anchored" data-anchor-id="dlaczego-wariancja-jest-problematyczna"><span class="header-section-number">4.4.7.3</span> Dlaczego Wariancja Jest Problematyczna</h4>
+<p>Wariancja jest problematyczna, ponieważ opiera się na kwadratach różnic, co prowadzi do jednostek kwadratowych (np. °C²) bez jasnej interpretacji fizycznej. Przykład:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="an">Te same temperatury:</span><span class="co"> 20°C i 30°C</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Metoda 1: Wariancja w Celsjuszach</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Średnia: 25°C</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Odchylenia: (20 - 25)°C = -5°C, (30 - 25)°C = 5°C</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Kwadraty odchyleń: (-5°C)² = 25(°C)², (5°C)² = 25(°C)²</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Średnia: (25 + 25)(°C)² ÷ 2 = 25(°C)²</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>Metoda 2: Wariancja w Fahrenheitach</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Konwersja: 20°C → 68°F, 30°C → 86°F</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Średnia: 77°F</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Odchylenia: (68 - 77)°F = -9°F, (86 - 77)°F = 9°F</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Kwadraty odchyleń: (-9°F)² = 81(°F)², (9°F)² = 81(°F)²</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Średnia: (81 + 81)(°F)² ÷ 2 = 81(°F)²</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>Problem: 25(°C)² i 81(°F)² nie są równoważne!</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Matematyczna analiza problemu</strong>: <span class="math display">\begin{align}
+(F_i - \bar{F})^2 &amp;= [(C_i \times \frac{9}{5} + 32) - (\bar{C} \times \frac{9}{5} + 32)]^2 \\
+&amp;= [(C_i - \bar{C}) \times \frac{9}{5}]^2 \\
+&amp;= (C_i - \bar{C})^2 \times \left(\frac{9}{5}\right)^2
+\end{align}</span></p>
+</section>
+<section id="wnioski-teoretyczne" class="level4" data-number="4.4.7.4">
+<h4 data-number="4.4.7.4" class="anchored" data-anchor-id="wnioski-teoretyczne"><span class="header-section-number">4.4.7.4</span> Wnioski Teoretyczne</h4>
+<ol type="1">
+<li><strong>Operacje dozwolone</strong>:
+<ul>
+<li>Dodawanie/odejmowanie (zachowuje różnice).</li>
+<li>Mnożenie/dzielenie przez stałe (skalowanie).</li>
+<li>Średnie arytmetyczne.</li>
+<li>Porównywanie różnic temperatur.</li>
+</ul></li>
+<li><strong>Operacje niedozwolone</strong>:
+<ul>
+<li>Mnożenie temperatur przez siebie.</li>
+<li>Dzielenie temperatur przez siebie.</li>
+<li>Średnie geometryczne.</li>
+<li>Współczynnik zmienności.</li>
+</ul></li>
+<li><strong>Implikacje praktyczne</strong>:
+<ul>
+<li>Wariancja i odchylenie standardowe wymagają ostrożnej interpretacji.</li>
+<li>Lepiej używać miar opartych na różnicach (np. MAD - średnie odchylenie bezwzględne).</li>
+<li>Przy porównywaniu zmienności warto standaryzować dane.</li>
+</ul></li>
+</ol>
+</section>
+<section id="zasada-praktyczna" class="level4" data-number="4.4.7.5">
+<h4 data-number="4.4.7.5" class="anchored" data-anchor-id="zasada-praktyczna"><span class="header-section-number">4.4.7.5</span> Zasada Praktyczna</h4>
+<p>Jeśli w obliczeniach pojawia się mnożenie wartości ze skali interwałowej przez siebie, należy zachować szczególną ostrożność w interpretacji wyników!</p>
+</section>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proporcje w Skalach Pomiarowych: Przypadek Temperatury
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<section id="dwa-rodzaje-proporcji" class="level4" data-number="4.4.7.6">
+<h4 data-number="4.4.7.6" class="anchored" data-anchor-id="dwa-rodzaje-proporcji"><span class="header-section-number">4.4.7.6</span> Dwa Rodzaje Proporcji</h4>
+<section id="proporcje-wartości-nie-zachowują-się-w-skali-interwałowej" class="level5" data-number="4.4.7.6.1">
+<h5 data-number="4.4.7.6.1" class="anchored" data-anchor-id="proporcje-wartości-nie-zachowują-się-w-skali-interwałowej"><span class="header-section-number">4.4.7.6.1</span> Proporcje wartości (NIE zachowują się w skali interwałowej):</h5>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Weźmy 80°C i 20°C:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>W Celsjuszach: 80°C/20°C = 4</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>W Fahrenheitach: 176°F/68°F ≈ 2.59</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>W Kelwinach: 353.15K/293.15K ≈ 1.20</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Te same temperatury dają różne proporcje! </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>→ Proporcje wartości NIE mają sensu na skalach interwałowych; sens mają tylko na skali ilorazowej.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="proporcje-różnic-zachowują-się-w-skali-interwałowej" class="level5" data-number="4.4.7.6.2">
+<h5 data-number="4.4.7.6.2" class="anchored" data-anchor-id="proporcje-różnic-zachowują-się-w-skali-interwałowej"><span class="header-section-number">4.4.7.6.2</span> Proporcje różnic (zachowują się w skali interwałowej):</h5>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="an">Weźmy dwie pary różnic:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">Para 1:</span><span class="co"> 30°C - 20°C = 10°C</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">Para 2:</span><span class="co"> 80°C - 60°C = 20°C</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>Proporcja różnic w Celsjuszach:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>20°C/10°C = 2</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Te same temperatury w Fahrenheitach:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>Para 1: 86°F - 68°F = 18°F</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Para 2: 176°F - 140°F = 36°F</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>Proporcja różnic w Fahrenheitach:</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>36°F/18°F = 2</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>Proporcja różnic jest taka sama! ✓</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="matematyczne-wyjaśnienie" class="level4" data-number="4.4.7.7">
+<h4 data-number="4.4.7.7" class="anchored" data-anchor-id="matematyczne-wyjaśnienie"><span class="header-section-number">4.4.7.7</span> Matematyczne Wyjaśnienie</h4>
+<p>Dla transformacji <span class="math inline">F = \frac{9}{5}C + 32</span>:</p>
+<ol type="1">
+<li><p><strong>Proporcje wartości NIE zachowują się</strong>: [ = ]</p></li>
+<li><p><strong>Proporcje różnic zachowują się</strong>: [ = = ]</p></li>
+</ol>
+</section>
+<section id="dlaczego-to-jest-ważne" class="level4" data-number="4.4.7.8">
+<h4 data-number="4.4.7.8" class="anchored" data-anchor-id="dlaczego-to-jest-ważne"><span class="header-section-number">4.4.7.8</span> Dlaczego To Jest Ważne?</h4>
+<ol type="1">
+<li><strong>Dla wartości</strong>:
+<ul>
+<li>W skali Celsjusza: 40°C nie jest “dwa razy cieplejsze” niż 20°C.</li>
+<li>W skali Fahrenheita: 100°F nie jest “dwa razy cieplejsze” niż 50°F.</li>
+<li>Tylko w Kelwinach proporcje wartości mają sens fizyczny.</li>
+</ul></li>
+<li><strong>Dla różnic</strong>:
+<ul>
+<li>Wzrost o 20°C jest zawsze dwa razy większy niż wzrost o 10°C.</li>
+<li>Wzrost o 36°F jest zawsze dwa razy większy niż wzrost o 18°F.</li>
+<li>Proporcje różnic są niezależne od skali.</li>
+</ul></li>
+</ol>
+</section>
+<section id="implikacje-dla-statystyk" class="level4" data-number="4.4.7.9">
+<h4 data-number="4.4.7.9" class="anchored" data-anchor-id="implikacje-dla-statystyk"><span class="header-section-number">4.4.7.9</span> Implikacje dla Statystyk</h4>
+<ol type="1">
+<li><strong>Operacje bazujące na różnicach (DZIAŁAJĄ)</strong>:
+<ul>
+<li>Średnia arytmetyczna.</li>
+<li>Odchylenie bezwzględne.</li>
+<li>Rozstęp.</li>
+</ul></li>
+<li><strong>Operacje bazujące na proporcjach wartości (NIE DZIAŁAJĄ)</strong>:
+<ul>
+<li>Średnia geometryczna.</li>
+<li>Współczynnik zmienności.</li>
+<li>Wariancja (bo używa kwadratu wartości).</li>
+</ul></li>
+</ol>
+</section>
 </div>
 </div>
 </section>
