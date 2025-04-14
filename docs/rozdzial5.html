@@ -908,7 +908,6 @@ Understanding Histograms and Density
 <ul>
 <li>Błędów pomiaru lub zapisu</li>
 <li>Prawdziwych ekstremalnych wartości w populacji</li>
-<li>Próbkowania z innej populacji</li>
 </ul>
 <p>Wartości odstające mogą mieć istotny wpływ na wiele miar statystycznych, szczególnie tych opartych na średnich lub sumach kwadratów odchyleń. Dlatego ważne jest, aby:</p>
 <ol type="1">
@@ -916,7 +915,6 @@ Understanding Histograms and Density
 <li>Badać przyczyny wartości odstających</li>
 <li>Podejmować świadome decyzje o tym, czy włączać je do analiz, czy nie</li>
 </ol>
-<p>W tym przewodniku omówimy, jak różne miary opisowe są dotknięte przez wartości odstające.</p>
 </section>
 <section id="symbole-stosowane-w-statystyce---podsumowanie" class="level2" data-number="12.5">
 <h2 data-number="12.5" class="anchored" data-anchor-id="symbole-stosowane-w-statystyce---podsumowanie"><span class="header-section-number">12.5</span> Symbole Stosowane w Statystyce - podsumowanie</h2>
@@ -1049,8 +1047,6 @@ Understanding Histograms and Density
 <ul>
 <li>Momenty z próby: <span class="math inline">m_k = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^k</span></li>
 <li>Momenty populacji: <span class="math inline">\mu_k = E[(X - \mu)^k]</span></li>
-<li>Błąd standardowy dla populacji: <span class="math inline">\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}</span></li>
-<li>Błąd standardowy z próby: <span class="math inline">s_{\bar{x}} = \frac{s}{\sqrt{n}}</span></li>
 </ul>
 </section>
 <section id="miary-tendencji-centralnej" class="level2" data-number="12.6">
@@ -1204,12 +1200,11 @@ Zrozumienie średniej jako punktu równowagi 🎯
 <ul>
 <li>Łatwa do obliczenia i zrozumienia</li>
 <li>Wykorzystuje wszystkie punkty danych</li>
-<li>Przydatna do dalszych obliczeń statystycznych</li>
 </ul>
 <p><strong>Wady:</strong></p>
 <ul>
 <li>Wrażliwa na wartości odstające</li>
-<li>Nie idealna dla rozkładów skośnych</li>
+<li>Może nie być dobrą miarą dla silnie asymetrycznych rozkładów danych</li>
 </ul>
 </section>
 <section id="mediana" class="level3" data-number="12.6.3">
@@ -1255,7 +1250,6 @@ Zrozumienie średniej jako punktu równowagi 🎯
 <p><strong>Wady:</strong></p>
 <ul>
 <li>Nie wykorzystuje wszystkich punktów danych</li>
-<li>Mniej przydatna do dalszych obliczeń statystycznych</li>
 </ul>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1341,7 +1335,7 @@ Warning
 <p><strong>Wady:</strong></p>
 <ul>
 <li>Nie zawsze jednoznacznie zdefiniowana</li>
-<li>Nie przydatna dla danych ciągłych</li>
+<li>Nie jest odpowiednia dla danych ciągłych</li>
 </ul>
 </section>
 <section id="średnia-arytmetyczna-ważona" class="level3" data-number="12.6.5">
@@ -1437,13 +1431,11 @@ Warning
 <p><strong>Zalety Średnich Ważonych:</strong></p>
 <ul>
 <li>Uwzględniają różną ważność punktów danych</li>
-<li>Przydatne w analizie ankiet o różnych wielkościach próby lub poziomach ważności</li>
-<li>Mogą korygować nierówne prawdopodobieństwa w projektach próbkowania</li>
 </ul>
 <p><strong>Wady Średnich Ważonych:</strong></p>
 <ul>
 <li>Wymagają uzasadnienia dla wag</li>
-<li>Mogą być niewłaściwie wykorzystane do manipulacji wynikami</li>
+<li>Mogą być niewłaściwie wykorzystane w celu manipulacji wynikami</li>
 <li>Mogą być mniej intuicyjne w interpretacji niż prosta średnia arytmetyczna</li>
 </ul>
 </section>
@@ -1525,7 +1517,7 @@ Zrozumienie Różnych Poziomów Zmienności
 <li>Większość obserwacji mieści się w przedziale ±4 jednostki od średniej</li>
 </ul></li>
 </ol>
-<p>Zwróć uwagę, jak odchylenie standardowe (σ) bezpośrednio wpływa na rozproszenie rozkładu - większe wartości σ wskazują na większą zmienność danych, podczas gdy mniejsze wartości oznaczają, że punkty danych mają tendencję do grupowania się bliżej średniej.</p>
+<p>Zwróć uwagę, jak odchylenie standardowe (σ) bezpośrednio powiązane jest z rozproszeniem rozkładu - większe wartości σ wskazują na większą zmienność danych, podczas gdy mniejsze wartości oznaczają, że punkty danych mają tendencję do grupowania się bliżej średniej.</p>
 </div>
 </div>
 <section id="rozstęp" class="level3" data-number="12.7.1">
@@ -1883,7 +1875,7 @@ Poprawka Bessela: Dlaczego Dzielimy przez (n-1), a nie po prostu przez n
 <p><strong>Kiedy NIE Stosować:</strong></p>
 <ul>
 <li>W obliczeniach dla całej populacji (gdy mamy wszystkie dane)</li>
-<li>Przy obliczaniu odchylenia od ustalonej, znanej wartości (nie obliczonej średniej)</li>
+<li>Przy obliczaniu odchylenia od ustalonej, znanej wartości parametru populacji statystycznej</li>
 </ul>
 <p><strong>Pamiętaj:</strong></p>
 <ul>
@@ -2085,7 +2077,7 @@ Ograniczenia Współczynnika Zmienności (CV)
 <p>Krok 1: Znajdź Q2 (medianę) - Tak samo dla obu metod</p>
 <ul>
 <li>Przy n = 11 wartościach (nieparzyste)</li>
-<li>Pozycja mediany = (n + 1)/2 = 6</li>
+<li>Pozycja mediany = 2(n + 1)/4 = (n + 1)/2 = 6</li>
 <li>Q2 = 78</li>
 </ul>
 <p>Krok 2: Znajdź Q1</p>
@@ -2165,7 +2157,6 @@ Ograniczenia Współczynnika Zmienności (CV)
 <li>Nie wymaga podziału danych na połowy</li>
 </ul></li>
 </ol>
-<p>Obie metody dają te same wyniki dla prostych pozycji (Przykład 1), ale mogą się różnić, gdy potrzebna jest interpolacja (Przykład 2).</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2288,7 +2279,7 @@ Manual Construction of Tukey Boxplot
 </section>
 <section id="zadania-z-rozwiązaniami" class="level3" data-number="12.8.4">
 <h3 data-number="12.8.4" class="anchored" data-anchor-id="zadania-z-rozwiązaniami"><span class="header-section-number">12.8.4</span> Zadania z Rozwiązaniami</h3>
-<p><strong>Zadanie 1: Podstawowe Kwartyle</strong></p>
+<p><strong>Zadanie 1: Kwartyle</strong></p>
 <p>Dane: 10, 12, 15, 15, 18, 20, 22, 25, 25 Znajdź: Q1, Q2, Q3</p>
 <p>Rozwiązanie:</p>
 <ol type="1">
@@ -2511,10 +2502,7 @@ Attaching package: 'moments'</code></pre>
 <section id="przewodnik-interpretacji-1" class="level4" data-number="12.9.2.4">
 <h4 data-number="12.9.2.4" class="anchored" data-anchor-id="przewodnik-interpretacji-1"><span class="header-section-number">12.9.2.4</span> Przewodnik Interpretacji</h4>
 <ul>
-<li><strong>Nadwyżka Kurtozy</strong>: Różnica względem kurtozy rozkładu normalnego
-<ol start="3" type="1">
-<li></li>
-</ol></li>
+<li><strong>Nadwyżka Kurtozy</strong>: Różnica względem kurtozy rozkładu normalnego (3)</li>
 <li><strong>Leptokurtyczny (&gt; 3)</strong>: Więcej wartości ekstremalnych niż w rozkładzie normalnym</li>
 <li><strong>Platykurtyczny (&lt; 3)</strong>: Mniej wartości ekstremalnych niż w rozkładzie normalnym</li>
 <li><strong>Mezokurtyczny (= 3)</strong>: Podobny do rozkładu normalnego</li>
