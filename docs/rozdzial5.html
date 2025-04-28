@@ -375,8 +375,7 @@ window.Quarto = {
   <li><a href="#kwartyle-q-podstawy" id="toc-kwartyle-q-podstawy" class="nav-link" data-scroll-target="#kwartyle-q-podstawy"><span class="header-section-number">12.8.1</span> Kwartyle (Q): Podstawy</a></li>
   <li><a href="#percentyle-bardziej-precyzyjna-miara-względnej-pozycji" id="toc-percentyle-bardziej-precyzyjna-miara-względnej-pozycji" class="nav-link" data-scroll-target="#percentyle-bardziej-precyzyjna-miara-względnej-pozycji"><span class="header-section-number">12.8.2</span> Percentyle: Bardziej Precyzyjna Miara Względnej Pozycji (*)</a></li>
   <li><a href="#rangi-percentylowe-pr" id="toc-rangi-percentylowe-pr" class="nav-link" data-scroll-target="#rangi-percentylowe-pr"><span class="header-section-number">12.8.3</span> Rangi Percentylowe (PR) (*)</a></li>
-  <li><a href="#zadania-z-rozwiązaniami" id="toc-zadania-z-rozwiązaniami" class="nav-link" data-scroll-target="#zadania-z-rozwiązaniami"><span class="header-section-number">12.8.4</span> Zadania z Rozwiązaniami</a></li>
-  <li><a href="#sec-boxplots" id="toc-sec-boxplots" class="nav-link" data-scroll-target="#sec-boxplots"><span class="header-section-number">12.8.5</span> Zrozumienie i interpretacja wykresów pudełkowych</a></li>
+  <li><a href="#sec-boxplots" id="toc-sec-boxplots" class="nav-link" data-scroll-target="#sec-boxplots"><span class="header-section-number">12.8.4</span> Wykres pudełkowy</a></li>
   </ul></li>
   <li><a href="#miary-kształtu" id="toc-miary-kształtu" class="nav-link" data-scroll-target="#miary-kształtu"><span class="header-section-number">12.9</span> Miary Kształtu</a>
   <ul class="collapse">
@@ -2073,6 +2072,28 @@ Ograniczenia Współczynnika Zmienności (CV)
 <li>Nazywany również 75-tym percentylem</li>
 <li>Przykład: Jeśli Q3 = 85, 75% uczniów uzyskało wynik poniżej 85</li>
 </ul>
+<p><strong>Zadanie 1: Kwartyle</strong></p>
+<p>Dane: 10, 12, 15, 15, 18, 20, 22, 25, 25 Znajdź: Q1, Q2, Q3</p>
+<p>Rozwiązanie:</p>
+<ol type="1">
+<li>Q2 (n = 9, nieparzyste)
+<ul>
+<li>Pozycja = (9 + 1)/2 = 5</li>
+<li>Q2 = 18</li>
+</ul></li>
+<li>Q1
+<ul>
+<li>Pozycja = (9 + 1)/4 = 2.5</li>
+<li>Między 12 a 15</li>
+<li>Q1 = (12 + 15)/2 = 13.5</li>
+</ul></li>
+<li>Q3
+<ul>
+<li>Pozycja = 3(9 + 1)/4 = 7.5</li>
+<li>Między 22 a 25</li>
+<li>Q3 = (22 + 25)/2 = 23.5</li>
+</ul></li>
+</ol>
 </section>
 <section id="jak-obliczać-kwartyle-krok-po-kroku---dwie-metody" class="level4" data-number="12.8.1.2">
 <h4 data-number="12.8.1.2" class="anchored" data-anchor-id="jak-obliczać-kwartyle-krok-po-kroku---dwie-metody"><span class="header-section-number">12.8.1.2</span> Jak Obliczać Kwartyle (Krok po Kroku) - Dwie Metody</h4>
@@ -2280,32 +2301,6 @@ Manual Construction of Tukey Boxplot
 <p><strong>Uwaga:</strong></p>
 <p>P1: “Dlaczego używamy 0.5 dla równych wartości w PR?”</p>
 <p>O1: Jest tak, ponieważ zakładamy, że osoby z tym samym wynikiem są równomiernie rozłożone na tej pozycji. To jak powiedzenie, że dzielą pozycję po równo.</p>
-</section>
-</section>
-<section id="zadania-z-rozwiązaniami" class="level3" data-number="12.8.4">
-<h3 data-number="12.8.4" class="anchored" data-anchor-id="zadania-z-rozwiązaniami"><span class="header-section-number">12.8.4</span> Zadania z Rozwiązaniami</h3>
-<p><strong>Zadanie 1: Kwartyle</strong></p>
-<p>Dane: 10, 12, 15, 15, 18, 20, 22, 25, 25 Znajdź: Q1, Q2, Q3</p>
-<p>Rozwiązanie:</p>
-<ol type="1">
-<li>Q2 (n = 9, nieparzyste)
-<ul>
-<li>Pozycja = (9 + 1)/2 = 5</li>
-<li>Q2 = 18</li>
-</ul></li>
-<li>Q1
-<ul>
-<li>Pozycja = (9 + 1)/4 = 2.5</li>
-<li>Między 12 a 15</li>
-<li>Q1 = (12 + 15)/2 = 13.5</li>
-</ul></li>
-<li>Q3
-<ul>
-<li>Pozycja = 3(9 + 1)/4 = 7.5</li>
-<li>Między 22 a 25</li>
-<li>Q3 = (22 + 25)/2 = 23.5</li>
-</ul></li>
-</ol>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2356,14 +2351,15 @@ Figure&nbsp;12.2: Wizualizacja podwójnej roli mediany
 </div>
 </div>
 </section>
-<section id="sec-boxplots" class="level3" data-number="12.8.5">
-<h3 data-number="12.8.5" class="anchored" data-anchor-id="sec-boxplots"><span class="header-section-number">12.8.5</span> Zrozumienie i interpretacja wykresów pudełkowych</h3>
-<p>Wykresy pudełkowe (znane również jako wykresy skrzynkowe lub box-and-whisker plots) są potężnymi narzędziami wizualizacji do zrozumienia rozkładów danych. W tej sekcji zbadamy, jak konstruować i interpretować wykresy pudełkowe przy użyciu pomiarów wzrostu z dwóch grup.</p>
-<section id="sec-boxplot-construction" class="level4" data-number="12.8.5.1">
-<h4 data-number="12.8.5.1" class="anchored" data-anchor-id="sec-boxplot-construction"><span class="header-section-number">12.8.5.1</span> Konstrukcja wykresu pudełkowego Tukeya</h4>
-<p>Wykres pudełkowy został wprowadzony przez Johna Tukeya jako część jego zestawu narzędzi eksploracyjnej analizy danych. Zapewnia on standardowy sposób wyświetlania rozkładu danych na podstawie pięciu kluczowych statystyk.</p>
-<section id="podsumowanie-pięciu-liczb" class="level5" data-number="12.8.5.1.1">
-<h5 data-number="12.8.5.1.1" class="anchored" data-anchor-id="podsumowanie-pięciu-liczb"><span class="header-section-number">12.8.5.1.1</span> Podsumowanie pięciu liczb</h5>
+</section>
+<section id="sec-boxplots" class="level3" data-number="12.8.4">
+<h3 data-number="12.8.4" class="anchored" data-anchor-id="sec-boxplots"><span class="header-section-number">12.8.4</span> Wykres pudełkowy</h3>
+<p>Wykresy pudełkowe (znane również jako wykresy skrzynkowe lub box-and-whisker plots) są użytecznymi narzędziami wizualizacji rozkładów danych.</p>
+<section id="sec-boxplot-construction" class="level4" data-number="12.8.4.1">
+<h4 data-number="12.8.4.1" class="anchored" data-anchor-id="sec-boxplot-construction"><span class="header-section-number">12.8.4.1</span> Konstrukcja wykresu pudełkowego Tukeya</h4>
+<p>Wykres pudełkowy został wprowadzony przez Johna Tukeya jako część jego zestawu narzędzi eksploracyjnej analizy danych. Wykres wizualizuje rozkład danych na podstawie pięciu podstawowych statystyk.</p>
+<section id="podsumowanie-pięciu-liczb" class="level5" data-number="12.8.4.1.1">
+<h5 data-number="12.8.4.1.1" class="anchored" data-anchor-id="podsumowanie-pięciu-liczb"><span class="header-section-number">12.8.4.1.1</span> Podsumowanie pięciu liczb</h5>
 <p>Wykres pudełkowy reprezentuje pięć kluczowych wartości statystycznych:</p>
 <ol type="1">
 <li><strong>Minimum</strong>: Najmniejsza wartość w zbiorze danych (z wyłączeniem wartości odstających)</li>
@@ -2373,8 +2369,8 @@ Figure&nbsp;12.2: Wizualizacja podwójnej roli mediany
 <li><strong>Maksimum</strong>: Największa wartość w zbiorze danych (z wyłączeniem wartości odstających)</li>
 </ol>
 </section>
-<section id="komponenty-wykresu-pudełkowego" class="level5" data-number="12.8.5.1.2">
-<h5 data-number="12.8.5.1.2" class="anchored" data-anchor-id="komponenty-wykresu-pudełkowego"><span class="header-section-number">12.8.5.1.2</span> Komponenty wykresu pudełkowego</h5>
+<section id="komponenty-wykresu-pudełkowego" class="level5" data-number="12.8.4.1.2">
+<h5 data-number="12.8.4.1.2" class="anchored" data-anchor-id="komponenty-wykresu-pudełkowego"><span class="header-section-number">12.8.4.1.2</span> Komponenty wykresu pudełkowego</h5>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-boxplot-diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2410,13 +2406,13 @@ Figure&nbsp;12.3: Diagram wykresu pudełkowego pokazujący jego kluczowe kompone
 <li><strong>Wartości odstające</strong>:
 <ul>
 <li>Punkty, które wykraczają poza wąsy</li>
-<li>Indywidualnie zaznaczone jako kropki lub symbole</li>
+<li>Indywidualnie zaznaczone jako kropki lub inne symbole</li>
 <li>Wartości, które są &lt; (Q1 - 1,5 × IQR) lub &gt; (Q3 + 1,5 × IQR)</li>
 </ul></li>
 </ol>
 </section>
-<section id="kluczowe-cechy-do-obserwacji" class="level5" data-number="12.8.5.1.3">
-<h5 data-number="12.8.5.1.3" class="anchored" data-anchor-id="kluczowe-cechy-do-obserwacji"><span class="header-section-number">12.8.5.1.3</span> Kluczowe cechy do obserwacji</h5>
+<section id="kluczowe-cechy-do-obserwacji" class="level5" data-number="12.8.4.1.3">
+<h5 data-number="12.8.4.1.3" class="anchored" data-anchor-id="kluczowe-cechy-do-obserwacji"><span class="header-section-number">12.8.4.1.3</span> Kluczowe cechy do obserwacji</h5>
 <p>Interpretując wykresy pudełkowe, zwróć uwagę na następujące cechy:</p>
 <ol type="1">
 <li><strong>Tendencja centralna</strong>: Położenie linii mediany wewnątrz pudełka</li>
@@ -2431,8 +2427,8 @@ Figure&nbsp;12.3: Diagram wykresu pudełkowego pokazujący jego kluczowe kompone
 </ol>
 </section>
 </section>
-<section id="sec-height-comparison" class="level4" data-number="12.8.5.2">
-<h4 data-number="12.8.5.2" class="anchored" data-anchor-id="sec-height-comparison"><span class="header-section-number">12.8.5.2</span> Studium przypadku: Porównanie wzrostu między grupami</h4>
+<section id="sec-height-comparison" class="level4" data-number="12.8.4.2">
+<h4 data-number="12.8.4.2" class="anchored" data-anchor-id="sec-height-comparison"><span class="header-section-number">12.8.4.2</span> Studium przypadku: Porównanie wzrostu między grupami</h4>
 <p>Zastosujmy nasze zrozumienie wykresów pudełkowych do rzeczywistego zbioru danych. Mamy pomiary wzrostu (w centymetrach) z dwóch grup, każda po 25 studentów.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Utworzenie zbioru danych</span></span>
@@ -2491,8 +2487,8 @@ Grupa 2  138     165    175  172     182  210</code></pre>
 </div>
 </div>
 </section>
-<section id="sec-visualizing-heights" class="level4" data-number="12.8.5.3">
-<h4 data-number="12.8.5.3" class="anchored" data-anchor-id="sec-visualizing-heights"><span class="header-section-number">12.8.5.3</span> Wizualizacja danych dotyczących wzrostu</h4>
+<section id="sec-visualizing-heights" class="level4" data-number="12.8.4.3">
+<h4 data-number="12.8.4.3" class="anchored" data-anchor-id="sec-visualizing-heights"><span class="header-section-number">12.8.4.3</span> Wizualizacja danych dotyczących wzrostu</h4>
 <p>Teraz zwizualizujmy dane za pomocą wykresów pudełkowych i wykresów gęstości:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzenie poziomych wykresów pudełkowych</span></span>
@@ -2542,8 +2538,8 @@ Figure&nbsp;12.5: Wykresy gęstości pokazujące rozkłady wzrostu dla każdej g
 </div>
 </div>
 </section>
-<section id="sec-boxplot-exercise" class="level4" data-number="12.8.5.4">
-<h4 data-number="12.8.5.4" class="anchored" data-anchor-id="sec-boxplot-exercise"><span class="header-section-number">12.8.5.4</span> Ćwiczenie z interpretacji wykresów pudełkowych</h4>
+<section id="sec-boxplot-exercise" class="level4" data-number="12.8.4.4">
+<h4 data-number="12.8.4.4" class="anchored" data-anchor-id="sec-boxplot-exercise"><span class="header-section-number">12.8.4.4</span> Ćwiczenie z interpretacji wykresów pudełkowych</h4>
 <p>Na podstawie powyższych wykresów pudełkowych i wykresów gęstości określ, czy każde z poniższych stwierdzeń jest <strong>Prawdziwe</strong> czy <strong>Fałszywe</strong>. Dla każdego stwierdzenia podaj krótkie wyjaśnienie oparte na dowodach z wizualizacji.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2564,8 +2560,8 @@ Pytania ćwiczeniowe
 </ol>
 </div>
 </div>
-<section id="wskazówki-do-interpretacji" class="level5" data-number="12.8.5.4.1">
-<h5 data-number="12.8.5.4.1" class="anchored" data-anchor-id="wskazówki-do-interpretacji"><span class="header-section-number">12.8.5.4.1</span> Wskazówki do interpretacji</h5>
+<section id="wskazówki-do-interpretacji" class="level5" data-number="12.8.4.4.1">
+<h5 data-number="12.8.4.4.1" class="anchored" data-anchor-id="wskazówki-do-interpretacji"><span class="header-section-number">12.8.4.4.1</span> Wskazówki do interpretacji</h5>
 <p>Odpowiadając na te pytania, weź pod uwagę:</p>
 <ul>
 <li>Pozycję linii mediany w każdym pudełku</li>
@@ -2652,8 +2648,8 @@ Rozwiązania
 </div>
 </section>
 </section>
-<section id="sec-boxplot-code" class="level4" data-number="12.8.5.5">
-<h4 data-number="12.8.5.5" class="anchored" data-anchor-id="sec-boxplot-code"><span class="header-section-number">12.8.5.5</span> Kod R</h4>
+<section id="sec-boxplot-code" class="level4" data-number="12.8.4.5">
+<h4 data-number="12.8.4.5" class="anchored" data-anchor-id="sec-boxplot-code"><span class="header-section-number">12.8.4.5</span> Kod R</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wczytanie wymaganych pakietów</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
