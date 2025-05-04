@@ -420,9 +420,18 @@ window.Quarto = {
   </ul></li>
   <li><a href="#najważniejsze-wnioski" id="toc-najważniejsze-wnioski" class="nav-link" data-scroll-target="#najważniejsze-wnioski"><span class="header-section-number">12.16</span> Najważniejsze Wnioski</a></li>
   <li><a href="#statistical-summary" id="toc-statistical-summary" class="nav-link" data-scroll-target="#statistical-summary"><span class="header-section-number">12.17</span> Statistical Summary</a></li>
-  <li><a href="#appendix-tabele-podsumowujące-typy-danych-i-odpowiednie-miary-statystyczne" id="toc-appendix-tabele-podsumowujące-typy-danych-i-odpowiednie-miary-statystyczne" class="nav-link" data-scroll-target="#appendix-tabele-podsumowujące-typy-danych-i-odpowiednie-miary-statystyczne"><span class="header-section-number">12.18</span> Appendix: Tabele Podsumowujące Typy Danych i Odpowiednie Miary Statystyczne</a>
+  <li><a href="#ćwiczenie-3.-voter-participation-and-economic-prosperity" id="toc-ćwiczenie-3.-voter-participation-and-economic-prosperity" class="nav-link" data-scroll-target="#ćwiczenie-3.-voter-participation-and-economic-prosperity"><span class="header-section-number">12.18</span> Ćwiczenie 3. Voter Participation and Economic Prosperity</a>
   <ul class="collapse">
-  <li><a href="#zalety-i-wady-różnych-miar-statystycznych" id="toc-zalety-i-wady-różnych-miar-statystycznych" class="nav-link" data-scroll-target="#zalety-i-wady-różnych-miar-statystycznych"><span class="header-section-number">12.18.1</span> Zalety i Wady Różnych Miar Statystycznych</a></li>
+  <li><a href="#dane-2" id="toc-dane-2" class="nav-link" data-scroll-target="#dane-2"><span class="header-section-number">12.18.1</span> Dane</a></li>
+  <li><a href="#część-1-statystyki-opisowe" id="toc-część-1-statystyki-opisowe" class="nav-link" data-scroll-target="#część-1-statystyki-opisowe"><span class="header-section-number">12.18.2</span> Część 1: Statystyki opisowe</a></li>
+  <li><a href="#część-2-analiza-korelacji" id="toc-część-2-analiza-korelacji" class="nav-link" data-scroll-target="#część-2-analiza-korelacji"><span class="header-section-number">12.18.3</span> Część 2: Analiza korelacji</a></li>
+  <li><a href="#część-3-model-regresji-ols" id="toc-część-3-model-regresji-ols" class="nav-link" data-scroll-target="#część-3-model-regresji-ols"><span class="header-section-number">12.18.4</span> Część 3: Model regresji OLS</a></li>
+  <li><a href="#wizualizacja" id="toc-wizualizacja" class="nav-link" data-scroll-target="#wizualizacja"><span class="header-section-number">12.18.5</span> Wizualizacja</a></li>
+  <li><a href="#wnioski" id="toc-wnioski" class="nav-link" data-scroll-target="#wnioski"><span class="header-section-number">12.18.6</span> Wnioski</a></li>
+  </ul></li>
+  <li><a href="#appendix-tabele-podsumowujące-typy-danych-i-odpowiednie-miary-statystyczne" id="toc-appendix-tabele-podsumowujące-typy-danych-i-odpowiednie-miary-statystyczne" class="nav-link" data-scroll-target="#appendix-tabele-podsumowujące-typy-danych-i-odpowiednie-miary-statystyczne"><span class="header-section-number">12.19</span> Appendix: Tabele Podsumowujące Typy Danych i Odpowiednie Miary Statystyczne</a>
+  <ul class="collapse">
+  <li><a href="#zalety-i-wady-różnych-miar-statystycznych" id="toc-zalety-i-wady-różnych-miar-statystycznych" class="nav-link" data-scroll-target="#zalety-i-wady-różnych-miar-statystycznych"><span class="header-section-number">12.19.1</span> Zalety i Wady Różnych Miar Statystycznych</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -3226,6 +3235,12 @@ Attaching package: 'gridExtra'</code></pre>
 <h4 data-number="12.10.2.1" class="anchored" data-anchor-id="średnia-arytmetyczna-1"><span class="header-section-number">12.10.2.1</span> Średnia arytmetyczna</h4>
 <p>Średnia arytmetyczna to suma wszystkich wartości podzielona przez ich liczbę.</p>
 <p>Wzór: <span class="math inline">\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}</span></p>
+<p>Można też zapisać ten wzór w postaci:</p>
+<p><span class="math inline">\bar{x} = \frac{\sum_{i=1}^{k} x_i f_i}{n}</span></p>
+<p>gdzie <span class="math inline">f_i</span> to częstość bezwzględna (liczba wystąpień, waga bezwzględna) <span class="math inline">i</span>-tej wartości, a <span class="math inline">k</span> to liczba różnych wartości cechy (liczba wartości wyróżnionych).</p>
+<p>Z użyciem częstości względnych:</p>
+<p><span class="math inline">\bar{x} = \sum_{i=1}^{k} x_i p_i</span></p>
+<p>gdzie <span class="math inline">p_i</span> to częstość względna (frakcja, waga znormalizowana) <span class="math inline">i</span>-tej wartości, a <span class="math inline">k</span> to liczba różnych wartości cechy (liczba wartości wyróżnionych).</p>
 <section id="obliczenia-ręczne-dla-firmy-x" class="level5" data-number="12.10.2.1.1">
 <h5 data-number="12.10.2.1.1" class="anchored" data-anchor-id="obliczenia-ręczne-dla-firmy-x"><span class="header-section-number">12.10.2.1.1</span> Obliczenia ręczne dla Firmy X</h5>
 <table class="caption-top table">
@@ -3400,6 +3415,28 @@ Attaching package: 'gridExtra'</code></pre>
 <h4 data-number="12.10.3.1" class="anchored" data-anchor-id="wariancja-1"><span class="header-section-number">12.10.3.1</span> Wariancja</h4>
 <p>Wariancja mierzy średnie kwadratowe odchylenie od średniej.</p>
 <p>Wzór: <span class="math inline">s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}</span></p>
+<p>Poprawka Bessela jest stosowana przy obliczaniu wariancji z próby, aby uzyskać nieobciążony estymator wariancji populacji. W standardowym wzorze na wariancję z próby dzielimy przez <span class="math inline">(n-1)</span> zamiast przez <span class="math inline">n</span>.</p>
+<p><strong>Modyfikacje wzoru dla danych pogrupowanych (szereg częstości):</strong></p>
+<p>Można też zapisać ten wzór w postaci:</p>
+<p><span class="math display">s^2 = \frac{1}{n-1} \sum_{i=1}^{k} f_i(x_i - \bar{x})^2</span></p>
+<p>gdzie <span class="math inline">f_i</span> to częstość bezwzględna (liczba wystąpień) <span class="math inline">i</span>-tej wartości.</p>
+<p>Gdy mamy do czynienia z częstościami względnymi <span class="math inline">p = f/n</span>, gdzie:</p>
+<ul>
+<li><span class="math inline">f</span> to częstość (liczba wystąpień)</li>
+<li><span class="math inline">n</span> to całkowita liczebność próby</li>
+</ul>
+<p>Wzór na wariancję z uwzględnieniem poprawki Bessela przyjmuje postać:</p>
+<p><span class="math display">s^2 = \frac{n}{n-1} \sum_{i=1}^{k} p_i(x_i - \bar{x})^2</span></p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">s^2</span> to wariancja z próby</li>
+<li><span class="math inline">n</span> to liczebność próby</li>
+<li><span class="math inline">p_i</span> to częstość względna <span class="math inline">i</span>-tej wartości</li>
+<li><span class="math inline">x_i</span> to <span class="math inline">i</span>-ta wartość cechy</li>
+<li><span class="math inline">\bar{x}</span> to średnia arytmetyczna</li>
+<li><span class="math inline">k</span> to liczba różnych wartości cechy</li>
+</ul>
+<p>Kluczowe jest to, że przy stosowaniu częstości względnych mnożymy całe wyrażenie przez czynnik <span class="math inline">\frac{n}{n-1}</span>, który wprowadza poprawkę Bessela.</p>
 <section id="obliczenia-ręczne-dla-firmy-x-2" class="level5" data-number="12.10.3.1.1">
 <h5 data-number="12.10.3.1.1" class="anchored" data-anchor-id="obliczenia-ręczne-dla-firmy-x-2"><span class="header-section-number">12.10.3.1.1</span> Obliczenia ręczne dla Firmy X</h5>
 <table class="caption-top table">
@@ -5291,12 +5328,203 @@ y
 </div>
 </div>
 </section>
-<section id="appendix-tabele-podsumowujące-typy-danych-i-odpowiednie-miary-statystyczne" class="level2" data-number="12.18">
-<h2 data-number="12.18" class="anchored" data-anchor-id="appendix-tabele-podsumowujące-typy-danych-i-odpowiednie-miary-statystyczne"><span class="header-section-number">12.18</span> Appendix: Tabele Podsumowujące Typy Danych i Odpowiednie Miary Statystyczne</h2>
-<section id="zalety-i-wady-różnych-miar-statystycznych" class="level3" data-number="12.18.1">
-<h3 data-number="12.18.1" class="anchored" data-anchor-id="zalety-i-wady-różnych-miar-statystycznych"><span class="header-section-number">12.18.1</span> Zalety i Wady Różnych Miar Statystycznych</h3>
-<section id="miary-tendencji-centralnej-3" class="level4" data-number="12.18.1.1">
-<h4 data-number="12.18.1.1" class="anchored" data-anchor-id="miary-tendencji-centralnej-3"><span class="header-section-number">12.18.1.1</span> Miary Tendencji Centralnej</h4>
+<section id="ćwiczenie-3.-voter-participation-and-economic-prosperity" class="level2" data-number="12.18">
+<h2 data-number="12.18" class="anchored" data-anchor-id="ćwiczenie-3.-voter-participation-and-economic-prosperity"><span class="header-section-number">12.18</span> Ćwiczenie 3. Voter Participation and Economic Prosperity</h2>
+<p>Analiza związku między dobrobytem ekonomicznym a frekwencją wyborczą w dzielnicach Amsterdamu na podstawie danych z wyborów samorządowych 2022.</p>
+<section id="dane-2" class="level3" data-number="12.18.1">
+<h3 data-number="12.18.1" class="anchored" data-anchor-id="dane-2"><span class="header-section-number">12.18.1</span> Dane</h3>
+<p>Próba obejmuje pięć reprezentatywnych dzielnic:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Dzielnica</th>
+<th>Dochód (tys. €)</th>
+<th>Frekwencja (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>50</td>
+<td>60</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>45</td>
+<td>56</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>56</td>
+<td>70</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>40</td>
+<td>50</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td>60</td>
+<td>75</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wczytanie bibliotek</span></span>
+<span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb129-3"><a href="#cb129-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-4"><a href="#cb129-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Utworzenie zbioru danych</span></span>
+<span id="cb129-5"><a href="#cb129-5" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb129-6"><a href="#cb129-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dzielnica =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb129-7"><a href="#cb129-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dochod =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">45</span>, <span class="dv">56</span>, <span class="dv">40</span>, <span class="dv">60</span>),</span>
+<span id="cb129-8"><a href="#cb129-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">frekwencja =</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">56</span>, <span class="dv">70</span>, <span class="dv">50</span>, <span class="dv">75</span>)</span>
+<span id="cb129-9"><a href="#cb129-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="część-1-statystyki-opisowe" class="level3" data-number="12.18.2">
+<h3 data-number="12.18.2" class="anchored" data-anchor-id="część-1-statystyki-opisowe"><span class="header-section-number">12.18.2</span> Część 1: Statystyki opisowe</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statystyki dla dochodu</span></span>
+<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dane<span class="sc">$</span>dochod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(dane<span class="sc">$</span>dochod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(dane<span class="sc">$</span>dochod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.075</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(dane<span class="sc">$</span>dochod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 40 60</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statystyki dla frekwencji</span></span>
+<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dane<span class="sc">$</span>frekwencja)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 62.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(dane<span class="sc">$</span>frekwencja)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(dane<span class="sc">$</span>frekwencja)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10.21</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(dane<span class="sc">$</span>frekwencja)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50 75</code></pre>
+</div>
+</div>
+</section>
+<section id="część-2-analiza-korelacji" class="level3" data-number="12.18.3">
+<h3 data-number="12.18.3" class="anchored" data-anchor-id="część-2-analiza-korelacji"><span class="header-section-number">12.18.3</span> Część 2: Analiza korelacji</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb146"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Korelacja Pearsona</span></span>
+<span id="cb146-2"><a href="#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(dane<span class="sc">$</span>dochod, dane<span class="sc">$</span>frekwencja)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  dane$dochod and dane$frekwencja
+t = 16, df = 3, p-value = 0.0005
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.9117 0.9996
+sample estimates:
+   cor 
+0.9942 </code></pre>
+</div>
+</div>
+</section>
+<section id="część-3-model-regresji-ols" class="level3" data-number="12.18.4">
+<h3 data-number="12.18.4" class="anchored" data-anchor-id="część-3-model-regresji-ols"><span class="header-section-number">12.18.4</span> Część 3: Model regresji OLS</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dopasowanie modelu OLS</span></span>
+<span id="cb148-2"><a href="#cb148-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(frekwencja <span class="sc">~</span> dochod, <span class="at">data =</span> dane)</span>
+<span id="cb148-3"><a href="#cb148-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-4"><a href="#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Podsumowanie modelu</span></span>
+<span id="cb148-5"><a href="#cb148-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = frekwencja ~ dochod, data = dane)
+
+Residuals:
+     1      2      3      4      5 
+-1.949  0.336  0.510  0.620  0.482 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -0.8965     3.9673   -0.23  0.83575    
+dochod        1.2569     0.0782   16.07  0.00052 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.26 on 3 degrees of freedom
+Multiple R-squared:  0.989, Adjusted R-squared:  0.985 
+F-statistic:  258 on 1 and 3 DF,  p-value: 0.000524</code></pre>
+</div>
+</div>
+<section id="diagnostyka-modelu" class="level4" data-number="12.18.4.1">
+<h4 data-number="12.18.4.1" class="anchored" data-anchor-id="diagnostyka-modelu"><span class="header-section-number">12.18.4.1</span> Diagnostyka modelu</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wykresy diagnostyczne</span></span>
+<span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb150-3"><a href="#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">1</span>)</span>
+<span id="cb150-4"><a href="#cb150-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="rozdzial5_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="wizualizacja" class="level3" data-number="12.18.5">
+<h3 data-number="12.18.5" class="anchored" data-anchor-id="wizualizacja"><span class="header-section-number">12.18.5</span> Wizualizacja</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wykres rozrzutu z linią regresji</span></span>
+<span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dane, <span class="fu">aes</span>(<span class="at">x =</span> dochod, <span class="at">y =</span> frekwencja)) <span class="sc">+</span></span>
+<span id="cb151-3"><a href="#cb151-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb151-4"><a href="#cb151-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb151-5"><a href="#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> dzielnica), <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb151-6"><a href="#cb151-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb151-7"><a href="#cb151-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Dochód vs frekwencja wyborcza"</span>,</span>
+<span id="cb151-8"><a href="#cb151-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Dochód (tys. €)"</span>,</span>
+<span id="cb151-9"><a href="#cb151-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frekwencja wyborcza (%)"</span></span>
+<span id="cb151-10"><a href="#cb151-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb151-11"><a href="#cb151-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="rozdzial5_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="wnioski" class="level3" data-number="12.18.6">
+<h3 data-number="12.18.6" class="anchored" data-anchor-id="wnioski"><span class="header-section-number">12.18.6</span> Wnioski</h3>
+<p>Analiza wykazała silny dodatni związek między dobrobytem ekonomicznym dzielnicy a frekwencją wyborczą. Mieszkańcy dzielnic o wyższych dochodach częściej uczestniczą w wyborach samorządowych.</p>
+<p><strong>Uwaga</strong>: Mała liczebność próby (n=5) ogranicza możliwość generalizacji wyników.</p>
+</section>
+</section>
+<section id="appendix-tabele-podsumowujące-typy-danych-i-odpowiednie-miary-statystyczne" class="level2" data-number="12.19">
+<h2 data-number="12.19" class="anchored" data-anchor-id="appendix-tabele-podsumowujące-typy-danych-i-odpowiednie-miary-statystyczne"><span class="header-section-number">12.19</span> Appendix: Tabele Podsumowujące Typy Danych i Odpowiednie Miary Statystyczne</h2>
+<section id="zalety-i-wady-różnych-miar-statystycznych" class="level3" data-number="12.19.1">
+<h3 data-number="12.19.1" class="anchored" data-anchor-id="zalety-i-wady-różnych-miar-statystycznych"><span class="header-section-number">12.19.1</span> Zalety i Wady Różnych Miar Statystycznych</h3>
+<section id="miary-tendencji-centralnej-3" class="level4" data-number="12.19.1.1">
+<h4 data-number="12.19.1.1" class="anchored" data-anchor-id="miary-tendencji-centralnej-3"><span class="header-section-number">12.19.1.1</span> Miary Tendencji Centralnej</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -5334,8 +5562,8 @@ y
 </tbody>
 </table>
 </section>
-<section id="miary-zmienności" class="level4" data-number="12.18.1.2">
-<h4 data-number="12.18.1.2" class="anchored" data-anchor-id="miary-zmienności"><span class="header-section-number">12.18.1.2</span> Miary Zmienności</h4>
+<section id="miary-zmienności" class="level4" data-number="12.19.1.2">
+<h4 data-number="12.19.1.2" class="anchored" data-anchor-id="miary-zmienności"><span class="header-section-number">12.19.1.2</span> Miary Zmienności</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -5385,8 +5613,8 @@ y
 </tbody>
 </table>
 </section>
-<section id="miary-korelacjiasocjacji" class="level4" data-number="12.18.1.3">
-<h4 data-number="12.18.1.3" class="anchored"><span class="header-section-number">12.18.1.3</span> Miary Korelacji/Asocjacji</h4>
+<section id="miary-korelacjiasocjacji" class="level4" data-number="12.19.1.3">
+<h4 data-number="12.19.1.3" class="anchored"><span class="header-section-number">12.19.1.3</span> Miary Korelacji/Asocjacji</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -5620,8 +5848,8 @@ Statistical Measures Applicability / Zastosowanie miar statystycznych
 </tbody>
 </table>
 <p>* Theoretically problematic but commonly used in practice / Teoretycznie problematyczne, ale powszechnie stosowane w praktyce</p>
-<section id="notes-uwagi" class="level3" data-number="12.18.2">
-<h3 data-number="12.18.2" class="anchored" data-anchor-id="notes-uwagi"><span class="header-section-number">12.18.2</span> Notes / Uwagi:</h3>
+<section id="notes-uwagi" class="level3" data-number="12.19.2">
+<h3 data-number="12.19.2" class="anchored" data-anchor-id="notes-uwagi"><span class="header-section-number">12.19.2</span> Notes / Uwagi:</h3>
 <ol type="1">
 <li>Measurement Scales / Skale pomiarowe:</li>
 </ol>
