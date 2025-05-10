@@ -357,8 +357,8 @@ window.Quarto = {
   <li><a href="#methods-for-addressing-spurious-correlations" id="toc-methods-for-addressing-spurious-correlations" class="nav-link" data-scroll-target="#methods-for-addressing-spurious-correlations"><span class="header-section-number">15.5</span> Methods for Addressing Spurious Correlations</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">15.6</span> Conclusion</a>
   <ul class="collapse">
-  <li><a href="#pearson-correlation" id="toc-pearson-correlation" class="nav-link" data-scroll-target="#pearson-correlation"><span class="header-section-number">15.6.7</span> Pearson Correlation</a></li>
-  <li><a href="#spearman-correlation" id="toc-spearman-correlation" class="nav-link" data-scroll-target="#spearman-correlation"><span class="header-section-number">15.6.8</span> Spearman Correlation</a></li>
+  <li><a href="#pearson-correlation" id="toc-pearson-correlation" class="nav-link" data-scroll-target="#pearson-correlation"><span class="header-section-number">15.6.5</span> Pearson Correlation</a></li>
+  <li><a href="#spearman-correlation" id="toc-spearman-correlation" class="nav-link" data-scroll-target="#spearman-correlation"><span class="header-section-number">15.6.6</span> Spearman Correlation</a></li>
   <li><a href="#cross-tabulation" id="toc-cross-tabulation" class="nav-link" data-scroll-target="#cross-tabulation"><span class="header-section-number">15.6.9</span> Cross-tabulation</a></li>
   <li><a href="#choosing-the-appropriate-measure" id="toc-choosing-the-appropriate-measure" class="nav-link" data-scroll-target="#choosing-the-appropriate-measure"><span class="header-section-number">15.6.10</span> Choosing the Appropriate Measure</a></li>
   </ul></li>
@@ -1562,41 +1562,6 @@ From Covariance to Different Correlation Measures
 </section>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Ranks: Positions in an Ordered Sequence
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Ranks are simply position numbers in an ordered dataset:</p>
-<section id="how-to-determine-ranks" class="level3" data-number="15.6.5">
-<h3 data-number="15.6.5" class="anchored" data-anchor-id="how-to-determine-ranks"><span class="header-section-number">15.6.5</span> How to Determine Ranks?</h3>
-<ol type="1">
-<li><p>Order data from smallest to largest value</p></li>
-<li><p>Assign consecutive natural numbers:</p>
-<ul>
-<li>Smallest value → rank 1</li>
-<li>Subsequent values → subsequent ranks</li>
-<li>Largest value → rank n (number of observations)</li>
-<li>For ties → average of ranks</li>
-</ul></li>
-</ol>
-</section>
-<section id="example" class="level3" data-number="15.6.6">
-<h3 data-number="15.6.6" class="anchored" data-anchor-id="example"><span class="header-section-number">15.6.6</span> Example</h3>
-<p>We have 5 students with heights:</p>
-<pre><code>Height:    165, 182, 170, 168, 175
-Ranks:      1,   5,   3,   2,   4</code></pre>
-<p>For data with ties (e.g., grades):</p>
-<pre><code>Grades:     2,   3,   3,   4,   5
-Ranks:      1,  2.5, 2.5,  4,   5</code></pre>
-</section>
-</div>
-</div>
 <p><strong>Manual Calculation Example:</strong></p>
 <p>Let’s calculate the covariance for two variables:</p>
 <ul>
@@ -1661,9 +1626,9 @@ Ranks:      1,  2.5, 2.5,  4,   5</code></pre>
 </table>
 <p><strong>R calculation:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.5</code></pre>
 </div>
@@ -1679,8 +1644,8 @@ Ranks:      1,  2.5, 2.5,  4,   5</code></pre>
 <li>Scale-dependent, making it difficult to compare across different variable pairs</li>
 <li>Doesn’t provide information about the strength of the relationship</li>
 </ul>
-<section id="pearson-correlation" class="level3" data-number="15.6.7">
-<h3 data-number="15.6.7" class="anchored" data-anchor-id="pearson-correlation"><span class="header-section-number">15.6.7</span> Pearson Correlation</h3>
+<section id="pearson-correlation" class="level3" data-number="15.6.5">
+<h3 data-number="15.6.5" class="anchored" data-anchor-id="pearson-correlation"><span class="header-section-number">15.6.5</span> Pearson Correlation</h3>
 <p>Pearson correlation measures the strength and direction of the linear relationship between two continuous variables.</p>
 <p><strong>Formula:</strong> <span class="math inline">r = \frac{cov(X,Y)}{s_X s_Y} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}</span></p>
 <p><strong>Manual Calculation Example:</strong></p>
@@ -1718,7 +1683,7 @@ Ranks:      1,  2.5, 2.5,  4,   5</code></pre>
 </table>
 <p><strong>R calculation:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.7745967</code></pre>
 </div>
@@ -1737,10 +1702,45 @@ Ranks:      1,  2.5, 2.5,  4,   5</code></pre>
 <li>Assumes normally distributed variables</li>
 </ul>
 </section>
-<section id="spearman-correlation" class="level3" data-number="15.6.8">
-<h3 data-number="15.6.8" class="anchored" data-anchor-id="spearman-correlation"><span class="header-section-number">15.6.8</span> Spearman Correlation</h3>
+<section id="spearman-correlation" class="level3" data-number="15.6.6">
+<h3 data-number="15.6.6" class="anchored" data-anchor-id="spearman-correlation"><span class="header-section-number">15.6.6</span> Spearman Correlation</h3>
 <p>Spearman correlation measures the strength and direction of the monotonic relationship between two variables, which can be continuous or ordinal.</p>
 <p><strong>Formula:</strong> <span class="math inline">\rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}</span>, where <span class="math inline">d_i</span> is the difference between ranks.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ranks: Positions in an Ordered Sequence
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ranks are simply position numbers in an ordered dataset:</p>
+<section id="how-to-determine-ranks" class="level3" data-number="15.6.7">
+<h3 data-number="15.6.7" class="anchored" data-anchor-id="how-to-determine-ranks"><span class="header-section-number">15.6.7</span> How to Determine Ranks?</h3>
+<ol type="1">
+<li><p>Order data from smallest to largest value</p></li>
+<li><p>Assign consecutive natural numbers:</p>
+<ul>
+<li>Smallest value → rank 1</li>
+<li>Subsequent values → subsequent ranks</li>
+<li>Largest value → rank n (number of observations)</li>
+<li>For ties → average of ranks</li>
+</ul></li>
+</ol>
+</section>
+<section id="example" class="level3" data-number="15.6.8">
+<h3 data-number="15.6.8" class="anchored" data-anchor-id="example"><span class="header-section-number">15.6.8</span> Example</h3>
+<p>We have 5 students with heights:</p>
+<pre><code>Height:    165, 182, 170, 168, 175
+Ranks:      1,   5,   3,   2,   4</code></pre>
+<p>For data with ties (e.g., grades):</p>
+<pre><code>Grades:     2,   3,   3,   4,   5
+Ranks:      1,  2.5, 2.5,  4,   5</code></pre>
+</section>
+</div>
+</div>
 <p><strong>Manual Calculation Example:</strong></p>
 <p>Let’s use slightly different data:</p>
 <ul>
