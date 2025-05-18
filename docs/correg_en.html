@@ -1003,18 +1003,18 @@ Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + ... + \beta_k X_{ki} + \vareps
 <h4 data-number="15.3.2.2" class="anchored" data-anchor-id="why-do-we-use-the-sum-of-squared-errors-sse"><span class="header-section-number">15.3.2.2</span> Why do we use the sum of squared errors (SSE)?</h4>
 <p>The OLS method defines “best fit” as the line that minimizes the sum of squared errors:</p>
 <p><span class="math display">
-SSE = \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2 = \sum_{i=1}^{n} \varepsilon_i^2
+SSE = \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2 = \sum_{i=1}^{n} e_i^2
 </span></p>
 <p>Where:</p>
 <ul>
 <li><span class="math inline">Y_i</span> is the actual observed value</li>
 <li><span class="math inline">\hat{Y}_i</span> is the predicted value from our regression line</li>
-<li><span class="math inline">\varepsilon_i</span> is the residual (error) for each observation</li>
+<li><span class="math inline">e_i</span> is the residual (error) for each observation</li>
 </ul>
 <p>But why square the errors? There are four main reasons:</p>
 <ol type="1">
 <li><p><strong>Treating positive and negative errors equally</strong>: By squaring, we ensure that points above and below the line contribute equally to our measure of fit.</p></li>
-<li><p><strong>Avoiding error cancellation</strong>: If we used the simple sum of errors <span class="math inline">\sum (Y_i - \hat{Y}_i)</span>, we would always get zero for an OLS regression line because positive and negative deviations cancel each other out. In fact, it can be mathematically proven that for an OLS regression line, the sum of residuals always equals zero: <span class="math inline">\sum \varepsilon_i = 0</span>. Squaring prevents this cancellation effect.</p></li>
+<li><p><strong>Avoiding error cancellation</strong>: If we used the simple sum of errors <span class="math inline">\sum (Y_i - \hat{Y}_i)</span>, we would always get zero for an OLS regression line because positive and negative deviations cancel each other out. In fact, it can be mathematically proven that for an OLS regression line, the sum of residuals always equals zero: <span class="math inline">\sum e_i = 0</span>. Squaring prevents this cancellation effect.</p></li>
 <li><p><strong>Penalizing large errors more</strong>: Squaring gives more weight to large errors, making the line more responsive to outliers.</p></li>
 <li><p><strong>Mathematical advantages</strong>: The quadratic objective function has several mathematical advantages:</p>
 <ul>
@@ -1064,7 +1064,7 @@ SSE = \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2 = \sum_{i=1}^{n} \varepsilon_i^2
 <p>To understand the concept visually:</p>
 <ol type="1">
 <li>Imagine each error as a vertical line from the data point to the regression line</li>
-<li>Each of these lines represents a residual (<span class="math inline">\varepsilon_i</span>)</li>
+<li>Each of these lines represents a residual (<span class="math inline">e_i</span>)</li>
 <li>We square each residual (creating a squared area)</li>
 <li>The sum of all these squared areas is what we’re trying to minimize</li>
 </ol>
@@ -3824,7 +3824,7 @@ Understanding Endogeneity in Regression
 <div class="callout-body-container callout-body">
 <p>Endogeneity is a critical concept in statistical analysis that occurs when an explanatory variable in a regression model is correlated with the error term. This creates challenges for accurately understanding cause-and-effect relationships in research. Let’s examine the three main types of endogeneity and how they affect research outcomes.</p>
 <section id="omitted-variable-bias-ovb" class="level3" data-number="15.10.21">
-<h3 data-number="15.10.21" class="anchored" data-anchor-id="omitted-variable-bias-ovb"><span class="header-section-number">15.10.21</span> 1. Omitted Variable Bias (OVB)</h3>
+<h3 data-number="15.10.21" class="anchored" data-anchor-id="omitted-variable-bias-ovb"><span class="header-section-number">15.10.21</span> Omitted Variable Bias (OVB)</h3>
 <p>Omitted Variable Bias occurs when an important variable that affects both the dependent and independent variables is left out of the analysis. This omission leads to incorrect conclusions about the relationship between the variables we’re studying.</p>
 <p>Consider a study examining the relationship between education and income:</p>
 <p><strong>Example: Education and Income</strong> The observed relationship shows that more education correlates with higher income. However, an individual’s inherent abilities affect both their educational attainment and their earning potential. Without accounting for ability, we may overestimate education’s direct effect on income.</p>
@@ -3834,14 +3834,14 @@ Understanding Endogeneity in Regression
 <p>When we omit an important variable, our estimates of the remaining relationships become biased and unreliable.</p>
 </section>
 <section id="simultaneity" class="level3" data-number="15.10.22">
-<h3 data-number="15.10.22" class="anchored" data-anchor-id="simultaneity"><span class="header-section-number">15.10.22</span> 2. Simultaneity</h3>
+<h3 data-number="15.10.22" class="anchored" data-anchor-id="simultaneity"><span class="header-section-number">15.10.22</span> Simultaneity</h3>
 <p>Simultaneity occurs when two variables simultaneously influence each other, making it difficult to determine the direction of causation. This creates a feedback loop that complicates statistical analysis.</p>
 <p><strong>Common Examples of Simultaneity:</strong></p>
 <p>Academic Performance and Study Habits represent a clear case of simultaneity. Academic performance influences how much time students dedicate to studying, while study time affects academic performance. This two-way relationship makes it challenging to measure the isolated effect of either variable.</p>
 <p>Market Dynamics provide another example. Prices influence demand, while demand influences prices. This concurrent relationship requires special analytical approaches to understand the true relationships.</p>
 </section>
 <section id="measurement-error-1" class="level3" data-number="15.10.23">
-<h3 data-number="15.10.23" class="anchored" data-anchor-id="measurement-error-1"><span class="header-section-number">15.10.23</span> 3. Measurement Error</h3>
+<h3 data-number="15.10.23" class="anchored" data-anchor-id="measurement-error-1"><span class="header-section-number">15.10.23</span> Measurement Error</h3>
 <p>Measurement error occurs when we cannot accurately measure our variables of interest. This imprecision can significantly impact our analysis and conclusions.</p>
 <p><strong>Common Sources of Measurement Error:</strong></p>
 <p>Self-Reported Data presents a significant challenge. When participants report their own behaviors or characteristics, such as study time, the reported values often differ from actual values. This discrepancy affects our ability to measure true relationships.</p>
@@ -4577,7 +4577,7 @@ Understanding Ordinary Least Squares (OLS) Regression: A Student’s Guide
 </ul></li>
 </ol>
 <p>More formally, OLS finds the optimal values for <span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span> by minimizing the sum of squared errors:</p>
-<p><span class="math display">\min_{\beta_0, \beta_1} \sum \epsilon_i^2 = \min_{\beta_0, \beta_1} \sum(y_i - \hat{y_i})^2 = \min_{\beta_0, \beta_1} \sum(y_i - (\beta_0 + \beta_1x_i))^2</span> The solution to this minimization gives us:</p>
+<p><span class="math display">\min_{\beta_0, \beta_1} \sum e_i^2 = \min_{\beta_0, \beta_1} \sum(y_i - \hat{y_i})^2 = \min_{\beta_0, \beta_1} \sum(y_i - (\beta_0 + \beta_1x_i))^2</span> The solution to this minimization gives us:</p>
 <p><span class="math display">\hat{\beta}_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = \frac{cov(X, Y)}{var(X)}</span></p>
 <p><span class="math display">\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}</span></p>
 <div class="cell">
