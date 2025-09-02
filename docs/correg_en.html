@@ -1993,13 +1993,39 @@ Residual: 70 - 79 = -9 points (we overestimated)</code></pre>
 <li>Check residuals - any obvious problems?</li>
 <li>Make decisions based on both statistical and practical significance</li>
 </ol>
-<p><strong>Key Interpretations:</strong></p>
+</section>
+<section id="kluczowe-interpretacje-key-interpretations" class="level3">
+<h3 class="anchored" data-anchor-id="kluczowe-interpretacje-key-interpretations">Kluczowe interpretacje / Key interpretations</h3>
+<p>Domyślny model: regresja OLS <span class="math inline">Y=\beta_0+\beta_1 X+\varepsilon</span> (lub wieloraka: <span class="math inline">Y=\beta_0+\beta_1 X_1+\cdots+\beta_p X_p+\varepsilon</span>).</p>
 <ul>
-<li><strong>Slope</strong>: “When X increases by 1, Y changes by [slope] on average”</li>
-<li><strong>Standardized slope</strong>: “When X increases by 1 SD, Y changes by [β_std] SDs”</li>
-<li><strong>R²</strong>: “X explains [R²×100]% of the variation in Y”</li>
-<li><strong>P-value</strong>: “If there were no relationship, we’d see this pattern [p×100]% of the time by chance”</li>
-<li><strong>Confidence interval</strong>: “We’re 95% confident the true effect is between [lower] and [upper]”</li>
+<li><p><strong>Nachylenie / Slope (<span class="math inline">\beta_1</span>)</strong> <strong>PL:</strong> Przy wzroście <span class="math inline">X</span> o 1 jednostkę <strong>(ceteris paribus)</strong>, przeciętna wartość <span class="math inline">Y</span> zmienia się o <span class="math inline">\beta_1</span> jednostek. <strong>ENG:</strong> When <span class="math inline">X</span> increases by 1 unit <strong>(ceteris paribus)</strong>, the expected value of <span class="math inline">Y</span> changes by <span class="math inline">\beta_1</span> units.</p></li>
+<li><p><strong>Standaryzowane nachylenie / Standardized slope <span class="math inline">\big(\beta_{1}^{(\mathrm{std})}\big)</span></strong> Definicja:</p>
+<p><span class="math display">
+\beta_{1}^{(\mathrm{std})} \;=\; \beta_1 \cdot \frac{s_X}{s_Y},
+</span></p>
+<p>gdzie <span class="math inline">s_X</span> i <span class="math inline">s_Y</span> to odchylenia standardowe <span class="math inline">X</span> i <span class="math inline">Y</span>. <strong>PL:</strong> Przy wzroście <span class="math inline">X</span> o <strong>1 odchylenie standardowe (SD)</strong>, przeciętna wartość <span class="math inline">Y</span> zmienia się o <span class="math inline">\beta_{1}^{(\mathrm{std})}</span> <strong>odchyleń standardowych <span class="math inline">Y</span></strong>. <strong>ENG:</strong> For a <strong>1 standard deviation (SD)</strong> increase in <span class="math inline">X</span>, the expected value of <span class="math inline">Y</span> changes by <span class="math inline">\beta_{1}^{(\mathrm{std})}</span> <strong>SDs of <span class="math inline">Y</span></strong>. <em>Uwaga/Note:</em> W regresji prostej <span class="math inline">\beta_{1}^{(\mathrm{std})} = r</span> (Pearson). / In simple regression, <span class="math inline">\beta_{1}^{(\mathrm{std})} = r</span> (Pearson).</p></li>
+<li><p><strong>Współczynnik determinacji / <span class="math inline">R^2</span></strong> Definicja:</p>
+<p><span class="math display">
+R^2 \;=\; 1 - \frac{SS_{\mathrm{res}}}{SS_{\mathrm{tot}}}.
+</span></p>
+<p><strong>PL:</strong> Model wyjaśnia <span class="math inline">100\times R^2</span>% zmienności <span class="math inline">Y</span> względem modelu tylko z wyrazem wolnym (in-sample). <strong>ENG:</strong> The model explains <span class="math inline">100\times R^2</span>% of the variance in <span class="math inline">Y</span> relative to the intercept-only model (in-sample). <em>W wielu zmiennych rozważ</em>: <span class="math inline">\text{adjusted } R^2</span>. / <em>With multiple predictors consider</em>: adjusted <span class="math inline">R^2</span>.</p></li>
+<li><p><strong>Wartość p / P-value</strong> <strong>Formalnie/Formally:</strong></p>
+<p><span class="math display">
+p \;=\; \Pr\!\big(\,|T|\ge |t_{\mathrm{obs}}| \mid H_0\,\big),
+</span></p>
+<p>gdzie <span class="math inline">T</span> ma rozkład <span class="math inline">t</span> przy <span class="math inline">H_0</span>. <strong>PL:</strong> Zakładając prawdziwość <span class="math inline">H_0</span> i spełnione założenia modelu, prawdopodobieństwo uzyskania <strong>co najmniej tak ekstremalnej</strong> statystyki jak obserwowana wynosi <span class="math inline">p</span>. <strong>ENG:</strong> Assuming <span class="math inline">H_0</span> and the model assumptions hold, <span class="math inline">p</span> is the probability of observing a test statistic <strong>at least as extreme</strong> as the one obtained.</p></li>
+<li><p><strong>Przedział ufności / Confidence interval (np. dla <span class="math inline">\beta_1</span>)</strong> <strong>Konstrukcja/Construction:</strong></p>
+<p><span class="math display">
+\hat{\beta}_1 \;\pm\; t_{1-\alpha/2,\ \mathrm{df}} \cdot \mathrm{SE}\!\left(\hat{\beta}_1\right).
+</span></p>
+<p><strong>PL (ściśle):</strong> W długiej serii powtórzeń 95% tak skonstruowanych przedziałów zawiera prawdziwą wartość <span class="math inline">\beta_1</span>; dla naszych danych oszacowanie mieści się w <span class="math inline">[\text{lower},\ \text{upper}]</span>. <strong>ENG (strict):</strong> Over many repetitions, 95% of such intervals would contain the true <span class="math inline">\beta_1</span>; for our data, the estimate lies within <span class="math inline">[\text{lower},\ \text{upper}]</span>. <strong>PL (skrót dydaktyczny):</strong> „Jesteśmy 95% pewni, że <span class="math inline">\beta_1</span> leży w <span class="math inline">[\text{lower},\ \text{upper}]</span>.” <strong>ENG (teaching shorthand):</strong> “We are 95% confident that <span class="math inline">\beta_1</span> lies in <span class="math inline">[\text{lower},\ \text{upper}]</span>.”</p></li>
+</ul>
+<section id="najczęstsze-nieporozumienia-common-pitfalls" class="level4">
+<h4 class="anchored" data-anchor-id="najczęstsze-nieporozumienia-common-pitfalls">Najczęstsze nieporozumienia / Common pitfalls</h4>
+<ul>
+<li><strong>PL:</strong> <span class="math inline">p</span> <strong>nie</strong> jest prawdopodobieństwem, że <span class="math inline">H_0</span> jest prawdziwa. <strong>ENG:</strong> <span class="math inline">p</span> is <strong>not</strong> the probability that <span class="math inline">H_0</span> is true.</li>
+<li><strong>PL:</strong> 95% CI <strong>nie</strong> zawiera 95% obserwacji (od tego jest <strong>przedział predykcji</strong>). <strong>ENG:</strong> A 95% CI <strong>does not</strong> contain 95% of observations (that’s a <strong>prediction interval</strong>).</li>
+<li><strong>PL/ENG:</strong> Wysokie <span class="math inline">R^2</span> ≠ przyczynowość / High <span class="math inline">R^2</span> ≠ causality. Zawsze sprawdzaj/Always check diagnozy reszt, skalę efektu, i dopasowanie poza próbą.</li>
 </ul>
 <p><strong>Critical Reminders:</strong></p>
 <ul>
@@ -2010,6 +2036,7 @@ Residual: 70 - 79 = -9 points (we overestimated)</code></pre>
 <li>Consider both effect size and uncertainty when making decisions</li>
 </ul>
 <p>OLS provides a principled, mathematical approach to finding patterns in real-world data. While it cannot provide perfect predictions, it offers the best linear approximation possible along with honest assessments of that approximation’s quality and uncertainty.</p>
+</section>
 </section>
 <section id="complete-manual-ols-calculation-a-step-by-step-example" class="level2" data-number="15.12">
 <h2 data-number="15.12" class="anchored" data-anchor-id="complete-manual-ols-calculation-a-step-by-step-example"><span class="header-section-number">15.12</span> Complete Manual OLS Calculation: A Step-by-Step Example</h2>
