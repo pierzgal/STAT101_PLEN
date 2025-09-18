@@ -597,6 +597,87 @@ window.Quarto = {
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zaokrąglenia i notacja naukowa w statystyce
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Zasada główna:</strong> O ile nie podano inaczej, <strong>części ułamkowe</strong> liczb dziesiętnych zaokrąglaj do <strong>co najmniej 2 cyfr znaczących</strong>. W statystyce często pracujemy z długimi częściami ułamkowymi i bardzo małymi liczbami — nie zaokrąglaj nadmiernie w krokach pośrednich, zaokrąglaj <strong>na końcu</strong> obliczeń.</p>
+<section id="zaokrąglanie-w-kontekście-statystycznym" class="level3">
+<h3 class="anchored" data-anchor-id="zaokrąglanie-w-kontekście-statystycznym">Zaokrąglanie w kontekście statystycznym</h3>
+<p><strong>Część ułamkowa</strong> to cyfry po przecinku dziesiętnym. W statystyce szczególnie ważne jest zachowanie odpowiedniej precyzji:</p>
+<p><strong>Statystyki opisowe:</strong></p>
+<ul>
+<li>Średnia: <span class="math inline">\bar{x} = 15.847693... \rightarrow 15.85</span></li>
+<li>Odchylenie standardowe: <span class="math inline">s = 2.7488... \rightarrow 2.75</span></li>
+<li>Współczynnik korelacji: <span class="math inline">r = 0.78432... \rightarrow 0.78</span></li>
+</ul>
+<p><strong>Bardzo małe liczby (p-wartości, prawdopodobieństwa):</strong> - <span class="math inline">p = 0.000347... \rightarrow 0.00035</span> lub <span class="math inline">3.5 \times 10^{-4}</span> - <span class="math inline">P(X &gt; 2) = 0.0000891... \rightarrow 0.000089</span> lub <span class="math inline">8.9 \times 10^{-5}</span></p>
+</section>
+<section id="cyfry-znaczące-w-części-ułamkowej" class="level3">
+<h3 class="anchored" data-anchor-id="cyfry-znaczące-w-części-ułamkowej">Cyfry znaczące w części ułamkowej</h3>
+<p>W części ułamkowej cyfry znaczące to wszystkie cyfry oprócz zer wiodących:</p>
+<ul>
+<li><span class="math inline">.78432</span> ma 5 cyfr znaczących → zaokrąglamy do <span class="math inline">.78</span> (2 c.z.)</li>
+<li><span class="math inline">.000347</span> ma 3 cyfry znaczące → zaokrąglamy do <span class="math inline">.00035</span> (2 c.z.)</li>
+<li><span class="math inline">.050600</span> ma 4 cyfry znaczące → zaokrąglamy do <span class="math inline">.051</span> (2 c.z.)</li>
+</ul>
+</section>
+<section id="zasady-zaokrąglania-w-statystyce" class="level3">
+<h3 class="anchored" data-anchor-id="zasady-zaokrąglania-w-statystyce">Zasady zaokrąglania w statystyce</h3>
+<ol type="1">
+<li><strong>Zaokrąglaj tylko część ułamkową</strong> do co najmniej 2 cyfr znaczących</li>
+<li><strong>Część całkowita</strong> pozostaje niezmieniona</li>
+<li><strong>W długich obliczeniach</strong> zachowuj 3-4 cyfry w części ułamkowej do ostatniego kroku</li>
+<li><strong>NIGDY nie zaokrąglaj do zera</strong> - małe wartości mają znaczenie interpretacyjne</li>
+<li><strong>Dla bardzo małych liczb</strong> używaj notacji naukowej gdy to ułatwia odczyt</li>
+<li><strong>P-wartości</strong> często wymagają większej precyzji — zachowaj 2-3 cyfry znaczące</li>
+</ol>
+</section>
+<section id="uwaga-nie-zaokrąglaj-do-zera" class="level3">
+<h3 class="anchored" data-anchor-id="uwaga-nie-zaokrąglaj-do-zera">⚠️ UWAGA: Nie zaokrąglaj do zera!</h3>
+<p>W statystyce małe wartości mają krytyczne znaczenie interpretacyjne:</p>
+<p><strong>Błędne zaokrąglenie:</strong></p>
+<ul>
+<li><span class="math inline">p = 0.00034 \rightarrow 0.00</span> ❌ (sugeruje p = 0, co jest nieprawdziwe)</li>
+<li><span class="math inline">\sigma = 0.00089 \rightarrow 0.00</span> ❌ (sugeruje brak zmienności)</li>
+</ul>
+<p><strong>Poprawne podejście:</strong></p>
+<ul>
+<li><span class="math inline">p = 0.00034 \rightarrow 0.00034</span> lub <span class="math inline">3.4 \times 10^{-4}</span> ✅</li>
+<li><span class="math inline">p = 0.00034 \rightarrow p &lt; 0.001</span> ✅ (w raportach)</li>
+<li><span class="math inline">\sigma = 0.00089 \rightarrow 0.00089</span> lub <span class="math inline">8.9 \times 10^{-4}</span> ✅</li>
+</ul>
+</section>
+<section id="przykłady-poprawnego-postępowania" class="level3">
+<h3 class="anchored" data-anchor-id="przykłady-poprawnego-postępowania">Przykłady poprawnego postępowania</h3>
+<p><strong>Przykład 1:</strong> Obliczenie <span class="math inline">\frac{7.234}{3.1} = 2.334193...</span></p>
+<p>❌ <strong>Źle</strong> (zaokrąglanie w krokach pośrednich): <span class="math inline">\frac{7.23}{3.1} = 2.33</span></p>
+<p>✅ <strong>Dobrze</strong> (zaokrąglanie części ułamkowej na końcu): <span class="math inline">\frac{7.234}{3.1} = 2.334193... \approx 2.33</span></p>
+<p><strong>Przykład 2:</strong> Obliczenie <span class="math inline">\sqrt{50.7} \times 2.14 = 15.23859...</span></p>
+<p>❌ <strong>Źle:</strong> <span class="math inline">\sqrt{50.7} \approx 7.12 \times 2.14 = 15.24</span></p>
+<p>✅ <strong>Dobrze:</strong> <span class="math inline">\sqrt{50.7} \times 2.14 = 15.23859... \approx 15.24</span></p>
+<p><strong>Przykład 3:</strong> Wynik <span class="math inline">456.789123</span> zaokrąglamy do <span class="math inline">456.79</span></p>
+<ul>
+<li>Część całkowita <span class="math inline">456</span> pozostaje bez zmian</li>
+<li>Część ułamkowa <span class="math inline">.789123</span> → <span class="math inline">.79</span> (2 cyfry znaczące)</li>
+</ul>
+</section>
+<section id="notacja-naukowa-w-statystyce" class="level3">
+<h3 class="anchored" data-anchor-id="notacja-naukowa-w-statystyce">Notacja naukowa w statystyce</h3>
+<p>W statystyce często spotykamy bardzo małe liczby. Używaj notacji naukowej gdy ułatwia to odczyt:</p>
+<p><strong>P-wartości i prawdopodobieństwa:</strong> - <span class="math inline">p = 0.000347 = 3.47 \times 10^{-4}</span> (lepiej: <span class="math inline">3.5 \times 10^{-4}</span>) - <span class="math inline">P(Z &gt; 3.5) = 0.000233 = 2.33 \times 10^{-4}</span></p>
+<p><strong>Bardzo małe odchylenia standardowe:</strong> - <span class="math inline">\sigma = 0.000892 = 8.92 \times 10^{-4}</span></p>
+<p><strong>Duże liczby (rzadko w podstawowej statystyce):</strong> - <span class="math inline">N = 1\,234\,567 = 1.23 \times 10^6</span></p>
+<p><strong>Wątpliwości:</strong> Lepiej zachować dodatkową cyfrę niż zaokrąglić zbyt mocno</p>
+</section>
+</div>
+</div>
 <section id="czym-jest-statystyka" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="czym-jest-statystyka"><span class="header-section-number">2.1</span> Czym jest statystyka?</h2>
 <p><strong>Statystyka</strong> to nauka o uczeniu się z danych w sytuacjach, gdy świat jest nieprzewidywalny i niepewny. Pomaga nam interpretować niepełne informacje, odkrywać istotne wzorce i podejmować świadome decyzje pomimo braku wszystkich odpowiedzi.</p>

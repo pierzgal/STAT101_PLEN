@@ -680,6 +680,90 @@ window.Quarto = {
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Rounding and Scientific Notation in Statistics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Main Rule:</strong> Unless otherwise specified, round the <strong>decimal parts</strong> of decimal numbers to <strong>at least 2 significant figures</strong>. In statistics, we often work with long decimal parts and very small numbers — don’t round excessively in intermediate steps, round <strong>at the end</strong> of calculations.</p>
+<section id="rounding-in-statistical-context" class="level3">
+<h3 class="anchored" data-anchor-id="rounding-in-statistical-context">Rounding in Statistical Context</h3>
+<p>The <strong>decimal part</strong> consists of digits after the decimal point. In statistics, it’s particularly important to maintain appropriate precision:</p>
+<p><strong>Descriptive statistics:</strong></p>
+<ul>
+<li>Mean: <span class="math inline">\bar{x} = 15.847693... \rightarrow 15.85</span></li>
+<li>Standard deviation: <span class="math inline">s = 2.7488... \rightarrow 2.75</span></li>
+<li>Correlation coefficient: <span class="math inline">r = 0.78432... \rightarrow 0.78</span></li>
+</ul>
+<p><strong>Very small numbers (p-values, probabilities):</strong></p>
+<ul>
+<li><span class="math inline">p = 0.000347... \rightarrow 0.00035</span> or <span class="math inline">3.5 \times 10^{-4}</span></li>
+<li><span class="math inline">P(X &gt; 2) = 0.0000891... \rightarrow 0.000089</span> or <span class="math inline">8.9 \times 10^{-5}</span></li>
+</ul>
+</section>
+<section id="significant-figures-in-decimal-parts" class="level3">
+<h3 class="anchored" data-anchor-id="significant-figures-in-decimal-parts">Significant Figures in Decimal Parts</h3>
+<p>In the decimal part, significant figures are all digits except leading zeros:</p>
+<ul>
+<li><span class="math inline">.78432</span> has 5 significant figures → round to <span class="math inline">.78</span> (2 s.f.)</li>
+<li><span class="math inline">.000347</span> has 3 significant figures → round to <span class="math inline">.00035</span> (2 s.f.)</li>
+<li><span class="math inline">.050600</span> has 4 significant figures → round to <span class="math inline">.051</span> (2 s.f.)</li>
+</ul>
+</section>
+<section id="rounding-rules-in-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="rounding-rules-in-statistics">Rounding Rules in Statistics</h3>
+<ol type="1">
+<li><strong>Round only the decimal part</strong> to at least 2 significant figures</li>
+<li><strong>The integer part</strong> remains unchanged</li>
+<li><strong>In long calculations</strong> keep 3-4 digits in the decimal part until the final step</li>
+<li><strong>NEVER round to zero</strong> - small values have interpretive significance</li>
+<li><strong>For very small numbers</strong> use scientific notation when it improves readability</li>
+<li><strong>P-values</strong> often require greater precision — keep 2-3 significant figures</li>
+</ol>
+</section>
+<section id="warning-dont-round-to-zero" class="level3">
+<h3 class="anchored" data-anchor-id="warning-dont-round-to-zero">⚠️ WARNING: Don’t round to zero!</h3>
+<p>In statistics, small values have critical interpretive significance:</p>
+<p><strong>Incorrect rounding:</strong></p>
+<ul>
+<li><span class="math inline">p = 0.00034 \rightarrow 0.00</span> ❌ (suggests p = 0, which is false)</li>
+<li><span class="math inline">\sigma = 0.00089 \rightarrow 0.00</span> ❌ (suggests no variability)</li>
+</ul>
+<p><strong>Correct approach:</strong></p>
+<ul>
+<li><span class="math inline">p = 0.00034 \rightarrow 0.00034</span> or <span class="math inline">3.4 \times 10^{-4}</span> ✅</li>
+<li><span class="math inline">p = 0.00034 \rightarrow p &lt; 0.001</span> ✅ (in reports)</li>
+<li><span class="math inline">\sigma = 0.00089 \rightarrow 0.00089</span> or <span class="math inline">8.9 \times 10^{-4}</span> ✅</li>
+</ul>
+</section>
+<section id="examples-from-statistical-calculations" class="level3">
+<h3 class="anchored" data-anchor-id="examples-from-statistical-calculations">Examples from Statistical Calculations</h3>
+<p><strong>Example 1:</strong> Calculating mean from data: <span class="math inline">\{12.3, 15.7, 18.1, 14.2, 16.8\}</span></p>
+<p>❌ <strong>Wrong</strong> (rounding in intermediate steps): <span class="math display">\bar{x} = \frac{12 + 16 + 18 + 14 + 17}{5} = \frac{77}{5} = 15.40</span></p>
+<p>✅ <strong>Correct</strong> (maintaining full precision): <span class="math display">\bar{x} = \frac{12.3 + 15.7 + 18.1 + 14.2 + 16.8}{5} = \frac{77.1}{5} = 15.42</span></p>
+<p><strong>Example 2:</strong> Calculating sample variance</p>
+<p>For data: <span class="math inline">\bar{x} = 15.42</span>, <span class="math inline">\sum(x_i - \bar{x})^2 = 18.9876</span>, <span class="math inline">n = 5</span></p>
+<p>❌ <strong>Wrong:</strong> <span class="math display">s^2 = \frac{18.99}{4} = 4.75 \rightarrow s = \sqrt{4.75} = 2.18</span></p>
+<p>✅ <strong>Correct:</strong> <span class="math display">s^2 = \frac{18.9876}{4} = 4.7469 \rightarrow s = \sqrt{4.7469} = 2.1789... \approx 2.18</span></p>
+<p><strong>Example 3:</strong> t-test with small p-value</p>
+<p><span class="math display">t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} = \frac{15.42 - 14}{2.18/\sqrt{5}} = 1.456...</span></p>
+<p>P-value: <span class="math inline">p = 0.000347</span> - ✅ <strong>Correct:</strong> <span class="math inline">p = 0.00035</span> or <span class="math inline">p = 3.5 \times 10^{-4}</span> or <span class="math inline">p &lt; 0.001</span> - ❌ <strong>Wrong:</strong> <span class="math inline">p = 0.00</span> (rounding to zero!)</p>
+</section>
+<section id="scientific-notation-in-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="scientific-notation-in-statistics">Scientific Notation in Statistics</h3>
+<p>In statistics, we often encounter very small numbers. Use scientific notation when it improves readability:</p>
+<p><strong>P-values and probabilities:</strong> - <span class="math inline">p = 0.000347 = 3.47 \times 10^{-4}</span> (better: <span class="math inline">3.5 \times 10^{-4}</span>) - <span class="math inline">P(Z &gt; 3.5) = 0.000233 = 2.33 \times 10^{-4}</span></p>
+<p><strong>Very small standard deviations:</strong> - <span class="math inline">\sigma = 0.000892 = 8.92 \times 10^{-4}</span></p>
+<p><strong>Large numbers (rare in basic statistics):</strong> - <span class="math inline">N = 1\,234\,567 = 1.23 \times 10^6</span></p>
+<p><strong>When in doubt:</strong> Better to keep an extra digit than to round too aggressively</p>
+</section>
+</div>
+</div>
 <section id="what-is-statistics" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="what-is-statistics"><span class="header-section-number">1.1</span> What Is Statistics?</h2>
 <p><strong>Statistics</strong> is the science of learning from data when the world is messy and uncertain. It helps us make sense of incomplete information, spot meaningful patterns, and make informed decisions despite not having all the answers.</p>
@@ -3328,6 +3412,7 @@ p-value ≈ 0.00001</code></pre>
 <p><strong>Fundamental Principles</strong>:</p>
 <p>Statistical significance does not equal practical importance. The p-value measures surprise under the null hypothesis, not the probability of truth. Absence of evidence does not constitute evidence of absence. Effect sizes should always accompany p-values in research reports.</p>
 <p>Statistical significance serves as a tool for distinguishing signal from noise in data, not as a measure of importance or truth. Apply it judiciously within the broader context of substantive and practical significance.</p>
+<hr>
 </section>
 </section>
 <section id="regression-the-workhorse-of-political-science" class="level2" data-number="1.54">
