@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Od Próby do Populacji - Zrozumienie Losowości, Pobierania Próby i Wnioskowania – Social Data Analysis: An Introduction (PL: Wprowadzenie do Analizy Danych Społecznych)</title>
+<title>6&nbsp; Rzetelność i Trafność w Badaniach Statystycznych – Social Data Analysis: An Introduction (PL: Wprowadzenie do Analizy Danych Społecznych)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./chapter3b.html" rel="next">
+<link href="./chapter4.html" rel="next">
 <link href="./chapter3.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -82,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rozdzial3.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Od Próby do Populacji - Zrozumienie Losowości, Pobierania Próby i Wnioskowania</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rozdzial3.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Rzetelność i Trafność w Badaniach Statystycznych</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -140,103 +175,91 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">From Sample to Population - Understanding Randomness, Sampling, and Inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Reliability and Validity in Data Science Research</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rozdzial3.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Od Próby do Populacji - Zrozumienie Losowości, Pobierania Próby i Wnioskowania</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapter3b.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reliability and Validity in Data Science Research</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./rozdzial3b.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Rzetelność i Trafność w Badaniach Nauk o Danych</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Rzetelność i Trafność w Badaniach Statystycznych</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Research Designs: Experimental and Non-Experimental Approaches</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Research Designs: Experimental and Non-Experimental Approaches</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rozdzial4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projekty Badawcze: Podejścia Eksperymentalne i Nieeksperymentalne</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Projekty Badawcze: Podejścia Eksperymentalne i Nieeksperymentalne</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Fundamentals of Univariate Descriptive Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Fundamentals of Univariate Descriptive Statistics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rozdzial5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Podstawy Jednowymiarowej Statystyki Opisowej</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Podstawy Jednowymiarowej Statystyki Opisowej</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization: with examples in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Visualization: with examples in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rozdzial6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wizualizacja Danych: z przykładami w R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Wizualizacja Danych: z przykładami w R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correg_en.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Correlation and Regression Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Introduction to Correlation and Regression Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correg_pl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Wprowadzenie do analizy korelacji i regresji <em>(Correlation and Regression Analysis)</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wprowadzenie do analizy korelacji i regresji <em>(Correlation and Regression Analysis)</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./probability_en.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to (Discrete) Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to (Discrete) Probability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./probability_pl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Wprowadzenie do Prawdopodobieństwa</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Wprowadzenie do Prawdopodobieństwa</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rv_pdf_en.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Random Variables and Probability Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Random Variables and Probability Distributions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference_en.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Statistical Hypothesis Testing: A Fundamental Logic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Statistical Hypothesis Testing: A Fundamental Logic</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference_pl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wprowadzenie do Wnioskowania Statystycznego: Logika Testowania Hipotez Statystycznych</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Wprowadzenie do Wnioskowania Statystycznego: Logika Testowania Hipotez Statystycznych</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -255,32 +278,41 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#metody-doboru-próby" id="toc-metody-doboru-próby" class="nav-link active" data-scroll-target="#metody-doboru-próby">Metody Doboru Próby</a></li>
-  <li><a href="#dobór-probabilistyczny-losowy" id="toc-dobór-probabilistyczny-losowy" class="nav-link" data-scroll-target="#dobór-probabilistyczny-losowy">Dobór Probabilistyczny (Losowy)</a></li>
-  <li><a href="#dobór-nieprobabilistyczny-nielosowy" id="toc-dobór-nieprobabilistyczny-nielosowy" class="nav-link" data-scroll-target="#dobór-nieprobabilistyczny-nielosowy">Dobór Nieprobabilistyczny (Nielosowy)</a></li>
-  <li><a href="#próby-kwotowe-vs.-próby-warstwowe-porównanie-i-praktyczne-zastosowania" id="toc-próby-kwotowe-vs.-próby-warstwowe-porównanie-i-praktyczne-zastosowania" class="nav-link" data-scroll-target="#próby-kwotowe-vs.-próby-warstwowe-porównanie-i-praktyczne-zastosowania">Próby Kwotowe vs.&nbsp;Próby Warstwowe: Porównanie i Praktyczne Zastosowania</a></li>
-  <li><a href="#dlaczego-ośrodki-badania-opinii-coraz-częściej-stosują-dobór-kwotowy" id="toc-dlaczego-ośrodki-badania-opinii-coraz-częściej-stosują-dobór-kwotowy" class="nav-link" data-scroll-target="#dlaczego-ośrodki-badania-opinii-coraz-częściej-stosują-dobór-kwotowy">Dlaczego Ośrodki Badania Opinii Coraz Częściej Stosują Dobór Kwotowy</a></li>
-  <li><a href="#błędy-w-badaniach-surveyowych-co-może-pójść-nie-tak-w-badaniach" id="toc-błędy-w-badaniach-surveyowych-co-może-pójść-nie-tak-w-badaniach" class="nav-link" data-scroll-target="#błędy-w-badaniach-surveyowych-co-może-pójść-nie-tak-w-badaniach"><span class="header-section-number">6.1</span> Błędy w badaniach surveyowych: Co może pójść nie tak w badaniach</a>
+  <li><a href="#definiowanie-rzetelności-i-trafności" id="toc-definiowanie-rzetelności-i-trafności" class="nav-link active" data-scroll-target="#definiowanie-rzetelności-i-trafności"><span class="header-section-number">6.1</span> Definiowanie Rzetelności i Trafności</a></li>
+  <li><a href="#cztery-kombinacje-rzetelności-i-trafności" id="toc-cztery-kombinacje-rzetelności-i-trafności" class="nav-link" data-scroll-target="#cztery-kombinacje-rzetelności-i-trafności"><span class="header-section-number">6.2</span> Cztery Kombinacje Rzetelności i Trafności</a>
   <ul class="collapse">
-  <li><a href="#dlaczego-typologie-błędów-są-ważne" id="toc-dlaczego-typologie-błędów-są-ważne" class="nav-link" data-scroll-target="#dlaczego-typologie-błędów-są-ważne">Dlaczego typologie błędów są ważne</a></li>
+  <li><a href="#wysoka-rzetelność-wysoka-trafność" id="toc-wysoka-rzetelność-wysoka-trafność" class="nav-link" data-scroll-target="#wysoka-rzetelność-wysoka-trafność">1. Wysoka Rzetelność, Wysoka Trafność</a></li>
+  <li><a href="#wysoka-rzetelność-niska-trafność" id="toc-wysoka-rzetelność-niska-trafność" class="nav-link" data-scroll-target="#wysoka-rzetelność-niska-trafność">2. Wysoka Rzetelność, Niska Trafność</a></li>
+  <li><a href="#niska-rzetelność-wysoka-trafność" id="toc-niska-rzetelność-wysoka-trafność" class="nav-link" data-scroll-target="#niska-rzetelność-wysoka-trafność">3. Niska Rzetelność, Wysoka Trafność</a></li>
+  <li><a href="#niska-rzetelność-niska-trafność" id="toc-niska-rzetelność-niska-trafność" class="nav-link" data-scroll-target="#niska-rzetelność-niska-trafność">4. Niska Rzetelność, Niska Trafność</a></li>
   </ul></li>
-  <li><a href="#pierwsza-typologia-błędy-systematyczne-vs.-błędy-losowe" id="toc-pierwsza-typologia-błędy-systematyczne-vs.-błędy-losowe" class="nav-link" data-scroll-target="#pierwsza-typologia-błędy-systematyczne-vs.-błędy-losowe"><span class="header-section-number">6.2</span> Pierwsza typologia: Błędy systematyczne vs.&nbsp;błędy losowe</a>
+  <li><a href="#wizualizacja-rzetelności-i-trafności" id="toc-wizualizacja-rzetelności-i-trafności" class="nav-link" data-scroll-target="#wizualizacja-rzetelności-i-trafności"><span class="header-section-number">6.3</span> Wizualizacja Rzetelności i Trafności</a>
   <ul class="collapse">
-  <li><a href="#błędy-systematyczne-systematic-errorbias" id="toc-błędy-systematyczne-systematic-errorbias" class="nav-link" data-scroll-target="#błędy-systematyczne-systematic-errorbias"><strong>Błędy systematyczne (Systematic Error/Bias)</strong></a></li>
-  <li><a href="#błędy-losowe-random-error" id="toc-błędy-losowe-random-error" class="nav-link" data-scroll-target="#błędy-losowe-random-error"><strong>Błędy losowe (Random Error)</strong></a></li>
-  <li><a href="#analogia-wizualna-strzelanie-do-tarczy" id="toc-analogia-wizualna-strzelanie-do-tarczy" class="nav-link" data-scroll-target="#analogia-wizualna-strzelanie-do-tarczy"><strong>Analogia wizualna: Strzelanie do tarczy</strong></a></li>
+  <li><a href="#interpretacja-wizualizacji" id="toc-interpretacja-wizualizacji" class="nav-link" data-scroll-target="#interpretacja-wizualizacji">Interpretacja Wizualizacji</a></li>
   </ul></li>
-  <li><a href="#druga-typologia-błędy-próby-vs.-błędy-niepróby" id="toc-druga-typologia-błędy-próby-vs.-błędy-niepróby" class="nav-link" data-scroll-target="#druga-typologia-błędy-próby-vs.-błędy-niepróby"><span class="header-section-number">6.3</span> Druga typologia: Błędy próby vs.&nbsp;błędy niepróby</a>
+  <li><a href="#rodzaje-rzetelności" id="toc-rodzaje-rzetelności" class="nav-link" data-scroll-target="#rodzaje-rzetelności"><span class="header-section-number">6.4</span> Rodzaje Rzetelności</a></li>
+  <li><a href="#rodzaje-trafności" id="toc-rodzaje-trafności" class="nav-link" data-scroll-target="#rodzaje-trafności"><span class="header-section-number">6.5</span> Rodzaje Trafności</a></li>
+  <li><a href="#trafność-wewnętrzna-vs-zewnętrzna" id="toc-trafność-wewnętrzna-vs-zewnętrzna" class="nav-link" data-scroll-target="#trafność-wewnętrzna-vs-zewnętrzna"><span class="header-section-number">6.6</span> Trafność Wewnętrzna vs Zewnętrzna</a>
   <ul class="collapse">
-  <li><a href="#błędy-próby-sampling-errors" id="toc-błędy-próby-sampling-errors" class="nav-link" data-scroll-target="#błędy-próby-sampling-errors"><strong>Błędy próby (Sampling Errors)</strong></a></li>
-  <li><a href="#błędy-niepróby-non-sampling-errors" id="toc-błędy-niepróby-non-sampling-errors" class="nav-link" data-scroll-target="#błędy-niepróby-non-sampling-errors"><strong>Błędy niepróby (Non-Sampling Errors)</strong></a></li>
+  <li><a href="#trafność-wewnętrzna" id="toc-trafność-wewnętrzna" class="nav-link" data-scroll-target="#trafność-wewnętrzna">Trafność Wewnętrzna</a></li>
+  <li><a href="#trafność-zewnętrzna" id="toc-trafność-zewnętrzna" class="nav-link" data-scroll-target="#trafność-zewnętrzna">Trafność Zewnętrzna</a></li>
   </ul></li>
-  <li><a href="#framework-całkowitego-błędu-badania-total-survey-error-framework" id="toc-framework-całkowitego-błędu-badania-total-survey-error-framework" class="nav-link" data-scroll-target="#framework-całkowitego-błędu-badania-total-survey-error-framework"><span class="header-section-number">6.4</span> Framework całkowitego błędu badania (Total Survey Error Framework)</a>
+  <li><a href="#spójność-w-badaniach" id="toc-spójność-w-badaniach" class="nav-link" data-scroll-target="#spójność-w-badaniach"><span class="header-section-number">6.7</span> Spójność w Badaniach</a></li>
+  <li><a href="#równoważenie-rzetelności-trafności-i-spójności" id="toc-równoważenie-rzetelności-trafności-i-spójności" class="nav-link" data-scroll-target="#równoważenie-rzetelności-trafności-i-spójności"><span class="header-section-number">6.8</span> Równoważenie Rzetelności, Trafności i Spójności</a></li>
+  <li><a href="#kompromis-między-obciążeniem-a-wariancją" id="toc-kompromis-między-obciążeniem-a-wariancją" class="nav-link" data-scroll-target="#kompromis-między-obciążeniem-a-wariancją"><span class="header-section-number">6.9</span> Kompromis między Obciążeniem a Wariancją</a></li>
+  <li><a href="#dokładność-i-precyzja" id="toc-dokładność-i-precyzja" class="nav-link" data-scroll-target="#dokładność-i-precyzja"><span class="header-section-number">6.10</span> Dokładność i Precyzja</a></li>
+  <li><a href="#podsumowanie" id="toc-podsumowanie" class="nav-link" data-scroll-target="#podsumowanie"><span class="header-section-number">6.11</span> Podsumowanie</a></li>
+  <li><a href="#zrozumienie-obciążenia-vs.-wariancji-w-pomiarach-statystycznych" id="toc-zrozumienie-obciążenia-vs.-wariancji-w-pomiarach-statystycznych" class="nav-link" data-scroll-target="#zrozumienie-obciążenia-vs.-wariancji-w-pomiarach-statystycznych"><span class="header-section-number">6.12</span> Zrozumienie Obciążenia vs.&nbsp;Wariancji w Pomiarach Statystycznych</a>
   <ul class="collapse">
-  <li><a href="#podstawy-konceptualne" id="toc-podstawy-konceptualne" class="nav-link" data-scroll-target="#podstawy-konceptualne"><strong>Podstawy konceptualne</strong></a></li>
-  <li><a href="#framework-w-praktyce" id="toc-framework-w-praktyce" class="nav-link" data-scroll-target="#framework-w-praktyce"><strong>Framework w praktyce</strong></a></li>
-  <li><a href="#kluczowe-wnioski-z-tse-framework" id="toc-kluczowe-wnioski-z-tse-framework" class="nav-link" data-scroll-target="#kluczowe-wnioski-z-tse-framework"><strong>Kluczowe wnioski z TSE Framework</strong></a></li>
-  <li><a href="#praktyczne-wskazówki-dla-badaczy" id="toc-praktyczne-wskazówki-dla-badaczy" class="nav-link" data-scroll-target="#praktyczne-wskazówki-dla-badaczy"><strong>Praktyczne wskazówki dla badaczy</strong></a></li>
+  <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link" data-scroll-target="#wprowadzenie">Wprowadzenie</a></li>
+  <li><a href="#funkcja-generowania-danych-i-dopasowywania-modelu" id="toc-funkcja-generowania-danych-i-dopasowywania-modelu" class="nav-link" data-scroll-target="#funkcja-generowania-danych-i-dopasowywania-modelu">Funkcja Generowania Danych i Dopasowywania Modelu</a></li>
+  <li><a href="#scenariusz-1-niskie-obciążenie-niska-wariancja" id="toc-scenariusz-1-niskie-obciążenie-niska-wariancja" class="nav-link" data-scroll-target="#scenariusz-1-niskie-obciążenie-niska-wariancja">Scenariusz 1: Niskie Obciążenie, Niska Wariancja</a></li>
+  </ul></li>
+  <li><a href="#scenariusz-2-niskie-obciążenie-wysoka-wariancja" id="toc-scenariusz-2-niskie-obciążenie-wysoka-wariancja" class="nav-link" data-scroll-target="#scenariusz-2-niskie-obciążenie-wysoka-wariancja"><span class="header-section-number">6.13</span> Scenariusz 2: Niskie Obciążenie, Wysoka Wariancja</a>
+  <ul class="collapse">
+  <li><a href="#scenariusz-3-wysokie-obciążenie-niska-wariancja" id="toc-scenariusz-3-wysokie-obciążenie-niska-wariancja" class="nav-link" data-scroll-target="#scenariusz-3-wysokie-obciążenie-niska-wariancja">Scenariusz 3: Wysokie Obciążenie, Niska Wariancja</a></li>
+  <li><a href="#scenariusz-4-wysokie-obciążenie-wysoka-wariancja" id="toc-scenariusz-4-wysokie-obciążenie-wysoka-wariancja" class="nav-link" data-scroll-target="#scenariusz-4-wysokie-obciążenie-wysoka-wariancja">Scenariusz 4: Wysokie Obciążenie, Wysoka Wariancja</a></li>
+  <li><a href="#podsumowanie-1" id="toc-podsumowanie-1" class="nav-link" data-scroll-target="#podsumowanie-1">Podsumowanie</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -290,7 +322,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Od Próby do Populacji - Zrozumienie Losowości, Pobierania Próby i Wnioskowania</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Rzetelność i Trafność w Badaniach Statystycznych</span></h1>
 </div>
 
 
@@ -307,527 +339,441 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="metody-doboru-próby" class="level3">
-<h3 class="anchored" data-anchor-id="metody-doboru-próby">Metody Doboru Próby</h3>
+<p>W naukach o danych i badaniach naukowych, dwa kluczowe pojęcia, które określają jakość pomiarów i badań, to rzetelność i trafność. Zrozumienie tych pojęć jest niezbędne do prowadzenia solidnych badań i wyciągania znaczących wniosków z danych.</p>
+<section id="definiowanie-rzetelności-i-trafności" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="definiowanie-rzetelności-i-trafności"><span class="header-section-number">6.1</span> Definiowanie Rzetelności i Trafności</h2>
+<p><strong>Rzetelność</strong> odnosi się do spójności pomiaru. Rzetelny pomiar lub badanie daje podobne wyniki w spójnych warunkach.</p>
+<p><strong>Trafność</strong> odnosi się do dokładności pomiaru. Trafny pomiar lub badanie dokładnie reprezentuje to, co twierdzi, że mierzy.</p>
 </section>
-<section id="dobór-probabilistyczny-losowy" class="level3">
-<h3 class="anchored" data-anchor-id="dobór-probabilistyczny-losowy">Dobór Probabilistyczny (Losowy)</h3>
-<p>Metody doboru probabilistycznego opierają się na losowym doborze, gdzie każdy członek populacji ma znaną, niezerową szansę na wybór. Metody te pozwalają badaczom obliczyć błąd próby i wyciągać wnioski statystyczne o populacji.</p>
+<section id="cztery-kombinacje-rzetelności-i-trafności" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="cztery-kombinacje-rzetelności-i-trafności"><span class="header-section-number">6.2</span> Cztery Kombinacje Rzetelności i Trafności</h2>
+<p>Istnieją cztery możliwe kombinacje rzetelności i trafności:</p>
 <ol type="1">
-<li><strong>Prosty Dobór Losowy (SRS)</strong>
-<ul>
-<li><strong>Definicja</strong>: Każdy członek populacji ma równą szansę na wybór.</li>
-<li><strong>Zalety</strong>: Minimalizuje błąd selekcji; umożliwia prostą analizę statystyczną.</li>
-<li><strong>Wady</strong>: Wymaga kompletnej operatu losowania; może nie uchwycić wystarczającej liczby członków mniejszych podgrup.</li>
-<li><strong>Przykład</strong>: Aby wybrać 100 studentów z uniwersytetu liczącego 10 000 studentów, przypisz każdemu studentowi numer i użyj generatora liczb losowych do wybrania 100 numerów.</li>
-<li><strong>Najlepsze zastosowanie</strong>: Gdy populacja jest względnie jednorodna i dostępna jest kompletna lista członków populacji.</li>
-</ul></li>
-<li><strong>Dobór Losowy Warstwowy</strong>
-<ul>
-<li><strong>Definicja</strong>: Populacja jest podzielona na wzajemnie wykluczające się podgrupy (warstwy) na podstawie wspólnych cech, a następnie próbki są losowo wybierane z każdej warstwy.</li>
-<li><strong>Zalety</strong>: Zapewnia reprezentację kluczowych podgrup; może poprawić precyzję dla tej samej wielkości próby co SRS; umożliwia analizę wewnątrz i między warstwami.</li>
-<li><strong>Wady</strong>: Wymaga wcześniejszej znajomości cech populacji do stratyfikacji; bardziej złożona analiza.</li>
-<li><strong>Przykład</strong>: W krajowym sondażu politycznym, podziel populację na warstwy według regionów geograficznych (Północny-Wschód, Północny-Zachód, Południe, itp.) i następnie losowo pobierz próbki z każdego regionu proporcjonalnie do ich wielkości populacji.</li>
-<li><strong>Najlepsze zastosowanie</strong>: Gdy populacja zawiera wyraźne podgrupy, które mogą reagować różnie na pytanie badawcze.</li>
-</ul></li>
-<li><strong>Dobór Grupowy (Klastrowy)</strong>
-<ul>
-<li><strong>Definicja</strong>: Populacja jest podzielona na grupy (zwykle geograficzne), niektóre grupy są losowo wybierane, a wszyscy członkowie w tych grupach są badani.</li>
-<li><strong>Zalety</strong>: Bardziej opłacalny gdy populacja jest geograficznie rozproszona; nie wymaga kompletnej listy członków populacji.</li>
-<li><strong>Wady</strong>: Niższa precyzja statystyczna niż SRS lub dobór warstwowy; klastry muszą być reprezentatywne.</li>
-<li><strong>Przykład</strong>: Aby zbadać nawyki uczenia się uczniów szkół średnich, losowo wybierz 20 szkół średnich z całego kraju i zbadaj wszystkich uczniów w tych szkołach.</li>
-<li><strong>Najlepsze zastosowanie</strong>: Gdy populacja jest szeroko rozproszona geograficznie, a dotarcie do wszystkich jednostek byłoby kosztowne.</li>
-</ul></li>
-<li><strong>Dobór Systematyczny</strong>
-<ul>
-<li><strong>Definicja</strong>: Wybieranie co k-tego elementu z listy po losowym starcie.</li>
-<li><strong>Zalety</strong>: Prosty w implementacji; często bardziej praktyczny niż SRS; może uniknąć efektów sąsiedztwa.</li>
-<li><strong>Wady</strong>: Może wprowadzić błąd, jeśli w liście występuje okresowy wzorzec.</li>
-<li><strong>Przykład</strong>: W zatłoczonym centrum handlowym, badaj co 20. osobę, która wchodzi, zaczynając od losowo wybranego numeru między 1 a 20.</li>
-<li><strong>Najlepsze zastosowanie</strong>: Gdy populacja jest uporządkowana losowo lub w sposób niezwiązany ze zmiennymi badania.</li>
-</ul></li>
-<li><strong>Dobór Wielostopniowy</strong>
-<ul>
-<li><strong>Definicja</strong>: Łączenie wielu metod próbkowania w etapach.</li>
-<li><strong>Zalety</strong>: Praktyczny dla badań na dużą skalę; równoważy koszty i precyzję.</li>
-<li><strong>Wady</strong>: Złożony projekt i analiza; wiele etapów może kumulować błędy próbkowania.</li>
-<li><strong>Przykład</strong>: Najpierw losowo wybierz powiaty (dobór klastrowy), następnie losowo wybierz gospodarstwa domowe w tych powiatach (prosty dobór losowy), a na końcu wybierz jednego dorosłego z każdego gospodarstwa (dobór systematyczny).</li>
-<li><strong>Najlepsze zastosowanie</strong>: Badanie dużych, złożonych populacji na rozległych obszarach geograficznych.</li>
-</ul></li>
+<li>Wysoka Rzetelność, Wysoka Trafność</li>
+<li>Wysoka Rzetelność, Niska Trafność</li>
+<li>Niska Rzetelność, Wysoka Trafność</li>
+<li>Niska Rzetelność, Niska Trafność</li>
+</ol>
+<p>Przyjrzyjmy się każdej z tych kombinacji z przykładami i wizualizacjami.</p>
+<section id="wysoka-rzetelność-wysoka-trafność" class="level3">
+<h3 class="anchored" data-anchor-id="wysoka-rzetelność-wysoka-trafność">1. Wysoka Rzetelność, Wysoka Trafność</h3>
+<p>To idealny scenariusz w badaniach. Pomiary są zarówno spójne, jak i dokładne.</p>
+<p><strong>Przykład</strong>: Dobrze skalibrowana waga cyfrowa używana do pomiaru wagi. Konsekwentnie daje ten sam odczyt dla tego samego obiektu i dokładnie reprezentuje prawdziwą wagę.</p>
+</section>
+<section id="wysoka-rzetelność-niska-trafność" class="level3">
+<h3 class="anchored" data-anchor-id="wysoka-rzetelność-niska-trafność">2. Wysoka Rzetelność, Niska Trafność</h3>
+<p>W tym przypadku pomiary są spójne, ale niedokładne.</p>
+<p><strong>Przykład</strong>: Źle skalibrowana waga, która zawsze mierzy 5 kg za ciężko. Daje spójne wyniki (wysoka rzetelność), ale nie reprezentuje prawdziwej wagi (niska trafność).</p>
+</section>
+<section id="niska-rzetelność-wysoka-trafność" class="level3">
+<h3 class="anchored" data-anchor-id="niska-rzetelność-wysoka-trafność">3. Niska Rzetelność, Wysoka Trafność</h3>
+<p>Tutaj pomiary są dokładne średnio, ale niespójne.</p>
+<p><strong>Przykład</strong>: Waga, która waha się wokół prawdziwej wagi. Czasami pokazuje trochę więcej, czasami trochę mniej, ale średnio jest poprawna.</p>
+</section>
+<section id="niska-rzetelność-niska-trafność" class="level3">
+<h3 class="anchored" data-anchor-id="niska-rzetelność-niska-trafność">4. Niska Rzetelność, Niska Trafność</h3>
+<p>To najgorszy scenariusz, gdzie pomiary nie są ani spójne, ani dokładne.</p>
+<p><strong>Przykład</strong>: Zepsuta waga, która daje losowe odczyty niezwiązane z prawdziwą wagą.</p>
+</section>
+</section>
+<section id="wizualizacja-rzetelności-i-trafności" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="wizualizacja-rzetelności-i-trafności"><span class="header-section-number">6.3</span> Wizualizacja Rzetelności i Trafności</h2>
+<p>Aby lepiej zrozumieć te pojęcia, stwórzmy wizualizacje przy użyciu ggplot2 w R. Zasymulujemy dane pomiarowe dla każdego scenariusza i narysujemy je.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generowanie danych dla każdego scenariusza</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>prawdziwa_wartosc <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">wysoka_rz_wysoka_tr =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> prawdziwa_wartosc, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">wysoka_rz_niska_tr =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> prawdziwa_wartosc <span class="sc">+</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">niska_rz_wysoka_tr =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> prawdziwa_wartosc, <span class="at">sd =</span> <span class="dv">5</span>),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">niska_rz_niska_tr =</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>id, <span class="at">names_to =</span> <span class="st">"scenariusz"</span>, <span class="at">values_to =</span> <span class="st">"pomiar"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzenie wykresu punktowego</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>wykres_punktowy <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dane, <span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> pomiar, <span class="at">color =</span> scenariusz)) <span class="sc">+</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> prawdziwa_wartosc, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> scenariusz, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">scenariusz =</span> <span class="fu">c</span>(</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>               <span class="st">"wysoka_rz_wysoka_tr"</span> <span class="ot">=</span> <span class="st">"Wysoka Rzetelność, Wysoka Trafność"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>               <span class="st">"wysoka_rz_niska_tr"</span> <span class="ot">=</span> <span class="st">"Wysoka Rzetelność, Niska Trafność"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>               <span class="st">"niska_rz_wysoka_tr"</span> <span class="ot">=</span> <span class="st">"Niska Rzetelność, Wysoka Trafność"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>               <span class="st">"niska_rz_niska_tr"</span> <span class="ot">=</span> <span class="st">"Niska Rzetelność, Niska Trafność"</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>             ))) <span class="sc">+</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Wykresy punktowe pomiarów"</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Przerywana linia reprezentuje prawdziwą wartość"</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"ID pomiaru"</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Zmierzona wartość"</span>) <span class="sc">+</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>))</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzenie histogramu</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>wykres_hist <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dane, <span class="fu">aes</span>(<span class="at">x =</span> pomiar, <span class="at">fill =</span> scenariusz)) <span class="sc">+</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> prawdziwa_wartosc, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> scenariusz, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free"</span>,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">scenariusz =</span> <span class="fu">c</span>(</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>               <span class="st">"wysoka_rz_wysoka_tr"</span> <span class="ot">=</span> <span class="st">"Wysoka Rzetelność, Wysoka Trafność"</span>,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>               <span class="st">"wysoka_rz_niska_tr"</span> <span class="ot">=</span> <span class="st">"Wysoka Rzetelność, Niska Trafność"</span>,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>               <span class="st">"niska_rz_wysoka_tr"</span> <span class="ot">=</span> <span class="st">"Niska Rzetelność, Wysoka Trafność"</span>,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>               <span class="st">"niska_rz_niska_tr"</span> <span class="ot">=</span> <span class="st">"Niska Rzetelność, Niska Trafność"</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>             ))) <span class="sc">+</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogramy pomiarów"</span>,</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Czerwona przerywana linia reprezentuje prawdziwą wartość"</span>,</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Zmierzona wartość"</span>,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Liczba"</span>) <span class="sc">+</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>))</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Łączenie wykresów</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>wykres_polaczony <span class="ot">&lt;-</span> wykres_punktowy <span class="sc">/</span> wykres_hist <span class="sc">+</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Rzetelność i Trafność w Pomiarach"</span>,</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">theme =</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">24</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Wyświetlanie połączonego wykresu</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>wykres_polaczony</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="rozdzial3_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="interpretacja-wizualizacji" class="level3">
+<h3 class="anchored" data-anchor-id="interpretacja-wizualizacji">Interpretacja Wizualizacji</h3>
+<ol type="1">
+<li><strong>Wysoka Rzetelność, Wysoka Trafność</strong>: Punkty grupują się ciasno wokół prawdziwej wartości (przerywana linia).</li>
+<li><strong>Wysoka Rzetelność, Niska Trafność</strong>: Punkty grupują się ciasno, ale konsekwentnie powyżej prawdziwej wartości.</li>
+<li><strong>Niska Rzetelność, Wysoka Trafność</strong>: Punkty rozpraszają się szeroko, ale centrują się wokół prawdziwej wartości.</li>
+<li><strong>Niska Rzetelność, Niska Trafność</strong>: Punkty rozpraszają się losowo bez wyraźnego wzoru lub relacji do prawdziwej wartości.</li>
+</ol>
+<p>Zrozumienie rzetelności i trafności jest kluczowe w naukach o danych i badaniach. Wysoka rzetelność zapewnia spójne pomiary, podczas gdy wysoka trafność zapewnia dokładne reprezentacje tego, co zamierzamy zmierzyć. Biorąc pod uwagę oba aspekty, badacze mogą projektować bardziej solidne badania i wyciągać bardziej znaczące wnioski ze swoich danych.</p>
+<p>Prowadząc własne badania lub analizując pracę innych, zawsze należy rozważyć: - Jak rzetelne są pomiary? - Jak trafne jest podejście do pomiaru zamierzonego pojęcia? - Czy stosowane metody wspierają zarówno rzetelność, jak i trafność?</p>
+<p>Mając na uwadze te pytania, będziesz lepiej przygotowany do prowadzenia i interpretowania wysokiej jakości badań w naukach o danych.</p>
+</section>
+</section>
+<section id="rodzaje-rzetelności" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="rodzaje-rzetelności"><span class="header-section-number">6.4</span> Rodzaje Rzetelności</h2>
+<p>Rzetelność można oceniać na kilka sposobów, każdy skupiający się na innym aspekcie spójności:</p>
+<ol type="1">
+<li><p><strong>Rzetelność test-retest</strong>: Mierzy spójność testu w czasie. Polega na przeprowadzeniu tego samego testu na tej samej grupie uczestników w różnych momentach i porównaniu wyników.</p></li>
+<li><p><strong>Rzetelność między oceniającymi</strong>: Ocenia stopień zgodności między różnymi oceniającymi lub obserwatorami. Jest kluczowa, gdy w zbieraniu danych biorą udział subiektywne osądy.</p></li>
+<li><p><strong>Spójność wewnętrzna</strong>: Ocenia, jak dobrze różne elementy testu lub skali mierzą ten sam konstrukt. Alfa Cronbacha jest powszechną miarą spójności wewnętrznej.</p></li>
+<li><p><strong>Rzetelność form równoległych</strong>: Polega na stworzeniu dwóch równoważnych form testu i przeprowadzeniu ich na tej samej grupie. Korelacja między dwoma zestawami wyników wskazuje na rzetelność.</p></li>
 </ol>
 </section>
-<section id="dobór-nieprobabilistyczny-nielosowy" class="level3">
-<h3 class="anchored" data-anchor-id="dobór-nieprobabilistyczny-nielosowy">Dobór Nieprobabilistyczny (Nielosowy)</h3>
-<p>Dobór nieprobabilistyczny nie opiera się na losowym wyborze, co oznacza, że wnioskowanie statystyczne o populacji musi być dokonywane z ostrożnością. Chociaż może wprowadzać błąd, w niektórych sytuacjach jest niezbędny.</p>
+<section id="rodzaje-trafności" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="rodzaje-trafności"><span class="header-section-number">6.5</span> Rodzaje Trafności</h2>
+<p>Trafność jest pojęciem wieloaspektowym, z kilkoma rodzajami, które badacze muszą wziąć pod uwagę:</p>
 <ol type="1">
-<li><strong>Dobór Przypadkowy (Convenience Sampling)</strong>
+<li><p><strong>Trafność treściowa</strong>: Zapewnia, że pomiar obejmuje wszystkie aspekty konstruktu, który ma mierzyć. Często jest oceniana przez osąd ekspertów.</p></li>
+<li><p><strong>Trafność konstrukcyjna</strong>: Ocenia, czy test mierzy zamierzony konstrukt teoretyczny. Obejmuje:</p>
 <ul>
-<li><strong>Definicja</strong>: Wybieranie łatwo dostępnych podmiotów.</li>
-<li><strong>Zalety</strong>: Szybki, niedrogi i łatwy w implementacji.</li>
-<li><strong>Wady</strong>: Wysokie ryzyko błędu selekcji; ograniczona możliwość uogólniania.</li>
-<li><strong>Przykład</strong>: Badacz studiujący wzorce snu studentów może ankietować studentów ze swoich własnych zajęć.</li>
-<li><strong>Najlepsze zastosowanie</strong>: Badania pilotażowe, badania eksploracyjne lub gdy zasoby są znacznie ograniczone.</li>
+<li><strong>Trafność zbieżną</strong>: Stopień, w jakim pomiar koreluje z innymi pomiarami tego samego konstruktu.</li>
+<li><strong>Trafność różnicową</strong>: Zakres, w jakim pomiar nie koreluje z pomiarami różnych konstruktów.</li>
 </ul></li>
-<li><strong>Dobór Celowy</strong>
+<li><p><strong>Trafność kryterialną</strong>: Ocenia, jak dobrze pomiar przewiduje wynik. Obejmuje:</p>
 <ul>
-<li><strong>Definicja</strong>: Wybieranie podmiotów na podstawie określonych cech istotnych dla pytania badawczego.</li>
-<li><strong>Zalety</strong>: Koncentruje się na istotnych przypadkach; przydatny do dogłębnych badań określonych grup.</li>
-<li><strong>Wady</strong>: Błąd badacza w wyborze; ograniczona możliwość uogólniania.</li>
-<li><strong>Przykład</strong>: W badaniu doświadczeń dyrektorów generalnych w branży technologicznej, celowo poszukuj i przeprowadzaj wywiady z dyrektorami różnych firm technologicznych.</li>
-<li><strong>Najlepsze zastosowanie</strong>: Badania jakościowe, studia przypadków lub badanie unikalnych populacji.</li>
+<li><strong>Trafność współbieżną</strong>: Jak dobrze pomiar koreluje z innymi pomiarami tego samego konstruktu w tym samym czasie.</li>
+<li><strong>Trafność predykcyjną</strong>: Jak dobrze pomiar przewiduje przyszłe wyniki.</li>
 </ul></li>
-<li><strong>Dobór Kuli Śnieżnej</strong>
-<ul>
-<li><strong>Definicja</strong>: Uczestnicy rekrutują innych uczestników ze swoich sieci.</li>
-<li><strong>Zalety</strong>: Dostęp do trudno dostępnych lub ukrytych populacji; bazuje na sieciach społecznych.</li>
-<li><strong>Wady</strong>: Próba stronnicza w kierunku osób w określonych sieciach społecznych; nie można obliczyć prawdopodobieństwa wyboru.</li>
-<li><strong>Przykład</strong>: W badaniu dostępu nielegalnych imigrantów do opieki zdrowotnej, badacze proszą początkowych uczestników o polecenie innych potencjalnych uczestników.</li>
-<li><strong>Najlepsze zastosowanie</strong>: Badanie rzadkich populacji lub wrażliwych tematów, gdzie nie istnieje operat losowania.</li>
-</ul></li>
-<li><strong>Dobór Kwotowy</strong>
-<ul>
-<li><strong>Definicja</strong>: Wybieranie uczestników w celu spełnienia określonych kwot dla pewnych cech, aby dopasować do znanych parametrów populacji.</li>
-<li><strong>Zalety</strong>: Zapewnia reprezentację kluczowych grup demograficznych; szybszy i tańszy niż próbkowanie probabilistyczne; nie wymaga operatu losowania.</li>
-<li><strong>Wady</strong>: Nielosowy wybór w ramach kwot może wprowadzić błąd; wnioskowanie jest ograniczone.</li>
-<li><strong>Przykład</strong>: W badaniu rynkowym, badacze upewniają się, że przeprowadzają wywiady z określoną liczbą osób z różnych grup wiekowych, płci i poziomów dochodów.</li>
-<li><strong>Najlepsze zastosowanie</strong>: Komercyjne sondaże, badania rynkowe lub gdy próbkowanie probabilistyczne nie jest wykonalne.</li>
-</ul></li>
+<li><p><strong>Trafność fasadowa</strong>: Trafność fasadowa odnosi się do tego, jak osoby badane postrzegają test i czy uważają go za odpowiedni do celu, któremu ma służyć. Brak trafności fasadowej może mieć negatywne konsekwencje, nawet jeśli test jest faktycznie trafny (czyli mierzy to, co powinien mierzyć) z punktu widzenia jego zamierzonego celu. Choć nie jest to naukowa miara, może być ważna dla zaangażowania uczestników.</p></li>
 </ol>
 </section>
-<section id="próby-kwotowe-vs.-próby-warstwowe-porównanie-i-praktyczne-zastosowania" class="level3">
-<h3 class="anchored" data-anchor-id="próby-kwotowe-vs.-próby-warstwowe-porównanie-i-praktyczne-zastosowania">Próby Kwotowe vs.&nbsp;Próby Warstwowe: Porównanie i Praktyczne Zastosowania</h3>
-<p>Choć na pierwszy rzut oka próbkowanie warstwowe i kwotowe może wydawać się podobne, istnieją między nimi fundamentalne różnice:</p>
-<section id="kluczowe-różnice-między-doborem-warstwowym-a-kwotowym" class="level4">
-<h4 class="anchored" data-anchor-id="kluczowe-różnice-między-doborem-warstwowym-a-kwotowym">Kluczowe różnice między doborem warstwowym a kwotowym:</h4>
+<section id="trafność-wewnętrzna-vs-zewnętrzna" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="trafność-wewnętrzna-vs-zewnętrzna"><span class="header-section-number">6.6</span> Trafność Wewnętrzna vs Zewnętrzna</h2>
+<p>Te pojęcia są kluczowe w projektowaniu eksperymentów i możliwości uogólniania wyników badań:</p>
+<section id="trafność-wewnętrzna" class="level3">
+<h3 class="anchored" data-anchor-id="trafność-wewnętrzna">Trafność Wewnętrzna</h3>
+<p>Trafność wewnętrzna odnosi się do zakresu, w jakim badanie ustanawia związek przyczynowy między zmiennymi niezależnymi a zależnymi. Odpowiada na pytanie: “Czy eksperymentalne traktowanie rzeczywiście spowodowało zaobserwowane efekty?”</p>
+<p>Czynniki, które mogą zagrażać trafności wewnętrznej, obejmują: - Historia: Zewnętrzne wydarzenia występujące między pre-testem a post-testem - Dojrzewanie: Naturalne zmiany u uczestników w czasie - Efekty testowania: Zmiany wynikające z przeprowadzenia pre-testu - Instrumentacja: Zmiany w narzędziu pomiarowym lub obserwatorach - Błąd selekcji: Nielosowy przydział do grup - Utrata: Utrata uczestników podczas badania</p>
+</section>
+<section id="trafność-zewnętrzna" class="level3">
+<h3 class="anchored" data-anchor-id="trafność-zewnętrzna">Trafność Zewnętrzna</h3>
+<p>Trafność zewnętrzna odnosi się do zakresu, w jakim wyniki badania mogą być uogólnione na inne sytuacje, populacje lub ustawienia. Odpowiada na pytanie: “W jakim stopniu wyniki mogą być zastosowane poza konkretnym kontekstem badania?”</p>
+<p>Czynniki, które mogą wpływać na trafność zewnętrzną, obejmują: - Trafność populacyjna: Jak dobrze próba reprezentuje szerszą populację - Trafność ekologiczna: Jak dobrze ustawienie badania reprezentuje warunki świata rzeczywistego - Trafność czasowa: Czy wyniki pozostają prawdziwe w czasie</p>
+</section>
+</section>
+<section id="spójność-w-badaniach" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="spójność-w-badaniach"><span class="header-section-number">6.7</span> Spójność w Badaniach</h2>
+<p>Spójność jest ściśle związana z rzetelnością, ale wykracza poza sam pomiar. W badaniach spójność odnosi się do ogólnej koherencji i stabilności wyników w różnych kontekstach, metodach lub badaniach.</p>
+<p>Kluczowe aspekty spójności w badaniach obejmują:</p>
 <ol type="1">
-<li><strong>Podstawa metodologiczna</strong>:
-<ul>
-<li><strong>Dobór warstwowy</strong>: Jest metodą probabilistyczną, gdzie po podziale na warstwy, jednostki w każdej warstwie są wybierane losowo.</li>
-<li><strong>Dobór kwotowy</strong>: Jest metodą nieprobabilistyczną, gdzie badacz lub ankieter ma swobodę wyboru konkretnych jednostek, o ile spełnione są założone kwoty.</li>
-</ul></li>
-<li><strong>Możliwość wnioskowania statystycznego</strong>:
-<ul>
-<li><strong>Dobór warstwowy</strong>: Pozwala na obliczenie błędu próbkowania i przedziałów ufności, umożliwiając formalne wnioskowanie statystyczne.</li>
-<li><strong>Dobór kwotowy</strong>: Nie pozwala na obliczenie błędu próbkowania, co ogranicza możliwości formalnego wnioskowania statystycznego.</li>
-</ul></li>
-<li><strong>Kontrola procesu doboru</strong>:
-<ul>
-<li><strong>Dobór warstwowy</strong>: Każdy etap procesu doboru jest kontrolowany przez badacza – od definicji warstw po losowy wybór jednostek w warstwach.</li>
-<li><strong>Dobór kwotowy</strong>: Ostateczny wybór respondentów pozostaje w rękach ankieterów, co może wprowadzać nieświadome obciążenia.</li>
-</ul></li>
-<li><strong>Praktyczne wdrożenie</strong>:
-<ul>
-<li><strong>Dobór warstwowy</strong>: Wymaga operatu losowania (kompletnej listy populacji) do przeprowadzenia losowania.</li>
-<li><strong>Dobór kwotowy</strong>: Nie wymaga operatu losowania, a jedynie znajomości rozkładu kluczowych cech w populacji.</li>
-</ul></li>
+<li><p><strong>Replikowalność</strong>: Zdolność do odtworzenia wyników badania przy użyciu tych samych metod i danych.</p></li>
+<li><p><strong>Odporność</strong>: Stabilność wyników w różnych podejściach analitycznych lub niewielkich zmianach w metodologii.</p></li>
+<li><p><strong>Konwergencja</strong>: Zbieżność wyników z różnych badań lub metod badających to samo zjawisko.</p></li>
+<li><p><strong>Spójność długoterminowa</strong>: Stabilność wyników w czasie, szczególnie ważna w badaniach długoterminowych.</p></li>
 </ol>
+<p>Zapewnienie spójności w badaniach obejmuje: - Stosowanie standaryzowanych procedur i miar - Dokładne dokumentowanie metod i decyzji analitycznych - Przeprowadzanie badań replikacyjnych - Meta-analizy w celu syntezy wyników z wielu badań</p>
 </section>
-<section id="jak-dokładnie-powstaje-próba-kwotowa-w-badaniach-cati-lub-capi" class="level4">
-<h4 class="anchored" data-anchor-id="jak-dokładnie-powstaje-próba-kwotowa-w-badaniach-cati-lub-capi">Jak dokładnie powstaje próba kwotowa w badaniach CATI lub CAPI</h4>
-<p>Proces tworzenia próby kwotowej w badaniach CATI (Computer-Assisted Telephone Interviewing) lub CAPI (Computer-Assisted Personal Interviewing) obejmuje następujące etapy:</p>
+<section id="równoważenie-rzetelności-trafności-i-spójności" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="równoważenie-rzetelności-trafności-i-spójności"><span class="header-section-number">6.8</span> Równoważenie Rzetelności, Trafności i Spójności</h2>
+<p>Chociaż rzetelność, trafność i spójność są kluczowe dla wysokiej jakości badań, czasami wiążą się z kompromisami:</p>
+<ul>
+<li>Wysoce rzetelna miara może nie mieć trafności, jeśli konsekwentnie mierzy niewłaściwą rzecz.</li>
+<li>Dążenie do idealnej trafności wewnętrznej (np. w ściśle kontrolowanych eksperymentach laboratoryjnych) może zmniejszyć trafność zewnętrzną.</li>
+<li>Zapewnienie wysokiej spójności w różnych kontekstach może wymagać poświęcenia pewnego stopnia precyzji lub głębi w konkretnych sytuacjach.</li>
+</ul>
+<p>Badacze muszą starannie równoważyć te aspekty w oparciu o swoje pytania badawcze i charakter badania. Kompleksowe zrozumienie rzetelności, trafności i spójności pomaga w projektowaniu solidnych badań, dokładnej interpretacji wyników i znaczącym wkładzie do korpusu wiedzy naukowej.</p>
+</section>
+<section id="kompromis-między-obciążeniem-a-wariancją" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="kompromis-między-obciążeniem-a-wariancją"><span class="header-section-number">6.9</span> Kompromis między Obciążeniem a Wariancją</h2>
+<p>Pojęcia rzetelności i trafności są ściśle związane ze statystycznym pojęciem kompromisu między obciążeniem a wariancją. Ten kompromis jest fundamentalny w uczeniu maszynowym i modelowaniu statystycznym.</p>
+<ul>
+<li>Obciążenie odnosi się do błędu wprowadzonego przez przybliżenie problemu ze świata rzeczywistego uproszczonym modelem. Wysokie obciążenie może prowadzić do niedopasowania.</li>
+<li>Wariancja odnosi się do błędu wprowadzonego przez wrażliwość modelu na małe fluktuacje w zbiorze treningowym. Wysoka wariancja może prowadzić do przeuczenia.</li>
+</ul>
+<p>Zobrazujmy to pojęcie za pomocą uproszczonego wykresu:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y_prawdziwa <span class="ot">&lt;-</span> <span class="fu">sin</span>(x)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y_niskie_obciazenie_wysoka_wariancja <span class="ot">&lt;-</span> y_prawdziwa <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="fl">0.3</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y_wysokie_obciazenie_niska_wariancja <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="sc">*</span> x</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rep</span>(x, <span class="dv">3</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> <span class="fu">c</span>(y_prawdziwa, y_niskie_obciazenie_wysoka_wariancja, y_wysokie_obciazenie_niska_wariancja),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">typ =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Prawdziwa Funkcja"</span>, <span class="st">"Niskie Obciążenie, Wysoka Wariancja"</span>, <span class="st">"Wysokie Obciążenie, Niska Wariancja"</span>), <span class="at">each =</span> <span class="dv">100</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> typ)) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> <span class="fu">subset</span>(df, typ <span class="sc">!=</span> <span class="st">"Prawdziwa Funkcja"</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Kompromis między Obciążeniem a Wariancją"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"X"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Y"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Typ Modelu"</span>) <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="rozdzial3_files/figure-html/bias-variance-plot-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Wizualizacja kompromisu między obciążeniem a wariancją</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Na tym wykresie: - Czarna linia reprezentuje prawdziwą funkcję bazową. - Niebieskie punkty reprezentują model z niskim obciążeniem, ale wysoką wariancją. Średnio podąża blisko prawdziwej funkcji, ale ma dużo szumu. - Czerwona linia reprezentuje model z wysokim obciążeniem, ale niską wariancją. Konsekwentnie niedoszacowuje prawdziwej funkcji, ale ma mniej szumu.</p>
+</section>
+<section id="dokładność-i-precyzja" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="dokładność-i-precyzja"><span class="header-section-number">6.10</span> Dokładność i Precyzja</h2>
+<p>Pojęcia dokładności i precyzji są ściśle związane z trafnością i rzetelnością:</p>
+<ul>
+<li>Dokładność odnosi się do tego, jak blisko pomiar jest prawdziwej wartości (podobnie do trafności).</li>
+<li>Precyzja odnosi się do tego, jak spójne lub powtarzalne są pomiary (podobnie do rzetelności).</li>
+</ul>
+<p>Możemy zobrazować te pojęcia za pomocą uproszczonej analogii do tarczy:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggforce)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>create_points <span class="ot">&lt;-</span> <span class="cf">function</span>(n, x_center, y_center, spread) {</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">rnorm</span>(n, x_center, spread),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">rnorm</span>(n, y_center, spread)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>points <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="fu">create_points</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.1</span>), <span class="at">type =</span> <span class="st">"Wysoka Dokładność</span><span class="sc">\n</span><span class="st">Wysoka Precyzja"</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="fu">create_points</span>(<span class="dv">20</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span>), <span class="at">type =</span> <span class="st">"Niska Dokładność</span><span class="sc">\n</span><span class="st">Wysoka Precyzja"</span>),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="fu">create_points</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.3</span>), <span class="at">type =</span> <span class="st">"Wysoka Dokładność</span><span class="sc">\n</span><span class="st">Niska Precyzja"</span>),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="fu">create_points</span>(<span class="dv">20</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.3</span>), <span class="at">type =</span> <span class="st">"Niska Dokładność</span><span class="sc">\n</span><span class="st">Niska Precyzja"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(points, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_circle</span>(<span class="fu">aes</span>(<span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">1</span>), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_circle</span>(<span class="fu">aes</span>(<span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="fl">0.5</span>), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type) <span class="sc">+</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.1</span>, <span class="fl">1.1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.1</span>, <span class="fl">1.1</span>)) <span class="sc">+</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_blank</span>(), <span class="at">axis.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Dokładność vs Precyzja"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="rozdzial3_files/figure-html/accuracy-precision-plot-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Wizualizacja Dokładności vs Precyzji</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>W tej wizualizacji: - Wysoka dokładność oznacza, że punkty są blisko środka (dziesiątki). - Wysoka precyzja oznacza, że punkty są ściśle zgrupowane. - Każdy panel reprezentuje inną kombinację dokładności i precyzji.</p>
+</section>
+<section id="podsumowanie" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="podsumowanie"><span class="header-section-number">6.11</span> Podsumowanie</h2>
+<p>Zrozumienie rzetelności i trafności jest kluczowe dla prowadzenia solidnych badań. Pojęcia te pomagają nam zapewnić, że nasze pomiary są zarówno spójne, jak i dokładne. Łącząc je z ideami takimi jak kompromis między obciążeniem a wariancją oraz dokładnością i precyzją, zyskujemy głębsze zrozumienie wyzwań związanych z pomiarem i modelowaniem w badaniach naukowych. Jako badacze musimy dążyć do opracowania miar i modeli, które są zarówno rzetelne, jak i trafne, równoważąc kompromisy między obciążeniem a wariancją oraz między dokładnością a precyzją. Wymaga to starannego projektowania metodologii badań, rygorystycznego testowania naszych instrumentów pomiarowych i przemyślanej interpretacji naszych wyników.</p>
+</section>
+<section id="zrozumienie-obciążenia-vs.-wariancji-w-pomiarach-statystycznych" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="zrozumienie-obciążenia-vs.-wariancji-w-pomiarach-statystycznych"><span class="header-section-number">6.12</span> Zrozumienie Obciążenia vs.&nbsp;Wariancji w Pomiarach Statystycznych</h2>
+<section id="wprowadzenie" class="level3">
+<h3 class="anchored" data-anchor-id="wprowadzenie">Wprowadzenie</h3>
+<p>W statystyce i uczeniu maszynowym dwa ważne pojęcia, które wpływają na wydajność naszych modeli, to <strong>obciążenie</strong> (bias) i <strong>wariancja</strong> (variance). Zrozumienie tych pojęć jest kluczowe dla budowania efektywnych modeli predykcyjnych i unikania typowych pułapek, takich jak przeuczenie i niedouczenie.</p>
+<ul>
+<li><strong>Obciążenie</strong> odnosi się do błędu wprowadzonego przez przybliżenie rzeczywistego problemu, który może być złożony, za pomocą uproszczonego modelu. Wysokie obciążenie może prowadzić do niedouczenia.
+<ul>
+<li>Wyobraź sobie obciążenie jako średnią odległość naszych przewidywań od prawdziwych wartości.</li>
+<li>W kontekście trafności, wysokie obciążenie oznacza, że nasz model nie uchwycił prawdziwej zależności w danych.</li>
+</ul></li>
+<li><strong>Wariancja</strong> odnosi się do tego, jak bardzo nasz model zmieniłby się, gdybyśmy oszacowali go przy użyciu innego zbioru treningowego. Wysoka wariancja może prowadzić do przeuczenia.
+<ul>
+<li>Wyobraź sobie wariancję jako to, jak bardzo nasze przewidywania wahałyby się, gdybyśmy użyli różnych zbiorów danych.</li>
+<li>W kontekście rzetelności, wysoka wariancja oznacza, że nasz model jest zbyt wrażliwy na konkretne dane, na których został wytrenowany.</li>
+</ul></li>
+</ul>
+<p>Zbadamy cztery scenariusze, aby zilustrować różne kombinacje obciążenia i wariancji przy użyciu syntetycznych danych i modeli regresji.</p>
+</section>
+<section id="funkcja-generowania-danych-i-dopasowywania-modelu" class="level3">
+<h3 class="anchored" data-anchor-id="funkcja-generowania-danych-i-dopasowywania-modelu">Funkcja Generowania Danych i Dopasowywania Modelu</h3>
+<p>Najpierw stwórzmy funkcję, która pomoże nam generować dane i dopasowywać modele dla każdego scenariusza:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>generuj_i_dopasuj <span class="ot">&lt;-</span> <span class="cf">function</span>(n, wyraz_wolny, nachylenie, odch_szumu, stopien_modelu) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Generowanie syntetycznych danych</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> wyraz_wolny <span class="sc">+</span> nachylenie <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, odch_szumu)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Dopasowanie modelu</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">"y ~"</span>, <span class="fu">paste0</span>(<span class="st">"poly(x, "</span>, stopien_modelu, <span class="st">", raw = TRUE)"</span>)))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula, <span class="at">data =</span> <span class="fu">data.frame</span>(x, y))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Generowanie przewidywań</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  x_pred <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  y_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_pred))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Wykres</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(x, y), <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_pred, <span class="at">y =</span> y_pred), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">intercept =</span> wyraz_wolny, <span class="at">slope =</span> nachylenie, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Stopień Modelu:"</span>, stopien_modelu),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">"Odchylenie Standardowe Szumu:"</span>, odch_szumu),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"X (Zmienna Wejściowa)"</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Y (Zmienna Docelowa)"</span>) <span class="sc">+</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ta funkcja wykonuje następujące czynności: 1. Generuje syntetyczne dane na podstawie naszych parametrów 2. Dopasowuje model regresji wielomianowej 3. Tworzy wykres pokazujący prawdziwą zależność (niebieska przerywana linia), przewidywania naszego modelu (czerwona ciągła linia) i punkty danych</p>
+<p>Teraz zbadajmy nasze cztery scenariusze!</p>
+</section>
+<section id="scenariusz-1-niskie-obciążenie-niska-wariancja" class="level3">
+<h3 class="anchored" data-anchor-id="scenariusz-1-niskie-obciążenie-niska-wariancja">Scenariusz 1: Niskie Obciążenie, Niska Wariancja</h3>
+<p>W tym idealnym scenariuszu używamy modelu liniowego do dopasowania danych liniowych z niskim szumem.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">generuj_i_dopasuj</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">wyraz_wolny =</span> <span class="dv">1</span>, <span class="at">nachylenie =</span> <span class="dv">2</span>, <span class="at">odch_szumu =</span> <span class="dv">1</span>, <span class="at">stopien_modelu =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="rozdzial3_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Wyjaśnienie:</strong> - Model (czerwona linia) ściśle podąża za prawdziwą zależnością (niebieska przerywana linia). - Punkty danych są skupione blisko linii, co wskazuje na niski szum. - Ten scenariusz reprezentuje dobre dopasowanie: model uchwycił podstawowy trend bez nadmiernej złożoności.</p>
+</section>
+</section>
+<section id="scenariusz-2-niskie-obciążenie-wysoka-wariancja" class="level2" data-number="6.13">
+<h2 data-number="6.13" class="anchored" data-anchor-id="scenariusz-2-niskie-obciążenie-wysoka-wariancja"><span class="header-section-number">6.13</span> Scenariusz 2: Niskie Obciążenie, Wysoka Wariancja</h2>
+<p>Tutaj używamy modelu liniowego do dopasowania danych liniowych, ale z wysokim szumem.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">generuj_i_dopasuj</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">wyraz_wolny =</span> <span class="dv">1</span>, <span class="at">nachylenie =</span> <span class="dv">2</span>, <span class="at">odch_szumu =</span> <span class="dv">5</span>, <span class="at">stopien_modelu =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="rozdzial3_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Wyjaśnienie:</strong> - Model nadal uchwycił ogólny trend, ale punkty danych są bardziej rozproszone. - Ta wysoka wariancja oznacza, że przewidywania naszego modelu byłyby mniej wiarygodne. - W rzeczywistych warunkach mogłoby to reprezentować sytuację, w której nasze pomiary są średnio poprawne, ale mają dużo losowego błędu.</p>
+<section id="scenariusz-3-wysokie-obciążenie-niska-wariancja" class="level3">
+<h3 class="anchored" data-anchor-id="scenariusz-3-wysokie-obciążenie-niska-wariancja">Scenariusz 3: Wysokie Obciążenie, Niska Wariancja</h3>
+<p>W tym przypadku używamy modelu liniowego do dopasowania danych kwadratowych (zakrzywionych) z niskim szumem.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dane_kwadratowe <span class="ot">&lt;-</span> <span class="cf">function</span>(n, wyraz_wolny, nachylenie, odch_szumu, stopien_modelu) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> wyraz_wolny <span class="sc">+</span> nachylenie <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, odch_szumu)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">"y ~"</span>, <span class="fu">paste0</span>(<span class="st">"poly(x, "</span>, stopien_modelu, <span class="st">", raw = TRUE)"</span>)))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula, <span class="at">data =</span> <span class="fu">data.frame</span>(x, y))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  x_pred <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  y_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_pred))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(x, y), <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_pred, <span class="at">y =</span> y_pred), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) wyraz_wolny <span class="sc">+</span> nachylenie <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Stopień Modelu:"</span>, stopien_modelu),</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">"Odchylenie Standardowe Szumu:"</span>, odch_szumu),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"X (Zmienna Wejściowa)"</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Y (Zmienna Docelowa)"</span>) <span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="fu">dane_kwadratowe</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">wyraz_wolny =</span> <span class="dv">1</span>, <span class="at">nachylenie =</span> <span class="fl">0.2</span>, <span class="at">odch_szumu =</span> <span class="dv">1</span>, <span class="at">stopien_modelu =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="rozdzial3_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Wyjaśnienie:</strong> - Model liniowy (czerwona linia) nie uchwycił krzywizny prawdziwej zależności (niebieska przerywana linia). - To wysokie obciążenie oznacza, że nasz model konsekwentnie myli się w swoich przewidywaniach. - W rzeczywistych warunkach mogłoby to reprezentować użycie zbyt uproszczonego modelu dla złożonego zjawiska.</p>
+</section>
+<section id="scenariusz-4-wysokie-obciążenie-wysoka-wariancja" class="level3">
+<h3 class="anchored" data-anchor-id="scenariusz-4-wysokie-obciążenie-wysoka-wariancja">Scenariusz 4: Wysokie Obciążenie, Wysoka Wariancja</h3>
+<p>Na koniec używamy wielomianu wysokiego stopnia do dopasowania danych liniowych z wysokim szumem.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">generuj_i_dopasuj</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">wyraz_wolny =</span> <span class="dv">1</span>, <span class="at">nachylenie =</span> <span class="dv">2</span>, <span class="at">odch_szumu =</span> <span class="dv">5</span>, <span class="at">stopien_modelu =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="rozdzial3_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Wyjaśnienie:</strong> - Model (czerwona linia) jest zbyt złożony, próbując dopasować się do szumu zamiast do podstawowego trendu. - Ta kombinacja wysokiego obciążenia i wysokiej wariancji prowadzi do słabej generalizacji. - W rzeczywistych warunkach mogłoby to reprezentować nadmierne skomplikowanie naszej analizy i wyciąganie fałszywych wniosków z losowych fluktuacji w naszych danych.</p>
+</section>
+<section id="podsumowanie-1" class="level3">
+<h3 class="anchored" data-anchor-id="podsumowanie-1">Podsumowanie</h3>
+<p>Zrozumienie kompromisu między obciążeniem a wariancją jest kluczowe w modelowaniu statystycznym:</p>
 <ol type="1">
-<li><strong>Etap planowania i przygotowania</strong>:
-<ul>
-<li><strong>Określenie zmiennych kwotowych</strong>: Najczęściej są to podstawowe zmienne demograficzne: płeć, wiek, wykształcenie, miejsce zamieszkania (miasto/wieś), region.</li>
-<li><strong>Ustalenie wielkości kwot</strong>: Na podstawie danych GUS lub innych wiarygodnych źródeł danych (np. Diagnoza Społeczna) określa się, jaki procent populacji stanowią poszczególne kategorie.</li>
-<li><strong>Przygotowanie tabeli kwotowej</strong>: Tworzy się wielowymiarową macierz kwot, np. ile powinno być kobiet w wieku 18-29 lat z wyższym wykształceniem mieszkających na wsi w województwie mazowieckim.</li>
-</ul></li>
-<li><strong>Przygotowanie operacyjne badania CATI</strong>:
-<ul>
-<li><strong>Przygotowanie bazy telefonicznej</strong>: W przypadku CATI tworzy się bazę numerów telefonicznych (stacjonarnych i/lub komórkowych).</li>
-<li><strong>Losowanie numerów z puli</strong>: Często stosuje się metodę RDD (Random Digit Dialing) dla telefonów komórkowych lub losowanie z książek telefonicznych (coraz rzadziej) dla telefonów stacjonarnych.</li>
-<li><strong>Przypisanie numerów do zespołów ankieterskich</strong>: System CATI dystrybuuje numery do ankieterów.</li>
-</ul></li>
-<li><strong>Realizacja badania CATI</strong>:
-<ul>
-<li><strong>Pytania filtrujące</strong>: Na początku rozmowy ankieter zadaje pytania o wiek, płeć i inne zmienne kwotowe.</li>
-<li><strong>Decyzja o kontynuacji</strong>: System CATI na bieżąco monitoruje wypełnienie kwot i decyduje, czy dana osoba kwalifikuje się do badania (czy jej profil demograficzny jest jeszcze potrzebny w próbie).</li>
-<li><strong>Realizacja wywiadu</strong>: Jeśli respondent pasuje do wciąż otwartej kwoty, przeprowadzany jest wywiad.</li>
-<li><strong>Automatyczne zamykanie wypełnionych kwot</strong>: Gdy dana kwota zostaje wypełniona, system przestaje przyjmować nowych respondentów o tym profilu.</li>
-<li><strong>Rejestracja odmów udziału w badaniu</strong>: System rejestruje odmowy według ich typu (odmowa na etapie wprowadzenia, odmowa po pytaniach filtrujących, przerwanie wywiadu) oraz dane demograficzne, jeśli zostały zebrane przed odmową.</li>
-</ul></li>
-<li><strong>Przygotowanie operacyjne badania CAPI</strong>:
-<ul>
-<li><strong>Wybór lokalizacji</strong>: Wybiera się punkty realizacji badania, często stratyfikowane według regionów, wielkości miejscowości itd.</li>
-<li><strong>Instrukcje dla ankieterów</strong>: Ankieterzy otrzymują szczegółowe instrukcje dotyczące kwot, które muszą wypełnić w swoim rejonie.</li>
-</ul></li>
-<li><strong>Realizacja badania CAPI</strong>:
-<ul>
-<li><strong>Screener</strong>: Ankieter używa krótkiego kwestionariusza selekcyjnego do określenia, czy dana osoba spełnia kryteria kwotowe.</li>
-<li><strong>Dobór respondenta</strong>: Ankieter sam decyduje, kogo zapytać o udział w badaniu, kierując się wytycznymi kwotowymi.</li>
-<li><strong>Monitorowanie realizacji kwot</strong>: Ankieterzy regularnie raportują zrealizowane wywiady, a koordynator badania monitoruje wypełnienie kwot.</li>
-</ul></li>
-<li><strong>Kontrola jakości i analiza odmów</strong>:
-<ul>
-<li><strong>Weryfikacja wywiadów</strong>: Losowo wybrane wywiady są weryfikowane przez ponowny kontakt z respondentem.</li>
-<li><strong>Kontrola pracy ankieterów</strong>: W badaniach CAPI często stosuje się geolokalizację ankieterów, żeby potwierdzić, że faktycznie byli w deklarowanych lokalizacjach.</li>
-<li><strong>Kontrola “efektu ankietera”</strong>: Analizuje się, czy określeni ankieterzy nie mają systematycznie odmiennych wyników.</li>
-<li><strong>Analiza wskaźnika odpowiedzi (response rate)</strong>: Oblicza się stosunek zrealizowanych wywiadów do wszystkich nawiązanych kontaktów.</li>
-<li><strong>Analiza struktury odmów</strong>: Sprawdza się, czy odmowy nie są systematycznie powiązane z określonymi cechami demograficznymi, co mogłoby wprowadzić błąd.</li>
-</ul></li>
-<li><strong>Ważenie końcowe (po realizacji badania)</strong>:
-<ul>
-<li><strong>Korekta nierównomiernej realizacji kwot</strong>: Nawet przy najstaranniejszym doborze kwotowym rzadko udaje się idealnie odwzorować strukturę populacji, dlatego stosuje się ważenie danych po zakończeniu zbierania wywiadów.</li>
-<li><strong>Kalibracja do znanych parametrów populacji</strong>: Próbę kalibruje się do dokładnych danych z GUS lub innych wiarygodnych źródeł, przypisując odpowiednie wagi poszczególnym respondentom.</li>
-<li><strong>Metody ważenia</strong>: Najczęściej stosuje się ważenie brzegowe (rim weighting) lub iteracyjne dopasowywanie (raking), które pozwalają jednocześnie dopasować próbę do wielu zmiennych demograficznych.</li>
-</ul></li>
+<li><p><strong>Niskie Obciążenie, Niska Wariancja:</strong> Idealny scenariusz, w którym nasz model dokładnie uchwycił podstawową zależność bez nadmiernej wrażliwości na szum.</p></li>
+<li><p><strong>Niskie Obciążenie, Wysoka Wariancja:</strong> Nasz model jest średnio poprawny, ale niewiarygodny ze względu na wysoką wrażliwość na pojedyncze punkty danych.</p></li>
+<li><p><strong>Wysokie Obciążenie, Niska Wariancja:</strong> Nasz model jest konsekwentnie błędny z powodu nadmiernego uproszczenia, ale daje stabilne przewidywania.</p></li>
+<li><p><strong>Wysokie Obciążenie, Wysoka Wariancja:</strong> Najgorszy scenariusz, w którym nasz model jest zarówno niedokładny, jak i niewiarygodny.</p></li>
 </ol>
-</section>
-<section id="praktyczny-przykład-realizacji-badania-cati-z-doborem-kwotowym-w-polsce" class="level4">
-<h4 class="anchored" data-anchor-id="praktyczny-przykład-realizacji-badania-cati-z-doborem-kwotowym-w-polsce">Praktyczny przykład realizacji badania CATI z doborem kwotowym w Polsce:</h4>
-<ol type="1">
-<li><p><strong>Cel badania</strong>: Ogólnopolski sondaż opinii na temat systemu edukacji, n=1000 wywiadów.</p></li>
-<li><p><strong>Zmienne kwotowe</strong>:</p>
-<ul>
-<li>Płeć: 52% kobiety, 48% mężczyźni</li>
-<li>Wiek: 18-29 lat (18%), 30-44 lat (29%), 45-59 lat (25%), 60+ lat (28%)</li>
-<li>Wykształcenie: Podstawowe/gimnazjalne (18%), Zasadnicze zawodowe (23%), Średnie (35%), Wyższe (24%)</li>
-<li>Wielkość miejscowości: Wieś (39%), Miasto do 50 tys. (23%), Miasto 50-200 tys. (16%), Miasto 200+ tys. (22%)</li>
-<li>Region: Poszczególne województwa zgodnie z proporcjami GUS</li>
-</ul></li>
-<li><p><strong>Przebieg badania</strong>:</p>
-<ul>
-<li>System CATI losuje numery telefonów i przydziela ankieterom</li>
-<li>Ankieter przeprowadza wywiad, jeśli respondent spełnia kryteria kwotowe i się zgadza</li>
-<li>System monitoruje wypełnienie kwot i automatycznie zamyka te, które osiągnęły zakładaną liczebność</li>
-<li>W trakcie realizacji badania okazuje się, że najtrudniej dotrzeć do mężczyzn z wykształceniem zasadniczym zawodowym w wieku 45-59 lat – ankieterom przydzielane są dodatkowe godziny na poszukiwanie respondentów o tym profilu</li>
-<li>Po zakończeniu zbierania danych, próba jest ważona, aby skorygować niewielkie odchylenia od założonych kwot</li>
-</ul></li>
-</ol>
-</section>
-</section>
-<section id="dlaczego-ośrodki-badania-opinii-coraz-częściej-stosują-dobór-kwotowy" class="level3">
-<h3 class="anchored" data-anchor-id="dlaczego-ośrodki-badania-opinii-coraz-częściej-stosują-dobór-kwotowy">Dlaczego Ośrodki Badania Opinii Coraz Częściej Stosują Dobór Kwotowy</h3>
-<p>W ostatnich latach wiele ośrodków badania opinii publicznej przeszło na metody doboru kwotowego z kilku kluczowych powodów:</p>
-<ol type="1">
-<li><p><strong>Spadające Wskaźniki Realizacji</strong>: Tradycyjne badania telefoniczne oparte na losowym doborze odnotowały spadek wskaźników odpowiedzi z około 36% w latach 90. do mniej niż 10% obecnie. Zwiększa to koszty i potencjalnie wprowadza błąd związany z odmowami, który może być gorszy niż błąd selekcji wynikający z metod nielosowych.</p></li>
-<li><p><strong>Problemy z Dotarciem do Respondentów</strong>: Losowe wybieranie numerów telefonicznych nie zapewnia już reprezentatywnej próby populacji, ponieważ wielu ludzi zrezygnowało z telefonów stacjonarnych na rzecz komórkowych, a wielu nie odbiera połączeń od nieznanych numerów.</p></li>
-<li><p><strong>Efektywność Kosztowa</strong>: Badania oparte na losowym doborze stały się niezwykle drogie wraz ze spadkiem wskaźników odpowiedzi, podczas gdy panele internetowe i dobór kwotowy są bardziej przystępne cenowo.</p></li>
-<li><p><strong>Szybkość</strong>: W szybko zmieniających się kampaniach politycznych lub gwałtownie ewoluujących sytuacjach społecznych, dobór kwotowy może dostarczyć wyniki znacznie szybciej niż metody losowe.</p></li>
-<li><p><strong>Udoskonalenia w Technikach Ważenia</strong>: Nowoczesne metody statystyczne pozwalają badaczom dostosować próby kwotowe, aby lepiej reprezentowały populację docelową poprzez ważenie odpowiedzi w oparciu o znane parametry populacji.</p></li>
-<li><p><strong>Podejścia Mieszane</strong>: Wielu badaczy stosuje obecnie metody mieszane, które łączą elementy doboru losowego i nielosowego, z zaawansowanym ważeniem i modelowaniem w celu poprawy dokładności.</p></li>
-</ol>
-<section id="wpływ-odmów-na-jakość-próby-i-praktyczne-problemy-realizacji-badań" class="level4">
-<h4 class="anchored" data-anchor-id="wpływ-odmów-na-jakość-próby-i-praktyczne-problemy-realizacji-badań">Wpływ odmów na jakość próby i praktyczne problemy realizacji badań</h4>
-<section id="problem-odmów-udziału-w-badaniach" class="level5">
-<h5 class="anchored" data-anchor-id="problem-odmów-udziału-w-badaniach">Problem odmów udziału w badaniach</h5>
-<p>Odmowy udziału w badaniu stanowią jedno z największych wyzwań współczesnej metodologii badawczej i mają istotny wpływ na jakość uzyskiwanych wyników:</p>
-<ol type="1">
-<li><strong>Skala zjawiska</strong>:
-<ul>
-<li>W klasycznych badaniach kwestionariuszowych poziom realizacji (response rate) w Polsce spadł z około 70-80% w latach 90. do 30-40% obecnie.</li>
-<li>W badaniach telefonicznych CATI współczynnik odpowiedzi wynosi często zaledwie 5-15%.</li>
-<li>W badaniach internetowych na panelach wskaźnik odpowiedzi może wynosić 20-30%, ale wśród respondentów dobieranych z ogółu populacji spada nawet do 1-2%.</li>
-</ul></li>
-<li><strong>Typy odmów</strong>:
-<ul>
-<li><strong>Odmowy “twarde”</strong> – kategoryczna odmowa udziału w jakimkolwiek badaniu.</li>
-<li><strong>Odmowy “miękkie”</strong> – wymówki typu “nie mam czasu”, “jestem zajęty”, które mogą wynikać z niechęci do tematu badania.</li>
-<li><strong>Odmowy selektywne</strong> – odmowy udziału w badaniach na określone tematy (np. polityczne, dotyczące zdrowia).</li>
-<li><strong>Niedostępność</strong> – niemożność nawiązania kontaktu z wylosowaną osobą mimo wielokrotnych prób.</li>
-</ul></li>
-<li><strong>Konsekwencje dla jakości badań</strong>:
-<ul>
-<li><strong>Błąd systematyczny</strong> – jeśli osoby odmawiające udziału systematycznie różnią się od osób uczestniczących w badaniu pod względem kluczowych zmiennych.</li>
-<li><strong>Zawężenie próby do “zawodowych respondentów”</strong> – szczególnie w panelach internetowych, gdzie uczestniczą głównie osoby chętne do udziału w wielu badaniach.</li>
-<li><strong>Nadreprezentacja określonych grup</strong> – np. emerytów i rencistów, którzy częściej mają czas i chęć na udział w badaniach osobistych.</li>
-</ul></li>
-<li><strong>Metody radzenia sobie z odmowami</strong>:
-<ul>
-<li><strong>Ponowne próby kontaktu</strong> – standardem jest wykonanie minimum 3-4 prób kontaktu w różnych dniach i porach.</li>
-<li><strong>Dostosowanie terminu</strong> – oferowanie elastycznych terminów realizacji wywiadu.</li>
-<li><strong>Zachęty materialne</strong> – oferowanie drobnych gratyfikacji za udział w badaniu.</li>
-<li><strong>Analiza i ważenie ze względu na odmowy</strong> – uwzględnianie struktury osób odmawiających w procesie ważenia danych.</li>
-<li><strong>Techniki konwersji odmów</strong> – specjalne szkolenia dla ankieterów w zakresie przekonywania osób początkowo odmawiających.</li>
-</ul></li>
-<li><strong>Dokumentacja odmów</strong>:
-<ul>
-<li><strong>Standard AAPOR</strong> (American Association for Public Opinion Research) – zaleca dokładne raportowanie wszystkich kontaktów, odmów i przyczyn braku realizacji wywiadu.</li>
-<li><strong>Kategorie dokumentacji</strong> – liczba połączeń/wizyt, powody niedostępności, typy i przyczyny odmów.</li>
-<li><strong>Transparentność metodologiczna</strong> – raportowanie wskaźnika odpowiedzi oraz potencjalnego wpływu odmów na wyniki.</li>
-</ul></li>
-</ol>
-</section>
-</section>
-<section id="praktyczne-problemy-realizacji-badań-probabilistycznych-w-polsce" class="level4">
-<h4 class="anchored" data-anchor-id="praktyczne-problemy-realizacji-badań-probabilistycznych-w-polsce">Praktyczne problemy realizacji badań probabilistycznych w Polsce:</h4>
-<ol type="1">
-<li><p><strong>Brak dostępu do operatu losowania</strong>: W Polsce nie ma łatwego dostępu do pełnych i aktualnych rejestrów populacji dla celów badawczych.</p></li>
-<li><p><strong>Problem z realizacją wywiadów pod wylosowanymi adresami</strong>: Coraz trudniej przeprowadzić wywiady pod konkretnymi adresami ze względu na:</p>
-<ul>
-<li>Zwiększoną liczbę zamkniętych osiedli</li>
-<li>Spadek zaufania społecznego i niechęć do wpuszczania ankieterów do domów</li>
-<li>Różne godziny pracy potencjalnych respondentów wymagające wielokrotnych wizyt</li>
-</ul></li>
-<li><p><strong>Koszt realizacji</strong>: Badania z prawdziwym losowym doborem próby (np. metodą random route) są kilkukrotnie droższe niż badania kwotowe.</p></li>
-</ol>
-<p>Wybory prezydenckie w USA w 2016 roku, gdzie wiele sondaży nie przewidziało dokładnie wyniku, doprowadziły do znacznych przemyśleń wśród ankieterów. Zamiast rezygnować z próbkowania kwotowego, wiele organizacji udoskonaliło swoje metody, koncentrując się na lepszych definicjach kwot, ulepszonych technikach ważenia i bardziej przejrzystym raportowaniu ograniczeń metodologicznych.</p>
-<p>Pomimo tych trendów, ważne jest, aby zauważyć, że próbkowanie probabilistyczne pozostaje złotym standardem wnioskowania statystycznego. Dobrze zaprojektowane próby probabilistyczne wciąż zapewniają najbardziej niezawodną podstawę do uogólniania z próby na populację, szczególnie w badaniach akademickich, gdzie dokładność jest priorytetem nad kosztem i szybkością.</p>
-</section>
-</section>
-<section id="błędy-w-badaniach-surveyowych-co-może-pójść-nie-tak-w-badaniach" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="błędy-w-badaniach-surveyowych-co-może-pójść-nie-tak-w-badaniach"><span class="header-section-number">6.1</span> Błędy w badaniach surveyowych: Co może pójść nie tak w badaniach</h2>
-<section id="dlaczego-typologie-błędów-są-ważne" class="level3">
-<h3 class="anchored" data-anchor-id="dlaczego-typologie-błędów-są-ważne">Dlaczego typologie błędów są ważne</h3>
-<p>W badaniach nauk społecznych błędy są nieuniknione. Jednak różne typy błędów wymagają różnych rozwiązań. Zrozumienie tych typologii pomaga badaczom:</p>
-<ul>
-<li><strong>Zidentyfikować</strong> źródło potencjalnych problemów</li>
-<li><strong>Zaprojektować</strong> lepsze badania minimalizujące błędy</li>
-<li><strong>Interpretować</strong> wyniki dokładniej</li>
-<li><strong>Komunikować</strong> ograniczenia uczciwie</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="pierwsza-typologia-błędy-systematyczne-vs.-błędy-losowe" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="pierwsza-typologia-błędy-systematyczne-vs.-błędy-losowe"><span class="header-section-number">6.2</span> Pierwsza typologia: Błędy systematyczne vs.&nbsp;błędy losowe</h2>
-<section id="błędy-systematyczne-systematic-errorbias" class="level3">
-<h3 class="anchored" data-anchor-id="błędy-systematyczne-systematic-errorbias"><strong>Błędy systematyczne (Systematic Error/Bias)</strong></h3>
-<p><strong>Definicja:</strong> Spójne, przewidywalne błędy, które systematycznie przesuwają wyniki w jednym kierunku od prawdziwej wartości.</p>
-<p><strong>Kluczowe cechy:</strong></p>
-<ul>
-<li>Zawsze występują w tym samym kierunku</li>
-<li>Nie można ich zmniejszyć poprzez zwiększenie próby</li>
-<li>Wpływają na trafność (accuracy) - jak blisko jesteśmy prawdziwej wartości</li>
-<li>Często spowodowane wadliwym projektem badania lub jego realizacją</li>
-</ul>
-<p><strong>Przykłady:</strong></p>
-<ul>
-<li><strong>Pytania sugestywne (leading questions):</strong> “Czy nie uważa Pan/Pani, że rząd powinien ograniczyć marnotrawne wydatki?” (pcha w stronę odpowiedzi “tak”)</li>
-<li><strong>Skłonność do odpowiedzi społecznie pożądanych (social desirability bias):</strong> Ludzie zaniżają społecznie nieakceptowalne zachowania (używanie narkotyków, uchylanie się od podatków)</li>
-<li><strong>Błąd pokrycia (coverage bias):</strong> Badania telefoniczne pomijające osoby bez telefonów stacjonarnych systematycznie wykluczają młodszą populację</li>
-<li><strong>Błąd ankietera (interviewer bias):</strong> Ankieterzy nieświadomie wpływają na odpowiedzi zgodnie ze swoimi oczekiwaniami</li>
-</ul>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Kluczowy punkt:</strong> Błędu systematycznego nie można naprawić zbierając więcej danych. Jeśli twój termometr zawsze pokazuje o 2 stopnie za dużo, wykonanie 1000 pomiarów nie da ci poprawnej temperatury – da ci bardzo precyzyjną, ale błędną odpowiedź.</p>
-</div>
-</div>
-</section>
-<section id="błędy-losowe-random-error" class="level3">
-<h3 class="anchored" data-anchor-id="błędy-losowe-random-error"><strong>Błędy losowe (Random Error)</strong></h3>
-<p><strong>Definicja:</strong> Nieprzewidywalne błędy, które losowo wahają się wokół prawdziwej wartości, czasem powyżej, czasem poniżej.</p>
-<p><strong>Kluczowe cechy:</strong></p>
-<ul>
-<li>Brak stałego kierunku</li>
-<li>Zmniejszają się wraz ze wzrostem próby (prawo wielkich liczb)</li>
-<li>Wpływają na precyzję (consistency) pomiarów</li>
-<li>Często spowodowane czynnikami losowymi lub ograniczeniami pomiarowymi</li>
-</ul>
-<p><strong>Przykłady:</strong> - <strong>Zmienność próby (sampling variability):</strong> Różne próby losowe dające nieco odmienne wyniki - <strong>Dwuznaczność sformułowania pytań:</strong> Niektórzy respondenci interpretują pytanie w jeden sposób, inni inaczej - <strong>Różnice między ankieterami:</strong> Naturalna zmienność między różnymi ankieterami - <strong>Nastrój respondenta:</strong> Odpowiedzi ludzi różniące się w zależności od nastroju podczas badania</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Dobra wiadomość:</strong> Błędy losowe mają tendencję do się znoszenia przy większych próbach. Jeśli niektóre pomiary są losowo za wysokie, a inne za niskie, średnia zbliża się do prawdziwej wartości wraz z dodawaniem kolejnych obserwacji.</p>
-</div>
-</div>
-</section>
-<section id="analogia-wizualna-strzelanie-do-tarczy" class="level3">
-<h3 class="anchored" data-anchor-id="analogia-wizualna-strzelanie-do-tarczy"><strong>Analogia wizualna: Strzelanie do tarczy</strong></h3>
-<p>Wyobraź sobie badania jako strzelanie strzałami do tarczy, gdzie środek oznacza prawdziwą wartość:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Typ błędu</th>
-<th>Wzór</th>
-<th>Opis</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Niski systematyczny, Niski losowy</strong></td>
-<td>Wszystkie strzały skupione blisko środka</td>
-<td><strong>Ideał:</strong> Trafne i precyzyjne</td>
-</tr>
-<tr class="even">
-<td><strong>Niski systematyczny, Wysoki losowy</strong></td>
-<td>Strzały rozproszone wokół środka</td>
-<td><strong>Przeciętnie precyzyjne:</strong> Bezstronne ale niespójne</td>
-</tr>
-<tr class="odd">
-<td><strong>Wysoki systematyczny, Niski losowy</strong></td>
-<td>Strzały skupione z dala od środka</td>
-<td><strong>Konsekwentnie błędne:</strong> Stronnicze ale precyzyjne</td>
-</tr>
-<tr class="even">
-<td><strong>Wysoki systematyczny, Wysoki losowy</strong></td>
-<td>Strzały rozproszone daleko od środka</td>
-<td><strong>Najgorszy przypadek:</strong> Zarówno stronnicze jak i nieprecyzyjne</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-</section>
-<section id="druga-typologia-błędy-próby-vs.-błędy-niepróby" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="druga-typologia-błędy-próby-vs.-błędy-niepróby"><span class="header-section-number">6.3</span> Druga typologia: Błędy próby vs.&nbsp;błędy niepróby</h2>
-<section id="błędy-próby-sampling-errors" class="level3">
-<h3 class="anchored" data-anchor-id="błędy-próby-sampling-errors"><strong>Błędy próby (Sampling Errors)</strong></h3>
-<p><strong>Definicja:</strong> Błędy występujące z tego powodu, że badamy próbę zamiast całą populację.</p>
-<p><strong>Kluczowe cechy:</strong></p>
-<ul>
-<li>Nieuniknione przy używaniu prób (chyba że badamy całą populację)</li>
-<li>Można je oszacować i określić ilościowo</li>
-<li>Zmniejszają się wraz z większymi próbami</li>
-<li>Uwzględniane w przedziałach ufności i błędach standardowych</li>
-</ul>
-<p><strong>Rodzaje:</strong></p>
-<ul>
-<li><strong>Losowy błąd próby (random sampling error):</strong> Naturalna zmienność między próbami</li>
-<li><strong>Błąd operatu losowania (sampling frame error):</strong> Gdy lista potencjalnych respondentów nie odpowiada populacji docelowej</li>
-<li><strong>Błąd selekcji (selection bias):</strong> Gdy niektóre grupy są systematycznie bardziej lub mniej prawdopodobne do włączenia</li>
-</ul>
-<p><strong>Przykłady:</strong></p>
-<ul>
-<li>Sondaż polityczny pokazujący 52% poparcia, ale prawdziwa wartość w populacji to 50%</li>
-<li>Brakujące osoby w wieku 18-25 lat, bo nie ma ich w książce telefonicznej</li>
-<li>Wyższe wskaźniki odpowiedzi wśród emerytów niż osób pracujących</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Pamiętaj:</strong> Nawet doskonałe losowanie da pewien błąd, bo próba to nie cała populacja. Dlatego podajemy błędy standardowe (np. „±3 punkty procentowe”).</p>
-</div>
-</div>
-</section>
-<section id="błędy-niepróby-non-sampling-errors" class="level3">
-<h3 class="anchored" data-anchor-id="błędy-niepróby-non-sampling-errors"><strong>Błędy niepróby (Non-Sampling Errors)</strong></h3>
-<p><strong>Definicja:</strong> Wszystkie inne błędy, które mogą wystąpić w badaniach, niezależnie od tego, czy używasz próby czy badasz całą populację.</p>
-<p><strong>Kluczowe cechy:</strong></p>
-<ul>
-<li>Mogą wystąpić nawet podczas spisu powszechnego (pełne wyliczenie)</li>
-<li>Często są poważniejsze niż błędy próby</li>
-<li>Trudne do określenia ilościowego</li>
-<li>Nie zmniejszają się wraz ze wzrostem próby</li>
-</ul>
-<p><strong>Główne kategorie:</strong></p>
-<p><strong>Błędy pokrycia (Coverage Errors):</strong> - <strong>Niedopokrycie (under-coverage):</strong> Pomijanie części populacji docelowej (osoby bez telefonów, bezdomni) - <strong>Nadpokrycie (over-coverage):</strong> Włączanie jednostek spoza populacji docelowej (nieobywatele w badaniu obywateli)</p>
-<p><strong>Błędy pomiaru (Measurement Errors):</strong> - <strong>Problemy z pytaniami:</strong> Dwuznaczne, sugestywne lub drażliwe pytania - <strong>Błędy odpowiedzi (response errors):</strong> Niezrozumienie, problemy z pamięcią, pożądanie społeczne - <strong>Efekty ankietera (interviewer effects):</strong> Jak ankieter wpływa na odpowiedzi - <strong>Efekty techniki badania (mode effects):</strong> Różnice między badaniami telefonicznymi, internetowymi i twarzą w twarz</p>
-<p><strong>Błędy braku odpowiedzi (Nonresponse Errors):</strong> - <strong>Brak odpowiedzi jednostkowy (unit nonresponse):</strong> Całe osoby/gospodarstwa domowe nie uczestniczą - <strong>Brak odpowiedzi pozycyjny (item nonresponse):</strong> Uczestnicy pomijają konkretne pytania - <strong>Błąd wskaźnika odpowiedzi (response rate bias):</strong> Gdy osoby nieuczestniczące różnią się systematycznie od uczestniczących</p>
-<p><strong>Błędy przetwarzania (Processing Errors):</strong> - <strong>Błędy wprowadzania danych:</strong> Niepoprawne kodowanie odpowiedzi - <strong>Błędy edycji:</strong> „Poprawianie” danych w sposób niepoprawny - <strong>Błędy ważenia (weighting errors):</strong> Nieprawidłowe dostosowania dla różnic demograficznych</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Sprawdzenie rzeczywistości:</strong> W większości badań surveyowych błędy niepróby są większe niż błędy próby. Badanie z 3% błędem standardowym może mieć 5-10% błędu z innych źródeł.</p>
-</div>
-</div>
-<hr>
-</section>
-</section>
-<section id="framework-całkowitego-błędu-badania-total-survey-error-framework" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="framework-całkowitego-błędu-badania-total-survey-error-framework"><span class="header-section-number">6.4</span> Framework całkowitego błędu badania (Total Survey Error Framework)</h2>
-<section id="podstawy-konceptualne" class="level3">
-<h3 class="anchored" data-anchor-id="podstawy-konceptualne"><strong>Podstawy konceptualne</strong></h3>
-<p>Framework całkowitego błędu badania (Total Survey Error - TSE) uznaje, że jakość badania zależy od minimalizacji <strong>wszystkich</strong> źródeł błędów, nie tylko błędu próby. Zapewnia systematyczny sposób myślenia o każdym etapie procesu badawczego.</p>
-<p><strong>Podstawowa zasada:</strong> Całkowity błąd = Błąd próby + Wszystkie błędy niepróby</p>
-</section>
-<section id="framework-w-praktyce" class="level3">
-<h3 class="anchored" data-anchor-id="framework-w-praktyce"><strong>Framework w praktyce</strong></h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Etap badania</strong></th>
-<th><strong>Potencjalne błędy</strong></th>
-<th><strong>Rozwiązania</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Faza projektowania</strong></td>
-<td>Problemy z pokryciem, problemy ze sformułowaniem pytań</td>
-<td>Pretestowanie, recenzja ekspertów, badania pilotażowe</td>
-</tr>
-<tr class="even">
-<td><strong>Zbieranie danych</strong></td>
-<td>Brak odpowiedzi, błąd ankietera, błąd pomiaru</td>
-<td>Wielokrotne próby kontaktu, szkolenie ankieterów, techniki mieszane</td>
-</tr>
-<tr class="odd">
-<td><strong>Przetwarzanie danych</strong></td>
-<td>Błędy kodowania, błędy edycji</td>
-<td>Podwójne wprowadzanie danych, kontrole spójności, automatyczna walidacja</td>
-</tr>
-<tr class="even">
-<td><strong>Analiza</strong></td>
-<td>Błędy ważenia, nieodpowiednie metody statystyczne</td>
-<td>Właściwe obliczenia wag, analizy wrażliwości</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="kluczowe-wnioski-z-tse-framework" class="level3">
-<h3 class="anchored" data-anchor-id="kluczowe-wnioski-z-tse-framework"><strong>Kluczowe wnioski z TSE Framework</strong></h3>
-<p><strong>1. Trade-offy są wszędzie:</strong> - Dłuższe badania dają więcej informacji, ale wyższy brak odpowiedzi - Wywiady osobiste redukują błąd pomiaru, ale zwiększają koszty - Badania internetowe są tańsze, ale mogą pomijać niektóre populacje</p>
-<p><strong>2. Źródła błędów oddziałują na siebie:</strong> - Próby redukcji jednego błędu mogą zwiększyć inny - Na przykład, ponowne kontakty w celu redukcji braku odpowiedzi mogą zwiększyć skłonność do odpowiedzi społecznie pożądanych (wytrwali respondenci mogą być bardziej ulegli)</p>
-<p><strong>3. Skupienie na największych problemach:</strong> - Nie obsesuj się na punkcie błędu próby, jeśli błąd pomiaru jest większy - Spis powszechny ze złymi pytaniami jest gorszy niż dobre badanie próbkowe</p>
-<p><strong>4. Kontekst ma znaczenie:</strong> - Tolerancja błędu zależy od celu badania - Sondaże polityczne potrzebują innej precyzji niż badania akademickie</p>
-<hr>
-</section>
-<section id="praktyczne-wskazówki-dla-badaczy" class="level3">
-<h3 class="anchored" data-anchor-id="praktyczne-wskazówki-dla-badaczy"><strong>Praktyczne wskazówki dla badaczy</strong></h3>
-<p><strong>1. Podczas projektowania badania:</strong> - Zmapuj wszystkie potencjalne źródła błędów dla twojego konkretnego badania - Rozważ, jak każda decyzja projektowa wpływa na różne typy błędów - Przetestuj wszystko (pytania, procedury, technologię)</p>
-<p><strong>2. Podczas zbierania danych:</strong> - Monitoruj wskaźniki odpowiedzi i charakterystyki respondentów w czasie rzeczywistym - Dokumentuj wszystko (kto odpowiedział kiedy, w jakich warunkach) - Szkol personel, aby rozpoznawał i minimalizował swój wpływ na odpowiedzi</p>
-<p><strong>3. Podczas analizy:</strong> - Porównaj swoją próbę ze znanymi charakterystykami populacji - Przeprowadź analizy wrażliwości: jak zmieniają się wyniki przy różnych założeniach? - Bądź przejrzysty co do ograniczeń</p>
-<p><strong>4. Podczas raportowania:</strong> - Raportuj więcej niż tylko błąd standardowy - Omawiaj potencjalne obciążenia (biases) i ich prawdopodobny kierunek - Przyznaj się do tego, czego nie wiesz</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Podsumowanie
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Zrozumienie typologii błędów pomaga badaczom podejmować lepsze decyzje na każdym etapie. Pamiętaj:</p>
-<ul>
-<li><strong>Błędy systematyczne</strong> wymagają zmian w projekcie, nie większych prób</li>
-<li><strong>Błędy losowe</strong> można zmniejszyć większymi próbami</li>
-<li><strong>Błędy próby</strong> są często mniejsze niż <strong>błędy niepróby</strong></li>
-<li><strong>Framework całkowitego błędu badania</strong> przypomina nam o konieczności rozważenia wszystkich źródeł błędów, nie tylko tych łatwych do obliczenia</li>
-</ul>
-<p>Dobre badania to nie eliminacja wszystkich błędów (niemożliwe), ale zrozumienie, minimalizacja i uczciwe raportowanie błędów, które pozostają.</p>
-</div>
-</div>
+<p>W praktyce często musimy zrównoważyć obciążenie i wariancję. Techniki takie jak walidacja krzyżowa, regularyzacja i metody zespołowe mogą pomóc w znalezieniu tej równowagi.</p>
+<p>Pamiętaj: - Model z wysokim obciążeniem jest zbyt prosty i pomija ważne wzorce w danych. - Model z wysoką wariancją jest zbyt złożony i dopasowuje się do szumu w danych treningowych. - Celem jest znalezienie złotego środka, który uchwyci prawdziwe wzorce bez nadmiernego dopasowania do szumu.</p>
+<p>Zrozumienie tych pojęć pomoże ci lepiej wybierać odpowiednie modele, unikać przeuczenia i niedouczenia oraz budować bardziej efektywne modele predykcyjne w przyszłych analizach statystycznych!</p>
 
 
 </section>
@@ -1235,13 +1181,13 @@ Podsumowanie
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chapter3.html" class="pagination-link" aria-label="From Sample to Population - Understanding Randomness, Sampling, and Inference">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">From Sample to Population - Understanding Randomness, Sampling, and Inference</span></span>
+      <a href="./chapter3.html" class="pagination-link" aria-label="Reliability and Validity in Data Science Research">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Reliability and Validity in Data Science Research</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapter3b.html" class="pagination-link" aria-label="Reliability and Validity in Data Science Research">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reliability and Validity in Data Science Research</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapter4.html" class="pagination-link" aria-label="Research Designs: Experimental and Non-Experimental Approaches">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Research Designs: Experimental and Non-Experimental Approaches</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

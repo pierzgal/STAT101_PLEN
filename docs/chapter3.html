@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; From Sample to Population - Understanding Randomness, Sampling, and Inference – Social Data Analysis: An Introduction (PL: Wprowadzenie do Analizy Danych Społecznych)</title>
+<title>5&nbsp; Reliability and Validity in Data Science Research – Social Data Analysis: An Introduction (PL: Wprowadzenie do Analizy Danych Społecznych)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -82,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter3.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">From Sample to Population - Understanding Randomness, Sampling, and Inference</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter3.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Reliability and Validity in Data Science Research</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -140,103 +175,91 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter3.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">From Sample to Population - Understanding Randomness, Sampling, and Inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Reliability and Validity in Data Science Research</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rozdzial3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Od Próby do Populacji - Zrozumienie Losowości, Pobierania Próby i Wnioskowania</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapter3b.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reliability and Validity in Data Science Research</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./rozdzial3b.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Rzetelność i Trafność w Badaniach Nauk o Danych</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Rzetelność i Trafność w Badaniach Statystycznych</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Research Designs: Experimental and Non-Experimental Approaches</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Research Designs: Experimental and Non-Experimental Approaches</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rozdzial4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projekty Badawcze: Podejścia Eksperymentalne i Nieeksperymentalne</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Projekty Badawcze: Podejścia Eksperymentalne i Nieeksperymentalne</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Fundamentals of Univariate Descriptive Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Fundamentals of Univariate Descriptive Statistics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rozdzial5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Podstawy Jednowymiarowej Statystyki Opisowej</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Podstawy Jednowymiarowej Statystyki Opisowej</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization: with examples in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Visualization: with examples in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rozdzial6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wizualizacja Danych: z przykładami w R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Wizualizacja Danych: z przykładami w R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correg_en.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Correlation and Regression Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Introduction to Correlation and Regression Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correg_pl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Wprowadzenie do analizy korelacji i regresji <em>(Correlation and Regression Analysis)</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wprowadzenie do analizy korelacji i regresji <em>(Correlation and Regression Analysis)</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./probability_en.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to (Discrete) Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to (Discrete) Probability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./probability_pl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Wprowadzenie do Prawdopodobieństwa</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Wprowadzenie do Prawdopodobieństwa</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rv_pdf_en.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Random Variables and Probability Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Random Variables and Probability Distributions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference_en.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Statistical Hypothesis Testing: A Fundamental Logic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Statistical Hypothesis Testing: A Fundamental Logic</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference_pl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wprowadzenie do Wnioskowania Statystycznego: Logika Testowania Hipotez Statystycznych</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Wprowadzenie do Wnioskowania Statystycznego: Logika Testowania Hipotez Statystycznych</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -255,33 +278,41 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sampling-methods" id="toc-sampling-methods" class="nav-link active" data-scroll-target="#sampling-methods"><span class="header-section-number">5.1</span> Sampling Methods</a>
+  <li><a href="#defining-reliability-and-validity" id="toc-defining-reliability-and-validity" class="nav-link active" data-scroll-target="#defining-reliability-and-validity"><span class="header-section-number">5.1</span> Defining Reliability and Validity</a></li>
+  <li><a href="#the-four-combinations-of-reliability-and-validity" id="toc-the-four-combinations-of-reliability-and-validity" class="nav-link" data-scroll-target="#the-four-combinations-of-reliability-and-validity"><span class="header-section-number">5.2</span> The Four Combinations of Reliability and Validity</a>
   <ul class="collapse">
-  <li><a href="#probability-sampling" id="toc-probability-sampling" class="nav-link" data-scroll-target="#probability-sampling">Probability Sampling</a></li>
-  <li><a href="#non-probability-sampling" id="toc-non-probability-sampling" class="nav-link" data-scroll-target="#non-probability-sampling">Non-probability Sampling</a></li>
-  <li><a href="#why-pollsters-increasingly-use-quota-sampling" id="toc-why-pollsters-increasingly-use-quota-sampling" class="nav-link" data-scroll-target="#why-pollsters-increasingly-use-quota-sampling">Why Pollsters Increasingly Use Quota Sampling</a></li>
+  <li><a href="#high-reliability-high-validity" id="toc-high-reliability-high-validity" class="nav-link" data-scroll-target="#high-reliability-high-validity">1. High Reliability, High Validity</a></li>
+  <li><a href="#high-reliability-low-validity" id="toc-high-reliability-low-validity" class="nav-link" data-scroll-target="#high-reliability-low-validity">2. High Reliability, Low Validity</a></li>
+  <li><a href="#low-reliability-high-validity" id="toc-low-reliability-high-validity" class="nav-link" data-scroll-target="#low-reliability-high-validity">3. Low Reliability, High Validity</a></li>
+  <li><a href="#low-reliability-low-validity" id="toc-low-reliability-low-validity" class="nav-link" data-scroll-target="#low-reliability-low-validity">4. Low Reliability, Low Validity</a></li>
   </ul></li>
-  <li><a href="#survey-errors-understanding-what-can-go-wrong-in-research" id="toc-survey-errors-understanding-what-can-go-wrong-in-research" class="nav-link" data-scroll-target="#survey-errors-understanding-what-can-go-wrong-in-research"><span class="header-section-number">5.2</span> Survey Errors: Understanding What Can Go Wrong in Research</a>
+  <li><a href="#visualizing-reliability-and-validity" id="toc-visualizing-reliability-and-validity" class="nav-link" data-scroll-target="#visualizing-reliability-and-validity"><span class="header-section-number">5.3</span> Visualizing Reliability and Validity</a>
   <ul class="collapse">
-  <li><a href="#why-error-typologies-matter" id="toc-why-error-typologies-matter" class="nav-link" data-scroll-target="#why-error-typologies-matter">Why Error Typologies Matter</a></li>
+  <li><a href="#interpreting-the-visualizations" id="toc-interpreting-the-visualizations" class="nav-link" data-scroll-target="#interpreting-the-visualizations">Interpreting the Visualizations</a></li>
   </ul></li>
-  <li><a href="#first-typology-systematic-vs.-random-error" id="toc-first-typology-systematic-vs.-random-error" class="nav-link" data-scroll-target="#first-typology-systematic-vs.-random-error"><span class="header-section-number">5.3</span> First Typology: Systematic vs.&nbsp;Random Error</a>
+  <li><a href="#types-of-reliability" id="toc-types-of-reliability" class="nav-link" data-scroll-target="#types-of-reliability"><span class="header-section-number">5.4</span> Types of Reliability</a></li>
+  <li><a href="#types-of-validity" id="toc-types-of-validity" class="nav-link" data-scroll-target="#types-of-validity"><span class="header-section-number">5.5</span> Types of Validity</a></li>
+  <li><a href="#internal-vs.-external-validity" id="toc-internal-vs.-external-validity" class="nav-link" data-scroll-target="#internal-vs.-external-validity"><span class="header-section-number">5.6</span> Internal vs.&nbsp;External Validity</a>
   <ul class="collapse">
-  <li><a href="#systematic-error-bias" id="toc-systematic-error-bias" class="nav-link" data-scroll-target="#systematic-error-bias"><strong>Systematic Error (Bias)</strong></a></li>
-  <li><a href="#random-error" id="toc-random-error" class="nav-link" data-scroll-target="#random-error"><strong>Random Error</strong></a></li>
-  <li><a href="#visual-analogy-target-practice" id="toc-visual-analogy-target-practice" class="nav-link" data-scroll-target="#visual-analogy-target-practice"><strong>Visual Analogy: Target Practice</strong></a></li>
+  <li><a href="#internal-validity" id="toc-internal-validity" class="nav-link" data-scroll-target="#internal-validity">Internal Validity</a></li>
+  <li><a href="#external-validity" id="toc-external-validity" class="nav-link" data-scroll-target="#external-validity">External Validity</a></li>
   </ul></li>
-  <li><a href="#second-typology-sampling-vs.-non-sampling-errors" id="toc-second-typology-sampling-vs.-non-sampling-errors" class="nav-link" data-scroll-target="#second-typology-sampling-vs.-non-sampling-errors"><span class="header-section-number">5.4</span> Second Typology: Sampling vs.&nbsp;Non-Sampling Errors</a>
+  <li><a href="#consistency-in-research" id="toc-consistency-in-research" class="nav-link" data-scroll-target="#consistency-in-research"><span class="header-section-number">5.7</span> Consistency in Research</a></li>
+  <li><a href="#balancing-reliability-validity-and-consistency" id="toc-balancing-reliability-validity-and-consistency" class="nav-link" data-scroll-target="#balancing-reliability-validity-and-consistency"><span class="header-section-number">5.8</span> Balancing Reliability, Validity, and Consistency</a></li>
+  <li><a href="#bias-variance-tradeoff" id="toc-bias-variance-tradeoff" class="nav-link" data-scroll-target="#bias-variance-tradeoff"><span class="header-section-number">5.9</span> Bias-Variance Tradeoff</a></li>
+  <li><a href="#accuracy-and-precision" id="toc-accuracy-and-precision" class="nav-link" data-scroll-target="#accuracy-and-precision"><span class="header-section-number">5.10</span> Accuracy and Precision</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.11</span> Conclusion</a></li>
+  <li><a href="#understanding-bias-vs.-variance-in-statistical-measurement" id="toc-understanding-bias-vs.-variance-in-statistical-measurement" class="nav-link" data-scroll-target="#understanding-bias-vs.-variance-in-statistical-measurement"><span class="header-section-number">5.12</span> Understanding Bias vs.&nbsp;Variance in Statistical Measurement</a>
   <ul class="collapse">
-  <li><a href="#sampling-errors" id="toc-sampling-errors" class="nav-link" data-scroll-target="#sampling-errors"><strong>Sampling Errors</strong></a></li>
-  <li><a href="#non-sampling-errors" id="toc-non-sampling-errors" class="nav-link" data-scroll-target="#non-sampling-errors"><strong>Non-Sampling Errors</strong></a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   </ul></li>
-  <li><a href="#the-total-survey-error-framework" id="toc-the-total-survey-error-framework" class="nav-link" data-scroll-target="#the-total-survey-error-framework"><span class="header-section-number">5.5</span> The Total Survey Error Framework</a>
+  <li><a href="#data-generation-and-model-fitting-function" id="toc-data-generation-and-model-fitting-function" class="nav-link" data-scroll-target="#data-generation-and-model-fitting-function"><span class="header-section-number">5.13</span> Data Generation and Model Fitting Function</a>
   <ul class="collapse">
-  <li><a href="#conceptual-foundation" id="toc-conceptual-foundation" class="nav-link" data-scroll-target="#conceptual-foundation"><strong>Conceptual Foundation</strong></a></li>
-  <li><a href="#the-framework-in-practice" id="toc-the-framework-in-practice" class="nav-link" data-scroll-target="#the-framework-in-practice"><strong>The Framework in Practice</strong></a></li>
-  <li><a href="#key-insights-from-tse-framework" id="toc-key-insights-from-tse-framework" class="nav-link" data-scroll-target="#key-insights-from-tse-framework"><strong>Key Insights from TSE Framework</strong></a></li>
-  <li><a href="#practical-guidelines-for-researchers" id="toc-practical-guidelines-for-researchers" class="nav-link" data-scroll-target="#practical-guidelines-for-researchers"><strong>Practical Guidelines for Researchers</strong></a></li>
+  <li><a href="#scenario-1-low-bias-low-variance" id="toc-scenario-1-low-bias-low-variance" class="nav-link" data-scroll-target="#scenario-1-low-bias-low-variance">Scenario 1: Low Bias, Low Variance</a></li>
+  <li><a href="#scenario-2-low-bias-high-variance" id="toc-scenario-2-low-bias-high-variance" class="nav-link" data-scroll-target="#scenario-2-low-bias-high-variance">Scenario 2: Low Bias, High Variance</a></li>
+  <li><a href="#scenario-3-high-bias-low-variance" id="toc-scenario-3-high-bias-low-variance" class="nav-link" data-scroll-target="#scenario-3-high-bias-low-variance">Scenario 3: High Bias, Low Variance</a></li>
+  <li><a href="#scenario-4-high-bias-high-variance" id="toc-scenario-4-high-bias-high-variance" class="nav-link" data-scroll-target="#scenario-4-high-bias-high-variance">Scenario 4: High Bias, High Variance</a></li>
+  <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1">Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -291,7 +322,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">From Sample to Population - Understanding Randomness, Sampling, and Inference</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Reliability and Validity in Data Science Research</span></h1>
 </div>
 
 
@@ -308,360 +339,441 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="sampling-methods" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="sampling-methods"><span class="header-section-number">5.1</span> Sampling Methods</h2>
-<section id="probability-sampling" class="level3">
-<h3 class="anchored" data-anchor-id="probability-sampling">Probability Sampling</h3>
-<p>Probability sampling methods involve random selection, giving each member of the population a known, non-zero chance of being selected. These methods allow researchers to calculate sampling error and make statistical inferences about the population.</p>
+<p>In data science and research, two crucial concepts that determine the quality of measurements and studies are reliability and validity. Understanding these concepts is essential for conducting robust research and drawing meaningful conclusions from data.</p>
+<section id="defining-reliability-and-validity" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="defining-reliability-and-validity"><span class="header-section-number">5.1</span> Defining Reliability and Validity</h2>
+<p><strong>Reliability</strong> refers to the consistency of a measure. A reliable measurement or study produces similar results under consistent conditions.</p>
+<p><strong>Validity</strong> refers to the accuracy of a measure. A valid measurement or study accurately represents what it claims to measure.</p>
+</section>
+<section id="the-four-combinations-of-reliability-and-validity" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="the-four-combinations-of-reliability-and-validity"><span class="header-section-number">5.2</span> The Four Combinations of Reliability and Validity</h2>
+<p>There are four possible combinations of reliability and validity:</p>
 <ol type="1">
-<li><strong>Simple Random Sampling (SRS)</strong>
-<ul>
-<li><strong>Definition</strong>: Each member of the population has an equal chance of being selected.</li>
-<li><strong>Advantages</strong>: Minimizes selection bias; allows straightforward statistical analysis.</li>
-<li><strong>Disadvantages</strong>: Requires a complete sampling frame; may not capture enough members of smaller subgroups.</li>
-<li><strong>Example</strong>: To select 100 students from a university with 10,000 students, assign each student a number and use a random number generator to select 100 numbers.</li>
-<li><strong>Best used when</strong>: The population is relatively homogeneous and a complete list of population members is available.</li>
-</ul></li>
-<li><strong>Stratified Random Sampling</strong>
-<ul>
-<li><strong>Definition</strong>: The population is divided into mutually exclusive subgroups (strata) based on shared characteristics, then samples are randomly selected from each stratum.</li>
-<li><strong>Advantages</strong>: Ensures representation of key subgroups; can improve precision for same sample size as SRS; allows analysis within and between strata.</li>
-<li><strong>Disadvantages</strong>: Requires prior knowledge of population characteristics for stratification; more complex analysis.</li>
-<li><strong>Example</strong>: In a national political survey, divide the population into strata based on geographic regions (Northeast, Midwest, South, West) and then randomly sample from each region proportionally to their population size.</li>
-<li><strong>Best used when</strong>: The population contains distinct subgroups that might respond differently to the research question.</li>
-</ul></li>
-<li><strong>Cluster Sampling</strong>
-<ul>
-<li><strong>Definition</strong>: The population is divided into clusters (usually geographic), some clusters are randomly selected, and all members within those clusters are studied.</li>
-<li><strong>Advantages</strong>: More cost-effective when population is geographically dispersed; doesn’t require a complete list of population members.</li>
-<li><strong>Disadvantages</strong>: Lower statistical precision than SRS or stratified sampling; clusters must be representative.</li>
-<li><strong>Example</strong>: To study high school students’ study habits, randomly select 20 high schools from across the country and survey all students in those schools.</li>
-<li><strong>Best used when</strong>: The population is widely dispersed geographically and traveling to all units would be costly.</li>
-</ul></li>
-<li><strong>Systematic Sampling</strong>
-<ul>
-<li><strong>Definition</strong>: Selecting every kth item from a list after a random start.</li>
-<li><strong>Advantages</strong>: Simple to implement; often more practical than SRS; can avoid neighbor effects.</li>
-<li><strong>Disadvantages</strong>: Can introduce bias if there’s a periodic pattern in the list.</li>
-<li><strong>Example</strong>: At a busy shopping mall, survey every 20th person who enters, starting with a randomly chosen number between 1 and 20.</li>
-<li><strong>Best used when</strong>: The population is ordered randomly or in a way unrelated to the study variables.</li>
-</ul></li>
-<li><strong>Multi-stage Sampling</strong>
-<ul>
-<li><strong>Definition</strong>: Combining multiple sampling methods in stages.</li>
-<li><strong>Advantages</strong>: Practical for large-scale surveys; balances cost and precision.</li>
-<li><strong>Disadvantages</strong>: Complex design and analysis; multiple stages can compound sampling errors.</li>
-<li><strong>Example</strong>: First randomly select counties (cluster sampling), then randomly select households within those counties (simple random sampling), and finally select one adult from each household (systematic sampling).</li>
-<li><strong>Best used when</strong>: Studying large, complex populations across wide geographical areas.</li>
-</ul></li>
+<li>High Reliability, High Validity</li>
+<li>High Reliability, Low Validity</li>
+<li>Low Reliability, High Validity</li>
+<li>Low Reliability, Low Validity</li>
+</ol>
+<p>Let’s explore each of these combinations with examples and visualizations.</p>
+<section id="high-reliability-high-validity" class="level3">
+<h3 class="anchored" data-anchor-id="high-reliability-high-validity">1. High Reliability, High Validity</h3>
+<p>This is the ideal scenario in research. Measurements are both consistent and accurate.</p>
+<p><strong>Example</strong>: A well-calibrated digital scale used to measure weight. It consistently gives the same reading for the same object and accurately represents the true weight.</p>
+</section>
+<section id="high-reliability-low-validity" class="level3">
+<h3 class="anchored" data-anchor-id="high-reliability-low-validity">2. High Reliability, Low Validity</h3>
+<p>In this case, measurements are consistent but not accurate.</p>
+<p><strong>Example</strong>: A miscalibrated scale that always measures 5 kg too heavy. It gives consistent results (high reliability) but doesn’t represent the true weight (low validity).</p>
+</section>
+<section id="low-reliability-high-validity" class="level3">
+<h3 class="anchored" data-anchor-id="low-reliability-high-validity">3. Low Reliability, High Validity</h3>
+<p>Here, measurements are accurate on average but inconsistent.</p>
+<p><strong>Example</strong>: A scale that fluctuates around the true weight. Sometimes it’s a bit over, sometimes a bit under, but on average, it’s correct.</p>
+</section>
+<section id="low-reliability-low-validity" class="level3">
+<h3 class="anchored" data-anchor-id="low-reliability-low-validity">4. Low Reliability, Low Validity</h3>
+<p>This is the worst-case scenario, where measurements are neither consistent nor accurate.</p>
+<p><strong>Example</strong>: A broken scale that gives random readings unrelated to the true weight.</p>
+</section>
+</section>
+<section id="visualizing-reliability-and-validity" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="visualizing-reliability-and-validity"><span class="header-section-number">5.3</span> Visualizing Reliability and Validity</h2>
+<p>To better understand these concepts, let’s create visualizations using ggplot2 in R. We’ll simulate measurement data for each scenario and plot them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate data for each scenario</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>true_value <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">high_rel_high_val =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> true_value, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">high_rel_low_val =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> true_value <span class="sc">+</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">low_rel_high_val =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> true_value, <span class="at">sd =</span> <span class="dv">5</span>),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">low_rel_low_val =</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>id, <span class="at">names_to =</span> <span class="st">"scenario"</span>, <span class="at">values_to =</span> <span class="st">"measurement"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the scatterplot</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>scatter_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> measurement, <span class="at">color =</span> scenario)) <span class="sc">+</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> true_value, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> scenario, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">scenario =</span> <span class="fu">c</span>(</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>               <span class="st">"high_rel_high_val"</span> <span class="ot">=</span> <span class="st">"High Reliability, High Validity"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>               <span class="st">"high_rel_low_val"</span> <span class="ot">=</span> <span class="st">"High Reliability, Low Validity"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>               <span class="st">"low_rel_high_val"</span> <span class="ot">=</span> <span class="st">"Low Reliability, High Validity"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>               <span class="st">"low_rel_low_val"</span> <span class="ot">=</span> <span class="st">"Low Reliability, Low Validity"</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>             ))) <span class="sc">+</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Scatterplots of Measurements"</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Dashed line represents the true value"</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Measurement ID"</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Measured Value"</span>) <span class="sc">+</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>))</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the histogram</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>hist_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> measurement, <span class="at">fill =</span> scenario)) <span class="sc">+</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> true_value, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> scenario, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free"</span>,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">scenario =</span> <span class="fu">c</span>(</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>               <span class="st">"high_rel_high_val"</span> <span class="ot">=</span> <span class="st">"High Reliability, High Validity"</span>,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>               <span class="st">"high_rel_low_val"</span> <span class="ot">=</span> <span class="st">"High Reliability, Low Validity"</span>,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>               <span class="st">"low_rel_high_val"</span> <span class="ot">=</span> <span class="st">"Low Reliability, High Validity"</span>,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>               <span class="st">"low_rel_low_val"</span> <span class="ot">=</span> <span class="st">"Low Reliability, Low Validity"</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>             ))) <span class="sc">+</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograms of Measurements"</span>,</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Red dashed line represents the true value"</span>,</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Measured Value"</span>,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>))</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the plots</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> scatter_plot <span class="sc">/</span> hist_plot <span class="sc">+</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Reliability and Validity in Measurements"</span>,</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">theme =</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">24</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the combined plot</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>combined_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter3_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="interpreting-the-visualizations" class="level3">
+<h3 class="anchored" data-anchor-id="interpreting-the-visualizations">Interpreting the Visualizations</h3>
+<ol type="1">
+<li><strong>High Reliability, High Validity</strong>: Points cluster tightly around the true value (dashed line).</li>
+<li><strong>High Reliability, Low Validity</strong>: Points cluster tightly, but consistently above the true value.</li>
+<li><strong>Low Reliability, High Validity</strong>: Points scatter widely but center around the true value.</li>
+<li><strong>Low Reliability, Low Validity</strong>: Points scatter randomly with no clear pattern or relation to the true value.</li>
+</ol>
+<p>Understanding reliability and validity is crucial in data science and research. High reliability ensures consistent measurements, while high validity ensures accurate representations of what we intend to measure. By considering both aspects, researchers can design more robust studies and draw more meaningful conclusions from their data.</p>
+<p>When conducting your own research or analyzing others’ work, always consider: - How reliable are the measurements? - How valid is the approach for measuring the intended concept? - Do the methods used support both reliability and validity?</p>
+<p>By keeping these questions in mind, you’ll be better equipped to produce and interpret high-quality research in data science.</p>
+</section>
+</section>
+<section id="types-of-reliability" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="types-of-reliability"><span class="header-section-number">5.4</span> Types of Reliability</h2>
+<p>Reliability can be assessed in several ways, each focusing on a different aspect of consistency:</p>
+<ol type="1">
+<li><p><strong>Test-Retest Reliability</strong>: This measures the consistency of a test over time. It involves administering the same test to the same group of participants at different times and comparing the results.</p></li>
+<li><p><strong>Inter-Rater Reliability</strong>: This assesses the degree of agreement among different raters or observers. It’s crucial when subjective judgments are involved in data collection.</p></li>
+<li><p><strong>Internal Consistency</strong>: This evaluates how well different items on a test or scale measure the same construct. Cronbach’s alpha is a common measure of internal consistency.</p></li>
+<li><p><strong>Parallel Forms Reliability</strong>: This involves creating two equivalent forms of a test and administering them to the same group. The correlation between the two sets of scores indicates reliability.</p></li>
 </ol>
 </section>
-<section id="non-probability-sampling" class="level3">
-<h3 class="anchored" data-anchor-id="non-probability-sampling">Non-probability Sampling</h3>
-<p>Non-probability sampling doesn’t involve random selection, which means statistical inferences about the population must be made with caution. While it can introduce bias, it may be necessary in certain situations.</p>
+<section id="types-of-validity" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="types-of-validity"><span class="header-section-number">5.5</span> Types of Validity</h2>
+<p>Validity is a multifaceted concept, with several types that researchers need to consider:</p>
 <ol type="1">
-<li><strong>Convenience Sampling</strong>
+<li><p><strong>Content Validity</strong>: This ensures that a measure covers all aspects of the construct it aims to measure. It’s often assessed by expert judgment.</p></li>
+<li><p><strong>Construct Validity</strong>: This evaluates whether a test measures the intended theoretical construct. It includes:</p>
 <ul>
-<li><strong>Definition</strong>: Selecting easily accessible subjects.</li>
-<li><strong>Advantages</strong>: Fast, inexpensive, and easy to implement.</li>
-<li><strong>Disadvantages</strong>: High risk of selection bias; limits generalizability.</li>
-<li><strong>Example</strong>: A researcher studying college students’ sleep patterns might survey students in their own classes.</li>
-<li><strong>Best used for</strong>: Pilot studies, exploratory research, or when resources are severely limited.</li>
+<li><strong>Convergent Validity</strong>: The degree to which the measure correlates with other measures of the same construct.</li>
+<li><strong>Discriminant Validity</strong>: The extent to which the measure does not correlate with measures of different constructs.</li>
 </ul></li>
-<li><strong>Purposive Sampling</strong>
+<li><p><strong>Criterion Validity</strong>: This assesses how well a measure predicts an outcome. It includes:</p>
 <ul>
-<li><strong>Definition</strong>: Selecting subjects based on specific characteristics relevant to the research question.</li>
-<li><strong>Advantages</strong>: Focuses on relevant cases; useful for in-depth studies of specific groups.</li>
-<li><strong>Disadvantages</strong>: Researcher bias in selection; limited generalizability.</li>
-<li><strong>Example</strong>: For a study on the experiences of CEOs in the tech industry, intentionally seek out and interview CEOs from various tech companies.</li>
-<li><strong>Best used for</strong>: Qualitative research, case studies, or studying unique populations.</li>
+<li><strong>Concurrent Validity</strong>: How well the measure correlates with other measures of the same construct at the same time.</li>
+<li><strong>Predictive Validity</strong>: How well the measure predicts future outcomes.</li>
 </ul></li>
-<li><strong>Snowball Sampling</strong>
-<ul>
-<li><strong>Definition</strong>: Participants recruit other participants from their networks.</li>
-<li><strong>Advantages</strong>: Access to hard-to-reach or hidden populations; builds on social networks.</li>
-<li><strong>Disadvantages</strong>: Sample biased toward those in certain social networks; cannot calculate selection probabilities.</li>
-<li><strong>Example</strong>: In a study of undocumented immigrants’ access to healthcare, researchers ask initial participants to refer other potential participants.</li>
-<li><strong>Best used for</strong>: Studying rare populations or sensitive topics where no sampling frame exists.</li>
-</ul></li>
-<li><strong>Quota Sampling</strong>
-<ul>
-<li><strong>Definition</strong>: Selecting participants to meet specific quotas for certain characteristics to match known population parameters.</li>
-<li><strong>Advantages</strong>: Ensures representation of key demographic groups; faster and cheaper than probability sampling; doesn’t require sampling frame.</li>
-<li><strong>Disadvantages</strong>: Non-random selection within quotas can introduce bias; inference is limited.</li>
-<li><strong>Example</strong>: In a market research study, researchers ensure they interview specific numbers of people from different age groups, genders, and income levels.</li>
-<li><strong>Best used for</strong>: Commercial polling, market research, or when probability sampling is not feasible.</li>
-</ul></li>
+<li><p><strong>Face Validity</strong>: Face validity describes how test subjects perceive the test and whether - from their point of view - it is adequate for the purpose it is supposed to serve. A lack of face validity, even though the test may be valid from the perspective of a specific purpose, can contribute to a decrease in motivation among test subjects, which directly affects the results achieved or may lead to rejection of the test. While not a scientific measure, it can be important for participant buy-in.</p></li>
 </ol>
 </section>
-<section id="why-pollsters-increasingly-use-quota-sampling" class="level3">
-<h3 class="anchored" data-anchor-id="why-pollsters-increasingly-use-quota-sampling">Why Pollsters Increasingly Use Quota Sampling</h3>
-<p>In recent years, many polling organizations have shifted toward quota sampling approaches for several key reasons:</p>
+<section id="internal-vs.-external-validity" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="internal-vs.-external-validity"><span class="header-section-number">5.6</span> Internal vs.&nbsp;External Validity</h2>
+<p>These concepts are crucial in experimental design and the generalizability of research findings:</p>
+<section id="internal-validity" class="level3">
+<h3 class="anchored" data-anchor-id="internal-validity">Internal Validity</h3>
+<p>Internal validity refers to the extent to which a study establishes a causal relationship between the independent and dependent variables. It answers the question: “Did the experimental treatment actually cause the observed effects?”</p>
+<p>Factors that can threaten internal validity include: - History: External events occurring between pre-test and post-test - Maturation: Natural changes in participants over time - Testing effects: Changes due to taking a pre-test - Instrumentation: Changes in the measurement tool or observers - Selection bias: Non-random assignment to groups - Attrition: Loss of participants during the study</p>
+</section>
+<section id="external-validity" class="level3">
+<h3 class="anchored" data-anchor-id="external-validity">External Validity</h3>
+<p>External validity refers to the extent to which the results of a study can be generalized to other situations, populations, or settings. It addresses the question: “To what extent can the findings be applied beyond the specific context of the study?”</p>
+<p>Factors that can affect external validity include: - Population validity: How well the sample represents the larger population - Ecological validity: How well the study setting represents real-world conditions - Temporal validity: Whether the results hold true across time</p>
+</section>
+</section>
+<section id="consistency-in-research" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="consistency-in-research"><span class="header-section-number">5.7</span> Consistency in Research</h2>
+<p>Consistency is closely related to reliability but extends beyond just measurement. In research, consistency refers to the overall coherence and stability of results across different contexts, methods, or studies.</p>
+<p>Key aspects of consistency in research include:</p>
 <ol type="1">
-<li><p><strong>Declining Response Rates</strong>: Traditional probability-based telephone polls have seen response rates drop from about 36% in the 1990s to less than 10% today. This increases costs and potentially introduces non-response bias that can be worse than selection bias from non-probability methods.</p></li>
-<li><p><strong>Coverage Issues</strong>: Random digit dialing no longer reaches a representative sample of the population as many people have abandoned landlines for cell phones, and many don’t answer calls from unknown numbers.</p></li>
-<li><p><strong>Cost Efficiency</strong>: Probability-based polls have become prohibitively expensive as response rates decline, while online panels and quota sampling are more affordable.</p></li>
-<li><p><strong>Speed</strong>: In fast-moving political campaigns or rapidly evolving public opinion situations, quota sampling can deliver results much faster than probability methods.</p></li>
-<li><p><strong>Weighting and Modeling Improvements</strong>: Modern statistical techniques allow pollsters to adjust quota samples to better represent the target population by weighting responses based on known population parameters.</p></li>
-<li><p><strong>Hybrid Approaches</strong>: Many pollsters now use hybrid methods that combine elements of probability and non-probability sampling, with sophisticated weighting and modeling to improve accuracy.</p></li>
+<li><p><strong>Replicability</strong>: The ability to reproduce study results using the same methods and data.</p></li>
+<li><p><strong>Robustness</strong>: The stability of findings across different analytical approaches or slight variations in methodology.</p></li>
+<li><p><strong>Convergence</strong>: The alignment of results from different studies or methods investigating the same phenomenon.</p></li>
+<li><p><strong>Longitudinal Consistency</strong>: The stability of findings over time, especially important in longitudinal studies.</p></li>
 </ol>
-<p>The 2016 US presidential election, where many polls failed to predict the outcome accurately, led to considerable soul-searching among pollsters. Rather than abandoning quota sampling, many organizations have refined their methods, focusing on better quota definitions, improved weighting techniques, and more transparent reporting of methodological limitations.</p>
-<p>Despite these trends, it’s important to note that probability sampling remains the gold standard for statistical inference. Well-designed probability samples still provide the most reliable foundation for generalizing from sample to population, especially for academic research where accuracy is prioritized over cost and speed.</p>
+<p>Ensuring consistency in research involves: - Using standardized procedures and measures - Thoroughly documenting methods and analytical decisions - Conducting replication studies - Meta-analyses to synthesize findings across multiple studies</p>
 </section>
-</section>
-<section id="survey-errors-understanding-what-can-go-wrong-in-research" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="survey-errors-understanding-what-can-go-wrong-in-research"><span class="header-section-number">5.2</span> Survey Errors: Understanding What Can Go Wrong in Research</h2>
-<section id="why-error-typologies-matter" class="level3">
-<h3 class="anchored" data-anchor-id="why-error-typologies-matter">Why Error Typologies Matter</h3>
-<p>In social science research, errors are inevitable. However, different types of errors require different solutions. Understanding these typologies helps researchers:</p>
+<section id="balancing-reliability-validity-and-consistency" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="balancing-reliability-validity-and-consistency"><span class="header-section-number">5.8</span> Balancing Reliability, Validity, and Consistency</h2>
+<p>While reliability, validity, and consistency are all crucial for high-quality research, they sometimes involve trade-offs:</p>
 <ul>
-<li><strong>Identify</strong> the source of potential problems</li>
-<li><strong>Design</strong> better studies to minimize errors</li>
-<li><strong>Interpret</strong> results more accurately</li>
-<li><strong>Communicate</strong> limitations honestly</li>
+<li>A highly reliable measure might lack validity if it consistently measures the wrong thing.</li>
+<li>Striving for perfect internal validity (e.g., in tightly controlled lab experiments) might reduce external validity.</li>
+<li>Ensuring high consistency across diverse contexts might require sacrificing some degree of precision or depth in specific situations.</li>
 </ul>
-<hr>
+<p>Researchers must carefully balance these aspects based on their research questions and the nature of their study. A comprehensive understanding of reliability, validity, and consistency helps in designing robust studies, interpreting results accurately, and contributing meaningfully to the body of scientific knowledge.</p>
 </section>
-</section>
-<section id="first-typology-systematic-vs.-random-error" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="first-typology-systematic-vs.-random-error"><span class="header-section-number">5.3</span> First Typology: Systematic vs.&nbsp;Random Error</h2>
-<section id="systematic-error-bias" class="level3">
-<h3 class="anchored" data-anchor-id="systematic-error-bias"><strong>Systematic Error (Bias)</strong></h3>
-<p><strong>Definition:</strong> Consistent, predictable errors that push results in one direction away from the true value.</p>
-<p><strong>Key characteristics:</strong></p>
+<section id="bias-variance-tradeoff" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="bias-variance-tradeoff"><span class="header-section-number">5.9</span> Bias-Variance Tradeoff</h2>
+<p>The concepts of reliability and validity are closely related to the statistical notion of the bias-variance tradeoff. This tradeoff is fundamental in machine learning and statistical modeling.</p>
 <ul>
-<li>Always occurs in the same direction</li>
-<li>Cannot be reduced by increasing sample size</li>
-<li>Affects accuracy (how close we are to the true value)</li>
-<li>Often caused by flawed research design or implementation</li>
+<li>Bias refers to the error introduced by approximating a real-world problem with a simplified model. High bias can lead to underfitting.</li>
+<li>Variance refers to the error introduced by the model’s sensitivity to small fluctuations in the training set. High variance can lead to overfitting.</li>
 </ul>
-<p><strong>Examples:</strong></p>
+<p>Let’s visualize this concept with a simplified plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y_true <span class="ot">&lt;-</span> <span class="fu">sin</span>(x)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y_low_bias_high_var <span class="ot">&lt;-</span> y_true <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="fl">0.3</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y_high_bias_low_var <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="sc">*</span> x</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rep</span>(x, <span class="dv">3</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> <span class="fu">c</span>(y_true, y_low_bias_high_var, y_high_bias_low_var),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">type =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"True Function"</span>, <span class="st">"Low Bias, High Variance"</span>, <span class="st">"High Bias, Low Variance"</span>), <span class="at">each =</span> <span class="dv">100</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> type)) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> <span class="fu">subset</span>(df, type <span class="sc">!=</span> <span class="st">"True Function"</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bias-Variance Tradeoff"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"X"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Y"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Model Type"</span>) <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="chapter3_files/figure-html/bias-variance-plot-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Visualization of Bias-Variance Tradeoff</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In this plot: - The black line represents the true underlying function. - The blue points represent a model with low bias but high variance. It follows the true function closely on average but has a lot of noise. - The red line represents a model with high bias but low variance. It consistently underestimates the true function but has less noise.</p>
+</section>
+<section id="accuracy-and-precision" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="accuracy-and-precision"><span class="header-section-number">5.10</span> Accuracy and Precision</h2>
+<p>The concepts of accuracy and precision are closely related to validity and reliability:</p>
 <ul>
-<li><strong>Leading questions:</strong> “Don’t you think the government should reduce wasteful spending?” (pushes toward “yes” responses)</li>
-<li><strong>Social desirability bias:</strong> People underreport socially unacceptable behaviors (drug use, tax evasion)</li>
-<li><strong>Coverage bias:</strong> Phone surveys missing people without landlines systematically excludes younger populations</li>
-<li><strong>Interviewer bias:</strong> Interviewers unconsciously influencing responses based on their expectations</li>
+<li>Accuracy refers to how close a measurement is to the true value (similar to validity).</li>
+<li>Precision refers to how consistent or reproducible the measurements are (similar to reliability).</li>
 </ul>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>We can visualize these concepts using a simplified target analogy:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggforce)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>create_points <span class="ot">&lt;-</span> <span class="cf">function</span>(n, x_center, y_center, spread) {</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">rnorm</span>(n, x_center, spread),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">rnorm</span>(n, y_center, spread)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>points <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="fu">create_points</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.1</span>), <span class="at">type =</span> <span class="st">"High Accuracy</span><span class="sc">\n</span><span class="st">High Precision"</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="fu">create_points</span>(<span class="dv">20</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span>), <span class="at">type =</span> <span class="st">"Low Accuracy</span><span class="sc">\n</span><span class="st">High Precision"</span>),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="fu">create_points</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.3</span>), <span class="at">type =</span> <span class="st">"High Accuracy</span><span class="sc">\n</span><span class="st">Low Precision"</span>),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="fu">create_points</span>(<span class="dv">20</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.3</span>), <span class="at">type =</span> <span class="st">"Low Accuracy</span><span class="sc">\n</span><span class="st">Low Precision"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(points, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_circle</span>(<span class="fu">aes</span>(<span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">1</span>), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_circle</span>(<span class="fu">aes</span>(<span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="fl">0.5</span>), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type) <span class="sc">+</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.1</span>, <span class="fl">1.1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.1</span>, <span class="fl">1.1</span>)) <span class="sc">+</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_blank</span>(), <span class="at">axis.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Accuracy vs Precision"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="chapter3_files/figure-html/accuracy-precision-plot-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Visualization of Accuracy vs Precision</figcaption>
+</figure>
 </div>
-<div class="callout-title-container flex-fill">
-Warning
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Critical point:</strong> You cannot fix systematic error by collecting more data. If your thermometer always reads 2 degrees too high, taking 1,000 measurements won’t give you the correct temperature – it will give you a very precise wrong answer.</p>
-</div>
-</div>
+<p>In this visualization: - High accuracy means the points are close to the center (bullseye). - High precision means the points are tightly clustered. - Each panel represents a different combination of accuracy and precision.</p>
 </section>
-<section id="random-error" class="level3">
-<h3 class="anchored" data-anchor-id="random-error"><strong>Random Error</strong></h3>
-<p><strong>Definition:</strong> Unpredictable errors that vary randomly around the true value, sometimes above, sometimes below.</p>
-<p><strong>Key characteristics:</strong></p>
+<section id="conclusion" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.11</span> Conclusion</h2>
+<p>Understanding reliability and validity is crucial for conducting robust research. These concepts help us ensure that our measurements are both consistent and accurate. By relating them to ideas like the bias-variance tradeoff and accuracy-precision, we gain a deeper appreciation of the challenges involved in measurement and modeling in scientific research. As researchers, we must strive to develop measures and models that are both reliable and valid, balancing the tradeoffs between bias and variance, and between accuracy and precision. This requires careful design of research methodologies, rigorous testing of our measurement instruments, and thoughtful interpretation of our results.</p>
+</section>
+<section id="understanding-bias-vs.-variance-in-statistical-measurement" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="understanding-bias-vs.-variance-in-statistical-measurement"><span class="header-section-number">5.12</span> Understanding Bias vs.&nbsp;Variance in Statistical Measurement</h2>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>In statistics and machine learning, two important concepts that affect the performance of our models are <strong>bias</strong> and <strong>variance</strong>. Understanding these concepts is crucial for building effective predictive models and avoiding common pitfalls like overfitting and underfitting.</p>
 <ul>
-<li>No consistent direction</li>
-<li>Decreases as sample size increases (law of large numbers)</li>
-<li>Affects precision (consistency of measurements)</li>
-<li>Often caused by chance factors or measurement limitations</li>
-</ul>
-<p><strong>Examples:</strong></p>
+<li><strong>Bias</strong> refers to the error introduced by approximating a real-world problem, which may be complex, by a simplified model. High bias can lead to underfitting.
 <ul>
-<li><strong>Sampling variability:</strong> Different random samples giving slightly different results</li>
-<li><strong>Question wording ambiguity:</strong> Some respondents interpreting a question one way, others differently</li>
-<li><strong>Interviewer differences:</strong> Natural variation between different interviewers</li>
-<li><strong>Respondent mood:</strong> People’s responses varying based on their mood when surveyed</li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Good news:</strong> Random errors tend to cancel out with larger samples. If some measurements are too high and others too low by random chance, the average gets closer to the true value as you add more observations.</p>
-</div>
-</div>
-</section>
-<section id="visual-analogy-target-practice" class="level3">
-<h3 class="anchored" data-anchor-id="visual-analogy-target-practice"><strong>Visual Analogy: Target Practice</strong></h3>
-<p>Think of research as shooting arrows at a target, where the bullseye represents the true value:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Error Type</th>
-<th>Pattern</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Low systematic, Low random</strong></td>
-<td>All arrows clustered near bullseye</td>
-<td><strong>Ideal:</strong> Accurate and precise</td>
-</tr>
-<tr class="even">
-<td><strong>Low systematic, High random</strong></td>
-<td>Arrows scattered around bullseye</td>
-<td><strong>Precise on average:</strong> Unbiased but inconsistent</td>
-</tr>
-<tr class="odd">
-<td><strong>High systematic, Low random</strong></td>
-<td>Arrows clustered away from bullseye</td>
-<td><strong>Consistently wrong:</strong> Biased but precise</td>
-</tr>
-<tr class="even">
-<td><strong>High systematic, High random</strong></td>
-<td>Arrows scattered far from bullseye</td>
-<td><strong>Worst case:</strong> Both biased and imprecise</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-</section>
-<section id="second-typology-sampling-vs.-non-sampling-errors" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="second-typology-sampling-vs.-non-sampling-errors"><span class="header-section-number">5.4</span> Second Typology: Sampling vs.&nbsp;Non-Sampling Errors</h2>
-<section id="sampling-errors" class="level3">
-<h3 class="anchored" data-anchor-id="sampling-errors"><strong>Sampling Errors</strong></h3>
-<p><strong>Definition:</strong> Errors that occur because we study a sample instead of the entire population.</p>
-<p><strong>Key characteristics:</strong> - Inevitable when using samples (unless studying entire population) - Can be estimated and quantified - Decrease with larger sample sizes - Addressed by confidence intervals and margins of error</p>
-<p><strong>Types:</strong> - <strong>Random sampling error:</strong> Natural variation between samples - <strong>Sampling frame error:</strong> When your list of potential respondents doesn’t match the target population - <strong>Selection bias:</strong> When certain groups are systematically more or less likely to be included</p>
-<p><strong>Examples:</strong> - A political poll showing 52% support, but the true population value is 50% - Missing 18-25 year-olds because they’re not in your phone directory - Higher response rates among retirees than working adults</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Remember:</strong> Even perfect sampling will produce some error because a sample is not the entire population. This is why we report margins of error (e.g., “±3 percentage points”).</p>
-</div>
-</div>
-</section>
-<section id="non-sampling-errors" class="level3">
-<h3 class="anchored" data-anchor-id="non-sampling-errors"><strong>Non-Sampling Errors</strong></h3>
-<p><strong>Definition:</strong> All other errors that can occur in research, regardless of whether you’re using a sample or studying the entire population.</p>
-<p><strong>Key characteristics:</strong></p>
+<li>Think of bias as how far off our predictions are from the true values on average.</li>
+<li>In terms of validity, high bias means our model isn’t capturing the true relationship in the data.</li>
+</ul></li>
+<li><strong>Variance</strong> refers to the amount by which our model would change if we estimated it using a different training dataset. High variance can lead to overfitting.
 <ul>
-<li>Can occur even with a census (complete enumeration)</li>
-<li>Often more serious than sampling errors</li>
-<li>Difficult to quantify</li>
-<li>Not reduced by increasing sample size</li>
+<li>Think of variance as how much our predictions would fluctuate if we used different datasets.</li>
+<li>In terms of reliability, high variance means our model is too sensitive to the specific data it was trained on.</li>
+</ul></li>
 </ul>
-<p><strong>Major categories:</strong></p>
-<p><strong>Coverage Errors:</strong> - <strong>Under-coverage:</strong> Missing parts of the target population (people without phones, homeless individuals) - <strong>Over-coverage:</strong> Including units outside the target population (non-citizens in a citizen survey)</p>
-<p><strong>Measurement Errors:</strong> - <strong>Question problems:</strong> Ambiguous, leading, or sensitive questions - <strong>Response errors:</strong> Misunderstanding, memory problems, social desirability - <strong>Interviewer effects:</strong> How the interviewer influences responses - <strong>Mode effects:</strong> Differences between phone, online, and face-to-face surveys</p>
-<p><strong>Nonresponse Errors:</strong> - <strong>Unit nonresponse:</strong> Entire individuals/households not participating - <strong>Item nonresponse:</strong> Participants skipping specific questions - <strong>Response rate bias:</strong> When nonrespondents differ systematically from respondents</p>
-<p><strong>Processing Errors:</strong> - <strong>Data entry mistakes:</strong> Incorrectly coding responses - <strong>Editing errors:</strong> “Correcting” data incorrectly - <strong>Weighting errors:</strong> Improper adjustments for demographic differences</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Reality check:</strong> In most surveys, non-sampling errors are larger than sampling errors. A survey with a 3% margin of error might have 5-10% error from other sources.</p>
-</div>
-</div>
-<hr>
+<p>We’ll explore four scenarios to illustrate different combinations of bias and variance using synthetic data and regression models.</p>
 </section>
 </section>
-<section id="the-total-survey-error-framework" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="the-total-survey-error-framework"><span class="header-section-number">5.5</span> The Total Survey Error Framework</h2>
-<section id="conceptual-foundation" class="level3">
-<h3 class="anchored" data-anchor-id="conceptual-foundation"><strong>Conceptual Foundation</strong></h3>
-<p>The Total Survey Error framework recognizes that survey quality depends on minimizing <strong>all</strong> sources of error, not just sampling error. It provides a systematic way to think about every step of the research process.</p>
-<p><strong>Core principle:</strong> Total error = Sampling error + All non-sampling errors</p>
+<section id="data-generation-and-model-fitting-function" class="level2" data-number="5.13">
+<h2 data-number="5.13" class="anchored" data-anchor-id="data-generation-and-model-fitting-function"><span class="header-section-number">5.13</span> Data Generation and Model Fitting Function</h2>
+<p>First, let’s create a function that will help us generate data and fit models for each scenario:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>generate_and_fit <span class="ot">&lt;-</span> <span class="cf">function</span>(n, intercept, slope, noise_sd, model_degree) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Generate synthetic data</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> intercept <span class="sc">+</span> slope <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, noise_sd)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fit model</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">"y ~"</span>, <span class="fu">paste0</span>(<span class="st">"poly(x, "</span>, model_degree, <span class="st">", raw = TRUE)"</span>)))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula, <span class="at">data =</span> <span class="fu">data.frame</span>(x, y))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Generate predictions</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  x_pred <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  y_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_pred))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(x, y), <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_pred, <span class="at">y =</span> y_pred), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">intercept =</span> intercept, <span class="at">slope =</span> slope, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Model Degree:"</span>, model_degree),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">"Noise SD:"</span>, noise_sd),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"X (Input Variable)"</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Y (Target Variable)"</span>) <span class="sc">+</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This function does the following: 1. Generates synthetic data based on our parameters 2. Fits a polynomial regression model 3. Creates a plot showing the true relationship (blue dashed line), our model’s predictions (red solid line), and the data points</p>
+<p>Now, let’s explore our four scenarios!</p>
+<section id="scenario-1-low-bias-low-variance" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-1-low-bias-low-variance">Scenario 1: Low Bias, Low Variance</h3>
+<p>In this ideal scenario, we use a linear model to fit linear data with low noise.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">generate_and_fit</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">intercept =</span> <span class="dv">1</span>, <span class="at">slope =</span> <span class="dv">2</span>, <span class="at">noise_sd =</span> <span class="dv">1</span>, <span class="at">model_degree =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter3_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Explanation:</strong> - The model (red line) closely follows the true relationship (blue dashed line). - Data points are clustered tightly around the line, indicating low noise. - This scenario represents a good fit: the model captures the underlying trend without being overly complex.</p>
 </section>
-<section id="the-framework-in-practice" class="level3">
-<h3 class="anchored" data-anchor-id="the-framework-in-practice"><strong>The Framework in Practice</strong></h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Survey Stage</strong></th>
-<th><strong>Potential Errors</strong></th>
-<th><strong>Solutions</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Design Phase</strong></td>
-<td>Coverage problems, question wording issues</td>
-<td>Pre-testing, expert review, pilot studies</td>
-</tr>
-<tr class="even">
-<td><strong>Data Collection</strong></td>
-<td>Nonresponse, interviewer bias, measurement error</td>
-<td>Multiple contact attempts, interviewer training, mixed-mode approaches</td>
-</tr>
-<tr class="odd">
-<td><strong>Data Processing</strong></td>
-<td>Coding errors, editing mistakes</td>
-<td>Double data entry, consistency checks, automated validation</td>
-</tr>
-<tr class="even">
-<td><strong>Analysis</strong></td>
-<td>Weighting errors, inappropriate statistical methods</td>
-<td>Proper weight calculations, sensitivity analyses</td>
-</tr>
-</tbody>
-</table>
+<section id="scenario-2-low-bias-high-variance" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-2-low-bias-high-variance">Scenario 2: Low Bias, High Variance</h3>
+<p>Here, we use a linear model to fit linear data, but with high noise.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">generate_and_fit</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">intercept =</span> <span class="dv">1</span>, <span class="at">slope =</span> <span class="dv">2</span>, <span class="at">noise_sd =</span> <span class="dv">5</span>, <span class="at">model_degree =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter3_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Explanation:</strong> - The model still captures the general trend, but data points are more scattered. - This high variance means our model’s predictions would be less reliable. - In real-world terms, this might represent a situation where our measurements are correct on average but have a lot of random error.</p>
 </section>
-<section id="key-insights-from-tse-framework" class="level3">
-<h3 class="anchored" data-anchor-id="key-insights-from-tse-framework"><strong>Key Insights from TSE Framework</strong></h3>
-<p><strong>1. Trade-offs are everywhere:</strong> - Longer surveys get more information but higher nonresponse - Personal interviews reduce measurement error but increase costs - Online surveys are cheaper but may miss certain populations</p>
-<p><strong>2. Error sources interact:</strong> - Attempts to reduce one error might increase another - For example, callbacks to reduce nonresponse might increase social desirability bias (persistent respondents might be more compliant)</p>
-<p><strong>3. Focus on the biggest problems:</strong> - Don’t obsess over sampling error if measurement error is larger - A census with bad questions is worse than a good sample survey</p>
-<p><strong>4. Context matters:</strong> - Error tolerance depends on survey purpose - Political polls need different precision than academic research</p>
-<hr>
+<section id="scenario-3-high-bias-low-variance" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-3-high-bias-low-variance">Scenario 3: High Bias, Low Variance</h3>
+<p>In this case, we use a linear model to fit quadratic (curved) data with low noise.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>quadratic_data <span class="ot">&lt;-</span> <span class="cf">function</span>(n, intercept, slope, noise_sd, model_degree) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> intercept <span class="sc">+</span> slope <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, noise_sd)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">"y ~"</span>, <span class="fu">paste0</span>(<span class="st">"poly(x, "</span>, model_degree, <span class="st">", raw = TRUE)"</span>)))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula, <span class="at">data =</span> <span class="fu">data.frame</span>(x, y))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  x_pred <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  y_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_pred))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(x, y), <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_pred, <span class="at">y =</span> y_pred), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) intercept <span class="sc">+</span> slope <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Model Degree:"</span>, model_degree),</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">"Noise SD:"</span>, noise_sd),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"X (Input Variable)"</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Y (Target Variable)"</span>) <span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="fu">quadratic_data</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">intercept =</span> <span class="dv">1</span>, <span class="at">slope =</span> <span class="fl">0.2</span>, <span class="at">noise_sd =</span> <span class="dv">1</span>, <span class="at">model_degree =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter3_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Explanation:</strong> - The linear model (red line) fails to capture the curvature of the true relationship (blue dashed line). - This high bias means our model is consistently off in its predictions. - In real-world terms, this might represent using an overly simplistic model for a complex phenomenon.</p>
 </section>
-<section id="practical-guidelines-for-researchers" class="level3">
-<h3 class="anchored" data-anchor-id="practical-guidelines-for-researchers"><strong>Practical Guidelines for Researchers</strong></h3>
-<p><strong>1. During Survey Design:</strong> - Map all potential error sources for your specific study - Consider how each design choice affects different types of errors - Pre-test everything (questions, procedures, technology)</p>
-<p><strong>2. During Data Collection:</strong> - Monitor response rates and respondent characteristics in real-time - Document everything (who responded when, under what conditions) - Train staff to recognize and minimize their influence on responses</p>
-<p><strong>3. During Analysis:</strong> - Compare your sample to known population characteristics - Conduct sensitivity analyses: how do results change with different assumptions? - Be transparent about limitations</p>
-<p><strong>4. When Reporting:</strong> - Report more than just margin of error - Discuss potential biases and their likely direction - Acknowledge what you don’t know</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Summary
+<section id="scenario-4-high-bias-high-variance" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-4-high-bias-high-variance">Scenario 4: High Bias, High Variance</h3>
+<p>Finally, we use a high-degree polynomial to fit linear data with high noise.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">generate_and_fit</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">intercept =</span> <span class="dv">1</span>, <span class="at">slope =</span> <span class="dv">2</span>, <span class="at">noise_sd =</span> <span class="dv">5</span>, <span class="at">model_degree =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter3_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Understanding error typologies helps researchers make better decisions at every stage. Remember:</p>
-<ul>
-<li><strong>Systematic errors</strong> require design changes, not bigger samples</li>
-<li><strong>Random errors</strong> can be reduced with larger samples</li>
-<li><strong>Sampling errors</strong> are often smaller than <strong>non-sampling errors</strong></li>
-<li>The <strong>Total Survey Error framework</strong> reminds us to consider all error sources, not just the ones that are easy to calculate</li>
-</ul>
-<p>Good research isn’t about eliminating all errors (impossible), but about understanding, minimizing, and honestly reporting the errors that remain.</p>
 </div>
-</div>
+<p><strong>Explanation:</strong> - The model (red line) is overly complex, trying to fit the noise rather than the underlying trend. - This combination of high bias and high variance leads to poor generalization. - In real-world terms, this might represent overcomplicating our analysis and drawing false conclusions from random fluctuations in our data.</p>
+</section>
+<section id="conclusion-1" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion-1">Conclusion</h3>
+<p>Understanding the bias-variance trade-off is crucial in statistical modeling:</p>
+<ol type="1">
+<li><p><strong>Low Bias, Low Variance:</strong> The ideal scenario, where our model accurately captures the underlying relationship without being overly sensitive to noise.</p></li>
+<li><p><strong>Low Bias, High Variance:</strong> Our model is correct on average but unreliable due to high sensitivity to individual data points.</p></li>
+<li><p><strong>High Bias, Low Variance:</strong> Our model is consistently wrong due to oversimplification but gives stable predictions.</p></li>
+<li><p><strong>High Bias, High Variance:</strong> The worst-case scenario, where our model is both inaccurate and unreliable.</p></li>
+</ol>
+<p>In practice, we often need to balance bias and variance. Techniques like cross-validation, regularization, and ensemble methods can help find this balance.</p>
+<p>Remember: - A model with high bias is too simple and misses important patterns in the data. - A model with high variance is too complex and fits noise in the training data. - The goal is to find a sweet spot that captures true patterns without overfitting to noise.</p>
+<p>By understanding these concepts, you’ll be better equipped to choose appropriate models, avoid overfitting and underfitting, and build more effective predictive models in your future statistical analyses!</p>
 
 
 </section>
@@ -1074,8 +1186,8 @@ Summary
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./rozdzial3.html" class="pagination-link" aria-label="Od Próby do Populacji - Zrozumienie Losowości, Pobierania Próby i Wnioskowania">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Od Próby do Populacji - Zrozumienie Losowości, Pobierania Próby i Wnioskowania</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./rozdzial3.html" class="pagination-link" aria-label="Rzetelność i Trafność w Badaniach Statystycznych">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Rzetelność i Trafność w Badaniach Statystycznych</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
