@@ -325,13 +325,21 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#random-variables-making-outcomes-measurable" id="toc-random-variables-making-outcomes-measurable" class="nav-link active" data-scroll-target="#random-variables-making-outcomes-measurable"><span class="header-section-number">17.2</span> Random Variables: Making Outcomes Measurable</a>
+  <li><a href="#understanding-random-variables-and-probability-distributions-mathematical-models-for-randomness" id="toc-understanding-random-variables-and-probability-distributions-mathematical-models-for-randomness" class="nav-link active" data-scroll-target="#understanding-random-variables-and-probability-distributions-mathematical-models-for-randomness"><span class="header-section-number">17.1</span> Understanding Random Variables and Probability Distributions: Mathematical Models for Randomness</a>
+  <ul class="collapse">
+  <li><a href="#beyond-classical-probability" id="toc-beyond-classical-probability" class="nav-link" data-scroll-target="#beyond-classical-probability">Beyond Classical Probability</a></li>
+  <li><a href="#random-variables-and-probability-distributions" id="toc-random-variables-and-probability-distributions" class="nav-link" data-scroll-target="#random-variables-and-probability-distributions">Random Variables and Probability Distributions</a></li>
+  <li><a href="#random-variable-rv-making-randomness-measurable" id="toc-random-variable-rv-making-randomness-measurable" class="nav-link" data-scroll-target="#random-variable-rv-making-randomness-measurable">Random Variable (RV): Making Randomness Measurable</a></li>
+  <li><a href="#probability-distribution-function-pdf-describing-patterns-of-randomness" id="toc-probability-distribution-function-pdf-describing-patterns-of-randomness" class="nav-link" data-scroll-target="#probability-distribution-function-pdf-describing-patterns-of-randomness">Probability Distribution Function (PDF): Describing Patterns of Randomness</a></li>
+  </ul></li>
+  <li><a href="#models-for-different-data-generating-processes-dgps" id="toc-models-for-different-data-generating-processes-dgps" class="nav-link" data-scroll-target="#models-for-different-data-generating-processes-dgps"><span class="header-section-number">17.2</span> Models for Different Data Generating Processes (DGPs)</a></li>
+  <li><a href="#random-variables-making-outcomes-measurable" id="toc-random-variables-making-outcomes-measurable" class="nav-link" data-scroll-target="#random-variables-making-outcomes-measurable"><span class="header-section-number">17.3</span> Random Variables: Making Outcomes Measurable</a>
   <ul class="collapse">
   <li><a href="#example-rolling-a-die" id="toc-example-rolling-a-die" class="nav-link" data-scroll-target="#example-rolling-a-die">Example: Rolling a Die</a></li>
   <li><a href="#example-flipping-a-coin" id="toc-example-flipping-a-coin" class="nav-link" data-scroll-target="#example-flipping-a-coin">Example: Flipping a Coin</a></li>
   <li><a href="#properties-of-discrete-random-variables" id="toc-properties-of-discrete-random-variables" class="nav-link" data-scroll-target="#properties-of-discrete-random-variables">Properties of Discrete Random Variables</a></li>
   </ul></li>
-  <li><a href="#understanding-probability-distributions" id="toc-understanding-probability-distributions" class="nav-link" data-scroll-target="#understanding-probability-distributions"><span class="header-section-number">17.3</span> Understanding Probability Distributions</a>
+  <li><a href="#understanding-probability-distributions" id="toc-understanding-probability-distributions" class="nav-link" data-scroll-target="#understanding-probability-distributions"><span class="header-section-number">17.4</span> Understanding Probability Distributions</a>
   <ul class="collapse">
   <li><a href="#uniform-distribution" id="toc-uniform-distribution" class="nav-link" data-scroll-target="#uniform-distribution">Uniform Distribution</a></li>
   <li><a href="#bernoulli-distribution" id="toc-bernoulli-distribution" class="nav-link" data-scroll-target="#bernoulli-distribution">Bernoulli Distribution</a></li>
@@ -364,16 +372,8 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Understanding Random Variables and Probability Distributions: Mathematical Models for Randomness
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="understanding-random-variables-and-probability-distributions-mathematical-models-for-randomness" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="understanding-random-variables-and-probability-distributions-mathematical-models-for-randomness"><span class="header-section-number">17.1</span> Understanding Random Variables and Probability Distributions: Mathematical Models for Randomness</h2>
 <section id="beyond-classical-probability" class="level3">
 <h3 class="anchored" data-anchor-id="beyond-classical-probability">Beyond Classical Probability</h3>
 <p>The classical approach to probability (calculating favorable outcomes divided by total possible outcomes) rests on a crucial assumption: we have perfect knowledge of how our outcomes are generated.</p>
@@ -420,13 +420,11 @@ Understanding Random Variables and Probability Distributions: Mathematical Model
 <li>Non-negativity: <span class="math inline">p_X(x) \geq 0</span> for all <span class="math inline">x</span></li>
 <li>Total probability: <span class="math inline">\sum_{x} p_X(x) = 1</span></li>
 </ol>
-<p>For our (possibly unfair) coin: <span class="math display">
-P(X = x) = p_X(x) = \begin{cases}
+<p>For our (possibly unfair) coin: <span class="math display">P(X = x) = p_X(x) = \begin{cases}
 p &amp; \text{if } x = 1 \text{ (heads)} \\
 1-p &amp; \text{if } x = 0 \text{ (tails)} \\
 0 &amp; \text{otherwise}
-\end{cases}
-</span></p>
+\end{cases}</span></p>
 <p>where <span class="math inline">p</span> is the true probability of heads that we’re trying to understand.</p>
 <p>This framework lets us move beyond simply counting favorable outcomes to modeling and understanding the underlying random processes that generate our observations. It forms the foundation for working with more complex probability distributions and statistical inference.</p>
 <p><strong>Note</strong>: When dealing with continuous random variables (like height, weight, or time), we use <em>Probability Density Functions</em> (PDF) instead of PMFs. PDFs require calculus and integration to work with probabilities, which is beyond the scope of this course. We’ll focus exclusively on discrete random variables and their PMFs.</p>
@@ -556,8 +554,9 @@ p &amp; \text{if } x = 1 \text{ (heads)} \\
 <li>Shape depends on the Data Generating Process (DGP)</li>
 </ul>
 </section>
-<section id="models-for-different-data-generating-processes-dgps" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="models-for-different-data-generating-processes-dgps"><span class="header-section-number">17.1</span> Models for Different Data Generating Processes (DGPs)</h2>
+</section>
+<section id="models-for-different-data-generating-processes-dgps" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="models-for-different-data-generating-processes-dgps"><span class="header-section-number">17.2</span> Models for Different Data Generating Processes (DGPs)</h2>
 <p>Different random experiments follow different patterns. We model these using specific probability distributions:</p>
 <ol type="1">
 <li><strong>Bernoulli</strong>: For single yes/no experiments
@@ -577,9 +576,7 @@ p &amp; \text{if } x = 1 \text{ (heads)} \\
 </ul></li>
 </ol>
 <p><em>💡 Important Note:</em> These are mathematical models based on assumptions about how data is generated. Their usefulness depends on how well these assumptions match reality.</p>
-</section>
-</div>
-</div>
+<hr>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -763,7 +760,7 @@ From Bernoulli to Binomial Distribution
     style Zero fill:#FF9999,stroke:#000000,stroke-width:3px,color:#000000,font-weight:bold
     style P1 fill:#9999FF,stroke:#000000,stroke-width:3px,color:#000000,font-weight:bold
     style P0 fill:#9999FF,stroke:#000000,stroke-width:3px,color:#000000,font-weight:bold
-    style Dist fill:#FFFFFF,stroke:#000000,color:#000000,font-weight:bold
+    style Dist fill:#FFFFFF,stroke:#000000,color:#000000,font-weight:light
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -904,8 +901,9 @@ p &amp; \text{if } k = 1 \\
 </section>
 </div>
 </div>
-<section id="random-variables-making-outcomes-measurable" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="random-variables-making-outcomes-measurable"><span class="header-section-number">17.2</span> Random Variables: Making Outcomes Measurable</h2>
+</section>
+<section id="random-variables-making-outcomes-measurable" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="random-variables-making-outcomes-measurable"><span class="header-section-number">17.3</span> Random Variables: Making Outcomes Measurable</h2>
 <p>A random variable is a way to assign numbers to the outcomes of a random experiment. Think of it as a function that converts outcomes into numbers, making them measurable and easier to analyze.</p>
 <section id="example-rolling-a-die" class="level3">
 <h3 class="anchored" data-anchor-id="example-rolling-a-die">Example: Rolling a Die</h3>
@@ -932,8 +930,8 @@ p &amp; \text{if } k = 1 \\
 </ol>
 </section>
 </section>
-<section id="understanding-probability-distributions" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="understanding-probability-distributions"><span class="header-section-number">17.3</span> Understanding Probability Distributions</h2>
+<section id="understanding-probability-distributions" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="understanding-probability-distributions"><span class="header-section-number">17.4</span> Understanding Probability Distributions</h2>
 <p>A probability distribution is a mathematical description of the probabilities of different possible outcomes in a random experiment. It tells us:</p>
 <ol type="1">
 <li>What values can occur (the support of the distribution)</li>
@@ -1423,11 +1421,11 @@ Inductive Derivation of the Binomial Distribution Formula
 <h3 class="anchored" data-anchor-id="four-trials">4. Four Trials</h3>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 18%">
-<col style="width: 18%">
-<col style="width: 18%">
-<col style="width: 24%">
-<col style="width: 18%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
