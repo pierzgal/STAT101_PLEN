@@ -1475,19 +1475,53 @@ Superpopulacja i Proces Generowania Danych (DGP) (*)
 <div class="callout-body-container callout-body">
 <section id="fundamentalne-rozróżnienie" class="level3">
 <h3 class="anchored" data-anchor-id="fundamentalne-rozróżnienie"><strong>Fundamentalne Rozróżnienie</strong></h3>
-<p><strong>Korelacja (correlation)</strong> mierzy, jak dwie zmienne poruszają się razem: - Dodatnia: Obie rosną razem (godziny nauki ↑, oceny ↑) - Ujemna: Jedna rośnie, gdy druga maleje (godziny TV ↑, oceny ↓) - Mierzona współczynnikiem korelacji: <span class="math inline">r \in [-1, 1]</span></p>
-<p><strong>Przyczynowość (causation)</strong> oznacza, że jedna zmienna bezpośrednio wpływa na drugą: - <span class="math inline">X \rightarrow Y</span>: Zmiany w X bezpośrednio powodują zmiany w Y - Wymaga: (1) korelacji, (2) poprzedzania czasowego, (3) braku alternatywnych wyjaśnień</p>
+<p><strong>Korelacja (correlation)</strong> mierzy, jak dwie zmienne poruszają się razem:</p>
+<ul>
+<li>Dodatnia: Obie rosną razem (godziny nauki ↑, oceny ↑)</li>
+<li>Ujemna: Jedna rośnie, gdy druga maleje (godziny TV ↑, oceny ↓)</li>
+<li>Mierzona współczynnikiem korelacji: <span class="math inline">r \in [-1, 1]</span></li>
+</ul>
+<p><strong>Przyczynowość (causation)</strong> oznacza, że jedna zmienna bezpośrednio wpływa na drugą:</p>
+<ul>
+<li><span class="math inline">X \rightarrow Y</span>: Zmiany w X bezpośrednio powodują zmiany w Y</li>
+<li>Wymaga: (1) korelacji, (2) poprzedzania czasowego, (3) braku alternatywnych wyjaśnień</li>
+</ul>
 </section>
 <section id="zagrożenie-korelacja-pozorna" class="level3">
 <h3 class="anchored" data-anchor-id="zagrożenie-korelacja-pozorna"><strong>Zagrożenie: Korelacja Pozorna</strong></h3>
 <p><strong>Korelacja pozorna (spurious correlation)</strong> występuje, gdy dwie zmienne wydają się powiązane, ale w rzeczywistości obie są pod wpływem trzeciej zmiennej (<strong>czynnika zakłócającego/confoundera</strong>).</p>
-<p><strong>Klasyczny przykład:</strong> - <strong>Obserwacja</strong>: Sprzedaż lodów koreluje z liczbą utonięć - <strong>Pozorny wniosek</strong>: Lody powodują utonięcia (❌) - <strong>Rzeczywistość</strong>: Letnia pogoda (czynnik zakłócający) powoduje oba zjawiska: - Lato → Więcej sprzedanych lodów - Lato → Więcej pływania → Więcej utonięć</p>
-<p><strong>Reprezentacja matematyczna:</strong> - Obserwowana korelacja: <span class="math inline">\text{Cor}(X,Y) \neq 0</span> - Ale prawdziwy model: <span class="math inline">X = \alpha Z + \epsilon_1</span> oraz <span class="math inline">Y = \beta Z + \epsilon_2</span> - Gdzie <span class="math inline">Z</span> to zmienna zakłócająca powodująca oba zjawiska</p>
+<p><strong>Klasyczny przykład:</strong></p>
+<ul>
+<li><p><strong>Obserwacja</strong>: Sprzedaż lodów koreluje z liczbą utonięć</p></li>
+<li><p><strong>Pozorny wniosek</strong>: Lody powodują utonięcia (❌)</p></li>
+<li><p><strong>Rzeczywistość</strong>: Letnia pogoda (czynnik zakłócający) powoduje oba zjawiska:</p></li>
+<li><p>Lato → Więcej sprzedanych lodów</p></li>
+<li><p>Lato → Więcej pływania → Więcej utonięć</p></li>
+</ul>
+<p><strong>Reprezentacja matematyczna:</strong></p>
+<ul>
+<li>Obserwowana korelacja: <span class="math inline">\text{Cor}(X,Y) \neq 0</span></li>
+<li>Ale prawdziwy model: <span class="math inline">X = \alpha Z + \epsilon_1</span> oraz <span class="math inline">Y = \beta Z + \epsilon_2</span></li>
+<li>Gdzie <span class="math inline">Z</span> to zmienna zakłócająca powodująca oba zjawiska</li>
+</ul>
 </section>
 <section id="czynniki-zakłócające-confounding-ukryty-wpływ" class="level3">
 <h3 class="anchored" data-anchor-id="czynniki-zakłócające-confounding-ukryty-wpływ"><strong>Czynniki Zakłócające (Confounding): Ukryty Wpływ</strong></h3>
-<p><strong>Zmienna zakłócająca (confounding variable/confounder)</strong>: 1. Wpływa zarówno na domniemaną przyczynę, jak i skutek 2. Tworzy iluzję bezpośredniej przyczynowości 3. Musi być kontrolowana dla ważnego wnioskowania przyczynowego</p>
-<p><strong>Przykład badawczy:</strong> - <strong>Obserwacja</strong>: Spożycie kawy koreluje z chorobami serca - <strong>Potencjalny czynnik zakłócający</strong>: Palenie (osoby pijące kawę częściej palą) - <strong>Prawdziwe relacje</strong>: - Palenie → Choroby serca (przyczynowa) - Palenie → Spożycie kawy (związek) - Kawa → Choroby serca (pozorna bez kontroli palenia)</p>
+<p><strong>Zmienna zakłócająca (confounding variable/confounder)</strong>:</p>
+<ol type="1">
+<li>Wpływa zarówno na domniemaną przyczynę, jak i skutek</li>
+<li>Tworzy iluzję bezpośredniej przyczynowości</li>
+<li>Musi być kontrolowana dla ważnego wnioskowania przyczynowego</li>
+</ol>
+<p><strong>Przykład badawczy:</strong></p>
+<ul>
+<li><p><strong>Obserwacja</strong>: Spożycie kawy koreluje z chorobami serca</p></li>
+<li><p><strong>Potencjalny czynnik zakłócający</strong>: Palenie (osoby pijące kawę częściej palą)</p></li>
+<li><p><strong>Prawdziwe relacje</strong>:</p></li>
+<li><p>Palenie → Choroby serca (przyczynowa)</p></li>
+<li><p>Palenie → Spożycie kawy (związek)</p></li>
+<li><p>Kawa → Choroby serca (pozorna bez kontroli palenia)</p></li>
+</ul>
 </section>
 <section id="jak-identyfikować-związki-przyczynowe" class="level3">
 <h3 class="anchored" data-anchor-id="jak-identyfikować-związki-przyczynowe"><strong>Jak Identyfikować Związki Przyczynowe</strong></h3>

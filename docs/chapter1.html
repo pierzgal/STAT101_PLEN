@@ -1467,19 +1467,52 @@ For continuous variables, the probability of any <strong>exact</strong> value is
 <div class="callout-body-container callout-body">
 <section id="the-fundamental-distinction" class="level3">
 <h3 class="anchored" data-anchor-id="the-fundamental-distinction"><strong>The Fundamental Distinction</strong></h3>
-<p><strong>Correlation</strong> measures how two variables move together: - Positive: Both increase together (study hours ↑, grades ↑) - Negative: One increases while other decreases (TV hours ↑, grades ↓) - Measured by correlation coefficient: <span class="math inline">r \in [-1, 1]</span></p>
-<p><strong>Causation</strong> means one variable directly influences another: - <span class="math inline">X \rightarrow Y</span>: Changes in X directly cause changes in Y - Requires: (1) correlation, (2) temporal precedence, (3) no alternative explanations</p>
+<p><strong>Correlation</strong> measures how two variables move together:</p>
+<ul>
+<li>Positive: Both increase together (study hours ↑, grades ↑)</li>
+<li>Negative: One increases while other decreases (TV hours ↑, grades ↓)</li>
+<li>Measured by correlation coefficient: <span class="math inline">r \in [-1, 1]</span></li>
+</ul>
+<p><strong>Causation</strong> means one variable directly influences another:</p>
+<ul>
+<li><span class="math inline">X \rightarrow Y</span>: Changes in X directly cause changes in Y</li>
+<li>Requires: (1) correlation, (2) temporal precedence, (3) no alternative explanations</li>
+</ul>
 </section>
 <section id="the-danger-spurious-correlation" class="level3">
 <h3 class="anchored" data-anchor-id="the-danger-spurious-correlation"><strong>The Danger: Spurious Correlation</strong></h3>
 <p>A <strong>spurious correlation</strong> occurs when two variables appear related but are actually both influenced by a third variable (a <strong>confounder</strong>).</p>
-<p><strong>Classic Example:</strong> - <strong>Observed</strong>: Ice cream sales correlate with drowning deaths - <strong>Spurious conclusion</strong>: Ice cream causes drowning (❌) - <strong>Reality</strong>: Summer weather (confounder) causes both: - Summer → More ice cream sales - Summer → More swimming → More drownings</p>
-<p><strong>Mathematical representation:</strong> - Observed correlation: <span class="math inline">\text{Cor}(X,Y) \neq 0</span> - But the true model: <span class="math inline">X = \alpha Z + \epsilon_1</span> and <span class="math inline">Y = \beta Z + \epsilon_2</span> - Where <span class="math inline">Z</span> is the confounding variable causing both</p>
+<p><strong>Classic Example:</strong></p>
+<ul>
+<li><p><strong>Observed</strong>: Ice cream sales correlate with drowning deaths</p></li>
+<li><p><strong>Spurious conclusion</strong>: Ice cream causes drowning (❌)</p></li>
+<li><p><strong>Reality</strong>: Summer weather (confounder) causes both:</p></li>
+<li><p>Summer → More ice cream sales</p></li>
+<li><p>Summer → More swimming → More drownings</p></li>
+</ul>
+<p><strong>Mathematical representation:</strong></p>
+<ul>
+<li>Observed correlation: <span class="math inline">\text{Cor}(X,Y) \neq 0</span></li>
+<li>But the true model: <span class="math inline">X = \alpha Z + \epsilon_1</span> and <span class="math inline">Y = \beta Z + \epsilon_2</span></li>
+<li>Where <span class="math inline">Z</span> is the confounding variable causing both</li>
+</ul>
 </section>
 <section id="confounding-the-hidden-influence" class="level3">
 <h3 class="anchored" data-anchor-id="confounding-the-hidden-influence"><strong>Confounding: The Hidden Influence</strong></h3>
-<p>A <strong>confounding variable</strong> (confounder): 1. Affects both the presumed cause and effect 2. Creates an illusion of direct causation 3. Must be controlled for valid causal inference</p>
-<p><strong>Research Example:</strong> - <strong>Observed</strong>: Coffee consumption correlates with heart disease - <strong>Potential confounder</strong>: Smoking (coffee drinkers more likely to smoke) - <strong>True relationships</strong>: - Smoking → Heart disease (causal) - Smoking → Coffee consumption (association) - Coffee → Heart disease (spurious without controlling for smoking)</p>
+<p>A <strong>confounding variable</strong> (confounder):</p>
+<ol type="1">
+<li>Affects both the presumed cause and effect</li>
+<li>Creates an illusion of direct causation 3. Must be controlled for valid causal inference</li>
+</ol>
+<p><strong>Research Example:</strong></p>
+<ul>
+<li><p><strong>Observed</strong>: Coffee consumption correlates with heart disease</p></li>
+<li><p><strong>Potential confounder</strong>: Smoking (coffee drinkers more likely to smoke)</p></li>
+<li><p><strong>True relationships</strong>:</p></li>
+<li><p>Smoking → Heart disease (causal)</p></li>
+<li><p>Smoking → Coffee consumption (association)</p></li>
+<li><p>Coffee → Heart disease (spurious without controlling for smoking)</p></li>
+</ul>
 </section>
 <section id="how-to-identify-causal-relationships" class="level3">
 <h3 class="anchored" data-anchor-id="how-to-identify-causal-relationships"><strong>How to Identify Causal Relationships</strong></h3>
