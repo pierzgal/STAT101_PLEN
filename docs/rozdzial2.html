@@ -70,49 +70,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -294,7 +251,7 @@ window.Quarto = {
   <li><a href="#znaczenie-rozróżnienia-skal-pomiarowych" id="toc-znaczenie-rozróżnienia-skal-pomiarowych" class="nav-link" data-scroll-target="#znaczenie-rozróżnienia-skal-pomiarowych">Znaczenie rozróżnienia skal pomiarowych</a></li>
   <li><a href="#podsumowanie-1" id="toc-podsumowanie-1" class="nav-link" data-scroll-target="#podsumowanie-1">Podsumowanie</a></li>
   </ul></li>
-  <li><a href="#appendix-a-miary-statystyczne-dla-różnych-typów-zmiennych" id="toc-appendix-a-miary-statystyczne-dla-różnych-typów-zmiennych" class="nav-link" data-scroll-target="#appendix-a-miary-statystyczne-dla-różnych-typów-zmiennych"><span class="header-section-number">4.6</span> Appendix A: Miary Statystyczne dla Różnych Typów Zmiennych</a></li>
+  <li><a href="#appendix-a" id="toc-appendix-a" class="nav-link" data-scroll-target="#appendix-a"><span class="header-section-number">4.6</span> Appendix A</a></li>
   </ul>
 </nav>
     </div>
@@ -952,104 +909,11 @@ Tip
 <p>Mimo że numery domów są liczbami, w systemie adresowym funkcjonują jako etykiety, a nie wartości ilościowe. Liczba 100 w adresie “ul. Kilińskiego 100” nie jest używana matematycznie - równie dobrze mogłaby to być “ul. Jabłkowa” czy “ul. Zeusa”, jeśli chodzi o jej funkcję w adresie.</p>
 </div>
 </div>
+<hr>
 </section>
 </section>
-<section id="appendix-a-miary-statystyczne-dla-różnych-typów-zmiennych" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="appendix-a-miary-statystyczne-dla-różnych-typów-zmiennych"><span class="header-section-number">4.6</span> Appendix A: Miary Statystyczne dla Różnych Typów Zmiennych</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Typ zmiennej</th>
-<th>Tendencja centralna</th>
-<th>Miary rozproszenia</th>
-<th>Wzory</th>
-<th>Odpowiednie testy</th>
-<th>Wizualizacja</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Nominalna</strong></td>
-<td>Dominanta (moda)</td>
-<td>Wskaźnik zróżnicowania</td>
-<td><span class="math inline">VR = 1 - \frac{f_m}{n}</span> gdzie <span class="math inline">f_m</span> to częstość modalnej, <span class="math inline">n</span> to liczba obserwacji</td>
-<td>Chi-kwadrat, testy dokładne Fishera</td>
-<td>Wykresy słupkowe, kołowe</td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>Indeks różnorodności (Simpsona)</td>
-<td><span class="math inline">D = 1 - \sum_{i=1}^{k} p_i^2</span> gdzie <span class="math inline">p_i</span> to proporcja i-tej kategorii</td>
-<td>Test zgodności, testy niezależności</td>
-<td>Mozaikowe wykresy</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>Entropia Shannona</td>
-<td><span class="math inline">H = -\sum_{i=1}^{k} p_i \log_2(p_i)</span> gdzie <span class="math inline">p_i</span> to proporcja i-tej kategorii</td>
-<td>Testy oparte na entropii</td>
-<td>Wykresy entropii, dendrogram</td>
-</tr>
-<tr class="even">
-<td><strong>Porządkowa</strong></td>
-<td>Mediana</td>
-<td>Rozstęp</td>
-<td><span class="math inline">R = \max(X) - \min(X)</span></td>
-<td>Mann-Whitney, Kruskal-Wallis</td>
-<td>Wykresy skumulowane, wykresy rozbieżne</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>Rozstęp międzykwartylowy (IQR)</td>
-<td><span class="math inline">IQR = Q_3 - Q_1</span> gdzie <span class="math inline">Q_1</span> i <span class="math inline">Q_3</span> to pierwszy i trzeci kwartyl</td>
-<td>Testy rangowe, testy mediany</td>
-<td>Wykresy pudełkowe</td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>Odchylenie ćwiartkowe</td>
-<td><span class="math inline">Q_D = \frac{Q_3 - Q_1}{2}</span></td>
-<td>Test Jonckheere-Terpstra</td>
-<td>Wykresy porządkowe, skumulowane histogramy</td>
-</tr>
-<tr class="odd">
-<td><strong>Interwałowa/ Ilorazowa</strong></td>
-<td>Średnia arytmetyczna</td>
-<td>Wariancja</td>
-<td><span class="math inline">\sigma^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i - \mu)^2</span> gdzie <span class="math inline">\mu</span> to średnia</td>
-<td>Testy t, ANOVA, regresja</td>
-<td>Histogramy, wykresy rozrzutu</td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>Odchylenie standardowe</td>
-<td><span class="math inline">\sigma = \sqrt{\sigma^2}</span></td>
-<td>F-test, test Levene’a</td>
-<td>Wykresy pudełkowe</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>Współczynnik zmienności</td>
-<td><span class="math inline">CV = \frac{\sigma}{\mu} \times 100\%</span></td>
-<td>Testy równości wariancji</td>
-<td>Wykresy QQ, wykresy przedziałowe</td>
-</tr>
-</tbody>
-</table>
+<section id="appendix-a" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="appendix-a"><span class="header-section-number">4.6</span> Appendix A</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1099,7 +963,7 @@ Statistical Measures Applicability / Zastosowanie miar statystycznych
 <tr class="odd">
 <td>Median</td>
 <td>Mediana</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">−</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
@@ -1107,28 +971,36 @@ Statistical Measures Applicability / Zastosowanie miar statystycznych
 <tr class="even">
 <td>Arithmetic Mean</td>
 <td>Średnia arytmetyczna</td>
-<td style="text-align: center;">-</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
 <td>Geometric Mean</td>
 <td>Średnia geometryczna</td>
-<td style="text-align: center;">-</td>
-<td style="text-align: center;">-</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
 <td>Harmonic Mean</td>
 <td>Średnia harmoniczna</td>
-<td style="text-align: center;">-</td>
-<td style="text-align: center;">-</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
+<td>Trimmed Mean</td>
+<td>Średnia ucinana</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr class="even">
 <td><strong>Dispersion / Rozproszenie:</strong></td>
 <td></td>
 <td style="text-align: center;"></td>
@@ -1136,55 +1008,71 @@ Statistical Measures Applicability / Zastosowanie miar statystycznych
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
+<tr class="odd">
+<td>Frequency Distribution</td>
+<td>Rozkład częstości</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+</tr>
 <tr class="even">
 <td>Range</td>
 <td>Rozstęp</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">−</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td>Interquartile Range</td>
+<td>Interquartile Range (IQR)</td>
 <td>Rozstęp międzykwartylowy</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">−</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td>Mean Absolute Deviation</td>
-<td>Średnie odchylenie bezwzględne</td>
-<td style="text-align: center;">-</td>
-<td style="text-align: center;">-</td>
+<td>Quartile Deviation</td>
+<td>Odchylenie ćwiartkowe</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
+<td>Mean Absolute Deviation (MAD)</td>
+<td>Średnie odchylenie bezwzględne</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr class="even">
 <td>Variance</td>
 <td>Wariancja</td>
-<td style="text-align: center;">-</td>
-<td style="text-align: center;">-</td>
-<td style="text-align: center;">✓*</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="even">
-<td>Standard Deviation</td>
-<td>Odchylenie standardowe</td>
-<td style="text-align: center;">-</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
 <td style="text-align: center;">✓*</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td>Coefficient of Variation</td>
-<td>Współczynnik zmienności</td>
-<td style="text-align: center;">-</td>
-<td style="text-align: center;">-</td>
-<td style="text-align: center;">-</td>
+<td>Standard Deviation</td>
+<td>Odchylenie standardowe</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">✓*</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
+<td>Coefficient of Variation (CV)</td>
+<td>Współczynnik zmienności</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr class="odd">
 <td><strong>Association / Współzależność:</strong></td>
 <td></td>
 <td style="text-align: center;"></td>
@@ -1192,43 +1080,51 @@ Statistical Measures Applicability / Zastosowanie miar statystycznych
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
-<td>Chi-square</td>
+<tr class="even">
+<td>Chi-square (χ²)</td>
 <td>Chi-kwadrat</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
+<tr class="odd">
+<td>Cramér’s V</td>
+<td>V Craméra</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
+</tr>
 <tr class="even">
-<td>Spearman Correlation</td>
+<td>Spearman’s rho (ρ)</td>
 <td>Korelacja Spearmana</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">−</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td>Kendall’s Tau</td>
+<td>Kendall’s tau (τ)</td>
 <td>Tau Kendalla</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">−</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td>Pearson Correlation</td>
+<td>Pearson’s r</td>
 <td>Korelacja Pearsona</td>
-<td style="text-align: center;">-</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
 <td style="text-align: center;">✓*</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
 <td>Covariance</td>
 <td>Kowariancja</td>
-<td style="text-align: center;">-</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">−</td>
+<td style="text-align: center;">−</td>
 <td style="text-align: center;">✓*</td>
 <td style="text-align: center;">✓</td>
 </tr>
@@ -1238,25 +1134,24 @@ Statistical Measures Applicability / Zastosowanie miar statystycznych
 <section id="notes-uwagi" class="level3">
 <h3 class="anchored" data-anchor-id="notes-uwagi">Notes / Uwagi:</h3>
 <ol type="1">
-<li>Measurement Scales / Skale pomiarowe:</li>
-</ol>
+<li><strong>Measurement Scales / Skale pomiarowe:</strong>
 <ul>
-<li><strong>Nominal</strong>: Categories without order / Kategorie bez uporządkowania</li>
-<li><strong>Ordinal</strong>: Ordered categories / Kategorie uporządkowane</li>
-<li><strong>Interval</strong>: Equal intervals, arbitrary zero / Równe interwały, umowne zero</li>
-<li><strong>Ratio</strong>: Equal intervals, absolute zero / Równe interwały, absolutne zero</li>
-</ul>
-<ol start="2" type="1">
-<li>Practical Considerations / Aspekty praktyczne:</li>
-</ol>
+<li><strong>Nominal</strong>: Categories without order (e.g., gender, color) / Kategorie bez uporządkowania (np. płeć, kolor)</li>
+<li><strong>Ordinal</strong>: Ordered categories (e.g., education level, satisfaction) / Kategorie uporządkowane (np. poziom wykształcenia, satysfakcja)</li>
+<li><strong>Interval</strong>: Equal intervals, arbitrary zero (e.g., temperature in °C, IQ) / Równe interwały, umowne zero (np. temperatura w °C, IQ)</li>
+<li><strong>Ratio</strong>: Equal intervals, absolute zero (e.g., height, income) / Równe interwały, absolutne zero (np. wzrost, dochód)</li>
+</ul></li>
+<li><strong>Practical Considerations / Aspekty praktyczne:</strong>
 <ul>
-<li>Some measures marked with ✓* are commonly used for interval data despite theoretical issues / Niektóre miary oznaczone ✓* są powszechnie stosowane dla danych przedziałowych pomimo problemów teoretycznych</li>
-<li>Choice of measure should consider both theoretical appropriateness and practical utility / Wybór miary powinien uwzględniać zarówno poprawność teoretyczną jak i użyteczność praktyczną</li>
-<li>More restrictive scales (ratio) allow all measures from less restrictive scales / Bardziej restrykcyjne skale (ilorazowe) pozwalają na wszystkie miary z mniej restrykcyjnych skal</li>
-</ul>
+<li>Measures marked with * are commonly applied to interval data despite theoretical concerns about the arbitrary zero point / Miary oznaczone * są powszechnie stosowane dla danych przedziałowych pomimo zastrzeżeń teoretycznych dotyczących umownego zera</li>
+<li>Higher-level scales inherit all measures from lower levels (ratio &gt; interval &gt; ordinal &gt; nominal) / Skale wyższego poziomu dziedziczą wszystkie miary z poziomów niższych</li>
+<li>For skewed distributions, robust measures (median, IQR) may be preferred over mean and SD / Dla rozkładów skośnych, miary odporne (mediana, IQR) mogą być preferowane nad średnią i SD</li>
+</ul></li>
+</ol>
 </section>
 </div>
 </div>
+<p><strong>Key improvements made:</strong> 1. Added Trimmed Mean, Frequency Distribution, Quartile Deviation, and Cramér’s V for completeness 2. Changed hyphens to proper minus signs (−) for better typography 3. Added examples to scale definitions for clarity 4. Expanded the note about the asterisk to be more specific 5. Added a practical tip about robust measures 6. Minor formatting improvements for consistency</p>
 
 
 </section>
