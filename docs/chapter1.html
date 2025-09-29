@@ -461,8 +461,10 @@ window.Quarto = {
 <hr>
 <section id="introduction" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.1</span> Introduction</h2>
+<blockquote class="blockquote">
 <p><strong>Statistics</strong> is the science of learning from data under uncertainty.</p>
-<p>Statistics is a way to learn about the world from data when results vary and are uncertain. It teaches how to collect data wisely, spot patterns, estimate population quantities, and make predictions—always stating how wrong we might be.</p>
+</blockquote>
+<p>Statistics is a way to learn about the world from data. It teaches how to collect data wisely, spot patterns, estimate population parameters, and make predictions—stating how wrong we might be.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -476,7 +478,8 @@ Note
 <p><strong>Statistics</strong> is the science of collecting, organizing, analyzing, interpreting, and presenting data. It encompasses both the methods for working with data and the theoretical foundations that justify these methods. But statistics is more than just numbers and formulas—it’s a way of thinking about uncertainty and variation in the world around us.</p>
 </div>
 </div>
-<p>Imagine you want to understand the average age at first marriage in your country. You cannot possibly ask every single person when they first married (if at all). Statistics provides the tools to:</p>
+<p>Imagine you want to understand the average age at first marriage in your country. You cannot possibly ask every single person when they first married (if at all).</p>
+<p>Statistics provides the tools to:</p>
 <ul>
 <li>Select a representative group of people to survey</li>
 <li>Calculate meaningful summaries from their responses</li>
@@ -485,14 +488,76 @@ Note
 <li>Test whether the average age is changing over time</li>
 </ul>
 <hr>
-<p><strong>Demography</strong> is the scientific study of human populations, focusing on their size, structure, distribution, and changes over time. It’s essentially the statistical analysis of people - who they are, where they live, how many there are, and how these characteristics evolve.</p>
-<hr>
-<p>Statistics and demography are interconnected disciplines that provide powerful tools for understanding populations, their characteristics, and the patterns that emerge from data.</p>
 <blockquote class="blockquote">
-<p>Consider a practical example: When news reports state that “unemployment has decreased by 2%,” what does this really mean? Is this change meaningful or could it be due to random variation? How was this measured? Who was included in the study?</p>
+<p><strong>Demography</strong> is the scientific study of human populations, focusing on their size, structure, distribution, and changes over time. It’s essentially the statistical analysis of people - who they are, where they live, how many there are, and how these characteristics evolve.</p>
 </blockquote>
-<p>Statistics serves as the mathematical backbone of demographic and social analysis, enabling us to move beyond simple description to understanding complex population dynamics, making predictions, and informing policy decisions.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<hr>
+<p><strong>Statistics and demography are interconnected disciplines</strong> that provide powerful tools for understanding populations, their characteristics, and the patterns that emerge from data.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Percent vs Percentage Points (pp)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When news reports say “unemployment <strong>decreased by 2</strong>,” do they mean <strong>2 percentage points (pp)</strong> or <strong>2 percent</strong>?</p>
+<p>These are <strong>not</strong> the same:</p>
+<ul>
+<li><strong>2 pp (absolute change):</strong> e.g., 10% → <strong>8%</strong> (−2 pp).</li>
+<li><strong>2% (relative change):</strong> multiply the old rate by 0.98; e.g., 10% → <strong>9.8%</strong> (−0.2 pp).</li>
+</ul>
+<p><strong>Always ask:</strong></p>
+<ol type="1">
+<li>What is the <strong>baseline</strong> (earlier rate)?</li>
+<li>Is the change <strong>absolute (pp)</strong> or <strong>relative (%)</strong>?</li>
+<li>Could this be <strong>sampling error / random variation</strong>?</li>
+<li><strong>How was unemployment measured</strong> (survey vs.&nbsp;administrative), <strong>when</strong>, and <strong>who’s included</strong>?</li>
+</ol>
+<p><strong>Rule of thumb</strong></p>
+<ul>
+<li>Use <strong>percentage points (pp)</strong> when comparing <strong>rates</strong> directly (unemployment, turnout).</li>
+<li>Use <strong>percent (%)</strong> for <strong>relative</strong> changes (proportional to the starting value).</li>
+</ul>
+<p><strong>Tiny lookup table</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Starting rate</th>
+<th>“Down <strong>2%</strong>” (relative)</th>
+<th>“Down <strong>2 pp</strong>” (absolute)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6%</td>
+<td>6% × 0.98 = <strong>5.88%</strong> (−0.12 pp)</td>
+<td><strong>4%</strong></td>
+</tr>
+<tr class="even">
+<td>8%</td>
+<td>8% × 0.98 = <strong>7.84%</strong> (−0.16 pp)</td>
+<td><strong>6%</strong></td>
+</tr>
+<tr class="odd">
+<td>10%</td>
+<td>10% × 0.98 = <strong>9.8%</strong> (−0.2 pp)</td>
+<td><strong>8%</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Uwaga (PL): <strong>2%</strong> ≠ <strong>2 punkty procentowe (pp)</strong>.</em></p>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -582,10 +647,16 @@ Rounding and Scientific Notation in Statistics
 <li><strong>Life Tables</strong>: Summarize mortality patterns, showing the probability of surviving to each age.</li>
 <li><strong>Time Series Graphs</strong>: Display trends over time, such as changing fertility rates across decades.</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stat_imgs/Lodz_population_pyramid.svg" class="img-fluid figure-img"></p>
+<figcaption>https://commons.wikimedia.org/wiki/File:%C5%81%C3%B3d%C5%BA_population_pyramid.svg</figcaption>
+</figure>
+</div>
 </section>
 <section id="inferential-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="inferential-statistics">Inferential Statistics</h3>
-<p><strong>Inferential Statistics</strong> encompasses techniques for drawing conclusions about populations based on sample data. This branch allows us to move beyond what we observe to what we can reasonably conclude.</p>
+<p><strong>Statistical inference</strong> means using a sample to learn about a population. We estimate effects, describe uncertainty (margin of error, confidence interval), and ask whether results could be explained by chance—across experiments (treatment vs.&nbsp;control), regression (how changes in X relate to Y), and surveys (estimating proportions or means for the whole population).</p>
 <p><img src="stat_imgs/random-sample.svg" class="img-fluid"></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -607,7 +678,7 @@ A Soup-Tasting Analogy
 <section id="key-principles" class="level3">
 <h3 class="anchored" data-anchor-id="key-principles">Key Principles</h3>
 <p><strong>1. Random sampling is essential</strong>: The chef must thoroughly stir the soup before sampling. Consistently sampling from the surface might miss seasoning that has settled, introducing systematic bias.</p>
-<p><strong>2. Sample size affects precision</strong>: A larger spoonful provides more reliable information about overall flavor than a small sip, though practical constraints limit sample size.</p>
+<p><strong>2. Sample size affects precision</strong>: A larger spoonful provides more reliable information about overall flavor than a small sip, though practical constraints (costs, time) limit sample size.</p>
 <p><strong>3. Uncertainty is inherent</strong>: Even with proper sampling technique, the spoonful might not perfectly represent the entire pot’s characteristics.</p>
 <p><strong>4. Systematic bias undermines inference</strong>: If someone secretly adds salt only to the sampling area, conclusions about the whole pot become invalid—illustrating how sampling bias distorts statistical inference.</p>
 <p><strong>5. Inference has scope limitations</strong>: The sample can estimate average saltiness but cannot reveal whether some portions are saltier than others, highlighting the limits of what samples can tell us about population variability.</p>
@@ -654,7 +725,6 @@ The Fundamental Challenge
 <div class="callout-body-container callout-body">
 <p><strong>Ideal world</strong>: Ask all 20,000 students → Get the exact answer<br>
 <strong>Real world</strong>: Survey 100 students → Get an estimate with uncertainty</p>
-<p>This isn’t a flaw—it’s the reality of working with samples.</p>
 </div>
 </div>
 </section>
@@ -705,10 +775,10 @@ The Key Insight
 <p>What if we need more precision? Here’s how sample size affects our confidence:</p>
 <table class="table-striped table-hover caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 21%">
-<col style="width: 25%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
 <col style="width: 20%">
 </colgroup>
 <thead>
@@ -764,7 +834,7 @@ Remember
 <p>Next time you see a statistic, ask yourself:</p>
 <ul>
 <li>What’s the sample size?</li>
-<li>What’s the margin of error?</li>
+<li>What’s the margin of statistical error?</li>
 <li>Could the true value be meaningfully different from what’s reported?</li>
 <li>Would my decision change if the true value were at the edge of the uncertainty range?</li>
 </ul>
@@ -779,7 +849,8 @@ Historical Example: The 1936 Literary Digest Poll
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The Literary Digest conducted one of the largest polls in history with <strong>2.4 million responses</strong>, predicting Alf Landon would defeat Franklin D. Roosevelt in the 1936 presidential election. Despite the massive sample size:</p>
+<p>The Literary Digest conducted one of the largest polls in history with <strong>2.4 million responses</strong>, predicting Alf Landon would defeat Franklin D. Roosevelt in the 1936 presidential election.</p>
+<p>Despite the massive sample size:</p>
 <p><strong>Prediction</strong>: Landon 57%, Roosevelt 43%<br>
 <strong>Actual Result</strong>: Roosevelt 62%, Landon 38%<br>
 <strong>Error</strong>: 25 percentage points!</p>
@@ -792,7 +863,7 @@ Historical Example: The 1936 Literary Digest Poll
 </ul>
 <p><strong>Non-response bias</strong>:</p>
 <ul>
-<li>Only 24% of those contacted responded</li>
+<li>Only 24% of those contacted responded (low response rate)</li>
 <li>Likely respondents: those with strong anti-Roosevelt opinions</li>
 <li>Non-respondents: many Roosevelt supporters didn’t feel compelled to participate</li>
 </ul>
@@ -814,7 +885,7 @@ Historical Example: The 1936 Literary Digest Poll
 <p>Today’s polls, while much smaller than the Literary Digest’s 2.4 million responses, are far more accurate because they focus on:</p>
 <p><strong>Representative sampling</strong>: Using probability-based methods to ensure all groups have known chances of selection</p>
 <p><strong>Bias detection and correction</strong>: Monitoring response rates across demographics and adjusting for known biases</p>
-<p><strong>Uncertainty quantification</strong>: Reporting margins of error that honestly communicate the limits of what we know</p>
+<p><strong>Uncertainty quantification</strong>: Reporting margins of statistical error that honestly communicate the limits of what we know</p>
 <p><strong>Example</strong>: A modern poll of 1,000 randomly selected voters with a 3% margin of error is far more reliable than the Literary Digest’s massive but biased survey.</p>
 <hr>
 </section>
@@ -1737,7 +1808,7 @@ Notice: Density × Width = 0.0316 × 5 = 0.158</code></pre>
 </div>
 <hr>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1746,7 +1817,7 @@ Notice: Density × Width = 0.0316 × 5 = 0.158</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For each scenario, identify whether the relationship is likely causal or spurious:</p>
 <ol type="1">
@@ -2092,7 +2163,7 @@ Critical Insight
 <p>The <strong>margin of error</strong> (MOE) represents the expected maximum difference between sample estimate and true parameter.</p>
 <p><span class="math display">\text{MOE} = \text{Critical Value} \times \text{Standard Error}</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2101,7 +2172,7 @@ Understanding the Critical Value
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For 95% confidence, we use 1.96 (often simplified to 2). This ensures that ~95% of intervals constructed this way will contain the true parameter.</p>
 <ul>
@@ -2879,7 +2950,7 @@ What is randomness? (*)
 <table class="caption-top table">
 <colgroup>
 <col style="width: 24%">
-<col style="width: 27%">
+<col style="width: 26%">
 <col style="width: 24%">
 <col style="width: 24%">
 </colgroup>
