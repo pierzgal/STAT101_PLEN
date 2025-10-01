@@ -294,7 +294,7 @@ window.Quarto = {
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1.1</span> Introduction</a></li>
   <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda"><span class="header-section-number">1.2</span> Exploratory Data Analysis (EDA)</a>
   <ul class="collapse">
-  <li><a href="#tools-for-eda" id="toc-tools-for-eda" class="nav-link" data-scroll-target="#tools-for-eda">Tools for EDA</a></li>
+  <li><a href="#simple-tools-for-exploring-data" id="toc-simple-tools-for-exploring-data" class="nav-link" data-scroll-target="#simple-tools-for-exploring-data">Simple Tools for Exploring Data</a></li>
   </ul></li>
   <li><a href="#inferential-statistics" id="toc-inferential-statistics" class="nav-link" data-scroll-target="#inferential-statistics"><span class="header-section-number">1.3</span> Inferential Statistics</a>
   <ul class="collapse">
@@ -649,17 +649,19 @@ Rounding and Scientific Notation in Statistics
 </div>
 </div>
 <hr>
-<p>The field of statistics encompasses different approaches to understanding data. Two key phases of statistical work are <strong>exploratory analysis</strong> and <strong>confirmatory analysis</strong> (<em>inferential statistics</em>), which rely on different statistical tools and mindsets.</p>
+<blockquote class="blockquote">
+<p>When working with data, statisticians use two different approaches: <strong>exploration</strong> and <strong>confirmation</strong>. First, we examine the data to understand its characteristics and identify patterns. Then, we use formal methods to test specific hypotheses and draw conclusions.</p>
+</blockquote>
 </section>
 <section id="exploratory-data-analysis-eda" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="exploratory-data-analysis-eda"><span class="header-section-number">1.2</span> Exploratory Data Analysis (EDA)</h2>
-<p><strong>Exploratory Data Analysis</strong> is an investigative approach to understanding your data before formal hypothesis testing. EDA helps you:</p>
+<p><strong>What is EDA?</strong> Exploratory Data Analysis is the initial step where we examine data systematically to understand its structure and characteristics. This phase does not involve formal hypothesis testing—it focuses on discovering what the data contains.</p>
+<p><strong>Why do we do EDA?</strong></p>
 <ul>
-<li>Discover unexpected patterns and relationships</li>
-<li>Identify outliers and data quality issues</li>
-<li>Check assumptions for later modeling</li>
-<li>Generate hypotheses worth testing</li>
-<li>Understand the structure and characteristics of your dataset</li>
+<li>Find interesting patterns you didn’t expect</li>
+<li>Spot mistakes or unusual values in your data</li>
+<li>Get ideas about what questions to ask</li>
+<li>Understand what your data looks like before doing formal tests (many statistical methods have specific requirements about the data to work properly. EDA helps check whether our data meets these requirements - e.g.&nbsp;1) some tests require data to have a normal distribution (bell-shaped), 2) we need to verify that the relationship between variables is actually linear, or 3) check homogeneity of variance and find outliers)</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -671,31 +673,32 @@ The EDA Approach
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>EDA is an open-ended investigation without predetermined hypotheses. You use descriptive statistics and visualization together to systematically explore, question, and characterize your data.</p>
+<p>When conducting EDA, we begin without predetermined hypotheses. Instead, we examine data from multiple perspectives to discover patterns and generate questions for further investigation.</p>
 </div>
 </div>
-<section id="tools-for-eda" class="level3">
-<h3 class="anchored" data-anchor-id="tools-for-eda">Tools for EDA</h3>
-<p><strong>1. Descriptive Statistics</strong> - Numerical summaries that characterize your data:</p>
-<p><strong>Measures of Central Tendency</strong> - Where is the center of your data?</p>
+<section id="simple-tools-for-exploring-data" class="level3">
+<h3 class="anchored" data-anchor-id="simple-tools-for-exploring-data">Simple Tools for Exploring Data</h3>
+<p><strong>1. Summary Numbers</strong></p>
+<p>These are basic calculations that describe your data:</p>
+<p><strong>Finding the “Typical” Value:</strong></p>
 <ul>
-<li><strong>Mean</strong>: The arithmetic average. If the total household income in a village of 100 households is $5,000,000, the mean income is $50,000. However, if one household is extremely wealthy, this might not represent the typical household well.</li>
-<li><strong>Median</strong>: The middle value when data is ordered. If most households earn between $20,000-$40,000 but one earns $2,000,000, the median better represents the typical household.</li>
-<li><strong>Mode</strong>: The most frequent value. In studying family size, if most families have 2 children, 2 is the mode, even if the mean is 2.3 children.</li>
+<li><strong>Mean (Average)</strong>: Add up all values and divide by how many you have. Example: If 5 students scored 70, 80, 85, 90, and 100 on a test, the average is 85.</li>
+<li><strong>Median (Middle)</strong>: The value in the middle when you line up all numbers from smallest to largest. In our test example, the median is also 85.</li>
+<li><strong>Mode (Most Common)</strong>: The value that appears most often. If ten families have 1, 2, 2, 2, 2, 3, 3, 3, 4, and 5 children, the mode is 2 children.</li>
 </ul>
-<p><strong>Measures of Variability</strong> - How spread out is your data?</p>
+<p><strong>Understanding Spread:</strong></p>
 <ul>
-<li><strong>Range</strong>: The difference between maximum and minimum values. If ages in a community range from 0 to 95 years, the range is 95 years.</li>
-<li><strong>Variance</strong>: The average squared deviation from the mean. Measures how far values typically fall from the center.</li>
-<li><strong>Standard Deviation</strong>: The square root of variance, in the same units as the original data. If the mean age is 35 years with a standard deviation of 20 years, most people are between 15 and 55 years old.</li>
+<li><strong>Range</strong>: Just subtract the smallest number from the biggest. If students’ ages go from 18 to 24, the range is 6 years.</li>
+<li><strong>Standard Deviation</strong>: Shows how spread out your data is from the average. A small standard deviation means most values are close to the average; a large one means they’re more spread out.</li>
 </ul>
-<p><strong>2. Visual Exploration</strong> - Graphical methods reveal patterns and structures in data:</p>
+<p><strong>2. Visual Exploration</strong></p>
+<p>Graphical methods help reveal patterns that numerical summaries alone might not show:</p>
 <ul>
-<li><strong>Population Pyramids</strong>: Show age and sex distribution, revealing demographic history. A wide base indicates high birth rates; a narrow base suggests declining fertility.</li>
-<li><strong>Box Plots</strong>: Display distribution and identify outliers across groups</li>
-<li><strong>Scatter Plots</strong>: Reveal relationships between variables</li>
-<li><strong>Time Series Graphs</strong>: Display trends over time, such as changing fertility rates across decades.</li>
-<li><strong>Histograms</strong>: Show the shape and spread of distributions</li>
+<li><strong>Population Pyramids</strong>: Show how many people are in each age group, split by males and females. Helps you see if a population is young or old.</li>
+<li><strong>Box Plots</strong>: Show the middle of your data and help spot unusual values</li>
+<li><strong>Scatter Plots</strong>: Display relationships between two variables (such as hours studied versus test scores)</li>
+<li><strong>Time Graphs</strong>: Show how something changes over time (like temperature throughout the year)</li>
+<li><strong>Histograms</strong>: Show how many values fall into different ranges</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -703,12 +706,11 @@ The EDA Approach
 <figcaption>https://commons.wikimedia.org/wiki/File:%C5%81%C3%B3d%C5%BA_population_pyramid.svg</figcaption>
 </figure>
 </div>
-<p><strong>3. Relationships and Patterns</strong>:</p>
+<p><strong>3. Looking for Connections</strong>:</p>
 <ul>
-<li><strong>Correlation</strong>: Calculate correlation coefficients to see which variables are related</li>
-<li><strong>Scatter plots</strong>: Visualize relationships between variables</li>
-<li><strong>Initial regression models</strong>: Fit exploratory models to understand patterns</li>
-<li><strong>Residual plots</strong>: Check assumptions and identify model problems</li>
+<li>Do two variables move together? (When one goes up, does the other go up too?)</li>
+<li>Can you draw a line that roughly fits your data points?</li>
+<li>Do you see any clear patterns or trends?</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -716,31 +718,38 @@ The EDA Approach
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Regression and Correlation: Exploratory or Inferential?
+Using the Same Techniques for Different Purposes
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>These techniques can serve <strong>both purposes</strong> depending on your goal:</p>
-<p><strong>Exploratory use (EDA)</strong>: Calculating correlations, fitting regression lines, examining scatter plots, and checking residuals to understand <em>what relationships exist</em> and <em>how variables relate</em>. The focus is on discovering patterns and understanding data structure.</p>
-<p><strong>Inferential use</strong>: Testing whether regression coefficients are statistically significant, constructing confidence intervals for parameters, and generalizing findings to populations. The focus is on confirming hypotheses with quantified uncertainty.</p>
-<p>The same technique, different purposes—exploration identifies patterns while inference evaluates their statistical significance in the population.</p>
+<p>Many statistical techniques serve both exploratory and confirmatory functions:</p>
+<p><strong>Exploring</strong>: We calculate correlations or fit regression lines to understand what relationships exist in the data. The focus is on discovering patterns.</p>
+<p><strong>Confirming</strong>: We apply statistical tests to determine whether observed patterns are statistically significant or could have occurred by chance. The focus is on formal hypothesis testing.</p>
+<p>The same technique can serve different purposes depending on the research phase.</p>
 </div>
 </div>
-<p><strong>4. Exploratory Questions to Ask</strong>:</p>
+<p><strong>4. Good Questions to Ask While Exploring</strong>:</p>
 <ul>
-<li>What is the distribution shape? (Normal, skewed, bimodal?)</li>
-<li>Are there outliers? Are they errors or meaningful extreme values?</li>
-<li>How do variables relate to each other?</li>
-<li>Are there missing data patterns?</li>
-<li>Do subgroups show different patterns?</li>
+<li>What does the shape of my data look like?</li>
+<li>Are there any weird or unusual values?</li>
+<li>Do I see any patterns?</li>
+<li>Is any data missing?</li>
+<li>Do different groups show different patterns?</li>
 </ul>
 </section>
 </section>
 <section id="inferential-statistics" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="inferential-statistics"><span class="header-section-number">1.3</span> Inferential Statistics</h2>
-<p>After exploring your data, <strong>inferential statistics</strong> allows you to move from exploration to confirmation. This is where you formally test hypotheses and make generalizations from samples to populations.</p>
-<p><strong>Statistical inference</strong> means using a sample to learn about a population. We estimate effects, describe uncertainty (margin of error, confidence interval), and ask whether results could be explained by chance—across experiments (treatment vs.&nbsp;control), regression (how changes in X relate to Y), and surveys (estimating proportions or means for the whole population).</p>
+<p>After exploring, you might want to make formal conclusions. <strong>Inferential statistics</strong> helps you do this.</p>
+<p><strong>The Basic Idea</strong>: You have data from some people (a sample), but you want to know about everyone (the population). Inferential statistics helps you make educated guesses about the bigger group based on your smaller group.</p>
+<p>For example: You survey 100 students about their study habits and want to say something about all 10,000 students at your university.</p>
 <p><img src="stat_imgs/random-sample.svg" class="img-fluid"></p>
+<p><strong>What We Do with Inferential Statistics:</strong></p>
+<ul>
+<li>Estimate values for the whole population</li>
+<li>Say how confident we are in our estimates</li>
+<li>Test if patterns we found are “real” or just happened by chance</li>
+</ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -751,9 +760,10 @@ EDA Before Inference
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Exploratory analysis should precede confirmatory analysis. EDA helps identify data characteristics and appropriate inferential methods. Proceeding directly to inference without exploration can lead to invalid conclusions.</p>
+<p>Exploratory analysis should precede confirmatory analysis. Understanding data characteristics through EDA helps in selecting appropriate inferential methods. Proceeding directly to formal testing without exploration can lead to incorrect conclusions.</p>
 </div>
 </div>
+<hr>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

@@ -292,11 +292,11 @@ window.Quarto = {
    
   <ul>
   <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie"><span class="header-section-number">2.1</span> Wprowadzenie</a></li>
-  <li><a href="#eksploracyjna-analiza-danych-eda" id="toc-eksploracyjna-analiza-danych-eda" class="nav-link" data-scroll-target="#eksploracyjna-analiza-danych-eda"><span class="header-section-number">2.2</span> Eksploracyjna Analiza Danych (EDA)</a>
+  <li><a href="#eksploracyjna-analiza-danych-eda---exploratory-data-analysis" id="toc-eksploracyjna-analiza-danych-eda---exploratory-data-analysis" class="nav-link" data-scroll-target="#eksploracyjna-analiza-danych-eda---exploratory-data-analysis"><span class="header-section-number">2.2</span> Eksploracyjna Analiza Danych (EDA - Exploratory Data Analysis)</a>
   <ul class="collapse">
-  <li><a href="#narzędzia-eda" id="toc-narzędzia-eda" class="nav-link" data-scroll-target="#narzędzia-eda">Narzędzia EDA</a></li>
+  <li><a href="#narzędzia-do-eksploracji-danych" id="toc-narzędzia-do-eksploracji-danych" class="nav-link" data-scroll-target="#narzędzia-do-eksploracji-danych">Narzędzia do Eksploracji Danych</a></li>
   </ul></li>
-  <li><a href="#statystyka-inferencyjna" id="toc-statystyka-inferencyjna" class="nav-link" data-scroll-target="#statystyka-inferencyjna"><span class="header-section-number">2.3</span> Statystyka Inferencyjna</a>
+  <li><a href="#wnioskowanie-statystyczne-inferential-statistics" id="toc-wnioskowanie-statystyczne-inferential-statistics" class="nav-link" data-scroll-target="#wnioskowanie-statystyczne-inferential-statistics"><span class="header-section-number">2.3</span> Wnioskowanie Statystyczne (Inferential Statistics)</a>
   <ul class="collapse">
   <li><a href="#myślenie-statystyczne-wprowadzenie" id="toc-myślenie-statystyczne-wprowadzenie" class="nav-link" data-scroll-target="#myślenie-statystyczne-wprowadzenie">Myślenie Statystyczne: Wprowadzenie</a></li>
   <li><a href="#współczesne-sondaże" id="toc-współczesne-sondaże" class="nav-link" data-scroll-target="#współczesne-sondaże">Współczesne sondaże</a></li>
@@ -637,17 +637,20 @@ Zaokrąglenia i notacja naukowa w statystyce
 </div>
 </div>
 <hr>
-<p>Dziedzina statystyki obejmuje różne podejścia do rozumienia danych. Dwie kluczowe fazy pracy statystycznej to <strong>analiza eksploracyjna</strong> i <strong>analiza konfirmacyjna</strong> (<em>wnioskowanie statystyczne</em>), które opierają się na różnych narzędziach statystycznych i sposobach myślenia.</p>
+<blockquote class="blockquote">
+<p>Pracując z danymi, statystycy stosują dwa różne podejścia: <strong>eksplorację</strong> i <strong>konfirmację</strong> (<em>potwierdzanie</em>). Najpierw badamy dane, aby zrozumieć ich charakterystykę i zidentyfikować wzorce. Następnie używamy formalnych metod do testowania konkretnych hipotez i wyciągania wniosków.</p>
+</blockquote>
 </section>
-<section id="eksploracyjna-analiza-danych-eda" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="eksploracyjna-analiza-danych-eda"><span class="header-section-number">2.2</span> Eksploracyjna Analiza Danych (EDA)</h2>
-<p><strong>Eksploracyjna Analiza Danych</strong> to podejście badawcze do zrozumienia danych przed formalnym testowaniem hipotez. EDA pomaga:</p>
+<section id="eksploracyjna-analiza-danych-eda---exploratory-data-analysis" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="eksploracyjna-analiza-danych-eda---exploratory-data-analysis"><span class="header-section-number">2.2</span> Eksploracyjna Analiza Danych (EDA - Exploratory Data Analysis)</h2>
+<p><strong>Czym jest EDA?</strong> Eksploracyjna Analiza Danych to początkowy etap, w którym systematycznie badamy dane, aby zrozumieć ich strukturę i charakterystykę. Ta faza nie obejmuje formalnego testowania hipotez statystycznych—koncentruje się na odkrywaniu tego, co dane zawierają.</p>
+<p><strong>Po co przeprowadzamy EDA?</strong></p>
 <ul>
-<li>Odkryć nieoczekiwane wzorce i zależności</li>
-<li>Zidentyfikować wartości odstające i problemy z jakością danych</li>
-<li>Sprawdzić założenia dla późniejszego modelowania</li>
-<li>Generować hipotezy warte testowania</li>
-<li>Zrozumieć strukturę i charakterystykę zbioru danych</li>
+<li>Wykrycie nieoczekiwanych wzorców i zależności</li>
+<li>Identyfikacja wartości odstających (<em>outliers</em>) i problemów z jakością danych</li>
+<li>Sprawdzenie założeń do późniejszego modelowania (wiele metod statystycznych ma określone wymagania dotyczące danych, aby działały prawidłowo. EDA pomaga sprawdzić, czy nasze dane spełniają te wymagania; np. normalność rozkładu, liniowość, “outliers”, jednorodność wariancji)</li>
+<li>Generowanie hipotez wartych przetestowania</li>
+<li>Zrozumienie struktury i charakterystyki zbioru danych</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -659,31 +662,32 @@ Podejście EDA
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>EDA to otwarte badanie bez z góry ustalonych hipotez. Wykorzystujesz statystyki opisowe i wizualizację łącznie, aby systematycznie eksplorować i charakteryzować swoje dane.</p>
+<p>Przeprowadzając EDA, zaczynamy bez z góry określonych hipotez. Zamiast tego badamy dane z wielu perspektyw, aby odkryć wzorce i wygenerować pytania do dalszych badań.</p>
 </div>
 </div>
-<section id="narzędzia-eda" class="level3">
-<h3 class="anchored" data-anchor-id="narzędzia-eda">Narzędzia EDA</h3>
-<p><strong>1. Statystyki Opisowe</strong> - Podsumowania liczbowe charakteryzujące dane:</p>
-<p><strong>Miary Tendencji Centralnej</strong> - Gdzie znajduje się centrum danych?</p>
+<section id="narzędzia-do-eksploracji-danych" class="level3">
+<h3 class="anchored" data-anchor-id="narzędzia-do-eksploracji-danych">Narzędzia do Eksploracji Danych</h3>
+<p><strong>1. Statystyki Opisowe</strong> (<em>Descriptive Statistics</em>)</p>
+<p>Są to podstawowe obliczenia, które opisują nasze dane:</p>
+<p><strong>Miary Tendencji Centralnej</strong> - gdzie znajduje się centrum (średnia, “wartość typowa/oczekiwana”) danych?</p>
 <ul>
-<li><strong>Średnia arytmetyczna</strong>: Przeciętna arytmetyczna. Jeśli całkowity dochód gospodarstw domowych we wsi liczącej 100 gospodarstw wynosi 5 000 000 zł, średni dochód wynosi 50 000 zł. Jednak jeśli jedno gospodarstwo jest wyjątkowo zamożne, może to nie reprezentować dobrze typowego gospodarstwa.</li>
-<li><strong>Mediana</strong>: Wartość środkowa po uporządkowaniu danych. Jeśli większość gospodarstw zarabia między 20 000-40 000 zł, ale jedno zarabia 2 000 000 zł, mediana lepiej reprezentuje typowe gospodarstwo.</li>
-<li><strong>Moda</strong>: Najczęściej występująca wartość. W badaniu liczebności rodziny, jeśli większość rodzin ma 2 dzieci, 2 jest modą, nawet jeśli średnia wynosi 2,3 dziecka.</li>
+<li><strong>Średnia</strong> (<em>Mean</em>): Suma wszystkich wartości podzielona przez ich liczbę. Przykład: Jeśli 5 studentów uzyskało na teście 70, 80, 85, 90 i 100 punktów, średnia wynosi 85.</li>
+<li><strong>Mediana</strong> (<em>Median</em>): Wartość środkowa, gdy ustawimy wszystkie liczby od najmniejszej do największej. W naszym przykładzie mediana również wynosi 85.</li>
+<li><strong>Moda</strong> (<em>Mode</em>): Wartość występująca najczęściej. Jeśli dziesięć rodzin ma 1, 2, 2, 2, 2, 3, 3, 3, 4 i 5 dzieci, modą są 2 dzieci.</li>
 </ul>
-<p><strong>Miary Zmienności</strong> - Jak rozrzucone są dane?</p>
+<p><strong>Miary Zmienności</strong> (<em>Measures of Variability</em>) - jak bardzo rozproszone są dane?</p>
 <ul>
-<li><strong>Rozstęp</strong>: Różnica między wartością maksymalną a minimalną. Jeśli wiek w społeczności waha się od 0 do 95 lat, rozstęp wynosi 95 lat.</li>
-<li><strong>Wariancja</strong>: Średnia kwadratowych odchyleń od średniej. Mierzy, jak daleko wartości zazwyczaj odchylają się od centrum.</li>
-<li><strong>Odchylenie standardowe</strong>: Pierwiastek kwadratowy z wariancji, w tych samych jednostkach co oryginalne dane. Jeśli średni wiek wynosi 35 lat z odchyleniem standardowym 20 lat, większość osób ma między 15 a 55 lat.</li>
+<li><strong>Rozstęp</strong> (<em>Range</em>): Różnica między największą a najmniejszą wartością. Jeśli wiek studentów wynosi od 18 do 24 lat, rozstęp to 6 lat.</li>
+<li><strong>Odchylenie Standardowe</strong> (<em>Standard Deviation</em>): Pokazuje, jak bardzo dane są rozproszone wokół średniej. Małe odchylenie standardowe oznacza, że większość wartości jest blisko średniej; duże oznacza większe rozproszenie.</li>
 </ul>
-<p><strong>2. Eksploracja Wizualna</strong> - Metody graficzne ujawniają wzorce i struktury w danych:</p>
+<p><strong>2. Wizualizacja Danych</strong></p>
+<p>Metody graficzne pomagają ujawnić wzorce, których same podsumowania numeryczne mogą nie pokazać:</p>
 <ul>
-<li><strong>Piramidy wieku</strong>: Pokazują rozkład wieku i płci, ujawniając historię demograficzną. Szeroka podstawa wskazuje na wysoką dzietność; wąska podstawa sugeruje spadającą płodność.</li>
-<li><strong>Wykresy pudełkowe</strong>: Pokazują rozkład i identyfikują wartości odstające w grupach</li>
-<li><strong>Wykresy rozrzutu</strong>: Ujawniają zależności między zmiennymi</li>
-<li><strong>Wykresy szeregów czasowych</strong>: Pokazują trendy w czasie, takie jak zmieniające się wskaźniki dzietności na przestrzeni dekad</li>
-<li><strong>Histogramy</strong>: Pokazują kształt i rozrzut rozkładów</li>
+<li><strong>Piramidy Wieku</strong> (<em>Population Pyramids</em>): Pokazują rozkład wieku i płci w populacji</li>
+<li><strong>Wykresy Pudełkowe</strong> (<em>Box Plots</em>): Pokazują środek danych i pomagają wykryć wartości nietypowe</li>
+<li><strong>Wykresy Rozrzutu</strong> (<em>Scatter Plots</em>): Pokazują związki między dwiema zmiennymi (np. godziny nauki a wyniki testów)</li>
+<li><strong>Wykresy Szeregów Czasowych</strong> (<em>Time Series Graphs</em>): Pokazują zmiany w czasie (np. temperatura w ciągu roku)</li>
+<li><strong>Histogramy</strong> (<em>Histograms</em>): Pokazują, ile wartości przypada na różne przedziały</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -691,12 +695,11 @@ Podejście EDA
 <figcaption>https://commons.wikimedia.org/wiki/File:%C5%81%C3%B3d%C5%BA_population_pyramid.svg</figcaption>
 </figure>
 </div>
-<p><strong>3. Zależności i Wzorce</strong>:</p>
+<p><strong>3. Poszukiwanie Zależności</strong>:</p>
 <ul>
-<li><strong>Korelacja</strong>: Oblicz współczynniki korelacji, aby zobaczyć, które zmienne są powiązane</li>
-<li><strong>Wykresy rozrzutu</strong>: Wizualizuj zależności między zmiennymi</li>
-<li><strong>Wstępne modele regresji</strong>: Dopasuj modele eksploracyjne, aby zrozumieć wzorce</li>
-<li><strong>Wykresy reszt</strong>: Sprawdź założenia i zidentyfikuj problemy modelowe</li>
+<li>Czy dwie zmienne zmieniają się razem? (Kiedy jedna rośnie, czy druga też rośnie?)</li>
+<li>Czy można dopasować linię do danych?</li>
+<li>Czy widoczne są jakieś wyraźne wzorce lub trendy?</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -704,31 +707,38 @@ Podejście EDA
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Regresja i Korelacja: Eksploracyjne czy Inferencyjne?
+Wykorzystanie Tych Samych Technik do Różnych Celów
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Te techniki mogą służyć <strong>obu celom</strong> w zależności od celu:</p>
-<p><strong>Użycie eksploracyjne (EDA)</strong>: Obliczanie korelacji, dopasowywanie linii regresji, badanie wykresów rozrzutu i sprawdzanie reszt w celu zrozumienia <em>jakie zależności istnieją</em> i <em>jak zmienne są powiązane</em>. Koncentracja na odkrywaniu wzorców i rozumieniu struktury danych.</p>
-<p><strong>Użycie inferencyjne</strong>: Testowanie, czy współczynniki regresji są statystycznie istotne, konstruowanie przedziałów ufności dla parametrów oraz uogólnianie wyników na populacje. Koncentracja na potwierdzaniu hipotez z kwantyfikacją niepewności.</p>
-<p>Ta sama technika, różne cele—eksploracja identyfikuje wzorce, podczas gdy wnioskowanie ocenia ich istotność statystyczną w populacji.</p>
+<p>Wiele technik statystycznych służy zarówno celom eksploracyjnym, jak i konfirmacyjnym:</p>
+<p><strong>Eksploracja</strong>: Obliczamy korelacje (<em>correlations</em>) lub dopasowujemy linie regresji (<em>regression lines</em>), aby zrozumieć, jakie zależności istnieją w danych. Koncentrujemy się na odkrywaniu wzorców.</p>
+<p><strong>Konfirmacja</strong>: Stosujemy testy statystyczne, aby określić, czy zaobserwowane wzorce są istotne statystycznie, czy mogły wystąpić przypadkowo. Koncentrujemy się na formalnym testowaniu hipotez.</p>
+<p>Ta sama technika może służyć różnym celom w zależności od fazy badania.</p>
 </div>
 </div>
-<p><strong>4. Pytania Eksploracyjne</strong>:</p>
+<p><strong>4. Ważne Pytania do Zadania Podczas Eksploracji</strong>:</p>
 <ul>
-<li>Jaki jest kształt rozkładu? (Normalny, skośny, dwumodalny?)</li>
-<li>Czy są wartości odstające? Czy są to błędy, czy znaczące wartości ekstremalne?</li>
-<li>Jak zmienne są ze sobą powiązane?</li>
-<li>Czy są wzorce brakujących danych?</li>
-<li>Czy podgrupy wykazują różne wzorce?</li>
+<li>Jaki jest kształt rozkładu danych?</li>
+<li>Czy są wartości odstające?</li>
+<li>Czy widać jakieś wzorce?</li>
+<li>Czy brakuje jakichś danych?</li>
+<li>Czy różne grupy wykazują różne wzorce?</li>
 </ul>
 </section>
 </section>
-<section id="statystyka-inferencyjna" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="statystyka-inferencyjna"><span class="header-section-number">2.3</span> Statystyka Inferencyjna</h2>
-<p>Po zbadaniu danych <strong>statystyka inferencyjna</strong> pozwala przejść od eksploracji do potwierdzenia. To tutaj formalnie testujesz hipotezy i dokonujesz uogólnień z próby na populację.</p>
-<p><strong>Wnioskowanie statystyczne</strong> oznacza wykorzystanie próby do poznania populacji. Szacujemy efekty, opisujemy niepewność (margines błędu, przedział ufności) i pytamy, czy wyniki mogą być wyjaśnione przypadkiem—w eksperymentach (grupa eksperymentalna vs.&nbsp;kontrolna), w regresji (jak zmiany w X odnoszą się do Y) oraz w badaniach ankietowych (szacowanie proporcji lub średnich dla całej populacji).</p>
+<section id="wnioskowanie-statystyczne-inferential-statistics" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="wnioskowanie-statystyczne-inferential-statistics"><span class="header-section-number">2.3</span> Wnioskowanie Statystyczne (Inferential Statistics)</h2>
+<p>Po zbadaniu danych możemy chcieć wyciągnąć formalne wnioski. <strong>Wnioskowanie statystyczne</strong> (<em>inferential statistics</em>) nam to umożliwia.</p>
+<p><strong>Podstawowa Idea</strong>: Mamy dane z pewnej grupy osób (próba, <em>sample</em>), ale chcemy wiedzieć coś o wszystkich (populacja, <em>population</em>). Statystyka wnioskowania pomaga nam wyciągać wnioski o większej grupie na podstawie mniejszej grupy.</p>
+<p>Przykład: Przeprowadzamy ankietę wśród 100 studentów na temat ich nawyków związanych z nauką i chcemy powiedzieć coś o wszystkich 10 000 studentach na uczelni.</p>
 <p><img src="stat_imgs/random-sample.svg" class="img-fluid"></p>
+<p><strong>Co robimy za pomocą Statystyki Inferencyjnej:</strong></p>
+<ul>
+<li>Szacujemy wartości dla całej populacji</li>
+<li>Określamy, jak bardzo jesteśmy pewni naszych szacunków</li>
+<li>Testujemy, czy znalezione wzorce są “rzeczywiste”, czy mogły powstać przypadkowo</li>
+</ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -739,9 +749,10 @@ EDA Przed Wnioskowaniem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Analiza eksploracyjna powinna poprzedzać analizę konfirmacyjną. EDA pomaga zidentyfikować charakterystykę danych i odpowiednie metody inferencyjne. Przejście bezpośrednio do wnioskowania bez eksploracji może prowadzić do błędnych wniosków.</p>
+<p>Analiza eksploracyjna powinna poprzedzać analizę konfirmacyjną. Zrozumienie charakterystyki danych poprzez EDA pomaga w wyborze odpowiednich metod wnioskowania. Przejście bezpośrednio do formalnego testowania bez eksploracji może prowadzić do błędnych wniosków.</p>
 </div>
 </div>
+<hr>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
