@@ -323,15 +323,16 @@ window.Quarto = {
   <li><a href="#estimand" id="toc-estimand" class="nav-link" data-scroll-target="#estimand">Estimand</a></li>
   <li><a href="#oszacowanie-estimate" id="toc-oszacowanie-estimate" class="nav-link" data-scroll-target="#oszacowanie-estimate">Oszacowanie (Estimate)</a></li>
   </ul></li>
-  <li><a href="#błąd-statystyczny-i-niepewność" id="toc-błąd-statystyczny-i-niepewność" class="nav-link" data-scroll-target="#błąd-statystyczny-i-niepewność"><span class="header-section-number">2.6</span> Błąd Statystyczny i Niepewność</a>
+  <li><a href="#błąd-statystyczny-i-niepewność" id="toc-błąd-statystyczny-i-niepewność" class="nav-link" data-scroll-target="#błąd-statystyczny-i-niepewność"><span class="header-section-number">2.6</span> Błąd statystyczny i niepewność</a>
   <ul class="collapse">
-  <li><a href="#sec-intro" id="toc-sec-intro" class="nav-link" data-scroll-target="#sec-intro">Wprowadzenie</a></li>
-  <li><a href="#sec-error-types" id="toc-sec-error-types" class="nav-link" data-scroll-target="#sec-error-types">Typy Błędów</a></li>
-  <li><a href="#sec-measures" id="toc-sec-measures" class="nav-link" data-scroll-target="#sec-measures">Kwantyfikowanie Niepewności</a></li>
-  <li><a href="#sec-polling" id="toc-sec-polling" class="nav-link" data-scroll-target="#sec-polling">Praktyczne Zastosowanie: Sondaże Opinii</a></li>
-  <li><a href="#sec-viz" id="toc-sec-viz" class="nav-link" data-scroll-target="#sec-viz">Wizualizacja: Zmienność Próbkowania</a></li>
-  <li><a href="#sec-misconceptions" id="toc-sec-misconceptions" class="nav-link" data-scroll-target="#sec-misconceptions">Częste Błędne Przekonania</a></li>
-  <li><a href="#sec-summary" id="toc-sec-summary" class="nav-link" data-scroll-target="#sec-summary">Kluczowe Wnioski</a></li>
+  <li><a href="#sec-intro" id="toc-sec-intro" class="nav-link" data-scroll-target="#sec-intro">Wprowadzenie: Dlaczego niepewność ma znaczenie</a></li>
+  <li><a href="#sec-error-types" id="toc-sec-error-types" class="nav-link" data-scroll-target="#sec-error-types">Typy błędów</a></li>
+  <li><a href="#sec-measures" id="toc-sec-measures" class="nav-link" data-scroll-target="#sec-measures">Kwantyfikowanie niepewności</a></li>
+  <li><a href="#sec-polling" id="toc-sec-polling" class="nav-link" data-scroll-target="#sec-polling">Praktyczne zastosowanie: Sondaże opinii publicznej</a></li>
+  <li><a href="#sec-viz" id="toc-sec-viz" class="nav-link" data-scroll-target="#sec-viz">Wizualizacja: Zmienność próbkowania</a></li>
+  <li><a href="#sec-misconceptions" id="toc-sec-misconceptions" class="nav-link" data-scroll-target="#sec-misconceptions">Powszechne błędne przekonania</a></li>
+  <li><a href="#sec-failures" id="toc-sec-failures" class="nav-link" data-scroll-target="#sec-failures">Przykład z życia: Porażki sondażowe</a></li>
+  <li><a href="#sec-summary" id="toc-sec-summary" class="nav-link" data-scroll-target="#sec-summary">Kluczowe wnioski</a></li>
   </ul></li>
   <li><a href="#próbkowanie-i-metody-próbkowania" id="toc-próbkowanie-i-metody-próbkowania" class="nav-link" data-scroll-target="#próbkowanie-i-metody-próbkowania"><span class="header-section-number">2.7</span> Próbkowanie i metody próbkowania</a>
   <ul class="collapse">
@@ -1213,12 +1214,12 @@ Tip
 <p><strong>Tablica rozkładu częstości</strong> (frequency distribution table) organizuje dane, pokazując jak obserwacje rozkładają się między różnymi wartościami lub przedziałami. Oto przykład z wynikami egzaminów:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 17%">
-<col style="width: 9%">
-<col style="width: 17%">
-<col style="width: 20%">
-<col style="width: 27%">
-<col style="width: 8%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 18%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2174,9 +2175,9 @@ Estimandy: Co dokładnie próbujemy oszacować?
 </section>
 </section>
 <section id="błąd-statystyczny-i-niepewność" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="błąd-statystyczny-i-niepewność"><span class="header-section-number">2.6</span> Błąd Statystyczny i Niepewność</h2>
+<h2 data-number="2.6" class="anchored" data-anchor-id="błąd-statystyczny-i-niepewność"><span class="header-section-number">2.6</span> Błąd statystyczny i niepewność</h2>
 <section id="sec-intro" class="level3">
-<h3 class="anchored" data-anchor-id="sec-intro">Wprowadzenie</h3>
+<h3 class="anchored" data-anchor-id="sec-intro">Wprowadzenie: Dlaczego niepewność ma znaczenie</h3>
 <p>Żaden pomiar ani oszacowanie nie jest doskonałe. Zrozumienie różnych typów błędów jest kluczowe dla interpretacji wyników i poprawy projektu badania.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2184,46 +2185,55 @@ Estimandy: Co dokładnie próbujemy oszacować?
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Główne Wyzwanie
+Centralne wyzwanie
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Za każdym razem, gdy używamy <strong>próby</strong> do poznania <strong>populacji</strong>, wprowadzamy niepewność. Kluczem jest:</p>
+<p>Za każdym razem, gdy używamy <strong>próby</strong> (sample) do poznania <strong>populacji</strong> (population), wprowadzamy niepewność. Kluczem jest:</p>
 <ol type="1">
-<li>Uczciwe kwantyfikowanie tej niepewności</li>
-<li>Rozróżnianie między różnymi źródłami błędu</li>
-<li>Transparentne komunikowanie wyników</li>
+<li>Uczciwe skwantyfikowanie tej niepewności</li>
+<li>Rozróżnienie między różnymi źródłami błędu</li>
+<li>Transparentna komunikacja wyników</li>
 </ol>
 </div>
 </div>
 <hr>
 </section>
 <section id="sec-error-types" class="level3">
-<h3 class="anchored" data-anchor-id="sec-error-types">Typy Błędów</h3>
-<section id="błąd-losowy-błąd-próbkowania" class="level4">
-<h4 class="anchored" data-anchor-id="błąd-losowy-błąd-próbkowania">Błąd Losowy (Błąd Próbkowania)</h4>
-<p><strong>Błąd losowy</strong> wynika z naturalnej zmienności w próbkowaniu — nieuniknionej wariacji, która występuje, ponieważ obserwujemy próbę, a nie całą populację.</p>
+<h3 class="anchored" data-anchor-id="sec-error-types">Typy błędów</h3>
+<section id="błąd-losowy-random-error" class="level4">
+<h4 class="anchored" data-anchor-id="błąd-losowy-random-error">Błąd losowy (random error)</h4>
+<p><strong>Błąd losowy</strong> (random error) reprezentuje nieprzewidywalne fluktuacje, które różnią się między obserwacjami bez stałego wzorca. Te błędy wynikają z różnych źródeł naturalnej zmienności w procesie zbierania i pomiaru danych.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Kluczowe Cechy
+Kluczowe cechy
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>Nieprzewidywalny Kierunek</strong>: Czasem za wysoko, czasem za nisko</li>
-<li><strong>Maleje z Wielkością Próby</strong>: <span class="math inline">\propto 1/\sqrt{n}</span></li>
-<li><strong>Kwantyfikowalny</strong>: Możliwy do obliczenia przy użyciu teorii prawdopodobieństwa</li>
-<li><strong>Uśrednia się do Zera</strong>: W wielu próbach błędy się znoszą</li>
+<li><strong>Nieprzewidywalny kierunek</strong>: Czasami za wysoki, czasami za niski</li>
+<li><strong>Brak stałego wzorca</strong>: Zmienia się losowo między obserwacjami</li>
+<li><strong>Średnio daje zero</strong>: Po wielu pomiarach dodatnie i ujemne błędy się znoszą</li>
+<li><strong>Możliwy do skwantyfikowania</strong>: Można go oszacować i zredukować odpowiednimi metodami</li>
 </ul>
 </div>
 </div>
-<section id="przykład-badanie-dostępu-do-internetu" class="level5">
-<h5 class="anchored" data-anchor-id="przykład-badanie-dostępu-do-internetu">Przykład: Badanie Dostępu do Internetu</h5>
-<p>Wyobraź sobie badanie 100 losowych gospodarstw domowych o dostępie do internetu:</p>
+<p>Błąd losowy obejmuje kilka podtypów:</p>
+<section id="błąd-próbkowania-sampling-error" class="level5">
+<h5 class="anchored" data-anchor-id="błąd-próbkowania-sampling-error">Błąd próbkowania (sampling error)</h5>
+<p><strong>Błąd próbkowania</strong> (sampling error) to najczęstszy typ błędu losowego—pojawia się, ponieważ obserwujemy próbę, a nie całą populację. Różne losowe próby z tej samej populacji dadzą różne oszacowania wyłącznie przez przypadek.</p>
+<p><strong>Kluczowe właściwości:</strong></p>
+<ul>
+<li>Maleje wraz z wielkością próby: <span class="math inline">\propto 1/\sqrt{n}</span></li>
+<li>Możliwy do skwantyfikowania za pomocą teorii prawdopodobieństwa</li>
+<li>Nieunikniony przy pracy z próbami</li>
+</ul>
+<p><strong>Przykład: Badanie dostępu do internetu</strong></p>
+<p>Wyobraźmy sobie ankietę 100 losowo wybranych gospodarstw domowych o dostępie do internetu:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -2233,41 +2243,64 @@ Kluczowe Cechy
 </div>
 </div>
 </div>
-<p>Zmienność wokół prawdziwej wartości (czerwona linia) reprezentuje błąd losowy. Przy większych próbach oszacowania byłyby bardziej skupione.</p>
+<p>Zmienność wokół prawdziwej wartości (czerwona linia) reprezentuje błąd próbkowania. Przy większych próbach oszacowania przedziałowe byłyby węższe.</p>
+</section>
+<section id="błąd-pomiaru-measurement-error" class="level5">
+<h5 class="anchored" data-anchor-id="błąd-pomiaru-measurement-error">Błąd pomiaru (measurement error)</h5>
+<p><strong>Błąd pomiaru</strong> (measurement error) to losowa zmienność w samym procesie pomiaru—nawet przy wielokrotnym pomiarze tej samej rzeczy.</p>
+<p><strong>Przykłady:</strong></p>
+<ul>
+<li>Niewielkie różnice przy odczycie termometru spowodowane paralaksą</li>
+<li>Losowe fluktuacje w przyrządach elektronicznych</li>
+<li>Niespójności w ludzkiej ocenie przy kodowaniu danych jakościowych</li>
+</ul>
+<p>W przeciwieństwie do błędu próbkowania (który wynika z tego, kogo/co obserwujemy), błąd pomiaru wynika z <em>tego, jak</em> obserwujemy.</p>
+</section>
+<section id="inne-źródła-błędu-losowego" class="level5">
+<h5 class="anchored" data-anchor-id="inne-źródła-błędu-losowego">Inne źródła błędu losowego</h5>
+<ul>
+<li><strong>Błąd przetwarzania</strong> (processing error): Losowe pomyłki we wprowadzaniu danych, kodowaniu lub obliczeniach</li>
+<li><strong>Błąd specyfikacji modelu</strong> (model specification error): Gdy prawdziwa zależność jest bardziej złożona niż zakładano</li>
+<li><strong>Zmienność czasowa</strong> (temporal variation): Naturalne wahania z dnia na dzień w mierzonym zjawisku</li>
+</ul>
 </section>
 </section>
-<section id="błąd-systematyczny-obciążenie" class="level4">
-<h4 class="anchored" data-anchor-id="błąd-systematyczny-obciążenie">Błąd Systematyczny (Obciążenie)</h4>
-<p><strong>Błąd systematyczny</strong> reprezentuje stałe odchylenie w określonym kierunku. W przeciwieństwie do błędu losowego, nie uśrednia się przy powtarzanym próbkowaniu.</p>
+<section id="błąd-systematyczny-systematic-error-bias" class="level4">
+<h4 class="anchored" data-anchor-id="błąd-systematyczny-systematic-error-bias">Błąd systematyczny (systematic error / bias)</h4>
+<p><strong>Błąd systematyczny</strong> (systematic error lub bias) reprezentuje stałe odchylenie w określonym kierunku. W przeciwieństwie do błędu losowego, nie zeruje się przy powtarzanym próbkowaniu lub pomiarze—utrzymuje się i konsekwentnie odsuwa wyniki od prawdy.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Obciążenie Selekcji</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Obciążenie Pomiaru</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Obciążenie Odpowiedzi</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Obciążenie Braku Odpowiedzi</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Obciążenie Przetrwania</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Błąd selekcji (selection bias)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Błąd pomiaru (measurement bias)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Błąd odpowiedzi (response bias)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Błąd braku odpowiedzi (non-response bias)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Błąd przetrwania (survivorship bias)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">Błąd obserwatora/ankietera (observer/interviewer bias)</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Metoda próbkowania systematycznie wyklucza pewne grupy.</p>
-<p><strong>Przykład</strong>: Ankiety telefoniczne w godzinach pracy niedostatecznie reprezentują osoby pracujące.</p>
+<p>Metoda doboru próby systematycznie wyklucza pewne grupy.</p>
+<p><strong>Przykład</strong>: Ankiety telefoniczne w godzinach pracy niedostatecznie reprezentują osoby zatrudnione.</p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>Instrument pomiarowy konsekwentnie zawyża/zaniża pomiary.</p>
-<p><strong>Przykład</strong>: Waga, która zawsze pokazuje 1 kg za dużo.</p>
+<p>Narzędzie pomiarowe konsekwentnie zawyża/zaniża pomiar.</p>
+<p><strong>Przykład</strong>: Waga, która zawsze pokazuje 2 funty za dużo; pytania ankietowe, które nakłaniają respondentów do konkretnych odpowiedzi.</p>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p>Respondenci systematycznie błędnie raportują.</p>
-<p><strong>Przykład</strong>: Ludzie zaniżają spożycie alkoholu, zawyżają uczestnictwo w głosowaniu.</p>
+<p>Respondenci systematycznie fałszywie raportują.</p>
+<p><strong>Przykład</strong>: Ludzie zaniżają spożycie alkoholu, zawyżają uczestnictwo w wyborach lub dają odpowiedzi społecznie pożądane.</p>
 </div>
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <p>Osoby nieudzielające odpowiedzi różnią się systematycznie od respondentów.</p>
-<p><strong>Przykład</strong>: Bardzo chorzy i bardzo zdrowi ludzie rzadziej odpowiadają na ankiety zdrowotne.</p>
+<p><strong>Przykład</strong>: Osoby bardzo chore i bardzo zdrowe rzadziej odpowiadają na ankiety zdrowotne, pozostawiając tylko osoby o umiarkowanym zdrowiu.</p>
 </div>
 <div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
-<p>Obserwowanie tylko “ocalałych” z jakiegoś procesu.</p>
-<p><strong>Przykład</strong>: Badanie długowieczności poprzez wywiady z 90-latkami pomija tych, którzy zmarli młodsi.</p>
+<p>Obserwowanie tylko “ocalałych” z pewnego procesu.</p>
+<p><strong>Przykład</strong>: Badanie długowieczności poprzez wywiady z 90-latkami pomija tych, którzy zmarli wcześniej—systematycznie zawyża przewidywaną długość życia.</p>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<p>Obserwatorzy lub ankieterzy systematycznie wpływają na wyniki.</p>
+<p><strong>Przykład</strong>: Ankieterzy nieświadomie sugerują pewne odpowiedzi lub rejestrują obserwacje potwierdzające ich oczekiwania.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="dekompozycja-obciążenia-wariancji" class="level4">
-<h4 class="anchored" data-anchor-id="dekompozycja-obciążenia-wariancji">Dekompozycja Obciążenia-Wariancji</h4>
-<p>Matematycznie, całkowity błąd (Błąd Średniokwadratowy) rozkłada się na:</p>
+<section id="dekompozycja-obciążenia-i-wariancji-bias-variance-decomposition" class="level4">
+<h4 class="anchored" data-anchor-id="dekompozycja-obciążenia-i-wariancji-bias-variance-decomposition">Dekompozycja obciążenia i wariancji (bias-variance decomposition)</h4>
+<p>Matematycznie, całkowity błąd (błąd średniokwadratowy, Mean Squared Error) rozkłada się na:</p>
 <p><span class="math display">\mathrm{MSE}(\hat\theta) = \underbrace{\mathrm{Var}(\hat\theta)}_{\text{błąd losowy}} + \underbrace{\big(\mathrm{Bias}(\hat\theta)\big)^2}_{\text{błąd systematyczny}}</span></p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2275,14 +2308,17 @@ Kluczowe Cechy
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Kluczowa Uwaga
+Kluczowy wniosek
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<blockquote class="blockquote">
 <p>Duża <strong>obciążona</strong> próba daje <strong>precyzyjnie błędną</strong> odpowiedź.</p>
+</blockquote>
 <ul>
-<li>Zwiększ <span class="math inline">n</span> → redukuje błąd losowy</li>
-<li>Popraw projekt → redukuje błąd systematyczny</li>
+<li>Zwiększ <span class="math inline">n</span> → redukuje błąd losowy (szczególnie błąd próbkowania)</li>
+<li>Popraw projekt badania → redukuje błąd systematyczny</li>
+<li>Lepsze narzędzia → redukuje błąd pomiaru</li>
 </ul>
 </div>
 </div>
@@ -2292,40 +2328,62 @@ Kluczowa Uwaga
 <figcaption>Różne kombinacje obciążenia i wariancji w estymacji</figcaption>
 </figure>
 </div>
+<p><strong>Intuicyjna analogia:</strong> Pomyśl o próbie trafienia w środek tarczy:</p>
+<ul>
+<li><strong>Błąd losowy</strong> = rozproszone strzały wokół celu (czasami w lewo, czasami w prawo, czasami wysoko, czasami nisko)</li>
+<li><strong>Błąd systematyczny</strong> = konsekwentne trafianie w to samo złe miejsce (wszystkie strzały skupione, ale z dala od centrum)</li>
+<li><strong>Ideał</strong> = strzały ciasno skupione w centrum tarczy</li>
+</ul>
 <hr>
 </section>
 </section>
 <section id="sec-measures" class="level3">
-<h3 class="anchored" data-anchor-id="sec-measures">Kwantyfikowanie Niepewności</h3>
-<section id="błąd-standardowy" class="level4">
-<h4 class="anchored" data-anchor-id="błąd-standardowy">Błąd Standardowy</h4>
-<p><strong>Błąd standardowy</strong> (SE) kwantyfikuje, jak bardzo oszacowanie różni się w różnych możliwych próbach.</p>
+<h3 class="anchored" data-anchor-id="sec-measures">Kwantyfikowanie niepewności</h3>
+<section id="błąd-standardowy-standard-error" class="level4">
+<h4 class="anchored" data-anchor-id="błąd-standardowy-standard-error">Błąd standardowy (standard error)</h4>
+<p><strong>Błąd standardowy</strong> (standard error, SE) kwantyfikuje, jak bardzo oszacowanie zmienia się między różnymi możliwymi próbami. Mierzy konkretnie błąd próbkowania.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>Dla Proporcji:</strong> <span class="math display">SE(\hat{p}) = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}</span></p>
-<p><strong>Dla Średniej:</strong> <span class="math display">SE(\bar{x}) = \frac{s}{\sqrt{n}}</span></p>
+<p><strong>Dla proporcji:</strong></p>
+<p><span class="math display">SE(\hat{p}) = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}</span></p>
+<p><strong>Dla średniej:</strong></p>
+<p><span class="math display">SE(\bar{x}) = \frac{s}{\sqrt{n}}</span></p>
 </div><div class="column" style="width:50%;">
-<p><strong>Dla Różnicy:</strong> <span class="math display">SE(\bar{x}_1 - \bar{x}_2) = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}</span></p>
+<p><strong>Dla różnicy:</strong></p>
+<p><span class="math display">SE(\bar{x}_1 - \bar{x}_2) = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}</span></p>
 </div>
 </div>
-</section>
-<section id="margines-błędu" class="level4">
-<h4 class="anchored" data-anchor-id="margines-błędu">Margines Błędu</h4>
-<p><strong>Margines błędu</strong> (MOE) reprezentuje oczekiwaną maksymalną różnicę między oszacowaniem z próby a prawdziwym parametrem.</p>
-<p><span class="math display">\text{MOE} = \text{Wartość Krytyczna} \times \text{Błąd Standardowy}</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Zrozumienie Wartości Krytycznej
+Co mówi nam SE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Błąd standardowy kwantyfikuje <strong>tylko błąd próbkowania</strong>. Nie uwzględnia błędów systematycznych (obciążenia), błędów pomiaru ani innych źródeł niepewności.</p>
+</div>
+</div>
+</section>
+<section id="margines-błędu-margin-of-error" class="level4">
+<h4 class="anchored" data-anchor-id="margines-błędu-margin-of-error">Margines błędu (margin of error)</h4>
+<p><strong>Margines błędu</strong> (margin of error, MOE) reprezentuje oczekiwaną maksymalną różnicę między oszacowaniem z próby a prawdziwym parametrem.</p>
+<p><span class="math display">\text{MOE} = \text{Wartość krytyczna} \times \text{Błąd standardowy}</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Rozumienie wartości krytycznej
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Dla 95% ufności używamy 1,96 (często upraszczane do 2). To zapewnia, że ~95% przedziałów skonstruowanych w ten sposób będzie zawierać prawdziwy parametr.</p>
+<p>Dla 95% ufności używamy 1,96 (często upraszczane do 2). Zapewnia to, że ~95% przedziałów skonstruowanych w ten sposób będzie zawierać prawdziwy parametr.</p>
 <ul>
 <li>90% ufności: z = 1,645</li>
 <li>95% ufności: z = 1,96</li>
@@ -2335,43 +2393,76 @@ Zrozumienie Wartości Krytycznej
 </div>
 </div>
 </section>
-<section id="przedziały-ufności" class="level4">
-<h4 class="anchored" data-anchor-id="przedziały-ufności">Przedziały Ufności</h4>
-<p><strong>Przedział ufności</strong> dostarcza zakres prawdopodobnych wartości:</p>
-<p><span class="math display">\text{CI} = \text{Oszacowanie} \pm (\text{Wartość Krytyczna} \times \text{Błąd Standardowy})</span></p>
+<section id="przedziały-ufności-confidence-intervals" class="level4">
+<h4 class="anchored" data-anchor-id="przedziały-ufności-confidence-intervals">Przedziały ufności (confidence intervals)</h4>
+<p><strong>Przedział ufności</strong> (confidence interval) dostarcza zakres prawdopodobnych wartości:</p>
+<p><span class="math display">\text{CI} = \text{Oszacowanie} \pm (\text{Wartość krytyczna} \times \text{Błąd standardowy})</span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ważne ograniczenie
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Przedziały ufności kwantyfikują <strong>niepewność próbkowania</strong>, ale zakładają brak błędu systematycznego. Doskonale precyzyjne oszacowanie (wąski przedział ufności) może nadal być obciążone, jeśli projekt badania jest wadliwy.</p>
+</div>
+</div>
 <hr>
 </section>
 </section>
 <section id="sec-polling" class="level3">
-<h3 class="anchored" data-anchor-id="sec-polling">Praktyczne Zastosowanie: Sondaże Opinii</h3>
+<h3 class="anchored" data-anchor-id="sec-polling">Praktyczne zastosowanie: Sondaże opinii publicznej</h3>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Studium Przypadku: Sondaże Polityczne
+Studium przypadku: Sondaże polityczne
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Gdy sondaż podaje “Kandydat A: 52%, Kandydat B: 48%”, jest to <strong>niepełne</strong> bez kwantyfikacji niepewności.</p>
+<p>Gdy sondaż raportuje “Kandydat A: 52%, Kandydat B: 48%”, jest to <strong>niekompletne</strong> bez kwantyfikacji niepewności.</p>
 </div>
 </div>
-<section id="złota-zasada-sondaży" class="level4">
-<h4 class="anchored" data-anchor-id="złota-zasada-sondaży">Złota Zasada Sondaży</h4>
-<p>Przy ~1000 losowo wybranych respondentach:</p>
+<section id="złota-zasada-sondażowania" class="level4">
+<h4 class="anchored" data-anchor-id="złota-zasada-sondażowania">Złota zasada sondażowania</h4>
+<p>Przy ~1000 losowo wybranych respondentów:</p>
 <ul>
 <li><strong>Margines błędu</strong>: ±3 punkty procentowe (95% ufności)</li>
-<li><strong>Interpretacja</strong>: Zgłoszone 52% oznacza prawdziwe poparcie prawdopodobnie między 49% a 55%</li>
+<li><strong>Interpretacja</strong>: Raportowane 52% oznacza, że prawdziwe poparcie prawdopodobnie wynosi między 49% a 55%</li>
+<li><strong>Co to obejmuje</strong>: Tylko losowy błąd próbkowania—zakłada brak systematycznego obciążenia</li>
 </ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Kluczowe rozróżnienie
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Margines błędu ±3% kwantyfikuje <strong>tylko niepewność próbkowania</strong>. Nie uwzględnia:</p>
+<ul>
+<li>Błędu pokrycia (coverage bias): kto jest wykluczony z operatu losowania</li>
+<li>Błędu braku odpowiedzi (non-response bias): kto odmawia udziału</li>
+<li>Błędu odpowiedzi (response bias): ludzie nieprawdziwie raportujący swoje poglądy</li>
+<li>Efektów czasowych (timing effects): zmiany opinii między sondażem a wyborem</li>
+</ul>
+</div>
+</div>
 </section>
-<section id="wielkość-próby-i-precyzja" class="level4">
-<h4 class="anchored" data-anchor-id="wielkość-próby-i-precyzja">Wielkość Próby i Precyzja</h4>
+<section id="wielkość-próby-a-precyzja" class="level4">
+<h4 class="anchored" data-anchor-id="wielkość-próby-a-precyzja">Wielkość próby a precyzja</h4>
 <table class="table-striped table-hover caption-top table">
 <thead>
 <tr class="header">
-<th>Wielkość Próby</th>
-<th>Margines Błędu (95%)</th>
+<th>Wielkość próby</th>
+<th>Margines błędu (95%)</th>
 <th>Zastosowanie</th>
 </tr>
 </thead>
@@ -2409,30 +2500,46 @@ Studium Przypadku: Sondaże Polityczne
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Prawo Malejących Przychodów
+Prawo malejących przychodów
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Aby zmniejszyć margines błędu o połowę, potrzebujesz <strong>cztery razy</strong> większej próby, ponieważ <span class="math inline">\text{MOE} \propto 1/\sqrt{n}</span></p>
+<p>Aby zmniejszyć margines błędu o połowę, potrzeba <strong>czterokrotnie większej</strong> próby, ponieważ <span class="math inline">\text{MOE} \propto 1/\sqrt{n}</span></p>
+<p>To dotyczy tylko <strong>błędu próbkowania</strong>. Podwojenie próby z 1000 do 2000 nie naprawi systematycznych problemów, takich jak stronnicze sformułowanie pytań czy niereprezentacyjne metody doboru próby.</p>
 </div>
 </div>
 </section>
-<section id="co-powinny-raportować-sondaże" class="level4">
-<h4 class="anchored" data-anchor-id="co-powinny-raportować-sondaże">Co Powinny Raportować Sondaże</h4>
-<p>Wysokiej jakości sondaże muszą ujawniać:</p>
-<ul class="task-list">
-<li><label><input type="checkbox">Daty przeprowadzenia badania</label></li>
-<li><label><input type="checkbox">Definicję i wielkość próby</label></li>
-<li><label><input type="checkbox">Sposób traktowania niezdecydowanych wyborców</label></li>
-<li><label><input type="checkbox">Margines błędu próbkowania</label></li>
-<li><label><input type="checkbox">Niepewność w marginesach głosowania</label></li>
+<section id="co-powinny-raportować-jakościowe-sondaże" class="level4">
+<h4 class="anchored" data-anchor-id="co-powinny-raportować-jakościowe-sondaże">Co powinny raportować jakościowe sondaże</h4>
+<p>Transparentny sondaż ujawnia:</p>
+<ul>
+<li><strong>Daty badania</strong>: Kiedy zebrano dane?</li>
+<li><strong>Populacja i metoda doboru próby</strong>: Kto został przebadany i jak zostali wybrani?</li>
+<li><strong>Wielkość próby</strong>: Ile osób odpowiedziało?</li>
+<li><strong>Wskaźnik odpowiedzi</strong> (response rate): Jaki odsetek skontaktowanych osób wziął udział?</li>
+<li><strong>Procedury ważenia</strong> (weighting procedures): Jak próba została dostosowana do charakterystyk populacji?</li>
+<li><strong>Margines błędu próbkowania</strong>: Kwantyfikacja niepewności próbkowania</li>
+<li><strong>Brzmienie pytań</strong>: Dokładny tekst zadanych pytań</li>
 </ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Luka w raportowaniu
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Większość doniesień medialnych wspomina tylko liczby wynikowe i czasami margines błędu. Rzadko omawiają potencjalne obciążenia systematyczne, które mogą być znacznie większe niż błąd próbkowania.</p>
+</div>
+</div>
 <hr>
 </section>
 </section>
 <section id="sec-viz" class="level3">
-<h3 class="anchored" data-anchor-id="sec-viz">Wizualizacja: Zmienność Próbkowania</h3>
-<p>Poniższa symulacja pokazuje, jak zachowują się przedziały ufności przy powtarzanym próbkowaniu:</p>
+<h3 class="anchored" data-anchor-id="sec-viz">Wizualizacja: Zmienność próbkowania</h3>
+<p>Poniższa symulacja demonstruje, jak zachowują się przedziały ufności przy powtarzanym próbkowaniu:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Pokaż kod symulacji</summary>
@@ -2447,15 +2554,15 @@ Prawo Malejących Przychodów
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Symulacja niezależnych sondaży</span></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>support <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n_polls, n_people, true_support) <span class="sc">/</span> n_people</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Obliczanie błędów standardowych i marginesów błędu</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Obliczenie błędów standardowych i marginesów błędu</span></span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>se   <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(support <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> support) <span class="sc">/</span> n_people)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>moe  <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> se  <span class="co"># Uproszczony mnożnik dla jasności</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>moe  <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> se  <span class="co"># Uproszczony mnożnik dla przejrzystości</span></span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzenie przedziałów ufności</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Utworzenie przedziałów ufności</span></span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">pmax</span>(<span class="dv">0</span>, support <span class="sc">-</span> moe)</span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">pmin</span>(<span class="dv">1</span>, support <span class="sc">+</span> moe)</span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Sprawdzanie pokrycia</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Sprawdzenie pokrycia</span></span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>covers <span class="ot">&lt;-</span> (lower <span class="sc">&lt;=</span> true_support) <span class="sc">&amp;</span> (upper <span class="sc">&gt;=</span> true_support)</span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>n_cover <span class="ot">&lt;-</span> <span class="fu">sum</span>(covers)</span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
@@ -2464,7 +2571,7 @@ Prawo Malejących Przychodów
 <span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  support, se, moe, lower, upper, covers</span>
 <span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzenie wizualizacji</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Utworzenie wizualizacji</span></span>
 <span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">x =</span> poll, <span class="at">y =</span> support, <span class="at">color =</span> covers)) <span class="sc">+</span></span>
 <span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper), </span>
 <span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
@@ -2475,22 +2582,22 @@ Prawo Malejących Przychodów
 <span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
 <span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"forestgreen"</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"darkorange"</span>),</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"Pokrywa prawdę"</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"Mija się z prawdą"</span>),</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"Obejmuje prawdę"</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"Mija prawdę"</span>),</span>
 <span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">name   =</span> <span class="cn">NULL</span></span>
 <span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent,</span>
 <span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">title    =</span> <span class="st">"Zmienność Próbkowania w 20 Niezależnych Sondażach"</span>,</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">title    =</span> <span class="st">"Zmienność próbkowania w 20 niezależnych sondażach"</span>,</span>
 <span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste0</span>(</span>
 <span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Każdy sondaż: n = "</span>, n_people, <span class="st">" | Prawdziwa wartość = "</span>,</span>
 <span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>      scales<span class="sc">::</span><span class="fu">percent</span>(true_support),</span>
 <span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>      <span class="st">" | Pokrycie: "</span>, n_cover, <span class="st">"/"</span>, n_polls,</span>
 <span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>      <span class="st">" ("</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> n_cover <span class="sc">/</span> n_polls), <span class="st">"%)"</span></span>
 <span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Numer Sondażu"</span>,</span>
-<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Oszacowane Poparcie"</span>,</span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Słupki błędu pokazują przybliżone 95% przedziały ufności"</span></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Numer sondażu"</span>,</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Oszacowane poparcie"</span>,</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Słupki błędów pokazują przybliżone 95% przedziały ufności"</span></span>
 <span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span></span>
 <span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
@@ -2513,69 +2620,226 @@ Prawo Malejących Przychodów
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Kluczowa Obserwacja
+Kluczowa obserwacja
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Większość przedziałów obejmuje prawdziwą wartość, ale niektóre “mijają się” wyłącznie z powodu losowości próbkowania. Jest to oczekiwane i kwantyfikowalne.</p>
+<p>Większość przedziałów obejmuje prawdziwą wartość, ale niektóre “chybiają” wyłącznie z powodu <strong>losowości próbkowania</strong>. Jest to oczekiwane i możliwe do skwantyfikowania—taka jest natura losowego błędu próbkowania.</p>
+<p><strong>Ważne</strong>: Ta symulacja zakłada <strong>brak systematycznego obciążenia</strong>. W rzeczywistych sondażach błędy systematyczne (błąd braku odpowiedzi, problemy z pokryciem, efekty sformułowania pytań) mogą przesunąć wszystkie oszacowania w tym samym kierunku, czyniąc je konsekwentnie błędnymi nawet przy dużych próbach.</p>
 </div>
 </div>
 <hr>
 </section>
 <section id="sec-misconceptions" class="level3">
-<h3 class="anchored" data-anchor-id="sec-misconceptions">Częste Błędne Przekonania</h3>
+<h3 class="anchored" data-anchor-id="sec-misconceptions">Powszechne błędne przekonania</h3>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Czego NIE Mówi Nam Margines Błędu
+Błędne przekonanie #1: Margines błędu obejmuje całą niepewność
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>❌ <strong>Mit</strong>: “Prawdziwa wartość na pewno mieści się w marginesie błędu” ✅ <strong>Rzeczywistość</strong>: Nadal istnieje 5% szans, że jest poza (przy 95% ufności)</p>
-<p>❌ <strong>Mit</strong>: “Margines błędu obejmuje wszystkie typy błędów” ✅ <strong>Rzeczywistość</strong>: Obejmuje tylko losowy błąd próbkowania, nie systematyczne obciążenie</p>
-<p>❌ <strong>Mit</strong>: “Większe próby eliminują wszystkie błędy” ✅ <strong>Rzeczywistość</strong>: Redukują tylko błąd losowy; obciążenie pozostaje niezmienione</p>
+<p>❌ <strong>Mit</strong>: “Prawdziwa wartość na pewno znajduje się w marginesie błędu”</p>
+<p>✅ <strong>Rzeczywistość</strong>:</p>
+<ul>
+<li>Przy 95% ufności nadal istnieje <strong>5% szansa</strong>, że prawdziwa wartość znajduje się poza przedziałem wyłącznie z powodu losowości próbkowania</li>
+<li>Co ważniejsze, margines błędu <strong>obejmuje tylko błąd próbkowania</strong>, nie obciążenia systematyczne</li>
+<li>Rzeczywiste sondaże często mają większe błędy z powodu błędu braku odpowiedzi, sformułowania pytań czy problemów z pokryciem niż z błędu próbkowania</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Błędne przekonanie #2: Większe próby naprawiają wszystko
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>❌ <strong>Mit</strong>: “Jeśli tylko przebadamy więcej ludzi, wyeliminujemy wszystkie błędy”</p>
+<p>✅ <strong>Rzeczywistość</strong>:</p>
+<ul>
+<li>Większe próby redukują <strong>błąd losowy</strong> (szczególnie błąd próbkowania): bardziej precyzyjne oszacowania</li>
+<li>Większe próby <strong>NIE</strong> redukują <strong>błędu systematycznego</strong>: obciążenie pozostaje niezmienione</li>
+<li>Sondaż 10 000 osób z 70% wskaźnikiem odpowiedzi i obciążonym operatem losowania da precyzyjnie błędną odpowiedź</li>
+<li>Lepiej mieć 1000 dobrze wybranych respondentów niż 10 000 źle wybranych</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Błędne przekonanie #3: Losowy = niedbały
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>❌ <strong>Mit</strong>: “Błąd losowy oznacza, że doszło do pomyłki”</p>
+<p>✅ <strong>Rzeczywistość</strong>:</p>
+<ul>
+<li>Błąd losowy jest <strong>nieodłączny</strong> w próbkowaniu i pomiarze—to nie jest pomyłka</li>
+<li>Nawet przy doskonałej metodologii różne losowe próby dają różne wyniki</li>
+<li>Błędy losowe są <strong>przewidywalne w agregacie</strong>, choć nieprzewidywalne indywidualnie</li>
+<li>Termin “losowy” odnosi się do wzorca (brak systematycznego kierunku), a nie do niedbalstwa</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Błędne przekonanie #4: Przedziały ufności są gwarancjami
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>❌ <strong>Mit</strong>: “95% ufności oznacza, że istnieje 95% szansa, że prawdziwa wartość jest w tym konkretnym przedziale”</p>
+<p>✅ <strong>Rzeczywistość</strong>:</p>
+<ul>
+<li>Prawdziwa wartość jest stała (ale nieznana)—albo jest w przedziale, albo nie</li>
+<li>“95% ufności” oznacza: gdybyśmy powtórzyli ten proces wiele razy, około 95% skonstruowanych przedziałów zawierałoby prawdziwą wartość</li>
+<li>Każdy konkretny przedział albo obejmuje prawdę, albo nie—po prostu nie wiemy, co jest prawdą</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Błędne przekonanie #5: Obciążenie można obliczyć jak błąd losowy
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>❌ <strong>Mit</strong>: “Możemy obliczyć obciążenie tak samo jak obliczamy błąd standardowy”</p>
+<p>✅ <strong>Rzeczywistość</strong>:</p>
+<ul>
+<li><strong>Błąd losowy</strong> jest możliwy do skwantyfikowania za pomocą teorii prawdopodobieństwa, ponieważ znamy proces próbkowania</li>
+<li><strong>Błąd systematyczny</strong> jest zazwyczaj <strong>nieznany i niemożliwy do poznania</strong> bez zewnętrznej walidacji</li>
+<li>Nie można użyć samej próby do wykrycia obciążenia—potrzeba niezależnej informacji o populacji</li>
+<li>Dlatego porównanie sondaży z wynikami wyborów jest wartościowe: ujawnia obciążenia, które nie były możliwe do skwantyfikowania wcześniej</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-failures" class="level3">
+<h3 class="anchored" data-anchor-id="sec-failures">Przykład z życia: Porażki sondażowe</h3>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Studium przypadku: Gdy sondaże mylą
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Rozważmy scenariusz, w którym 20 sondaży pokazuje, że Kandydat A prowadzi o 3-5 punktów, z marginesami błędu około ±3%. Sondaże wydają się spójne, ale wygrywa Kandydat B.</p>
+<p><strong>Co się stało?</strong></p>
+<ul>
+<li><strong>Nie błąd próbkowania</strong>: Wszystkie sondaże się zgadzały—mało prawdopodobne przy samej losowej zmienności</li>
+<li><strong>Prawdopodobnie błąd systematyczny</strong>:
+<ul>
+<li>Błąd braku odpowiedzi: Pewni wyborcy konsekwentnie odmawiali udziału</li>
+<li>Błąd społecznej pożądaności (social desirability bias): Niektórzy wyborcy nieprawdziwie raportowali swoje preferencje</li>
+<li>Błąd modelowania frekwencji (turnout modeling error): Błędne założenia o tym, kto rzeczywiście będzie głosować</li>
+<li>Błąd pokrycia: Operat losowania (np. listy telefonów) systematycznie wykluczał pewne grupy</li>
+</ul></li>
+</ul>
+<p><strong>Lekcja</strong>: Spójność między sondażami nie gwarantuje trafności. Wszystkie sondaże mogą dzielić te same obciążenia systematyczne, dając fałszywą pewność w błędnych oszacowaniach.</p>
 </div>
 </div>
 <hr>
 </section>
 <section id="sec-summary" class="level3">
-<h3 class="anchored" data-anchor-id="sec-summary">Kluczowe Wnioski</h3>
+<h3 class="anchored" data-anchor-id="sec-summary">Kluczowe wnioski</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Najważniejsze Punkty
+Najważniejsze punkty
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p><strong>Rozumienie typów błędów:</strong></p>
 <ol type="1">
-<li><strong>Dwa typy błędów</strong>: Losowy (redukowany większymi próbami) i Systematyczny (wymaga lepszego projektu)</li>
-<li><strong>Błąd standardowy</strong> mierzy typową zmienność próbkowania</li>
-<li><strong>Margines błędu</strong> ≈ 2 × SE dla 95% ufności</li>
-<li><strong>Wielkość próby</strong> i precyzja są w relacji pierwiastkowej</li>
-<li><strong>Przedziały ufności</strong> dostarczają zakresów, nie gwarancji</li>
-<li><strong>Zawsze rozważ</strong> zarówno błąd próbkowania JAK I potencjalne obciążenia</li>
+<li><strong>Błąd losowy</strong> to nieprzewidywalna zmienność, która średnio daje zero
+<ul>
+<li><strong>Błąd próbkowania</strong>: Z obserwowania próby, a nie całej populacji</li>
+<li><strong>Błąd pomiaru</strong>: Z niedoskonałych narzędzi lub procesów pomiarowych</li>
+<li>Redukowany przez: większe próby, lepsze narzędzia, więcej pomiarów</li>
+</ul></li>
+<li><strong>Błąd systematyczny (obciążenie)</strong> to konsekwentne odchylenie w jednym kierunku
+<ul>
+<li>Błąd selekcji, błąd pomiaru, błąd odpowiedzi, błąd braku odpowiedzi, itp.</li>
+<li>Redukowany przez: lepszy projekt badania, nie większe próby</li>
+</ul></li>
+</ol>
+<p><strong>Kwantyfikowanie niepewności:</strong></p>
+<ol start="3" type="1">
+<li><p><strong>Błąd standardowy</strong> mierzy typową zmienność próbkowania (jeden typ błędu losowego)</p></li>
+<li><p><strong>Margines błędu</strong> ≈ 2 × SE daje zakres dla 95% ufności o niepewności próbkowania</p></li>
+<li><p><strong>Wielkość próby</strong> i precyzja <strong>błędu próbkowania</strong> są związane: <span class="math inline">\text{SE} \propto 1/\sqrt{n}</span></p>
+<ul>
+<li>Poczwórna próba zmniejsza błąd próbkowania o połowę</li>
+<li>Malejące przychody wraz ze wzrostem n</li>
+</ul></li>
+<li><p><strong>Przedziały ufności</strong> dostarczają prawdopodobnych zakresów, ale zakładają brak obciążenia systematycznego</p></li>
+</ol>
+<p><strong>Kluczowe wnioski:</strong></p>
+<ol start="7" type="1">
+<li><p><strong>Precyzyjnie błędna odpowiedź</strong> (duża obciążona próba) jest często gorsza niż <strong>nieprecyzyjnie poprawna odpowiedź</strong> (mała nieobciążona próba)</p></li>
+<li><p><strong>Zawsze rozważ zarówno</strong> błąd próbkowania ORAZ potencjalne obciążenia systematyczne—publikowane marginesy błędu zazwyczaj ignorują te drugie</p></li>
+<li><p><strong>Transparentność ma znaczenie</strong>: Raportuj metodologię, wskaźniki odpowiedzi i potencjalne obciążenia, nie tylko oszacowania punktowe i marginesy błędu</p></li>
+<li><p><strong>Walidacja jest niezbędna</strong>: Porównuj oszacowania ze znanymi wartościami, gdy to możliwe, aby wykryć błędy systematyczne</p></li>
 </ol>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Zapamiętaj
+Priorytety praktyka
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Precyzyjna błędna odpowiedź (duża obciążona próba) jest gorsza niż nieprecyzyjna prawidłowa odpowiedź (mała nieobciążona próba).</p>
+<p>Przy projektowaniu badań:</p>
+<p><strong>Najpierw</strong>: Minimalizuj błąd systematyczny poprzez staranny projekt</p>
+<ul>
+<li>Reprezentatywne metody doboru próby</li>
+<li>Wysokie wskaźniki odpowiedzi</li>
+<li>Nieobciążone narzędzia pomiarowe</li>
+<li>Właściwe sformułowanie pytań</li>
+</ul>
+<p><strong>Następnie</strong>: Optymalizuj wielkość próby, aby osiągnąć akceptowalną precyzję</p>
+<ul>
+<li>Większe próby pomagają tylko po zajęciu się obciążeniem</li>
+<li>Równowaga między kosztem a poprawą precyzji</li>
+<li>Pamiętaj o malejących przychodach</li>
+</ul>
+<p><strong>Na koniec</strong>: Raportuj niepewność uczciwie</p>
+<ul>
+<li>Jasno określ założenia</li>
+<li>Przyznaj się do potencjalnych obciążeń</li>
+<li>Nie pozwól, aby precyzyjne oszacowania stworzyły fałszywą pewność</li>
+</ul>
 </div>
 </div>
+<hr>
 <hr>
 </section>
 </section>
@@ -2584,7 +2848,7 @@ Zapamiętaj
 <p><strong>Próbkowanie</strong> to proces wyboru podzbioru jednostek z populacji w celu oszacowania charakterystyk całej populacji. Sposób, w jaki próbkujemy, głęboko wpływa na to, co możemy wywnioskować z naszych danych.</p>
 <section id="operat-losowania-sampling-frame" class="level3">
 <h3 class="anchored" data-anchor-id="operat-losowania-sampling-frame">Operat losowania (Sampling Frame)</h3>
-<p>Zanim omówimy metody, musimy zrozumieć <strong>operant losowania</strong> — listę lub urządzenie, z którego pobieramy naszą próbę. Operant powinien idealnie obejmować każdego członka populacji dokładnie raz.</p>
+<p>Zanim omówimy metody, musimy zrozumieć <strong>operat losowania</strong> — listę lub urządzenie, z którego pobieramy naszą próbę. Operat powinien idealnie obejmować każdego członka populacji dokładnie raz.</p>
 <p><strong>Powszechne operanty losowania:</strong></p>
 <ul>
 <li>Listy wyborcze (dla dorosłych obywateli)</li>
