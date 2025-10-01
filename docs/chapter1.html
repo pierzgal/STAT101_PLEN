@@ -442,6 +442,21 @@ window.Quarto = {
   <li><a href="#key-terms-summary" id="toc-key-terms-summary" class="nav-link" data-scroll-target="#key-terms-summary">Key Terms Summary</a></li>
   </ul></li>
   <li><a href="#appendix-a-visualizations-for-statistics-demography" id="toc-appendix-a-visualizations-for-statistics-demography" class="nav-link" data-scroll-target="#appendix-a-visualizations-for-statistics-demography"><span class="header-section-number">1.25</span> Appendix A: Visualizations for Statistics &amp; Demography</a></li>
+  <li><a href="#appendix-b-central-limit-theorem-clt" id="toc-appendix-b-central-limit-theorem-clt" class="nav-link" data-scroll-target="#appendix-b-central-limit-theorem-clt"><span class="header-section-number">1.26</span> Appendix B: Central Limit Theorem (CLT)</a>
+  <ul class="collapse">
+  <li><a href="#key-insights-1" id="toc-key-insights-1" class="nav-link" data-scroll-target="#key-insights-1">Key Insights</a></li>
+  </ul></li>
+  <li><a href="#visual-demonstration-step-by-step-progression" id="toc-visual-demonstration-step-by-step-progression" class="nav-link" data-scroll-target="#visual-demonstration-step-by-step-progression"><span class="header-section-number">1.27</span> Visual Demonstration: Step-by-Step Progression</a>
+  <ul class="collapse">
+  <li><a href="#the-progressive-transformation" id="toc-the-progressive-transformation" class="nav-link" data-scroll-target="#the-progressive-transformation">The Progressive Transformation</a></li>
+  <li><a href="#comparative-analysis" id="toc-comparative-analysis" class="nav-link" data-scroll-target="#comparative-analysis">Comparative Analysis</a></li>
+  <li><a href="#superimposed-distributions" id="toc-superimposed-distributions" class="nav-link" data-scroll-target="#superimposed-distributions">Superimposed Distributions</a></li>
+  <li><a href="#standard-error-convergence" id="toc-standard-error-convergence" class="nav-link" data-scroll-target="#standard-error-convergence">Standard Error Convergence</a></li>
+  <li><a href="#numerical-summary" id="toc-numerical-summary" class="nav-link" data-scroll-target="#numerical-summary">Numerical Summary</a></li>
+  </ul></li>
+  <li><a href="#mathematical-foundation-1" id="toc-mathematical-foundation-1" class="nav-link" data-scroll-target="#mathematical-foundation-1"><span class="header-section-number">1.28</span> Mathematical Foundation</a></li>
+  <li><a href="#key-takeaways-2" id="toc-key-takeaways-2" class="nav-link" data-scroll-target="#key-takeaways-2"><span class="header-section-number">1.29</span> Key Takeaways</a></li>
+  <li><a href="#practical-significance" id="toc-practical-significance" class="nav-link" data-scroll-target="#practical-significance"><span class="header-section-number">1.30</span> Practical Significance</a></li>
   </ul>
 </nav>
     </div>
@@ -5070,6 +5085,343 @@ Warning
 <span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("population_pyramid.png", pyramid_plot, width = 8, height = 8, dpi = 300)</span></span>
 <span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("regression_diagnostics.png", diagnostic_plots, width = 12, height = 10, dpi = 300)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<hr>
+</section>
+<section id="appendix-b-central-limit-theorem-clt" class="level2" data-number="1.26">
+<h2 data-number="1.26" class="anchored" data-anchor-id="appendix-b-central-limit-theorem-clt"><span class="header-section-number">1.26</span> Appendix B: Central Limit Theorem (CLT)</h2>
+<p>The Central Limit Theorem states that the distribution of sample means approaches a normal distribution as sample size increases, <strong>regardless of the shape of the original population distribution</strong>.</p>
+<section id="key-insights-1" class="level3">
+<h3 class="anchored" data-anchor-id="key-insights-1">Key Insights</h3>
+<ul>
+<li><strong>Sample Size Threshold</strong>: Sample sizes of n ≥ 30 are typically sufficient for the CLT to apply</li>
+<li><strong>Standard Error</strong>: The standard deviation of sample means equals σ/√n, where σ is the population standard deviation</li>
+<li><strong>Statistical Foundation</strong>: We can make inferences about population parameters using normal distribution properties</li>
+</ul>
+</section>
+</section>
+<section id="visual-demonstration-step-by-step-progression" class="level2" data-number="1.27">
+<h2 data-number="1.27" class="anchored" data-anchor-id="visual-demonstration-step-by-step-progression"><span class="header-section-number">1.27</span> Visual Demonstration: Step-by-Step Progression</h2>
+<p>The most effective approach to understanding CLT is to observe the systematic transformation of the distribution as the number of dice increases. Beginning with 1 die (uniform distribution), we can observe how increasing the sample size gradually transforms the distribution into a normal distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="the-progressive-transformation" class="level3">
+<h3 class="anchored" data-anchor-id="the-progressive-transformation">The Progressive Transformation</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample sizes to demonstrate</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>sample_sizes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">50</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>num_simulations <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate for each sample size</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>all_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (n <span class="cf">in</span> sample_sizes) {</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(num_simulations, {</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    dice <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(dice)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  temp_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> means,</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> n,</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">paste</span>(n, <span class="fu">ifelse</span>(n <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"die"</span>, <span class="st">"dice"</span>))</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>  all_data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(all_data, temp_df)</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create ordered factor</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>all_data<span class="sc">$</span>label <span class="ot">&lt;-</span> <span class="fu">factor</span>(all_data<span class="sc">$</span>label, </span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels =</span> <span class="fu">paste</span>(sample_sizes, </span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>                                       <span class="fu">ifelse</span>(sample_sizes <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"die"</span>, <span class="st">"dice"</span>)))</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the progression</span></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(all_data, <span class="fu">aes</span>(<span class="at">x =</span> mean)) <span class="sc">+</span></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), </span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">40</span>, <span class="at">fill =</span> <span class="st">"#3b82f6"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>label, <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Central Limit Theorem: Step-by-Step Progression"</span>,</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">sprintf</span>(<span class="st">"Each panel shows %s simulations demonstrating the convergence to normality"</span>, </span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">format</span>(num_simulations, <span class="at">big.mark =</span> <span class="st">","</span>)),</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Mean Value"</span>,</span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">color =</span> <span class="st">"gray40"</span>),</span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#f0f0f0"</span>, <span class="at">color =</span> <span class="cn">NA</span>)</span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter1_files/figure-html/progression-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="analysis-of-progressive-stages" class="level4">
+<h4 class="anchored" data-anchor-id="analysis-of-progressive-stages">Analysis of Progressive Stages:</h4>
+<ul>
+<li><strong>1 die</strong>: Uniform (discrete) distribution - all values 1 to 6 equally probable</li>
+<li><strong>2 dice</strong>: Triangular tendency - central values more frequent</li>
+<li><strong>5 dice</strong>: Emergent bell-shaped pattern - observable clustering around 3.5</li>
+<li><strong>10 dice</strong>: Distinctly normal - narrow Gaussian curve forming</li>
+<li><strong>30 dice</strong>: Normal distribution - practical demonstration of CLT</li>
+<li><strong>50 dice</strong>: Near-ideal normal distribution - strong concentration around mean</li>
+</ul>
+<p>The distribution exhibits decreasing <strong>variability</strong> and increasingly pronounced <strong>bell-shaped characteristics</strong> as n increases.</p>
+</section>
+</section>
+<section id="comparative-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="comparative-analysis">Comparative Analysis</h3>
+<p>A cleaner comparison of key developmental stages:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>key_sizes <span class="ot">&lt;-</span> all_data <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">30</span>))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(key_sizes, <span class="fu">aes</span>(<span class="at">x =</span> mean)) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">40</span>, <span class="at">fill =</span> <span class="st">"#3b82f6"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>label, <span class="at">scales =</span> <span class="st">"free_x"</span>, <span class="at">nrow =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"CLT Evolution: From Uniform to Normal"</span>,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Mean Value"</span>,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter1_files/figure-html/horizontal-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="superimposed-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="superimposed-distributions">Superimposed Distributions</h3>
+<p>An alternative visualization method displaying all distributions simultaneously:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>comparison_data <span class="ot">&lt;-</span> all_data <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">30</span>))</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(comparison_data, <span class="fu">aes</span>(<span class="at">x =</span> mean, <span class="at">fill =</span> label, <span class="at">color =</span> label)) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#991b1b"</span>, <span class="st">"#ea580c"</span>, <span class="st">"#ca8a04"</span>, <span class="st">"#16a34a"</span>)) <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#991b1b"</span>, <span class="st">"#ea580c"</span>, <span class="st">"#ca8a04"</span>, <span class="st">"#16a34a"</span>)) <span class="sc">+</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"CLT Progression: Superimposed Distributions"</span>,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Systematic narrowing and convergence to normal form"</span>,</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Mean Value"</span>,</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span>,</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Sample Size"</span>,</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Sample Size"</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"right"</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter1_files/figure-html/overlaid-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Key Observation</strong>: As sample size increases, the distribution exhibits:</p>
+<ol type="1">
+<li>Increased <strong>symmetry</strong> (bell-shaped form)</li>
+<li>Greater <strong>concentration</strong> around the population mean (3.5)</li>
+<li>Improved <strong>conformity</strong> to the normal distribution</li>
+</ol>
+</section>
+<section id="standard-error-convergence" class="level3">
+<h3 class="anchored" data-anchor-id="standard-error-convergence">Standard Error Convergence</h3>
+<p>The dispersion (standard deviation) decreases according to the relationship SE = σ/√n:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>variance_data <span class="ot">&lt;-</span> all_data <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(n, label) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">observed_sd =</span> <span class="fu">sd</span>(mean),</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">theoretical_se =</span> <span class="fu">sqrt</span>(<span class="dv">35</span><span class="sc">/</span><span class="dv">12</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(n),</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(variance_data, <span class="fu">aes</span>(<span class="at">x =</span> n)) <span class="sc">+</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> observed_sd, <span class="at">color =</span> <span class="st">"Observed SD"</span>), </span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">linewidth =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> observed_sd, <span class="at">color =</span> <span class="st">"Observed SD"</span>), </span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> theoretical_se, <span class="at">color =</span> <span class="st">"Theoretical SE"</span>), </span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">linewidth =</span> <span class="fl">1.5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> theoretical_se, <span class="at">color =</span> <span class="st">"Theoretical SE"</span>), </span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Observed SD"</span> <span class="ot">=</span> <span class="st">"#3b82f6"</span>, </span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Theoretical SE"</span> <span class="ot">=</span> <span class="st">"#ef4444"</span>)) <span class="sc">+</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> sample_sizes) <span class="sc">+</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Standard Error Decreases as Sample Size Increases"</span>,</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Following the SE = σ/√n relationship"</span>,</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Sample Size (n)"</span>,</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Standard Deviation / Standard Error"</span>,</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="cn">NULL</span></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>)</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter1_files/figure-html/variance-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="numerical-summary" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-summary">Numerical Summary</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>summary_stats <span class="ot">&lt;-</span> all_data <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(label) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">first</span>(n),</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Observed_Mean =</span> <span class="fu">round</span>(<span class="fu">mean</span>(mean), <span class="dv">3</span>),</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Observed_SD =</span> <span class="fu">round</span>(<span class="fu">sd</span>(mean), <span class="dv">3</span>),</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Theoretical_Mean =</span> <span class="fl">3.5</span>,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Theoretical_SE =</span> <span class="fu">round</span>(<span class="fu">sqrt</span>(<span class="dv">35</span><span class="sc">/</span><span class="dv">12</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">first</span>(n)), <span class="dv">3</span>),</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Range =</span> <span class="fu">paste0</span>(<span class="st">"["</span>, <span class="fu">round</span>(<span class="fu">min</span>(mean), <span class="dv">2</span>), <span class="st">", "</span>, <span class="fu">round</span>(<span class="fu">max</span>(mean), <span class="dv">2</span>), <span class="st">"]"</span>)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>label)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(summary_stats, </span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Observed vs Theoretical Values Across Sample Sizes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Observed vs Theoretical Values Across Sample Sizes</caption>
+<colgroup>
+<col style="width: 4%">
+<col style="width: 18%">
+<col style="width: 16%">
+<col style="width: 22%">
+<col style="width: 20%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Observed_Mean</th>
+<th style="text-align: right;">Observed_SD</th>
+<th style="text-align: right;">Theoretical_Mean</th>
+<th style="text-align: right;">Theoretical_SE</th>
+<th style="text-align: left;">Range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.470</td>
+<td style="text-align: right;">1.716</td>
+<td style="text-align: right;">3.5</td>
+<td style="text-align: right;">1.708</td>
+<td style="text-align: left;">[1, 6]</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3.503</td>
+<td style="text-align: right;">1.213</td>
+<td style="text-align: right;">3.5</td>
+<td style="text-align: right;">1.208</td>
+<td style="text-align: left;">[1, 6]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3.494</td>
+<td style="text-align: right;">0.764</td>
+<td style="text-align: right;">3.5</td>
+<td style="text-align: right;">0.764</td>
+<td style="text-align: left;">[1, 6]</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">3.507</td>
+<td style="text-align: right;">0.537</td>
+<td style="text-align: right;">3.5</td>
+<td style="text-align: right;">0.540</td>
+<td style="text-align: left;">[1.7, 5.4]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">3.500</td>
+<td style="text-align: right;">0.311</td>
+<td style="text-align: right;">3.5</td>
+<td style="text-align: right;">0.312</td>
+<td style="text-align: left;">[2.27, 4.63]</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">3.498</td>
+<td style="text-align: right;">0.239</td>
+<td style="text-align: right;">3.5</td>
+<td style="text-align: right;">0.242</td>
+<td style="text-align: left;">[2.68, 4.3]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><strong>Observations:</strong></p>
+<ul>
+<li>The <strong>population mean</strong> remains constant at 3.5 (independent of sample size)</li>
+<li>The <strong>standard error</strong> exhibits systematic decline as n increases (SE ∝ 1/√n)</li>
+<li>The <strong>range</strong> narrows considerably with increasing sample size</li>
+</ul>
+</section>
+</section>
+<section id="mathematical-foundation-1" class="level2" data-number="1.28">
+<h2 data-number="1.28" class="anchored" data-anchor-id="mathematical-foundation-1"><span class="header-section-number">1.28</span> Mathematical Foundation</h2>
+<p>For a population with mean μ and finite variance σ²:</p>
+<p><span class="math display">\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right) \text{ as } n \to \infty</span></p>
+<p><strong>Standard error of the mean:</strong></p>
+<p><span class="math display">SE_{\bar{X}} = \frac{\sigma}{\sqrt{n}}</span></p>
+<p>For a fair die: μ = 3.5, σ² = 35/12 ≈ 2.917</p>
+</section>
+<section id="key-takeaways-2" class="level2" data-number="1.29">
+<h2 data-number="1.29" class="anchored" data-anchor-id="key-takeaways-2"><span class="header-section-number">1.29</span> Key Takeaways</h2>
+<ol type="1">
+<li><strong>Initial Condition</strong>: A single die exhibits a uniform (discrete) distribution</li>
+<li><strong>Progressive Transformation</strong>: As the number of observations increases, the distribution shape systematically evolves</li>
+<li><strong>Convergence to Normality</strong>: At n=30, a distinct normal distribution is observable</li>
+<li><strong>Variance Reduction</strong>: The distribution demonstrates increasing concentration around the expected value</li>
+<li><strong>Universality</strong>: The theorem applies to any population distribution with finite variance</li>
+</ol>
+</section>
+<section id="practical-significance" class="level2" data-number="1.30">
+<h2 data-number="1.30" class="anchored" data-anchor-id="practical-significance"><span class="header-section-number">1.30</span> Practical Significance</h2>
+<p>This distributional transformation enables:</p>
+<ul>
+<li>Application of normal distribution tables and properties for statistical inference</li>
+<li>Construction of confidence intervals with specified confidence levels</li>
+<li>Execution of hypothesis tests (t-tests, z-tests)</li>
+<li>Formulation of predictions about sample means with known probability</li>
+</ul>
+<p><strong>Essential Property of CLT</strong>: Although individual die rolls follow a uniform distribution, the distribution of means from multiple dice converges asymptotically to a normal distribution in a predictable manner consistent with mathematical theory, providing the foundation for classical statistical inference.</p>
+<hr>
 
 
 </section>
