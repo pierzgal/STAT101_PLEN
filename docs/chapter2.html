@@ -266,7 +266,7 @@ window.Quarto = {
   <li><a href="#discrete-data" id="toc-discrete-data" class="nav-link" data-scroll-target="#discrete-data">Discrete Data</a></li>
   <li><a href="#continuous-data" id="toc-continuous-data" class="nav-link" data-scroll-target="#continuous-data">Continuous Data</a></li>
   <li><a href="#the-discrete-continuous-spectrum" id="toc-the-discrete-continuous-spectrum" class="nav-link" data-scroll-target="#the-discrete-continuous-spectrum">The Discrete-Continuous Spectrum</a></li>
-  <li><a href="#special-case-percentages-and-rational-numbers" id="toc-special-case-percentages-and-rational-numbers" class="nav-link" data-scroll-target="#special-case-percentages-and-rational-numbers">Special Case: Percentages and Rational Numbers</a></li>
+  <li><a href="#special-case-percentages-and-proportions" id="toc-special-case-percentages-and-proportions" class="nav-link" data-scroll-target="#special-case-percentages-and-proportions">Special Case: Percentages and Proportions</a></li>
   <li><a href="#implications-for-data-analysis" id="toc-implications-for-data-analysis" class="nav-link" data-scroll-target="#implications-for-data-analysis">Implications for Data Analysis</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
@@ -349,11 +349,12 @@ Note
 <p>Understanding these set properties is crucial for grasping the nature of different data types in social sciences.</p>
 </div>
 </div>
+<hr>
 </section>
 </section>
 <section id="discrete-vs.-continuous-data" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="discrete-vs.-continuous-data"><span class="header-section-number">3.2</span> Discrete vs.&nbsp;Continuous Data</h2>
-<p>In data science and statistics, we often categorize variables as either discrete or continuous. However, the distinction is not always clear-cut, and some variables exhibit characteristics of both types. This section explores the concepts of discrete and continuous data, their differences, and the interesting cases of variables that can be treated as both or challenge our intuitive understanding.</p>
+<p>In data science and statistics, we categorize variables as either discrete or continuous. This distinction shapes how we analyze data and which statistical methods we apply. However, the boundary between these categories is not always clear-cut, and some variables exhibit characteristics of both types. This section explores discrete and continuous data, their differences, and the interesting cases of variables that challenge our intuitive understanding.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="stat_imgs/DiscreteContinuous.svg" class="img-fluid figure-img"></p>
@@ -366,10 +367,10 @@ Note
 <section id="characteristics-of-discrete-data" class="level4">
 <h4 class="anchored" data-anchor-id="characteristics-of-discrete-data">Characteristics of Discrete Data:</h4>
 <ul>
-<li>Countable</li>
+<li>Countable set of possible values</li>
 <li>Often represented by integers</li>
 <li>Can be finite or infinite</li>
-<li>No values between two adjacent data points</li>
+<li>No values exist between two adjacent data points</li>
 </ul>
 </section>
 <section id="examples" class="level4">
@@ -377,20 +378,21 @@ Note
 <ol type="1">
 <li>Number of students in a class</li>
 <li>Number of cars sold by a dealership</li>
-<li>Shoe sizes</li>
+<li>Number of coins in a piggy bank</li>
+<li>Dice rolls (1, 2, 3, 4, 5, or 6)</li>
 </ol>
 </section>
 </section>
 <section id="continuous-data" class="level3">
 <h3 class="anchored" data-anchor-id="continuous-data">Continuous Data</h3>
-<p>Continuous data can take on any value within a given range, including fractional and decimal values. It’s important to note that continuity is not solely determined by uncountability, but also by density.</p>
+<p>Continuous data can take on any value within a given range, including fractional and decimal values. Importantly, continuity is characterized by <strong>density</strong>: between any two values, there are infinitely many other possible values.</p>
 <section id="characteristics-of-continuous-data" class="level4">
 <h4 class="anchored" data-anchor-id="characteristics-of-continuous-data">Characteristics of Continuous Data:</h4>
 <ul>
-<li>Can be uncountable (like real numbers) or dense (like rational numbers)</li>
+<li>Values from dense sets (rational numbers or real numbers)</li>
 <li>Can be measured to any level of precision (theoretically)</li>
-<li>Represented by real numbers or dense subsets of real numbers</li>
-<li>There are always values between any two data points</li>
+<li>There are infinitely many values between any two data points</li>
+<li>Typically represented on a continuous scale</li>
 </ul>
 </section>
 <section id="examples-1" class="level4">
@@ -399,8 +401,26 @@ Note
 <li>Height</li>
 <li>Weight</li>
 <li>Temperature</li>
-<li>Percentages (explained further below)</li>
+<li>Time duration</li>
 </ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Mathematical Note: Density and Continuity
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Continuous data comes from <strong>dense sets</strong>, where between any two distinct values, there exists another value from the set. The most common examples are:</p>
+<ul>
+<li><strong>Real numbers</strong>: Uncountable and dense</li>
+<li><strong>Rational numbers</strong>: Countable but dense</li>
+</ul>
+<p>This density property is what gives continuous data its characteristic “smoothness” and allows us to apply calculus-based statistical methods.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="the-discrete-continuous-spectrum" class="level3">
@@ -409,53 +429,47 @@ Note
 <section id="reasons-for-treating-discrete-data-as-continuous" class="level4">
 <h4 class="anchored" data-anchor-id="reasons-for-treating-discrete-data-as-continuous">Reasons for Treating Discrete Data as Continuous:</h4>
 <ol type="1">
-<li><strong>Dense Granularity</strong>
+<li><p><strong>Fine Granularity (Small Discrete Increments)</strong></p>
 <ul>
-<li>When a discrete variable has a large number of possible values within a range, it can approximate continuity.</li>
-<li>Example: Income measured in individual cents. While technically discrete, the large number of possible values makes it behave similarly to a continuous variable.</li>
+<li>When a discrete variable has very small increments between possible values, it can approximate continuity.</li>
+<li>Example: Income measured in individual cents. While technically discrete, the tiny increments and vast number of possible values make it behave similarly to a continuous variable.</li>
 </ul></li>
-<li><strong>Analytical Convenience</strong>
+<li><p><strong>Analytical Convenience</strong></p>
 <ul>
 <li>Continuous methods often yield reasonable and useful results even for dense discrete variables.</li>
-<li>It’s often easier to use existing statistical tools if continuity is assumed, as this allows the use of calculus-based methods.</li>
+<li>Assuming continuity allows the use of calculus-based methods and existing statistical tools.</li>
 </ul></li>
-<li><strong>Approximation of Underlying Phenomena</strong>
+<li><p><strong>Approximation of Underlying Phenomena</strong></p>
 <ul>
-<li>In some cases, a discrete measurement might be an approximation of an underlying continuous process.</li>
-<li>Example: While we measure time in discrete units (seconds, minutes, hours), time itself is continuous.</li>
+<li>A discrete measurement might represent an underlying continuous process.</li>
+<li>Example: While we measure time in discrete units (seconds, minutes, hours), time itself flows continuously.</li>
 </ul></li>
 </ol>
 </section>
 <section id="examples-of-variables-with-dual-discrete-continuous-nature" class="level4">
 <h4 class="anchored" data-anchor-id="examples-of-variables-with-dual-discrete-continuous-nature">Examples of Variables with Dual Discrete-Continuous Nature:</h4>
 <ol type="1">
-<li><strong>Age</strong>
+<li><p><strong>Age</strong></p>
 <ul>
-<li>Discrete: Typically measured in whole years</li>
-<li>Continuous: Can be considered as a continuous variable in many analyses, especially when dealing with large populations</li>
+<li>Discrete: Typically reported in whole years</li>
+<li>Continuous: Can be considered as a continuous variable in many analyses, especially when dealing with large populations or when precision matters</li>
 </ul></li>
-<li><strong>Price and Income</strong>
+<li><p><strong>Price and Income</strong></p>
 <ul>
 <li>Discrete: Prices and incomes are actually measured in discrete units (e.g., cents or smallest currency unit)</li>
-<li>Continuous: In economic models and many analyses, prices and incomes are treated as continuous variables due to their dense nature and analytical convenience</li>
+<li>Continuous: In economic models and many analyses, treated as continuous variables due to their dense nature and analytical convenience</li>
 </ul></li>
-<li><strong>Test Scores</strong>
+<li><p><strong>Test Scores</strong></p>
 <ul>
-<li>Discrete: Often given as whole numbers</li>
-<li>Continuous: In statistical analyses, test scores might be treated as continuous, especially when the range of possible scores is large</li>
+<li>Discrete: Often given as whole numbers or fixed increments</li>
+<li>Continuous: In statistical analyses, may be treated as continuous, especially when the range of possible scores is large</li>
 </ul></li>
 </ol>
 </section>
 </section>
-<section id="special-case-percentages-and-rational-numbers" class="level3">
-<h3 class="anchored" data-anchor-id="special-case-percentages-and-rational-numbers">Special Case: Percentages and Rational Numbers</h3>
-<p>Percentages present an interesting case in the discrete-continuous spectrum:</p>
-<ol type="1">
-<li><strong>Rational Nature</strong>: Percentages are essentially fractions (m/100), making them rational numbers.</li>
-<li><strong>Dense but Countable</strong>: The set of rational numbers is dense (between any two rationals, there’s another rational) but also countable.</li>
-<li><strong>Practical Continuity</strong>: In most practical applications, percentages are treated as continuous due to their dense nature.</li>
-<li><strong>Finite Precision</strong>: In reality, percentages are often reported to a limited number of decimal places, creating a finite set of possible values.</li>
-</ol>
+<section id="special-case-percentages-and-proportions" class="level3">
+<h3 class="anchored" data-anchor-id="special-case-percentages-and-proportions">Special Case: Percentages and Proportions</h3>
+<p>Percentages and proportions present an interesting case in the discrete-continuous spectrum. In most practical applications, they are treated as continuous due to their dense nature, even though they have some discrete characteristics.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -468,10 +482,10 @@ Percentages: Bridging Discrete and Continuous
 <div class="callout-body-container callout-body">
 <p>Variables measured in percentages, such as unemployment rates or voter turnout, challenge our intuitive understanding of discreteness and continuity:</p>
 <ol type="1">
-<li>They are rational numbers (fractions with denominator 100), which are technically countable.</li>
-<li>They form a dense set within their range (0% to 100%), allowing for values between any two percentages.</li>
-<li>In practice, they are often treated as continuous variables due to their dense nature and analytical convenience.</li>
-<li>The precision of measurement (e.g., reporting to one or two decimal places) can impose a discrete structure on what is conceptually a dense set.</li>
+<li><strong>Rational Nature</strong>: Percentages are essentially fractions (m/100), making them rational numbers.</li>
+<li><strong>Dense but Countable</strong>: The set of rational numbers is dense (between any two rationals, there’s another rational) but also countable—illustrating that density and countability are independent properties.</li>
+<li><strong>Practical Continuity</strong>: In most applications, percentages are treated as continuous due to their dense nature and analytical convenience.</li>
+<li><strong>Finite Precision</strong>: In reality, percentages are often reported to a limited number of decimal places, creating a finite (discrete) set of possible values.</li>
 </ol>
 <p>This duality allows for flexible analytical approaches, depending on the specific research context and required precision.</p>
 </div>
@@ -481,7 +495,7 @@ Percentages: Bridging Discrete and Continuous
 <h3 class="anchored" data-anchor-id="implications-for-data-analysis">Implications for Data Analysis</h3>
 <p>Understanding the nuanced nature of variables as discrete, continuous, or somewhere in between has important implications for data analysis:</p>
 <ol type="1">
-<li><strong>Flexibility in Modeling</strong>: It allows for the use of a wider range of statistical techniques.</li>
+<li><strong>Flexibility in Modeling</strong>: Allows for the use of a wider range of statistical techniques.</li>
 <li><strong>Simplified Calculations</strong>: Treating dense discrete data as continuous can simplify calculations and make certain analyses more tractable.</li>
 <li><strong>Improved Interpretability</strong>: In some cases, treating discrete data as continuous can lead to more intuitive or useful interpretations of results.</li>
 <li><strong>Potential for Error</strong>: It’s important to be aware of when approximations are appropriate and when they might lead to misleading results.</li>
@@ -490,7 +504,7 @@ Percentages: Bridging Discrete and Continuous
 </section>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
-<p>The distinction between discrete and continuous data is not always rigid in social sciences. Many variables, including those involving money, percentages, or dense measurements, can be viewed through both discrete and continuous lenses. The choice of treatment should be guided by the nature of the data, the goals of the analysis, and the potential implications of the choice. This flexibility, when used thoughtfully, provides powerful tools for social science researchers to gain insights from their data.</p>
+<p>The distinction between discrete and continuous data is not always rigid in practice. Many variables, including those involving money, percentages, or dense measurements, can be viewed through both discrete and continuous lenses. <strong>When in doubt, consider both your measurement precision and your analytical goals when deciding how to treat a variable.</strong> The choice should be guided by the nature of the data, the goals of the analysis, and the potential implications of the choice. This flexibility, when used thoughtfully, provides powerful tools for researchers to gain insights from their data.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
