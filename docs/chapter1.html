@@ -683,11 +683,11 @@ The EDA Approach
 </div>
 <section id="simple-tools-for-exploring-data" class="level3">
 <h3 class="anchored" data-anchor-id="simple-tools-for-exploring-data">Simple Tools for Exploring Data</h3>
-<p><strong>1. Summary Numbers</strong></p>
+<p><strong>1. Summary Numbers</strong> (<em>Descriptive Statistics</em>)</p>
 <p>These are basic calculations that describe your data:</p>
 <p><strong>Finding the “Typical” Value:</strong></p>
 <ul>
-<li><strong>Mean (Average)</strong>: Add up all values and divide by how many you have. Example: If 5 students scored 70, 80, 85, 90, and 100 on a test, the average is 85.</li>
+<li><strong>Arithmetic Mean (Average)</strong>: Add up all values and divide by how many you have. Example: If 5 students scored 70, 80, 85, 90, and 100 on a test, the average is 85.</li>
 <li><strong>Median (Middle)</strong>: The value in the middle when you line up all numbers from smallest to largest. In our test example, the median is also 85.</li>
 <li><strong>Mode (Most Common)</strong>: The value that appears most often. If ten families have 1, 2, 2, 2, 2, 3, 3, 3, 4, and 5 children, the mode is 2 children.</li>
 </ul>
@@ -703,7 +703,7 @@ The EDA Approach
 <li><strong>Box Plots</strong>: Show the middle of your data and help spot unusual values</li>
 <li><strong>Scatter Plots</strong>: Display relationships between two variables (such as hours studied versus test scores)</li>
 <li><strong>Time (Series) Graphs</strong>: Show how something changes over time (like temperature throughout the year)</li>
-<li><strong>Histograms</strong>: Show how many values fall into different ranges</li>
+<li><strong>Histograms</strong>: A histogram is a graphical representation of data that shows the frequency distribution of a dataset. It consists of adjacent bars (with no gaps between them) where each bar represents a range of values (called a bin or class interval), and the height of the bar shows how many data points (what proportion of data points) fall within that range. Histograms are used to visualize the shape, spread, and central tendency of numerical data.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -711,10 +711,10 @@ The EDA Approach
 <figcaption>https://commons.wikimedia.org/wiki/File:%C5%81%C3%B3d%C5%BA_population_pyramid.svg</figcaption>
 </figure>
 </div>
-<p><strong>3. Looking for Connections</strong>:</p>
+<p><strong>3. Looking for Connections/Associations</strong>:</p>
 <ul>
 <li>Do two variables move together? (When one goes up, does the other go up too?)</li>
-<li>Can you draw a line that roughly fits your data points?</li>
+<li>Can you draw a line (<em>regression line</em>) that roughly fits your data points?</li>
 <li>Do you see any clear patterns or trends?</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -741,6 +741,7 @@ Using the Same Techniques for Different Purposes
 <li>Is any data missing?</li>
 <li>Do different groups show different patterns?</li>
 </ul>
+<hr>
 </section>
 </section>
 <section id="inferential-statistics" class="level2" data-number="1.3">
@@ -759,6 +760,34 @@ Note
 <div class="callout-body-container callout-body">
 <p>A <strong>random sample</strong> requires that each member has a known, non-zero chance of being selected, not necessarily an equal chance.</p>
 <p>When every member has an equal chance of selection, that’s specifically called a simple random sample - which is the most basic type.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A Soup-Tasting Analogy
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="stat_imgs/soup-svgrepo-com.svg" class="img-fluid" style="width:30.0%"></p>
+<p>Consider a chef preparing soup for 100 people who needs to assess its flavor without consuming the entire batch:</p>
+<p><strong>Population</strong>: The entire pot of soup (100 servings)<br>
+<strong>Sample</strong>: A single spoonful for tasting<br>
+<strong>Population Parameter</strong>: The true average saltiness of the complete pot (unknown)<br>
+<strong>Sample Statistic</strong>: The saltiness level detected in the spoonful (observable, a point estimate)<br>
+<strong>Statistical Inference</strong>: Using the spoonful’s characteristics to draw conclusions about the entire pot</p>
+<section id="key-principles" class="level3">
+<h3 class="anchored" data-anchor-id="key-principles">Key Principles</h3>
+<p><strong>1. Random sampling is essential</strong>: The chef must thoroughly stir the soup before sampling. Consistently sampling from the surface might miss seasoning that has settled, introducing systematic bias.</p>
+<p><strong>2. Sample size affects precision</strong>: A larger spoonful provides more reliable information about overall flavor than a small sip, though practical constraints (costs, time) limit sample size.</p>
+<p><strong>3. Uncertainty is inherent</strong>: Even with proper sampling technique, the spoonful might not perfectly represent the entire pot’s characteristics.</p>
+<p><strong>4. Systematic bias undermines inference</strong>: If someone secretly adds salt only to the sampling area, conclusions about the whole pot become invalid—illustrating how sampling bias distorts statistical inference.</p>
+<p><strong>5. Inference has scope limitations</strong>: The sample can estimate average saltiness but cannot reveal whether some portions are saltier than others, highlighting the limits of what samples can tell us about population variability.</p>
+<p>This analogy captures the essence of statistical reasoning: using carefully selected samples to learn about larger populations while explicitly acknowledging and quantifying the inherent uncertainty in this process.</p>
+</section>
 </div>
 </div>
 <p>For example: You survey 100 students about their study habits and want to say something about all 10,000 students at your university.</p>
@@ -783,40 +812,14 @@ EDA Before Inference
 </div>
 </div>
 <hr>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-A Soup-Tasting Analogy
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><img src="stat_imgs/soup-svgrepo-com.svg" class="img-fluid" style="width:30.0%"></p>
-<p>Consider a chef preparing soup for 100 people who needs to assess its flavor without consuming the entire batch:</p>
-<p><strong>Population</strong>: The entire pot of soup (100 servings)<br>
-<strong>Sample</strong>: A single spoonful for tasting<br>
-<strong>Population Parameter</strong>: The true average saltiness of the complete pot (unknown)<br>
-<strong>Sample Statistic</strong>: The saltiness level detected in the spoonful (observable)<br>
-<strong>Statistical Inference</strong>: Using the spoonful’s characteristics to draw conclusions about the entire pot</p>
-<section id="key-principles" class="level3">
-<h3 class="anchored" data-anchor-id="key-principles">Key Principles</h3>
-<p><strong>1. Random sampling is essential</strong>: The chef must thoroughly stir the soup before sampling. Consistently sampling from the surface might miss seasoning that has settled, introducing systematic bias.</p>
-<p><strong>2. Sample size affects precision</strong>: A larger spoonful provides more reliable information about overall flavor than a small sip, though practical constraints (costs, time) limit sample size.</p>
-<p><strong>3. Uncertainty is inherent</strong>: Even with proper sampling technique, the spoonful might not perfectly represent the entire pot’s characteristics.</p>
-<p><strong>4. Systematic bias undermines inference</strong>: If someone secretly adds salt only to the sampling area, conclusions about the whole pot become invalid—illustrating how sampling bias distorts statistical inference.</p>
-<p><strong>5. Inference has scope limitations</strong>: The sample can estimate average saltiness but cannot reveal whether some portions are saltier than others, highlighting the limits of what samples can tell us about population variability.</p>
-<p>This analogy captures the essence of statistical reasoning: using carefully selected samples to learn about larger populations while explicitly acknowledging and quantifying the inherent uncertainty in this process.</p>
-</section>
-</div>
-</div>
-<p>For example, if a survey of 1,000 households finds that 23% include three generations living together, inferential statistics helps us:</p>
+<blockquote class="blockquote">
+<p>For example, if a survey of 1,000 households finds that 23% (<strong>point estimate</strong>) include three generations living together, inferential statistics helps us:</p>
+</blockquote>
 <ul>
-<li>Estimate that between 20% and 26% of all households in the population likely have this structure (confidence interval)</li>
-<li>Test whether this percentage has increased compared to a decade ago (hypothesis testing)</li>
-<li>Examine whether multigenerational living is more common in certain ethnic groups (comparison of groups)</li>
-<li>Predict future trends based on current patterns (regression and forecasting)</li>
+<li>Estimate that between 20% and 26% of all households in the population likely have this structure (<strong>confidence interval</strong>)</li>
+<li>Test whether this percentage has increased compared to a decade ago (<strong>hypothesis testing</strong>)</li>
+<li>Examine whether multigenerational living is more common in certain ethnic groups (<strong>comparison of groups</strong>)</li>
+<li>Predict future trends based on current patterns (<strong>regression and forecasting</strong>)</li>
 </ul>
 <hr>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -843,8 +846,9 @@ Understanding Randomness
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>A <strong>random experiment</strong> is any process whose result cannot be predicted with certainty, such as tossing a coin or rolling a die. An <strong>outcome</strong> is a single possible result of that experiment—for example, getting “heads” or rolling a “5”. An <strong>event</strong> is a set of one or more outcomes that we’re interested in; it could be a simple event (like rolling exactly a 3) or a compound event (like rolling an even number, which includes the outcomes 2, 4, and 6).</p>
 <blockquote class="blockquote">
-<p>Probability is a way of measuring how likely something is to happen. It’s a number between 0 and 1 (or 0% and 100%) that represents the chance of an event occurring.</p>
+<p><strong>Probability</strong> is a way of measuring how likely something is to happen. It’s a number between 0 and 1 (or 0% and 100%) that represents the chance of an event occurring.</p>
 </blockquote>
 <p>If something has a probability of 0, it’s impossible - it will never happen. If something has a probability of 1, it’s certain - it will definitely happen. Most things fall somewhere in between.</p>
 <p>For example, when you flip a fair coin, there’s a 0.5 (or 50%) probability it will land on heads, because there are two equally likely outcomes and heads is one of them.</p>

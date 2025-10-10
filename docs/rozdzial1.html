@@ -676,7 +676,7 @@ Podejście EDA
 <p>Są to podstawowe obliczenia, które opisują nasze dane:</p>
 <p><strong>Miary Tendencji Centralnej</strong> - gdzie znajduje się centrum (średnia, “wartość typowa/oczekiwana”) danych?</p>
 <ul>
-<li><strong>Średnia</strong> (<em>Mean</em>): Suma wszystkich wartości podzielona przez ich liczbę. Przykład: Jeśli 5 studentów uzyskało na teście 70, 80, 85, 90 i 100 punktów, średnia wynosi 85.</li>
+<li><strong>Średnia arytmetyczna</strong> (<em>Mean</em>): Suma wszystkich wartości podzielona przez ich liczbę. Przykład: Jeśli 5 studentów uzyskało na teście 70, 80, 85, 90 i 100 punktów, średnia wynosi 85.</li>
 <li><strong>Mediana</strong> (<em>Median</em>): Wartość środkowa, gdy ustawimy wszystkie liczby od najmniejszej do największej. W naszym przykładzie mediana również wynosi 85.</li>
 <li><strong>Moda</strong> (<em>Mode</em>): Wartość występująca najczęściej. Jeśli dziesięć rodzin ma 1, 2, 2, 2, 2, 3, 3, 3, 4 i 5 dzieci, modą są 2 dzieci.</li>
 </ul>
@@ -692,7 +692,7 @@ Podejście EDA
 <li><strong>Wykresy Pudełkowe</strong> (<em>Box Plots</em>): Pokazują środek danych i pomagają wykryć wartości nietypowe</li>
 <li><strong>Wykresy Rozrzutu</strong> (<em>Scatter Plots</em>): Pokazują związki między dwiema zmiennymi (np. godziny nauki a wyniki testów)</li>
 <li><strong>Wykresy Szeregów Czasowych</strong> (<em>Time Series Graphs</em>): Pokazują zmiany w czasie (np. temperatura w ciągu roku)</li>
-<li><strong>Histogramy</strong> (<em>Histograms</em>): Pokazują, ile wartości przypada na różne przedziały</li>
+<li><strong>Histogramy</strong> (<em>Histograms</em>): <strong>Histogram</strong> to graficzna reprezentacja danych, która pokazuje rozkład częstości zbioru danych. Składa się z przylegających do siebie słupków (bez przerw między nimi), gdzie każdy słupek reprezentuje przedział wartości (nazywany przedziałem klasowym), a wysokość słupka pokazuje, jaka część danych mieści się w tym przedziale. Histogramy służą do wizualizacji kształtu, rozrzutu i tendencji centralnej danych liczbowych.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -703,9 +703,10 @@ Podejście EDA
 <p><strong>3. Poszukiwanie Zależności</strong>:</p>
 <ul>
 <li>Czy dwie zmienne zmieniają się razem? (Kiedy jedna rośnie, czy druga też rośnie?)</li>
-<li>Czy można dopasować linię do danych?</li>
+<li>Czy można dopasować linię (<em>linię regresji</em>) do danych?</li>
 <li>Czy widoczne są jakieś wyraźne wzorce lub trendy?</li>
 </ul>
+<hr>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -730,6 +731,7 @@ Wykorzystanie Tych Samych Technik do Różnych Celów
 <li>Czy brakuje jakichś danych?</li>
 <li>Czy różne grupy wykazują różne wzorce?</li>
 </ul>
+<hr>
 </section>
 </section>
 <section id="wnioskowanie-statystyczne-inferential-statistics" class="level2" data-number="2.3">
@@ -750,6 +752,35 @@ Note
 <p>Gdy każdy element ma równe prawdopodobieństwo wyboru, nazywamy to konkretnie prostą próbą losową - jest to najbardziej podstawowy typ.</p>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Wnioskowanie z próby o cechach populacji: Analogia „próbowania zupy”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="stat_imgs/soup-svgrepo-com.svg" class="img-fluid" style="width:30.0%"></p>
+<p>Rozważmy kucharza przygotowującego zupę dla 100 osób, który musi ocenić jej smak bez konsumowania całego garnka:</p>
+<p><strong>Populacja</strong>: Cały garnek zupy (100 porcji)</p>
+<p><strong>Próba</strong>: Jedna łyżka do spróbowania</p>
+<p><strong>Parametr populacji</strong>: Prawdziwy średni poziom słoności całego garnka (nieznany)</p>
+<p><strong>Statystyka z próby</strong>: Poziom słoności wykryty w łyżce (“estymacja punktowa”)</p>
+<p><strong>Wnioskowanie statystyczne</strong>: Używanie charakterystyk łyżki do wyciągania wniosków o całym garnku</p>
+<section id="ważne" class="level3">
+<h3 class="anchored" data-anchor-id="ważne">Ważne</h3>
+<p><strong>1. Losowe próbkowanie jest niezbędne</strong>: Kucharz musi dokładnie wymieszać zupę przed pobraniem próbki. Konsekwentne pobieranie próbek z powierzchni może pominąć przyprawy, które osiadły, wprowadzając systematyczne obciążenie.</p>
+<p><strong>2. Wielkość próby wpływa na precyzję</strong>: Większa łyżka dostarcza bardziej wiarygodnych informacji o ogólnym smaku niż mały łyk, choć np. koszty i czas ograniczają możliwość dowolnego zwiększania próby.</p>
+<p><strong>3. Niepewność jest nieodłączna</strong>: Nawet przy właściwej technice próbkowania (sampling), łyżka może nie reprezentować idealnie charakterystyk całego garnka.</p>
+<p><strong>4. Systematyczne obciążenie/stronniczość (bias) podważa wnioskowanie</strong>: Jeśli ktoś potajemnie doda sól tylko do obszaru próbkowania, wnioski o całym garnku stają się nieważne — ilustrując, jak obciążenie próbkowania zniekształca wnioskowanie statystyczne.</p>
+<p><strong>5. Wnioskowanie ma ograniczenia zakresu</strong>: Próba może oszacować średnią słoność, ale nie może ujawnić, czy niektóre części są bardziej słone niż inne, podkreślając granice tego, co próby mogą nam powiedzieć o zmienności w populacji.</p>
+<p>Ta analogia chwyta istotę rozumowania statystycznego: używanie starannie wybranych prób do poznawania większych populacji przy jednoczesnym jawnym uznawaniu i kwantyfikacji nieodłącznej niepewności w tym procesie.</p>
+</section>
+</div>
+</div>
+<hr>
 <p>Przykład: Przeprowadzamy ankietę wśród 100 studentów na temat ich nawyków związanych z nauką i chcemy powiedzieć coś o wszystkich 10 000 studentach na uczelni.</p>
 <p><img src="stat_imgs/random-sample.svg" class="img-fluid"></p>
 <p><strong>Co robimy za pomocą Statystyki Inferencyjnej:</strong></p>
@@ -772,42 +803,14 @@ EDA Przed Wnioskowaniem
 </div>
 </div>
 <hr>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Wnioskowanie z próby o cechach populacji: Analogia „próbowania zupy”
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><img src="stat_imgs/soup-svgrepo-com.svg" class="img-fluid" style="width:30.0%"></p>
-<p>Rozważmy kucharza przygotowującego zupę dla 100 osób, który musi ocenić jej smak bez konsumowania całego garnka:</p>
-<p><strong>Populacja</strong>: Cały garnek zupy (100 porcji)</p>
-<p><strong>Próba</strong>: Jedna łyżka do spróbowania</p>
-<p><strong>Parametr populacji</strong>: Prawdziwy średni poziom słoności całego garnka (nieznany)</p>
-<p><strong>Statystyka z próby</strong>: Poziom słoności wykryty w łyżce (obserwowalny)</p>
-<p><strong>Wnioskowanie statystyczne</strong>: Używanie charakterystyk łyżki do wyciągania wniosków o całym garnku</p>
-<section id="ważne" class="level3">
-<h3 class="anchored" data-anchor-id="ważne">Ważne</h3>
-<p><strong>1. Losowe próbkowanie jest niezbędne</strong>: Kucharz musi dokładnie wymieszać zupę przed pobraniem próbki. Konsekwentne pobieranie próbek z powierzchni może pominąć przyprawy, które osiadły, wprowadzając systematyczne obciążenie.</p>
-<p><strong>2. Wielkość próby wpływa na precyzję</strong>: Większa łyżka dostarcza bardziej wiarygodnych informacji o ogólnym smaku niż mały łyk, choć np. koszty i czas ograniczają możliwość dowolnego zwiększania próby.</p>
-<p><strong>3. Niepewność jest nieodłączna</strong>: Nawet przy właściwej technice próbkowania (sampling), łyżka może nie reprezentować idealnie charakterystyk całego garnka.</p>
-<p><strong>4. Systematyczne obciążenie/stronniczość (bias) podważa wnioskowanie</strong>: Jeśli ktoś potajemnie doda sól tylko do obszaru próbkowania, wnioski o całym garnku stają się nieważne — ilustrując, jak obciążenie próbkowania zniekształca wnioskowanie statystyczne.</p>
-<p><strong>5. Wnioskowanie ma ograniczenia zakresu</strong>: Próba może oszacować średnią słoność, ale nie może ujawnić, czy niektóre części są bardziej słone niż inne, podkreślając granice tego, co próby mogą nam powiedzieć o zmienności w populacji.</p>
-<p>Ta analogia chwyta istotę rozumowania statystycznego: używanie starannie wybranych prób do poznawania większych populacji przy jednoczesnym jawnym uznawaniu i kwantyfikacji nieodłącznej niepewności w tym procesie.</p>
-</section>
-</div>
-</div>
 <blockquote class="blockquote">
-<p>Na przykład, jeśli badanie 1000 gospodarstw domowych stwierdza, że 23% obejmuje trzy pokolenia mieszkające razem, statystyka inferencyjna pomaga nam:</p>
+<p>Na przykład, jeśli badanie 1000 gospodarstw domowych stwierdza, że 23% (<em>estymacja punktowa</em>) obejmuje trzy pokolenia mieszkające razem, statystyka inferencyjna pomaga nam:</p>
 </blockquote>
 <ul>
-<li>Oszacować, że między 20% a 26% wszystkich gospodarstw w populacji prawdopodobnie ma taką strukturę (przedział ufności)</li>
-<li>Sprawdzić, czy ten odsetek wzrósł w porównaniu do poprzedniej dekady (testowanie hipotez)</li>
-<li>Zbadać, czy mieszkanie wielopokoleniowe jest bardziej powszechne w niektórych grupach etnicznych (porównanie grup)</li>
-<li>Przewidzieć przyszłe trendy na podstawie obecnych wzorców (regresja i prognozowanie)</li>
+<li>Oszacować, że między 20% a 26% wszystkich gospodarstw w populacji prawdopodobnie ma taką strukturę (<strong>przedział ufności</strong>)</li>
+<li>Sprawdzić, czy ten odsetek wzrósł w porównaniu do poprzedniej dekady (<strong>testowanie hipotez</strong>)</li>
+<li>Zbadać, czy mieszkanie wielopokoleniowe jest bardziej powszechne w niektórych grupach etnicznych (<strong>porównanie grup</strong>)</li>
+<li>Przewidzieć przyszłe trendy na podstawie obecnych wzorców (<strong>regresja i prognozowanie</strong>)</li>
 </ul>
 <hr>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -833,8 +836,9 @@ Czym jest losowość?
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p><strong>Doświadczenie losowe</strong> to każdy proces, którego wyniku nie można przewidzieć z pewnością, na przykład rzut monetą lub kostką. <strong>Wynik</strong> to pojedynczy możliwy rezultat tego doświadczenia—na przykład uzyskanie “orła” lub wyrzucenie “5”. <strong>Zdarzenie</strong> to zbiór jednego lub więcej wyników, którymi jesteśmy zainteresowani; może to być zdarzenie elementarne (jak wyrzucenie dokładnie 3) lub zdarzenie złożone (jak wyrzucenie liczby parzystej, co obejmuje wyniki 2, 4 i 6).</p>
 <blockquote class="blockquote">
-<p>Prawdopodobieństwo to sposób mierzenia, jaka jest szansa, że coś się wydarzy (miara niepewności). Jest to liczba między 0 a 1 (lub 0% i 100%), która reprezentuje szansę wystąpienia danego zdarzenia.</p>
+<p><strong>Prawdopodobieństwo</strong> to sposób mierzenia, jaka jest szansa, że coś się wydarzy (miara niepewności). Jest to liczba między 0 a 1 (lub 0% i 100%), która reprezentuje szansę wystąpienia danego zdarzenia.</p>
 </blockquote>
 <p>Jeśli coś ma prawdopodobieństwo 0, jest niemożliwe - nigdy się nie wydarzy. Jeśli coś ma prawdopodobieństwo 1, jest pewne - na pewno się wydarzy. Większość rzeczy mieści się gdzieś pomiędzy.</p>
 <p>Na przykład, gdy rzucasz uczciwą monetą, prawdopodobieństwo, że wypadnie orzeł, wynosi 0,5 (czyli 50%), ponieważ są dwa równie prawdopodobne wyniki, a orzeł jest jednym z nich.</p>
