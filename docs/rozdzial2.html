@@ -70,6 +70,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -934,234 +977,190 @@ Tip
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Statistical Measures Applicability / Zastosowanie miar statystycznych
+Dlaczego dodawanie/odejmowanie działa dla danych interwałowych, ale mnożenie/dzielenie wymaga danych ilorazowych
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p><strong>Skale interwałowe</strong> mają równe odstępy między wartościami, ale arbitralny punkt zerowy (np. temperatura w Celsjuszach, daty kalendarzowe). <strong>Skale ilorazowe</strong> mają zarówno równe odstępy, jak i bezwzględne zero (np. temperatura w Kelwinach, wzrost, masa).</p>
+<section id="dodawanie-i-odejmowanie-prawidłowe-dla-skal-interwałowych" class="level3">
+<h3 class="anchored" data-anchor-id="dodawanie-i-odejmowanie-prawidłowe-dla-skal-interwałowych">Dodawanie i odejmowanie: prawidłowe dla skal interwałowych</h3>
+<p><strong>Różnice zachowują spójne proporcjonalne relacje</strong> przy transformacjach liniowych. Przy konwersji między skalami za pomocą <span class="math inline">y = a + bx</span> gdzie <span class="math inline">b &gt; 0</span>, stała addytywna <span class="math inline">a</span> się redukuje:</p>
+<p><span class="math display">(y_2 - y_1) = (a + bx_2) - (a + bx_1) = b(x_2 - x_1)</span></p>
+<p><strong>Przykład:</strong> Przy konwersji z Celsjusza na Fahrenheita gdzie <span class="math inline">F = 1.8C + 32</span>:</p>
+<ul>
+<li>Każda różnica 10°C zawsze konwertuje się na 18°F: <span class="math inline">18 = 1.8 \times 10</span></li>
+<li>Sprawdźmy <span class="math inline">(20°C - 10°C) \rightarrow (68°F - 50°F) = 18°F</span></li>
+<li>Sprawdźmy <span class="math inline">(100°C - 90°C) \rightarrow (212°F - 194°F) = 18°F</span></li>
+</ul>
+<p>Relacja jest <strong>spójna</strong>: różnica 10 stopni Celsjusza zawsze odpowiada różnicy 18 stopni Fahrenheita, niezależnie od tego, gdzie na skali mierzymy.</p>
+</section>
+<section id="mnożenie-i-dzielenie-wymagają-skal-ilorazowych" class="level3">
+<h3 class="anchored" data-anchor-id="mnożenie-i-dzielenie-wymagają-skal-ilorazowych">Mnożenie i dzielenie: wymagają skal ilorazowych</h3>
+<p><strong>Ilorazy są niespójne</strong>, gdy punkt zerowy jest arbitralny. Stała addytywna <span class="math inline">a</span> NIE redukuje się w ilorazach:</p>
+<p><span class="math display">\frac{y_2}{y_1} = \frac{a + bx_2}{a + bx_1} \neq b \cdot \frac{x_2}{x_1}</span></p>
+<p>Jeśli <span class="math inline">a \neq 0</span> (brak bezwzględnego zera), ilorazy zmieniają się nieprzewidywalnie w zależności od porównywanych wartości.</p>
+<p><strong>Przykład:</strong> Ilorazy temperatur dają niespójne wyniki:</p>
+<ul>
+<li>Czy 20°C jest “dwa razy cieplej” niż 10°C?
+<ul>
+<li>Celsjusz: <span class="math inline">20/10 = 2.0</span></li>
+<li>Fahrenheit: <span class="math inline">68/50 = 1.36</span></li>
+<li>Kelwin: <span class="math inline">293.15/283.15 = 1.035</span></li>
+</ul></li>
+<li>A co z 100°C vs.&nbsp;90°C?
+<ul>
+<li>Celsjusz: <span class="math inline">100/90 = 1.11</span></li>
+<li>Fahrenheit: <span class="math inline">212/194 = 1.09</span></li>
+</ul></li>
+</ul>
+<p>Ilorazy różnią się w zależności zarówno od skali, JAK I od porównywanych temperatur. Tylko przy bezwzględnym zerze ilorazy mają spójne fizyczne znaczenie.</p>
+</section>
+<section id="implikacje-dla-miar-statystycznych" class="level3">
+<h3 class="anchored" data-anchor-id="implikacje-dla-miar-statystycznych">Implikacje dla miar statystycznych</h3>
+<p><strong>Średnia arytmetyczna jest prawidłowa dla skal interwałowych</strong>, ponieważ wykorzystuje dodawanie:</p>
+<p><span class="math display">\bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}</span></p>
+<p>Przy transformacji do skali <span class="math inline">y</span>, średnia transformuje się spójnie: <span class="math inline">\bar{y} = a + b\bar{x}</span></p>
+<p><strong>Średnia geometryczna wymaga skal ilorazowych</strong>, ponieważ wykorzystuje mnożenie:</p>
+<p><span class="math display">\text{SG} = \sqrt[n]{x_1 \times x_2 \times \cdots \times x_n}</span></p>
+<p>Średnia geometryczna temperatur w Celsjuszach daje inny wynik niż średnia geometryczna tych samych temperatur w Fahrenheitach (po konwersji). To czyni średnią geometryczną bezsensowną dla danych interwałowych.</p>
+<p><strong>Przykład:</strong> Dla temperatur 10°C i 20°C:</p>
+<ul>
+<li>Średnia geometryczna w Celsjuszach: <span class="math inline">\sqrt{10 \times 20} = 14.14°C \rightarrow 57.45°F</span></li>
+<li>Średnia geometryczna w Fahrenheitach: <span class="math inline">\sqrt{50 \times 68} = 58.31°F \rightarrow 14.62°C</span></li>
+</ul>
+<p>Te wartości się nie zgadzają! Średnia geometryczna zależy od arbitralnego punktu zerowego.</p>
+</section>
+<section id="wariancja-i-odchylenie-standardowe-prawidłowe-dla-skal-interwałowych" class="level3">
+<h3 class="anchored" data-anchor-id="wariancja-i-odchylenie-standardowe-prawidłowe-dla-skal-interwałowych">Wariancja i odchylenie standardowe: prawidłowe dla skal interwałowych</h3>
+<p><strong>Wariancja i odchylenie standardowe są dopuszczalne dla danych interwałowych</strong>, ponieważ operują na odchyleniach od średniej, które są różnicami. Co kluczowe, <strong>wariancja jest niezmienna względem translacji</strong>: dodanie stałej do wszystkich wartości nie zmienia wariancji, ponieważ odchylenia pozostają takie same.</p>
+<p>Przy transformacji liniowej <span class="math inline">y = a + bx</span>, wariancja transformuje się przewidywalnie:</p>
+<p><span class="math display">\text{Var}(y) = b^2 \text{Var}(x)</span></p>
+<p>Stała <span class="math inline">a</span> redukuje się przy obliczaniu odchyleń, tak jak przy prostych różnicach.</p>
+<p><strong>Przykład dowodu:</strong> Dla temperatur 10°C i 20°C:</p>
+<p><strong>W Celsjuszach:</strong></p>
+<ul>
+<li>Średnia: <span class="math inline">\bar{x} = (10 + 20)/2 = 15°C</span></li>
+<li>Odchylenia: <span class="math inline">(10 - 15) = -5</span>, <span class="math inline">(20 - 15) = 5</span></li>
+<li>Wariancja: <span class="math inline">\text{Var}(X) = [(-5)^2 + (5)^2]/2 = 50/2 = 25°C^2</span></li>
+<li>Odchylenie standardowe: <span class="math inline">\text{SD}(X) = 5°C</span></li>
+</ul>
+<p><strong>W Fahrenheitach:</strong></p>
+<ul>
+<li>Konwersja: 10°C → 50°F, 20°C → 68°F</li>
+<li>Średnia: <span class="math inline">\bar{y} = (50 + 68)/2 = 59°F</span></li>
+<li>Odchylenia: <span class="math inline">(50 - 59) = -9</span>, <span class="math inline">(68 - 59) = 9</span></li>
+<li>Wariancja: <span class="math inline">\text{Var}(Y) = [(-9)^2 + (9)^2]/2 = 162/2 = 81°F^2</span></li>
+<li>Odchylenie standardowe: <span class="math inline">\text{SD}(Y) = 9°F</span></li>
+</ul>
+<p><strong>Sprawdzenie transformacji:</strong></p>
+<ul>
+<li>Nachylenie konwersji: <span class="math inline">b = 1.8</span> (z <span class="math inline">F = 1.8C + 32</span>)</li>
+<li>Przewidywana wariancja: <span class="math inline">1.8^2 \times 25 = 3.24 \times 25 = 81°F^2</span> ✓</li>
+<li>Przewidywane odchylenie: <span class="math inline">1.8 \times 5 = 9°F</span> ✓</li>
+</ul>
+<p><strong>Idealne dopasowanie!</strong> Wariancja i odchylenie standardowe transformują się spójnie i przewidywalnie, czyniąc je prawidłowymi miarami rozproszenia dla danych interwałowych.</p>
+<p><strong>Demonstracja niezmienności względem translacji:</strong> Jeśli przesuniemy wszystkie temperatury o +100°C (dodając 110°C i 120°C):</p>
+<ul>
+<li>Nowa średnia: <span class="math inline">(110 + 120)/2 = 115°C</span></li>
+<li>Nowe odchylenia: <span class="math inline">(110 - 115) = -5</span>, <span class="math inline">(120 - 115) = 5</span></li>
+<li>Nowa wariancja: <span class="math inline">\text{Var}(X) = [(-5)^2 + (5)^2]/2 = 25°C^2</span> (niezmieniona!)</li>
+</ul>
+<p>Wariancja pozostaje 25°C², ponieważ rozproszenie się nie zmieniło, zmienił się tylko punkt odniesienia.</p>
+<p><strong>Kluczowa zasada:</strong> Operacje oparte na dodawaniu/odejmowaniu i różnicach działają dla skal interwałowych, ponieważ arbitralna stała <span class="math inline">a</span> się redukuje. Operacje obejmujące mnożenie/dzielenie lub ilorazy wymagają skal ilorazowych, ponieważ <span class="math inline">a</span> zniekształca wyniki. Wariancja i odchylenie standardowe działają, ponieważ są niezmienne względem translacji i oparte na odchyleniach od średniej (różnicach), a nie ilorazach.</p>
+</section>
+<section id="podsumowanie-prawidłowe-miary-statystyczne-według-skali-pomiarowej" class="level3">
+<h3 class="anchored" data-anchor-id="podsumowanie-prawidłowe-miary-statystyczne-według-skali-pomiarowej">Podsumowanie: prawidłowe miary statystyczne według skali pomiarowej</h3>
 <table class="caption-top table">
 <colgroup>
+<col style="width: 29%">
 <col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
+<col style="width: 17%">
+<col style="width: 19%">
 <col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Measure (EN)</th>
-<th>Miara (PL)</th>
-<th style="text-align: center;">Nominal</th>
-<th style="text-align: center;">Ordinal</th>
-<th style="text-align: center;">Interval</th>
-<th style="text-align: center;">Ratio</th>
+<th style="text-align: left;">Miary statystyczne</th>
+<th style="text-align: center;">Nominalna</th>
+<th style="text-align: center;">Porządkowa</th>
+<th style="text-align: center;">Interwałowa</th>
+<th style="text-align: center;">Ilorazowa</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Central Tendency / Tendencja centralna:</strong></td>
-<td></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td>Mode</td>
-<td>Dominanta</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="odd">
-<td>Median</td>
-<td>Mediana</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="even">
-<td>Arithmetic Mean</td>
-<td>Średnia arytmetyczna</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="odd">
-<td>Geometric Mean</td>
-<td>Średnia geometryczna</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="even">
-<td>Harmonic Mean</td>
-<td>Średnia harmoniczna</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="odd">
-<td>Trimmed Mean</td>
-<td>Średnia ucinana</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="even">
-<td><strong>Dispersion / Rozproszenie:</strong></td>
-<td></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td>Frequency Distribution</td>
-<td>Rozkład częstości</td>
+<td style="text-align: left;"><strong>Dominanta</strong></td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td>Range</td>
-<td>Rozstęp</td>
-<td style="text-align: center;">−</td>
+<td style="text-align: left;"><strong>Mediana</strong></td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td>Interquartile Range (IQR)</td>
-<td>Rozstęp międzykwartylowy</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
+<td style="text-align: left;"><strong>Średnia arytmetyczna</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td>Quartile Deviation</td>
-<td>Odchylenie ćwiartkowe</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
+<td style="text-align: left;"><strong>Średnia geometryczna</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td>Mean Absolute Deviation (MAD)</td>
-<td>Średnie odchylenie bezwzględne</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
+<td style="text-align: left;"><strong>Wariancja i odchylenie stand.</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td>Variance</td>
-<td>Wariancja</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓*</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="odd">
-<td>Standard Deviation</td>
-<td>Odchylenie standardowe</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓*</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="even">
-<td>Coefficient of Variation (CV)</td>
-<td>Współczynnik zmienności</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="odd">
-<td><strong>Association / Współzależność:</strong></td>
-<td></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td>Chi-square (χ²)</td>
-<td>Chi-kwadrat</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
+<td style="text-align: left;"><strong>Kowariancja</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td>Cramér’s V</td>
-<td>V Craméra</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-</tr>
-<tr class="even">
-<td>Spearman’s rho (ρ)</td>
-<td>Korelacja Spearmana</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="odd">
-<td>Kendall’s tau (τ)</td>
-<td>Tau Kendalla</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
+<td style="text-align: left;"><strong>Korelacja Pearsona</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td>Pearson’s r</td>
-<td>Korelacja Pearsona</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓*</td>
+<td style="text-align: left;"><strong>Korelacja Spearmana</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td>Covariance</td>
-<td>Kowariancja</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓*</td>
+<td style="text-align: left;"><strong>Współczynnik zmienności</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 </tr>
 </tbody>
 </table>
-<p>* Theoretically problematic but commonly used in practice / Teoretycznie problematyczne, ale powszechnie stosowane w praktyce</p>
-<section id="notes-uwagi" class="level3">
-<h3 class="anchored" data-anchor-id="notes-uwagi">Notes / Uwagi:</h3>
-<ol type="1">
-<li><strong>Measurement Scales / Skale pomiarowe:</strong>
+<p><strong>Uwagi:</strong></p>
 <ul>
-<li><strong>Nominal</strong>: Categories without order (e.g., gender, color) / Kategorie bez uporządkowania (np. płeć, kolor)</li>
-<li><strong>Ordinal</strong>: Ordered categories (e.g., education level, satisfaction) / Kategorie uporządkowane (np. poziom wykształcenia, satysfakcja)</li>
-<li><strong>Interval</strong>: Equal intervals, arbitrary zero (e.g., temperature in °C, IQ) / Równe interwały, umowne zero (np. temperatura w °C, IQ)</li>
-<li><strong>Ratio</strong>: Equal intervals, absolute zero (e.g., height, income) / Równe interwały, absolutne zero (np. wzrost, dochód)</li>
-</ul></li>
-<li><strong>Practical Considerations / Aspekty praktyczne:</strong>
-<ul>
-<li>Measures marked with * are commonly applied to interval data despite theoretical concerns about the arbitrary zero point / Miary oznaczone * są powszechnie stosowane dla danych przedziałowych pomimo zastrzeżeń teoretycznych dotyczących umownego zera</li>
-<li>Higher-level scales inherit all measures from lower levels (ratio &gt; interval &gt; ordinal &gt; nominal) / Skale wyższego poziomu dziedziczą wszystkie miary z poziomów niższych</li>
-<li>For skewed distributions, robust measures (median, IQR) may be preferred over mean and SD / Dla rozkładów skośnych, miary odporne (mediana, IQR) mogą być preferowane nad średnią i SD</li>
-</ul></li>
-</ol>
+<li><strong>Skale nominalne</strong> (np. kolory, kategorie) obsługują tylko miary oparte na częstościach, jak dominanta</li>
+<li><strong>Skale porządkowe</strong> (np. rankingi, skale Likerta) dodają medianę i korelacje oparte na rangach</li>
+<li><strong>Skale interwałowe</strong> (np. Celsjusz, daty kalendarzowe) obsługują wszystkie miary oparte na dodawaniu/odejmowaniu</li>
+<li><strong>Skale ilorazowe</strong> (np. wzrost, masa, Kelwin) dodatkowo obsługują miary wymagające mnożenia/dzielenia i sensownych ilorazów</li>
+<li>Współczynnik zmienności (<span class="math inline">\text{CV} = \text{SD}/\text{Średnia}</span>) wymaga sensownego punktu zerowego, więc tylko skale ilorazowe</li>
+</ul>
 </section>
 </div>
 </div>

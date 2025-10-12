@@ -981,23 +981,103 @@ Exercise: Identifying Measurement Scales
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Statistical Measures Applicability / Zastosowanie miar statystycznych
+Why Addition/Subtraction Works for Interval Data, but Multiplication/Division Requires Ratio Data
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p><strong>Interval scales</strong> have equal intervals between values but an arbitrary zero point (e.g., Celsius temperature, calendar dates). <strong>Ratio scales</strong> have both equal intervals and an absolute zero (e.g., Kelvin temperature, height, weight).</p>
+<section id="addition-and-subtraction-valid-for-interval-scales" class="level3">
+<h3 class="anchored" data-anchor-id="addition-and-subtraction-valid-for-interval-scales">Addition and Subtraction: Valid for Interval Scales</h3>
+<p><strong>Differences maintain consistent proportional relationships</strong> under linear transformations. When converting between scales using <span class="math inline">y = a + bx</span> where <span class="math inline">b &gt; 0</span>, the additive constant <span class="math inline">a</span> cancels out:</p>
+<p><span class="math display">(y_2 - y_1) = (a + bx_2) - (a + bx_1) = b(x_2 - x_1)</span></p>
+<p><strong>Example:</strong> Using Celsius to Fahrenheit conversion where <span class="math inline">F = 1.8C + 32</span>:</p>
+<ul>
+<li>Any 10°C difference always converts to 18°F: <span class="math inline">18 = 1.8 \times 10</span></li>
+<li>Try <span class="math inline">(20°C - 10°C) \rightarrow (68°F - 50°F) = 18°F</span></li>
+<li>Try <span class="math inline">(100°C - 90°C) \rightarrow (212°F - 194°F) = 18°F</span></li>
+</ul>
+<p>The relationship is <strong>consistent</strong>: a 10-degree Celsius difference always corresponds to an 18-degree Fahrenheit difference, regardless of where on the scale we measure.</p>
+</section>
+<section id="multiplication-and-division-require-ratio-scales" class="level3">
+<h3 class="anchored" data-anchor-id="multiplication-and-division-require-ratio-scales">Multiplication and Division: Require Ratio Scales</h3>
+<p><strong>Ratios are inconsistent</strong> when the zero point is arbitrary. The additive constant <span class="math inline">a</span> does NOT cancel out in ratios:</p>
+<p><span class="math display">\frac{y_2}{y_1} = \frac{a + bx_2}{a + bx_1} \neq b \cdot \frac{x_2}{x_1}</span></p>
+<p>Unless <span class="math inline">a = 0</span> (absolute zero), ratios change unpredictably depending on which values you compare.</p>
+<p><strong>Example:</strong> Temperature ratios give inconsistent results:</p>
+<ul>
+<li>Is 20°C “twice as hot” as 10°C?
+<ul>
+<li>Celsius: <span class="math inline">20/10 = 2.0</span></li>
+<li>Fahrenheit: <span class="math inline">68/50 = 1.36</span></li>
+<li>Kelvin: <span class="math inline">293.15/283.15 = 1.035</span></li>
+</ul></li>
+<li>What about 100°C vs.&nbsp;90°C?
+<ul>
+<li>Celsius: <span class="math inline">100/90 = 1.11</span></li>
+<li>Fahrenheit: <span class="math inline">212/194 = 1.09</span></li>
+</ul></li>
+</ul>
+<p>The ratios vary depending on both the scale AND which temperatures we pick. Only with an absolute zero do ratios have consistent physical meaning.</p>
+</section>
+<section id="implications-for-statistical-measures" class="level3">
+<h3 class="anchored" data-anchor-id="implications-for-statistical-measures">Implications for Statistical Measures</h3>
+<p><strong>Arithmetic mean is valid for interval scales</strong> because it uses addition:</p>
+<p><span class="math display">\bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}</span></p>
+<p>When we transform to scale <span class="math inline">y</span>, the mean transforms consistently: <span class="math inline">\bar{y} = a + b\bar{x}</span></p>
+<p><strong>Geometric mean requires ratio scales</strong> because it uses multiplication:</p>
+<p><span class="math display">GM = \sqrt[n]{x_1 \times x_2 \times \cdots \times x_n}</span></p>
+<p>The geometric mean of temperatures in Celsius gives a different result than the geometric mean of the same temperatures in Fahrenheit (after converting back). This makes the geometric mean meaningless for interval data.</p>
+<p><strong>Example:</strong> For temperatures 10°C and 20°C:</p>
+<ul>
+<li>Geometric mean in Celsius: <span class="math inline">\sqrt{10 \times 20} = 14.14°C \rightarrow 57.45°F</span></li>
+<li>Geometric mean in Fahrenheit: <span class="math inline">\sqrt{50 \times 68} = 58.31°F \rightarrow 14.62°C</span></li>
+</ul>
+<p>These don’t match! The geometric mean depends on the arbitrary zero point.</p>
+</section>
+<section id="variance-and-standard-deviation-valid-for-interval-scales" class="level3">
+<h3 class="anchored" data-anchor-id="variance-and-standard-deviation-valid-for-interval-scales">Variance and Standard Deviation: Valid for Interval Scales</h3>
+<p><strong>Variance and standard deviation are acceptable for interval data</strong> because they operate on deviations from the mean, which are differences. Critically, <strong>variance is translation-invariant</strong>: adding a constant to all values doesn’t change the variance because the deviations remain the same.</p>
+<p>Under linear transformation <span class="math inline">y = a + bx</span>, variance transforms predictably:</p>
+<p><span class="math inline">\text{Var}(y) = b^2 \text{Var}(x)</span></p>
+<p>The constant <span class="math inline">a</span> cancels out when computing deviations, just as it does for simple differences.</p>
+<p><strong>Example proof:</strong> For temperatures 10°C and 20°C:</p>
+<p><strong>In Celsius:</strong></p>
+<ul>
+<li>Mean: <span class="math inline">\bar{x} = (10 + 20)/2 = 15°C</span></li>
+<li>Deviations: <span class="math inline">(10 - 15) = -5</span>, <span class="math inline">(20 - 15) = 5</span></li>
+<li>Variance: <span class="math inline">\text{Var}(X) = [(-5)^2 + (5)^2]/2 = 50/2 = 25°C^2</span></li>
+<li>Standard deviation: <span class="math inline">\text{SD}(X) = 5°C</span></li>
+</ul>
+<p><strong>In Fahrenheit:</strong></p>
+<ul>
+<li>Convert: 10°C → 50°F, 20°C → 68°F</li>
+<li>Mean: <span class="math inline">\bar{y} = (50 + 68)/2 = 59°F</span></li>
+<li>Deviations: <span class="math inline">(50 - 59) = -9</span>, <span class="math inline">(68 - 59) = 9</span></li>
+<li>Variance: <span class="math inline">\text{Var}(Y) = [(-9)^2 + (9)^2]/2 = 162/2 = 81°F^2</span></li>
+<li>Standard deviation: <span class="math inline">\text{SD}(Y) = 9°F</span></li>
+</ul>
+<p><strong>Check the transformation:</strong></p>
+<ul>
+<li>Conversion slope: <span class="math inline">b = 1.8</span> (from <span class="math inline">F = 1.8C + 32</span>)</li>
+<li>Predicted variance: <span class="math inline">1.8^2 \times 25 = 3.24 \times 25 = 81°F^2</span> ✓</li>
+<li>Predicted SD: <span class="math inline">1.8 \times 5 = 9°F</span> ✓</li>
+</ul>
+<p><strong>Perfect match!</strong> The variance and standard deviation transform consistently and predictably, making them valid measures of spread for interval data.</p>
+<p><strong>Translation-invariance demonstration:</strong> If we shift all temperatures by +100°C (adding 110°C and 120°C):</p>
+<ul>
+<li>New mean: <span class="math inline">(110 + 120)/2 = 115°C</span></li>
+<li>New deviations: <span class="math inline">(110 - 115) = -5</span>, <span class="math inline">(120 - 115) = 5</span></li>
+<li>New variance: <span class="math inline">\text{Var}(X) = [(-5)^2 + (5)^2]/2 = 25°C^2</span> (unchanged!)</li>
+</ul>
+<p>The variance remains 25°C² because the spread hasn’t changed, only the location shifted.</p>
+<p><strong>Key principle:</strong> Operations based on addition/subtraction and differences work for interval scales because the arbitrary constant <span class="math inline">a</span> cancels out. Operations involving multiplication/division or ratios require ratio scales because <span class="math inline">a</span> distorts the results. Variance and SD work because they’re translation-invariant and based on deviations from the mean (differences), not ratios.</p>
+</section>
+<section id="summary-valid-statistical-measures-by-measurement-scale" class="level3">
+<h3 class="anchored" data-anchor-id="summary-valid-statistical-measures-by-measurement-scale">Summary: Valid Statistical Measures by Measurement Scale</h3>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Measure (EN)</th>
-<th>Miara (PL)</th>
+<th style="text-align: left;">Statistical Measure</th>
 <th style="text-align: center;">Nominal</th>
 <th style="text-align: center;">Ordinal</th>
 <th style="text-align: center;">Interval</th>
@@ -1006,209 +1086,78 @@ Statistical Measures Applicability / Zastosowanie miar statystycznych
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Central Tendency / Tendencja centralna:</strong></td>
-<td></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td>Mode</td>
-<td>Dominanta</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="odd">
-<td>Median</td>
-<td>Mediana</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="even">
-<td>Arithmetic Mean</td>
-<td>Średnia arytmetyczna</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="odd">
-<td>Geometric Mean</td>
-<td>Średnia geometryczna</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="even">
-<td>Harmonic Mean</td>
-<td>Średnia harmoniczna</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="odd">
-<td>Trimmed Mean</td>
-<td>Średnia ucinana</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="even">
-<td><strong>Dispersion / Rozproszenie:</strong></td>
-<td></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td>Frequency Distribution</td>
-<td>Rozkład częstości</td>
+<td style="text-align: left;"><strong>Mode</strong></td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td>Range</td>
-<td>Rozstęp</td>
-<td style="text-align: center;">−</td>
+<td style="text-align: left;"><strong>Median</strong></td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td>Interquartile Range (IQR)</td>
-<td>Rozstęp międzykwartylowy</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
+<td style="text-align: left;"><strong>Arithmetic Mean</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td>Quartile Deviation</td>
-<td>Odchylenie ćwiartkowe</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
+<td style="text-align: left;"><strong>Geometric Mean</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td>Mean Absolute Deviation (MAD)</td>
-<td>Średnie odchylenie bezwzględne</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
+<td style="text-align: left;"><strong>Variance &amp; SD</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td>Variance</td>
-<td>Wariancja</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓*</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="odd">
-<td>Standard Deviation</td>
-<td>Odchylenie standardowe</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓*</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="even">
-<td>Coefficient of Variation (CV)</td>
-<td>Współczynnik zmienności</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="odd">
-<td><strong>Association / Współzależność:</strong></td>
-<td></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td>Chi-square (χ²)</td>
-<td>Chi-kwadrat</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
+<td style="text-align: left;"><strong>Covariance</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td>Cramér’s V</td>
-<td>V Craméra</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-</tr>
-<tr class="even">
-<td>Spearman’s rho (ρ)</td>
-<td>Korelacja Spearmana</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-</tr>
-<tr class="odd">
-<td>Kendall’s tau (τ)</td>
-<td>Tau Kendalla</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓</td>
+<td style="text-align: left;"><strong>Pearson Correlation</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td>Pearson’s r</td>
-<td>Korelacja Pearsona</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓*</td>
+<td style="text-align: left;"><strong>Spearman Correlation</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td>Covariance</td>
-<td>Kowariancja</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">−</td>
-<td style="text-align: center;">✓*</td>
+<td style="text-align: left;"><strong>Coefficient of Variation</strong></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
 <td style="text-align: center;">✓</td>
 </tr>
 </tbody>
 </table>
-<p>* Theoretically problematic but commonly used in practice / Teoretycznie problematyczne, ale powszechnie stosowane w praktyce</p>
-<section id="notes-uwagi" class="level3">
-<h3 class="anchored" data-anchor-id="notes-uwagi">Notes / Uwagi:</h3>
-<ol type="1">
-<li><strong>Measurement Scales / Skale pomiarowe:</strong>
+<p><strong>Notes:</strong></p>
 <ul>
-<li><strong>Nominal</strong>: Categories without order (e.g., gender, color) / Kategorie bez uporządkowania (np. płeć, kolor)</li>
-<li><strong>Ordinal</strong>: Ordered categories (e.g., education level, satisfaction) / Kategorie uporządkowane (np. poziom wykształcenia, satysfakcja)</li>
-<li><strong>Interval</strong>: Equal intervals, arbitrary zero (e.g., temperature in °C, IQ) / Równe interwały, umowne zero (np. temperatura w °C, IQ)</li>
-<li><strong>Ratio</strong>: Equal intervals, absolute zero (e.g., height, income) / Równe interwały, absolutne zero (np. wzrost, dochód)</li>
-</ul></li>
-<li><strong>Practical Considerations / Aspekty praktyczne:</strong>
-<ul>
-<li>Measures marked with * are commonly applied to interval data despite theoretical concerns about the arbitrary zero point / Miary oznaczone * są powszechnie stosowane dla danych przedziałowych pomimo zastrzeżeń teoretycznych dotyczących umownego zera</li>
-<li>Higher-level scales inherit all measures from lower levels (ratio &gt; interval &gt; ordinal &gt; nominal) / Skale wyższego poziomu dziedziczą wszystkie miary z poziomów niższych</li>
-<li>For skewed distributions, robust measures (median, IQR) may be preferred over mean and SD / Dla rozkładów skośnych, miary odporne (mediana, IQR) mogą być preferowane nad średnią i SD</li>
-</ul></li>
-</ol>
+<li><strong>Nominal</strong> scales (e.g., colors, categories) only support frequency-based measures like mode</li>
+<li><strong>Ordinal</strong> scales (e.g., rankings, Likert scales) add median and rank-based correlations</li>
+<li><strong>Interval</strong> scales (e.g., Celsius, calendar dates) support all measures based on addition/subtraction</li>
+<li><strong>Ratio</strong> scales (e.g., height, weight, Kelvin) additionally support measures requiring multiplication/division and meaningful ratios</li>
+<li>Coefficient of variation (<span class="math inline">\text{CV} = \text{SD}/\text{Mean}</span>) requires a meaningful zero point, so only ratio scales</li>
+</ul>
 </section>
 </div>
 </div>
