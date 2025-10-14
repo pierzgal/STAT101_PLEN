@@ -824,7 +824,7 @@ Podstawowy Problem
 </section>
 <section id="znaczenie-wielkości-próby" class="level4">
 <h4 class="anchored" data-anchor-id="znaczenie-wielkości-próby">Znaczenie Wielkości Próby</h4>
-<p>Jeśli wymagana jest większa precyzja, należy rozważyć wpływ wielkości próby na poziom ufności:</p>
+<p>Wpływ wielkości próby na poziom zaufania (ufności) do wyników z próby:</p>
 <table class="table-striped table-hover caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -880,6 +880,29 @@ Należy Pamiętać
 <p><strong>Ta ostrożność w formułowaniu wniosków prowadzi do lepszych decyzji.</strong></p>
 </div>
 </div>
+<blockquote class="blockquote">
+<p>Jeśli badanie 1000 gospodarstw domowych stwierdza, że 23% (<em>estymacja punktowa</em>) obejmuje trzy pokolenia mieszkające razem, <strong>wnioskowanie statystyczne</strong> pomaga nam:</p>
+</blockquote>
+<ul>
+<li>Oszacować, że między 20% a 26% wszystkich gospodarstw w populacji prawdopodobnie ma taką strukturę (<strong>przedział ufności</strong>)</li>
+<li>Sprawdzić, czy ten odsetek wzrósł w porównaniu do poprzedniej dekady (<strong>testowanie hipotez</strong>)</li>
+<li>Zbadać, czy mieszkanie wielopokoleniowe jest bardziej powszechne w niektórych grupach etnicznych (<strong>porównanie grup</strong>)</li>
+<li>Przewidzieć przyszłe trendy na podstawie obecnych wzorców (<strong>regresja i prognozowanie</strong>)</li>
+</ul>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Podstawowa zasada</strong>: Statystyka nie eliminuje niepewności — pomaga nam ją mierzyć, zarządzać nią i skutecznie komunikować.</p>
+</div>
+</div>
 <hr>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -926,30 +949,6 @@ Przykład historyczny: Sondaż Literary Digest z 1936 roku
 <p><strong>Wykrywanie i korekcja obciążenia</strong>: Monitorowanie wskaźników odpowiedzi w różnych grupach demograficznych i korygowanie znanych obciążeń (bias)</p>
 <p><strong>Kwantyfikacja niepewności</strong>: Raportowanie marginesów błędu (statystyczny błąd losowy), które uczciwie komunikują granice tego, co wiemy</p>
 <p><strong>Przykład</strong>: Współczesny sondaż 1000 losowo wybranych wyborców z 3 punktowym marginesem błędu jest zwykle znacznie bardziej wiarygodny niż masywne, ale obciążone badanie Literary Digest.</p>
-<hr>
-<blockquote class="blockquote">
-<p>Na przykład, jeśli badanie 1000 gospodarstw domowych stwierdza, że 23% (<em>estymacja punktowa</em>) obejmuje trzy pokolenia mieszkające razem, statystyka inferencyjna pomaga nam:</p>
-</blockquote>
-<ul>
-<li>Oszacować, że między 20% a 26% wszystkich gospodarstw w populacji prawdopodobnie ma taką strukturę (<strong>przedział ufności</strong>)</li>
-<li>Sprawdzić, czy ten odsetek wzrósł w porównaniu do poprzedniej dekady (<strong>testowanie hipotez</strong>)</li>
-<li>Zbadać, czy mieszkanie wielopokoleniowe jest bardziej powszechne w niektórych grupach etnicznych (<strong>porównanie grup</strong>)</li>
-<li>Przewidzieć przyszłe trendy na podstawie obecnych wzorców (<strong>regresja i prognozowanie</strong>)</li>
-</ul>
-<hr>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Podstawowa zasada</strong>: Statystyka nie eliminuje niepewności — pomaga nam ją mierzyć, zarządzać nią i skutecznie komunikować.</p>
-</div>
-</div>
 <hr>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1040,6 +1039,39 @@ Czym jest losowość?
 <li><strong>Podejście próbkowe</strong>: Losowo wybrać 5000 gospodarstw, dokładnie zmierzyć ich wielkości i użyć tego do oszacowania średniej dla wszystkich gospodarstw</li>
 <li><strong>Wynik</strong>: Próba może znaleźć średnią 2,43 osób na gospodarstwo z marginesem błędu ±0,05, co oznacza, że jesteśmy pewni, że prawdziwa średnia populacji mieści się między 2,38 a 2,48</li>
 </ul>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Przegląd Metod Doboru Próby
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Dobór próby</strong> polega na wyborze podzbioru z populacji w celu oszacowania jej charakterystyk. <strong>Operat losowania</strong> (lista, z której losujemy) powinien idealnie zawierać każdego członka dokładnie raz. Problemy operatu: niedobór pokrycia, nadmiar pokrycia, duplikacja i grupowanie.</p>
+<section id="dobór-probabilistyczny-możliwe-wnioskowanie-statystyczne" class="level3">
+<h3 class="anchored" data-anchor-id="dobór-probabilistyczny-możliwe-wnioskowanie-statystyczne">Dobór Probabilistyczny (Możliwe Wnioskowanie Statystyczne)</h3>
+<ul>
+<li><p><strong>Prosty Losowy Dobór Próby (SRS)</strong>: Każda próba rozmiaru <span class="math inline">n</span> ma równe prawdopodobieństwo. Złoty standard, ale często niepraktyczny. Każda jednostka ma prawdopodobieństwo selekcji <span class="math inline">n/N</span>.</p></li>
+<li><p><strong>Dobór Systematyczny</strong>: Wybór co <span class="math inline">k</span>-tego elementu, gdzie <span class="math inline">k = N/n</span>. Prosty w implementacji, ale uwaga na ukrytą periodicność w operacie.</p></li>
+<li><p><strong>Dobór Warstwowy</strong>: Podział populacji na jednorodne warstwy, niezależne losowanie w każdej warstwie. Zapewnia reprezentację podgrup i może znacznie zwiększyć precyzję. Typy alokacji: proporcjonalna, optymalna (Neymana) lub równa.</p></li>
+<li><p><strong>Dobór Grupowy (Klastrowy)</strong>: Wybór grup (klastrów) zamiast jednostek. Efektywny kosztowo dla populacji rozproszonych geograficznie, ale mniej wydajny niż SRS (efekt schematu: DEFF = Wariancja(klaster)/Wariancja(SRS)). Może być jedno- lub wielostopniowy.</p></li>
+</ul>
+</section>
+<section id="dobór-nieprobabilistyczny-ograniczone-wnioskowanie-statystyczne" class="level3">
+<h3 class="anchored" data-anchor-id="dobór-nieprobabilistyczny-ograniczone-wnioskowanie-statystyczne">Dobór Nieprobabilistyczny (Ograniczone Wnioskowanie Statystyczne)</h3>
+<ul>
+<li><p><strong>Dobór Dogodny</strong>: Wybór według łatwości dostępu. Przydatny w badaniach pilotażowych/eksploracyjnych, ale prawdopodobne poważne obciążenie selekcji.</p></li>
+<li><p><strong>Dobór Celowy/Ekspertowy</strong>: Celowy wybór przypadków typowych, ekstremalnych lub bogatych informacyjnie. Wartościowy w badaniach jakościowych i rzadkich populacjach.</p></li>
+<li><p><strong>Dobór Kwotowy</strong>: Dopasowanie proporcji populacji, ale bez losowego wyboru. Szybki i tani, ale ukryte obciążenie selekcji i brak miary błędu próbkowania. (Zobacz: porażka sondaży Dewey-Truman 1948)</p></li>
+<li><p><strong>Dobór Kuli Śnieżnej</strong>: Uczestniczy rekrutują innych ze swoich sieci. Niezbędny dla ukrytych populacji (narkomani, nielegalni imigranci), ale obciążony w stronę dobrze połączonych jednostek.</p></li>
+</ul>
+<p><strong>Kluczowa Zasada</strong>: Dobór probabilistyczny umożliwia prawidłowe wnioskowanie statystyczne; metody nieprobabilistyczne mogą być konieczne ze względów praktycznych lub etycznych, ale ograniczają uogólnialność.</p>
+</section>
+</div>
+</div>
 <hr>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1561,7 +1593,7 @@ Tip
 </ul>
 <p><strong>Wybór szerokości klas</strong>: Liczba i szerokość klas znacząco wpływa na wygląd histogramu. Zbyt mało klas ukrywa ważne wzorce, podczas gdy zbyt wiele klas tworzy “szum” i utrudnia dostrzeżenie wzorców.</p>
 <blockquote class="blockquote">
-<p>W statystyce szum (noise) to niepożądana losowa zmienność, która przesłania wzorzec, który staramy się znaleźć. Można to porównać do trzasków w radiu — utrudniają one słyszenie muzyki (“sygnału”). W danych szum pochodzi z błędów pomiarowych, losowych fluktuacji lub naturalnej zmienności badanego zjawiska. Szum to losowa zmienność w danych, która ukrywa prawdziwe wzorce, które chcemy dostrzec, podobnie jak hałas w tle utrudnia usłyszenie rozmowy.</p>
+<p>W statystyce <strong>szum</strong> (<em>noise</em>) to niepożądana losowa zmienność, która przesłania wzorzec, który staramy się znaleźć. Można to porównać do trzasków w radiu — utrudniają one słyszenie muzyki (“sygnału”). W danych szum pochodzi z błędów pomiarowych, losowych fluktuacji lub naturalnej zmienności badanego zjawiska. Szum to losowa zmienność w danych, która ukrywa prawdziwe wzorce, które chcemy dostrzec, podobnie jak hałas w tle utrudnia usłyszenie rozmowy.</p>
 </blockquote>
 <p>Kilka metod pomaga określić odpowiednie szerokości klas:</p>
 <ul>
@@ -2098,7 +2130,7 @@ Tip
 </div>
 <hr>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2107,7 +2139,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Dla każdego scenariusza określ, czy związek jest prawdopodobnie przyczynowy czy pozorny:</p>
 <ol type="1">
@@ -2585,7 +2617,7 @@ Co mówi nam SE
 <p><strong>Margines błędu</strong> (margin of error, MOE) reprezentuje oczekiwaną maksymalną różnicę między oszacowaniem z próby a prawdziwym parametrem.</p>
 <p><span class="math display">\text{MOE} = \text{Wartość krytyczna} \times \text{Błąd standardowy}</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2594,7 +2626,7 @@ Wyjaśnienie wartości krytycznej
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Dla 95% ufności używamy 1,96 (często upraszczane do 2). Zapewnia to, że ~95% przedziałów skonstruowanych w ten sposób będzie zawierać prawdziwy parametr.</p>
 <ul>

@@ -833,7 +833,7 @@ The Fundamental Challenge
 </section>
 <section id="the-power-of-sample-size" class="level4">
 <h4 class="anchored" data-anchor-id="the-power-of-sample-size">The Power of Sample Size</h4>
-<p>What if we need more precision? Here’s how sample size affects our confidence:</p>
+<p>Here’s how sample size affects our confidence:</p>
 <table class="table-striped table-hover caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -889,6 +889,29 @@ Remember
 <p><strong>This humility leads to better decisions.</strong></p>
 </div>
 </div>
+<blockquote class="blockquote">
+<p>If a survey of 1,000 households finds that 23% (<strong>point estimate</strong>) include three generations living together, <strong>inferential statistics</strong> helps us:</p>
+</blockquote>
+<ul>
+<li>Estimate that between 20% and 26% of all households in the population likely have this structure (<strong>confidence interval</strong>)</li>
+<li>Test whether this percentage has increased compared to a decade ago (<strong>hypothesis testing</strong>)</li>
+<li>Examine whether multigenerational living is more common in certain ethnic groups (<strong>comparison of groups</strong>)</li>
+<li>Predict future trends based on current patterns (<strong>regression and forecasting</strong>)</li>
+</ul>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Fundamental Principle</strong>: Statistics does not eliminate uncertainty—it helps us measure, manage, and communicate it effectively.</p>
+</div>
+</div>
 <hr>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -938,30 +961,6 @@ Historical Example: The 1936 Literary Digest Poll
 <p><strong>Bias detection and correction</strong>: Monitoring response rates across demographics and adjusting for known biases</p>
 <p><strong>Uncertainty quantification</strong>: Reporting margins of statistical error that honestly communicate the limits of what we know</p>
 <p><strong>Example</strong>: A modern poll of 1,000 randomly selected voters with a 3 pp margin of error is far more reliable than the Literary Digest’s massive but biased survey.</p>
-<hr>
-<blockquote class="blockquote">
-<p>For example, if a survey of 1,000 households finds that 23% (<strong>point estimate</strong>) include three generations living together, inferential statistics helps us:</p>
-</blockquote>
-<ul>
-<li>Estimate that between 20% and 26% of all households in the population likely have this structure (<strong>confidence interval</strong>)</li>
-<li>Test whether this percentage has increased compared to a decade ago (<strong>hypothesis testing</strong>)</li>
-<li>Examine whether multigenerational living is more common in certain ethnic groups (<strong>comparison of groups</strong>)</li>
-<li>Predict future trends based on current patterns (<strong>regression and forecasting</strong>)</li>
-</ul>
-<hr>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Fundamental Principle</strong>: Statistics does not eliminate uncertainty—it helps us measure, manage, and communicate it effectively.</p>
-</div>
-</div>
 <hr>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1052,6 +1051,39 @@ Understanding Randomness
 <li><strong>Sample approach</strong>: Randomly select 5,000 households, carefully measure their sizes, and use this to estimate the average for all households</li>
 <li><strong>Result</strong>: The sample might find an average of 2.43 people per household with a margin of error of ±0.05, meaning we’re confident the true population average is between 2.38 and 2.48</li>
 </ul>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sampling Methods Overview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Sampling</strong> selects a subset from a population to estimate characteristics. The <strong>sampling frame</strong> (the list from which we sample) must ideally include every member exactly once. Frame problems include undercoverage, overcoverage, duplication, and clustering.</p>
+<section id="probability-sampling-statistical-inference-possible" class="level3">
+<h3 class="anchored" data-anchor-id="probability-sampling-statistical-inference-possible">Probability Sampling (Statistical Inference Possible)</h3>
+<ul>
+<li><p><strong>Simple Random Sampling (SRS)</strong>: Every sample of size <span class="math inline">n</span> has equal probability. Gold standard but often impractical. Each unit has probability <span class="math inline">n/N</span> of selection.</p></li>
+<li><p><strong>Systematic Sampling</strong>: Select every <span class="math inline">k</span>th element where <span class="math inline">k = N/n</span>. Simple to implement but watch for hidden periodicity in the frame.</p></li>
+<li><p><strong>Stratified Sampling</strong>: Divide population into homogeneous strata, sample independently within each. Ensures subgroup representation and can increase precision substantially. Allocation types: proportional, optimal (Neyman), or equal.</p></li>
+<li><p><strong>Cluster Sampling</strong>: Select groups (clusters) rather than individuals. Cost-effective for geographically dispersed populations but less efficient than SRS (design effect: DEFF = Variance(cluster)/Variance(SRS)). Can be single-stage or multi-stage.</p></li>
+</ul>
+</section>
+<section id="non-probability-sampling-limited-statistical-inference" class="level3">
+<h3 class="anchored" data-anchor-id="non-probability-sampling-limited-statistical-inference">Non-Probability Sampling (Limited Statistical Inference)</h3>
+<ul>
+<li><p><strong>Convenience</strong>: Selection by ease of access. Useful for pilots/exploratory work but severe selection bias likely.</p></li>
+<li><p><strong>Purposive/Judgmental</strong>: Deliberate selection of typical, extreme, or information-rich cases. Valuable for qualitative research and rare populations.</p></li>
+<li><p><strong>Quota</strong>: Match population proportions but without random selection. Fast and cheap but hidden selection bias and no measure of sampling error. (See: 1948 Dewey-Truman polling failure)</p></li>
+<li><p><strong>Snowball</strong>: Participants recruit others from their networks. Essential for hidden populations (drug users, undocumented immigrants) but biased toward well-connected individuals.</p></li>
+</ul>
+<p><strong>Key Principle</strong>: Probability sampling enables valid statistical inference; non-probability methods may be necessary for practical or ethical reasons but limit generalizability.</p>
+</section>
+</div>
+</div>
 <hr>
 </section>
 </section>
@@ -1550,7 +1582,7 @@ Tip
 </tr>
 </tbody>
 </table>
-<p>This table immediately reveals that most students scored in the 70-90 range, while very few scored below 50 or above 90. The cumulative columns show us that 40% of students scored below 70, and 85% scored below 90. Such tables are invaluable for getting a quick overview of your data before conducting more complex analyses.</p>
+<p>This table reveals that most students scored in the 70-90 range, while very few scored below 50 or above 90. The cumulative columns show us that 40% of students scored below 70, and 85% scored below 90. Such tables are invaluable for getting a quick overview of your data before conducting more complex analyses.</p>
 </section>
 <section id="visualizing-distributions-histograms" class="level4">
 <h4 class="anchored" data-anchor-id="visualizing-distributions-histograms">Visualizing Distributions: Histograms</h4>
@@ -1563,7 +1595,7 @@ Tip
 </ul>
 <p><strong>Choosing bin widths</strong>: The number and width of bins significantly affects how your histogram looks. Too few bins hide important patterns, while too many bins create “noise” and make patterns hard to see.</p>
 <blockquote class="blockquote">
-<p>In statistics, noise is unwanted random variation that obscures the pattern we’re trying to find. Think of it like static on a radio—it makes the music (the “signal”) harder to hear. In data, noise comes from measurement errors, random fluctuations, or the inherent variability in what we’re studying. Noise is random variation in data that hides the real patterns we want to see, similar to how background noise makes conversation difficult to hear.</p>
+<p>In statistics, <strong>noise</strong> is unwanted random variation that obscures the pattern we’re trying to find. Think of it like static on a radio—it makes the music (the “signal”) harder to hear. In data, noise comes from measurement errors, random fluctuations, or the inherent variability in what we’re studying. Noise is random variation in data that hides the real patterns we want to see, similar to how background noise makes conversation difficult to hear.</p>
 </blockquote>
 <p>Several approaches help determine appropriate bin widths:</p>
 <ul>
@@ -2105,7 +2137,7 @@ Tip
 </div>
 <hr>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2114,7 +2146,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For each scenario, identify whether the relationship is likely causal or spurious:</p>
 <ol type="1">
@@ -2622,7 +2654,7 @@ What SE Tells Us
 <p>The <strong>margin of error</strong> (MOE) represents the expected maximum difference between sample estimate and true parameter.</p>
 <p><span class="math display">\text{MOE} = \text{Critical Value} \times \text{Standard Error}</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2631,7 +2663,7 @@ Understanding the Critical Value
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For 95% confidence, we use 1.96 (often simplified to 2). This ensures that ~95% of intervals constructed this way will contain the true parameter.</p>
 <ul>
