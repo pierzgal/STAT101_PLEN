@@ -5469,7 +5469,11 @@ Warning
 <h3 class="anchored" data-anchor-id="key-insight-a-proportion-is-a-mean">Key Insight: A Proportion IS a Mean</h3>
 <p><strong>A proportion is simply the mean of a binary (0/1) variable.</strong> If you code “success” as 1 and “failure” as 0, then:</p>
 <p><span class="math display">\hat{p} = \bar{x} = \frac{\sum x_i}{n}</span></p>
-<p>For example, if 6 out of 10 people support a policy (coded as 1=support, 0=don’t support): - Proportion: <span class="math inline">\hat{p} = 0.6</span> - Mean: <span class="math inline">\bar{x} = \frac{1+1+1+1+1+1+0+0+0+0}{10} = 0.6</span></p>
+<p>For example, if 6 out of 10 people support a policy (coded as 1=support, 0=don’t support):</p>
+<ul>
+<li>Proportion: <span class="math inline">\hat{p} = 0.6</span></li>
+<li>Mean: <span class="math inline">\bar{x} = \frac{1+1+1+1+1+1+0+0+0+0}{10} = 0.6</span></li>
+</ul>
 <p>They’re identical! The special formulas for proportions are just the general formulas applied to binary data.</p>
 </section>
 <section id="the-universal-formula-for-means" class="level3">
@@ -5555,8 +5559,16 @@ Warning
 </section>
 <section id="scale-matters" class="level4">
 <h4 class="anchored" data-anchor-id="scale-matters">3. <strong>Scale Matters</strong></h4>
-<p>For a proportion measured as ±0.02 (2 percentage points): - This is 2% of the full 0-1 scale - Relatively speaking, this is very precise</p>
-<p>For height measured as ±2 cm with SD = 10 cm: - This is only 20% of one standard deviation - Less stringent requirement</p>
+<p>For a proportion measured as ±0.02 (2 percentage points):</p>
+<ul>
+<li>This is 2% of the full 0-1 scale</li>
+<li>Relatively speaking, this is very precise</li>
+</ul>
+<p>For height measured as ±2 cm with SD = 10 cm:</p>
+<ul>
+<li>This is only 20% of one standard deviation</li>
+<li>Less stringent requirement</li>
+</ul>
 </section>
 <section id="rare-events" class="level4">
 <h4 class="anchored" data-anchor-id="rare-events">4. <strong>Rare Events</strong></h4>
@@ -5605,11 +5617,21 @@ Warning
 <h4 class="anchored" data-anchor-id="standard-error-of-covariance">Standard Error of Covariance</h4>
 <p>For two variables X and Y from a bivariate normal distribution:</p>
 <p><span class="math display">SE(Cov(X,Y)) \approx \sqrt{\frac{1}{n}\left[\sigma_X^2\sigma_Y^2 + \sigma_{XY}^2\right]}</span></p>
-<p>Where: - <span class="math inline">\sigma_X^2</span>, <span class="math inline">\sigma_Y^2</span> are the population variances - <span class="math inline">\sigma_{XY}</span> is the population covariance</p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\sigma_X^2</span>, <span class="math inline">\sigma_Y^2</span> are the population variances</li>
+<li><span class="math inline">\sigma_{XY}</span> is the population covariance</li>
+</ul>
 <p>In practice, these are estimated from the sample.</p>
 <p><strong>Example: Covariance of Height and Weight</strong></p>
-<p>Suppose: - <span class="math inline">s_X = 10</span> cm (height SD) - <span class="math inline">s_Y = 15</span> kg (weight SD)<br>
-- <span class="math inline">s_{XY} = 80</span> cm·kg (sample covariance) - <span class="math inline">n = 100</span></p>
+<p>Suppose:</p>
+<ul>
+<li><span class="math inline">s_X = 10</span> cm (height SD)</li>
+<li><span class="math inline">s_Y = 15</span> kg (weight SD)<br>
+</li>
+<li><span class="math inline">s_{XY} = 80</span> cm·kg (sample covariance)</li>
+<li><span class="math inline">n = 100</span></li>
+</ul>
 <p><span class="math display">SE(s_{XY}) \approx \sqrt{\frac{1}{100}[(10^2)(15^2) + 80^2]} = \sqrt{\frac{1}{100}[22,500 + 6,400]}</span></p>
 <p><span class="math display">= \sqrt{289} = 17.0 \text{ cm·kg}</span></p>
 <p><span class="math display">MoE = 1.96 \times 17.0 = ±33.3 \text{ cm·kg}</span></p>
@@ -5633,16 +5655,46 @@ Warning
 <section id="comparative-example-sample-size-requirements" class="level3">
 <h3 class="anchored" data-anchor-id="comparative-example-sample-size-requirements">Comparative Example: Sample Size Requirements</h3>
 <p>To achieve 10% relative precision (MoE = 10% of the estimate):</p>
-<p><strong>For a Mean:</strong> - Need: <span class="math inline">n = \left(\frac{1.96 \times CV}{0.10}\right)^2</span> where <span class="math inline">CV = SD/\mu</span> - If <span class="math inline">CV = 0.5</span>: <span class="math inline">n = 96</span></p>
-<p><strong>For a Proportion at p = 0.5:</strong> - Need: <span class="math inline">n = \left(\frac{1.96 \times 0.5}{0.05}\right)^2 = 384</span> - (Here 10% relative = ±0.05 absolute on 0-1 scale)</p>
-<p><strong>For a Variance:</strong> - Need: <span class="math inline">n \approx 1 + 2\left(\frac{1.96}{0.10}\right)^2 = 769</span></p>
+<p><strong>For a Mean:</strong></p>
+<ul>
+<li>Need: <span class="math inline">n = \left(\frac{1.96 \times CV}{0.10}\right)^2</span> where <span class="math inline">CV = SD/\mu</span></li>
+<li>If <span class="math inline">CV = 0.5</span>: <span class="math inline">n = 96</span></li>
+</ul>
+<p><strong>For a Proportion at p = 0.5:</strong></p>
+<ul>
+<li>Need: <span class="math inline">n = \left(\frac{1.96 \times 0.5}{0.05}\right)^2 = 384</span></li>
+<li>(Here 10% relative = ±0.05 absolute on 0-1 scale)</li>
+</ul>
+<p><strong>For a Variance:</strong></p>
+<ul>
+<li>Need: <span class="math inline">n \approx 1 + 2\left(\frac{1.96}{0.10}\right)^2 = 769</span></li>
+</ul>
 <p>Variance requires approximately 8× the sample size of a mean for equivalent relative precision!</p>
 </section>
 <section id="key-takeaways-3" class="level3">
 <h3 class="anchored" data-anchor-id="key-takeaways-3">Key Takeaways</h3>
-<p><strong>For Means (including proportions):</strong> - <strong>Proportions ARE means</strong> - just means of 0/1 data - Standard errors decrease as <span class="math inline">1/\sqrt{n}</span> - Normal approximation works well for moderate samples - Symmetric confidence intervals appropriate</p>
-<p><strong>For Variance and Covariance:</strong> - Standard errors decrease as <span class="math inline">1/\sqrt{n}</span> but with larger constants - Sampling distributions are skewed (chi-squared for variance) - Require substantially larger samples for equivalent precision - Asymmetric confidence intervals often needed - Bootstrap or exact methods recommended over simple ±1.96 approach</p>
-<p><strong>Why proportions seem to need larger samples:</strong> 1. The <strong>scale</strong> of measurement (0-1 vs.&nbsp;unbounded) 2. The <strong>relative precision</strong> desired (±3% is stringent on 0-1 scale) 3. The <strong>maximum SD</strong> for proportions (0.5) being large relative to range 4. <strong>Contextual standards</strong> in polling and surveys</p>
+<p><strong>For Means (including proportions):</strong></p>
+<ul>
+<li><strong>Proportions ARE means</strong> - just means of 0/1 data</li>
+<li>Standard errors decrease as <span class="math inline">1/\sqrt{n}</span></li>
+<li>Normal approximation works well for moderate samples</li>
+<li>Symmetric confidence intervals appropriate</li>
+</ul>
+<p><strong>For Variance and Covariance:</strong></p>
+<ul>
+<li>Standard errors decrease as <span class="math inline">1/\sqrt{n}</span> but with larger constants</li>
+<li>Sampling distributions are skewed (chi-squared for variance)</li>
+<li>Require substantially larger samples for equivalent precision</li>
+<li>Asymmetric confidence intervals often needed</li>
+<li>Bootstrap or exact methods recommended over simple ±1.96 approach</li>
+</ul>
+<p><strong>Why proportions seem to need larger samples:</strong></p>
+<ol type="1">
+<li>The <strong>scale</strong> of measurement (0-1 vs.&nbsp;unbounded)</li>
+<li>The <strong>relative precision</strong> desired (±3% is stringent on 0-1 scale)</li>
+<li>The <strong>maximum SD</strong> for proportions (0.5) being large relative to range</li>
+<li><strong>Contextual standards</strong> in polling and surveys</li>
+</ol>
 <p>When comparing equivalent relative precision, sample size requirements for means and proportions are comparable!</p>
 <hr>
 
