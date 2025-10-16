@@ -825,8 +825,8 @@ Podstawowy Problem
 <h4 class="anchored">Wielkość Próby a Poziom Niepewności (<em>random error</em>)</h4>
 <p>Załóżmy, że losujemy tzw. <strong>próbę prostą</strong> o liczebności <span class="math inline">n=1000</span> wyborców i obserwujemy <span class="math inline">\hat p = 0{,}55</span> (tj. 55% poparcia dla kandydatki A). Wówczas:</p>
 <ul>
-<li><p>Naszą najlepszą, jednowartościową oceną odsetka w populacji <span class="math inline">p</span> jest <span class="math inline">\hat p = 0{,}55</span>.</p></li>
-<li><p>Orientacyjny „<span class="math inline">95\%</span> zakres wartości plauzybilnych” wokół <span class="math inline">\hat p</span> można przybliżyć wzorem <span class="math display">
+<li><p>Naszą najlepszą, jednowartościową oceną odsetka w populacji wyborców <span class="math inline">p</span> jest <span class="math inline">\hat p = 0{,}55</span>.</p></li>
+<li><p>Orientacyjny „<span class="math inline">95\%</span> zakres wartości plauzybilnych” wokół <span class="math inline">\hat p</span> można przybliżyć wzorem <span class="math inline">\hat p \pm \text{Margin of (Random) Error}</span>, tj., <span class="math display">
 \hat p \,\pm\, 2\sqrt{\frac{\hat p(1-\hat p)}{n}}
 \;=\;
 0{,}55 \,\pm\, 2\sqrt{\frac{0{,}55\cdot 0{,}45}{1000}}
@@ -834,8 +834,8 @@ Podstawowy Problem
 0{,}55 \pm 0{,}031,
 </span> czyli w przybliżeniu <span class="math inline">52\%\text{–}58\%</span> (około <span class="math inline">\pm 3{,}1</span> punktu procentowego, <strong>pp</strong>).</p></li>
 <li><p>Szerokość tego zakresu maleje wraz z liczebnością próby: <span class="math display">
-\text{szerokość} \;\propto\; \frac{1}{\sqrt{n}}.
-</span> Przykładowo, zwiększenie <span class="math inline">n</span> z <span class="math inline">1000</span> do <span class="math inline">4000</span> mniej więcej <strong>zmniejsza błąd o połowę</strong>.</p></li>
+\text{MoE} \;\propto\; \frac{1}{\sqrt{n}}.
+</span> Przykładowo, zwiększenie <span class="math inline">n</span> z <span class="math inline">1000</span> do <span class="math inline">4000</span> mniej więcej <strong>zmniejsza błąd o połowę</strong> (<span class="math inline">0.0158</span>).</p></li>
 </ul>
 <hr>
 <p>Wpływ wielkości próby na poziom zaufania (ufności) do wyników z próby:</p>
@@ -851,7 +851,7 @@ Podstawowy Problem
 <tr class="header">
 <th>Wielkość Próby</th>
 <th>Twój Wynik</th>
-<th>Margines Błędu Statystycznego</th>
+<th>Margines Błędu Losowego (MoE)</th>
 <th>Przedział Ufności</th>
 <th>Interpretacja</th>
 </tr>
