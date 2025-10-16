@@ -454,6 +454,18 @@ window.Quarto = {
   <li><a href="#mathematical-foundation-1" id="toc-mathematical-foundation-1" class="nav-link" data-scroll-target="#mathematical-foundation-1"><span class="header-section-number">1.27</span> Mathematical Foundation</a></li>
   <li><a href="#key-takeaways-2" id="toc-key-takeaways-2" class="nav-link" data-scroll-target="#key-takeaways-2"><span class="header-section-number">1.28</span> Key Takeaways</a></li>
   <li><a href="#practical-significance" id="toc-practical-significance" class="nav-link" data-scroll-target="#practical-significance"><span class="header-section-number">1.29</span> Practical Significance</a></li>
+  <li><a href="#appendix-c-standard-errors-and-margins-of-error-means-proportions-variance-and-covariance" id="toc-appendix-c-standard-errors-and-margins-of-error-means-proportions-variance-and-covariance" class="nav-link" data-scroll-target="#appendix-c-standard-errors-and-margins-of-error-means-proportions-variance-and-covariance"><span class="header-section-number">1.30</span> Appendix C: Standard Errors and Margins of Error: Means, Proportions, Variance, and Covariance</a>
+  <ul class="collapse">
+  <li><a href="#key-insight-a-proportion-is-a-mean" id="toc-key-insight-a-proportion-is-a-mean" class="nav-link" data-scroll-target="#key-insight-a-proportion-is-a-mean">Key Insight: A Proportion IS a Mean</a></li>
+  <li><a href="#the-universal-formula-for-means" id="toc-the-universal-formula-for-means" class="nav-link" data-scroll-target="#the-universal-formula-for-means">The Universal Formula for Means</a></li>
+  <li><a href="#calculating-se-and-moe-for-proportions" id="toc-calculating-se-and-moe-for-proportions" class="nav-link" data-scroll-target="#calculating-se-and-moe-for-proportions">Calculating SE and MoE for Proportions</a></li>
+  <li><a href="#calculating-se-and-moe-for-typical-means" id="toc-calculating-se-and-moe-for-typical-means" class="nav-link" data-scroll-target="#calculating-se-and-moe-for-typical-means">Calculating SE and MoE for Typical Means</a></li>
+  <li><a href="#why-proportions-often-require-larger-samples" id="toc-why-proportions-often-require-larger-samples" class="nav-link" data-scroll-target="#why-proportions-often-require-larger-samples">Why Proportions Often Require Larger Samples</a></li>
+  <li><a href="#margin-of-error-and-sample-size-for-variance" id="toc-margin-of-error-and-sample-size-for-variance" class="nav-link" data-scroll-target="#margin-of-error-and-sample-size-for-variance">Margin of Error and Sample Size for Variance</a></li>
+  <li><a href="#margin-of-error-and-sample-size-for-covariance" id="toc-margin-of-error-and-sample-size-for-covariance" class="nav-link" data-scroll-target="#margin-of-error-and-sample-size-for-covariance">Margin of Error and Sample Size for Covariance</a></li>
+  <li><a href="#comparative-example-sample-size-requirements" id="toc-comparative-example-sample-size-requirements" class="nav-link" data-scroll-target="#comparative-example-sample-size-requirements">Comparative Example: Sample Size Requirements</a></li>
+  <li><a href="#key-takeaways-3" id="toc-key-takeaways-3" class="nav-link" data-scroll-target="#key-takeaways-3">Key Takeaways</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -5450,8 +5462,192 @@ Warning
 </ul>
 <p><strong>Essential Property of CLT</strong>: Although individual die rolls follow a uniform distribution, the distribution of means from multiple dice converges asymptotically to a normal distribution in a predictable manner consistent with mathematical theory, providing the foundation for classical statistical inference.</p>
 <hr>
+</section>
+<section id="appendix-c-standard-errors-and-margins-of-error-means-proportions-variance-and-covariance" class="level2" data-number="1.30">
+<h2 data-number="1.30" class="anchored" data-anchor-id="appendix-c-standard-errors-and-margins-of-error-means-proportions-variance-and-covariance"><span class="header-section-number">1.30</span> Appendix C: Standard Errors and Margins of Error: Means, Proportions, Variance, and Covariance</h2>
+<section id="key-insight-a-proportion-is-a-mean" class="level3">
+<h3 class="anchored" data-anchor-id="key-insight-a-proportion-is-a-mean">Key Insight: A Proportion IS a Mean</h3>
+<p><strong>A proportion is simply the mean of a binary (0/1) variable.</strong> If you code “success” as 1 and “failure” as 0, then:</p>
+<p><span class="math display">\hat{p} = \bar{x} = \frac{\sum x_i}{n}</span></p>
+<p>For example, if 6 out of 10 people support a policy (coded as 1=support, 0=don’t support): - Proportion: <span class="math inline">\hat{p} = 0.6</span> - Mean: <span class="math inline">\bar{x} = \frac{1+1+1+1+1+1+0+0+0+0}{10} = 0.6</span></p>
+<p>They’re identical! The special formulas for proportions are just the general formulas applied to binary data.</p>
+</section>
+<section id="the-universal-formula-for-means" class="level3">
+<h3 class="anchored" data-anchor-id="the-universal-formula-for-means">The Universal Formula for Means</h3>
+<p>Both proportions and continuous means use the same fundamental formula for standard error:</p>
+<p><span class="math display">SE = \frac{SD}{\sqrt{n}}</span></p>
+<p>The <strong>Margin of Error</strong> (for 95% confidence) is then:</p>
+<p><span class="math display">MoE = 1.96 \times SE = 1.96 \times \frac{SD}{\sqrt{n}}</span></p>
+</section>
+<section id="calculating-se-and-moe-for-proportions" class="level3">
+<h3 class="anchored" data-anchor-id="calculating-se-and-moe-for-proportions">Calculating SE and MoE for Proportions</h3>
+<p>For a sample proportion <span class="math inline">\hat{p}</span>, the standard deviation is derived from the binomial distribution:</p>
+<p><span class="math display">SD = \sqrt{p(1-p)}</span></p>
+<p>Therefore:</p>
+<p><span class="math display">SE_p = \sqrt{\frac{p(1-p)}{n}}</span></p>
+<p><span class="math display">MoE_p = 1.96\sqrt{\frac{p(1-p)}{n}}</span></p>
+<p><strong>Example: Political Poll</strong></p>
+<p>If 60% of voters support a candidate (<span class="math inline">p = 0.6</span>) with <span class="math inline">n = 400</span>:</p>
+<ul>
+<li><span class="math inline">SD = \sqrt{0.6 \times 0.4} = \sqrt{0.24} = 0.490</span></li>
+<li><span class="math inline">SE = \frac{0.490}{\sqrt{400}} = \frac{0.490}{20} = 0.0245</span> (or 2.45%)</li>
+<li><span class="math inline">MoE = 1.96 \times 0.0245 = 0.048</span> (or ±4.8%)</li>
+</ul>
+</section>
+<section id="calculating-se-and-moe-for-typical-means" class="level3">
+<h3 class="anchored" data-anchor-id="calculating-se-and-moe-for-typical-means">Calculating SE and MoE for Typical Means</h3>
+<p>For a continuous variable like height, weight, or test scores:</p>
+<p><span class="math display">SE_{\bar{x}} = \frac{SD}{\sqrt{n}}</span></p>
+<p><span class="math display">MoE_{\bar{x}} = 1.96 \times \frac{SD}{\sqrt{n}}</span></p>
+<p><strong>Example: Mean Height</strong></p>
+<p>If measuring height with <span class="math inline">SD = 10</span> cm and <span class="math inline">n = 100</span>:</p>
+<ul>
+<li><span class="math inline">SE = \frac{10}{\sqrt{100}} = \frac{10}{10} = 1.0</span> cm</li>
+<li><span class="math inline">MoE = 1.96 \times 1.0 = ±1.96</span> cm</li>
+</ul>
+</section>
+<section id="why-proportions-often-require-larger-samples" class="level3">
+<h3 class="anchored" data-anchor-id="why-proportions-often-require-larger-samples">Why Proportions Often Require Larger Samples</h3>
+<p>The perception that proportions need larger samples arises from several factors:</p>
+<section id="maximum-variance-at-p-0.5" class="level4">
+<h4 class="anchored" data-anchor-id="maximum-variance-at-p-0.5">1. <strong>Maximum Variance at p = 0.5</strong></h4>
+<p>The variance <span class="math inline">p(1-p)</span> is maximized when <span class="math inline">p = 0.5</span>, giving:</p>
+<p><span class="math display">SD_{max} = \sqrt{0.5 \times 0.5} = 0.5</span></p>
+<p>This means on a 0-1 scale, the standard deviation can be quite large relative to the range. For “maximum uncertainty” scenarios (p = 0.5):</p>
+<p><span class="math display">n = \left(\frac{1.96 \times 0.5}{MoE}\right)^2 = \frac{0.9604}{MoE^2}</span></p>
+<p><strong>Sample size requirements for different margins of error (at p = 0.5):</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Desired MoE</th>
+<th>Required n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>±1% (0.01)</td>
+<td>9,604</td>
+</tr>
+<tr class="even">
+<td>±2% (0.02)</td>
+<td>2,401</td>
+</tr>
+<tr class="odd">
+<td>±3% (0.03)</td>
+<td>1,068</td>
+</tr>
+<tr class="even">
+<td>±5% (0.05)</td>
+<td>385</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="context-of-precision" class="level4">
+<h4 class="anchored" data-anchor-id="context-of-precision">2. <strong>Context of Precision</strong></h4>
+<p>The <em>desired</em> precision differs by context:</p>
+<ul>
+<li><strong>Proportions</strong>: Political polls typically want ±3-4 percentage points</li>
+<li><strong>Height</strong>: ±0.5 cm might suffice (only 5% of a 10 cm SD)</li>
+<li><strong>Test scores</strong>: ±2 points might be acceptable (depends on scale)</li>
+</ul>
+<p>These represent different levels of <em>relative</em> precision.</p>
+</section>
+<section id="scale-matters" class="level4">
+<h4 class="anchored" data-anchor-id="scale-matters">3. <strong>Scale Matters</strong></h4>
+<p>For a proportion measured as ±0.02 (2 percentage points): - This is 2% of the full 0-1 scale - Relatively speaking, this is very precise</p>
+<p>For height measured as ±2 cm with SD = 10 cm: - This is only 20% of one standard deviation - Less stringent requirement</p>
+</section>
+<section id="rare-events" class="level4">
+<h4 class="anchored" data-anchor-id="rare-events">4. <strong>Rare Events</strong></h4>
+<p>When estimating rare proportions (e.g., <span class="math inline">p = 0.01</span>), you need enough sample to actually <em>observe</em> the events:</p>
+<ul>
+<li>For <span class="math inline">p = 0.01</span> with <span class="math inline">n = 100</span>, you expect only 1 success</li>
+<li>Need <span class="math inline">n \approx 1,500</span> for ±0.5% precision</li>
+</ul>
+</section>
+</section>
+<section id="margin-of-error-and-sample-size-for-variance" class="level3">
+<h3 class="anchored" data-anchor-id="margin-of-error-and-sample-size-for-variance">Margin of Error and Sample Size for Variance</h3>
+<p>Variance estimation is more complex because <strong>sample variance does not follow a normal distribution</strong> - it follows a scaled chi-squared distribution (for normally distributed data).</p>
+<hr>
+<section id="standard-error-of-variance" class="level4">
+<h4 class="anchored" data-anchor-id="standard-error-of-variance">Standard Error of Variance</h4>
+<p>For a normally distributed variable, the standard error of the sample variance <span class="math inline">s^2</span> is:</p>
+<p><span class="math display">SE(s^2) = s^2\sqrt{\frac{2}{n-1}}</span></p>
+<p><strong>Example: Height Variance</strong></p>
+<p>If height has <span class="math inline">s^2 = 100</span> cm² (so <span class="math inline">s = 10</span> cm) with <span class="math inline">n = 101</span>:</p>
+<ul>
+<li><span class="math inline">SE(s^2) = 100\sqrt{\frac{2}{100}} = 100 \times 0.1414 = 14.14</span> cm²</li>
+<li><span class="math inline">MoE = 1.96 \times 14.14 = ±27.7</span> cm²</li>
+</ul>
+<p><strong>Important considerations:</strong></p>
+<ol type="1">
+<li><strong>Confidence intervals are asymmetric</strong>: Because chi-squared distribution is skewed, exact CIs should use chi-squared quantiles, not the ±1.96 approach</li>
+<li><strong>Normality assumption matters</strong>: The formula assumes underlying normality</li>
+<li><strong>Larger samples needed</strong>: Note <span class="math inline">SE \propto 1/\sqrt{n-1}</span> means variance estimates converge slowly</li>
+<li><strong>Sample size for given precision</strong>: To get MoE = 0.1 × <span class="math inline">s^2</span> (10% precision):</li>
+</ol>
+<p><span class="math display">n \approx 1 + 2\left(\frac{1.96}{0.1}\right)^2 = 769</span></p>
+<p>This is much larger than for means!</p>
+</section>
+<section id="standard-error-of-standard-deviation" class="level4">
+<h4 class="anchored" data-anchor-id="standard-error-of-standard-deviation">Standard Error of Standard Deviation</h4>
+<p>For the standard deviation itself (using delta method):</p>
+<p><span class="math display">SE(s) \approx \frac{s}{\sqrt{2(n-1)}}</span></p>
+<p>This is approximately half the coefficient of variation of the variance.</p>
+</section>
+</section>
+<section id="margin-of-error-and-sample-size-for-covariance" class="level3">
+<h3 class="anchored" data-anchor-id="margin-of-error-and-sample-size-for-covariance">Margin of Error and Sample Size for Covariance</h3>
+<p>Covariance estimation is even more complex because it depends on the <strong>joint distribution</strong> of two variables.</p>
+<section id="standard-error-of-covariance" class="level4">
+<h4 class="anchored" data-anchor-id="standard-error-of-covariance">Standard Error of Covariance</h4>
+<p>For two variables X and Y from a bivariate normal distribution:</p>
+<p><span class="math display">SE(Cov(X,Y)) \approx \sqrt{\frac{1}{n}\left[\sigma_X^2\sigma_Y^2 + \sigma_{XY}^2\right]}</span></p>
+<p>Where: - <span class="math inline">\sigma_X^2</span>, <span class="math inline">\sigma_Y^2</span> are the population variances - <span class="math inline">\sigma_{XY}</span> is the population covariance</p>
+<p>In practice, these are estimated from the sample.</p>
+<p><strong>Example: Covariance of Height and Weight</strong></p>
+<p>Suppose: - <span class="math inline">s_X = 10</span> cm (height SD) - <span class="math inline">s_Y = 15</span> kg (weight SD)<br>
+- <span class="math inline">s_{XY} = 80</span> cm·kg (sample covariance) - <span class="math inline">n = 100</span></p>
+<p><span class="math display">SE(s_{XY}) \approx \sqrt{\frac{1}{100}[(10^2)(15^2) + 80^2]} = \sqrt{\frac{1}{100}[22,500 + 6,400]}</span></p>
+<p><span class="math display">= \sqrt{289} = 17.0 \text{ cm·kg}</span></p>
+<p><span class="math display">MoE = 1.96 \times 17.0 = ±33.3 \text{ cm·kg}</span></p>
+</section>
+<section id="standard-error-of-correlation" class="level4">
+<h4 class="anchored" data-anchor-id="standard-error-of-correlation">Standard Error of Correlation</h4>
+<p>For the correlation coefficient <span class="math inline">r</span> (Pearson’s), when the true correlation <span class="math inline">\rho</span> is not zero:</p>
+<p><span class="math display">SE(r) \approx \frac{(1-r^2)}{\sqrt{n}}</span></p>
+<p>For <span class="math inline">r = 0.5</span> and <span class="math inline">n = 100</span>:</p>
+<p><span class="math display">SE(r) = \frac{1-0.25}{\sqrt{100}} = \frac{0.75}{10} = 0.075</span></p>
+<p><span class="math display">MoE = 1.96 \times 0.075 = ±0.147</span></p>
+<p><strong>Important notes for variance/covariance:</strong></p>
+<ol type="1">
+<li><strong>Non-normal sampling distributions</strong>: These statistics don’t follow normal distributions, especially for small samples</li>
+<li><strong>Fisher’s z-transformation</strong>: For correlation, CIs are typically computed using Fisher’s z-transform for better coverage</li>
+<li><strong>Bootstrap methods recommended</strong>: For complex scenarios, bootstrap confidence intervals often perform better</li>
+<li><strong>Larger samples required</strong>: Variance and covariance require substantially larger samples than means for equivalent precision</li>
+</ol>
+</section>
+</section>
+<section id="comparative-example-sample-size-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="comparative-example-sample-size-requirements">Comparative Example: Sample Size Requirements</h3>
+<p>To achieve 10% relative precision (MoE = 10% of the estimate):</p>
+<p><strong>For a Mean:</strong> - Need: <span class="math inline">n = \left(\frac{1.96 \times CV}{0.10}\right)^2</span> where <span class="math inline">CV = SD/\mu</span> - If <span class="math inline">CV = 0.5</span>: <span class="math inline">n = 96</span></p>
+<p><strong>For a Proportion at p = 0.5:</strong> - Need: <span class="math inline">n = \left(\frac{1.96 \times 0.5}{0.05}\right)^2 = 384</span> - (Here 10% relative = ±0.05 absolute on 0-1 scale)</p>
+<p><strong>For a Variance:</strong> - Need: <span class="math inline">n \approx 1 + 2\left(\frac{1.96}{0.10}\right)^2 = 769</span></p>
+<p>Variance requires approximately 8× the sample size of a mean for equivalent relative precision!</p>
+</section>
+<section id="key-takeaways-3" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaways-3">Key Takeaways</h3>
+<p><strong>For Means (including proportions):</strong> - <strong>Proportions ARE means</strong> - just means of 0/1 data - Standard errors decrease as <span class="math inline">1/\sqrt{n}</span> - Normal approximation works well for moderate samples - Symmetric confidence intervals appropriate</p>
+<p><strong>For Variance and Covariance:</strong> - Standard errors decrease as <span class="math inline">1/\sqrt{n}</span> but with larger constants - Sampling distributions are skewed (chi-squared for variance) - Require substantially larger samples for equivalent precision - Asymmetric confidence intervals often needed - Bootstrap or exact methods recommended over simple ±1.96 approach</p>
+<p><strong>Why proportions seem to need larger samples:</strong> 1. The <strong>scale</strong> of measurement (0-1 vs.&nbsp;unbounded) 2. The <strong>relative precision</strong> desired (±3% is stringent on 0-1 scale) 3. The <strong>maximum SD</strong> for proportions (0.5) being large relative to range 4. <strong>Contextual standards</strong> in polling and surveys</p>
+<p>When comparing equivalent relative precision, sample size requirements for means and proportions are comparable!</p>
+<hr>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
