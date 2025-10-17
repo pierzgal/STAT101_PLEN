@@ -783,6 +783,8 @@ Wnioskowanie z próby o cechach populacji: Analogia „próbowania zupy”
 <section id="myślenie-statystyczne" class="level3">
 <h3 class="anchored" data-anchor-id="myślenie-statystyczne">Myślenie Statystyczne</h3>
 <p><img src="stat_imgs_2/FD134791-EDB7-41C0-A016-42D03015C243_1_105_c.jpeg" class="img-fluid"></p>
+<p><img src="stat_imgs/sampling-estimators.svg" class="img-fluid"></p>
+<p><img src="stat_imgs/sampling-logic.001.png" class="img-fluid"></p>
 <section id="scenariusz-badawczy" class="level4">
 <h4 class="anchored" data-anchor-id="scenariusz-badawczy">Scenariusz Badawczy</h4>
 <p>Władze uniwersytetu rozważają udostępnienie biblioteki całodobowo. Administracja potrzebuje odpowiedzi na pytanie: <strong>Jaka część studentów popiera tę zmianę?</strong></p>
@@ -800,7 +802,6 @@ Podstawowy Problem
 <strong>Sytuacja rzeczywista</strong>: Ankietowanie 100 studentów → Uzyskanie oszacowania (<span class="math inline">\hat{\theta}</span>) z niepewnością</p>
 </div>
 </div>
-<p><img src="stat_imgs/population_vs_sample.png" class="img-fluid"></p>
 </section>
 <section id="dwa-podejścia-do-tych-samych-danych" class="level4">
 <h4 class="anchored" data-anchor-id="dwa-podejścia-do-tych-samych-danych">Dwa Podejścia do Tych Samych Danych</h4>
@@ -827,7 +828,7 @@ Podstawowy Problem
 <p>Załóżmy, że losujemy tzw. <strong>próbę prostą</strong> o liczebności <span class="math inline">n=1000</span> wyborców i obserwujemy <span class="math inline">\hat p = 0{,}55</span> (tj. 55% poparcia dla kandydatki A). Wówczas:</p>
 <ul>
 <li><p>Naszą najlepszą, jednowartościową oceną odsetka w populacji wyborców <span class="math inline">p</span> jest <span class="math inline">\hat p = 0{,}55</span>.</p></li>
-<li><p>Orientacyjny „<span class="math inline">95\%</span> zakres wartości plauzybilnych” wokół <span class="math inline">\hat p</span> można przybliżyć wzorem <span class="math inline">\hat p \pm \text{Margin of (Random) Error}</span>, tj., <span class="math display">
+<li><p>Orientacyjny „zakres wartości prawdopodobnych” (dla tzw. <span class="math inline">95\%</span> poziomu ufności) wokół <span class="math inline">\hat p</span> można przybliżyć wzorem <span class="math inline">\hat p \pm \text{Margin of (Random) Error}</span>, tj., <span class="math display">
 \hat p \,\pm\, 2\sqrt{\frac{\hat p(1-\hat p)}{n}}
 \;=\;
 0{,}55 \,\pm\, 2\sqrt{\frac{0{,}55\cdot 0{,}45}{1000}}
@@ -935,37 +936,63 @@ Przykład historyczny: Sondaż Literary Digest z 1936 roku
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Literary Digest przeprowadził jeden z największych sondaży w historii z <strong>2,4 miliona odpowiedzi</strong>, przewidując, że Alf Landon pokona Franklina D. Roosevelta w wyborach prezydenckich w 1936 roku.</p>
-<p>Pomimo ogromnej wielkości próby:</p>
-<p><strong>Przewidywanie</strong>: Landon 57%, Roosevelt 43% <strong>Rzeczywisty wynik</strong>: Roosevelt 62%, Landon 38% <strong>Błąd</strong>: 25 punktów procentowych!</p>
-<p><strong>Co poszło nie tak?</strong> Sondaż był wadliwy z powodu systematycznego błędu/obciążenia (bias):</p>
-<p><strong>Obciążenie selekcyjne (selection bias) w ramce/operacie losowania</strong>:</p>
-<ul>
-<li>Źródła: książki telefoniczne, rejestracje samochodów, członkostwo w klubach</li>
-<li>Problem: W 1936 roku źródła te nadreprezentowały bogatych Amerykanów, którzy faworyzowali Landona</li>
-<li>Wynik: Próba systematycznie wykluczała zwolenników Roosevelta</li>
-</ul>
-<p><strong>Obciążenie braku odpowiedzi</strong>:</p>
-<ul>
-<li>Tylko 24% skontaktowanych osób odpowiedziało (problem z “response rate”)</li>
-<li>Prawdopodobni respondenci: osoby z silnymi opiniami anty-Roosevelt</li>
-<li>Struktura odmów: wielu zwolenników Roosevelta nie czuło potrzeby uczestniczenia</li>
-</ul>
-<p><strong>Kluczowe wnioski</strong>:</p>
+<p>Literary Digest przeprowadził jeden z największych sondaży w historii—<strong>2,4 miliona odpowiedzi</strong>—a mimo to spektakularnie nie udało się przewidzieć wyniku wyborów prezydenckich w 1936 roku:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Prognoza</th>
+<th>Rzeczywisty wynik</th>
+<th>Błąd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Landon</td>
+<td>57%</td>
+<td>38%</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Roosevelt</td>
+<td>43%</td>
+<td>62%</td>
+<td><strong>25 punktów!</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rozumienie błędu systematycznego</strong></p>
+<p>Wyobraź sobie, że próbujesz zmierzyć swój wzrost, ale twoja miarka zawsze zaczyna się 5 cm nad podłogą. Wykonanie kolejnych pomiarów nie pomoże—każdy pojedynczy pomiar będzie błędny w <em>tym samym kierunku</em> o <em>tę samą wielkość</em>. To jest <strong>błąd systematyczny</strong> (obciążenie).</p>
+<p>Porównaj to z <strong>błędem losowym</strong>: jeśli mierzysz elastyczną miarką, która przy każdym pomiarze zgina się nieco inaczej, czasami odczyt będzie trochę za wysoki, czasami za niski, ale błędy znoszą się przy uśrednianiu wielu pomiarów. Błąd losowy maleje wraz z większą próbą; błąd systematyczny nie.</p>
+<p><strong>Błędy systematyczne Literary Digest</strong></p>
+<p>Sondaż nie popełniał tylko losowych pomyłek—był systematycznie obciążony w kierunku bogatych wyborców:</p>
 <ol type="1">
-<li><strong>Duża obciążona (biased) próba jest gorsza niż mała reprezentatywna próba</strong></li>
-<li><strong>Błędy standardowe mierzą tylko błąd losowy, nie obciążenie</strong></li>
-<li><strong>Wielkość próby nie może naprawić fundamentalnych problemów dotyczących nielosowego doboru próby</strong></li>
-<li><strong>Reprezentatywne losowanie ma większe znaczenie niż wielkość próby</strong></li>
+<li><strong>Błąd selekcji w doborze próby</strong>:
+<ul>
+<li>Próbowano z: książek telefonicznych, rejestrów samochodów, list członków klubów</li>
+<li>W Ameryce z czasów Wielkiego Kryzysu (1936): te listy obejmowały bogatych Amerykanów, których było stać na telefony i samochody</li>
+<li>Rezultat: Schemat doboru próby <em>systematycznie wykluczał</em> zwolenników Roosevelta z klasy robotniczej</li>
+</ul></li>
+<li><strong>Błąd braku odpowiedzi</strong>:
+<ul>
+<li>Tylko 24% kontaktowanych osób odpowiedziało</li>
+<li>Wyborcy przeciwni Rooseveltowi (źli, zmotywowani) częściej odpowiadali</li>
+<li>Zwolennicy Roosevelta (zadowoleni ze status quo) czuli się mniej zmuszeni do uczestnictwa</li>
+</ul></li>
 </ol>
-<p>Ta katastrofa doprowadziła do znacznych ulepszeń w metodologii sondażowej, w tym rozwoju losowania probabilistycznego i śledzenia wskaźników odpowiedzi.</p>
-<section id="współczesne-sondaże" class="level3">
-<h3 class="anchored" data-anchor-id="współczesne-sondaże">Współczesne sondaże</h3>
-<p>Dzisiejsze sondaże, choć znacznie mniejsze niż 2,4 miliona odpowiedzi Literary Digest, są zwykle znacznie dokładniejsze, ponieważ koncentrują się na:</p>
-<p><strong>Reprezentatywnym losowaniu</strong>: Używanie metod opartych na prawdopodobieństwie, aby zapewnić wszystkim grupom znane szanse selekcji</p>
-<p><strong>Wykrywanie i korekcja obciążenia</strong>: Monitorowanie wskaźników odpowiedzi w różnych grupach demograficznych i korygowanie znanych obciążeń (bias)</p>
-<p><strong>Kwantyfikacja niepewności</strong>: Raportowanie marginesów błędu (statystyczny błąd losowy), które uczciwie komunikują granice tego, co wiemy</p>
-<p><strong>Przykład</strong>: Współczesny sondaż 1000 losowo wybranych wyborców z 3 punktowym marginesem błędu jest zwykle znacznie bardziej wiarygodny niż masywne, ale obciążone badanie Literary Digest.</p>
+<p>Oba obciążenia działały w <em>tym samym kierunku</em>—na korzyść Landona—tworząc masywny błąd systematyczny.</p>
+<p><strong>Dlaczego wielkość próby nie mogła ich uratować</strong></p>
+<p>2,4 miliona odpowiedzi sprawiło, że sondaż Literary Digest był <em>precyzyjnie błędny</em>. Więcej odpowiedzi z obciążonej próby tylko dało im większą pewność co do złej odpowiedzi. Ich margines błędu był minimalny (±0,1%), ale mierzył tylko <em>losową</em> zmienność próbkowania—nic nie mówił o ich systematycznym obciążeniu.</p>
+<p><strong>Kluczowa lekcja</strong>: <strong>Duża obciążona próba jest gorsza niż mała reprezentatywna próba</strong>—daje fałszywą pewność w błędnych wnioskach.</p>
+<section id="współczesne-sondaże-mniejsze-ale-mądrzejsze" class="level3">
+<h3 class="anchored" data-anchor-id="współczesne-sondaże-mniejsze-ale-mądrzejsze">Współczesne sondaże: mniejsze, ale mądrzejsze</h3>
+<p>Dzisiejsze sondaże z ~1000 respondentów są znacznie dokładniejsze, ponieważ priorytetowo traktują <strong>reprezentatywność ponad wielkość</strong>:</p>
+<ul>
+<li><strong>Losowanie probabilistyczne</strong>: Każdy wyborca ma znaną, niezerową szansę selekcji (eliminuje błąd selekcji)</li>
+<li><strong>Ważenie demograficzne</strong>: Korygowanie dla grup, które rzadziej odpowiadają (koryguje błąd braku odpowiedzi)</li>
+<li><strong>Uczciwa niepewność</strong>: 3-punktowy margines błędu uwzględnia losową zmienność, podczas gdy wykrywanie obciążeń monitoruje błędy systematyczne</li>
+</ul>
+<p>Katastrofa Literary Digest zrewolucjonizowała sondażowanie, udowadniając, że <em>jak</em> próbkujesz ma nieskończenie większe znaczenie niż <em>ile</em> próbkujesz.</p>
 </section>
 </div>
 </div>
@@ -1015,7 +1042,7 @@ Important
 <section id="pokrewne-pojęcia" class="level3">
 <h3 class="anchored" data-anchor-id="pokrewne-pojęcia">Pokrewne pojęcia</h3>
 <p><strong>Losowość vs.&nbsp;bezładność:</strong> Statystyczna losowość ma strukturę matematyczną i podlega prawom prawdopodobieństwa—to uporządkowana niepewność. Bezładność sugeruje całkowity brak porządku, bez podstawowych wzorców czy reguł.</p>
-<p><strong>Chaos:</strong> Proces deterministyczny (rządzony stałymi regułami), który wydaje się losowy z powodu ekstremalnej wrażliwości na warunki początkowe. Systemy chaotyczne są przewidywalne w teorii, ale nieprzewidywalne w praktyce (np. pogoda).</p>
+<p><strong>Chaos</strong> to jak automat typu flipper/pinball: znasz wszystkie reguły (prawa fizyki), ale najmniejsza różnica w miejscu wypuszczenia kulki—ułamek milimetra—prowadzi do zupełnie innych rezultatów. System jest deterministyczny i podlega stałym prawom, ale błędy narastają tak szybko, że przewidywanie staje się niemożliwe w praktyce, nawet przy doskonałej znajomości tych praw. To sytuacja: „wiem dokładnie, jak to działa, ale i tak nie powiem ci, co się stanie za chwilę”. <strong>Losowość (epistemiczna)</strong> to jak zakryta karta na stole: karta już <em>jest</em> siódemką kier (lub czymkolwiek innym), nie zmienia się ani nie ewoluuje. Po prostu nie wiesz jeszcze, która to karta. „Losowość” wynika wyłącznie z <em>twojej</em> niewiedzy—odkryj kartę, a niepewność znika całkowicie. Kluczowa różnica: chaos pozostaje nieprzewidywalny nawet przy doskonałej znajomości reguł, podczas gdy losowość epistemiczna znika w momencie, gdy zdobędziesz brakującą informację o aktualnym stanie rzeczy.</p>
 <p><strong>Entropia:</strong> Miara nieuporządkowania lub niepewności w systemie. Wysoka entropia oznacza wysoką nieprzewidywalność; niska entropia oznacza wysoki porządek. W statystyce entropia kwantyfikuje niepewność w rozkładzie prawdopodobieństwa.</p>
 </section>
 </div>

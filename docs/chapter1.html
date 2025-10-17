@@ -805,6 +805,7 @@ A Soup-Tasting Analogy
 <section id="statistical-thinking" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-thinking">Statistical Thinking</h3>
 <p><img src="stat_imgs_2/FD134791-EDB7-41C0-A016-42D03015C243_1_105_c.jpeg" class="img-fluid"></p>
+<p><img src="stat_imgs/sampling-estimators.svg" class="img-fluid"> <img src="stat_imgs/sampling-logic.001.png" class="img-fluid"></p>
 <section id="the-scenario" class="level4">
 <h4 class="anchored" data-anchor-id="the-scenario">The Scenario</h4>
 <p>Your university is considering keeping the library open 24/7. The administration needs to know: <strong>What proportion of students support this change?</strong></p>
@@ -822,7 +823,6 @@ The Fundamental Challenge
 <strong>Real world</strong>: Survey 100 students → Get an estimate (<span class="math inline">\hat{\theta}</span>) with uncertainty</p>
 </div>
 </div>
-<p><img src="stat_imgs/population_vs_sample.png" class="img-fluid"></p>
 </section>
 <section id="two-approaches-to-the-same-data" class="level4">
 <h4 class="anchored" data-anchor-id="two-approaches-to-the-same-data">Two Approaches to the Same Data</h4>
@@ -849,7 +849,7 @@ The Fundamental Challenge
 <p>Suppose we take a <strong>random sample</strong> of <span class="math inline">n=1000</span> voters and observe <span class="math inline">\hat p = 0.55</span> (i.e., 55% support for a candidate in upcoming elections, 550 in 1000 sample). Then:</p>
 <ul>
 <li><p>Our best single-number estimate of the population share is <span class="math inline">\hat p = 0.55</span>.</p></li>
-<li><p>A typical “<span class="math inline">95\%</span> range of plausible values” around <span class="math inline">\hat p</span> can be approximated by <span class="math inline">\hat p \pm \text{Margin of (Random) Error}</span>, i.e., <span class="math display">
+<li><p>A typical “range of plausible values” (for <span class="math inline">95\%</span> confidence level) around <span class="math inline">\hat p</span> can be approximated by <span class="math inline">\hat p \pm \text{Margin of (Random) Error}</span>, i.e., <span class="math display">
 \hat p \;\pm\; 2\sqrt{\frac{\hat p(1-\hat p)}{n}}
 \;=\;
 0.55 \;\pm\; 2\sqrt{\frac{0.55\cdot 0.45}{1000}}
@@ -957,40 +957,63 @@ Historical Example: The 1936 Literary Digest Poll
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The Literary Digest conducted one of the largest polls in history with <strong>2.4 million responses</strong>, predicting Alf Landon would defeat Franklin D. Roosevelt in the 1936 presidential election.</p>
-<p>Despite the massive sample size:</p>
-<p><strong>Prediction</strong>: Landon 57%, Roosevelt 43%<br>
-<strong>Actual Result</strong>: Roosevelt 62%, Landon 38%<br>
-<strong>Error</strong>: 25 percentage points!</p>
-<p><strong>What went wrong?</strong> The poll suffered from systematic bias:</p>
-<p><strong>Selection bias in sampling frame</strong>:</p>
-<ul>
-<li>Sources: telephone directories, automobile registrations, club memberships</li>
-<li>Problem: In 1936, these sources overrepresented wealthy Americans who favored Landon</li>
-<li>Result: The sample systematically excluded Roosevelt supporters</li>
-</ul>
-<p><strong>Non-response bias</strong>:</p>
-<ul>
-<li>Only 24% of those contacted responded (low response rate)</li>
-<li>Likely respondents: those with strong anti-Roosevelt opinions</li>
-<li>Non-respondents: many Roosevelt supporters didn’t feel compelled to participate</li>
-</ul>
-<p><strong>Key Lessons</strong>:</p>
+<p>The Literary Digest conducted one of the largest polls in history—<strong>2.4 million responses</strong>—yet spectacularly failed to predict the 1936 presidential election:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Prediction</th>
+<th>Actual Result</th>
+<th>Error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Landon</td>
+<td>57%</td>
+<td>38%</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Roosevelt</td>
+<td>43%</td>
+<td>62%</td>
+<td><strong>25 points!</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Understanding Systematic Error</strong></p>
+<p>Imagine you’re trying to measure your height, but your measuring tape consistently starts 2 inches above the floor. Taking more measurements won’t help—every single measurement will be wrong in the <em>same direction</em> by the <em>same amount</em>. This is <strong>systematic error</strong> (bias).</p>
+<p>Contrast this with <strong>random error</strong>: if you’re measuring with a flexible tape that bends slightly differently each time, sometimes you’ll read a bit high, sometimes a bit low, but the errors cancel out when you average many measurements. Random error decreases with larger samples; systematic error doesn’t.</p>
+<p><strong>The Literary Digest’s Systematic Errors</strong></p>
+<p>The poll didn’t just make random mistakes—it was systematically biased toward wealthy voters:</p>
 <ol type="1">
-<li><strong>A large biased sample is worse than a small representative sample</strong></li>
-<li><strong>Standard statistical errors only measure random error, not bias</strong><br>
-</li>
-<li><strong>Sample size cannot fix fundamental sampling problems</strong></li>
-<li><strong>Representative sampling matters more than sample size</strong></li>
+<li><strong>Selection bias in who could be sampled</strong>:
+<ul>
+<li>Sampled from: telephone directories, automobile registrations, club memberships</li>
+<li>In 1936 Depression-era America: these lists captured wealthy Americans who could afford phones and cars</li>
+<li>Result: The sampling frame <em>systematically excluded</em> working-class Roosevelt supporters</li>
+</ul></li>
+<li><strong>Non-response bias in who chose to respond</strong>:
+<ul>
+<li>Only 24% of those contacted responded</li>
+<li>Anti-Roosevelt voters (angry, motivated) were more likely to respond</li>
+<li>Pro-Roosevelt voters (satisfied with status quo) were less compelled to participate</li>
+</ul></li>
 </ol>
-<p>This disaster led to major improvements in polling methodology, including the development of probability sampling and response rate tracking.</p>
-<section id="modern-polling" class="level3">
-<h3 class="anchored" data-anchor-id="modern-polling">Modern Polling</h3>
-<p>Today’s polls, while much smaller than the Literary Digest’s 2.4 million responses, are far more accurate because they focus on:</p>
-<p><strong>Representative sampling</strong>: Using probability-based methods to ensure all groups have known chances of selection</p>
-<p><strong>Bias detection and correction</strong>: Monitoring response rates across demographics and adjusting for known biases</p>
-<p><strong>Uncertainty quantification</strong>: Reporting margins of statistical error that honestly communicate the limits of what we know</p>
-<p><strong>Example</strong>: A modern poll of 1,000 randomly selected voters with a 3 pp margin of error is far more reliable than the Literary Digest’s massive but biased survey.</p>
+<p>Both biases pushed in the <em>same direction</em>—toward Landon—creating massive systematic error.</p>
+<p><strong>Why Sample Size Couldn’t Save Them</strong></p>
+<p>The Literary Digest’s 2.4 million responses made the poll <em>precisely wrong</em>. More responses from a biased sample just gave them more confidence in the wrong answer. Their margin of error was tiny (±0.1%), but this only measured <em>random</em> sampling variation—it said nothing about their systematic bias.</p>
+<p><strong>The Crucial Lesson</strong>: <strong>A large biased sample is worse than a small representative sample</strong>—it gives false confidence in wrong conclusions.</p>
+<section id="modern-polling-smaller-but-smarter" class="level3">
+<h3 class="anchored" data-anchor-id="modern-polling-smaller-but-smarter">Modern Polling: Smaller but Smarter</h3>
+<p>Today’s polls with ~1,000 respondents are far more accurate because they prioritize <strong>representativeness over size</strong>:</p>
+<ul>
+<li><strong>Probability sampling</strong>: Every voter has a known, non-zero chance of selection (eliminating selection bias)</li>
+<li><strong>Demographic weighting</strong>: Adjusting for groups that under-respond (correcting non-response bias)</li>
+<li><strong>Honest uncertainty</strong>: A 3-point margin of error acknowledges random variation, while bias detection monitors systematic errors</li>
+</ul>
+<p>The Literary Digest disaster revolutionized polling, proving that how you sample matters infinitely more than how many you sample.</p>
 </section>
 </div>
 </div>
@@ -1042,7 +1065,7 @@ Understanding Randomness
 <section id="related-concepts" class="level3">
 <h3 class="anchored" data-anchor-id="related-concepts">Related Concepts</h3>
 <p><strong>Randomness vs.&nbsp;Haphazardness:</strong> Statistical randomness has mathematical structure and follows probability laws—it’s orderly uncertainty. Haphazardness suggests complete disorder without underlying patterns or rules.</p>
-<p><strong>Chaos:</strong> A deterministic process (governed by fixed rules) that appears random due to extreme sensitivity to the so-called initial conditions (temperature, pressure, humidity at a specific moment). Chaotic systems are predictable in theory but unpredictable in practice (e.g., weather).</p>
+<p><strong>Chaos</strong> is like a pinball machine: you know all the rules (physics), but the tiniest difference in where you release the ball—off by a fraction of a millimeter—leads to completely different outcomes. The system is deterministic and follows fixed laws, but errors compound so fast that prediction becomes impossible in practice, even with perfect knowledge of those laws. It’s “I know exactly how this works, but I still can’t tell you what happens next.” <strong>(Epistemic) randomness</strong> is like a card face-down on a table: the card is already the 7 of hearts (or whatever it is), it’s not changing or evolving. You just don’t know which card it is yet. The “randomness” is purely due to incomplete knowledge—flip the card over and the uncertainty vanishes completely. The key difference: chaos remains unpredictable even with perfect information about the rules, while epistemic randomness disappears the moment you gain the missing information about the current state.</p>
 <p><strong>Entropy:</strong> A measure of disorder or uncertainty in a system. High entropy means high unpredictability; low entropy means high order (low uncertainty). In statistics, entropy quantifies the uncertainty in a probability distribution.</p>
 </section>
 </div>
