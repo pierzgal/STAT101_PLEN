@@ -822,7 +822,7 @@ The Fundamental Challenge
 <strong>Real world</strong>: Survey 100 students → Get an estimate (<span class="math inline">\hat{\theta}</span>) with uncertainty</p>
 </div>
 </div>
-<p><img src="stat_imgs/random-sample.svg" class="img-fluid"></p>
+<p><img src="stat_imgs/population_vs_sample.png" class="img-fluid"></p>
 </section>
 <section id="two-approaches-to-the-same-data" class="level4">
 <h4 class="anchored" data-anchor-id="two-approaches-to-the-same-data">Two Approaches to the Same Data</h4>
@@ -1005,7 +1005,9 @@ Understanding Randomness
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A <strong>random experiment</strong> is any process whose result cannot be predicted with certainty, such as tossing a coin or rolling a die. An <strong>outcome</strong> is a single possible result of that experiment—for example, getting “heads” or rolling a “5”. An <strong>event</strong> is a set of one or more outcomes that we’re interested in; it could be a simple event (like rolling exactly a 3) or a compound event (like rolling an even number, which includes the outcomes 2, 4, and 6).</p>
+<p>A <strong>random experiment</strong> is any process whose result cannot be predicted with certainty, such as tossing a coin or rolling a die.</p>
+<p>An <strong>outcome</strong> is a single possible result of that experiment—for example, getting “heads” or rolling a “5”.</p>
+<p>An <strong>event</strong> is a set of one or more outcomes that we’re interested in; it could be a simple event (like rolling exactly a 3) or a compound event (like rolling an even number, which includes the outcomes 2, 4, and 6).</p>
 <blockquote class="blockquote">
 <p><strong>Probability</strong> is a way of measuring how likely something is to happen. It’s a number between 0 and 1 (or 0% and 100%) that represents the chance of an event occurring.</p>
 </blockquote>
@@ -1040,8 +1042,8 @@ Understanding Randomness
 <section id="related-concepts" class="level3">
 <h3 class="anchored" data-anchor-id="related-concepts">Related Concepts</h3>
 <p><strong>Randomness vs.&nbsp;Haphazardness:</strong> Statistical randomness has mathematical structure and follows probability laws—it’s orderly uncertainty. Haphazardness suggests complete disorder without underlying patterns or rules.</p>
-<p><strong>Chaos:</strong> A deterministic process (governed by fixed rules) that appears random due to extreme sensitivity to initial conditions. Chaotic systems are predictable in theory but unpredictable in practice (e.g., weather).</p>
-<p><strong>Entropy:</strong> A measure of disorder or uncertainty in a system. High entropy means high unpredictability; low entropy means high order. In statistics, entropy quantifies the uncertainty in a probability distribution.</p>
+<p><strong>Chaos:</strong> A deterministic process (governed by fixed rules) that appears random due to extreme sensitivity to the so-called initial conditions (temperature, pressure, humidity at a specific moment). Chaotic systems are predictable in theory but unpredictable in practice (e.g., weather).</p>
+<p><strong>Entropy:</strong> A measure of disorder or uncertainty in a system. High entropy means high unpredictability; low entropy means high order (low uncertainty). In statistics, entropy quantifies the uncertainty in a probability distribution.</p>
 </section>
 </div>
 </div>
@@ -1061,12 +1063,13 @@ Bias vs.&nbsp;Random Error
 <p><strong>Random error</strong> is the unpredictable variation in your observations, like:</p>
 <ul>
 <li>A dart player aiming at the bullseye—each throw lands in a slightly different spot due to hand tremor, air currents, tiny muscle variations</li>
-<li>Measuring someone’s height multiple times and getting 175.2 cm, 175.0 cm, 175.3 cm—small fluctuations from posture changes, breathing, how you read the scale, and natural body variations</li>
+<li>Measuring someone’s height multiple times and getting 174.8 cm, 175.0 cm, 175.3 cm—small fluctuations from posture changes, breathing, how you read the scale, and natural body variations</li>
 <li>A weather model that’s sometimes 2°C too high, sometimes 1°C too low, sometimes spot on</li>
 <li><strong>Opinion polls</strong> showing 52%, 49%, 51% support across different surveys—each random sample gives slightly different results, but they cluster around the true value</li>
 </ul>
 <p><strong>Random error is measured by variance</strong>—the average squared deviation of observations from their mean. It quantifies how much your data points (predictions) scatter.</p>
-<p><strong>Polling example</strong>: Bias would be if your poll only calls landlines (systematically missing younger voters, always underestimating progressive candidates). Random error is why five different polls of the same race give slightly different numbers—it’s just sampling variability.</p>
+<p>Random error is like asking 5 friends to estimate how many jellybeans are in a jar—they’ll all give different answers just due to chance, but those differences scatter randomly around the truth rather than all being wrong in the same direction.</p>
+<p><strong>Polling example</strong>: Bias is like polling only at the gym at 6am—you’ll always get more health-conscious, early-rising, employed people and always miss night-shift workers, people with young kids, etc. The poll is broken in a predictable way. Or: only counting responses from people who actually answer unknown phone calls—you’ll systematically miss everyone (especially younger people) who screens their calls.</p>
 <p><strong>Key difference</strong>: Averaging more observations reduces random error but <em>never</em> fixes bias. You can’t average your way out of a miscalibrated scale—or a biased sampling method!</p>
 </div>
 </div>
@@ -1089,7 +1092,7 @@ Bias vs.&nbsp;Random Error
 </ul>
 <p>Populations can be:</p>
 <p><strong>Finite</strong>: Having a countable number of members (all current U.S. citizens, all Polish municipalities in 2024)</p>
-<p><strong>Infinite</strong>: Theoretical or uncountably large (all possible future births)</p>
+<p><strong>Infinite</strong>: Theoretical or uncountably large (all possible future births, all possible coin tosses or dice flips)</p>
 <p><strong>Fixed</strong>: Defined at a specific point in time (all residents on census day)</p>
 <p><strong>Dynamic</strong>: Changing over time (the population of a city that experiences births, deaths, and migration daily)</p>
 </section>
@@ -1250,14 +1253,13 @@ Sampling Methods Overview
 <section id="data-and-distributions" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="data-and-distributions"><span class="header-section-number">1.6</span> Data and Distributions</h2>
 <p><strong>Data</strong>: Information collected during research – this includes survey responses, experimental results, economic indicators, social media content, or any other measurable observations.</p>
-<p>Understanding data types and distributions is fundamental to choosing appropriate analyses and interpreting results correctly.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Understanding Different Types of Data Sets and Their Formats
+Understanding Different Types of Data Structures (Data Sets) and Their Formats
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1482,6 +1484,7 @@ Understanding Different Types of Data Sets and Their Formats
 </div>
 </div>
 <hr>
+<p>Understanding data types and distributions is fundamental to choosing appropriate analyses and interpreting results correctly.</p>
 <section id="types-of-data" class="level3">
 <h3 class="anchored" data-anchor-id="types-of-data">Types of Data</h3>
 <p><strong>Data</strong> consists of collected observations or measurements. The type of data determines what mathematical operations (e.g.&nbsp;multiplication) are meaningful and what statistical methods apply.</p>
