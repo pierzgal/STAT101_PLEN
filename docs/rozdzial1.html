@@ -321,14 +321,16 @@ window.Quarto = {
   <li><a href="#typy-zmiennych" id="toc-typy-zmiennych" class="nav-link" data-scroll-target="#typy-zmiennych">Typy zmiennych</a></li>
   <li><a href="#skale-pomiarowe" id="toc-skale-pomiarowe" class="nav-link" data-scroll-target="#skale-pomiarowe">Skale pomiarowe</a></li>
   </ul></li>
-  <li><a href="#parametry-statystyki-i-estymacja" id="toc-parametry-statystyki-i-estymacja" class="nav-link" data-scroll-target="#parametry-statystyki-i-estymacja"><span class="header-section-number">2.8</span> Parametry, statystyki i estymacja</a>
+  <li><a href="#parametry-statystyki-estymandy-estymatory-i-estymaty" id="toc-parametry-statystyki-estymandy-estymatory-i-estymaty" class="nav-link" data-scroll-target="#parametry-statystyki-estymandy-estymatory-i-estymaty"><span class="header-section-number">2.8</span> Parametry, statystyki, estymandy, estymatory i estymaty</a>
   <ul class="collapse">
+  <li><a href="#tabela-porównawcza-w-skrócie" id="toc-tabela-porównawcza-w-skrócie" class="nav-link" data-scroll-target="#tabela-porównawcza-w-skrócie">Tabela porównawcza (w skrócie)</a></li>
   <li><a href="#parametr" id="toc-parametr" class="nav-link" data-scroll-target="#parametr">Parametr</a></li>
   <li><a href="#statystyka" id="toc-statystyka" class="nav-link" data-scroll-target="#statystyka">Statystyka</a></li>
-  <li><a href="#relacja-między-parametrami-a-statystykami" id="toc-relacja-między-parametrami-a-statystykami" class="nav-link" data-scroll-target="#relacja-między-parametrami-a-statystykami">Relacja między parametrami a statystykami</a></li>
+  <li><a href="#estymand" id="toc-estymand" class="nav-link" data-scroll-target="#estymand">Estymand</a></li>
   <li><a href="#estymator" id="toc-estymator" class="nav-link" data-scroll-target="#estymator">Estymator</a></li>
-  <li><a href="#estimand" id="toc-estimand" class="nav-link" data-scroll-target="#estimand">Estimand</a></li>
-  <li><a href="#oszacowanie-estimate" id="toc-oszacowanie-estimate" class="nav-link" data-scroll-target="#oszacowanie-estimate">Oszacowanie (Estimate)</a></li>
+  <li><a href="#jak-oceniamy-estymatory-błąd-wariancja-mse-efektywność" id="toc-jak-oceniamy-estymatory-błąd-wariancja-mse-efektywność" class="nav-link" data-scroll-target="#jak-oceniamy-estymatory-błąd-wariancja-mse-efektywność">Jak oceniamy estymatory: błąd, wariancja, MSE, efektywność</a></li>
+  <li><a href="#estymata-oszacowanie" id="toc-estymata-oszacowanie" class="nav-link" data-scroll-target="#estymata-oszacowanie">Estymata (oszacowanie)</a></li>
+  <li><a href="#częste-pomyłki-i-doprecyzowania" id="toc-częste-pomyłki-i-doprecyzowania" class="nav-link" data-scroll-target="#częste-pomyłki-i-doprecyzowania">Częste pomyłki i doprecyzowania</a></li>
   </ul></li>
   <li><a href="#błąd-statystyczny-i-niepewność" id="toc-błąd-statystyczny-i-niepewność" class="nav-link" data-scroll-target="#błąd-statystyczny-i-niepewność"><span class="header-section-number">2.9</span> Błąd statystyczny i niepewność</a>
   <ul class="collapse">
@@ -567,7 +569,7 @@ Zaokrąglenia i notacja naukowa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Po Co Statystyka w Naukach Społecznych i Politologii (w tym SM)?
+Po Co Statystyka w Naukach Społecznych i Politologii lub SM?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -775,11 +777,13 @@ Wnioskowanie z próby o cechach populacji: Analogia „próbowania zupy”
 <p><strong>Wnioskowanie statystyczne</strong>: Używanie charakterystyk łyżki do wyciągania wniosków o całym garnku</p>
 <section id="ważne" class="level3">
 <h3 class="anchored" data-anchor-id="ważne">Ważne</h3>
-<p><strong>1. Losowe próbkowanie jest niezbędne</strong>: Kucharz musi dokładnie wymieszać zupę przed pobraniem próbki. Konsekwentne pobieranie próbek z powierzchni może pominąć przyprawy, które osiadły, wprowadzając systematyczne obciążenie.</p>
-<p><strong>2. Wielkość próby wpływa na precyzję</strong>: Większa łyżka dostarcza bardziej wiarygodnych informacji o ogólnym smaku niż mały łyk, choć np. koszty i czas ograniczają możliwość dowolnego zwiększania próby.</p>
-<p><strong>3. Niepewność jest nieodłączna</strong>: Nawet przy właściwej technice próbkowania (sampling), łyżka może nie reprezentować idealnie charakterystyk całego garnka.</p>
-<p><strong>4. Systematyczne obciążenie/stronniczość (bias) podważa wnioskowanie</strong>: Jeśli ktoś potajemnie doda sól tylko do obszaru próbkowania, wnioski o całym garnku stają się nieważne — ilustrując, jak obciążenie próbkowania zniekształca wnioskowanie statystyczne.</p>
-<p><strong>5. Wnioskowanie ma ograniczenia zakresu</strong>: Próba może oszacować średnią słoność, ale nie może ujawnić, czy niektóre części są bardziej słone niż inne, podkreślając granice tego, co próby mogą nam powiedzieć o zmienności w populacji.</p>
+<p><strong>1. Próbkowanie losowe jest kluczowe.</strong> Przed pobraniem próbki zupę trzeba dobrze zamieszać albo pobierać z losowych miejsc. Nabieranie tylko z powierzchni może pominąć przyprawy, które opadły na dno, co wprowadza <strong>błąd systematyczny (bias)</strong>.</p>
+<p><strong>2. Wielkość próby decyduje o precyzji.</strong> Większa łyżka <strong>albo więcej łyżek</strong> (większe <em>n</em>) daje mniejszy błąd losowy i stabilniejszy szacunek „średniego smaku”, choć koszty i czas ograniczają, jak bardzo można zwiększać próbę.</p>
+<p><strong>3. Niepewność jest nieusuwalna.</strong> Nawet przy poprawnym próbkowaniu pojedyncza łyżka może nie odzwierciedlać idealnie całego garnka; zawsze istnieje losowa zmienność.</p>
+<p><strong>4. Błąd systematyczny podważa wnioskowanie.</strong> Jeśli sól dosypano tylko tam, skąd zwykle nabierasz próbkę, wnioski o całym garnku będą zafałszowane — to przykład <strong>stronniczości próbkowania</strong>.</p>
+<p><strong>5. Jedna próbka ma ograniczoną wartość.</strong> Jednorazowy test może powiedzieć, że „średnio jest słona”, ale nie pokaże rozpiętości smaków w garnku. Aby ocenić zmienność, trzeba pobrać <strong>wiele niezależnych próbek</strong>.</p>
+<p><strong>Uwaga:</strong> zwiększanie liczebności próby poprawia <strong>precyzję</strong> (mniej szumu), ale <strong>nie usuwa błędu systematycznego</strong>; ten wymaga poprawy schematu próbkowania.</p>
+<hr>
 <p>Ta analogia chwyta istotę rozumowania statystycznego: używanie starannie wybranych prób do poznawania większych populacji przy jednoczesnym jawnym uznawaniu i kwantyfikacji nieodłącznej niepewności w tym procesie.</p>
 </section>
 </div>
@@ -788,7 +792,118 @@ Wnioskowanie z próby o cechach populacji: Analogia „próbowania zupy”
 <section id="myślenie-statystyczne" class="level3">
 <h3 class="anchored" data-anchor-id="myślenie-statystyczne">Myślenie Statystyczne</h3>
 <p><img src="stat_imgs_2/FD134791-EDB7-41C0-A016-42D03015C243_1_105_c.jpeg" class="img-fluid"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Kluczowe pojęcia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>Estymand</strong> — to, co chcemy poznać; precyzyjnie sformułowane pytanie badawcze.<br>
+<em>Przykład:</em> „Jaki jest średni wiek przy pierwszym porodzie we Francji w 2023 roku?”</p></li>
+<li><p><strong>Parametr</strong> <span class="math inline">(\theta)</span> — prawdziwa odpowiedź na to pytanie; istnieje w populacji, ale jest nieznana.<br>
+<em>Przykład:</em> Rzeczywista średnia wieku = 31,2 lata (gdybyśmy mogli zbadać wszystkie porody).</p></li>
+<li><p><strong>Statystyka z próby</strong> — wartość policzona z próby (funkcja próby); zmienia się z próby na próbę.<br>
+<em>Przykład:</em> Z próby 500 urodzeń otrzymujemy średnią = 30,9 lat.</p></li>
+</ul>
+<hr>
+<p><strong>Narzędzia estymacji:</strong></p>
+<ul>
+<li><p><strong>Estymator</strong> — reguła/przepis, jak z danych próby policzyć przybliżenie parametru.<br>
+<em>Przykład:</em> „Policz średnią arytmetyczną z próby.”</p></li>
+<li><p><strong>Estymata</strong> <span class="math inline">(\hat\theta)</span> — konkretna liczba otrzymana przez zastosowanie estymatora do konkretnej próby.<br>
+<em>Przykład:</em> <span class="math inline">\hat\mu = 30{,}9</span> lat.</p></li>
+</ul>
+<hr>
+<p><strong>Najczęściej stosowane estymatory:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 41%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Szukamy</th>
+<th>Estymator</th>
+<th>Wzór</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Średniej <span class="math inline">\mu</span></td>
+<td>Średnia z próby</td>
+<td><span class="math inline">\hat\mu=\bar X=\frac{1}{n}\sum_{i=1}^n X_i</span></td>
+</tr>
+<tr class="even">
+<td>Proporcji <span class="math inline">p</span></td>
+<td>Frakcja sukcesów</td>
+<td><span class="math inline">\hat p=\frac{X}{n}</span></td>
+</tr>
+<tr class="odd">
+<td>Wariancji <span class="math inline">\sigma^2</span></td>
+<td>Wariancja próbkowa</td>
+<td><span class="math inline">s^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar X)^2</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="stat_imgs/sampling-estimators.svg" class="img-fluid"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Kryteria jakości: błąd, wariancja, MSE, efektywność (*)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Jak ocenić, czy estymator (metoda) jest dobry?</strong></p>
+<ul>
+<li><p><strong>Błąd systematyczny (bias) — czy nasza metoda daje prawdziwe wyniki „średnio”?</strong></p>
+<p>Wyobraź sobie, że chcemy poznać średni wzrost dorosłych Polaków (prawdziwa wartość: 172 cm). Pobieramy 100 różnych prób po 500 osób każda i dla każdej liczymy średnią.</p>
+<p><strong>Estymator nieobciążony:</strong> Te 100 średnich będzie się różnić (169 cm, 173 cm, 171 cm…), ale ich średnia będzie bliska 172 cm. Czasem przeszacowujemy, czasem niedoszacowujemy, ale <strong>nie ma systematycznego błędu</strong>.</p>
+<p><strong>Estymator obciążony:</strong> Gdybyśmy przypadkowo zawsze pomijali osoby powyżej 180 cm, wszystkie nasze 100 średnich byłyby za niskie (np. oscylowały wokół 168 cm). To błąd systematyczny.</p></li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>Wariancja — jak bardzo różnią się wyniki między próbami?</strong></p>
+<p>Mamy dwie metody szacowania tego samego parametru. Obie „średnio” dają dobry wynik, ale:</p>
+<ul>
+<li><strong>Metoda A:</strong> z 10 prób otrzymujemy: 171, 172, 173, 171, 172, 173, 172, 171, 173, 172 cm</li>
+<li><strong>Metoda B:</strong> z 10 prób otrzymujemy: 165, 179, 168, 176, 171, 174, 169, 175, 167, 176 cm</li>
+</ul>
+<p>Metoda A ma <strong>mniejszą wariancję</strong> — wyniki są bardziej skupione, przewidywalne. W praktyce wolisz metodę A, bo możesz być bardziej pewien pojedynczego wyniku.</p>
+<p><em>Kluczowa zasada:</em> Większa próba = mniejsza wariancja. Z próby 100 osób średnia będzie bardziej “skakać” niż z próby 1000 osób.</p></li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>Średni błąd kwadratowy (MSE) — co jest ważniejsze: brak obciążenia czy stabilność?</strong></p>
+<p>Czasem mamy dylemat:</p>
+<ul>
+<li><strong>Estymator A:</strong> Nieobciążony (średnio 172 cm), ale bardzo niestabilny (wyniki od 160 do 184 cm)</li>
+<li><strong>Estymator B:</strong> Lekko obciążony (średnio 171 cm zamiast 172 cm), ale bardzo stabilny (wyniki od 169 do 173 cm)</li>
+</ul>
+<p>MSE mówi: <strong>Estymator B jest lepszy</strong> — niewielkie systematyczne przeszacowanie o 1 cm jest mniej problematyczne niż ogromny rozrzut wyników w estymatorze A.</p></li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>Efektywność — który nieobciążony estymator wybrać?</strong></p>
+<p>Masz dane o dochodach 500 osób. Chcesz poznać „typowy” dochód. Dwie możliwości:</p>
+<ul>
+<li><strong>Średnia arytmetyczna:</strong> zazwyczaj daje wyniki w zakresie 4800–5200 zł</li>
+<li><strong>Mediana:</strong> daje wyniki w zakresie 4500–5500 zł</li>
+</ul>
+<p>Jeśli obie metody są nieobciążone, wybierz tę o mniejszym rozrzucie (średnia jest bardziej efektywna dla danych z rozkładu normalnego).</p></li>
+</ul>
+</div>
+</div>
 <p><img src="stat_imgs/sampling-logic.001.png" class="img-fluid"></p>
 <section id="scenariusz-badawczy" class="level4">
 <h4 class="anchored" data-anchor-id="scenariusz-badawczy">Scenariusz Badawczy</h4>
@@ -828,38 +943,39 @@ Podstawowy Problem
 </div>
 <hr>
 </section>
-<section id="wielkość-próby-a-poziom-niepewności-random-error" class="level4">
-<h4 class="anchored" data-anchor-id="wielkość-próby-a-poziom-niepewności-random-error">Wielkość Próby a Poziom Niepewności (<em>random error</em>)</h4>
-<p>Załóżmy, że losujemy tzw. <strong>próbę prostą</strong> o liczebności <span class="math inline">n=1000</span> wyborców i obserwujemy <span class="math inline">\hat p = 0{,}55</span> (tj. 55% poparcia dla kandydatki A). Wówczas:</p>
+<section id="wielkość-próby-a-niepewność-błąd-losowy" class="level4">
+<h4 class="anchored">Wielkość próby a niepewność (<em>błąd losowy</em>)</h4>
+<p>Załóżmy, że pobieramy <strong>próbę losową</strong> o liczebności <span class="math inline">n=1000</span> wyborców i obserwujemy <span class="math inline">\hat p = 0,55</span> (np. 55% poparcia dla kandydata w nadchodzących wyborach—550 na 1000 respondentów). Wówczas:</p>
 <ul>
-<li><p>Naszą najlepszą, jednowartościową oceną odsetka w populacji wyborców <span class="math inline">p</span> jest <span class="math inline">\hat p = 0{,}55</span>.</p></li>
-<li><p>Orientacyjny „zakres wartości prawdopodobnych” (dla tzw. <span class="math inline">95\%</span> poziomu ufności) wokół <span class="math inline">\hat p</span> można przybliżyć wzorem <span class="math inline">\hat p \pm \text{Margin of (Random) Error}</span>, tj., <span class="math display">
-\hat p \,\pm\, 2\sqrt{\frac{\hat p(1-\hat p)}{n}}
-\;=\;
-0{,}55 \,\pm\, 2\sqrt{\frac{0{,}55\cdot 0{,}45}{1000}}
-\approx
-0{,}55 \pm 0{,}031,
-</span> czyli w przybliżeniu <span class="math inline">52\%\text{–}58\%</span> (około <span class="math inline">\pm 3{,}1</span> punktu procentowego, <strong>pp</strong>).</p></li>
-<li><p>Szerokość tego zakresu maleje wraz z liczebnością próby: <span class="math display">
-\text{MoE} \;\propto\; \frac{1}{\sqrt{n}}.
-</span> Przykładowo, zwiększenie <span class="math inline">n</span> z <span class="math inline">1000</span> do <span class="math inline">4000</span> mniej więcej <strong>zmniejsza błąd o połowę</strong> (<span class="math inline">0.0158</span>).</p></li>
+<li><p>Naszym najlepszym punktowym oszacowaniem proporcji w populacji jest <span class="math inline">\hat p = 0,55</span>.</p></li>
+<li><p>Typowy „przedział wiarygodnych wartości” (dla poziomu ufności <span class="math inline">95\%</span>) wokół <span class="math inline">\hat p</span> można aproksymować jako <span class="math inline">\hat p \pm \text{Błąd losowy (Margin of Error, margines błędu)}</span>, czyli: <span class="math display">
+  \hat p \;\pm\; 2\sqrt{\frac{\hat p(1-\hat p)}{n}}
+  \;=\;
+  0,55 \;\pm\; 2\sqrt{\frac{0,55\cdot 0,45}{1000}}
+  \approx
+  0,55 \pm 0,031,
+</span> co daje w przybliżeniu od <span class="math inline">52\%</span> do <span class="math inline">58\%</span> (około <span class="math inline">\pm 3,1</span> punktu procentowego).<br>
+<strong>Uwaga:</strong> Współczynnik 2 jest wygodnym zaokrągleniem wartości 1,96, czyli tzw. wartości krytycznej z rozkładu normalnego standardowego dla poziomu ufności 95%.</p></li>
+<li><p>Szerokość tego przedziału maleje w przewidywalny sposób wraz z wielkością próby: <span class="math display">
+  \text{Błąd oszacowania} \;\propto\; \frac{1}{\sqrt{n}}.
+</span> Na przykład, zwiększenie <span class="math inline">n</span> z 1000 do 4000 zmniejsza błąd oszacowania mniej więcej o połowę (z <span class="math inline">\pm 3,1\%</span> do <span class="math inline">\pm 1,6\%</span>).</p></li>
 </ul>
 <hr>
-<p>Wpływ wielkości próby na poziom zaufania (ufności) do wyników z próby:</p>
+<p><strong>Jak wielkość próby wpływa na precyzję:</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 17%">
-<col style="width: 12%">
-<col style="width: 33%">
 <col style="width: 20%">
-<col style="width: 16%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Wielkość Próby</th>
-<th>Twój Wynik</th>
-<th>Margines Błędu Losowego (MoE)</th>
-<th>Przedział Ufności</th>
+<th>Wielkość próby</th>
+<th>Obserwowany wynik</th>
+<th>Błąd oszacowania</th>
+<th>95% przedział ufności</th>
 <th>Interpretacja</th>
 </tr>
 </thead>
@@ -867,42 +983,43 @@ Podstawowy Problem
 <tr class="odd">
 <td>n = 100</td>
 <td>60%</td>
-<td>±10 pkt. proc.</td>
+<td>±10 p.p.</td>
 <td>50% do 70%</td>
 <td>Niepewność co do większości</td>
 </tr>
 <tr class="even">
 <td>n = 400</td>
 <td>60%</td>
-<td>±5 pkt. proc.</td>
+<td>±5 p.p.</td>
 <td>55% do 65%</td>
-<td>Prawdopodobne poparcie większości</td>
+<td>Prawdopodobna większość</td>
 </tr>
 <tr class="odd">
-<td>n = 1 000</td>
+<td>n = 1000</td>
 <td>60%</td>
-<td>±3 pkt. proc.</td>
+<td>±3 p.p.</td>
 <td>57% do 63%</td>
-<td>Wyraźne poparcie większości</td>
+<td>Wyraźna większość</td>
 </tr>
 <tr class="even">
-<td>n = 1 600</td>
+<td>n = 1600</td>
 <td>60%</td>
-<td>±2,5 pkt. proc.</td>
+<td>±2,5 p.p.</td>
 <td>57,5% do 62,5%</td>
-<td>Silne poparcie większości</td>
+<td>Silna większość</td>
 </tr>
 <tr class="odd">
 <td>n = 10 000</td>
 <td>60%</td>
-<td>±1 pkt. proc.</td>
+<td>±1 p.p.</td>
 <td>59% do 61%</td>
 <td>Bardzo precyzyjne oszacowanie</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Law of Diminishing Returns:</strong> Zauważ, że zwiększenie próby ze 100 do 400 osób (4× więcej) zmniejsza margines błędu o połowę, ale zwiększenie z 1 600 do 10 000 osób (6× więcej) redukuje go tylko o 1,5 punktu procentowego. Aby zmniejszyć margines błędu o połowę, musisz <strong>poczwórnie zwiększyć wielkość próby</strong>.</p>
-<p>Dlatego większość sondaży zatrzymuje się na około 1 000-1 500 respondentach — dalsze zwiększanie precyzji rzadko uzasadnia dodatkowe koszty i nakład pracy.</p>
+<p><strong>Zasada malejących korzyści:</strong> Zauważ, że czterokrotne zwiększenie próby ze 100 do 400 zmniejsza błąd oszacowania o połowę, ale zwiększenie z 1600 do 10 000 (wzrost 6,25-krotny) redukuje go tylko o 1,5 punktu procentowego. Aby zmniejszyć błąd oszacowania o połowę, należy <strong>zwiększyć wielkość próby czterokrotnie</strong>.</p>
+<p>Dlatego większość sondaży zatrzymuje się na około 1000–1500 respondentach—dalszy wzrost precyzji rzadko uzasadnia dodatkowe koszty i nakład pracy.</p>
+<hr>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -931,23 +1048,23 @@ Note
 </div>
 </div>
 <hr>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Przykład historyczny: sondaż <em>Literary Digest</em> z 1936 roku
+Historyczny przykład: sondaż <em>Literary Digest</em> z 1936 roku
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>Literary Digest</em> przeprowadził jeden z największych sondaży w historii — <strong>2,4 mln odpowiedzi</strong> — a mimo to spektakularnie nie przewidział wyniku wyborów prezydenckich w 1936 r.:</p>
+<p>W 1936 roku magazyn <em>Literary Digest</em> przeprowadził jeden z <strong>największych sondaży w historii</strong> — wysłał miliony ankiet i zebrał <strong>około 2,4 miliona odpowiedzi</strong>. Mimo ogromnej liczby uczestników, przewidywania okazały się <strong>całkowicie błędne</strong>.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Kandydat</th>
 <th>Prognoza</th>
-<th>Rzeczywisty wynik</th>
+<th>Wynik rzeczywisty</th>
 <th>Błąd</th>
 </tr>
 </thead>
@@ -955,50 +1072,72 @@ Przykład historyczny: sondaż <em>Literary Digest</em> z 1936 roku
 <tr class="odd">
 <td>Landon</td>
 <td>57%</td>
-<td>38%</td>
-<td><strong>19 pp</strong></td>
+<td>36,5%</td>
+<td><strong>≈20 p.p.</strong></td>
 </tr>
 <tr class="even">
 <td>Roosevelt</td>
 <td>43%</td>
-<td>62%</td>
-<td><strong>19 pp</strong></td>
+<td>60,8%</td>
+<td><strong>≈18 p.p.</strong></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Czym jest błąd systematyczny?</strong></p>
-<p>Wyobraźmy sobie wagę łazienkową źle skalibrowaną o +5 kg:</p>
+<section id="co-poszło-nie-tak" class="level4">
+<h4 class="anchored" data-anchor-id="co-poszło-nie-tak">Co poszło nie tak?</h4>
+<p>Ogromna liczba odpowiedzi nie pomogła, bo sondaż był <strong>obciążony systematycznym błędem</strong>, a nie błędem losowym.</p>
+<hr>
+</section>
+<section id="błąd-systematyczny-a-błąd-losowy" class="level3">
+<h3 class="anchored" data-anchor-id="błąd-systematyczny-a-błąd-losowy">Błąd systematyczny a błąd losowy</h3>
+<p>Wyobraź sobie wagę łazienkową, która pokazuje zawsze <strong>+2,3 kg</strong> za dużo:</p>
 <ul>
-<li><strong>Błąd losowy</strong> (bez obciążenia): stajemy za każdym razem nieco inaczej; wyniki rozrzucają się wokół 70 kg (np. 69–71). Średnia z wielu pomiarów zbliża się do prawdy.</li>
-<li><strong>Błąd systematyczny</strong> (obciążenie): punkt zerowy jest przesunięty. Każdy pomiar jest o 5 kg za wysoki — pojedynczy odczyt 75 kg, średnia z 1000 odczytów wciąż ~75 kg. Więcej pomiarów <strong>nie usuwa</strong> złej kalibracji.</li>
+<li><strong>Błąd losowy (bez stronniczości):</strong> za każdym razem stajesz trochę inaczej, więc waga pokazuje np. 68,0–68,5 kg. Średnia z wielu pomiarów da prawidłowy wynik (≈68 kg). Im więcej pomiarów, tym mniejsze wahania.</li>
+<li><strong>Błąd systematyczny (stronniczość):</strong> waga jest źle wyzerowana i zawsze dodaje 2,3 kg. Nieważne, czy zważysz się raz, czy tysiąc razy — zawsze będzie ok. 70,3 kg, czyli <strong>dokładnie błędny wynik</strong>.</li>
 </ul>
-<p>W <em>Literary Digest</em> „waga” do mierzenia opinii była źle skalibrowana. Zrobienie 2,4 mln pomiarów tylko wzmocniło fałszywą pewność.</p>
-<p><strong>Skąd wziął się błąd systematyczny w LD?</strong></p>
-<p>Dwa obciążenia działały <em>w tym samym kierunku</em> (na korzyść Landona):</p>
+<p>Tak właśnie było z <em>Literary Digest</em>: ich „instrument pomiarowy” — sposób zbierania opinii — był <strong>źle skalibrowany</strong>. Miliony błędnych odpowiedzi dały tylko <strong>fałszywe poczucie pewności</strong>.</p>
+<hr>
+</section>
+<section id="skąd-wziął-się-błąd" class="level3">
+<h3 class="anchored" data-anchor-id="skąd-wziął-się-błąd">Skąd wziął się błąd?</h3>
+<p>Dwa różne źródła stronniczości działały <strong>w tym samym kierunku</strong> — na korzyść <strong>Alfa Landona</strong>:</p>
 <ol type="1">
-<li><strong>Błąd selekcji (operat losowania):</strong>
+<li><p><strong>Błąd pokrycia (doboru) — kogo w ogóle można było objąć próbą</strong></p>
 <ul>
-<li>Adresy czerpano głównie z <strong>książek telefonicznych</strong>, <strong>rejestrów właścicieli samochodów</strong> i <strong>list prenumeratorów</strong>.</li>
-<li>W realiach Wielkiego Kryzysu grupy te były <strong>zamożniejsze</strong> od przeciętnej.</li>
-<li>Skutek: systematyczne <strong>niedoreprezentowanie</strong> wyborców Roosevelta z klasy pracującej.</li>
+<li>Wykorzystano listy: <strong>abonentów telefonów, właścicieli samochodów i prenumeratorów magazynu</strong>.</li>
+<li>W czasie Wielkiego Kryzysu te grupy były <strong>zamożniejsze</strong> niż przeciętny wyborca.</li>
+<li>Skutek: systematyczne <strong>niedoszacowanie wyborców o niższych dochodach</strong>, popierających Roosevelta.</li>
 </ul></li>
-<li><strong>Błąd braku odpowiedzi (nonresponse):</strong>
+<li><p><strong>Błąd braku odpowiedzi (nonresponse bias) — kto zdecydował się odesłać ankietę</strong></p>
 <ul>
-<li>Odpowiedziało ok. <strong>24%</strong> z adresatów (2,4 mln z ~10 mln wysyłek).</li>
-<li>Bardziej zmobilizowani przeciwnicy Roosevelta chętniej odsyłali ankiety.</li>
+<li>Odpowiedziało tylko ok. <strong>co czwarte zaproszenie</strong> (≈24%).</li>
+<li>Osoby bardziej zaangażowane politycznie — częściej przeciwnicy Roosevelta — chętniej odpowiadały.</li>
 </ul></li>
 </ol>
-<p>Oba obciążenia wzmacniały wynik Landona — i żadna wielkość próby nie mogła tego skompensować.</p>
-<p><strong>Dlaczego wielkość próby nie uratowała sondażu?</strong></p>
-<p>Wysyłka milionów ankiet do osób z obciążonych list dała <strong>miliony obciążonych pomiarów</strong>. Ich (znikomy) teoretyczny margines błędu dla losowego doboru — ≈ <strong>±0,03 pp</strong> przy 2,4 mln — dotyczył <strong>wyłącznie błędu losowego</strong>, ignorując błąd systematyczny.</p>
-<p><strong>Kluczowy wniosek:</strong> <strong>Duża, obciążona próba jest gorsza niż mała, reprezentatywna próba.</strong> Daje złudną precyzję błędnych wniosków.</p>
-<p><strong>Współczesne sondaże: mniejsze, ale “mądrzejsze”</strong></p>
+<p>Oba błędy działały <strong>w tym samym kierunku</strong>, tworząc ogromne zniekształcenie, którego <strong>żadna wielkość próby nie mogła naprawić</strong>.</p>
+<hr>
+</section>
+<section id="dlaczego-wielkość-próby-nie-uratowała-sondażu" class="level3">
+<h3 class="anchored" data-anchor-id="dlaczego-wielkość-próby-nie-uratowała-sondażu">Dlaczego wielkość próby nie uratowała sondażu</h3>
+<p>Zebranie 2,4 miliona odpowiedzi z błędnej listy to jak <strong>zważyć cały kraj na wadze z błędną kalibracją</strong>.</p>
 <ul>
-<li><strong>Dobór probabilistyczny</strong> (każdy ma znaną, niezerową szansę trafienia do próby).</li>
-<li><strong>Ważenie/kalibracja demograficzna</strong> kompensująca różnice w skłonności do odpowiedzi.</li>
-<li><strong>Projektowanie pod wiele źródeł błędu</strong> (operat losowania, brak odpowiedzi, błędy pomiaru).</li>
+<li>Gdyby była to losowa próba, teoretyczny <strong>margines błędu</strong> (95%) wyniósłby: [ _{95%} &nbsp;] — <strong>malutki</strong>, ale bez znaczenia.</li>
+<li>Wzór ten opisuje tylko <strong>błąd losowy</strong>, a nie stronniczość.</li>
+<li><strong>Rzeczywisty błąd</strong> sięgnął <strong>18–20 punktów procentowych</strong> — kilkaset razy więcej.</li>
 </ul>
-<p>Lekcja z <em>Literary Digest</em>: <strong>sposób doboru</strong> ważniejszy niż <strong>liczebność</strong>.</p>
+<p><strong>Wniosek:</strong> <em>Dokładność bez reprezentatywności nic nie znaczy.</em> Ogromna, ale błędna próba może być gorsza niż mała, dobrze dobrana.</p>
+<hr>
+</section>
+<section id="współczesne-sondaże-mniejsze-ale-mądrzejsze" class="level3">
+<h3 class="anchored" data-anchor-id="współczesne-sondaże-mniejsze-ale-mądrzejsze">Współczesne sondaże: mniejsze, ale mądrzejsze</h3>
+<p>Katastrofa <em>Literary Digest</em> na zawsze zmieniła metody badań opinii:</p>
+<ul>
+<li><strong>Dobór losowy (probability sampling):</strong> każdy wyborca ma znane, niezerowe prawdopodobieństwo znalezienia się w próbie.</li>
+<li><strong>Ważenie i kalibracja:</strong> koryguje nad- lub niedoreprezentację niektórych grup.</li>
+<li><strong>Podejście „total survey error”:</strong> uwzględnia <strong>błędy pokrycia, braku odpowiedzi, pomiaru i przetwarzania</strong>, a nie tylko błąd losowy.</li>
+</ul>
+<p><strong>Sedno:</strong> liczy się nie to, <em>ile</em> osób zbadamy, lecz <em>kogo</em> i <em>jak</em>.</p>
+</section>
 </div>
 </div>
 <hr>
@@ -1042,7 +1181,7 @@ Przykład historyczny: sondaż <em>Literary Digest</em> z 1936 roku
 <section id="pokrewne-pojęcia" class="level3">
 <h3 class="anchored" data-anchor-id="pokrewne-pojęcia">Pokrewne pojęcia</h3>
 <p><strong>Losowość vs.&nbsp;bezład:</strong> Statystyczna losowość ma strukturę matematyczną i podlega prawom prawdopodobieństwa—to uporządkowana niepewność. Bezładność sugeruje całkowity brak porządku, bez podstawowych wzorców czy reguł.</p>
-<p><strong>Chaos</strong> to jak automat typu flipper/pinball: znasz wszystkie reguły (prawa fizyki), ale najmniejsza różnica w miejscu wypuszczenia kulki—ułamek milimetra—prowadzi do zupełnie innych rezultatów. System jest deterministyczny i podlega stałym prawom, ale błędy narastają tak szybko, że przewidywanie staje się niemożliwe w praktyce, nawet przy doskonałej znajomości tych praw. <strong>Losowość (epistemiczna)</strong> to jak zakryta karta na stole: karta już <em>jest</em> siódemką kier (lub czymkolwiek innym), nie zmienia się. Po prostu nie wiesz jeszcze, która to karta. „Losowość” wynika wyłącznie z <em>twojej</em> niewiedzy—odkryj kartę, a niepewność znika całkowicie. Kluczowa różnica: chaos pozostaje nieprzewidywalny nawet przy doskonałej znajomości reguł, podczas gdy losowość epistemiczna znika w momencie, gdy zdobędziesz brakującą informację o aktualnym stanie rzeczy.</p>
+<p><strong>Chaos</strong> to jak automat typu flipper/pinball: znasz wszystkie reguły (prawa fizyki), ale najmniejsza różnica w miejscu wypuszczenia kulki—ułamek milimetra—prowadzi do zupełnie innych rezultatów. System jest deterministyczny i podlega stałym prawom, ale błędy narastają tak szybko, że przewidywanie staje się niemożliwe w praktyce, nawet przy doskonałej znajomości tych praw. <strong>Losowość (epistemiczna)</strong> to jak zakryta karta na stole: karta już <em>jest</em> siódemką kier (lub czymkolwiek innym), nie zmienia się. Po prostu nie wiemy jeszcze, która to karta. „Losowość” wynika wyłącznie z niewiedzy—odkryj kartę, a niepewność znika całkowicie. Różnica: chaos pozostaje nieprzewidywalny nawet przy doskonałej znajomości reguł, podczas gdy losowość epistemiczna znika w momencie, gdy zdobędziesz brakującą informację o aktualnym stanie rzeczy.</p>
 <p><strong>Entropia:</strong> Miara nieuporządkowania lub niepewności w systemie. Wysoka entropia oznacza wysoką nieprzewidywalność; niska entropia oznacza wysoki porządek. W statystyce entropia kwantyfikuje niepewność.</p>
 <hr>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1598,7 +1737,7 @@ Tip
 <col style="width: 16%">
 <col style="width: 16%">
 <col style="width: 16%">
-<col style="width: 18%">
+<col style="width: 16%">
 <col style="width: 16%">
 </colgroup>
 <thead>
@@ -2206,7 +2345,7 @@ Tip
 </div>
 <hr>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2215,7 +2354,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Dla każdego scenariusza określ, czy związek jest prawdopodobnie przyczynowy czy pozorny:</p>
 <ol type="1">
@@ -2285,127 +2424,232 @@ Tip
 <hr>
 </section>
 </section>
-<section id="parametry-statystyki-i-estymacja" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="parametry-statystyki-i-estymacja"><span class="header-section-number">2.8</span> Parametry, statystyki i estymacja</h2>
-<p>Te pojęcia stanowią rdzeń wnioskowania statystycznego — jak uczymy się o populacjach z prób. Zrozumienie relacji między tymi terminami jest niezbędne dla właściwego rozumowania statystycznego.</p>
+<section id="parametry-statystyki-estymandy-estymatory-i-estymaty" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="parametry-statystyki-estymandy-estymatory-i-estymaty"><span class="header-section-number">2.8</span> Parametry, statystyki, estymandy, estymatory i estymaty</h2>
+<p>Wnioskowanie statystyczne polega na poznawaniu <strong>nieznanych cech populacji</strong> na podstawie <strong>skończonych prób</strong>. Poniżej pięć kluczowych pojęć.</p>
+<section id="tabela-porównawcza-w-skrócie" class="level3">
+<h3 class="anchored" data-anchor-id="tabela-porównawcza-w-skrócie">Tabela porównawcza (w skrócie)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 21%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Termin</th>
+<th>Co to jest?</th>
+<th>Losowe?</th>
+<th>Typowa notacja</th>
+<th>Przykład</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Estymand</strong></td>
+<td>Dokładnie zdefiniowana wielkość docelowa</td>
+<td>Nie</td>
+<td>opis słowny (specyfikacja)</td>
+<td>„Mediana dochodu gospodarstw domowych w Kalifornii na 2024-01-01.”</td>
+</tr>
+<tr class="even">
+<td><strong>Parametr</strong></td>
+<td>Prawdziwa wartość tej wielkości w populacji</td>
+<td>Nie*</td>
+<td><span class="math inline">\theta,\ \mu,\ p,\ \beta</span></td>
+<td>Prawdziwa średnia wieku przy pierwszym porodzie we Francji (2023)</td>
+</tr>
+<tr class="odd">
+<td><strong>Estymator</strong></td>
+<td>Reguła/wzór przekształcająca dane w oszacowanie</td>
+<td>—</td>
+<td><span class="math inline">\hat\theta = g(X_1,\dots,X_n)</span></td>
+<td><span class="math inline">\bar X</span>, <span class="math inline">\hat p = X/n</span>, OLS <span class="math inline">\hat\beta</span></td>
+</tr>
+<tr class="even">
+<td><strong>Statystyka</strong></td>
+<td>Dowolna funkcja próby (w tym estymatory)</td>
+<td>Tak</td>
+<td><span class="math inline">\bar X,\ s^2,\ r</span></td>
+<td>Średnia z próby <span class="math inline">n=500</span> urodzeń</td>
+</tr>
+<tr class="odd">
+<td><strong>Estymata</strong></td>
+<td>Liczbowa wartość otrzymana z estymatora (oszacowanie)</td>
+<td>Nie</td>
+<td>liczba</td>
+<td><span class="math inline">\hat p = 0.433</span> (43,3%)</td>
+</tr>
+</tbody>
+</table>
+<p>*Wartość stała dla zdefiniowanej populacji i horyzontu czasu; może się różnić między miejscami/okresami.</p>
+<hr>
+</section>
 <section id="parametr" class="level3">
 <h3 class="anchored" data-anchor-id="parametr">Parametr</h3>
-<p><strong>Parametr</strong> to liczbowa charakterystyka populacji. Parametry są zazwyczaj nieznane, ponieważ nie możemy zmierzyć całej populacji. Są to wartości stałe (nie losowe), ale nieznane nam. Oznaczamy parametry literami greckimi.</p>
-<p><strong>Powszechne parametry demograficzne:</strong></p>
+<p><strong>Parametr</strong> to liczbowa cecha populacji — stała, ale dla nas nieznana.</p>
 <ul>
-<li><span class="math inline">\mu</span> (mi): Średni wiek populacji. Na przykład, prawdziwy średni wiek wszystkich Europejczyków.</li>
-<li><span class="math inline">\sigma^2</span> (sigma kwadrat): Wariancja populacji w dochodzie we wszystkich gospodarstwach domowych w Brazylii.</li>
-<li><span class="math inline">p</span>: Proporcja populacji. Na przykład, prawdziwa proporcja wszystkich dorosłych w Japonii, którzy są w związku małżeńskim.</li>
-<li><span class="math inline">\beta</span> (beta): Współczynnik regresji. Prawdziwa relacja między wykształceniem a płodnością w populacji.</li>
-<li><span class="math inline">\lambda</span> (lambda): Prawdziwa stopa migracji z obszarów wiejskich do miejskich.</li>
+<li><strong>Typowe parametry:</strong> <span class="math inline">\mu</span> (średnia), <span class="math inline">\sigma^2</span> (wariancja), <span class="math inline">p</span> (odsetek/proporcja), <span class="math inline">\beta</span> (wpływ w regresji), <span class="math inline">\lambda</span> (intensywność/tempo).</li>
 </ul>
-<p><strong>Przykład</strong>: Prawdziwy średni wiek przy pierwszym porodzie dla wszystkich kobiet we Francji, które urodziły dziecko w 2023 roku, jest parametrem. Nazwijmy go <span class="math inline">\mu = 31,2</span> lat. Nie znamy tej wartości bez zmierzenia każdego pojedynczego porodu.</p>
+<p><strong>Przykład.</strong> Prawdziwa średnia wieku przy pierwszym porodzie wszystkich kobiet we Francji w 2023 r. to parametr <span class="math inline">\mu</span>. Nie znamy go bez danych o całej populacji.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Notacja.</strong> Często przyjmujemy greckie litery dla parametrów populacyjnych i łacińskie dla statystyk z próby. Najważniejsza jest konsekwencja.</p>
+</div>
+</div>
+<hr>
 </section>
 <section id="statystyka" class="level3">
 <h3 class="anchored" data-anchor-id="statystyka">Statystyka</h3>
-<p><strong>Statystyka</strong> to liczbowa charakterystyka obliczona z danych z próby. Statystyki są zmiennymi losowymi — ich wartości różnią się od próby do próby. Używamy łacińskich liter dla statystyk.</p>
-<p><strong>Powszechne statystyki z próby:</strong></p>
+<p><strong>Statystyka</strong> to <em>dowolna</em> funkcja danych z próby. Statystyki różnią się między próbami.</p>
 <ul>
-<li><span class="math inline">\bar{x}</span> (x z kreską): Średnia wieku z próby z badania 1000 osób</li>
-<li><span class="math inline">s^2</span>: Wariancja dochodu z próby z 500 ankietowanych gospodarstw</li>
-<li><span class="math inline">\hat{p}</span> (p z daszkiem): Proporcja małżonków z próby z badania</li>
-<li><span class="math inline">r</span>: Korelacja z próby między wykształceniem a dochodem</li>
-<li><span class="math inline">b</span>: Współczynnik regresji z próby</li>
+<li><strong>Przykłady:</strong> <span class="math inline">\bar x</span> (średnia z próby), <span class="math inline">s^2</span> (wariancja z próby), <span class="math inline">\hat p</span> (proporcja w próbie), <span class="math inline">r</span> (korelacja), <span class="math inline">b</span> (współczynnik regresji w próbie).</li>
 </ul>
-<p><strong>Przykład</strong>: Z próby 500 urodzeń we Francji obliczamy średni wiek przy pierwszym porodzie z próby <span class="math inline">\bar{x} = 30,9</span> lat. To jest nasza statystyka. Inna próba może dać <span class="math inline">\bar{x} = 31,4</span> lat.</p>
+<p><strong>Przykład.</strong> W losowej próbie 500 urodzeń otrzymujemy <span class="math inline">\bar x = 30{,}9</span> lat; inna próba może dać <span class="math inline">31{,}4</span>.</p>
+<hr>
 </section>
-<section id="relacja-między-parametrami-a-statystykami" class="level3">
-<h3 class="anchored" data-anchor-id="relacja-między-parametrami-a-statystykami">Relacja między parametrami a statystykami</h3>
-<p>Pomyśl o tej relacji jak o próbie zrozumienia głębokości jeziora:</p>
+<section id="estymand" class="level3">
+<h3 class="anchored" data-anchor-id="estymand">Estymand</h3>
+<p><strong>Estymand</strong> (wielkość docelowa) to <em>to, co chcemy oszacować</em> — opisane tak dokładnie, aby dwaj badacze obliczyli tę samą liczbę, mając pełne dane populacyjne.</p>
 <ul>
-<li><strong>Parametr</strong>: Prawdziwa średnia głębokość jeziora (nieznana, stała)</li>
-<li><strong>Statystyka</strong>: Średnia głębokość z kilku punktów pomiarowych (znana, zmienia się z różnymi próbami)</li>
-<li><strong>Estymacja</strong>: Używanie naszych pomiarów do zgadywania prawdziwej średniej głębokości</li>
+<li><p><strong>Dobrze zdefiniowane estymandy</strong></p>
+<ul>
+<li>„Mediana dochodu gospodarstw domowych w Kalifornii na <strong>2024-01-01</strong>.”</li>
+<li>„Różnica długości życia mężczyźni–kobiety dla rocznika urodzeń w Szwecji, <strong>2023</strong>.”</li>
+<li>„Odsetek osób w wieku <strong>25–34</strong> mieszkających w <strong>miastach</strong>, które ukończyły studia wyższe.”</li>
+</ul></li>
 </ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Dlaczego precyzja definicji ma znaczenie.</strong> „Stopa bezrobocia” jest niejednoznaczna, jeśli nie określimy: (i) kto jest bezrobotny, (ii) zakresu wieku, (iii) obszaru, (iv) okna czasowego. Różne definicje prowadzą do różnych parametrów (np. U-1 … U-6 w USA).</p>
+</div>
+</div>
+<hr>
 </section>
 <section id="estymator" class="level3">
 <h3 class="anchored" data-anchor-id="estymator">Estymator</h3>
-<p><strong>Estymator</strong> to reguła lub formuła do obliczania oszacowania parametru populacji z danych z próby. Estymator to funkcja, która odwzorowuje dane z próby na oszacowania parametrów.</p>
-<p><strong>Właściwości dobrych estymatorów:</strong></p>
-<p><strong>Nieobciążoność (Unbiasedness)</strong>: Średnio estymator równa się prawdziwej wartości parametru. Gdybyśmy powtórzyli próbkowanie wiele razy, średnia wszystkich naszych oszacowań równałaby się prawdziwemu parametrowi.</p>
-<p><strong>Przykład</strong>: Średnia z próby <span class="math inline">\bar{x}</span> jest nieobciążonym estymatorem średniej populacji <span class="math inline">\mu</span>. Gdybyśmy wzięli 1000 różnych prób i obliczyli 1000 średnich z prób, ich średnia byłaby bardzo bliska <span class="math inline">\mu</span>.</p>
-<p><strong>Zgodność (Consistency)</strong>: Gdy wielkość próby wzrasta, estymator zbiega się do prawdziwej wartości parametru.</p>
-<p>Przykład: Z <span class="math inline">n=10</span>, nasze oszacowanie średniego dochodu może być oddalone o 5000 zł. Z <span class="math inline">n=1000</span>, możemy być oddaleni tylko o 500 zł. Z <span class="math inline">n=100 000</span>, możemy być oddaleni tylko o 50 zł.</p>
-<p><strong>Efektywność (Efficiency)</strong>: Wśród nieobciążonych estymatorów, ten z najmniejszą wariancją. Średnia z próby jest bardziej efektywna niż mediana z próby do estymowania średniej populacji rozkładu normalnego.</p>
-<p><strong>Powszechne estymatory:</strong></p>
+<p><strong>Estymator</strong> to <strong>reguła</strong>, która zamienia dane w estymatę.</p>
 <ul>
-<li>Średnia z próby jako estymator średniej populacji: <span class="math inline">\bar{x} = \frac{\sum x_i}{n}</span></li>
-<li>Proporcja z próby jako estymator proporcji populacji: <span class="math inline">\hat{p} = \frac{x}{n}</span> (gdzie <span class="math inline">x</span> to liczba sukcesów)</li>
-<li>Wariancja z próby jako estymator wariancji populacji: <span class="math inline">s^2 = \frac{\sum(x_i - \bar{x})^2}{n-1}</span></li>
+<li><p><strong>Typowe estymatory</strong></p>
+<p><span class="math display">
+\hat\mu=\bar X=\frac{1}{n}\sum_{i=1}^n X_i
+</span></p>
+<p><span class="math display">
+\hat p=\frac{X}{n}\quad\text{(gdzie $X$ to liczba „sukcesów”)}
+</span></p>
+<p><span class="math display">
+s^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar X)^2
+</span></p></li>
 </ul>
-<p>Uwaga: Dzielimy przez <span class="math inline">(n-1)</span>, a nie <span class="math inline">n</span> dla wariancji z próby, aby uczynić ją nieobciążoną — to się nazywa korekta Bessela.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Dlaczego</strong> <span class="math inline">n-1</span>? Poprawka Bessela czyni <span class="math inline">s^2</span> nieobciążonym estymatorem wariancji populacji, gdy średnią szacujemy na podstawie tej samej próby.</p>
+</div>
+</div>
+<hr>
 </section>
-<section id="estimand" class="level3">
-<h3 class="anchored" data-anchor-id="estimand">Estimand</h3>
-<p><strong>Estymand</strong> to konkretny parametr populacji, który chcemy oszacować. To cel naszej procedury estymacji. Jasna specyfikacja estymandu jest kluczowa dla właściwego wnioskowania statystycznego i unikania błędnej interpretacji.</p>
-<p><strong>Przykłady jasno zdefiniowanych estymandów:</strong></p>
+<section id="jak-oceniamy-estymatory-błąd-wariancja-mse-efektywność" class="level3">
+<h3 class="anchored" data-anchor-id="jak-oceniamy-estymatory-błąd-wariancja-mse-efektywność">Jak oceniamy estymatory: błąd, wariancja, MSE, efektywność</h3>
+<p><strong>Błąd (bias) — czy estymator jest „wycentrowany” na prawdzie?</strong> Gdyby wielokrotnie powtarzać to samo badanie, <em>nieobciążony</em> estymator średnio dawałby prawdziwą wartość. <em>Obciążony</em> systematycznie zaniżałby lub zawyżał wynik.</p>
+<p><strong>Wariancja — jak bardzo estymaty różnią się między próbami?</strong> Nawet bez obciążenia kolejne próby nie dadzą identycznych liczb. Mniejsza wariancja oznacza większą stabilność między próbami.</p>
+<p><strong>Średni błąd kwadratowy (MSE) — jedna miara ogólnej trafności.</strong> MSE łączy oba składniki: <span class="math display">
+\mathrm{MSE}(\hat\theta)=\mathrm{Var}(\hat\theta)+\big(\mathrm{Bias}(\hat\theta)\big)^2.
+</span> Mniejszy MSE jest lepszy. Estymator z niewielkim obciążeniem, ale znacznie mniejszą wariancją, może mieć niższy MSE niż estymator nieobciążony, lecz bardzo zmienny.</p>
+<p><strong>Efektywność — porównawcza precyzja estymatorów.</strong> Wśród <strong>nieobciążonych</strong> estymatorów tego samego parametru, opartych na tych samych danych, <strong>bardziej efektywny</strong> ma mniejszą wariancję. Jeśli dopuszczamy niewielkie obciążenie, porównujemy estymatory za pomocą <strong>MSE</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Skąd bierze się „precyzja” (częste przypadki)
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>„Mediana dochodu gospodarstwa domowego dla wszystkich gospodarstw w Kalifornii na dzień 1 stycznia 2024”</li>
-<li>„Różnica w oczekiwanej długości życia między mężczyznami a kobietami urodzonymi w Szwecji w 2023 roku”</li>
-<li>„Proporcja wszystkich dorosłych w wieku 25-34 lat w obszarach miejskich, którzy ukończyli edukację wyższą”</li>
+<li><strong>Średnia z próby (prosty losowy dobór):</strong> <span class="math display">
+\operatorname{Var}(\bar X)=\frac{\sigma^2}{n},\qquad
+\mathrm{SE}(\bar X)=\frac{\sigma}{\sqrt{n}}.
+</span> Większe <span class="math inline">n</span> zmniejsza błąd standardowy w tempie <span class="math inline">1/\sqrt{n}</span>.</li>
+<li><strong>Proporcja z próby:</strong> <span class="math display">
+\operatorname{Var}(\hat p)=\frac{p(1-p)}{n},\qquad
+\mathrm{SE}(\hat p)=\sqrt{\frac{\hat p(1-\hat p)}{n}}.
+</span></li>
+<li><strong>Efekty planu (design effects):</strong> klastrowanie, warstwowanie i wagi zmieniają wariancję. Dobieraj metodę SE do planu doboru próby.</li>
 </ul>
-<p><strong>Precyzyjna definicja estymandu ma znaczenie:</strong></p>
-<p>Rozważ badanie „stopy bezrobocia”. Estymand musi określić:</p>
-<ul>
-<li>Kto liczy się jako bezrobotny? (Aktywnie poszukujący pracy? Zniechęceni pracownicy?)</li>
-<li>Jaki zakres wieku? (15+? 16-64?)</li>
-<li>Jaki obszar geograficzny?</li>
-<li>Jaki okres czasu?</li>
-</ul>
-<p>Różne definicje prowadzą do różnych liczb. Amerykańskie Biuro Statystyki Pracy publikuje sześć różnych stóp bezrobocia (U-1 do U-6) na podstawie różnych definicji.</p>
-</section>
-<section id="oszacowanie-estimate" class="level3">
-<h3 class="anchored" data-anchor-id="oszacowanie-estimate">Oszacowanie (Estimate)</h3>
-<p><strong>Oszacowanie</strong> to konkretna wartość numeryczna obliczona przez zastosowanie estymatora do obserwowanych danych. To nasze najlepsze przypuszczenie o prawdziwej wartości parametru na podstawie dostępnych informacji.</p>
-<p><strong>Przykład kompletnego procesu:</strong></p>
-<ol type="1">
-<li><strong>Estymand</strong> (cel): Proporcja wszystkich dorosłych Amerykanów, którzy popierają działalność prezydenta</li>
-<li><strong>Parametr</strong> (prawdziwa nieznana wartość): <span class="math inline">p = 0,42</span> (42%, ale tego nie wiemy)</li>
-<li><strong>Estymator</strong> (metoda): Proporcja z próby <span class="math inline">\hat{p} = \frac{x}{n}</span> gdzie <span class="math inline">x</span> to liczba popierających, a <span class="math inline">n</span> to wielkość próby</li>
-<li><strong>Próba</strong>: Ankietujemy 1500 losowo wybranych dorosłych, 650 popiera</li>
-<li><strong>Oszacowanie</strong> (obliczona wartość): <span class="math inline">\hat{p} = \frac{650}{1500} = 0,433</span> (43,3%)</li>
-</ol>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Estimandy: Co dokładnie próbujemy oszacować?
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Estymand</strong> to konkretna wielkość, którą chcemy oszacować — na co celujemy naszą analizą statystyczną. Choć często jest to parametr populacji, estimandy mogą być bardziej złożone.</p>
-<p><strong>Przykłady różnych estymandów</strong>:</p>
+<p><strong>Wskazówki praktyczne</strong></p>
 <ul>
-<li><strong>Prosty estymand parametru</strong>: Średni dochód populacji (<span class="math inline">\mu</span>)</li>
-<li><strong>Porównawczy estymand</strong>: Różnica w średnim dochodzie między dwiema grupami (<span class="math inline">\mu_1 - \mu_2</span>)</li>
-<li><strong>Przyczynowy estymand</strong>: Średni efekt leczenia programu szkoleniowego na zarobki</li>
-<li><strong>Warunkowy estymand</strong>: Oczekiwana frekwencja wyborcza przy konkretnych warunkach pogodowych</li>
+<li>Dokładnie zdefiniuj <strong>estymand</strong> (populacja, czas, jednostka, definicja).</li>
+<li>Wybierz <strong>estymator</strong>, który bezpośrednio celuje w ten estymand.</li>
+<li>Wśród estymatorów nieobciążonych preferuj <strong>mniejszą wariancję</strong> (większą efektywność).</li>
+<li>Gdy istotny jest kompromis błąd–wariancja, porównuj <strong>MSE</strong>.</li>
+<li>Raportuj estymatę <strong>razem z niepewnością</strong> (SE lub CI) oraz kluczowymi założeniami.</li>
 </ul>
+</div>
+</div>
 <hr>
-<p>Zrozumienie wnioskowania statystycznego wymaga rozróżnienia między tymi powiązanymi, ale odrębnymi pojęciami:</p>
+</section>
+<section id="estymata-oszacowanie" class="level3">
+<h3 class="anchored" data-anchor-id="estymata-oszacowanie">Estymata (oszacowanie)</h3>
+<p><strong>Estymata</strong> to <strong>liczbowa wartość</strong> otrzymana po zastosowaniu estymatora do danych.</p>
+<p><strong>Przykład (krok po kroku)</strong></p>
+<ol type="1">
+<li><strong>Estymand:</strong> Odsetek dorosłych mieszkańców USA wyrażających aprobatę <em>dziś</em>.</li>
+<li><strong>Parametr:</strong> <span class="math inline">p</span> (nieznana prawdziwa aprobata).</li>
+<li><strong>Estymator:</strong> <span class="math inline">\hat p = X/n</span>.</li>
+<li><strong>Próba:</strong> <span class="math inline">n=1{,}500</span>, liczba aprobujących <span class="math inline">X=650</span>.</li>
+<li><strong>Estymata:</strong> <span class="math display">
+\hat p=\frac{650}{1{,}500}=0.433 \quad (43{,}3%).
+</span></li>
+</ol>
+<hr>
+</section>
+<section id="częste-pomyłki-i-doprecyzowania" class="level3">
+<h3 class="anchored" data-anchor-id="częste-pomyłki-i-doprecyzowania">Częste pomyłki i doprecyzowania</h3>
 <ul>
-<li><strong>Parametr populacji</strong>: Prawdziwa charakterystyka populacji (np. <span class="math inline">\mu</span>)</li>
-<li><strong>Estimand</strong>: Konkretna wielkość, którą chcemy oszacować (często, ale nie zawsze, parametr)</li>
-<li><strong>Estymator</strong>: Metoda obliczania naszego oszacowania (np. średnia z próby)</li>
-<li><strong>Oszacowanie</strong>: Rzeczywista liczba, którą obliczamy z naszych danych</li>
+<li><strong>Parametr vs statystyka:</strong> wielkość populacyjna vs wielkość z próby.</li>
+<li><strong>Estymator vs estymata:</strong> procedura vs wynik liczbowy.</li>
+<li><strong>Indeks czasu:</strong> parametry często zależą od czasu (np. II kw. vs III kw.).</li>
+<li><strong>Najpierw definicja:</strong> zanim wybierzesz estymator, precyzyjnie określ estymand.</li>
 </ul>
-<p><strong>Przykład w kontekście</strong>:</p>
-<ul>
-<li><strong>Parametr</strong>: Prawdziwa średnia frekwencja wyborcza we wszystkich wyborach (<span class="math inline">\mu</span>)</li>
-<li><strong>Estimand</strong>: Oczekiwana różnica frekwencji między deszczowymi a słonecznymi dniami wyborów (<span class="math inline">\mu_{\text{deszczowy}} - \mu_{\text{słoneczny}}</span>)</li>
-<li><strong>Estymator</strong>: Różnica między średnimi z prób z deszczowych i słonecznych wyborów</li>
-<li><strong>Oszacowanie</strong>: 3,2 punkty procentowe niższa frekwencja w deszczowe dni</li>
-</ul>
-<p>Ta struktura pomaga wyjaśnić dokładnie, na jakie pytanie odpowiadamy i zapewnia, że nasze metody są zgodne z naszymi celami badawczymi.</p>
-</div>
-</div>
 <hr>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2679,7 +2923,7 @@ Co mówi nam SE
 <p><strong>Margines błędu</strong> (margin of error, MOE) reprezentuje oczekiwaną maksymalną różnicę między oszacowaniem z próby a prawdziwym parametrem.</p>
 <p><span class="math display">\text{MOE} = \text{Wartość krytyczna} \times \text{Błąd standardowy}</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2688,7 +2932,7 @@ Wyjaśnienie wartości krytycznej
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Dla 95% ufności używamy 1,96 (często upraszczane do 2). Zapewnia to, że ~95% przedziałów skonstruowanych w ten sposób będzie zawierać prawdziwy parametr.</p>
 <ul>
