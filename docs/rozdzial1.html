@@ -300,10 +300,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#myślenie-statystyczne" id="toc-myślenie-statystyczne" class="nav-link" data-scroll-target="#myślenie-statystyczne">Myślenie Statystyczne</a></li>
   </ul></li>
-  <li><a href="#pojęcie-losowości-randomness" id="toc-pojęcie-losowości-randomness" class="nav-link" data-scroll-target="#pojęcie-losowości-randomness"><span class="header-section-number">2.4</span> Pojęcie losowości (randomness)</a>
+  <li><a href="#zrozumieć-losowość" id="toc-zrozumieć-losowość" class="nav-link" data-scroll-target="#zrozumieć-losowość"><span class="header-section-number">2.4</span> Zrozumieć losowość</a>
   <ul class="collapse">
   <li><a href="#rodzaje-losowości" id="toc-rodzaje-losowości" class="nav-link" data-scroll-target="#rodzaje-losowości">Rodzaje losowości</a></li>
-  <li><a href="#pokrewne-pojęcia" id="toc-pokrewne-pojęcia" class="nav-link" data-scroll-target="#pokrewne-pojęcia">Pokrewne pojęcia</a></li>
+  <li><a href="#pojęcia-pokrewne" id="toc-pojęcia-pokrewne" class="nav-link" data-scroll-target="#pojęcia-pokrewne">Pojęcia pokrewne</a></li>
   </ul></li>
   <li><a href="#populacje-i-próby" id="toc-populacje-i-próby" class="nav-link" data-scroll-target="#populacje-i-próby"><span class="header-section-number">2.5</span> Populacje i próby</a>
   <ul class="collapse">
@@ -326,7 +326,7 @@ window.Quarto = {
   <li><a href="#tabela-porównawcza-w-skrócie" id="toc-tabela-porównawcza-w-skrócie" class="nav-link" data-scroll-target="#tabela-porównawcza-w-skrócie">Tabela porównawcza (w skrócie)</a></li>
   <li><a href="#parametr" id="toc-parametr" class="nav-link" data-scroll-target="#parametr">Parametr</a></li>
   <li><a href="#statystyka" id="toc-statystyka" class="nav-link" data-scroll-target="#statystyka">Statystyka</a></li>
-  <li><a href="#estymand" id="toc-estymand" class="nav-link" data-scroll-target="#estymand">Estymand</a></li>
+  <li><a href="#estymanda" id="toc-estymanda" class="nav-link" data-scroll-target="#estymanda">Estymanda</a></li>
   <li><a href="#estymator" id="toc-estymator" class="nav-link" data-scroll-target="#estymator">Estymator</a></li>
   <li><a href="#jak-oceniamy-estymatory-błąd-wariancja-mse-efektywność" id="toc-jak-oceniamy-estymatory-błąd-wariancja-mse-efektywność" class="nav-link" data-scroll-target="#jak-oceniamy-estymatory-błąd-wariancja-mse-efektywność">Jak oceniamy estymatory: błąd, wariancja, MSE, efektywność</a></li>
   <li><a href="#estymata-oszacowanie" id="toc-estymata-oszacowanie" class="nav-link" data-scroll-target="#estymata-oszacowanie">Estymata (oszacowanie)</a></li>
@@ -1146,45 +1146,132 @@ Historyczny przykład: sondaż <em>Literary Digest</em> z 1936 roku
 </section>
 </section>
 </section>
-<section id="pojęcie-losowości-randomness" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="pojęcie-losowości-randomness"><span class="header-section-number">2.4</span> Pojęcie losowości (randomness)</h2>
-<p><strong>Doświadczenie losowe</strong> to każdy proces, którego wyniku nie można przewidzieć z pewnością, na przykład rzut monetą lub kostką. <strong>Wynik</strong> to pojedynczy możliwy rezultat tego doświadczenia—na przykład uzyskanie “orła” lub wyrzucenie “5”. <strong>Zdarzenie</strong> to zbiór jednego lub więcej wyników, którymi jesteśmy zainteresowani; może to być zdarzenie elementarne (jak wyrzucenie dokładnie 3) lub zdarzenie złożone (jak wyrzucenie liczby parzystej, co obejmuje wyniki 2, 4 i 6).</p>
+<section id="zrozumieć-losowość" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="zrozumieć-losowość"><span class="header-section-number">2.4</span> Zrozumieć losowość</h2>
+<p><strong>Eksperyment losowy</strong> (<em>random experiment</em>) to dowolny proces, którego wyniku nie można przewidzieć z pewnością, na przykład rzut monetą lub kostką do gry.</p>
+<p><strong>Wynik</strong> (<em>outcome</em>) to pojedynczy możliwy rezultat tego eksperymentu — na przykład wypadnięcie „orła” lub wyrzucenie „5”.</p>
+<p><strong>Zdarzenie</strong> (<em>event</em>) to zbiór jednego lub więcej wyników, którymi jesteśmy zainteresowani; może to być zdarzenie elementarne (jak wyrzucenie dokładnie 3) lub zdarzenie złożone (jak wyrzucenie liczby parzystej, które obejmuje wyniki 2, 4 i 6).</p>
 <blockquote class="blockquote">
-<p><strong>Prawdopodobieństwo</strong> to sposób mierzenia, jaka jest szansa, że coś się wydarzy (miara niepewności). Jest to liczba między 0 a 1 (lub 0% i 100%), która reprezentuje szansę wystąpienia danego zdarzenia.</p>
+<p><strong>Prawdopodobieństwo</strong> (<em>probability</em>) to sposób mierzenia, jak prawdopodobne jest zajście czegoś. Jest to liczba między 0 a 1 (lub 0% a 100%), która reprezentuje szansę wystąpienia zdarzenia.</p>
 </blockquote>
-<p>Jeśli coś ma prawdopodobieństwo 0, jest niemożliwe - nigdy się nie wydarzy. Jeśli coś ma prawdopodobieństwo 1, jest pewne - na pewno się wydarzy. Większość rzeczy mieści się gdzieś pomiędzy.</p>
-<p>Na przykład, gdy rzucasz uczciwą monetą, prawdopodobieństwo, że wypadnie orzeł, wynosi 0,5 (czyli 50%), ponieważ są dwa równie prawdopodobne wyniki, a orzeł jest jednym z nich.</p>
-<p>Prawdopodobieństwo pomaga nam zrozumieć niepewność i losowość w świecie.</p>
+<p>Jeśli coś ma prawdopodobieństwo 0, jest niemożliwe — nigdy się nie wydarzy. Jeśli coś ma prawdopodobieństwo 1, jest pewne — na pewno się wydarzy. Większość rzeczy mieści się gdzieś pomiędzy.</p>
+<p>Na przykład, gdy rzucasz uczciwą monetą, prawdopodobieństwo wypadnięcia orła wynosi 0,5 (czyli 50%), ponieważ są dwa równie prawdopodobne wyniki, a orzeł jest jednym z nich.</p>
+<p>Prawdopodobieństwo pomaga nam nadać sens niepewności i losowości w świecie.</p>
 <hr>
 <blockquote class="blockquote">
-<p>W statystyce <strong>losowość</strong> jest uporządkowanym sposobem opisywania niepewności. Choć każdy pojedynczy wynik jest nieprzewidywalny, <strong>stabilne wzorce pojawiają się po wielu powtórzeniach</strong>.</p>
+<p>W statystyce <strong>losowość</strong> (<em>randomness</em>) to uporządkowany sposób opisywania niepewności. Chociaż każdy pojedynczy wynik jest nieprzewidywalny, <strong>stabilne wzorce (mówiąc formalniej: rozkłady empiryczne wyników zbiegają do rozkładów prawdopodobieństwa) pojawiają się po wielu powtórzeniach</strong>.</p>
 </blockquote>
 <p><strong>Przykład:</strong> Rzut uczciwą monetą:</p>
 <ul>
-<li><strong>Pojedynczy rzut</strong>: Całkowicie nieprzewidywalny—nie wiesz, czy wypadnie orzeł czy reszka</li>
-<li><strong>100 rzutów</strong>: Otrzymasz blisko 50% orłów (być może 48 lub 53)</li>
+<li><strong>Pojedynczy rzut</strong>: Całkowicie nieprzewidywalny — nie wiesz, czy wypadnie orzeł czy reszka</li>
+<li><strong>100 rzutów</strong>: Otrzymasz wynik bliski 50% orłów (może 48 lub 53)</li>
 <li><strong>10 000 rzutów</strong>: Prawie na pewno bardzo blisko 50% orłów (być może 49,8%)</li>
 </ul>
-<p>To samo dotyczy kostki: nie możesz przewidzieć następnego rzutu, ale wykonaj 600 rzutów, a każda liczba (1–6) pojawi się około 100 razy. To przewidywalne długoterminowe zachowanie wynikające z nieprzewidywalnych pojedynczych zdarzeń jest istotą statystycznej losowości.</p>
+<p>To samo dotyczy kostki: nie możesz przewidzieć następnego rzutu, ale rzuć 600 razy, a każda liczba (1-6) pojawi się około 100 razy. Ta przewidywalna długoterminowa regularność wynikająca z nieprzewidywalnych pojedynczych zdarzeń to esencja statystycznej losowości.</p>
 <section id="rodzaje-losowości" class="level3">
 <h3 class="anchored" data-anchor-id="rodzaje-losowości">Rodzaje losowości</h3>
-<p><strong>Losowość epistemiczna vs.&nbsp;ontologiczna:</strong></p>
+<p><strong>Losowość epistemiczna a ontologiczna:</strong></p>
 <ul>
-<li><strong>Epistemiczna</strong> (wynikająca z niekompletnej wiedzy): Traktujemy wynik jako losowy, ponieważ nie wszystkie czynniki determinujące są obserwowane lub warunki nie są kontrolowane.
+<li><p><strong>Losowość epistemiczna</strong> (<em>epistemic randomness</em>) (wynikająca z niepełnej wiedzy): Traktujemy wynik jako losowy, ponieważ nie wszystkie czynniki determinujące są obserwowane lub warunki nie są kontrolowane. Sam system jest deterministyczny — podlega stałym regułom — ale brakuje nam informacji potrzebnych do przewidzenia wyniku.</p>
 <ul>
-<li><em>Przykłady:</em> Decyzja indywidualnego respondenta w badaniu (nie znamy pełnego zestawu motywacji); błąd pomiaru w ankiecie (ograniczona precyzja, brak odpowiedzi na pytanie); rzut monetą modelowany jako losowy, ponieważ drobne, nieobserwowane różnice w warunkach początkowych determinują wynik.</li>
+<li><p><em>Rzut monetą:</em> Trajektoria monety jest całkowicie rządzona mechaniką klasyczną. Gdybyśmy znali dokładną pozycję początkową, siłę, moment pędu, opór powietrza i właściwości powierzchni, moglibyśmy teoretycznie przewidzieć, czy moneta wyląduje na orle czy reszce. „Losowość” istnieje tylko dlatego, że nie możemy zmierzyć tych warunków z wystarczającą precyzją.</p></li>
+<li><p><em>Odpowiedzi w sondażu:</em> Odpowiedź danej osoby na pytanie ankietowe jest zdeterminowana przez jej przekonania, doświadczenia i kontekst, ale nie mamy dostępu do tego pełnego stanu psychologicznego, więc modelujemy to jako proces losowy.</p></li>
+<li><p><em>Błąd pomiaru:</em> Ograniczona precyzja instrumentu oznacza, że „prawdziwa” wartość istnieje, ale obserwujemy ją z niepewnością.</p></li>
 </ul></li>
-<li><strong>Ontologiczna</strong> (wewnętrzna nieokreśloność): Nawet pełna wiedza nie usuwa niepewności wyniku.
+<li><p><strong>Losowość ontologiczna</strong> (<em>ontological randomness</em>) (wewnętrzna nieokreśloność): Nawet pełna znajomość wszystkich warunków nie usuwa niepewności co do wyniku. Losowość jest fundamentalna dla samej natury rzeczywistości, a nie tylko luką w naszej wiedzy.</p>
 <ul>
-<li><em>Przykłady:</em> Czas rozpadu radioaktywnego atomu; zjawiska kwantowo-mechaniczne.</li>
+<li><p><em>Rozpad promieniotwórczy:</em> Dokładny moment, w którym dany atom ulegnie rozpadowi, jest fundamentalnie nieprzewidywalny. Mechanika kwantowa podaje nam tylko rozkład prawdopodobieństwa, a nie dokładny czas.</p></li>
+<li><p><em>Pomiary kwantowe:</em> Wynik pomiaru pozycji lub spinu cząstki kwantowej jest z natury probabilistyczny, nie jest określony przez ukryte zmienne, których po prostu jeszcze nie odkryliśmy.</p></li>
 </ul></li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Paradoks rzutu monetą
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Chociaż traktujemy rzuty monetą jako dające losowe wyniki 50-50, badania matematyka Persi Diaconisa wykazały, że przy użyciu mechanicznej maszyny do rzucania monetą, która precyzyjnie kontroluje warunki początkowe, można w sposób powtarzalny przechylić wynik w stronę wybranej strony. To potwierdza, że rzuty monetą są losowe epistemicznie, a nie ontologicznie — pozorna losowość wynika z naszej niezdolności do kontrolowania i mierzenia warunków, a nie z jakiejkolwiek fundamentalnej nieokreśloności w fizyce.</p>
+</div>
+</div>
 </section>
-<section id="pokrewne-pojęcia" class="level3">
-<h3 class="anchored" data-anchor-id="pokrewne-pojęcia">Pokrewne pojęcia</h3>
-<p><strong>Losowość vs.&nbsp;bezład:</strong> Statystyczna losowość ma strukturę matematyczną i podlega prawom prawdopodobieństwa—to uporządkowana niepewność. Bezładność sugeruje całkowity brak porządku, bez podstawowych wzorców czy reguł.</p>
-<p><strong>Chaos</strong> to jak automat typu flipper/pinball: znasz wszystkie reguły (prawa fizyki), ale najmniejsza różnica w miejscu wypuszczenia kulki—ułamek milimetra—prowadzi do zupełnie innych rezultatów. System jest deterministyczny i podlega stałym prawom, ale błędy narastają tak szybko, że przewidywanie staje się niemożliwe w praktyce, nawet przy doskonałej znajomości tych praw. <strong>Losowość (epistemiczna)</strong> to jak zakryta karta na stole: karta już <em>jest</em> siódemką kier (lub czymkolwiek innym), nie zmienia się. Po prostu nie wiemy jeszcze, która to karta. „Losowość” wynika wyłącznie z niewiedzy—odkryj kartę, a niepewność znika całkowicie. Różnica: chaos pozostaje nieprzewidywalny nawet przy doskonałej znajomości reguł, podczas gdy losowość epistemiczna znika w momencie, gdy zdobędziesz brakującą informację o aktualnym stanie rzeczy.</p>
-<p><strong>Entropia:</strong> Miara nieuporządkowania lub niepewności w systemie. Wysoka entropia oznacza wysoką nieprzewidywalność; niska entropia oznacza wysoki porządek. W statystyce entropia kwantyfikuje niepewność.</p>
+<section id="pojęcia-pokrewne" class="level3">
+<h3 class="anchored" data-anchor-id="pojęcia-pokrewne">Pojęcia pokrewne</h3>
+<p><strong>Losowość a przypadkowość:</strong> Statystyczna losowość ma strukturę matematyczną i podlega prawom prawdopodobieństwa — jest to uporządkowana niepewność. Przypadkowość sugeruje kompletny nieład bez leżących u podstaw wzorców czy reguł.</p>
+<p><strong>Chaos deterministyczny</strong> (<em>deterministic chaos</em>): Punkt pośredni między doskonałą przewidywalnością a losowością. Chaos odnosi się do systemów deterministycznych (podlegających stałym, znanym regułom), które wykazują ekstremalną wrażliwość na warunki początkowe (<em>sensitivity to initial conditions</em>), co czyni przewidywanie długoterminowe niemożliwym w praktyce.</p>
+<p>Pomyśl o chaosie jak o <strong>automacie do gry w flipera z efektem motyla</strong>:</p>
+<ul>
+<li>Znasz wszystkie reguły doskonale — fizykę zderzeń, tarcie, grawitację</li>
+<li>System jest całkowicie deterministyczny: wypuść kulkę dokładnie z tego samego miejsca z dokładnie tą samą siłą, a otrzymasz dokładnie ten sam wynik za każdym razem</li>
+<li><strong>Ale:</strong> różnica 0,01 milimetra w pozycji startowej sprawia, że kulka uderza w inne odbijaki, co kumuluje się z każdym zderzeniem, aż finalny wynik jest zupełnie inny</li>
+<li>To jest <strong>efekt motyla</strong> (<em>butterfly effect</em>): maleńkie zaburzenia w warunkach początkowych rosną wykładniczo w czasie</li>
+</ul>
+<p><strong>Klasyczne przykłady chaosu deterministycznego:</strong></p>
+<ul>
+<li><p><strong>Systemy pogodowe:</strong> Edward Lorenz odkrył, że modele atmosferyczne są tak wrażliwe, że motyl trzepoczący skrzydłami w Brazylii mógłby teoretycznie zmienić to, czy tornado powstanie w Teksasie tygodnie później. Dlatego prognozy pogody są wiarygodne na dni, ale nie na miesiące.</p></li>
+<li><p><strong>Orbity planet:</strong> Choć stabilne w skali ludzkiego życia, dynamika Układu Słonecznego jest chaotyczna w skali milionów lat. Nie możemy przewidzieć dokładnej pozycji planet w odległej przyszłości, mimo że znamy prawa grawitacji doskonale.</p></li>
+<li><p><strong>Podwójne wahadło:</strong> Wypuść je pod nieznacznie innym kątem, a po kilku wahnięciach ruch staje się zupełnie inny.</p></li>
+</ul>
+<p><strong>Chaos a losowość epistemiczna — kluczowe rozróżnienie:</strong></p>
+<p>Oba wiążą się z nieprzewidywalnością wynikającą z ograniczonej wiedzy, ale różnią się w istotny sposób:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 43%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspekt</th>
+<th>Losowość epistemiczna</th>
+<th>Chaos deterministyczny</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Reguły znane?</strong></td>
+<td>Często tak</td>
+<td>Tak, całkowicie</td>
+</tr>
+<tr class="even">
+<td><strong>Stan obecny znany?</strong></td>
+<td>Nie (lub niedokładnie)</td>
+<td>Nie (lub niedokładnie)</td>
+</tr>
+<tr class="odd">
+<td><strong>Co powoduje nieprzewidywalność?</strong></td>
+<td>Brakująca informacja o <em>obecnym stanie</em></td>
+<td>Wykładnicze wzmocnienie <em>drobnych błędów pomiaru</em></td>
+</tr>
+<tr class="even">
+<td><strong>Czy doskonała informacja pomoże?</strong></td>
+<td>Tak — poznanie stanu eliminuje niepewność</td>
+<td>Jedynie krótkoterminowo — błędy narastają ponownie</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Przykład dla wyjaśnienia:</strong></p>
+<ul>
+<li><p><strong>Losowość epistemiczna</strong> (zakryta karta): Karta to już siódemka kier. Nie zmienia się ani nie ewoluuje. Po prostu nie wiesz jeszcze, <em>która</em> to karta. Odwróć ją, a niepewność znika całkowicie i na stałe.</p></li>
+<li><p><strong>Chaos</strong> (pogoda za 3 tygodnie): Nawet jeśli zmierzysz obecne warunki atmosferyczne z niezwykłą precyzją, drobne błędy (pomiar do 6 miejsc dziesiętnych zamiast 20) kumulują się w czasie. Możesz dobrze przewidywać przez 5 dni, ale w 3. tygodniu twoja prognoza jest bezużyteczna.</p></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Kluczowa intuicja
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Chaos jest deterministyczny, ale nieprzewidywalny. Losowość epistemiczna jest deterministyczna, ale nieznana. Losowość ontologiczna jest fundamentalnie niezdeterminowana. Praktyka statystyczna traktuje wszystkie trzy jako „losowe”, ale zrozumienie źródła nieprzewidywalności pomaga nam wiedzieć, kiedy więcej informacji może pomóc (epistemiczna), kiedy pomaga tymczasowo, ale nie długoterminowo (chaos), i kiedy nie może pomóc wcale (ontologiczna).</p>
+</div>
+</div>
+<p><strong>Entropia</strong> (<em>entropy</em>): Miara nieuporządkowania lub niepewności w systemie. Wysoka entropia oznacza wysoką nieprzewidywalność lub wiele możliwych mikrostanów; niska entropia oznacza wysoki porządek i niską niepewność. W teorii informacji i statystyce entropia kwantyfikuje ilość niepewności w rozkładzie prawdopodobieństwa — bardziej rozproszone rozkłady mają wyższą entropię.</p>
 <hr>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2372,7 +2459,7 @@ Tip
 </div>
 <hr>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2381,7 +2468,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Dla każdego scenariusza określ, czy związek jest prawdopodobnie przyczynowy czy pozorny:</p>
 <ol type="1">
@@ -2475,7 +2562,7 @@ Tip
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Estymand</strong></td>
+<td><strong>Estymanda</strong></td>
 <td>Dokładnie zdefiniowana wielkość docelowa</td>
 <td>Nie</td>
 <td>opis słowny (specyfikacja)</td>
@@ -2545,9 +2632,9 @@ Note
 <p><strong>Przykład.</strong> W losowej próbie 500 urodzeń otrzymujemy <span class="math inline">\bar x = 30{,}9</span> lat; inna próba może dać <span class="math inline">31{,}4</span>.</p>
 <hr>
 </section>
-<section id="estymand" class="level3">
-<h3 class="anchored" data-anchor-id="estymand">Estymand</h3>
-<p><strong>Estymand</strong> (wielkość docelowa) to <em>to, co chcemy oszacować</em> — opisane tak dokładnie, aby dwaj badacze obliczyli tę samą liczbę, mając pełne dane populacyjne.</p>
+<section id="estymanda" class="level3">
+<h3 class="anchored" data-anchor-id="estymanda">Estymanda</h3>
+<p><strong>Estymanda</strong> (wielkość docelowa) to <em>to, co chcemy oszacować</em> — opisane tak dokładnie, aby dwaj badacze obliczyli tę samą liczbę, mając pełne dane populacyjne.</p>
 <ul>
 <li><p><strong>Dobrze zdefiniowane estymandy</strong></p>
 <ul>
@@ -2632,26 +2719,6 @@ Skąd bierze się „precyzja” (częste przypadki)
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Wskazówki praktyczne</strong></p>
-<ul>
-<li>Dokładnie zdefiniuj <strong>estymand</strong> (populacja, czas, jednostka, definicja).</li>
-<li>Wybierz <strong>estymator</strong>, który bezpośrednio celuje w ten estymand.</li>
-<li>Wśród estymatorów nieobciążonych preferuj <strong>mniejszą wariancję</strong> (większą efektywność).</li>
-<li>Gdy istotny jest kompromis błąd–wariancja, porównuj <strong>MSE</strong>.</li>
-<li>Raportuj estymatę <strong>razem z niepewnością</strong> (SE lub CI) oraz kluczowymi założeniami.</li>
-</ul>
-</div>
-</div>
 <hr>
 </section>
 <section id="estymata-oszacowanie" class="level3">
@@ -2659,7 +2726,7 @@ Tip
 <p><strong>Estymata</strong> to <strong>liczbowa wartość</strong> otrzymana po zastosowaniu estymatora do danych.</p>
 <p><strong>Przykład (krok po kroku)</strong></p>
 <ol type="1">
-<li><strong>Estymand:</strong> Odsetek dorosłych mieszkańców USA wyrażających aprobatę <em>dziś</em>.</li>
+<li><strong>Estymanda:</strong> Odsetek dorosłych mieszkańców USA wyrażających aprobatę <em>dziś</em>.</li>
 <li><strong>Parametr:</strong> <span class="math inline">p</span> (nieznana prawdziwa aprobata).</li>
 <li><strong>Estymator:</strong> <span class="math inline">\hat p = X/n</span>.</li>
 <li><strong>Próba:</strong> <span class="math inline">n=1{,}500</span>, liczba aprobujących <span class="math inline">X=650</span>.</li>
@@ -2675,7 +2742,7 @@ Tip
 <li><strong>Parametr vs statystyka:</strong> wielkość populacyjna vs wielkość z próby.</li>
 <li><strong>Estymator vs estymata:</strong> procedura vs wynik liczbowy.</li>
 <li><strong>Indeks czasu:</strong> parametry często zależą od czasu (np. II kw. vs III kw.).</li>
-<li><strong>Najpierw definicja:</strong> zanim wybierzesz estymator, precyzyjnie określ estymand.</li>
+<li><strong>Najpierw definicja:</strong> zanim wybierzesz estymator, precyzyjnie określ estymandę.</li>
 </ul>
 <hr>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -2950,7 +3017,7 @@ Co mówi nam SE
 <p><strong>Margines błędu</strong> (margin of error, MOE) reprezentuje oczekiwaną maksymalną różnicę między oszacowaniem z próby a prawdziwym parametrem.</p>
 <p><span class="math display">\text{MOE} = \text{Wartość krytyczna} \times \text{Błąd standardowy}</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2959,7 +3026,7 @@ Wyjaśnienie wartości krytycznej
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Dla 95% ufności używamy 1,96 (często upraszczane do 2). Zapewnia to, że ~95% przedziałów skonstruowanych w ten sposób będzie zawierać prawdziwy parametr.</p>
 <ul>
