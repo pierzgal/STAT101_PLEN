@@ -815,39 +815,46 @@ A Soup-Tasting Analogy
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Key Concepts
+Key concepts (at a glance)
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p><strong>Pipeline:</strong> <em>Research question</em> → <strong>Estimand</strong> (population quantity) → <strong>Parameter</strong> (true, unknown value) → <strong>Estimator</strong> (sample rule/statistic; random) → <strong>Estimate</strong> (the single number from your data)</p>
+<p><strong>What we want to know:</strong></p>
 <ul>
-<li><p><strong>Estimand</strong> — what we want to know; the precisely formulated research question.<br>
-<em>Example:</em> “What is the average age at first birth in France in 2023?”</p></li>
-<li><p><strong>Parameter</strong> <span class="math inline">(\theta)</span> — the true answer to that question; it exists in the population but is unknown.<br>
-<em>Example:</em> The actual average age = 31.2 years (if we could study all births).</p></li>
-<li><p><strong>Sample statistic</strong> — a value calculated from a sample; varies from sample to sample.<br>
-<em>Example:</em> From a sample of 500 births, we get an average = 30.9 years.</p></li>
+<li><strong>Estimand</strong> — the <em>population quantity</em> we aim to learn (the formal target), not the sentence itself.<br>
+<em>Example:</em> “Population mean age at first birth in Poland in 2023.”</li>
+<li><strong>Parameter</strong> <span class="math inline">(\theta)</span> — the <em>true but unknown</em> value of that estimand in the population (fixed, not random).<br>
+<em>Example:</em> The true mean <span class="math inline">\mu</span> (e.g., <span class="math inline">\mu=29.4</span> years).</li>
 </ul>
 <hr>
-<p><strong>Estimation tools:</strong></p>
-<ul>
-<li><p><strong>Estimator</strong> — a rule/recipe for calculating an approximation of the parameter from sample data.<br>
-<em>Example:</em> “Calculate the arithmetic mean from the sample.”</p></li>
-<li><p><strong>Estimate</strong> <span class="math inline">(\hat\theta)</span> — the specific number obtained by applying the estimator to a specific sample.<br>
-<em>Example:</em> <span class="math inline">\hat\mu = 30.9</span> years.</p></li>
-</ul>
+<p><strong>How we estimate (3 steps):</strong></p>
+<ol type="1">
+<li><strong>Sample statistic</strong> — any function of the sample (a rule), e.g.<br>
+<span class="math inline">\displaystyle \bar{X}=\frac{1}{n}\sum_{i=1}^n X_i</span></li>
+<li><strong>Estimator</strong> — that statistic <em>chosen to estimate a specific parameter</em> (depends on a random sample, so it’s random).<br>
+<em>Example:</em> Use <span class="math inline">\bar{X}</span> as an estimator of <span class="math inline">\mu</span>.</li>
+<li><strong>Estimate</strong> <span class="math inline">(\hat\theta)</span> — the <em>numerical result</em> after applying the estimator to your observed data <span class="math inline">(x_1,\dots,x_n)</span>.<br>
+<em>Example:</em> <span class="math inline">\hat\mu=\bar{x}=29.1</span> years.</li>
+</ol>
 <hr>
-<p><strong>Most commonly used estimators:</strong></p>
+<p><strong>Analogy:</strong></p>
+<p>Statistic = <strong>tool</strong> → Estimator = <strong>tool chosen for a goal</strong> → Estimate = <strong>the finished output</strong> (your concrete result)</p>
+<hr>
+<p><strong>Common estimators</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 31%">
-<col style="width: 36%">
-<col style="width: 31%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>We seek</th>
-<th>Estimator</th>
+<th>Target parameter (goal)</th>
+<th>Estimator (statistic)</th>
 <th>Formula</th>
+<th>Note</th>
 </tr>
 </thead>
 <tbody>
@@ -855,19 +862,24 @@ Key Concepts
 <td>Mean <span class="math inline">\mu</span></td>
 <td>Sample mean</td>
 <td><span class="math inline">\hat\mu=\bar X=\frac{1}{n}\sum_{i=1}^n X_i</span></td>
+<td>Estimator is random; the estimate is the realized number.</td>
 </tr>
 <tr class="even">
 <td>Proportion <span class="math inline">p</span></td>
-<td>Sample proportion</td>
-<td><span class="math inline">\hat p=\frac{X}{n}</span></td>
+<td>Share of “successes”</td>
+<td><span class="math inline">\hat p=\frac{K}{n}=\bar Y</span> for <span class="math inline">Y_i\in\{0,1\}</span></td>
+<td>Prefer <span class="math inline">K</span> = number of successes (clearer than bare <span class="math inline">X</span>).</td>
 </tr>
 <tr class="odd">
 <td>Variance <span class="math inline">\sigma^2</span></td>
-<td>Sample variance</td>
+<td>Sample variance (Bessel-corrected)</td>
 <td><span class="math inline">s^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar X)^2</span></td>
+<td>Using <span class="math inline">n-1</span> yields an unbiased estimator of <span class="math inline">\sigma^2</span>.</td>
 </tr>
 </tbody>
 </table>
+<hr>
+<p><strong>Set relationship:</strong> Every <strong>estimator</strong> is a <strong>statistic</strong>, but not every statistic is an estimator — until you <strong>tie it to a target</strong> (an estimand), it’s “just” a statistic.</p>
 </div>
 </div>
 <hr>
@@ -922,9 +934,8 @@ Quality Criteria: Bias, Variance, MSE, Efficiency (*)
 </ul>
 </div>
 </div>
-<p><img src="stat_imgs/sampling-logic.001.png" class="img-fluid"></p>
-<section id="the-scenario" class="level4">
-<h4 class="anchored" data-anchor-id="the-scenario">The Scenario</h4>
+<section id="example-of-statistical-thinking" class="level4">
+<h4 class="anchored" data-anchor-id="example-of-statistical-thinking">Example of Statistical Thinking</h4>
 <p>Your university is considering keeping the library open 24/7. The administration needs to know: <strong>What proportion of students support this change?</strong></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -932,7 +943,7 @@ Quality Criteria: Bias, Variance, MSE, Efficiency (*)
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-The Challenge
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -959,26 +970,6 @@ The Challenge
 <p><strong>Advantage</strong>: Acknowledges uncertainty and informs better decisions</p>
 </div>
 </div>
-<hr>
-</section>
-<section id="sample-size-and-uncertainty-random-error" class="level4">
-<h4 class="anchored">Sample Size and Uncertainty (<em>Random Error</em>)</h4>
-<p>Suppose we take a <strong>random sample</strong> of <span class="math inline">n=1000</span> voters and observe <span class="math inline">\hat p = 0.55</span> (e.g., 55% support for a candidate in upcoming elections—550 out of 1,000 respondents). Then:</p>
-<ul>
-<li><p>Our best single-number estimate (point estimate) of the population proportion is <span class="math inline">\hat p = 0.55</span>.</p></li>
-<li><p>A typical “range of plausible values” (at the <span class="math inline">95\%</span> confidence level) around <span class="math inline">\hat p</span> can be approximated by <span class="math inline">\hat p \pm \text{Margin of Error}</span>, i.e., <span class="math display">
-  \hat p \;\pm\; 2\sqrt{\frac{\hat p(1-\hat p)}{n}}
-  \;=\;
-  0.55 \;\pm\; 2\sqrt{\frac{0.55\cdot 0.45}{1000}}
-  \approx
-  0.55 \pm 0.031,
-</span> giving roughly <span class="math inline">52\%</span> to <span class="math inline">58\%</span> (approximately <span class="math inline">\pm 3.1</span> percentage points).<br>
-<strong>Note:</strong> The factor of 2 is a convenient rounding of 1.96, the critical value from the standard normal distribution for 95% confidence.</p></li>
-<li><p>The width of this interval shrinks predictably with sample size: <span class="math display">
-  \text{Margin of Error} \;\propto\; \frac{1}{\sqrt{n}}.
-</span> For example, increasing <span class="math inline">n</span> from 1,000 to 4,000 cuts the margin of error approximately in half (from <span class="math inline">\pm 3.1\%</span> to <span class="math inline">\pm 1.6\%</span>).</p></li>
-</ul>
-<hr>
 <p><strong>How sample size affects precision:</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -993,7 +984,7 @@ The Challenge
 <th>Sample Size</th>
 <th>Observed Result</th>
 <th>Margin of Error</th>
-<th>95% Confidence Interval</th>
+<th>(95%) Range of Plausible Values</th>
 <th>Interpretation</th>
 </tr>
 </thead>
@@ -1038,20 +1029,30 @@ The Challenge
 <p><strong>The Diminishing Returns Principle:</strong> Notice that quadrupling the sample size from 100 to 400 cuts the margin of error in half, but increasing from 1,600 to 10,000 (a 6.25× increase) only reduces it by 1.5 percentage points. To halve your margin of error, you must <strong>quadruple your sample size</strong>.</p>
 <p>This is why most polls stop around 1,000–1,500 respondents—the gains in precision beyond that point rarely justify the additional cost and effort.</p>
 <hr>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Remember
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Statistical thinking transforms “60 students said yes” from a precise-sounding but misleading statement into an honest assessment: “We’re reasonably confident that between 50% and 70% of all students support this.”</p>
-<p><strong>This humility leads to better decisions.</strong></p>
-</div>
-</div>
+</section>
+<section id="sample-size-and-uncertainty-random-error" class="level4">
+<h4 class="anchored">Sample Size and Uncertainty (<em>Random Error</em>)</h4>
+<p>Suppose we take a <strong>random sample</strong> of <span class="math inline">n=1000</span> voters and observe <span class="math inline">\hat p = 0.55</span> (e.g., 55% support for a candidate in upcoming elections—550 out of 1,000 respondents). Then:</p>
+<ul>
+<li><p>Our best single-number estimate (<strong>point estimate</strong>) of the population proportion is <span class="math inline">\hat p = 0.55</span>.</p></li>
+<li><p>A typical “range of plausible values” (at the <span class="math inline">95\%</span> confidence level) around <span class="math inline">\hat p</span> can be approximated by <span class="math inline">\hat p \pm \text{Margin of Error}</span>, i.e., <span class="math display">
+  \hat p \;\pm\; 2\sqrt{\frac{\hat p(1-\hat p)}{n}}
+  \;=\;
+  0.55 \;\pm\; 2\sqrt{\frac{0.55\cdot 0.45}{1000}}
+  \approx
+  0.55 \pm 0.031,
+</span> giving roughly (<strong>interval estimate</strong>) <span class="math inline">52\%</span> to <span class="math inline">58\%</span> (approximately <span class="math inline">\pm 3.1</span> percentage points).<br>
+</p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> The factor of 2 is a convenient rounding of 1.96, the critical value from the standard normal distribution for 95% confidence.</p>
+</blockquote>
+<ul>
+<li>The width of this interval shrinks predictably with sample size: <span class="math display">
+  \text{Margin of Error} \;\propto\; \frac{1}{\sqrt{n}}.
+</span> For example, increasing <span class="math inline">n</span> from 1,000 to 4,000 cuts the margin of error approximately in half (from <span class="math inline">\pm 3.1\%</span> to <span class="math inline">\pm 1.6\%</span>).</li>
+</ul>
+<hr>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1275,36 +1276,61 @@ Bias vs.&nbsp;Random Error
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Sampling Methods Overview
+Overview of Sampling Methods
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Sampling</strong> selects a subset from a population to estimate characteristics. The <strong>sampling frame</strong> (the list from which we sample) must ideally include every member exactly once. Frame problems include undercoverage, overcoverage, duplication, and clustering.</p>
+<p><strong>Sampling</strong> involves selecting a subset of the population to estimate its characteristics. The <strong>sampling frame</strong> (list from which we sample) should ideally contain each member exactly once. Frame problems: undercoverage, overcoverage, duplication, and clustering.</p>
 <section id="probability-sampling-statistical-inference-possible" class="level3">
 <h3 class="anchored" data-anchor-id="probability-sampling-statistical-inference-possible">Probability Sampling (Statistical Inference Possible)</h3>
 <ul>
-<li><p><strong>Simple Random Sampling (SRS)</strong>: Every sample of size <span class="math inline">n</span> has equal probability. Gold standard but often impractical. Each unit has probability <span class="math inline">n/N</span> of selection.</p></li>
-<li><p><strong>Systematic Sampling</strong>: Select every <span class="math inline">k</span>th element where <span class="math inline">k = N/n</span>. Simple to implement but watch for hidden periodicity in the frame.</p></li>
-<li><p><strong>Stratified Sampling</strong>: Divide population into homogeneous strata, sample independently within each. Ensures subgroup representation and can increase precision substantially. Allocation types: proportional, optimal (Neyman), or equal.</p></li>
-<li><p><strong>Cluster Sampling</strong>: Select groups (clusters) rather than individuals. Cost-effective for geographically dispersed populations but less efficient than SRS (design effect: DEFF = Variance(cluster)/Variance(SRS)). Can be single-stage or multi-stage.</p></li>
+<li><p><strong>Simple Random Sampling (SRS)</strong>: Every possible sample of size <span class="math inline">n</span> has equal probability of selection (sampling <strong>without replacement</strong>). Gold standard of probability methods.</p>
+<ul>
+<li><em>Formal definition</em>: Each of the <span class="math inline">\binom{N}{n}</span> possible samples has probability <span class="math inline">\frac{1}{\binom{N}{n}}</span>.</li>
+<li><em>Inclusion probability for a unit</em>:
+<ul>
+<li>Question: In how many samples does a specific person (e.g., student John) appear?</li>
+<li>If John is already in the sample (that’s fixed), we need to select <span class="math inline">n-1</span> more people from the remaining <span class="math inline">N-1</span> people (everyone except John).</li>
+<li>Number of samples containing John: <span class="math inline">\binom{N-1}{n-1}</span></li>
+<li>Probability:</li>
+</ul></li>
+</ul>
+<p><span class="math display">P(\text{John in sample}) = \frac{\text{samples with John}}{\text{all samples}} = \frac{\binom{N-1}{n-1}}{\binom{N}{n}} = \frac{n}{N}</span></p>
+<ul>
+<li><em>Numerical example</em>: <span class="math inline">N=5</span> people {A,B,C,D,E}, we sample <span class="math inline">n=3</span>. All samples: <span class="math inline">\binom{5}{3}=10</span>. Samples with person A: {ABC, ABD, ABE, ACD, ACE, ADE} = <span class="math inline">\binom{4}{2}=6</span> samples. Probability: <span class="math inline">6/10 = 3/5 = n/N</span> ✓</li>
+</ul></li>
+<li><p><strong>Systematic Sampling</strong>: Selection of every <span class="math inline">k</span>-th element, where <span class="math inline">k = N/n</span>. Simple to implement, but beware of hidden periodicity in the frame (e.g., list ordered by patterns).</p></li>
+<li><p><strong>Systematic Sampling</strong>: Selection of every <span class="math inline">k</span>-th element, where <span class="math inline">k = N/n</span> (sampling interval).</p>
+<ul>
+<li><em>How it works</em>: Randomly select a starting point <span class="math inline">r</span> from <span class="math inline">\{1, 2, ..., k\}</span>, then select: <span class="math inline">r, r+k, r+2k, r+3k, ...</span></li>
+<li><em>Example</em>: <span class="math inline">N=1000</span>, <span class="math inline">n=100</span>, so <span class="math inline">k=10</span>. If <span class="math inline">r=7</span>, we select: 7, 17, 27, 37, …, 997.</li>
+<li><em>Advantages</em>: Very simple, ensures even coverage of the population.</li>
+<li><em>Periodicity problem</em>: If the list has a pattern repeating every <span class="math inline">k</span> elements, the sample can be severely biased.
+<ul>
+<li><em>Example (bad)</em>: Apartment list: 101, 102, 103, 104 (corner), 201, 202, 203, 204 (corner), … If <span class="math inline">k=4</span>, we might sample only corner apartments!</li>
+<li><em>Example (bad)</em>: Daily production data with 7-day cycle. If <span class="math inline">k=7</span>, we might sample only Mondays.</li>
+<li><em>Example (good)</em>: Alphabetical list of surnames - usually no periodicity.</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Cluster Sampling</strong>: Selection of entire groups (clusters) instead of individual units. Cost-effective for geographically dispersed populations (e.g., sampling schools instead of students), but typically less precise than SRS (design effect: DEFF = Variance(cluster)/Variance(SRS)). Can be single- or multi-stage.</p></li>
 </ul>
 </section>
 <section id="non-probability-sampling-limited-statistical-inference" class="level3">
 <h3 class="anchored" data-anchor-id="non-probability-sampling-limited-statistical-inference">Non-Probability Sampling (Limited Statistical Inference)</h3>
 <ul>
-<li><p><strong>Convenience</strong>: Selection by ease of access. Useful for pilots/exploratory work but severe selection bias likely.</p></li>
-<li><p><strong>Purposive/Judgmental</strong>: Deliberate selection of typical, extreme, or information-rich cases. Valuable for qualitative research and rare populations.</p></li>
-<li><p><strong>Quota</strong>: Match population proportions but without random selection. Fast and cheap but hidden selection bias and no measure of sampling error. (See: 1948 Dewey-Truman polling failure)</p></li>
-<li><p><strong>Snowball</strong>: Participants recruit others from their networks. Essential for hidden populations (drug users, undocumented immigrants) but biased toward well-connected individuals.</p></li>
+<li><p><strong>Convenience Sampling</strong>: Selection based on ease of access (e.g., passersby in city center). Useful in pilot/exploratory studies, but likely serious selection bias.</p></li>
+<li><p><strong>Purposive/Judgmental Sampling</strong>: Deliberate selection of typical, extreme, or information-rich cases. Valuable in qualitative research and studying rare populations.</p></li>
+<li><p><strong>Quota Sampling</strong>: Matching population proportions (e.g., 50% women), but without random selection. Quick and inexpensive, but hidden selection bias and no ability to calculate sampling error.</p></li>
+<li><p><strong>Snowball Sampling</strong>: Participants recruit others from their networks. Essential for hard-to-reach populations (drug users, undocumented immigrants), but biased toward well-connected individuals.</p></li>
 </ul>
-<p><strong>Key Principle</strong>: Probability sampling enables valid statistical inference; non-probability methods may be necessary for practical or ethical reasons but limit generalizability.</p>
+<p><strong>Fundamental Principle</strong>: Probability sampling enables valid statistical inference and calculation of sampling error; non-probability methods may be necessary for practical or ethical reasons, but limit the ability to generalize results to the entire population.</p>
 </section>
 </div>
 </div>
 <hr>
 </section>
 </section>
-<section id="superpopulation-and-data-generating-process-dgp" class="level2 calout-note" data-number="1.6">
+<section id="superpopulation-and-data-generating-process-dgp" class="level2 calout-tip" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="superpopulation-and-data-generating-process-dgp"><span class="header-section-number">1.6</span> Superpopulation and Data Generating Process (DGP) (*)</h2>
 <hr>
 <section id="superpopulation" class="level3">
@@ -2355,7 +2381,7 @@ Tip
 </div>
 <hr>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2364,7 +2390,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For each scenario, identify whether the relationship is likely causal or spurious:</p>
 <ol type="1">
@@ -2931,7 +2957,7 @@ What SE Tells Us
 <p>The <strong>margin of error</strong> (MOE) represents the expected maximum difference between sample estimate and true parameter.</p>
 <p><span class="math display">\text{MOE} = \text{Critical Value} \times \text{Standard Error}</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2940,7 +2966,7 @@ Understanding the Critical Value
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For 95% confidence, we use 1.96 (often simplified to 2). This ensures that ~95% of intervals constructed this way will contain the true parameter.</p>
 <ul>

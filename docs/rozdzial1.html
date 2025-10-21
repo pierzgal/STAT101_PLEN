@@ -798,61 +798,74 @@ Wnioskowanie z próby o cechach populacji: Analogia „próbowania zupy”
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Kluczowe pojęcia
+Kluczowe pojęcia (w skrócie)
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p><strong>Schemat:</strong> <em>Pytanie badawcze</em> → <strong>Estymanda</strong> (co mierzymy w populacji) → <strong>Parametr</strong> (prawdziwa, nieznana wartość) → <strong>Estymator</strong> (reguła z próby) → <strong>Estymata</strong>/<strong>oszacowanie</strong> (konkretna liczba z Twoich danych)</p>
+<p><strong>Co chcemy poznać:</strong></p>
 <ul>
-<li><p><strong>Estymand</strong> — to, co chcemy poznać; precyzyjnie sformułowane pytanie badawcze.<br>
-<em>Przykład:</em> „Jaki jest średni wiek przy pierwszym porodzie we Francji w 2023 roku?”</p></li>
-<li><p><strong>Parametr</strong> <span class="math inline">(\theta)</span> — prawdziwa odpowiedź na to pytanie; istnieje w populacji, ale jest nieznana.<br>
-<em>Przykład:</em> Rzeczywista średnia wieku = 31,2 lata (gdybyśmy mogli zbadać wszystkie porody).</p></li>
-<li><p><strong>Statystyka z próby</strong> — wartość policzona z próby (funkcja próby); zmienia się z próby na próbę.<br>
-<em>Przykład:</em> Z próby 500 urodzeń otrzymujemy średnią = 30,9 lat.</p></li>
+<li><strong>Estymanda</strong> — <em>wielkość w populacji</em>, którą chcemy poznać (formalny cel), a nie samo zdanie-pytanie.<br>
+<em>Przykład:</em> „Średni wiek przy pierwszym porodzie w Polsce w 2023 r.”</li>
+<li><strong>Parametr</strong> <span class="math inline">(\theta)</span> — <em>prawdziwa, ale nieznana</em> wartość estymandy w populacji (stała, nie losowa).<br>
+<em>Przykład:</em> Rzeczywista średnia <span class="math inline">\mu = 29{,}4</span> roku życia.</li>
 </ul>
 <hr>
-<p><strong>Narzędzia estymacji:</strong></p>
-<ul>
-<li><p><strong>Estymator</strong> — reguła/przepis, jak z danych próby policzyć przybliżenie parametru.<br>
-<em>Przykład:</em> „Policz średnią arytmetyczną z próby.”</p></li>
-<li><p><strong>Estymata</strong> (oszacowanie/ocena parametru) <span class="math inline">(\hat\theta)</span> — konkretna liczba otrzymana przez zastosowanie estymatora do konkretnej próby.<br>
-<em>Przykład:</em> <span class="math inline">\hat\mu = 30{,}9</span> lat.</p></li>
-</ul>
+<p><strong>Jak to szacujemy (3 kroki):</strong></p>
+<ol type="1">
+<li><strong>Statystyka z próby</strong> — dowolna funkcja danych z próby (reguła), np.<br>
+<span class="math inline">\displaystyle \bar{X}=\frac{1}{n}\sum_{i=1}^n X_i</span></li>
+<li><strong>Estymator</strong> — <em>ta statystyka wybrana do oszacowania konkretnego parametru</em> (z definicji zależy od losowej próby, więc jest losowa).<br>
+<em>Przykład:</em> Używamy <span class="math inline">\bar{X}</span> jako estymatora <span class="math inline">\mu</span>.</li>
+<li><strong>Estymata / oszacowanie</strong> <span class="math inline">(\hat\theta)</span> — <em>konkretna liczba</em> po zastosowaniu estymatora do Twoich danych <span class="math inline">(x_1,\dots,x_n)</span>.<br>
+<em>Przykład:</em> <span class="math inline">\hat\mu = \bar{x} = 29{,}1</span> roku.</li>
+</ol>
 <hr>
-<p><strong>Najczęściej stosowane estymatory:</strong></p>
+<p><strong>Analogia:</strong></p>
+<p>Statystyka = <strong>narzędzie</strong> → Estymator = <strong>narzędzie wybrane do celu</strong> → Estymata = <strong>efekt pracy narzędzia</strong> (konkretny wynik)</p>
+<hr>
+<p><strong>Najczęściej używane estymatory</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 34%">
-<col style="width: 41%">
-<col style="width: 24%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Szukamy</th>
-<th>Estymator</th>
+<th>Parametr (cel)</th>
+<th>Estymator (statystyka)</th>
 <th>Wzór</th>
+<th>Uwaga</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Średniej <span class="math inline">\mu</span></td>
+<td>Średnia <span class="math inline">\mu</span></td>
 <td>Średnia z próby</td>
 <td><span class="math inline">\hat\mu=\bar X=\frac{1}{n}\sum_{i=1}^n X_i</span></td>
+<td>Estymator losowy; estymata to konkretna liczba po podstawieniu danych.</td>
 </tr>
 <tr class="even">
-<td>Proporcji <span class="math inline">p</span></td>
-<td>Frakcja sukcesów</td>
-<td><span class="math inline">\hat p=\frac{X}{n}</span></td>
+<td>Proporcja <span class="math inline">p</span></td>
+<td>Udział „sukcesów”</td>
+<td><span class="math inline">\hat p=\frac{K}{n}=\bar Y</span> dla <span class="math inline">Y_i\in\{0,1\}</span></td>
+<td>Lepiej pisać <span class="math inline">K</span> = liczba sukcesów (zamiast gołego <span class="math inline">X</span>).</td>
 </tr>
 <tr class="odd">
-<td>Wariancji <span class="math inline">\sigma^2</span></td>
-<td>Wariancja próbkowa</td>
+<td>Wariancja <span class="math inline">\sigma^2</span></td>
+<td>Wariancja z poprawką Bessela</td>
 <td><span class="math inline">s^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar X)^2</span></td>
+<td><span class="math inline">n-1</span> daje estymator nieobciążony dla <span class="math inline">\sigma^2</span>.</td>
 </tr>
 </tbody>
 </table>
+<hr>
+<p><strong>Relacja zbiorów:</strong> Każdy <strong>estymator</strong> jest <strong>statystyką</strong>, ale nie każda statystyka jest estymatorem — dopóki <strong>nie przypiszesz</strong> jej konkretnego celu (estymandy), jest „po prostu” statystyką.</p>
 </div>
 </div>
+<hr>
 <p><img src="stat_imgs/sampling-estimators.svg" class="img-fluid"></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -904,9 +917,8 @@ Kryteria jakości: błąd, wariancja, MSE, efektywność (*)
 </ul>
 </div>
 </div>
-<p><img src="stat_imgs/sampling-logic.001.png" class="img-fluid"></p>
-<section id="scenariusz-badawczy" class="level4">
-<h4 class="anchored" data-anchor-id="scenariusz-badawczy">Scenariusz Badawczy</h4>
+<section id="przykład-myślenia-statystycznego" class="level4">
+<h4 class="anchored" data-anchor-id="przykład-myślenia-statystycznego">Przykład Myślenia Statystycznego</h4>
 <p>Władze uniwersytetu rozważają udostępnienie biblioteki całodobowo. Administracja potrzebuje odpowiedzi na pytanie: <strong>Jaka część studentów popiera tę zmianę?</strong></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -914,7 +926,7 @@ Kryteria jakości: błąd, wariancja, MSE, efektywność (*)
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Podstawowy Problem
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -941,26 +953,6 @@ Podstawowy Problem
 <p><strong>Przewaga</strong>: Uznanie niepewności prowadzi do lepszych decyzji</p>
 </div>
 </div>
-<hr>
-</section>
-<section id="wielkość-próby-a-niepewność-błąd-losowy" class="level4">
-<h4 class="anchored">Wielkość próby a niepewność (<em>błąd losowy</em>)</h4>
-<p>Załóżmy, że pobieramy <strong>próbę losową</strong> o liczebności <span class="math inline">n=1000</span> wyborców i obserwujemy <span class="math inline">\hat p = 0,55</span> (np. 55% poparcia dla kandydata w nadchodzących wyborach—550 na 1000 respondentów). Wówczas:</p>
-<ul>
-<li><p>Naszym najlepszym punktowym oszacowaniem proporcji w populacji jest <span class="math inline">\hat p = 0,55</span>.</p></li>
-<li><p>Typowy „przedział wiarygodnych wartości” (dla poziomu ufności <span class="math inline">95\%</span>) wokół <span class="math inline">\hat p</span> można aproksymować jako <span class="math inline">\hat p \pm \text{Błąd losowy (Margin of Error, margines błędu)}</span>, czyli: <span class="math display">
-  \hat p \;\pm\; 2\sqrt{\frac{\hat p(1-\hat p)}{n}}
-  \;=\;
-  0,55 \;\pm\; 2\sqrt{\frac{0,55\cdot 0,45}{1000}}
-  \approx
-  0,55 \pm 0,031,
-</span> co daje w przybliżeniu od <span class="math inline">52\%</span> do <span class="math inline">58\%</span> (około <span class="math inline">\pm 3,1</span> punktu procentowego).<br>
-<strong>Uwaga:</strong> Współczynnik 2 jest wygodnym zaokrągleniem wartości 1,96, czyli tzw. wartości krytycznej z rozkładu normalnego standardowego dla poziomu ufności 95%.</p></li>
-<li><p>Szerokość tego przedziału maleje w przewidywalny sposób wraz z wielkością próby: <span class="math display">
-  \text{Błąd oszacowania} \;\propto\; \frac{1}{\sqrt{n}}.
-</span> Na przykład, zwiększenie <span class="math inline">n</span> z 1000 do 4000 zmniejsza błąd oszacowania mniej więcej o połowę (z <span class="math inline">\pm 3,1\%</span> do <span class="math inline">\pm 1,6\%</span>).</p></li>
-</ul>
-<hr>
 <p><strong>Jak wielkość próby wpływa na precyzję:</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -974,8 +966,8 @@ Podstawowy Problem
 <tr class="header">
 <th>Wielkość próby</th>
 <th>Obserwowany wynik</th>
-<th>Błąd oszacowania</th>
-<th>95% przedział ufności</th>
+<th>Błąd losowy oszacowania</th>
+<th>(95%) “przedział wiarygodnych wartości”</th>
 <th>Interpretacja</th>
 </tr>
 </thead>
@@ -1020,20 +1012,30 @@ Podstawowy Problem
 <p><strong>Zasada malejących korzyści:</strong> Zauważ, że czterokrotne zwiększenie próby ze 100 do 400 zmniejsza błąd oszacowania o połowę, ale zwiększenie z 1600 do 10 000 (wzrost 6,25-krotny) redukuje go tylko o 1,5 punktu procentowego. Aby zmniejszyć błąd oszacowania o połowę, należy <strong>zwiększyć wielkość próby czterokrotnie</strong>.</p>
 <p>Dlatego większość sondaży zatrzymuje się na około 1000–1500 respondentach—dalszy wzrost precyzji rzadko uzasadnia dodatkowe koszty i nakład pracy.</p>
 <hr>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Należy Pamiętać
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Myślenie statystyczne przekształca stwierdzenie “60 studentów odpowiedziało twierdząco” z pozornie precyzyjnej, lecz wprowadzającej w błąd informacji w rzetelną ocenę: “Z dużym prawdopodobieństwem można stwierdzić, że między 50% a 70% wszystkich studentów popiera tę propozycję.”</p>
-<p><strong>Ta ostrożność w formułowaniu wniosków prowadzi do lepszych decyzji.</strong></p>
-</div>
-</div>
+</section>
+<section id="wielkość-próby-a-niepewność-błąd-losowy" class="level4">
+<h4 class="anchored">Wielkość próby a niepewność (błąd losowy)</h4>
+<p>Załóżmy, że pobieramy <strong>próbę losową</strong> o liczebności <span class="math inline">n=1000</span> wyborców i obserwujemy <span class="math inline">\hat p = 0,55</span> (np. 55% poparcia dla kandydata w nadchodzących wyborach—550 na 1000 respondentów). Wówczas:</p>
+<ul>
+<li><p>Naszym najlepszym punktowym oszacowaniem (<strong>estymacja punktowa</strong>) proporcji w populacji jest <span class="math inline">\hat p = 0,55</span>.</p></li>
+<li><p>Typowy „przedział wiarygodnych wartości” (przedział ufności dla poziomu ufności <span class="math inline">95\%</span>) wokół <span class="math inline">\hat p</span> można aproksymować jako <span class="math inline">\hat p \pm \text{Błąd losowy (Margin of Error, margines błędu)}</span>, czyli: <span class="math display">
+  \hat p \;\pm\; 2\sqrt{\frac{\hat p(1-\hat p)}{n}}
+  \;=\;
+  0,55 \;\pm\; 2\sqrt{\frac{0,55\cdot 0,45}{1000}}
+  \approx
+  0,55 \pm 0,031,
+</span> co daje w przybliżeniu przedział (<strong>estymacja przedziałowa</strong>) od <span class="math inline">52\%</span> do <span class="math inline">58\%</span> (około <span class="math inline">\pm 3,1</span> punktu procentowego).<br>
+</p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Uwaga:</strong> Współczynnik 2 jest wygodnym zaokrągleniem wartości 1,96, czyli tzw. wartości krytycznej z rozkładu normalnego standardowego dla poziomu ufności 95%.</p>
+</blockquote>
+<ul>
+<li>Szerokość tego przedziału maleje w przewidywalny sposób wraz z wielkością próby: <span class="math display">
+  \text{Błąd losowy oszacowania} \;\propto\; \frac{1}{\sqrt{n}}.
+</span> Na przykład, zwiększenie <span class="math inline">n</span> z 1000 do 4000 zmniejsza błąd oszacowania mniej więcej o połowę (z <span class="math inline">\pm 3,1\%</span> do <span class="math inline">\pm 1,6\%</span>).</li>
+</ul>
+<hr>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1268,26 +1270,51 @@ Przegląd Metod Doboru Próby
 <section id="dobór-probabilistyczny-możliwe-wnioskowanie-statystyczne" class="level3">
 <h3 class="anchored" data-anchor-id="dobór-probabilistyczny-możliwe-wnioskowanie-statystyczne">Dobór Probabilistyczny (Możliwe Wnioskowanie Statystyczne)</h3>
 <ul>
-<li><p><strong>Prosty Dobór Losowy (SRS)</strong>: Każda próba o rozmiarze <span class="math inline">n</span> ma równe prawdopodobieństwo wyboru. Złoty standard, ale często niepraktyczny. Każda jednostka ma prawdopodobieństwo selekcji <span class="math inline">n/N</span>.</p></li>
-<li><p><strong>Dobór Systematyczny</strong>: Wybór co <span class="math inline">k</span>-tego elementu, gdzie <span class="math inline">k = N/n</span>. Prosty w implementacji, ale uwaga na ukrytą periodyczność w operacie.</p></li>
-<li><p><strong>Dobór Warstwowy</strong>: Podział populacji na jednorodne warstwy, niezależne losowanie w każdej warstwie. Zapewnia reprezentację podgrup i może znacznie zwiększyć precyzję. Typy alokacji: proporcjonalna, optymalna (Neymana) lub równa.</p></li>
-<li><p><strong>Dobór Klastrowy (Skupieniowy)</strong>: Wybór grup (klastrów) zamiast jednostek. Efektywny kosztowo dla populacji rozproszonych geograficznie, ale mniej efektywny niż SRS (efekt schematu: DEFF = Wariancja(klaster)/Wariancja(SRS)). Może być jedno- lub wielostopniowy.</p></li>
+<li><p><strong>Prosty Dobór Losowy (SRS)</strong>: Każda możliwa próba o rozmiarze <span class="math inline">n</span> ma równe prawdopodobieństwo wyboru (losowanie <strong>bez zwracania</strong>). Złoty standard metod probabilistycznych.</p>
+<ul>
+<li><em>Definicja formalna</em>: Każda z <span class="math inline">\binom{N}{n}</span> możliwych prób ma prawdopodobieństwo <span class="math inline">\frac{1}{\binom{N}{n}}</span>.</li>
+<li><em>Prawdopodobieństwo włączenia jednostki</em>:
+<ul>
+<li>Pytanie: W ilu próbach znajduje się konkretna osoba (np. student Jan)?</li>
+<li>Jeśli Jan jest już w próbie (to ustalone), musimy dobrać jeszcze <span class="math inline">n-1</span> osób z pozostałych <span class="math inline">N-1</span> osób (wszyscy oprócz Jana).</li>
+<li>Liczba prób zawierających Jana: <span class="math inline">\binom{N-1}{n-1}</span></li>
+<li>Prawdopodobieństwo:</li>
+</ul></li>
+</ul>
+<p><span class="math display">P(\text{Jan w próbie}) = \frac{\text{próby z Janem}}{\text{wszystkie próby}} = \frac{\binom{N-1}{n-1}}{\binom{N}{n}} = \frac{n}{N}</span></p>
+<ul>
+<li><em>Przykład liczbowy</em>: <span class="math inline">N=5</span> osób {A,B,C,D,E}, losujemy <span class="math inline">n=3</span>. Wszystkie próby: <span class="math inline">\binom{5}{3}=10</span>. Próby z osobą A: {ABC, ABD, ABE, ACD, ACE, ADE} = <span class="math inline">\binom{4}{2}=6</span> prób. Prawdopodobieństwo: <span class="math inline">6/10 = 3/5 = n/N</span> ✓</li>
+</ul></li>
+<li><p><strong>Dobór Systematyczny</strong>: Wybór co <span class="math inline">k</span>-tego elementu, gdzie <span class="math inline">k = N/n</span> (interwał próbkowania).</p>
+<ul>
+<li><em>Jak to działa</em>: Losujemy punkt startowy <span class="math inline">r</span> z <span class="math inline">\{1, 2, ..., k\}</span>, następnie wybieramy: <span class="math inline">r, r+k, r+2k, r+3k, ...</span></li>
+<li><em>Przykład</em>: <span class="math inline">N=1000</span>, <span class="math inline">n=100</span>, więc <span class="math inline">k=10</span>. Jeśli <span class="math inline">r=7</span>, to wybieramy: 7, 17, 27, 37, …, 997.</li>
+<li><em>Zalety</em>: Bardzo prosty, zapewnia równomierne pokrycie populacji.</li>
+<li><em>Problem periodyczności</em>: Jeśli lista ma wzorzec powtarzający się co <span class="math inline">k</span> elementów, próba może być silnie obciążona.
+<ul>
+<li><em>Przykład (źle)</em>: Lista mieszkań: 101, 102, 103, 104 (narożne), 201, 202, 203, 204 (narożne), … Jeśli <span class="math inline">k=4</span>, możemy wylosować tylko mieszkania narożne!</li>
+<li><em>Przykład (źle)</em>: Dane produkcyjne dzienne z 7-dniowym cyklem. Jeśli <span class="math inline">k=7</span>, możemy wylosować tylko poniedziałki.</li>
+<li><em>Przykład (dobrze)</em>: Lista alfabetyczna nazwisk - zwykle brak periodyczności.</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Dobór Warstwowy</strong>: Podział populacji na jednorodne warstwy (np. płeć, region), niezależne losowanie w każdej warstwie. Zapewnia reprezentację podgrup i może znacznie zwiększyć precyzję. Typy alokacji: proporcjonalna, optymalna (Neymana) lub równa.</p></li>
+<li><p><strong>Dobór Klastrowy (Skupieniowy)</strong>: Wybór całych grup (klastrów) zamiast pojedynczych jednostek. Efektywny kosztowo dla populacji rozproszonych geograficznie (np. losowanie szkół zamiast uczniów), ale zazwyczaj mniej precyzyjny niż SRS (efekt schematu: DEFF = Wariancja(klaster)/Wariancja(SRS)). Może być jedno- lub wielostopniowy.</p></li>
 </ul>
 </section>
 <section id="dobór-nieprobabilistyczny-ograniczone-wnioskowanie-statystyczne" class="level3">
 <h3 class="anchored" data-anchor-id="dobór-nieprobabilistyczny-ograniczone-wnioskowanie-statystyczne">Dobór Nieprobabilistyczny (Ograniczone Wnioskowanie Statystyczne)</h3>
 <ul>
-<li><p><strong>Dobór Dogodny</strong>: Wybór według łatwości dostępu. Przydatny w badaniach pilotażowych/eksploracyjnych, ale prawdopodobne poważne obciążenie selekcji.</p></li>
-<li><p><strong>Dobór Celowy/Ekspercki</strong>: Celowy wybór przypadków typowych, ekstremalnych lub bogatych informacyjnie. Wartościowy w badaniach jakościowych i badaniu rzadkich populacji.</p></li>
-<li><p><strong>Dobór Kwotowy</strong>: Dopasowanie proporcji populacji, ale bez losowego wyboru. Szybki i tani, ale ukryte obciążenie selekcji i brak miary błędu próbkowania.</p></li>
-<li><p><strong>Dobór Kuli Śnieżnej</strong>: <strong>Uczestnicy</strong> rekrutują innych ze swoich sieci. Niezbędny dla trudno dostępnych populacji (osoby używające narkotyków, nielegalni imigranci), ale obciążony w stronę dobrze połączonych jednostek.</p></li>
+<li><p><strong>Dobór Dogodny</strong>: Wybór według łatwości dostępu (np. przechodnie w centrum miasta). Przydatny w badaniach pilotażowych/eksploracyjnych, ale prawdopodobne poważne obciążenie selekcji.</p></li>
+<li><p><strong>Dobór Celowy/Ekspercki</strong>: Świadomy wybór przypadków typowych, ekstremalnych lub bogatych informacyjnie. Wartościowy w badaniach jakościowych i badaniu rzadkich populacji.</p></li>
+<li><p><strong>Dobór Kwotowy</strong>: Dopasowanie proporcji populacji (np. 50% kobiet), ale bez losowego wyboru. Szybki i tani, ale ukryte obciążenie selekcji i brak możliwości obliczenia błędu próbkowania.</p></li>
+<li><p><strong>Dobór Kuli Śnieżnej</strong>: Uczestnicy rekrutują innych ze swoich sieci. Niezbędny dla trudno dostępnych populacji (osoby używające narkotyków, nielegalni imigranci), ale obciążony w stronę dobrze połączonych jednostek.</p></li>
 </ul>
-<p><strong>Podstawowa Zasada</strong>: Dobór probabilistyczny umożliwia prawidłowe wnioskowanie statystyczne; metody nieprobabilistyczne mogą być konieczne ze względów praktycznych lub etycznych, ale ograniczają możliwość uogólnienia wyników.</p>
+<p><strong>Podstawowa Zasada</strong>: Dobór probabilistyczny umożliwia prawidłowe wnioskowanie statystyczne i obliczenie błędu próbkowania; metody nieprobabilistyczne mogą być konieczne ze względów praktycznych lub etycznych, ale ograniczają możliwość uogólnienia wyników na całą populację.</p>
 </section>
 </div>
 </div>
 <hr>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -2345,7 +2372,7 @@ Tip
 </div>
 <hr>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2354,7 +2381,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Dla każdego scenariusza określ, czy związek jest prawdopodobnie przyczynowy czy pozorny:</p>
 <ol type="1">
@@ -2923,7 +2950,7 @@ Co mówi nam SE
 <p><strong>Margines błędu</strong> (margin of error, MOE) reprezentuje oczekiwaną maksymalną różnicę między oszacowaniem z próby a prawdziwym parametrem.</p>
 <p><span class="math display">\text{MOE} = \text{Wartość krytyczna} \times \text{Błąd standardowy}</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2932,7 +2959,7 @@ Wyjaśnienie wartości krytycznej
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Dla 95% ufności używamy 1,96 (często upraszczane do 2). Zapewnia to, że ~95% przedziałów skonstruowanych w ten sposób będzie zawierać prawdziwy parametr.</p>
 <ul>
