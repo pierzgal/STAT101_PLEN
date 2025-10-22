@@ -859,27 +859,29 @@ Key concepts (at a glance)
 </thead>
 <tbody>
 <tr class="odd">
-<td>Mean <span class="math inline">\mu</span></td>
+<td>Population mean <span class="math inline">\mu</span></td>
 <td>Sample mean</td>
-<td><span class="math inline">\hat\mu=\bar X=\frac{1}{n}\sum_{i=1}^n X_i</span></td>
-<td>Estimator is random; the estimate is the realized number.</td>
+<td><span class="math inline">\bar X=\frac{1}{n}\sum_{i=1}^n X_i</span></td>
+<td>Unbiased estimator. The estimator <span class="math inline">\bar X</span> is a random variable; a specific calculated value (e.g., <span class="math inline">\bar x = 5.2</span>) is called an <em>estimate</em>.</td>
 </tr>
 <tr class="even">
-<td>Proportion <span class="math inline">p</span></td>
-<td>Share of “successes”</td>
-<td><span class="math inline">\hat p=\frac{K}{n}=\bar Y</span> for <span class="math inline">Y_i\in\{0,1\}</span></td>
-<td>Prefer <span class="math inline">K</span> = number of successes (clearer than bare <span class="math inline">X</span>).</td>
+<td>Population proportion <span class="math inline">p</span></td>
+<td>Sample proportion</td>
+<td><span class="math inline">\hat p=\frac{K}{n}</span> where <span class="math inline">K=\sum_{i=1}^n Y_i</span> for <span class="math inline">Y_i\in\{0,1\}</span></td>
+<td>Equivalent to <span class="math inline">\bar Y</span> when encoding outcomes as 0/1. Here <span class="math inline">K</span> counts the number of successes in <span class="math inline">n</span> trials.</td>
 </tr>
 <tr class="odd">
-<td>Variance <span class="math inline">\sigma^2</span></td>
-<td>Sample variance (Bessel-corrected)</td>
+<td>Population variance <span class="math inline">\sigma^2</span></td>
+<td>Sample variance</td>
 <td><span class="math inline">s^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar X)^2</span></td>
-<td>Using <span class="math inline">n-1</span> yields an unbiased estimator of <span class="math inline">\sigma^2</span>.</td>
+<td>The <span class="math inline">n-1</span> divisor (Bessel’s correction) makes this unbiased for <span class="math inline">\sigma^2</span>. Using <span class="math inline">n</span> would give a biased estimator.</td>
 </tr>
 </tbody>
 </table>
 <hr>
-<p><strong>Set relationship:</strong> Every <strong>estimator</strong> is a <strong>statistic</strong>, but not every statistic is an estimator — until you <strong>tie it to a target</strong> (an estimand), it’s “just” a statistic.</p>
+<blockquote class="blockquote">
+<p>Every <strong>estimator</strong> is a <strong>statistic</strong>, but not every statistic is an estimator — until you <strong>tie it to a target</strong> (an estimand), it’s “just” a statistic.</p>
+</blockquote>
 </div>
 </div>
 <hr>
@@ -949,6 +951,31 @@ Note
 <div class="callout-body-container callout-body">
 <p><strong>Ideal world</strong>: Ask all 20,000 students → Get the exact answer (<span class="math inline">\theta</span> parameter)<br>
 <strong>Real world</strong>: Survey 100 students → Get an estimate (<span class="math inline">\hat{\theta}</span>) with uncertainty</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Bias vs.&nbsp;Random Error
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Statistical (prediction) error can be decomposed into two main components: <strong>bias</strong> (systematic error) and <strong>random error</strong> (unpredictable variation).</p>
+<p><strong>Bias</strong> is like a miscalibrated scale that consistently reads 2 kg too high—every measurement is wrong in the <em>same direction</em>. It’s systematic error.</p>
+<p><strong>Random error</strong> is the unpredictable variation in your observations, like:</p>
+<ul>
+<li>A dart player aiming at the bullseye—each throw lands in a slightly different spot due to hand tremor, air currents, tiny muscle variations</li>
+<li>Measuring someone’s height multiple times and getting 174.8 cm, 175.0 cm, 175.3 cm—small fluctuations from posture changes, breathing, how you read the scale, and natural body variations</li>
+<li>A weather model that’s sometimes 2°C too high, sometimes 1°C too low, sometimes spot on</li>
+<li><strong>Opinion polls</strong> showing 52%, 49%, 51% support across different surveys—each random sample gives slightly different results, but they cluster around the true value</li>
+</ul>
+<p><strong>Random error is measured by variance</strong>—the average squared deviation of observations from their mean. It quantifies how much your data points (predictions) scatter.</p>
+<p>Random error is like asking 5 friends to estimate how many jellybeans are in a jar—they’ll all give different answers just due to chance, but those differences scatter randomly around the truth rather than all being wrong in the same direction.</p>
+<p><strong>Polling example</strong>: Bias is like polling only at the gym at 6am—you’ll always get more health-conscious, early-rising, employed people and always miss night-shift workers, people with young kids, etc. The poll is broken in a predictable way. Or: only counting responses from people who actually answer unknown phone calls—you’ll systematically miss everyone (especially younger people) who screens their calls.</p>
+<p><strong>Key difference</strong>: Averaging more observations reduces random error but <em>never</em> fixes bias. You can’t average your way out of a miscalibrated scale—or a biased sampling method!</p>
 </div>
 </div>
 </section>
@@ -1140,7 +1167,7 @@ Historical Example: the 1936 <em>Literary Digest</em> Poll
 <h3 class="anchored" data-anchor-id="why-sample-size-couldnt-save-the-poll">Why sample size couldn’t save the poll</h3>
 <p>Taking 2.4 million responses from a biased list is like weighing an entire country on a faulty scale.</p>
 <ul>
-<li>The maximum possible (worst case scenario) <strong>margin of error</strong> (for the <span class="math inline">95\%</span> confidence level) for a given sample size (if it had been a true random sample) would have been: <span class="math display">\text{MoE}_{95\%} \approx 1.96\sqrt{\frac{0.25}{2{,}400{,}000}} \approx \pm 0.06 \text{ percentage points}</span> — <strong>tiny</strong>, but meaningless.</li>
+<li>The maximum possible (worst case scenario) <strong>margin of error</strong> (for the <span class="math inline">95\%</span> confidence level) for a given sample size (if it had been a true random sample) would have been: <span class="math display">\text{MoE}_{95\%} \approx 1.96\sqrt{\frac{0.25}{2{,}400{,}000}} \approx \pm 0.06 \text{ percentage points}</span> — <strong>tiny</strong>.</li>
 <li>That formula only captures <strong>random error</strong>, not bias.</li>
 <li>The <strong>real error</strong> was about <strong>±18–20 percentage points</strong> — hundreds of times larger.</li>
 </ul>
@@ -1219,7 +1246,7 @@ The Coin Toss Paradox
 <h3 class="anchored" data-anchor-id="related-concepts">Related Concepts</h3>
 <p><strong>Randomness vs.&nbsp;Haphazardness:</strong> Statistical randomness has mathematical structure and follows probability laws—it’s orderly uncertainty. Haphazardness suggests complete disorder without underlying patterns or rules.</p>
 <p><strong>Deterministic Chaos:</strong> The middle ground between perfect predictability and randomness. Chaos refers to deterministic systems (following fixed, known rules) that exhibit extreme sensitivity to initial conditions, making long-term prediction impossible in practice.</p>
-<p>Think of chaos like a <strong>pinball machine with the butterfly effect</strong>:</p>
+<p>Think of chaos like a <strong>pinball machine, with the butterfly effect</strong>:</p>
 <ul>
 <li>You know all the rules perfectly—the physics of collisions, friction, gravity</li>
 <li>The system is completely deterministic: release the ball from exactly the same spot with exactly the same force, and you’ll get exactly the same result every time</li>
@@ -1289,32 +1316,6 @@ Key Insight
 </div>
 </div>
 <p><strong>Entropy:</strong> A measure of disorder or uncertainty in a system. High entropy means high unpredictability or many possible microstates; low entropy means high order and low uncertainty. In information theory and statistics, entropy quantifies the amount of uncertainty in a probability distribution—more spread out distributions have higher entropy.</p>
-<hr>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Bias vs.&nbsp;Random Error
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Statistical (prediction) error can be decomposed into two main components: <strong>bias</strong> (systematic error) and <strong>random error</strong> (unpredictable variation).</p>
-<p><strong>Bias</strong> is like a miscalibrated scale that consistently reads 2 kg too high—every measurement is wrong in the <em>same direction</em>. It’s systematic error.</p>
-<p><strong>Random error</strong> is the unpredictable variation in your observations, like:</p>
-<ul>
-<li>A dart player aiming at the bullseye—each throw lands in a slightly different spot due to hand tremor, air currents, tiny muscle variations</li>
-<li>Measuring someone’s height multiple times and getting 174.8 cm, 175.0 cm, 175.3 cm—small fluctuations from posture changes, breathing, how you read the scale, and natural body variations</li>
-<li>A weather model that’s sometimes 2°C too high, sometimes 1°C too low, sometimes spot on</li>
-<li><strong>Opinion polls</strong> showing 52%, 49%, 51% support across different surveys—each random sample gives slightly different results, but they cluster around the true value</li>
-</ul>
-<p><strong>Random error is measured by variance</strong>—the average squared deviation of observations from their mean. It quantifies how much your data points (predictions) scatter.</p>
-<p>Random error is like asking 5 friends to estimate how many jellybeans are in a jar—they’ll all give different answers just due to chance, but those differences scatter randomly around the truth rather than all being wrong in the same direction.</p>
-<p><strong>Polling example</strong>: Bias is like polling only at the gym at 6am—you’ll always get more health-conscious, early-rising, employed people and always miss night-shift workers, people with young kids, etc. The poll is broken in a predictable way. Or: only counting responses from people who actually answer unknown phone calls—you’ll systematically miss everyone (especially younger people) who screens their calls.</p>
-<p><strong>Key difference</strong>: Averaging more observations reduces random error but <em>never</em> fixes bias. You can’t average your way out of a miscalibrated scale—or a biased sampling method!</p>
-</div>
-</div>
 <hr>
 </section>
 </section>
@@ -2837,7 +2838,7 @@ Understanding Different Types of Unpredictability
 <section id="quantum-mechanics-and-fundamental-randomness" class="level3">
 <h3 class="anchored" data-anchor-id="quantum-mechanics-and-fundamental-randomness">Quantum Mechanics and Fundamental Randomness</h3>
 <p>In the Copenhagen interpretation, randomness is <strong>fundamental (ontological)</strong>: a <strong>single</strong> outcome cannot be predicted, but the <strong>probability distribution</strong> is given by the Born rule.</p>
-<p>This represents true randomness at the most basic level of nature, not just our ignorance of determining factors.</p>
+<p>This represents true randomness at the most basic level of nature.</p>
 </section>
 </div>
 </div>

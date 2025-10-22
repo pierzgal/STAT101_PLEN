@@ -824,7 +824,7 @@ Kluczowe pojęcia (w skrócie)
 <p><strong>Analogia:</strong></p>
 <p>Statystyka = <strong>narzędzie</strong> → Estymator = <strong>narzędzie wybrane do celu</strong> → Estymata = <strong>efekt pracy narzędzia</strong> (konkretny wynik)</p>
 <hr>
-<p><strong>Najczęściej używane estymatory</strong></p>
+<p><strong>Popularne estymatory</strong></p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -834,7 +834,7 @@ Kluczowe pojęcia (w skrócie)
 </colgroup>
 <thead>
 <tr class="header">
-<th>Parametr (cel)</th>
+<th>Parametr populacji (cel)</th>
 <th>Estymator (statystyka)</th>
 <th>Wzór</th>
 <th>Uwaga</th>
@@ -842,27 +842,29 @@ Kluczowe pojęcia (w skrócie)
 </thead>
 <tbody>
 <tr class="odd">
-<td>Średnia <span class="math inline">\mu</span></td>
+<td>Średnia populacji <span class="math inline">\mu</span></td>
 <td>Średnia z próby</td>
-<td><span class="math inline">\hat\mu=\bar X=\frac{1}{n}\sum_{i=1}^n X_i</span></td>
-<td>Estymator losowy; estymata to konkretna liczba po podstawieniu danych.</td>
+<td><span class="math inline">\bar X=\frac{1}{n}\sum_{i=1}^n X_i</span></td>
+<td>Estymator nieobciążony. Estymator <span class="math inline">\bar X</span> jest zmienną losową; konkretna wyliczona wartość (np. <span class="math inline">\bar x = 5{,}2</span>) nazywa się <em>oszacowaniem</em>.</td>
 </tr>
 <tr class="even">
-<td>Proporcja <span class="math inline">p</span></td>
-<td>Udział „sukcesów”</td>
-<td><span class="math inline">\hat p=\frac{K}{n}=\bar Y</span> dla <span class="math inline">Y_i\in\{0,1\}</span></td>
-<td>Lepiej pisać <span class="math inline">K</span> = liczba sukcesów (zamiast gołego <span class="math inline">X</span>).</td>
+<td>Proporcja w populacji <span class="math inline">p</span></td>
+<td>Proporcja z próby</td>
+<td><span class="math inline">\hat p=\frac{K}{n}</span>, gdzie <span class="math inline">K=\sum_{i=1}^n Y_i</span> dla <span class="math inline">Y_i\in\{0,1\}</span></td>
+<td>Równoważne <span class="math inline">\bar Y</span> przy kodowaniu wyników jako 0/1. Tutaj <span class="math inline">K</span> zlicza liczbę sukcesów w <span class="math inline">n</span> próbach.</td>
 </tr>
 <tr class="odd">
-<td>Wariancja <span class="math inline">\sigma^2</span></td>
-<td>Wariancja z poprawką Bessela</td>
+<td>Wariancja populacji <span class="math inline">\sigma^2</span></td>
+<td>Wariancja z próby</td>
 <td><span class="math inline">s^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar X)^2</span></td>
-<td><span class="math inline">n-1</span> daje estymator nieobciążony dla <span class="math inline">\sigma^2</span>.</td>
+<td>Dzielnik <span class="math inline">n-1</span> (korekta Bessela) czyni ten estymator nieobciążonym dla <span class="math inline">\sigma^2</span>. Użycie <span class="math inline">n</span> dałoby estymator obciążony.</td>
 </tr>
 </tbody>
 </table>
 <hr>
-<p><strong>Relacja zbiorów:</strong> Każdy <strong>estymator</strong> jest <strong>statystyką</strong>, ale nie każda statystyka jest estymatorem — dopóki <strong>nie przypiszesz</strong> jej konkretnego celu (estymandy), jest „po prostu” statystyką.</p>
+<blockquote class="blockquote">
+<p>Każdy <strong>estymator</strong> jest <strong>statystyką</strong>, ale nie każda statystyka jest estymatorem — dopóki <strong>nie przypiszesz</strong> jej konkretnego celu (estymandy), jest „po prostu” statystyką.</p>
+</blockquote>
 </div>
 </div>
 <hr>
@@ -932,6 +934,36 @@ Note
 <div class="callout-body-container callout-body">
 <p><strong>Sytuacja idealna</strong>: Zapytanie wszystkich 20 000 studentów → Uzyskanie dokładnej odpowiedzi (parametr <span class="math inline">\theta</span>)<br>
 <strong>Sytuacja rzeczywista</strong>: Ankietowanie 100 studentów → Uzyskanie oszacowania (<span class="math inline">\hat{\theta}</span>) z niepewnością</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Obciążenie vs.&nbsp;Błąd Losowy
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Błąd statystyczny można rozłożyć na dwa główne komponenty: <strong>obciążenie</strong> (błąd systematyczny) i <strong>błąd losowy</strong> (nieprzewidywalna zmienność).</p>
+<p><strong>Obciążenie</strong> jest jak nieprawidłowo skalibrowana waga, która konsekwentnie pokazuje o 2 kg za dużo—każdy pomiar jest błędny w <em>tym samym kierunku</em>. To błąd systematyczny.</p>
+<p><strong>Błąd losowy</strong> to nieprzewidywalna zmienność w obserwacjach, jak:</p>
+<ul>
+<li>Gracz w rzutki celujący w środek tarczy—każdy rzut ląduje w nieco innym miejscu z powodu drżenia ręki, prądów powietrza, drobnych różnic w ruchu mięśni</li>
+<li>Mierzenie wzrostu osoby kilka razy i otrzymywanie 174,8 cm, 175,0 cm, 175,3 cm—małe fluktuacje wynikające ze zmiany postawy, oddychania, sposobu odczytu skali i naturalnych wahań ciała</li>
+<li>Model pogody, który czasem przewiduje o 2°C za dużo, czasem o 1°C za mało, czasem trafnie</li>
+<li><strong>Sondaże opinii publicznej</strong> pokazujące 52%, 49%, 51% poparcia w różnych badaniach—każda losowa próba daje nieco inne wyniki, ale skupiają się wokół prawdziwej wartości</li>
+</ul>
+<p><strong>Błąd losowy mierzymy wariancją</strong> — średnią kwadratów odchyleń obserwacji od średniej. Pokazuje ona, jak duży jest rozrzut wyników (np. prognoz) wokół średniej.</p>
+<p><strong>Obrazowe porównanie:</strong> Wyobraź sobie, że prosisz pięcioro znajomych, by oszacowali, ile cukierków jest w słoiku. Każdy poda inną liczbę — to efekt przypadku — ale odpowiedzi będą się wahać wokół wartości prawdziwej, a nie wszystkie odchylą się w tę samą stronę.</p>
+<p><strong>Błąd systematyczny (bias) w sondażach:</strong> to nieprzypadkowe odchylenie wyników, gdy sposób zbierania danych faworyzuje jedne grupy, a pomija inne.</p>
+<ul>
+<li>Ankietowanie wyłącznie na siłowni o 6:00 rano sprawi, że konsekwentnie przeszacujesz udział osób dbających o zdrowie i wcześnie wstających, a zaniżysz udział pracujących na nocne zmiany czy rodziców małych dzieci. Sondaż jest „zepsuty” w przewidywalny sposób.</li>
+<li>Zliczanie tylko odpowiedzi osób odbierających połączenia z nieznanych numerów spowoduje, że systematycznie pominiesz tych — zwłaszcza młodszych — którzy filtrują połączenia.</li>
+</ul>
+<p>Krótko: <strong>wariancja opisuje rozrzut (błąd losowy), a bias — przesunięcie w określoną stronę (błąd systematyczny).</strong></p>
+<p><strong>Kluczowa różnica</strong>: Uśrednianie większej liczby obserwacji zmniejsza błąd losowy, ale <em>nigdy</em> nie naprawia obciążenia. Nie można wyeliminować błędu systematycznego przez uśrednianie—ani nieprawidłowo skalibrowanej wagi, ani stronniczej metody próbkowania!</p>
 </div>
 </div>
 </section>
@@ -1123,7 +1155,7 @@ Historyczny przykład: sondaż <em>Literary Digest</em> z 1936 roku
 <h3 class="anchored" data-anchor-id="dlaczego-wielkość-próby-nie-poprawiła-oszacowania">Dlaczego wielkość próby nie poprawiła oszacowania</h3>
 <p>Zebranie 2,4 miliona odpowiedzi z błędnej listy to jak <strong>zważyć cały kraj na wadze z błędną kalibracją</strong>.</p>
 <ul>
-<li>Gdyby była to losowa próba, maksymalny teoretyczny <strong>margines błędu</strong> (zakładając 95% poziom ufności) wyniósłby: <span class="math display">\text{MoE}_{95\%} \approx 1.96\sqrt{\frac{0.25}{2{,}400{,}000}} \approx \pm 0.06 \text{ percentage points}</span> — <strong>malutki</strong>, ale bez znaczenia.</li>
+<li>Gdyby była to losowa próba, maksymalny teoretyczny <strong>margines błędu</strong> (zakładając 95% poziom ufności) wyniósłby: <span class="math display">\text{MoE}_{95\%} \approx 1.96\sqrt{\frac{0.25}{2{,}400{,}000}} \approx \pm 0.06 \text{ percentage points}</span> — <strong>malutki</strong>.</li>
 <li>Wzór ten opisuje tylko <strong>błąd losowy</strong>, a nie stronniczość.</li>
 <li><strong>Rzeczywisty błąd</strong> sięgnął <strong>18–20 punktów procentowych</strong> — kilkaset razy więcej.</li>
 </ul>
@@ -1131,7 +1163,7 @@ Historyczny przykład: sondaż <em>Literary Digest</em> z 1936 roku
 <hr>
 </section>
 <section id="współczesne-sondaże-mniejsze-ale-mądrzejsze" class="level3">
-<h3 class="anchored" data-anchor-id="współczesne-sondaże-mniejsze-ale-mądrzejsze">Współczesne sondaże: mniejsze, ale mądrzejsze</h3>
+<h3 class="anchored" data-anchor-id="współczesne-sondaże-mniejsze-ale-mądrzejsze">Współczesne sondaże: mniejsze, ale “mądrzejsze”</h3>
 <p>Problem <em>Literary Digest</em> na zawsze zmienił metody badań opinii:</p>
 <ul>
 <li><strong>Dobór losowy (probability sampling):</strong> każdy wyborca ma znane, niezerowe prawdopodobieństwo znalezienia się w próbie.</li>
@@ -1202,7 +1234,7 @@ Paradoks rzutu monetą
 <h3 class="anchored" data-anchor-id="pojęcia-pokrewne">Pojęcia pokrewne</h3>
 <p><strong>Losowość a przypadkowość:</strong> Statystyczna losowość ma strukturę matematyczną i podlega prawom prawdopodobieństwa — jest to uporządkowana niepewność. Przypadkowość sugeruje kompletny nieład bez leżących u podstaw wzorców czy reguł.</p>
 <p><strong>Chaos deterministyczny</strong> (<em>deterministic chaos</em>): Punkt pośredni między doskonałą przewidywalnością a losowością. Chaos odnosi się do systemów deterministycznych (podlegających stałym, znanym regułom), które wykazują ekstremalną wrażliwość na warunki początkowe (<em>sensitivity to initial conditions</em>), co czyni przewidywanie długoterminowe niemożliwym w praktyce.</p>
-<p>Pomyśl o chaosie jak o <strong>automacie do gry w flipera z efektem motyla</strong>:</p>
+<p>Pomyśl o chaosie jak o <strong>automacie do gry w flipera (<em>pinball machine</em>), z efektem motyla</strong>:</p>
 <ul>
 <li>Znasz wszystkie reguły doskonale — fizykę zderzeń, tarcie, grawitację</li>
 <li>System jest całkowicie deterministyczny: wypuść kulkę dokładnie z tego samego miejsca z dokładnie tą samą siłą, a otrzymasz dokładnie ten sam wynik za każdym razem</li>
@@ -1272,37 +1304,6 @@ Intuicja
 </div>
 </div>
 <p><strong>Entropia</strong> (<em>entropy</em>): Miara nieuporządkowania lub niepewności w systemie. Wysoka entropia oznacza wysoką nieprzewidywalność lub wiele możliwych mikrostanów; niska entropia oznacza wysoki porządek i niską niepewność. W teorii informacji i statystyce entropia kwantyfikuje ilość niepewności w rozkładzie prawdopodobieństwa — bardziej rozproszone rozkłady mają wyższą entropię.</p>
-<hr>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Obciążenie vs.&nbsp;Błąd Losowy
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Błąd statystyczny można rozłożyć na dwa główne komponenty: <strong>obciążenie</strong> (błąd systematyczny) i <strong>błąd losowy</strong> (nieprzewidywalna zmienność).</p>
-<p><strong>Obciążenie</strong> jest jak nieprawidłowo skalibrowana waga, która konsekwentnie pokazuje o 2 kg za dużo—każdy pomiar jest błędny w <em>tym samym kierunku</em>. To błąd systematyczny.</p>
-<p><strong>Błąd losowy</strong> to nieprzewidywalna zmienność w obserwacjach, jak:</p>
-<ul>
-<li>Gracz w rzutki celujący w środek tarczy—każdy rzut ląduje w nieco innym miejscu z powodu drżenia ręki, prądów powietrza, drobnych różnic w ruchu mięśni</li>
-<li>Mierzenie wzrostu osoby kilka razy i otrzymywanie 174,8 cm, 175,0 cm, 175,3 cm—małe fluktuacje wynikające ze zmiany postawy, oddychania, sposobu odczytu skali i naturalnych wahań ciała</li>
-<li>Model pogody, który czasem przewiduje o 2°C za dużo, czasem o 1°C za mało, czasem trafnie</li>
-<li><strong>Sondaże opinii publicznej</strong> pokazujące 52%, 49%, 51% poparcia w różnych badaniach—każda losowa próba daje nieco inne wyniki, ale skupiają się wokół prawdziwej wartości</li>
-</ul>
-<p><strong>Błąd losowy mierzymy wariancją</strong> — średnią kwadratów odchyleń obserwacji od średniej. Pokazuje ona, jak duży jest rozrzut wyników (np. prognoz) wokół średniej.</p>
-<p><strong>Obrazowe porównanie:</strong> Wyobraź sobie, że prosisz pięcioro znajomych, by oszacowali, ile cukierków jest w słoiku. Każdy poda inną liczbę — to efekt przypadku — ale odpowiedzi będą się wahać wokół wartości prawdziwej, a nie wszystkie odchylą się w tę samą stronę.</p>
-<p><strong>Błąd systematyczny (bias) w sondażach:</strong> to nieprzypadkowe odchylenie wyników, gdy sposób zbierania danych faworyzuje jedne grupy, a pomija inne.</p>
-<ul>
-<li>Ankietowanie wyłącznie na siłowni o 6:00 rano sprawi, że konsekwentnie przeszacujesz udział osób dbających o zdrowie i wcześnie wstających, a zaniżysz udział pracujących na nocne zmiany czy rodziców małych dzieci. Sondaż jest „zepsuty” w przewidywalny sposób.</li>
-<li>Zliczanie tylko odpowiedzi osób odbierających połączenia z nieznanych numerów spowoduje, że systematycznie pominiesz tych — zwłaszcza młodszych — którzy filtrują połączenia.</li>
-</ul>
-<p>Krótko: <strong>wariancja opisuje rozrzut (błąd losowy), a bias — przesunięcie w określoną stronę (błąd systematyczny).</strong></p>
-<p><strong>Kluczowa różnica</strong>: Uśrednianie większej liczby obserwacji zmniejsza błąd losowy, ale <em>nigdy</em> nie naprawia obciążenia. Nie można wyeliminować błędu systematycznego przez uśrednianie—ani nieprawidłowo skalibrowanej wagi, ani stronniczej metody próbkowania!</p>
-</div>
-</div>
 <hr>
 </section>
 </section>
@@ -2812,7 +2813,7 @@ Wyjaśnienie różnych typów nieprzewidywalności
 <section id="mechanika-kwantowa-i-fundamentalna-losowość" class="level3">
 <h3 class="anchored" data-anchor-id="mechanika-kwantowa-i-fundamentalna-losowość">Mechanika kwantowa i fundamentalna losowość</h3>
 <p>W interpretacji kopenhaskiej losowość jest <strong>fundamentalna (ontologiczna)</strong>: <strong>pojedynczy</strong> wynik nie może być przewidziany, ale <strong>rozkład prawdopodobieństwa</strong> jest dany przez regułę Borna.</p>
-<p>To reprezentuje prawdziwą losowość na najbardziej podstawowym poziomie natury, nie tylko naszą ignorancję czynników determinujących.</p>
+<p>To reprezentuje prawdziwą losowość na najbardziej podstawowym poziomie natury.</p>
 </section>
 </div>
 </div>
