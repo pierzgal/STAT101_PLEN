@@ -25,103 +25,110 @@ Zrozumienie właściwości zbiorów liczbowych jest kluczowe dla uchwycenia natu
 
 4.  **Zbiory Gęste**: Zbiory, w których między dowolnymi dwoma elementami zawsze znajduje się inny element zbioru. Liczby wymierne i rzeczywiste są zbiorami gęstymi.
 
-------------------------------------------------------------------------
+## Dane Dyskretne vs. Ciągłe
 
-## Dane dyskretne a dane ciągłe
-
-W analizie danych i statystyce kategoryzujemy zmienne jako dyskretne lub ciągłe. Ten podział kształtuje sposób, w jaki analizujemy dane i które metody statystyczne stosujemy. Jednak granica między tymi kategoriami nie zawsze jest ostra, a niektóre zmienne wykazują cechy obu typów. Niniejszy rozdział omawia dane dyskretne i ciągłe, ich różnice oraz interesujące przypadki zmiennych, które kwestionują nasze intuicyjne rozumienie.
+W nauce o danych i statystyce często kategoryzujemy zmienne jako dyskretne lub ciągłe. Jednak rozróżnienie to nie zawsze jest jednoznaczne, a niektóre zmienne wykazują cechy obu typów. Ta sekcja bada koncepcje danych dyskretnych i ciągłych, ich różnice oraz interesujące przypadki zmiennych, które można traktować jako oba typy lub które kwestionują nasze intuicyjne rozumienie.
 
 ![https://individual-psychometrics.rbind.io/](stat_imgs/DiscreteContinuous.svg)
 
-### Dane dyskretne
+### Dane Dyskretne
 
-Dane dyskretne mogą przyjmować tylko określone, policzalne wartości. Wartości te są często (choć nie zawsze) liczbami całkowitymi.
+Dane dyskretne mogą przyjmować tylko określone, przeliczalne wartości. Te wartości często (ale nie zawsze) są liczbami całkowitymi.
 
-#### Charakterystyka danych dyskretnych:
+#### Cechy Danych Dyskretnych:
 
--   Przeliczalny zbiór możliwych wartości
+-   Przeliczalne
 -   Często reprezentowane przez liczby całkowite
 -   Mogą być skończone lub nieskończone
--   Brak wartości pomiędzy dwoma sąsiednimi punktami danych
+-   Brak wartości między dwoma sąsiednimi punktami danych
 
 #### Przykłady:
 
 1.  Liczba studentów w klasie
-2.  Liczba samochodów sprzedanych przez salon
-3.  Liczba monet w skarbonce
-4.  Wynik rzutu kostką (1, 2, 3, 4, 5 lub 6)
+2.  Liczba samochodów sprzedanych przez dealera
+3.  Rozmiary butów
 
-### Dane ciągłe
+### Dane Ciągłe
 
-Dane ciągłe mogą przyjmować dowolną wartość w danym zakresie, w tym wartości ułamkowe i dziesiętne. Co ważne, ciągłość charakteryzuje się **gęstością**: między dowolnymi dwiema wartościami istnieje nieskończenie wiele innych możliwych wartości.
+Dane ciągłe mogą przyjmować dowolną wartość w danym zakresie, w tym wartości ułamkowe i dziesiętne. Ważne jest, aby zauważyć, że ciągłość nie jest określona wyłącznie przez nieprzeliczalność, ale również przez gęstość.
 
-#### Charakterystyka danych ciągłych:
+#### Cechy Danych Ciągłych:
 
--   Wartości ze zbiorów gęstych (liczby wymierne lub rzeczywiste)
+-   Mogą być nieprzeliczalne (jak liczby rzeczywiste) lub gęste (jak liczby wymierne)
 -   Mogą być mierzone z dowolną precyzją (teoretycznie)
--   Między dowolnymi dwoma punktami danych istnieje nieskończenie wiele wartości
--   Typowo reprezentowane na skali ciągłej
+-   Reprezentowane przez liczby rzeczywiste lub gęste podzbiory liczb rzeczywistych
+-   Zawsze istnieją wartości między dowolnymi dwoma punktami danych
 
 #### Przykłady:
 
 1.  Wzrost
 2.  Waga
 3.  Temperatura
-4.  Czas trwania
+4.  Procenty (wyjaśnione dalej poniżej)
 
-::: callout-note
-### Uwaga matematyczna: Gęstość i ciągłość
+### Spektrum Dyskretno-Ciągłe
 
-Dane ciągłe pochodzą ze **zbiorów gęstych**, w których między dowolnymi dwiema różnymi wartościami istnieje inna wartość ze zbioru. Najczęstsze przykłady to:
+W praktyce niektóre zmienne, które matematycznie są dyskretne, często są traktowane tak, jakby były ciągłe. Ta dwoista natura zapewnia elastyczność w analizie i interpretacji tych zmiennych.
 
--   **Liczby rzeczywiste**: nieprzeliczalne i gęste
--   **Liczby wymierne**: przeliczalne, ale gęste
+#### Powody Traktowania Danych Dyskretnych jako Ciągłych:
 
-Ta właściwość gęstości nadaje danym ciągłym charakterystyczną „gładkość" i pozwala stosować statystyczne metody oparte na rachunku różniczkowym i całkowym.
-:::
-
-### Spektrum dyskretne-ciągłe
-
-W praktyce niektóre zmienne, które matematycznie są dyskretne, często traktuje się tak, jakby były ciągłe. Ta dualna natura zapewnia elastyczność w analizie i interpretacji tych zmiennych.
-
-#### Powody traktowania danych dyskretnych jako ciągłych:
-
-1.  **Drobna granulacja (małe przyrosty dyskretne)**
-
-    -   Gdy zmienna dyskretna ma bardzo małe przyrosty między możliwymi wartościami, może aproksymować ciągłość.
-    -   Przykład: Dochód mierzony w groszach. Choć technicznie dyskretny, bardzo małe przyrosty i ogromna liczba możliwych wartości sprawiają, że zachowuje się podobnie do zmiennej ciągłej.
-
-2.  **Wygoda analityczna**
-
+1.  **Gęsta Granularność**
+    -   Gdy zmienna dyskretna ma dużą liczbę możliwych wartości w danym zakresie, może przybliżać ciągłość.
+    -   Przykład: Dochód mierzony w pojedynczych groszach. Choć technicznie dyskretny, duża liczba możliwych wartości sprawia, że zachowuje się podobnie do zmiennej ciągłej.
+2.  **Wygoda Analityczna**
     -   Metody ciągłe często dają rozsądne i użyteczne wyniki nawet dla gęstych zmiennych dyskretnych.
-    -   Założenie ciągłości pozwala na wykorzystanie metod opartych na rachunku różniczkowym i istniejących narzędzi statystycznych.
+    -   Często łatwiej jest używać istniejących narzędzi statystycznych, jeśli założymy ciągłość, ponieważ pozwala to na stosowanie metod opartych na rachunku różniczkowym.
+3.  **Przybliżenie Zjawisk Bazowych**
+    -   W niektórych przypadkach dyskretny pomiar może być przybliżeniem bazowego procesu ciągłego.
+    -   Przykład: Chociaż mierzymy czas w dyskretnych jednostkach (sekundy, minuty, godziny), sam czas jest ciągły.
 
-3.  **Aproksymacja zjawisk podstawowych**
-
-    -   Pomiar dyskretny może reprezentować proces ciągły u podstaw.
-    -   Przykład: Choć mierzymy czas w jednostkach dyskretnych (sekundy, minuty, godziny), czas sam w sobie płynie w sposób ciągły.
-
-#### Przykłady zmiennych o dualnej naturze dyskretno-ciągłej:
+#### Przykłady Zmiennych o Dwoistej Naturze Dyskretno-Ciągłej:
 
 1.  **Wiek**
+    -   Dyskretny: Typowo mierzony w pełnych latach
+    -   Ciągły: Może być uznany za zmienną ciągłą w wielu analizach, szczególnie przy dużych populacjach
+2.  **Cena i Dochód**
+    -   Dyskretne: Ceny i dochody są w rzeczywistości mierzone w dyskretnych jednostkach (np. grosze lub najmniejsza jednostka waluty)
+    -   Ciągłe: W modelach ekonomicznych i wielu analizach ceny i dochody są traktowane jako zmienne ciągłe ze względu na ich gęstą naturę i wygodę analityczną
+3.  **Wyniki Testów**
+    -   Dyskretne: Często podawane jako liczby całkowite
+    -   Ciągłe: W analizach statystycznych wyniki testów mogą być traktowane jako ciągłe, szczególnie gdy zakres możliwych wyników jest duży
 
-    -   Dyskretny: Typowo podawany w pełnych latach
-    -   Ciągły: Może być traktowany jako zmienna ciągła w wielu analizach, szczególnie przy dużych populacjach lub gdy liczy się precyzja
+### Przypadek Szczególny: Procenty i Liczby Wymierne
 
-2.  **Cena i dochód**
+Procenty przedstawiają interesujący przypadek w spektrum dyskretno-ciągłym:
 
-    -   Dyskretne: Ceny i dochody są faktycznie mierzone w dyskretnych jednostkach (np. grosze lub najmniejsza jednostka walutowa)
-    -   Ciągłe: W modelach ekonomicznych i wielu analizach traktowane jako zmienne ciągłe ze względu na ich gęstą naturę i wygodę analityczną
+1.  **Natura Wymierna**: Procenty są zasadniczo ułamkami (m/100), co czyni je liczbami wymiernymi.
+2.  **Gęste, ale Przeliczalne**: Zbiór liczb wymiernych jest gęsty (między dowolnymi dwoma wymiernymi jest inny wymierny), ale także przeliczalny.
+3.  **Praktyczna Ciągłość**: W większości praktycznych zastosowań procenty są traktowane jako ciągłe ze względu na ich gęstą naturę.
+4.  **Skończona Precyzja**: W rzeczywistości procenty są często podawane z ograniczoną liczbą miejsc po przecinku, tworząc skończony zbiór możliwych wartości.
 
-3.  **Wyniki testów**
+::: callout-note
+### Procenty: Łączenie Dyskretnego i Ciągłego
 
-    -   Dyskretne: Często podawane jako liczby całkowite lub stałe przyrosty
-    -   Ciągłe: W analizach statystycznych mogą być traktowane jako ciągłe, szczególnie gdy zakres możliwych wyników jest duży
+Zmienne mierzone w procentach, takie jak stopy bezrobocia czy frekwencja wyborcza, kwestionują nasze intuicyjne rozumienie dyskretności i ciągłości:
 
+1.  Są liczbami wymiernymi (ułamki z mianownikiem 100), które technicznie są przeliczalne.
+2.  Tworzą zbiór gęsty w swoim zakresie (od 0% do 100%), pozwalając na wartości między dowolnymi dwoma procentami.
+3.  W praktyce są często traktowane jako zmienne ciągłe ze względu na ich gęstą naturę i wygodę analityczną.
+4.  Precyzja pomiaru (np. podawanie do jednego lub dwóch miejsc po przecinku) może narzucić dyskretną strukturę na to, co koncepcyjnie jest zbiorem gęstym.
 
-### Podsumowanie
+Ta dwoistość pozwala na elastyczne podejścia analityczne, w zależności od konkretnego kontekstu badawczego i wymaganej precyzji.
+:::
 
-Rozróżnienie między danymi dyskretnymi a ciągłymi nie zawsze jest sztywne w praktyce. Wiele zmiennych, w tym te obejmujące pieniądze, procenty czy gęste pomiary, można postrzegać zarówno przez pryzmat dyskretny, jak i ciągły. **W razie wątpliwości należy rozważyć zarówno precyzję pomiaru, jak i cele analityczne przy podejmowaniu decyzji, jak traktować zmienną.** Wybór powinien być kierowany naturą danych, celami analizy i potencjalnymi implikacjami wyboru. Ta elastyczność, stosowana rozważnie, zapewnia badaczom potężne narzędzia do wydobywania wniosków z danych.
+### Implikacje dla Analizy Danych
+
+Zrozumienie zniuansowanej natury zmiennych jako dyskretnych, ciągłych lub gdzieś pomiędzy ma ważne implikacje dla analizy danych:
+
+1.  **Elastyczność w Modelowaniu**: Pozwala na wykorzystanie szerszego zakresu technik statystycznych.
+2.  **Uproszczone Obliczenia**: Traktowanie gęstych danych dyskretnych jako ciągłych może uprościć obliczenia i uczynić niektóre analizy bardziej wykonalnymi.
+3.  **Lepsza Interpretowalność**: W niektórych przypadkach traktowanie danych dyskretnych jako ciągłych może prowadzić do bardziej intuicyjnych lub użytecznych interpretacji wyników.
+4.  **Potencjał Błędu**: Ważne jest, aby być świadomym, kiedy przybliżenia są odpowiednie, a kiedy mogą prowadzić do mylących wyników.
+5.  **Rozważania Teoretyczne vs. Praktyczne**: Choć matematyczna natura danych jest ważna, praktyczne względy w pomiarze i analizie często kierują tym, jak traktujemy zmienne.
+
+### Wnioski
+
+Rozróżnienie między danymi dyskretnymi a ciągłymi nie zawsze jest sztywne w naukach społecznych. Wiele zmiennych, w tym te dotyczące pieniędzy, procentów czy gęstych pomiarów, można oglądać przez pryzmat zarówno dyskretny, jak i ciągły. Wybór sposobu traktowania powinien być kierowany naturą danych, celami analizy i potencjalnymi implikacjami tego wyboru. Ta elastyczność, gdy jest używana rozważnie, zapewnia potężne narzędzia dla badaczy nauk społecznych do uzyskiwania wglądu w ich dane.
 
 ::: callout-note
 ### Dane Dyskretne vs. Ciągłe: Analogia Językowa
@@ -193,30 +200,6 @@ Każdy poziom ma specyficzne właściwości i pozwala na różne rodzaje operacj
 
 ![](stat_imgs/stevens-typology-final.svg)
 
-
-::: {.callout-tip}
-## Dlaczego „poziomy" pomiaru?
-
-Stanley Stevens użył terminu „poziomy pomiaru" zamiast po prostu „typy", ponieważ pojmował je jako istniejące w **hierarchii**, gdzie każdy poziom opiera się na poprzednim, dodając coraz więcej właściwości matematycznych.
-
-**Struktura hierarchiczna:**
-
-Stevens uporządkował je od najmniej do najbardziej informatywnych: Nominalny → Porządkowy → Interwałowy → Stosunkowy. Każdy poziom zawiera wszystkie właściwości poziomów poniżej, plus dodatkowe cechy matematyczne.
-
-**Perspektywa teorii pomiaru:**
-
-Stevens był przede wszystkim zainteresowany tym, **jakie operacje matematyczne są sensowne** na każdym poziomie:
-
-- **Nominalny**: tylko porównania równości
-- **Porządkowy**: dodaje relacje większy/mniejszy niż
-- **Interwałowy**: dodaje dodawanie i odejmowanie
-- **Stosunkowy**: dodaje mnożenie, dzielenie i sensowne proporcje
-
-Słowo „poziom" podkreśla, że nie są to tylko arbitralne kategorie, ale reprezentują **stopnie zaawansowania pomiaru**. Wyższe poziomy pozwalają na potężniejsze analizy statystyczne i przekazują więcej informacji o mierzonych zjawiskach.
-
-To hierarchiczne ujęcie pomogło badaczom zrozumieć nie tylko *jaki* rodzaj danych posiadają, ale *co mogą z nimi legalnie zrobić* statystycznie.
-:::
-
 ### Skala Nominalna
 
 #### Definicja
@@ -253,32 +236,6 @@ Skala porządkowa kategoryzuje dane w uporządkowane kategorie, ale odstępy mi�
 -   Poziomy wykształcenia (Szkoła Średnia, Licencjat, Magister, Doktorat)
 -   Skale Likerta (Zdecydowanie się nie zgadzam, Nie zgadzam się, Neutralnie, Zgadzam się, Zdecydowanie się zgadzam)
 -   Status społeczno-ekonomiczny (Niski, Średni, Wysoki)
-
-::: {.callout-note}
-## Typy pytań ze skalą Likerta
-
-Skala Likerta to rodzaj skali ocen (rating scales), który stanowi **porządkowy poziom pomiaru**, co oznacza, że odpowiedzi można uszeregować w kolejności, ale odległości między poszczególnymi punktami niekoniecznie są równe.
-
-**Skala zgody** (Zdecydowanie się nie zgadzam → Zdecydowanie się zgadzam)
-- Najlepsza do mierzenia przekonań i percepcji
-- Przykład: "Ta strona internetowa jest łatwa w nawigacji"
-
-**Skala satysfakcji** (Bardzo niezadowolony → Bardzo zadowolony)
-- Idealna do oceny doświadczeń i usług
-- Przykład: "Jak ocenia Pan/Pani jakość obsługi klienta?"
-
-**Skala opinii** (Zdecydowanie się sprzeciwiam → Zdecydowanie popieram)
-- Wykorzystywana do badania stanowisk wobec propozycji lub inicjatyw
-- Przykład: "Jak Pan/Pani ocenia wprowadzenie pracy hybrydowej?"
-
-**Skala częstotliwości/postawy** (Nigdy → Zawsze)
-- Mierzy wzorce zachowań i konsystencję
-- Przykład: "Poleciłbym/Poleciłabym ten produkt innym"
-
-**Dobre praktyki**: Używaj skal 5-7 punktowych, zachowaj neutralną opcję środkową, upewnij się, że stwierdzenia są jasne i jednoznaczne oraz utrzymuj spójny kierunek (od pozytywnego do negatywnego lub odwrotnie).
-:::
-
----
 
 ### Skala Interwałowa
 
@@ -387,6 +344,7 @@ Skale Likerta są uważane za zmienne porządkowe z kilku powodów:
 
 3.  **Brak prawdziwego punktu zerowego**: Skale Likerta zazwyczaj nie mają prawdziwego punktu zerowego, co jest cechą charakterystyczną skal interwałowych lub ilorazowych.
 
+
 ## Skale pomiarowe według typologii Stevensa: zmienne ilościowe vs. porządkowe
 
 ### Czym są zmienne ilościowe (numeryczne)?
@@ -434,22 +392,11 @@ IQ 130 nie oznacza „dwukrotnie większej inteligencji" niż IQ 65. Punkty IQ p
 
 Jest to **metodologiczny kompromis**, który pozwala na użycie bardziej precyzyjnych narzędzi statystycznych:
 
-✅ **Traktowanie IQ jako skali interwałowej jest dopuszczalne gdy:**
+✅ **Traktowanie IQ jako skali interwałowej jest dopuszczalne gdy:** - Używamy standardowych testów statystycznych (korelacje, regresje, testy t) - Porównujemy grupy w ramach tego samego testu i populacji - Jesteśmy świadomi ograniczeń tego podejścia - Nasze wnioski nie zależą od tego, czy różnice są dokładnie równe
 
--   Używamy standardowych testów statystycznych (korelacje, regresje, testy t)
--   Porównujemy grupy w ramach tego samego testu i populacji
--   Jesteśmy świadomi ograniczeń tego podejścia - Nasze wnioski nie zależą od tego, czy różnice są dokładnie równe
+⚠️ **Pamiętaj o ograniczeniach:** - To uproszczenie rzeczywistości - Założenie działa lepiej dla wyników bliskich średniej (IQ 85-115) niż na krańcach - Wyniki trzeba interpretować ostrożnie
 
-⚠️ **Pamiętaj o ograniczeniach:**
-
--   To uproszczenie rzeczywistości
--   Założenie działa lepiej dla wyników bliskich średniej (IQ 85-115) niż na krańcach
--   Wyniki trzeba interpretować ostrożnie
-
-❌ **Nigdy nie wolno:**
-
--   Mówić, że różnice IQ oznaczają równe różnice w inteligencji
--   Używać stwierdzeń typu "dwa razy bardziej inteligentny"
+❌ **Nigdy nie wolno:** - Mówić, że różnice IQ oznaczają równe różnice w inteligencji - Używać stwierdzeń typu "dwa razy bardziej inteligentny" - Zapomnieć, że normalny rozkład został wymuszony, a nie odkryty w danych
 
 ### Praktyczne wskazówki dla badaczy
 
@@ -463,10 +410,8 @@ Jest to **metodologiczny kompromis**, który pozwala na użycie bardziej precyzy
     -   Unikaj precyzyjnych stwierdzeń o wielkości różnic
     -   Pamiętaj: różnica 15 punktów IQ oznacza „jedno odchylenie standardowe w próbie", nie „konkretną ilość dodatkowej inteligencji"
 
-------------------------------------------------------------------------
-
 ::: callout-tip
-IQ to skala porządkowa, która została przekształcona tak, aby wyglądała jak skala interwałowa. Można używać jej w analizach statystycznych wymagających skali interwałowej, ale zawsze należy pamiętać o jej rzeczywistej naturze przy interpretacji wyników. Kluczowe jest zrozumienie, że punkty IQ mówią nam o relatywnej pozycji w grupie, nie o bezwzględnej ilości inteligencji.
+IQ to skala porządkowa, która została przekształcona tak, aby wyglądała jak skala interwałowa. Można używać jej w analizach statystycznych wymagających skali interwałowej, ale zawsze należy pamiętać o jej rzeczywistej naturze przy interpretacji wyników. Kluczowe jest zrozumienie, że punkty IQ mówią nam o pozycji w grupie, nie o bezwzględnej ilości inteligencji.
 :::
 
 Mimo liczbowego zapisu, wyniki IQ są w istocie zmienną porządkową (w typologii Stevensa), a nie zmienną interwałową, ponieważ:
@@ -531,6 +476,7 @@ Rozumienie typologii skal pomiarowych Stevensa ma istotne konsekwencje praktyczn
 
 **Poprawniejsze podejście**: Lepiej porównać jej wyniki z rozkładem wyników innych uczniów. Jeśli w historii 75 punktów plasuje ją w 50. percentylu, a 85 punktów z matematyki w 90. percentylu, to możemy powiedzieć, że względnie rzecz biorąc, radzi sobie lepiej z matematyką niż historią - co jest wnioskiem opartym na skali porządkowej.
 
+
 ### Podsumowanie
 
 Chociaż skale Likerta i wiele miar psychologicznych jest często traktowanych jako dane interwałowe ze względów praktycznych, ważne jest, aby pamiętać o ich porządkowym charakterze.
@@ -574,134 +520,174 @@ Pełnią wyłącznie funkcję etykiet/identyfikatorów Nie mają naturalnego upo
 Mimo że numery domów są liczbami, w systemie adresowym funkcjonują jako etykiety, a nie wartości ilościowe. Liczba 100 w adresie "ul. Kilińskiego 100" nie jest używana matematycznie - równie dobrze mogłaby to być "ul. Jabłkowa" czy "ul. Zeusa", jeśli chodzi o jej funkcję w adresie.
 :::
 
-------------------------------------------------------------------------
+::: callout-note
+### Dlaczego Niektóre Statystyki Działają (a Inne Nie) dla Skal Interwałowych
 
-## Appendix A
+Skala interwałowa to taka, w której odległości między wartościami są znaczące, ale punkt zerowy jest umowny. W przypadku skal interwałowych (np. temperatury):
+
+-   **Dozwolone** jest dodawanie/odejmowanie wartości oraz mnożenie/dzielenie przez stałe.
+-   **Niedozwolone** jest mnożenie/dzielenie wartości ze skali przez siebie, ponieważ prowadzi to do wyników bez interpretacji fizycznej.
+
+#### Własności Skali Interwałowej
+
+1.  **Równe interwały reprezentują takie same różnice**:
+    -   Różnica między 20°C a 25°C (5°C) reprezentuje taką samą zmianę jak między 30°C a 35°C.
+    -   Proporcje różnic są zachowane: 10°C to dwa razy większa zmiana niż 5°C.
+2.  **Punkt zero jest umowny**:
+    -   0°C to punkt zamarzania wody, a nie brak temperatury.
+    -   Ten sam stan fizyczny ma różne wartości w różnych skalach: 0°C = 32°F.
+3.  **Transformacja liniowa**:
+    -   Wzór ogólny: $y = ax + b$, gdzie $a \neq 0$.
+    -   Dla temperatury: $F = C \times \frac{9}{5} + 32$.
+
+#### Dlaczego Średnia Arytmetyczna Działa
+
+Średnia arytmetyczna działa, ponieważ opiera się na dodawaniu i dzieleniu przez stałą, które są dozwolone w skali interwałowej. Przykład:
+
+``` markdown
+Dane: 20°C i 30°C
+
+Metoda 1: Średnia w Celsjuszach, potem konwersja
+1. Średnia: (20°C + 30°C) ÷ 2 = 25°C
+2. Konwersja: 25°C × (9/5) + 32 = 77°F
+
+Metoda 2: Konwersja na °F, potem średnia
+1. Konwersja: 20°C → 68°F, 30°C → 86°F
+2. Średnia: (68°F + 86°F) ÷ 2 = 77°F
+
+Obie metody dają ten sam wynik! ✓
+```
+
+**Matematyczny dowód poprawności**: \begin{align}
+\bar{F} &= \frac{F_1 + F_2}{2} \\
+&= \frac{(C_1 \times \frac{9}{5} + 32) + (C_2 \times \frac{9}{5} + 32)}{2} \\
+&= \frac{(C_1 + C_2) \times \frac{9}{5} + 64}{2} \\
+&= \left(\frac{C_1 + C_2}{2}\right) \times \frac{9}{5} + 32 \\
+&= \bar{C} \times \frac{9}{5} + 32
+\end{align}
+
+#### Dlaczego Wariancja Jest Problematyczna
+
+Wariancja jest problematyczna, ponieważ opiera się na kwadratach różnic, co prowadzi do jednostek kwadratowych (np. °C²) bez jasnej interpretacji fizycznej. Przykład:
+
+``` markdown
+Te same temperatury: 20°C i 30°C
+
+Metoda 1: Wariancja w Celsjuszach
+1. Średnia: 25°C
+2. Odchylenia: (20 - 25)°C = -5°C, (30 - 25)°C = 5°C
+3. Kwadraty odchyleń: (-5°C)² = 25(°C)², (5°C)² = 25(°C)²
+4. Średnia: (25 + 25)(°C)² ÷ 2 = 25(°C)²
+
+Metoda 2: Wariancja w Fahrenheitach
+1. Konwersja: 20°C → 68°F, 30°C → 86°F
+2. Średnia: 77°F
+3. Odchylenia: (68 - 77)°F = -9°F, (86 - 77)°F = 9°F
+4. Kwadraty odchyleń: (-9°F)² = 81(°F)², (9°F)² = 81(°F)²
+5. Średnia: (81 + 81)(°F)² ÷ 2 = 81(°F)²
+
+Problem: 25(°C)² i 81(°F)² nie są równoważne!
+```
+
+**Matematyczna analiza problemu**: \begin{align}
+(F_i - \bar{F})^2 &= [(C_i \times \frac{9}{5} + 32) - (\bar{C} \times \frac{9}{5} + 32)]^2 \\
+&= [(C_i - \bar{C}) \times \frac{9}{5}]^2 \\
+&= (C_i - \bar{C})^2 \times \left(\frac{9}{5}\right)^2
+\end{align}
+
+#### Wnioski Teoretyczne
+
+1.  **Operacje dozwolone**:
+    -   Dodawanie/odejmowanie (zachowuje różnice).
+    -   Mnożenie/dzielenie przez stałe (skalowanie).
+    -   Średnie arytmetyczne.
+    -   Porównywanie różnic temperatur.
+2.  **Operacje niedozwolone**:
+    -   Mnożenie temperatur przez siebie.
+    -   Dzielenie temperatur przez siebie.
+    -   Średnie geometryczne.
+    -   Współczynnik zmienności.
+3.  **Implikacje praktyczne**:
+    -   Wariancja i odchylenie standardowe wymagają ostrożnej interpretacji.
+    -   Lepiej używać miar opartych na różnicach (np. MAD - średnie odchylenie bezwzględne).
+    -   Przy porównywaniu zmienności warto standaryzować dane.
+
+#### Zasada Praktyczna
+
+Jeśli w obliczeniach pojawia się mnożenie wartości ze skali interwałowej przez siebie, należy zachować szczególną ostrożność w interpretacji wyników!
+:::
 
 ::: callout-note
-## Dlaczego dodawanie/odejmowanie działa dla danych interwałowych, ale mnożenie/dzielenie wymaga danych ilorazowych
+### Proporcje w Skalach Pomiarowych: Przypadek Temperatury
 
-**Skale interwałowe** mają równe odstępy między wartościami, ale arbitralny punkt zerowy (np. temperatura w Celsjuszach, daty kalendarzowe). **Skale ilorazowe** mają zarówno równe odstępy, jak i bezwzględne zero (np. temperatura w Kelwinach, wzrost, masa).
+#### Dwa Rodzaje Proporcji
 
-### Dodawanie i odejmowanie: prawidłowe dla skal interwałowych
+##### Proporcje wartości (NIE zachowują się w skali interwałowej):
 
-**Różnice zachowują spójne proporcjonalne relacje** przy transformacjach liniowych. Przy konwersji między skalami za pomocą $y = a + bx$ gdzie $b > 0$, stała addytywna $a$ się redukuje:
+``` markdown
+Weźmy 80°C i 20°C:
+W Celsjuszach: 80°C/20°C = 4
+W Fahrenheitach: 176°F/68°F ≈ 2.59
+W Kelwinach: 353.15K/293.15K ≈ 1.20
 
-$$(y_2 - y_1) = (a + bx_2) - (a + bx_1) = b(x_2 - x_1)$$
+Te same temperatury dają różne proporcje! 
+→ Proporcje wartości NIE mają sensu na skalach interwałowych; sens mają tylko na skali ilorazowej.
+```
 
-**Przykład:** Przy konwersji z Celsjusza na Fahrenheita gdzie $F = 1.8C + 32$:
 
--   Każda różnica 10°C zawsze konwertuje się na 18°F: $18 = 1.8 \times 10$
--   Sprawdźmy $(20°C - 10°C) \rightarrow (68°F - 50°F) = 18°F$
--   Sprawdźmy $(100°C - 90°C) \rightarrow (212°F - 194°F) = 18°F$
+## Appendix A: Miary Statystyczne dla Różnych Typów Zmiennych
 
-Relacja jest **spójna**: różnica 10 stopni Celsjusza zawsze odpowiada różnicy 18 stopni Fahrenheita, niezależnie od tego, gdzie na skali mierzymy.
+| Typ zmiennej | Tendencja centralna | Miary rozproszenia | Wzory | Odpowiednie testy | Wizualizacja |
+|------------|------------|------------|------------|------------|------------|
+| **Nominalna** | Dominanta (moda) | Wskaźnik zróżnicowania | $VR = 1 - \frac{f_m}{n}$ gdzie $f_m$ to częstość modalnej, $n$ to liczba obserwacji | Chi-kwadrat, testy dokładne Fishera | Wykresy słupkowe, kołowe |
+|  |  | Indeks różnorodności (Simpsona) | $D = 1 - \sum_{i=1}^{k} p_i^2$ gdzie $p_i$ to proporcja i-tej kategorii | Test zgodności, testy niezależności | Mozaikowe wykresy |
+|  |  | Entropia Shannona | $H = -\sum_{i=1}^{k} p_i \log_2(p_i)$ gdzie $p_i$ to proporcja i-tej kategorii | Testy oparte na entropii | Wykresy entropii, dendrogram |
+| **Porządkowa** | Mediana | Rozstęp | $R = \max(X) - \min(X)$ | Mann-Whitney, Kruskal-Wallis | Wykresy skumulowane, wykresy rozbieżne |
+|  |  | Rozstęp międzykwartylowy (IQR) | $IQR = Q_3 - Q_1$ gdzie $Q_1$ i $Q_3$ to pierwszy i trzeci kwartyl | Testy rangowe, testy mediany | Wykresy pudełkowe |
+|  |  | Odchylenie ćwiartkowe | $Q_D = \frac{Q_3 - Q_1}{2}$ | Test Jonckheere-Terpstra | Wykresy porządkowe, skumulowane histogramy |
+| **Interwałowa/ Ilorazowa** | Średnia arytmetyczna | Wariancja | $\sigma^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i - \mu)^2$ gdzie $\mu$ to średnia | Testy t, ANOVA, regresja | Histogramy, wykresy rozrzutu |
+|  |  | Odchylenie standardowe | $\sigma = \sqrt{\sigma^2}$ | F-test, test Levene'a | Wykresy pudełkowe |
+|  |  | Współczynnik zmienności | $CV = \frac{\sigma}{\mu} \times 100\%$ | Testy równości wariancji | Wykresy QQ, wykresy przedziałowe |
 
-### Mnożenie i dzielenie: wymagają skal ilorazowych
+::: callout-note
+## Statistical Measures Applicability / Zastosowanie miar statystycznych
 
-**Ilorazy są niespójne**, gdy punkt zerowy jest arbitralny. Stała addytywna $a$ NIE redukuje się w ilorazach:
+| Measure (EN) | Miara (PL) | Nominal | Ordinal | Interval | Ratio |
+|------------|------------|:----------:|:----------:|:----------:|:----------:|
+| **Central Tendency / Tendencja centralna:** |  |  |  |  |  |
+| Mode | Dominanta | ✓ | ✓ | ✓ | ✓ |
+| Median | Mediana | \- | ✓ | ✓ | ✓ |
+| Arithmetic Mean | Średnia arytmetyczna | \- | \- | ✓ | ✓ |
+| Geometric Mean | Średnia geometryczna | \- | \- | \- | ✓ |
+| Harmonic Mean | Średnia harmoniczna | \- | \- | \- | ✓ |
+| **Dispersion / Rozproszenie:** |  |  |  |  |  |
+| Range | Rozstęp | \- | ✓ | ✓ | ✓ |
+| Interquartile Range | Rozstęp międzykwartylowy | \- | ✓ | ✓ | ✓ |
+| Mean Absolute Deviation | Średnie odchylenie bezwzględne | \- | \- | ✓ | ✓ |
+| Variance | Wariancja | \- | \- | ✓\* | ✓ |
+| Standard Deviation | Odchylenie standardowe | \- | \- | ✓\* | ✓ |
+| Coefficient of Variation | Współczynnik zmienności | \- | \- | \- | ✓ |
+| **Association / Współzależność:** |  |  |  |  |  |
+| Chi-square | Chi-kwadrat | ✓ | ✓ | ✓ | ✓ |
+| Spearman Correlation | Korelacja Spearmana | \- | ✓ | ✓ | ✓ |
+| Kendall's Tau | Tau Kendalla | \- | ✓ | ✓ | ✓ |
+| Pearson Correlation | Korelacja Pearsona | \- | \- | ✓\* | ✓ |
+| Covariance | Kowariancja | \- | \- | ✓\* | ✓ |
 
-$$\frac{y_2}{y_1} = \frac{a + bx_2}{a + bx_1} \neq b \cdot \frac{x_2}{x_1}$$
+\* Theoretically problematic but commonly used in practice / Teoretycznie problematyczne, ale powszechnie stosowane w praktyce
 
-Jeśli $a \neq 0$ (brak bezwzględnego zera), ilorazy zmieniają się nieprzewidywalnie w zależności od porównywanych wartości.
+### Notes / Uwagi:
 
-**Przykład:** Ilorazy temperatur dają niespójne wyniki:
+1.  Measurement Scales / Skale pomiarowe:
 
--   Czy 20°C jest "dwa razy cieplej" niż 10°C?
-    -   Celsjusz: $20/10 = 2.0$
-    -   Fahrenheit: $68/50 = 1.36$
-    -   Kelwin: $293.15/283.15 = 1.035$
--   A co z 100°C vs. 90°C?
-    -   Celsjusz: $100/90 = 1.11$
-    -   Fahrenheit: $212/194 = 1.09$
+-   **Nominal**: Categories without order / Kategorie bez uporządkowania
+-   **Ordinal**: Ordered categories / Kategorie uporządkowane
+-   **Interval**: Equal intervals, arbitrary zero / Równe interwały, umowne zero
+-   **Ratio**: Equal intervals, absolute zero / Równe interwały, absolutne zero
 
-Ilorazy różnią się w zależności zarówno od skali, JAK I od porównywanych temperatur. Tylko przy bezwzględnym zerze ilorazy mają spójne fizyczne znaczenie.
+2.  Practical Considerations / Aspekty praktyczne:
 
-### Implikacje dla miar statystycznych
-
-**Średnia arytmetyczna jest prawidłowa dla skal interwałowych**, ponieważ wykorzystuje dodawanie:
-
-$$\bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}$$
-
-Przy transformacji do skali $y$, średnia transformuje się spójnie: $\bar{y} = a + b\bar{x}$
-
-**Średnia geometryczna wymaga skal ilorazowych**, ponieważ wykorzystuje mnożenie:
-
-$$\text{SG} = \sqrt[n]{x_1 \times x_2 \times \cdots \times x_n}$$
-
-Średnia geometryczna temperatur w Celsjuszach daje inny wynik niż średnia geometryczna tych samych temperatur w Fahrenheitach (po konwersji). To czyni średnią geometryczną bezsensowną dla danych interwałowych.
-
-**Przykład:** Dla temperatur 10°C i 20°C:
-
--   Średnia geometryczna w Celsjuszach: $\sqrt{10 \times 20} = 14.14°C \rightarrow 57.45°F$
--   Średnia geometryczna w Fahrenheitach: $\sqrt{50 \times 68} = 58.31°F \rightarrow 14.62°C$
-
-Te wartości się nie zgadzają! Średnia geometryczna zależy od arbitralnego punktu zerowego.
-
-### Wariancja i odchylenie standardowe: prawidłowe dla skal interwałowych
-
-**Wariancja i odchylenie standardowe są dopuszczalne dla danych interwałowych**, ponieważ operują na odchyleniach od średniej, które są różnicami. Co kluczowe, **wariancja jest niezmienna względem translacji**: dodanie stałej do wszystkich wartości nie zmienia wariancji, ponieważ odchylenia pozostają takie same.
-
-Przy transformacji liniowej $y = a + bx$, wariancja transformuje się przewidywalnie:
-
-$$\text{Var}(y) = b^2 \text{Var}(x)$$
-
-Stała $a$ redukuje się przy obliczaniu odchyleń, tak jak przy prostych różnicach.
-
-**Przykład dowodu:** Dla temperatur 10°C i 20°C:
-
-**W Celsjuszach:**
-
--   Średnia: $\bar{x} = (10 + 20)/2 = 15°C$
--   Odchylenia: $(10 - 15) = -5$, $(20 - 15) = 5$
--   Wariancja: $\text{Var}(X) = [(-5)^2 + (5)^2]/2 = 50/2 = 25°C^2$
--   Odchylenie standardowe: $\text{SD}(X) = 5°C$
-
-**W Fahrenheitach:**
-
--   Konwersja: 10°C → 50°F, 20°C → 68°F
--   Średnia: $\bar{y} = (50 + 68)/2 = 59°F$
--   Odchylenia: $(50 - 59) = -9$, $(68 - 59) = 9$
--   Wariancja: $\text{Var}(Y) = [(-9)^2 + (9)^2]/2 = 162/2 = 81°F^2$
--   Odchylenie standardowe: $\text{SD}(Y) = 9°F$
-
-**Sprawdzenie transformacji:**
-
--   Nachylenie konwersji: $b = 1.8$ (z $F = 1.8C + 32$)
--   Przewidywana wariancja: $1.8^2 \times 25 = 3.24 \times 25 = 81°F^2$ ✓
--   Przewidywane odchylenie: $1.8 \times 5 = 9°F$ ✓
-
-**Idealne dopasowanie!** Wariancja i odchylenie standardowe transformują się spójnie i przewidywalnie, czyniąc je prawidłowymi miarami rozproszenia dla danych interwałowych.
-
-**Demonstracja niezmienności względem translacji:** Jeśli przesuniemy wszystkie temperatury o +100°C (dodając 110°C i 120°C):
-
--   Nowa średnia: $(110 + 120)/2 = 115°C$
--   Nowe odchylenia: $(110 - 115) = -5$, $(120 - 115) = 5$
--   Nowa wariancja: $\text{Var}(X) = [(-5)^2 + (5)^2]/2 = 25°C^2$ (niezmieniona!)
-
-Wariancja pozostaje 25°C², ponieważ rozproszenie się nie zmieniło, zmienił się tylko punkt odniesienia.
-
-**Kluczowa zasada:** Operacje oparte na dodawaniu/odejmowaniu i różnicach działają dla skal interwałowych, ponieważ arbitralna stała $a$ się redukuje. Operacje obejmujące mnożenie/dzielenie lub ilorazy wymagają skal ilorazowych, ponieważ $a$ zniekształca wyniki. Wariancja i odchylenie standardowe działają, ponieważ są niezmienne względem translacji i oparte na odchyleniach od średniej (różnicach), a nie ilorazach.
-
-### Podsumowanie: prawidłowe miary statystyczne według skali pomiarowej
-
-| Miary statystyczne                | Nominalna | Porządkowa | Interwałowa | Ilorazowa |
-|:----------------|:------------:|:------------:|:------------:|:------------:|
-| **Dominanta**                     |     ✓     |     ✓      |      ✓      |     ✓     |
-| **Mediana**                       |     ✗     |     ✓      |      ✓      |     ✓     |
-| **Średnia arytmetyczna**          |     ✗     |     ✗      |      ✓      |     ✓     |
-| **Średnia geometryczna**          |     ✗     |     ✗      |      ✗      |     ✓     |
-| **Wariancja i odchylenie stand.** |     ✗     |     ✗      |      ✓      |     ✓     |
-| **Kowariancja**                   |     ✗     |     ✗      |      ✓      |     ✓     |
-| **Korelacja Pearsona**            |     ✗     |     ✗      |      ✓      |     ✓     |
-| **Korelacja Spearmana**           |     ✗     |     ✓      |      ✓      |     ✓     |
-| **Współczynnik zmienności**       |     ✗     |     ✗      |      ✗      |     ✓     |
-
-**Uwagi:**
-
--   **Skale nominalne** (np. kolory, kategorie) obsługują tylko miary oparte na częstościach, jak dominanta
--   **Skale porządkowe** (np. rankingi, skale Likerta) dodają medianę i korelacje oparte na rangach
--   **Skale interwałowe** (np. Celsjusz, daty kalendarzowe) obsługują wszystkie miary oparte na dodawaniu/odejmowaniu
--   **Skale ilorazowe** (np. wzrost, masa, Kelwin) dodatkowo obsługują miary wymagające mnożenia/dzielenia i sensownych ilorazów
--   Współczynnik zmienności ($\text{CV} = \text{SD}/\text{Średnia}$) wymaga sensownego punktu zerowego, więc tylko skale ilorazowe
+-   Some measures marked with ✓\* are commonly used for interval data despite theoretical issues / Niektóre miary oznaczone ✓\* są powszechnie stosowane dla danych przedziałowych pomimo problemów teoretycznych
+-   Choice of measure should consider both theoretical appropriateness and practical utility / Wybór miary powinien uwzględniać zarówno poprawność teoretyczną jak i użyteczność praktyczną
+-   More restrictive scales (ratio) allow all measures from less restrictive scales / Bardziej restrykcyjne skale (ilorazowe) pozwalają na wszystkie miary z mniej restrykcyjnych skal
 :::

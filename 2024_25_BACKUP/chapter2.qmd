@@ -27,11 +27,9 @@ Before diving into data types, it's essential to understand the basic number set
 Understanding these set properties is crucial for grasping the nature of different data types in social sciences.
 :::
 
-------------------------------------------------------------------------
-
 ## Discrete vs. Continuous Data
 
-In data science and statistics, we categorize variables as either discrete or continuous. This distinction shapes how we analyze data and which statistical methods we apply. However, the boundary between these categories is not always clear-cut, and some variables exhibit characteristics of both types. This section explores discrete and continuous data, their differences, and the interesting cases of variables that challenge our intuitive understanding.
+In data science and statistics, we often categorize variables as either discrete or continuous. However, the distinction is not always clear-cut, and some variables exhibit characteristics of both types. This section explores the concepts of discrete and continuous data, their differences, and the interesting cases of variables that can be treated as both or challenge our intuitive understanding.
 
 ![https://individual-psychometrics.rbind.io/](stat_imgs/DiscreteContinuous.svg)
 
@@ -41,46 +39,34 @@ Discrete data can only take on specific, countable values. These values are ofte
 
 #### Characteristics of Discrete Data:
 
--   Countable set of possible values
+-   Countable
 -   Often represented by integers
 -   Can be finite or infinite
--   No values exist between two adjacent data points
+-   No values between two adjacent data points
 
 #### Examples:
 
 1.  Number of students in a class
 2.  Number of cars sold by a dealership
-3.  Number of coins in a piggy bank
-4.  Dice rolls (1, 2, 3, 4, 5, or 6)
+3.  Shoe sizes
 
 ### Continuous Data
 
-Continuous data can take on any value within a given range, including fractional and decimal values. Importantly, continuity is characterized by **density**: between any two values, there are infinitely many other possible values.
+Continuous data can take on any value within a given range, including fractional and decimal values. It's important to note that continuity is not solely determined by uncountability, but also by density.
 
 #### Characteristics of Continuous Data:
 
--   Values from dense sets (rational numbers or real numbers)
+-   Can be uncountable (like real numbers) or dense (like rational numbers)
 -   Can be measured to any level of precision (theoretically)
--   There are infinitely many values between any two data points
--   Typically represented on a continuous scale
+-   Represented by real numbers or dense subsets of real numbers
+-   There are always values between any two data points
 
 #### Examples:
 
 1.  Height
 2.  Weight
 3.  Temperature
-4.  Time duration
-
-::: callout-note
-### Mathematical Note: Density and Continuity
-
-Continuous data comes from **dense sets**, where between any two distinct values, there exists another value from the set. The most common examples are:
-
--   **Real numbers**: Uncountable and dense
--   **Rational numbers**: Countable but dense
-
-This density property is what gives continuous data its characteristic "smoothness" and allows us to apply calculus-based statistical methods.
-:::
+4.  Percentages (explained further below)
 
 ### The Discrete-Continuous Spectrum
 
@@ -88,42 +74,63 @@ In practice, some variables that are mathematically discrete are often treated a
 
 #### Reasons for Treating Discrete Data as Continuous:
 
-1.  **Fine Granularity (Small Discrete Increments)**
-
-    -   When a discrete variable has very small increments between possible values, it can approximate continuity.
-    -   Example: Income measured in individual cents. While technically discrete, the tiny increments and vast number of possible values make it behave similarly to a continuous variable.
-
+1.  **Dense Granularity**
+    -   When a discrete variable has a large number of possible values within a range, it can approximate continuity.
+    -   Example: Income measured in individual cents. While technically discrete, the large number of possible values makes it behave similarly to a continuous variable.
 2.  **Analytical Convenience**
-
     -   Continuous methods often yield reasonable and useful results even for dense discrete variables.
-    -   Assuming continuity allows the use of calculus-based methods and existing statistical tools.
-
+    -   It's often easier to use existing statistical tools if continuity is assumed, as this allows the use of calculus-based methods.
 3.  **Approximation of Underlying Phenomena**
-
-    -   A discrete measurement might represent an underlying continuous process.
-    -   Example: While we measure time in discrete units (seconds, minutes, hours), time itself flows continuously.
+    -   In some cases, a discrete measurement might be an approximation of an underlying continuous process.
+    -   Example: While we measure time in discrete units (seconds, minutes, hours), time itself is continuous.
 
 #### Examples of Variables with Dual Discrete-Continuous Nature:
 
 1.  **Age**
-
-    -   Discrete: Typically reported in whole years
-    -   Continuous: Can be considered as a continuous variable in many analyses, especially when dealing with large populations or when precision matters
-
+    -   Discrete: Typically measured in whole years
+    -   Continuous: Can be considered as a continuous variable in many analyses, especially when dealing with large populations
 2.  **Price and Income**
-
     -   Discrete: Prices and incomes are actually measured in discrete units (e.g., cents or smallest currency unit)
-    -   Continuous: In economic models and many analyses, treated as continuous variables due to their dense nature and analytical convenience
-
+    -   Continuous: In economic models and many analyses, prices and incomes are treated as continuous variables due to their dense nature and analytical convenience
 3.  **Test Scores**
+    -   Discrete: Often given as whole numbers
+    -   Continuous: In statistical analyses, test scores might be treated as continuous, especially when the range of possible scores is large
 
-    -   Discrete: Often given as whole numbers or fixed increments
-    -   Continuous: In statistical analyses, may be treated as continuous, especially when the range of possible scores is large
+### Special Case: Percentages and Rational Numbers
 
+Percentages present an interesting case in the discrete-continuous spectrum:
+
+1.  **Rational Nature**: Percentages are essentially fractions (m/100), making them rational numbers.
+2.  **Dense but Countable**: The set of rational numbers is dense (between any two rationals, there's another rational) but also countable.
+3.  **Practical Continuity**: In most practical applications, percentages are treated as continuous due to their dense nature.
+4.  **Finite Precision**: In reality, percentages are often reported to a limited number of decimal places, creating a finite set of possible values.
+
+::: callout-note
+### Percentages: Bridging Discrete and Continuous
+
+Variables measured in percentages, such as unemployment rates or voter turnout, challenge our intuitive understanding of discreteness and continuity:
+
+1.  They are rational numbers (fractions with denominator 100), which are technically countable.
+2.  They form a dense set within their range (0% to 100%), allowing for values between any two percentages.
+3.  In practice, they are often treated as continuous variables due to their dense nature and analytical convenience.
+4.  The precision of measurement (e.g., reporting to one or two decimal places) can impose a discrete structure on what is conceptually a dense set.
+
+This duality allows for flexible analytical approaches, depending on the specific research context and required precision.
+:::
+
+### Implications for Data Analysis
+
+Understanding the nuanced nature of variables as discrete, continuous, or somewhere in between has important implications for data analysis:
+
+1.  **Flexibility in Modeling**: It allows for the use of a wider range of statistical techniques.
+2.  **Simplified Calculations**: Treating dense discrete data as continuous can simplify calculations and make certain analyses more tractable.
+3.  **Improved Interpretability**: In some cases, treating discrete data as continuous can lead to more intuitive or useful interpretations of results.
+4.  **Potential for Error**: It's important to be aware of when approximations are appropriate and when they might lead to misleading results.
+5.  **Theoretical vs. Practical Considerations**: While the mathematical nature of the data is important, practical considerations in measurement and analysis often guide how we treat variables.
 
 ### Conclusion
 
-The distinction between discrete and continuous data is not always rigid in practice. Many variables, including those involving money, percentages, or dense measurements, can be viewed through both discrete and continuous lenses. **When in doubt, consider both your measurement precision and your analytical goals when deciding how to treat a variable.** The choice should be guided by the nature of the data, the goals of the analysis, and the potential implications of the choice. This flexibility, when used thoughtfully, provides powerful tools for researchers to gain insights from their data.
+The distinction between discrete and continuous data is not always rigid in social sciences. Many variables, including those involving money, percentages, or dense measurements, can be viewed through both discrete and continuous lenses. The choice of treatment should be guided by the nature of the data, the goals of the analysis, and the potential implications of the choice. This flexibility, when used thoughtfully, provides powerful tools for social science researchers to gain insights from their data.
 
 ::: callout-note
 ### Discrete vs. Continuous Numerical Data: A Language-Based Analogies
@@ -197,30 +204,6 @@ Each level has specific properties and allows for different types of statistical
 
 ![](stat_imgs/stevens-typology-final.svg)
 
-
-::: {.callout-tip}
-## Why "Levels" of Measurement?
-
-Stanley Stevens used the term "levels of measurement" rather than simply "types" because he conceived of them as existing in a **hierarchy**, where each level builds upon the previous one with increasing mathematical properties.
-
-**Hierarchical Structure:**
-
-Stevens organized them from least to most informative: Nominal → Ordinal → Interval → Ratio. Each level includes all properties of the levels below it, plus additional mathematical characteristics.
-
-**Measurement Theory Perspective:**
-
-Stevens was fundamentally concerned with what mathematical operations are meaningful at each level:
-
-- **Nominal**: only equality comparisons
-- **Ordinal**: adds greater than/less than
-- **Interval**: adds addition and subtraction  
-- **Ratio**: adds multiplication, division, and meaningful ratios
-
-The word "level" emphasizes that these aren't just arbitrary categories, but represent **degrees of measurement sophistication**. Higher levels allow more powerful statistical analyses and convey more information about the underlying phenomena being measured.
-
-This hierarchical framing helped researchers understand not just *what* kind of data they had, but *what they could legitimately do* with it statistically.
-:::
-
 ### Nominal Scale
 
 #### Definition
@@ -257,32 +240,6 @@ The ordinal scale categorizes data into ordered categories, but the intervals be
 -   Education levels (High School, Bachelor's, Master's, PhD)
 -   Likert scales (Strongly Disagree, Disagree, Neutral, Agree, Strongly Agree)
 -   Socioeconomic status (Low, Medium, High)
-
-::: {.callout-note}
-## Likert Scale Question Types
-
-Likert scales are a type of rating scale that constitute an **ordinal level of measurement**, meaning responses can be ranked in order but the distances between points are not necessarily equal.
-
-**Agreement Scale** (Strongly Disagree → Strongly Agree)
-- Best for measuring beliefs and perceptions
-- Example: "This website is easy to navigate"
-
-**Satisfaction Scale** (Very Dissatisfied → Very Satisfied)
-- Ideal for evaluating experiences and services
-- Example: "How satisfied are you with the customer service you received?"
-
-**Opinion Scale** (Strongly Oppose → Strongly Support)
-- Used to gauge positions on proposals or initiatives
-- Example: "How do you feel about implementing a hybrid work policy?"
-
-**Frequency/Attitude Scale** (Never → Always)
-- Measures behavioral patterns and consistency
-- Example: "I would recommend this product to others"
-
-**Best Practices**: Use 5-7 point scales, keep neutral middle options, ensure statements are clear and unambiguous, and maintain consistent directionality (positive to negative or vice versa).
-:::
-
----
 
 ### Interval Scale
 
@@ -344,6 +301,61 @@ An interval scale is one where the distances between values are meaningful, but 
     -   General formula: $y = ax + b$, where $a \neq 0$.
     -   For temperature: $F = C \times \frac{9}{5} + 32$.
 
+#### Why the Arithmetic Mean Works
+
+The arithmetic mean works because it relies on addition and division by a constant, which are allowed on interval scales. Example:
+
+``` markdown
+Data: 20°C and 30°C
+
+Method 1: Mean in Celsius, then conversion
+1. Mean: (20°C + 30°C) ÷ 2 = 25°C
+2. Conversion: 25°C × (9/5) + 32 = 77°F
+
+Method 2: Conversion to °F, then mean
+1. Conversion: 20°C → 68°F, 30°C → 86°F
+2. Mean: (68°F + 86°F) ÷ 2 = 77°F
+
+Both methods give the same result! ✓
+```
+
+**Mathematical proof of correctness**: \begin{align}
+\bar{F} &= \frac{F_1 + F_2}{2} \\
+&= \frac{(C_1 \times \frac{9}{5} + 32) + (C_2 \times \frac{9}{5} + 32)}{2} \\
+&= \frac{(C_1 + C_2) \times \frac{9}{5} + 64}{2} \\
+&= \left(\frac{C_1 + C_2}{2}\right) \times \frac{9}{5} + 32 \\
+&= \bar{C} \times \frac{9}{5} + 32
+\end{align}
+
+#### Why Variance is Problematic
+
+Variance is problematic because it relies on squared differences, leading to squared units (e.g., °C²) without clear physical interpretation. Example:
+
+``` markdown
+Same temperatures: 20°C and 30°C
+
+Method 1: Variance in Celsius
+1. Mean: 25°C
+2. Deviations: (20 - 25)°C = -5°C, (30 - 25)°C = 5°C
+3. Squared deviations: (-5°C)² = 25(°C)², (5°C)² = 25(°C)²
+4. Mean: (25 + 25)(°C)² ÷ 2 = 25(°C)²
+
+Method 2: Variance in Fahrenheit
+1. Conversion: 20°C → 68°F, 30°C → 86°F
+2. Mean: 77°F
+3. Deviations: (68 - 77)°F = -9°F, (86 - 77)°F = 9°F
+4. Squared deviations: (-9°F)² = 81(°F)², (9°F)² = 81(°F)²
+5. Mean: (81 + 81)(°F)² ÷ 2 = 81(°F)²
+
+Problem: 25(°C)² and 81(°F)² are not equivalent!
+```
+
+**Mathematical analysis of the problem**: \begin{align}
+(F_i - \bar{F})^2 &= [(C_i \times \frac{9}{5} + 32) - (\bar{C} \times \frac{9}{5} + 32)]^2 \\
+&= [(C_i - \bar{C}) \times \frac{9}{5}]^2 \\
+&= (C_i - \bar{C})^2 \times \left(\frac{9}{5}\right)^2
+\end{align}
+
 #### Theoretical Conclusions
 
 1.  **Allowed operations**:
@@ -364,6 +376,74 @@ An interval scale is one where the distances between values are meaningful, but 
 #### Practical Rule
 
 If your calculations involve multiplying values from an interval scale by each other, be particularly cautious in interpreting the results!
+:::
+
+::: callout-note
+### Proportions in Measurement Scales: The Case of Temperature
+
+#### Two Types of Proportions
+
+##### Proportions of values (DO NOT hold for interval scales):
+
+``` markdown
+Take 80°C and 20°C:
+In Celsius: 80°C/20°C = 4
+In Fahrenheit: 176°F/68°F ≈ 2.59
+In Kelvin: 353.15K/293.15K ≈ 1.20
+
+The same temperatures give different proportions! 
+→ Proportions of values DO NOT make sense on interval scales; they only make sense on ratio scales.
+```
+
+##### Proportions of differences (hold for interval scales):
+
+``` markdown
+Take two pairs of differences:
+Pair 1: 30°C - 20°C = 10°C
+Pair 2: 80°C - 60°C = 20°C
+
+Proportion of differences in Celsius:
+20°C/10°C = 2
+
+The same temperatures in Fahrenheit:
+Pair 1: 86°F - 68°F = 18°F
+Pair 2: 176°F - 140°F = 36°F
+
+Proportion of differences in Fahrenheit:
+36°F/18°F = 2
+
+The proportion of differences is the same! ✓
+```
+
+#### Mathematical Explanation
+
+For the transformation $F = \frac{9}{5}C + 32$:
+
+1.  **Proportions of values DO NOT hold**: \[ \frac{F_1}{F_2} = \frac{\frac{9}{5}C_1 + 32}{\frac{9}{5}C_2 + 32} \neq \frac{C_1}{C_2} \]
+
+2.  **Proportions of differences hold**: \[ \frac{F_1 - F_2}{F_3 - F_4} = \frac{\frac{9}{5}(C_1 - C_2)}{\frac{9}{5}(C_3 - C_4)} = \frac{C_1 - C_2}{C_3 - C_4} \]
+
+#### Why This Matters
+
+1.  **For values**:
+    -   In Celsius: 40°C is not "twice as hot" as 20°C.
+    -   In Fahrenheit: 100°F is not "twice as hot" as 50°F.
+    -   Only in Kelvin do proportions of values have physical meaning.
+2.  **For differences**:
+    -   An increase of 20°C is always twice as large as an increase of 10°C.
+    -   An increase of 36°F is always twice as large as an increase of 18°F.
+    -   Proportions of differences are scale-independent.
+
+#### Implications for Statistics
+
+1.  **Operations based on differences (WORK)**:
+    -   Arithmetic mean.
+    -   Mean absolute deviation.
+    -   Range.
+2.  **Operations based on proportions of values (DO NOT WORK)**:
+    -   Geometric mean.
+    -   Coefficient of variation.
+    -   Variance (because it uses squared values).
 :::
 
 ### Importance in Research and Analysis
@@ -438,22 +518,11 @@ IQ 130 does not mean "twice the intelligence" of IQ 65. IQ points only show a pe
 
 This is a **methodological compromise** that allows for the use of more precise statistical tools:
 
-✅ **Treating IQ as an interval scale is acceptable when:**
+✅ **Treating IQ as an interval scale is acceptable when:** - Using standard statistical tests (correlations, regressions, t-tests) - Comparing groups within the same test and population - Being aware of the limitations of this approach - Our conclusions don't depend on differences being exactly equal
 
--   Using standard statistical tests (correlations, regressions, t-tests)
--   Comparing groups within the same test and population - Being aware of the limitations of this approach
--   Our conclusions don't depend on differences being exactly equal
+⚠️ **Remember the limitations:** - This is a simplification of reality - The assumption works better for scores near the mean (IQ 85-115) than at the extremes - Results must be interpreted carefully
 
-⚠️ **Remember the limitations:**
-
--   This is a simplification of reality
--   The assumption works better for scores near the mean (IQ 85-115) than at the extremes
--   Results must be interpreted carefully
-
-❌ **Never:**
-
--   Say that IQ differences mean equal differences in intelligence
--   Use statements like "twice as intelligent"
+❌ **Never:** - Say that IQ differences mean equal differences in intelligence - Use statements like "twice as intelligent" - Forget that the normal distribution was imposed, not discovered in the data
 
 ### Practical Guidelines for Researchers
 
@@ -559,134 +628,45 @@ Remember to justify your choices for each variable.
 They serve purely as labels/identifiers. They have no inherent ordering (123 Main St isn't "more than" 23 Oak St). You can't perform meaningful mathematical operations on them.The only valid operation is testing for equality/inequality (is this the same address or different?)
 :::
 
-------------------------------------------------------------------------
-
-## Appendix A
-
 ::: callout-note
-## Why Addition/Subtraction Works for Interval Data, but Multiplication/Division Requires Ratio Data
+## Statistical Measures Applicability / Zastosowanie miar statystycznych
 
-**Interval scales** have equal intervals between values but an arbitrary zero point (e.g., Celsius temperature, calendar dates). **Ratio scales** have both equal intervals and an absolute zero (e.g., Kelvin temperature, height, weight).
+| Measure (EN) | Miara (PL) | Nominal | Ordinal | Interval | Ratio |
+|------------|------------|:----------:|:----------:|:----------:|:----------:|
+| **Central Tendency / Tendencja centralna:** |  |  |  |  |  |
+| Mode | Dominanta | ✓ | ✓ | ✓ | ✓ |
+| Median | Mediana | \- | ✓ | ✓ | ✓ |
+| Arithmetic Mean | Średnia arytmetyczna | \- | \- | ✓ | ✓ |
+| Geometric Mean | Średnia geometryczna | \- | \- | \- | ✓ |
+| Harmonic Mean | Średnia harmoniczna | \- | \- | \- | ✓ |
+| **Dispersion / Rozproszenie:** |  |  |  |  |  |
+| Range | Rozstęp | \- | ✓ | ✓ | ✓ |
+| Interquartile Range | Rozstęp międzykwartylowy | \- | ✓ | ✓ | ✓ |
+| Mean Absolute Deviation | Średnie odchylenie bezwzględne | \- | \- | ✓ | ✓ |
+| Variance | Wariancja | \- | \- | ✓\* | ✓ |
+| Standard Deviation | Odchylenie standardowe | \- | \- | ✓\* | ✓ |
+| Coefficient of Variation | Współczynnik zmienności | \- | \- | \- | ✓ |
+| **Association / Współzależność:** |  |  |  |  |  |
+| Chi-square | Chi-kwadrat | ✓ | ✓ | ✓ | ✓ |
+| Spearman Correlation | Korelacja Spearmana | \- | ✓ | ✓ | ✓ |
+| Kendall's Tau | Tau Kendalla | \- | ✓ | ✓ | ✓ |
+| Pearson Correlation | Korelacja Pearsona | \- | \- | ✓\* | ✓ |
+| Covariance | Kowariancja | \- | \- | ✓\* | ✓ |
 
-### Addition and Subtraction: Valid for Interval Scales
+\* Theoretically problematic but commonly used in practice / Teoretycznie problematyczne, ale powszechnie stosowane w praktyce
 
-**Differences maintain consistent proportional relationships** under linear transformations. When converting between scales using $y = a + bx$ where $b > 0$, the additive constant $a$ cancels out:
+### Notes / Uwagi:
 
-$$(y_2 - y_1) = (a + bx_2) - (a + bx_1) = b(x_2 - x_1)$$
+1.  Measurement Scales / Skale pomiarowe:
 
-**Example:** Using Celsius to Fahrenheit conversion where $F = 1.8C + 32$:
+-   **Nominal**: Categories without order / Kategorie bez uporządkowania
+-   **Ordinal**: Ordered categories / Kategorie uporządkowane
+-   **Interval**: Equal intervals, arbitrary zero / Równe interwały, umowne zero
+-   **Ratio**: Equal intervals, absolute zero / Równe interwały, absolutne zero
 
--   Any 10°C difference always converts to 18°F: $18 = 1.8 \times 10$
--   Try $(20°C - 10°C) \rightarrow (68°F - 50°F) = 18°F$
--   Try $(100°C - 90°C) \rightarrow (212°F - 194°F) = 18°F$
+2.  Practical Considerations / Aspekty praktyczne:
 
-The relationship is **consistent**: a 10-degree Celsius difference always corresponds to an 18-degree Fahrenheit difference, regardless of where on the scale we measure.
-
-### Multiplication and Division: Require Ratio Scales
-
-**Ratios are inconsistent** when the zero point is arbitrary. The additive constant $a$ does NOT cancel out in ratios:
-
-$$\frac{y_2}{y_1} = \frac{a + bx_2}{a + bx_1} \neq b \cdot \frac{x_2}{x_1}$$
-
-Unless $a = 0$ (absolute zero), ratios change unpredictably depending on which values you compare.
-
-**Example:** Temperature ratios give inconsistent results:
-
--   Is 20°C "twice as hot" as 10°C?
-    -   Celsius: $20/10 = 2.0$
-    -   Fahrenheit: $68/50 = 1.36$
-    -   Kelvin: $293.15/283.15 = 1.035$
--   What about 100°C vs. 90°C?
-    -   Celsius: $100/90 = 1.11$
-    -   Fahrenheit: $212/194 = 1.09$
-
-The ratios vary depending on both the scale AND which temperatures we pick. Only with an absolute zero do ratios have consistent physical meaning.
-
-### Implications for Statistical Measures
-
-**Arithmetic mean is valid for interval scales** because it uses addition:
-
-$$\bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}$$
-
-When we transform to scale $y$, the mean transforms consistently: $\bar{y} = a + b\bar{x}$
-
-**Geometric mean requires ratio scales** because it uses multiplication:
-
-$$GM = \sqrt[n]{x_1 \times x_2 \times \cdots \times x_n}$$
-
-The geometric mean of temperatures in Celsius gives a different result than the geometric mean of the same temperatures in Fahrenheit (after converting back). This makes the geometric mean meaningless for interval data.
-
-**Example:** For temperatures 10°C and 20°C:
-
--   Geometric mean in Celsius: $\sqrt{10 \times 20} = 14.14°C \rightarrow 57.45°F$
--   Geometric mean in Fahrenheit: $\sqrt{50 \times 68} = 58.31°F \rightarrow 14.62°C$
-
-These don't match! The geometric mean depends on the arbitrary zero point.
-
-### Variance and Standard Deviation: Valid for Interval Scales
-
-**Variance and standard deviation are acceptable for interval data** because they operate on deviations from the mean, which are differences. Critically, **variance is translation-invariant**: adding a constant to all values doesn't change the variance because the deviations remain the same.
-
-Under linear transformation $y = a + bx$, variance transforms predictably:
-
-$\text{Var}(y) = b^2 \text{Var}(x)$
-
-The constant $a$ cancels out when computing deviations, just as it does for simple differences.
-
-**Example proof:** For temperatures 10°C and 20°C:
-
-**In Celsius:**
-
--   Mean: $\bar{x} = (10 + 20)/2 = 15°C$
--   Deviations: $(10 - 15) = -5$, $(20 - 15) = 5$
--   Variance: $\text{Var}(X) = [(-5)^2 + (5)^2]/2 = 50/2 = 25°C^2$
--   Standard deviation: $\text{SD}(X) = 5°C$
-
-**In Fahrenheit:**
-
--   Convert: 10°C → 50°F, 20°C → 68°F
--   Mean: $\bar{y} = (50 + 68)/2 = 59°F$
--   Deviations: $(50 - 59) = -9$, $(68 - 59) = 9$
--   Variance: $\text{Var}(Y) = [(-9)^2 + (9)^2]/2 = 162/2 = 81°F^2$
--   Standard deviation: $\text{SD}(Y) = 9°F$
-
-**Check the transformation:**
-
--   Conversion slope: $b = 1.8$ (from $F = 1.8C + 32$)
--   Predicted variance: $1.8^2 \times 25 = 3.24 \times 25 = 81°F^2$ ✓
--   Predicted SD: $1.8 \times 5 = 9°F$ ✓
-
-**Perfect match!** The variance and standard deviation transform consistently and predictably, making them valid measures of spread for interval data.
-
-**Translation-invariance demonstration:** If we shift all temperatures by +100°C (adding 110°C and 120°C):
-
--   New mean: $(110 + 120)/2 = 115°C$
--   New deviations: $(110 - 115) = -5$, $(120 - 115) = 5$
--   New variance: $\text{Var}(X) = [(-5)^2 + (5)^2]/2 = 25°C^2$ (unchanged!)
-
-The variance remains 25°C² because the spread hasn't changed, only the location shifted.
-
-**Key principle:** Operations based on addition/subtraction and differences work for interval scales because the arbitrary constant $a$ cancels out. Operations involving multiplication/division or ratios require ratio scales because $a$ distorts the results. Variance and SD work because they're translation-invariant and based on deviations from the mean (differences), not ratios.
-
-### Summary: Valid Statistical Measures by Measurement Scale
-
-| Statistical Measure          | Nominal | Ordinal | Interval | Ratio |
-|:-----------------------------|:-------:|:-------:|:--------:|:-----:|
-| **Mode**                     |    ✓    |    ✓    |    ✓     |   ✓   |
-| **Median**                   |    ✗    |    ✓    |    ✓     |   ✓   |
-| **Arithmetic Mean**          |    ✗    |    ✗    |    ✓     |   ✓   |
-| **Geometric Mean**           |    ✗    |    ✗    |    ✗     |   ✓   |
-| **Variance & SD**            |    ✗    |    ✗    |    ✓     |   ✓   |
-| **Covariance**               |    ✗    |    ✗    |    ✓     |   ✓   |
-| **Pearson Correlation**      |    ✗    |    ✗    |    ✓     |   ✓   |
-| **Spearman Correlation**     |    ✗    |    ✓    |    ✓     |   ✓   |
-| **Coefficient of Variation** |    ✗    |    ✗    |    ✗     |   ✓   |
-
-**Notes:**
-
--   **Nominal** scales (e.g., colors, categories) only support frequency-based measures like mode
--   **Ordinal** scales (e.g., rankings, Likert scales) add median and rank-based correlations
--   **Interval** scales (e.g., Celsius, calendar dates) support all measures based on addition/subtraction
--   **Ratio** scales (e.g., height, weight, Kelvin) additionally support measures requiring multiplication/division and meaningful ratios
--   Coefficient of variation ($\text{CV} = \text{SD}/\text{Mean}$) requires a meaningful zero point, so only ratio scales
+-   Some measures marked with ✓\* are commonly used for interval data despite theoretical issues / Niektóre miary oznaczone ✓\* są powszechnie stosowane dla danych przedziałowych pomimo problemów teoretycznych
+-   Choice of measure should consider both theoretical appropriateness and practical utility / Wybór miary powinien uwzględniać zarówno poprawność teoretyczną jak i użyteczność praktyczną
+-   More restrictive scales (ratio) allow all measures from less restrictive scales / Bardziej restrykcyjne skale (ilorazowe) pozwalają na wszystkie miary z mniej restrykcyjnych skal
 :::

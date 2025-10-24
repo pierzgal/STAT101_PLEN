@@ -7,54 +7,59 @@ Descriptive statistics are fundamental tools in social science research, providi
 -   Detecting potential anomalies or outliers
 -   Providing a foundation for further statistical analysis
 
-## Introduction to Sigma Notation (Σ) \| Wprowadzenie do Notacji Sigma (Σ)
+## Introduction to Sigma Notation (Σ)
 
--   **What is Sigma? \| Co to jest notacja sumacyjna Sigma?** Sigma (Σ) is a mathematical operator that tells us to sum (add up) a sequence of terms - it functions as an instruction to perform addition of all elements in a specified range. \| Sigma (Σ) to operator matematyczny, który nakazuje nam zsumować (dodać) sekwencję wyrazów - działa jak instrukcja wykonania dodawania wszystkich elementów w określonym zakresie.
+-   **What is Sigma summation notation?** Sigma (Σ) is a mathematical operator that instructs us to sum (add) a sequence of terms - it functions as a directive to perform addition of all elements within a specified range.
+-   **Purpose:** Provides a concise way to write sums of many similar terms using a single symbol, avoiding lengthy addition expressions.
 
+### Basic Formula
 
-### Basic Formula \| Podstawowa formuła
+-   The general form of sigma notation is: $$\sum_{i=a}^{b} f(i)$$
+-   **Summation index:** $i$
+-   **Lower bound:** $a$
+-   **Upper bound:** $b$
+-   **Function:** $f(i)$
 
--   The general form of a sigma notation is: \| Ogólna forma notacji sigma to:
+### Examples of Sigma Notation Applications
 
-$$\sum_{i=a}^{b} f(i)$$
+#### Simple Example: Sum of Natural Numbers
 
--   **Index of Summation: \| Indeks sumowania:** $i$
--   **Lower Limit: \| Dolna granica:** $a$
--   **Upper Limit: \| Górna granica:** $b$
--   **Function: \| Funkcja:** $f(i)$
+-   Suppose you want to add the first five positive integers: $\sum_{i=1}^{5} i = 1 + 2 + 3 + 4 + 5 = 15$
+-   The above notation adds the first five positive integers.
 
-### Simple Example \| Prosty przykład
+#### Sum of Squares
 
--   Consider you want to add the first five positive integers: \| Załóżmy, że chcesz dodać pierwsze pięć dodatnich liczb całkowitych:
+-   Suppose you want to sum the squares of the first four positive integers: $\sum_{i=1}^{4} i^2 = 1^2 + 2^2 + 3^2 + 4^2 = 1 + 4 + 9 + 16 = 30$
+-   This is the sum of squares of the first four positive integers.
 
-$$\sum_{i=1}^{5} i = 1 + 2 + 3 + 4 + 5 = 15$$
+#### Sum of a Constant Value
 
--   Adds the first five positive integers. \| Dodaje pierwsze pięć dodatnich liczb całkowitych.
+-   Summing a constant value $c$ for $n$ terms: $\sum_{i=1}^{n} c = c + c + c + ... + c \text{ (n times)} = n \cdot c$
+-   **Example**: Sum of five fives: $\sum_{i=1}^{5} 5 = 5 + 5 + 5 + 5 + 5 = 5 \cdot 5 = 25$
 
-### Example with a Function \| Przykład z funkcją
+### Simple Examples in Statistical Context
 
--   Suppose you want to sum the squares of the first four positive integers: \| Załóżmy, że chcesz zsumować kwadraty pierwszych czterech dodatnich liczb całkowitych:
+$$\sum_{i=1}^{n} x_i$$ - **Summation index:** $i$ (typically denotes a specific observation in a dataset) - **Lower bound:** 1 (we usually start from the first observation) - **Upper bound:** $n$ (total number of observations in our dataset) - **Expression:** $x_i$ (value of the $i$th observation)
 
-$$\sum_{i=1}^{4} i^2 = 1^2 + 2^2 + 3^2 + 4^2 = 30$$
+#### Summing Observation Values
 
--   Sum of the squares of the first four positive integers. \| Suma kwadratów pierwszych czterech dodatnich liczb całkowitych.
+-   We have a dataset: 5, 8, 12, 15, 20
+-   Sum of all values: $$\sum_{i=1}^{5} x_i = x_1 + x_2 + x_3 + x_4 + x_5 = 5 + 8 + 12 + 15 + 20 = 60$$
+-   This sum is a key element when calculating the arithmetic mean.
 
-### Practical Application in Statistics \| Praktyczne zastosowanie w statystyce
+#### Sum of Deviations from the Mean
 
--   **Calculating the Mean: \| Obliczanie średniej:**
+-   For the same dataset (5, 8, 12, 15, 20), the mean is $\bar{x} = 60/5 = 12$
+-   Sum of deviations from the mean: $$\sum_{i=1}^{5} (x_i - \bar{x}) = (5-12) + (8-12) + (12-12) + (15-12) + (20-12)$$ $$= -7 + (-4) + 0 + 3 + 8 = 0$$
+-   **Important observation:** The sum of deviations from the mean always equals 0, which is a fundamental property of the arithmetic mean.
 
-    -   Data Points: \| Punkty danych: $x_1, x_2, ..., x_n$
-    -   Mean $\bar{x}$: \| Średnia $\bar{x}$:
+### Summary
 
-$$\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$$
-
--   Example: \| Przykład: $x_1, x_2, x_3, x_4$ are 4, 8, 15, 16 \| $x_1, x_2, x_3, x_4$ to 4, 8, 15, 16
-
-$$\bar{x} = \frac{43}{4} = 10.75$$
-
-### Benefits of Using Sigma Notation \| Korzyści z używania notacji Sigma
-
--   **Clarity: \| Jasność:** Provides a clear and concise representation of various statistical formulas. \| Zapewnia jasne i zwięzłe przedstawienie statystycznych formuł.
+-   Sigma Notation (Σ) allows for concise expression of key statistical formulas
+-   The most important applications include calculating:
+    -   Arithmetic mean
+    -   Variance and standard deviation
+    -   Various sums of squares used in regression analysis
 
 ::: callout-note
 ## Summation (Σ) and Product (Π) Operators
@@ -170,17 +175,18 @@ ggplot(bimodal_data, aes(x)) +
   labs(title = "Bimodal Distribution", x = "Value", y = "Density")
 ```
 
-| Distribution | Key Properties | Social Examples |
-|----------------------|------------------------|---------------------------|
-| Normal | Symmetric, bell-shaped, most values near mean | Height, IQ scores, standardized test scores |
-| Uniform | Equal probability across range | Birth dates in year, arrival times in hour |
-| Bimodal | Two peaks, suggests subgroups | Age in college towns, polarized opinions |
-| Log-normal | Right-skewed, cannot be negative | Income, house prices, social media followers |
-| Power law | Extreme skew, "rich get richer" | City sizes |
+| Distribution | Key Properties | Examples |
+|------------------------|------------------------|------------------------|
+| Symmetric (Normal) | Symmetric, bell-shaped, most values close to the mean | Adult height in population, IQ test scores, measurement errors, standardized exam results |
+| Uniform | Equal probability across the entire range | Last digit of phone numbers, random day of the week selection, position of pointer after spinning a wheel of fortune |
+| Bimodal | Two distinct peaks, suggests presence of subgroups | Age structure in university towns (students and permanent residents), opinions on strongly polarizing topics, traffic intensity hours (morning and afternoon peak) |
+| Right-skewed (Positively skewed) | Extended "tail" on the right side, most values less than the mean | Queue waiting time, commute time to work, age at first marriage |
+| Heavy-tailed skewed (Log-normal) | Strong right asymmetry, values cannot be negative, long "fat tail" | Personal income, housing prices, household size |
+| Extreme-tailed skewed (Power law) | Extreme asymmetry, "rich get richer" effect, no characteristic scale | Wealth of the richest individuals, city populations, number of followers on social media, number of citations of scientific publications |
 
 ## Visualizing Real-World Data Distributions
 
-Let's use the `palmerpenguins` dataset to explore real-world data distributions.
+Let's use the `palmerpenguins` dataset to explore data distributions.
 
 ### Histogram and Density Plot
 
@@ -253,8 +259,6 @@ ggplot(penguins, aes(x = flipper_length_mm, y = species, fill = species)) +
 
 Understanding and visualizing data distributions is crucial in data analysis. ggplot2 provides a flexible and powerful toolkit for creating various types of distribution plots. By exploring different visualization techniques, we can gain insights into the underlying patterns and characteristics of our data.
 
-
-
 ## Understanding Outliers
 
 Before diving into specific measures, it's crucial to understand the concept of outliers, as they can significantly impact many descriptive statistics.
@@ -263,7 +267,6 @@ Outliers are data points that differ significantly from other observations in th
 
 -   Measurement or recording errors
 -   Genuine extreme values in the population
--   Sampling from a different population
 
 Outliers can have a substantial effect on many statistical measures, especially those based on means or sums of squared deviations. Therefore, it's essential to:
 
@@ -297,8 +300,6 @@ Additional useful notations:
 
 -   Sample moments: $m_k = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^k$
 -   Population moments: $\mu_k = E[(X - \mu)^k]$
--   Population standard error: $\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$
--   Sample standard error: $s_{\bar{x}} = \frac{s}{\sqrt{n}}$
 
 ## Measures of Central Tendency
 
@@ -510,7 +511,12 @@ As we can see, the outlier (100) drastically affects the mean.
 
 ### Median
 
-The median is the middle value when the data is ordered.
+The median is the "middle value" that divides ordered data into two equal-sized halves.
+
+More precisely:
+
+- If n is odd: The median is the middle observation (the one at position (n+1)/2)
+- If n is even: The median is the average of the two middle observations (at positions n/2 and n/2 + 1)
 
 **Manual Calculation Example:**
 
@@ -612,7 +618,7 @@ This is the standard form of the weighted mean, where weights can be any positiv
 Let's calculate the weighted mean for the dataset: 2, 4, 5, 7 with weights 1, 2, 3, 1
 
 | Step | Description | Calculation |
-|------------------|---------------------------|---------------------------|
+|------------------------|------------------------|------------------------|
 | 1 | Multiply each value by its weight | (2 \* 1) + (4 \* 2) + (5 \* 3) + (7 \* 1) = 2 + 8 + 15 + 7 = 32 |
 | 2 | Sum the weights | 1 + 2 + 3 + 1 = 7 |
 | 3 | Divide the result from step 1 by the result from step 2 | 32 / 7 = 4.57 |
@@ -636,7 +642,7 @@ In this case, the weights are fractions that sum to 1, representing the proporti
 Let's calculate the weighted mean for the dataset: 2, 4, 5, 7 with normalized weights 0.1, 0.3, 0.4, 0.2
 
 | Step | Description | Calculation |
-|------------------|---------------------------|---------------------------|
+|------------------------|------------------------|------------------------|
 | 1 | Multiply each value by its weight | (2 \* 0.1) + (4 \* 0.3) + (5 \* 0.4) + (7 \* 0.2) |
 | 2 | Sum the results | 0.2 + 1.2 + 2.0 + 1.4 = 4.8 |
 
@@ -981,7 +987,7 @@ Variance = $\frac{16 + 4 + 0 + 4 + 16}{4} = 10$
 Using the dataset: 2, 4, 4, 5, 5, 7, 9
 
 | Step | Description | Calculation |
-|------------------|---------------------------|---------------------------|
+|------------------------|------------------------|------------------------|
 | 1 | Calculate the mean | $\bar{x} = 5.14$ |
 | 2 | Subtract the mean from each value and square the result | $(2 - 5.14)^2 = 9.86$ |
 |  |  | $(4 - 5.14)^2 = 1.30$ |
@@ -1105,7 +1111,7 @@ The coefficient of variation is the standard deviation divided by the mean, ofte
 Using the dataset: 2, 4, 4, 5, 5, 7, 9
 
 | Step | Description | Calculation |
-|------------------|---------------------------|---------------------------|
+|------------------------|------------------------|------------------------|
 | 1 | Calculate the mean | $\bar{x} = 5.14$ |
 | 2 | Calculate the standard deviation | $s = 2.27$ |
 | 3 | Divide s by the mean and multiply by 100 | $(2.27 / 5.14) * 100 = 44.16\%$ |
@@ -1318,7 +1324,7 @@ Both methods give the same results for simple positions (Example 1) but can diff
 
 #### What Are Percentiles?
 
-Percentiles give us a more detailed view by dividing data into 100 equal parts. Unlike quartiles, percentiles use linear interpolation for more precise measurements.
+Percentiles give us a more detailed view by dividing data into 100 equal parts.
 
 Key Points:
 
@@ -1354,163 +1360,787 @@ Step 3: Interpolate (important: percentiles use linear interpolation)
 
 What this means: 60% of students scored 86.8 or below.
 
-### Percentile Ranks (PR) (\*)
+
+### Percentile Ranks (PR) (*)
 
 #### What is a Percentile Rank?
 
-While percentiles tell us the value at a certain position, percentile rank tells us what percentage of values fall below a specific score. Think of it as answering the question "What percentage of the class did I score higher than?"
+Percentiles and percentile ranks are related but opposite concepts:
 
-$PR = \frac{\text{number of values below } + 0.5 \times \text{number of equal values}}{\text{total number of values}} \times 100$
+**Key Difference:**
+- **Percentile** → "What score is at the 75th percentile?" (position → value)
+- **Percentile Rank** → "What percentile rank does a score of 75 have?" (value → position)
 
-**Example 4: Finding a Percentile Rank** Consider these exam scores:
+**Percentile rank** tells us what percentage of values fall below a specific score. Think of it as answering: *"What percentage of the class did I score higher than?"*
 
-65, 70, 70, 75, 75, 75, 80, 85, 85, 90
+#### The Formula
 
-Let's find the PR for a score of 75.
+$$
+PR = \frac{\text{number of values below} + 0.5 \times \text{number of equal values}}{\text{total number of values}} \times 100
+$$
 
-Step 1: Count carefully
+#### Example 4: Finding a Percentile Rank
 
--   Values below 75: 65, 70, 70 (3 values)
--   Values equal to 75: 75, 75, 75 (3 values)
--   Total values: 10
+Consider these exam scores (sorted):
 
-Step 2: Apply the formula
+| Position | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 10 |
+|----------|----|----|----|----|----|----|----|----|----|----|
+| Score    | 65 | 70 | 70 | **75** | **75** | **75** | 80 | 85 | 85 | 90 |
 
-$PR = \frac{3 + 0.5(3)}{10} \times 100$ $PR = \frac{3 + 1.5}{10} \times 100$ $PR = \frac{4.5}{10} \times 100 = 45\%$
+Let's find the PR for a score of **75** (highlighted).
 
-Interpretation: A score of 75 is higher than 45% of the class scores.
+**Step 1: Count carefully**
+- Values **below** 75: 65, 70, 70 → **3 values**
+- Values **equal to** 75: 75, 75, 75 → **3 values**
+- Total values: **10**
 
-**Remark:**
+**Step 2: Apply the formula**
 
-Q1: "Why do we use 0.5 for equal values in PR?"
+$$
+PR = \frac{3 + 0.5(3)}{10} \times 100 = \frac{3 + 1.5}{10} \times 100 = \frac{4.5}{10} \times 100 = 45\%
+$$
 
-A1: This is because we're assuming people with the same score are evenly spread across that position. It's like saying they share the position equally.
+**Interpretation:** A score of 75 is higher than 45% of the class scores.
 
-## Measures of Shape
+**Sanity check:** This makes sense! There are 3 scores clearly below 75, and you're in the middle of the 3 people who scored 75, so you're at roughly position 4.5 out of 10 = 45%. ✓
+
+#### Understanding the 0.5 Factor
+
+**Q: Why do we multiply equal values by 0.5?**
+
+**A:** The 0.5 factor means we count **half** of the tied values as being below us.
+
+Here's the intuition: If you scored 75 along with two other people, should you count yourself as:
+- Above all of them? (That wouldn't be fair to them)
+- Below all of them? (That wouldn't be fair to you)
+- Somewhere in the middle? ✓ (This is the fairest approach)
+
+**Using our example:**
+- 3 people scored below 75: we count all **3** of them
+- 3 people scored exactly 75 (including you): we count **half** of them = 0.5 × 3 = **1.5**
+- Total below or tied: 3 + 1.5 = 4.5 out of 10 = 45%
+
+By using 0.5, we're essentially saying: *"Of the people who tied with me, I can assume I did better than half of them."* This treats everyone with the same score equally and avoids giving any one person an unfair advantage.
+
+#### Practice Problem
+
+Using the same dataset above, find the percentile rank for a score of **85**.
+
+<details>
+<summary>Click to see the solution</summary>
+
+**Counting:**
+- Values below 85: 65, 70, 70, 75, 75, 75, 80 → 7 values
+- Values equal to 85: 85, 85 → 2 values
+- Total: 10 values
+
+**Calculation:**
+$$
+PR = \frac{7 + 0.5(2)}{10} \times 100 = \frac{8}{10} \times 100 = 80\%
+$$
+
+**Answer:** A score of 85 has a percentile rank of 80%.
+
+</details>
+
+#### Note on Software Implementation
+
+Different software packages may use slightly different methods for calculating percentile ranks:
+- **R**: Use `ecdf()` function or manually calculate
+- **Python (pandas)**: Use `rank(pct=True)` method
+
+These may produce slightly different results depending on how they handle ties and boundary cases.
+
+
+### Understanding and Interpreting Box Plots {#sec-boxplots}
+
+```{r}
+#| include: false
+
+# Load required packages
+library(tidyr)
+library(ggplot2)
+library(ggpubr)
+
+# Set display options
+options(scipen = 999, digits = 3)
+```
+
+Box plots (also known as box-and-whisker plots) are powerful visualization tools for understanding data distributions. In this section, we'll explore how to construct and interpret box plots using height measurements from two groups.
+
+#### Construction of the Tukey Box Plot {#sec-boxplot-construction}
+
+The box plot was introduced by John Tukey as part of his exploratory data analysis toolkit. It provides a standardized way of displaying the distribution of data based on a five-number summary.
+
+##### The Five-Number Summary
+
+A box plot represents five key statistical values:
+
+1.  **Minimum**: The smallest value in the dataset (excluding outliers)
+2.  **First Quartile (Q1)**: The 25th percentile, below which 25% of observations fall
+3.  **Median (Q2)**: The 50th percentile, which divides the dataset into two equal halves
+4.  **Third Quartile (Q3)**: The 75th percentile, below which 75% of observations fall
+5.  **Maximum**: The largest value in the dataset (excluding outliers)
+
+##### Box Plot Components
+
+```{r}
+#| label: fig-boxplot-diagram
+#| echo: false
+#| fig.cap: "Boxplot diagram showing its key components."
+#| fig.height: 4
+#| fig.width: 8
+# Create sample data
+set.seed(123)
+sample_data <- c(rnorm(100, 10, 2), 2, 18, 19)
+# Create data frame
+df <- data.frame(value = sample_data)
+
+# Calculate statistical values
+q1 <- quantile(sample_data, 0.25)
+q3 <- quantile(sample_data, 0.75)
+iqr_val <- IQR(sample_data)
+lower_bound <- max(min(sample_data), q1 - 1.5 * iqr_val)
+upper_bound <- min(max(sample_data), q3 + 1.5 * iqr_val)
+med <- median(sample_data)
+
+# Create boxplot with annotations
+p <- ggplot(df, aes(x = factor(1), y = value)) +
+  geom_boxplot(width = 0.4, outlier.shape = 8, outlier.size = 3) +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        plot.margin = margin(0.5, 2, 0.5, 0.5, "cm")) +  # Increase right margin
+  ylab("Value") +
+  coord_cartesian(xlim = c(0.7, 2.5)) +  # Extend plot area for text
+  
+  # Text labels on the right with proper spacing
+  annotate("text", x = 1.4, y = med, label = "Median (Q2)", hjust = 0) +
+  annotate("text", x = 1.4, y = q1, label = "First quartile (Q1)", hjust = 0) +
+  annotate("text", x = 1.4, y = q3, label = "Third quartile (Q3)", hjust = 0) +
+  
+  # Proper offsets for min/max values
+  annotate("text", x = 1.4, y = lower_bound - 0.3, 
+           label = "Minimum (within 1.5*IQR)", hjust = 0) +
+  annotate("text", x = 1.4, y = upper_bound + 0.3, 
+           label = "Maximum (within 1.5*IQR)", hjust = 0) +
+  
+  # Outlier labels with offsets
+  annotate("text", x = 1.4, y = min(sample_data) - 0.3, label = "Outlier", hjust = 0) +
+  annotate("text", x = 1.4, y = max(sample_data) + 0.3, label = "Outlier", hjust = 0) +
+  
+  # IQR marking on the left side
+  annotate("segment", x = 0.8, xend = 0.8, y = q1, yend = q3,
+           arrow = arrow(ends = "both", length = unit(0.1, "inches")), color = "blue") +
+  annotate("text", x = 0.65, y = (q1 + q3)/2, label = "IQR", color = "blue")
+
+p
+```
+
+The components of a box plot include:
+
+1.  **The Box**:
+    -   Represents the interquartile range (IQR), containing the middle 50% of the data
+    -   Lower edge represents Q1
+    -   Upper edge represents Q3
+    -   Line inside the box represents the median (Q2)
+2.  **The Whiskers**:
+    -   Extend from the box to show the range of non-outlier data
+    -   In a Tukey box plot, whiskers extend up to 1.5 × IQR from the box edges:
+        -   Lower whisker: extends to the minimum value ≥ (Q1 - 1.5 × IQR)
+        -   Upper whisker: extends to the maximum value ≤ (Q3 + 1.5 × IQR)
+3.  **Outliers**:
+    -   Points that fall beyond the whiskers
+    -   Individually plotted as dots or symbols
+    -   Values that are \< (Q1 - 1.5 × IQR) or \> (Q3 + 1.5 × IQR)
+
+##### Key Features to Observe
+
+When interpreting box plots, look for these characteristics:
+
+1.  **Central Tendency**: Location of the median line within the box
+2.  **Dispersion**: Width of the box (IQR) and length of the whiskers
+3.  **Skewness**:
+    -   Symmetrical data: median is approximately in the middle of the box, whiskers are roughly equal in length
+    -   Right (positive) skew: median is closer to the bottom of the box, upper whisker is longer
+    -   Left (negative) skew: median is closer to the top of the box, lower whisker is longer
+4.  **Outliers**: Presence of individual points beyond the whiskers
+
+#### Case Study: Comparing Heights Between Groups {#sec-height-comparison}
+
+Let's apply our understanding of box plots to a real dataset. We have height measurements (in centimeters) from two groups of 25 students each.
+
+```{r}
+#| label: height-data
+#| echo: true
+
+# Create the dataset
+data_height <- data.frame(
+  group_1 = c(150, 160, 165, 168, 172, 173, 175, 176, 177, 178, 179, 180, 180, 181, 181, 182, 182, 183, 183, 184, 186, 188, 190, 191, 200),
+  group_2 = c(138, 140, 148, 152, 164, 164, 165, 165, 166, 166, 170, 175, 175, 175, 182, 182, 182, 182, 182, 182, 183, 183, 183, 188, 210)
+)
+
+# Transform dataset from wide to long format
+data_height_l <- gather(data = data_height, key = "Group_number", value = "height", group_1:group_2)
+
+# Display the first few rows
+head(data_height_l)
+```
+
+Let's calculate some summary statistics for each group:
+
+```{r}
+#| label: summary-stats
+#| echo: true
+
+# Calculate summary statistics for each group
+group1_stats <- summary(data_height$group_1)
+group2_stats <- summary(data_height$group_2)
+
+# Calculate IQR
+group1_iqr <- IQR(data_height$group_1)
+group2_iqr <- IQR(data_height$group_2)
+
+# Create a comparison table
+stats_table <- rbind(
+  group1_stats,
+  group2_stats
+)
+rownames(stats_table) <- c("Group 1", "Group 2")
+
+# Display the table
+stats_table
+
+# Display IQR values
+cat("IQR for Group 1:", group1_iqr, "\n")
+cat("IQR for Group 2:", group2_iqr, "\n")
+```
+
+#### Visualizing the Height Data {#sec-visualizing-heights}
+
+Now, let's visualize the data using box plots and density plots:
+
+```{r}
+#| label: fig-boxplots
+#| fig.cap: "Box plots comparing height distributions between groups."
+#| fig.width: 8
+#| fig.height: 4
+
+# Create horizontal boxplots
+ggplot(data = data_height_l) + 
+  geom_boxplot(aes(x = Group_number, y = height, colour = Group_number), notch = FALSE) + 
+  coord_flip() + 
+  scale_y_continuous(breaks = seq(130, 210, 5)) + 
+  theme_pubr() + 
+  grids(linetype = "dashed") +
+  labs(title = "Height Distribution by Group",
+       x = "Group",
+       y = "Height (cm)")
+```
+
+To complement our box plots, let's also look at the density distributions:
+
+```{r}
+#| label: fig-density
+#| fig.cap: "Density plots showing the height distributions for each group."
+#| fig.width: 8
+#| fig.height: 4
+
+# Create density plots
+ggplot(data = data_height_l) + 
+  geom_density(aes(x = height, fill = Group_number), alpha = 0.5) + 
+  facet_grid(~ Group_number) + 
+  scale_x_continuous(breaks = seq(130, 210, 10)) +
+  labs(title = "Height Density by Group",
+       x = "Height (cm)",
+       y = "Density")
+```
+
+#### Box Plot Interpretation Exercise {#sec-boxplot-exercise}
+
+Based on the box plots and density plots above, determine whether each of the following statements is **True** or **False**. For each statement, provide a brief explanation based on evidence from the visualizations.
+
+::: callout-note
+#### Exercise Questions
+
+1.  Students from group 2 (G2) in the studied sample are, on average, taller than those from group 1 (G1).
+
+2.  Group 1 (G1) height measurements are more dispersed/spread out than group 2 (G2).
+
+3.  The lowest person is in group 2 (G2).
+
+4.  Both data sets are negatively (left) skewed.
+
+5.  Half of the students in group 2 (G2) measure at least 175 cm.
+:::
+
+##### Hints for Interpretation
+
+When answering these questions, consider:
+
+-   The position of the median line within each box
+-   The relative sizes of the boxes (IQR)
+-   The positions of the minimum and maximum values
+-   The symmetry of the distributions (balanced or skewed)
+-   The lengths of the whiskers
+
+For each statement, determine whether it is True or False and provide your explanation:
+
+::: {.callout-tip collapse="true"}
+#### Answer Template
+
+1.  Students from G2 are, on average, taller than G1: \[True/False\]
+    -   Explanation:
+2.  G1 height is more dispersed/spread out: \[True/False\]
+    -   Explanation:
+3.  The lowest person is in G2: \[True/False\]
+    -   Explanation:
+4.  Both data sets are negatively (left) skewed: \[True/False\]
+    -   Explanation:
+5.  Half of G2 measure at least 175 cm: \[True/False\]
+    -   Explanation:
+:::
+
+Let's review the answers to our box plot interpretation questions:
+
+::: {.callout-important collapse="true"}
+#### Solutions
+
+1.  Students from G2 are, on average, taller than G1: **False**
+    -   Explanation: The median height (middle line in the boxplot) for G1 is higher than G2.
+2.  G1 height is more dispersed/spread out: **False**
+    -   Explanation: G2 shows greater dispersion. This is visible in the boxplot where G2 has a larger interquartile range (IQR) of 17.5 cm compared to G1's 9.5 cm. G2 also has a wider range from minimum to maximum values.
+3.  The lowest person is in G2: **True**
+    -   Explanation: The minimum value in G2 is 138 cm, which is lower than the minimum value in G1 (150 cm).
+4.  Both data sets are negatively (left) skewed: **True**
+    -   Explanation: In both groups, the median line is positioned toward the upper part of the box, and the lower whisker is longer than the upper whisker. This indicates that there's a longer tail on the left side of the distribution, which means negative skewness.
+5.  Half of G2 measure at least 175 cm: **True**
+    -   Explanation: The median (middle line in the boxplot) for G2 is 175 cm, which means that 50% of the values are greater than or equal to 175 cm.
+:::
+
+#### R Code Reference {#sec-boxplot-code}
+
+Here's the complete R code used in this section:
+
+```{r}
+#| label: complete-code
+#| eval: false
+
+# Load required packages
+library(tidyr)
+library(ggplot2)
+library(ggpubr)
+
+# Set display options
+options(scipen = 999, digits = 3)
+
+# Create the dataset
+data_height <- data.frame(
+  group_1 = c(150, 160, 165, 168, 172, 173, 175, 176, 177, 178, 179, 180, 180, 181, 181, 182, 182, 183, 183, 184, 186, 188, 190, 191, 200),
+  group_2 = c(138, 140, 148, 152, 164, 164, 165, 165, 166, 166, 170, 175, 175, 175, 182, 182, 182, 182, 182, 182, 183, 183, 183, 188, 210)
+)
+
+# Transform dataset from wide to long format
+data_height_l <- gather(data = data_height, key = "Group_number", value = "height", group_1:group_2)
+
+# Display the first few rows
+head(data_height_l)
+
+# Calculate summary statistics for each group
+group1_stats <- summary(data_height$group_1)
+group2_stats <- summary(data_height$group_2)
+
+# Calculate IQR
+group1_iqr <- IQR(data_height$group_1)
+group2_iqr <- IQR(data_height$group_2)
+
+# Create horizontal boxplots
+ggplot(data = data_height_l) + 
+  geom_boxplot(aes(x = Group_number, y = height, colour = Group_number), notch = FALSE) + 
+  coord_flip() + 
+  scale_y_continuous(breaks = seq(130, 210, 5)) + 
+  theme_pubr() + 
+  grids(linetype = "dashed") +
+  labs(title = "Height Distribution by Group",
+       x = "Group",
+       y = "Height (cm)")
+
+# Create density plots
+ggplot(data = data_height_l) + 
+  geom_density(aes(x = height, fill = Group_number), alpha = 0.5) + 
+  facet_grid(~ Group_number) + 
+  scale_x_continuous(breaks = seq(130, 210, 10)) +
+  labs(title = "Height Density by Group",
+       x = "Height (cm)",
+       y = "Density")
+```
+
+---
+
+## Shape Measures (*)
 
 ### Skewness
 
-#### Definition
+**What it measures:** The asymmetry of your data distribution. Think of it as answering "which tail is longer?"
 
-Skewness quantifies the asymmetry of a data distribution. It indicates whether the data clusters more on one side of the mean than the other.
+**Formula:**
 
-#### Mathematical Expression
+$SK = \frac{n}{(n-1)(n-2)} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s}\right)^3$
 
-$SK = \frac{n}{(n-1)(n-2)} \sum_{i=1}^n (\frac{x_i - \bar{x}}{s})^3$
+**Quick interpretation:**
 
-where:
+- **SK > 0**: Right tail is longer (most data on the left, few high outliers)
+- **SK < 0**: Left tail is longer (most data on the right, few low outliers)  
+- **SK ≈ 0**: Roughly symmetric
 
--   $n$ is the sample size
--   $x_i$ is the i-th observation
--   $\bar{x}$ is the sample mean
--   $s$ is the sample standard deviation
-
-#### Example: Voter Turnout Analysis
-
+#### Clear Visualization of Skewness
 ```{r}
 library(moments)
 library(ggplot2)
 library(tidyverse)
 
-# Generate example precinct-level voter turnout data
 set.seed(123)
-turnout_data <- c(
-  # Urban precincts
-  rnorm(300, mean = 65, sd = 12),
-  # Suburban precincts
-  rnorm(400, mean = 70, sd = 10),
-  # Rural precincts
-  rnorm(300, mean = 68, sd = 15)
-) |> 
-  # Ensure turnout stays between 0-100%
-  pmax(0) |> 
-  pmin(100)
 
-# Calculate and visualize
-skew_value <- skewness(turnout_data)
-skew_value
+# Generate clear examples with more data for smooth distributions
+right_skewed <- c(rnorm(800, 5, 1.5), rexp(200, 0.2) + 5)
+left_skewed <- 20 - c(rnorm(800, 5, 1.5), rexp(200, 0.2) + 5)
+symmetric <- rnorm(1000, 10, 2)
 
-ggplot(data.frame(x = turnout_data), aes(x = x)) +
-  geom_histogram(bins = 50, fill = "skyblue", color = "black") +
-  geom_vline(xintercept = mean(turnout_data), color = "red", linetype = "dashed") +
-  geom_vline(xintercept = median(turnout_data), color = "blue", linetype = "dashed") +
+# Combine into data frame
+df_skew <- tibble(
+  value = c(right_skewed, left_skewed, symmetric),
+  type = factor(rep(c("Right-Skewed", "Left-Skewed", "Symmetric"),
+                    each = 1000),
+                levels = c("Right-Skewed", "Symmetric", "Left-Skewed"))
+)
+
+# Calculate statistics for each type
+stats_skew <- df_skew %>%
+  group_by(type) %>%
+  summarise(
+    mean = mean(value),
+    median = median(value),
+    sk = round(skewness(value), 2)
+  )
+
+# Create density plot with clear annotations
+ggplot(df_skew, aes(x = value, fill = type)) +
+  geom_density(alpha = 0.7, color = NA) +
+  geom_vline(data = stats_skew, aes(xintercept = mean),
+             color = "#D55E00", linewidth = 1, linetype = "dashed") +
+  geom_vline(data = stats_skew, aes(xintercept = median),
+             color = "#0072B2", linewidth = 1, linetype = "solid") +
+  geom_text(data = stats_skew,
+            aes(x = Inf, y = Inf, 
+                label = paste0("Skewness = ", sk)),
+            hjust = 1.1, vjust = 2, size = 5, fontface = "bold") +
+  facet_wrap(~type, scales = "free", ncol = 1) +
+  scale_fill_manual(values = c("#E69F00", "#009E73", "#CC79A7")) +
   labs(
-    title = str_glue("Precinct-Level Voter Turnout Distribution (Skewness = {round(skew_value, 4)})"),
-    subtitle = "Red: Mean, Blue: Median",
-    x = "Voter Turnout (%)",
-    y = "Number of Precincts"
+    title = "Understanding Skewness: Where Are the Tails?",
+    subtitle = "Orange dashed = Mean  |  Blue solid = Median",
+    x = "Value",
+    y = "Density"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold", size = 12),
+    plot.title = element_text(face = "bold", size = 14)
+  )
 ```
 
-#### Interpretation Guide
+#### Applied Example: Income Distribution
+```{r}
+set.seed(456)
 
--   **Positive Skewness (\> 0)**: Distribution has a longer right tail
--   **Negative Skewness (\< 0)**: Distribution has a longer left tail
--   **Zero Skewness**: Approximately symmetric distribution
+# Realistic income scenarios (in thousands)
+# Right-skewed: Most earn moderate, few earn very high
+income_city_a <- c(rgamma(900, shape = 2, scale = 15) + 25, 
+                   runif(100, 150, 300))
+
+# Left-skewed: Most earn high, few earn low (wealthy area)
+income_city_b <- 180 - c(rgamma(900, shape = 2, scale = 15), 
+                         runif(100, 0, 50))
+
+# Symmetric: More balanced income distribution
+income_city_c <- rnorm(1000, 80, 20)
+
+df_income <- tibble(
+  income = c(income_city_a, income_city_b, income_city_c),
+  city = factor(rep(c("City A: Right-Skewed", 
+                      "City B: Left-Skewed", 
+                      "City C: Symmetric"),
+                    each = 1000),
+                levels = c("City A: Right-Skewed", 
+                          "City C: Symmetric",
+                          "City B: Left-Skewed"))
+)
+
+# Calculate stats
+stats_income <- df_income %>%
+  group_by(city) %>%
+  summarise(
+    mean = mean(income),
+    median = median(income),
+    sk = round(skewness(income), 2)
+  )
+
+ggplot(df_income, aes(x = income)) +
+  geom_histogram(aes(y = after_stat(density), fill = city),
+                 bins = 40, alpha = 0.7, color = "white") +
+  geom_density(linewidth = 1, color = "black") +
+  geom_vline(data = stats_income, aes(xintercept = mean),
+             color = "#D55E00", linewidth = 1.2, linetype = "dashed") +
+  geom_vline(data = stats_income, aes(xintercept = median),
+             color = "#0072B2", linewidth = 1.2) +
+  geom_label(data = stats_income,
+             aes(x = mean, y = Inf, label = paste("SK =", sk)),
+             vjust = 1.5, hjust = 0.5, size = 4, fontface = "bold",
+             fill = "white", alpha = 0.8) +
+  facet_wrap(~city, scales = "free", ncol = 1) +
+  scale_fill_manual(values = c("#E69F00", "#009E73", "#CC79A7")) +
+  labs(
+    title = "Income Distributions Across Three Cities",
+    subtitle = "Orange dashed = Mean  |  Blue solid = Median",
+    x = "Annual Income ($1000s)",
+    y = "Density"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold", size = 11)
+  )
+```
+
+---
 
 ### Kurtosis
 
-### Definition
+**What it measures:** The "tailedness" of your distribution. Think of it as answering "how extreme are the extremes?"
 
-Kurtosis measures the "tailedness" of a distribution, indicating the presence of extreme values relative to a normal distribution.
+**Formula:**
 
-#### Mathematical Expression
+$K = \frac{n(n+1)}{(n-1)(n-2)(n-3)} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s}\right)^4 - \frac{3(n-1)^2}{(n-2)(n-3)}$
 
-$K = \frac{n(n+1)}{(n-1)(n-2)(n-3)} \sum_{i=1}^n (\frac{x_i - \bar{x}}{s})^4 - \frac{3(n-1)^2}{(n-2)(n-3)}$
+**Quick interpretation:**
 
-#### Example: Legislative Voting Analysis
+- **K > 3** (Leptokurtic): Heavy tails, sharp peak (more extreme values)
+- **K < 3** (Platykurtic): Light tails, flat peak (fewer extreme values)
+- **K ≈ 3** (Mesokurtic): Normal-like behavior
 
+#### Visualization of Kurtosis
 ```{r}
-# Generate example legislative voting agreement scores
-set.seed(456)
-voting_agreement <- c(
-  # Regular voting patterns
-  rnorm(400, mean = 75, sd = 10),
-  # Cross-party cooperation instances
-  rnorm(80, mean = 50, sd = 15),
-  # Party-line votes
-  rnorm(20, mean = 95, sd = 5)
-) |> 
-  pmax(0) |> 
-  pmin(100)
+set.seed(789)
 
-kurt_value <- kurtosis(voting_agreement)
-kurt_value
+# Generate VERY clear examples - all centered at 0 with sd ≈ 1
+n <- 8000
 
-# Visualization with normal distribution comparison
-x_range <- seq(min(voting_agreement)-1, max(voting_agreement)+1, length.out = 100)
-normal_dist <- dnorm(x_range, mean = mean(voting_agreement), sd = sd(voting_agreement))
+# EXTREME heavy tails: mixture of tight center + extreme outliers
+heavy_tails <- c(rnorm(7000, 0, 0.5),    # Very tight center (sharp peak)
+                 rnorm(1000, 0, 4))       # Many extreme outliers
 
-ggplot() +
-  geom_density(
-    data = data.frame(x = voting_agreement), 
-    aes(x = x), 
-    fill = "skyblue", 
-    alpha = 0.5
+# Light tails: uniform distribution (no outliers possible)
+light_tails <- runif(n, -1.73, 1.73)  # Scaled to sd ≈ 1
+
+# Normal: reference distribution
+normal_tails <- rnorm(n, 0, 1)
+
+# Standardize all to same scale
+heavy_tails <- scale(heavy_tails)[,1]
+light_tails <- scale(light_tails)[,1]
+normal_tails <- scale(normal_tails)[,1]
+
+df_kurt <- tibble(
+  value = c(heavy_tails, light_tails, normal_tails),
+  type = factor(rep(c("Heavy Tails (Leptokurtic)", 
+                      "Light Tails (Platykurtic)", 
+                      "Normal (Mesokurtic)"),
+                    each = n),
+                levels = c("Heavy Tails (Leptokurtic)",
+                          "Normal (Mesokurtic)",
+                          "Light Tails (Platykurtic)"))
+) %>%
+  filter(value >= -5 & value <= 5)
+
+# Calculate kurtosis
+stats_kurt <- df_kurt %>%
+  group_by(type) %>%
+  summarise(k = round(kurtosis(value), 2))
+
+# Overlapping density plot - this shows tail behavior best
+ggplot(df_kurt, aes(x = value, color = type, fill = type)) +
+  geom_density(alpha = 0.15, linewidth = 1.5) +
+  geom_vline(xintercept = 0, linetype = "dotted", color = "gray30", 
+             linewidth = 0.8) +
+  annotate("rect", xmin = -5, xmax = -2, ymin = 0, ymax = 0.5,
+           alpha = 0.1, fill = "red") +
+  annotate("rect", xmin = 2, xmax = 5, ymin = 0, ymax = 0.5,
+           alpha = 0.1, fill = "red") +
+  annotate("text", x = -3.5, y = 0.48, label = "Tail Region",
+           color = "darkred", fontface = "bold", size = 4.5) +
+  annotate("text", x = 3.5, y = 0.48, label = "Tail Region",
+           color = "darkred", fontface = "bold", size = 4.5) +
+  annotate("text", x = 0, y = 0.48, label = "Peak Region",
+           color = "darkblue", fontface = "bold", size = 4.5) +
+  scale_color_manual(
+    values = c("#D55E00", "#009E73", "#0072B2"),
+    labels = function(x) {
+      k_val <- stats_kurt$k[match(x, stats_kurt$type)]
+      paste0(x, "\nK = ", k_val)
+    }
   ) +
-  geom_line(
-    data = data.frame(x = x_range, y = normal_dist),
-    aes(x = x, y = y),
-    color = "red",
-    linetype = "dashed"
+  scale_fill_manual(
+    values = c("#D55E00", "#009E73", "#0072B2"),
+    labels = function(x) {
+      k_val <- stats_kurt$k[match(x, stats_kurt$type)]
+      paste0(x, "\nK = ", k_val)
+    }
   ) +
+  coord_cartesian(ylim = c(0, 0.5)) +
   labs(
-    title = str_glue("Legislative Voting Agreement Distribution (Kurtosis = {round(kurt_value, 4)})"),
-    subtitle = "Observed distribution (blue) vs. Normal distribution (red)",
-    x = "Voting Agreement Score (%)",
+    title = "Kurtosis: Comparing Peak Sharpness and Tail Weight",
+    subtitle = "Orange (K=10.3) has SHARP peak + HEAVY tails  |  Pink (K=1.8) is FLAT everywhere",
+    x = "Standardized Value",
+    y = "Density",
+    color = "Distribution Type",
+    fill = "Distribution Type"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "right",
+    legend.text = element_text(size = 10),
+    legend.title = element_text(face = "bold"),
+    plot.title = element_text(face = "bold", size = 14)
+  )
+
+# Faceted view focusing on the differences
+ggplot(df_kurt, aes(x = value, fill = type)) +
+  geom_histogram(aes(y = after_stat(density)), 
+                 bins = 100, alpha = 0.7, color = "white", linewidth = 0.1) +
+  geom_density(linewidth = 1.2, color = "black") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray40") +
+  geom_text(data = stats_kurt,
+            aes(x = Inf, y = Inf, label = paste("K =", k)),
+            hjust = 1.1, vjust = 1.5, size = 6, fontface = "bold") +
+  facet_wrap(~type, ncol = 1, scales = "free_y") +
+  scale_fill_manual(values = c("#D55E00", "#009E73", "#0072B2")) +
+  coord_cartesian(xlim = c(-4, 4)) +
+  labs(
+    title = "Kurtosis Comparison: Notice the Peak and Tails",
+    subtitle = "Heavy tails = Most data clustered + frequent extremes  |  Light tails = Spread evenly, no extremes",
+    x = "Standardized Value",
     y = "Density"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold", size = 12),
+    plot.title = element_text(face = "bold")
+  )
 ```
 
-#### Interpretation Guide
+#### Applied Example: Stock Returns
+```{r}
+set.seed(101)
 
--   **Excess Kurtosis**: Difference from normal distribution's kurtosis
-    (3) 
--   **Leptokurtic (\> 3)**: More extreme values than normal distribution
--   **Platykurtic (\< 3)**: Fewer extreme values than normal distribution
--   **Mesokurtic (= 3)**: Similar to normal distribution
+# Simulate daily stock returns with VERY different kurtosis
+n_days <- 3000
+
+# Volatile crypto: extreme movements (crashes and surges)
+# Most days normal, but frequent extreme events
+crypto_returns <- c(rnorm(2400, 0, 0.8),     # 80% normal days
+                    rnorm(600, 0, 5))         # 20% extreme volatility days
+
+# Stable bond: very consistent, bounded returns (no surprises)
+bond_returns <- runif(n_days, -1.2, 1.2)
+
+# Index fund: typical market behavior
+index_returns <- rnorm(n_days, 0, 1)
+
+# Standardize for comparison
+crypto_returns <- scale(crypto_returns)[,1]
+bond_returns <- scale(bond_returns)[,1]
+index_returns <- scale(index_returns)[,1]
+
+df_returns <- tibble(
+  return = c(crypto_returns, bond_returns, index_returns),
+  investment = factor(rep(c("Cryptocurrency", 
+                            "Bond Fund", 
+                            "Stock Index"),
+                          each = n_days),
+                      levels = c("Cryptocurrency",
+                                "Stock Index",
+                                "Bond Fund"))
+) %>%
+  filter(return >= -5 & return <= 5)
+
+# Calculate kurtosis
+stats_returns <- df_returns %>%
+  group_by(investment) %>%
+  summarise(
+    k = round(kurtosis(return), 2),
+    risk_level = case_when(
+      k > 5 ~ "EXTREME RISK",
+      k > 3.5 ~ "HIGH RISK",
+      k > 2.5 ~ "MODERATE",
+      TRUE ~ "LOW RISK"
+    )
+  )
+
+ggplot(df_returns, aes(x = return, fill = investment)) +
+  geom_histogram(aes(y = after_stat(density)), 
+                 bins = 80, alpha = 0.7, color = "white", linewidth = 0.1) +
+  geom_density(linewidth = 1.2, color = "black") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray40") +
+  geom_label(data = stats_returns,
+             aes(x = Inf, y = Inf, 
+                 label = paste0("K = ", k, "\n", risk_level)),
+             hjust = 1.1, vjust = 1.1, size = 4.5, fontface = "bold",
+             fill = "white", alpha = 0.9) +
+  facet_wrap(~investment, ncol = 1, scales = "free_y") +
+  scale_fill_manual(values = c("#D55E00", "#009E73", "#0072B2")) +
+  coord_cartesian(xlim = c(-4, 4)) +
+  labs(
+    title = "Investment Returns: Kurtosis as Risk Indicator",
+    subtitle = "High K = More 'Black Swan' events (extreme gains AND crashes)",
+    x = "Standardized Daily Return",
+    y = "Density"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold", size = 12)
+  )
+```
+
+---
+
+### Key Takeaways
+
+**Skewness tells you about asymmetry:**
+
+- Positive: Long right tail → Mean pulled above median
+- Negative: Long left tail → Mean pulled below median
+
+**Kurtosis tells you about extremes:**
+
+- High kurtosis (K > 5): Expect frequent outliers - "black swan" events
+- Low kurtosis (K < 2): Data stays predictable, within tight bounds
+- Normal kurtosis (K ≈ 3): Typical bell curve behavior
+
+**Visual cues:**
+
+- **Skewness**: Look at tail length - mean vs median separation
+- **Kurtosis**: Look at peak sharpness AND tail thickness simultaneously
+
+**Practical meaning:**
+
+- High kurtosis ≠ just "fat tails" - it's a sharp peak WITH heavy tails
+- It means: "mostly clustered, but watch out for surprises"
+
+---
 
 ## Exercise 1. Center and dispersion of data
 
@@ -1550,6 +2180,18 @@ This table presents the data for both Company X and Company Y side by side, with
 The mean is the average of all values in a dataset.
 
 Formula: $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$
+
+Można też zapisać ten wzór w postaci:
+
+$\bar{x} = \frac{\sum_{i=1}^{k} x_i f_i}{n}$
+
+gdzie $f_i$ to częstość bezwzględna (liczba wystąpień, waga bezwzględna) $i$-tej wartości, a $k$ to liczba różnych wartości cechy (liczba wartości wyróżnionych).
+
+Z użyciem częstości względnych:
+
+$\bar{x} = \sum_{i=1}^{k} x_i p_i$
+
+gdzie $p_i$ to częstość względna (frakcja, waga znormalizowana) $i$-tej wartości, a $k$ to liczba różnych wartości cechy (liczba wartości wyróżnionych).
 
 ##### Manual Calculation for Company X
 
@@ -1640,6 +2282,36 @@ get_mode(Y)
 The variance measures the average squared deviation from the mean.
 
 Formula: $s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}$
+
+Poprawka Bessela jest stosowana przy obliczaniu wariancji z próby, aby uzyskać nieobciążony estymator wariancji populacji. W standardowym wzorze na wariancję z próby dzielimy przez $(n-1)$ zamiast przez $n$.
+
+**Modyfikacje wzoru dla danych pogrupowanych (szereg częstości):**
+
+Można też zapisać ten wzór w postaci:
+
+$$s^2 = \frac{1}{n-1} \sum_{i=1}^{k} f_i(x_i - \bar{x})^2$$
+
+gdzie $f_i$ to częstość bezwzględna (liczba wystąpień) $i$-tej wartości.
+
+Gdy w obliczeniach stosujemy częstości względne $p = f_i/n$, gdzie:
+
+-   $f_i$ to częstość (liczba wystąpień)
+-   $n$ to całkowita liczebność próby
+
+Wzór na wariancję z uwzględnieniem poprawki Bessela przyjmuje postać:
+
+$$s^2 = \frac{n}{n-1} \sum_{i=1}^{k} p_i(x_i - \bar{x})^2$$
+
+gdzie:
+
+-   $s^2$ to wariancja z próby
+-   $n$ to liczebność próby
+-   $p_i$ to częstość względna $i$-tej wartości
+-   $x_i$ to $i$-ta wartość cechy
+-   $\bar{x}$ to średnia arytmetyczna
+-   $k$ to liczba różnych wartości cechy
+
+Kluczowe jest to, że przy stosowaniu częstości względnych mnożymy całe wyrażenie przez czynnik $\frac{n}{n-1}$, który wprowadza poprawkę Bessela.
 
 ##### Manual Calculation for Company X
 
@@ -1782,10 +2454,6 @@ ggplot(data, aes(x = Company, y = Salary, fill = Company)) +
 2.  Dispersion: Company X shows much higher variance and standard deviation, suggesting greater salary disparities.
 3.  Distribution Shape: Company Y's salaries are more tightly clustered, while Company X has extreme values (potential outliers) that significantly affect its mean and variance.
 4.  Quartiles: Company Y's interquartile range (Q3 - Q1) is slightly larger, but its overall range is much smaller than Company X's.
-
-### Conclusion
-
-This comparative analysis reveals significant differences in salary structures between the two companies. Company X shows greater variability and potential inequality in its pay scale, while Company Y demonstrates a more consistent and narrowly distributed salary range.
 
 ## Exercise 2. Comparing Electoral District Size Variation Between Countries
 
@@ -2308,7 +2976,7 @@ The box plot visualization reveals:
 
 This analysis demonstrates fundamental differences in electoral system design between the two countries, with Country X adopting a more varied approach and Country Y maintaining greater uniformity in district sizes.
 
-## Exercise. Understanding Boxplots Through Life Expectancy Data
+## Exercise 3. Understanding Boxplots Through Life Expectancy Data
 
 ```{r}
 #| message: false
@@ -2347,8 +3015,8 @@ ggplot(data_2007, aes(x = reorder(continent, lifeExp, FUN = median), y = lifeExp
   theme_minimal() +
   theme(
     plot.title = element_text(size = 16, face = "bold"),
-    axis.title = element_text(size = 12),
-    axis.text = element_text(size = 10)
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14)
   ) +
   scale_y_continuous(breaks = seq(40, 85, by = 5))
 ```
@@ -2462,7 +3130,7 @@ knitr::kable(summary_stats, digits = 1,
 #### Measures of Center
 
 | Measure | Pros | Cons | Applicable to |
-|-----------------|-----------------|-----------------|--------------------|
+|------------------|------------------|------------------|------------------|
 | Mean | \- Uses all data points<br>- Allows for further statistical calculations<br>- Ideal for normally distributed data | \- Sensitive to outliers<br>- Not ideal for skewed distributions<br>- Not meaningful for nominal data | Interval, Ratio, some Discrete, Continuous |
 | Median | \- Not affected by outliers<br>- Good for skewed distributions<br>- Can be used with ordinal data | \- Ignores the actual values of most data points<br>- Less useful for further statistical analyses | Ordinal, Interval, Ratio, Discrete, Continuous |
 | Mode | \- Can be used with any data type<br>- Good for finding most common category | \- May not be unique (multimodal)<br>- Not useful for many types of analyses<br>- Ignores magnitude of differences between values | All types |
@@ -2470,7 +3138,7 @@ knitr::kable(summary_stats, digits = 1,
 #### Measures of Variability
 
 | Measure | Pros | Cons | Applicable to |
-|-----------------|-----------------|-----------------|--------------------|
+|------------------|------------------|------------------|------------------|
 | Range | \- Simple to calculate and understand<br>- Gives quick idea of data spread | \- Very sensitive to outliers<br>- Ignores all data between extremes<br>- Not useful for further statistical analyses | Ordinal, Interval, Ratio, Discrete, Continuous |
 | Interquartile Range (IQR) | \- Not affected by outliers<br>- Good for skewed distributions | \- Ignores 50% of the data<br>- Less intuitive than range | Ordinal, Interval, Ratio, Discrete, Continuous |
 | Variance | \- Uses all data points<br>- Basis for many statistical procedures | \- Sensitive to outliers<br>- Units are squared (less intuitive) | Interval, Ratio, some Discrete, Continuous |
@@ -2480,7 +3148,7 @@ knitr::kable(summary_stats, digits = 1,
 #### Measures of Correlation/Association
 
 | Measure | Pros | Cons | Applicable to |
-|-----------------|-----------------|-----------------|--------------------|
+|------------------|------------------|------------------|------------------|
 | Pearson's r | \- Measures linear relationship<br>- Widely used and understood | \- Assumes normal distribution<br>- Sensitive to outliers<br>- Only captures linear relationships | Interval, Ratio, Continuous |
 | Spearman's rho | \- Can be used with ordinal data<br>- Captures monotonic relationships<br>- Less sensitive to outliers | \- Loses information by converting to ranks<br>- May miss some types of relationships | Ordinal, Interval, Ratio |
 | Kendall's tau | \- Can be used with ordinal data<br>- More robust than Spearman's for small samples<br>- Has nice interpretation (probability of concordance) | \- Loses information by only considering order<br>- Computationally more intensive | Ordinal, Interval, Ratio |

@@ -216,11 +216,18 @@ cat("Kendall's Tau:", round(cor(data$stress_level, data$cognitive_performance, m
 ## Example 4: Electoral District Magnitude vs. LH Index
 
 ```{r}
-DM <- c(3, 4, 5, 6, 7, 8)
-LHI <- c(15.5, 14.25, 13.5, 13.5, 13, 12.75)
+# DM <- c(3, 4, 5, 6, 7, 8)
+# LHI <- c(15, 12.15, 11.5, 11.5, 11, 10.85)
 
-DM <- c(3, 4, 5, 6, 7, 8)
-LHI <- c(15, 12.15, 11.5, 11.5, 11, 10.85)
+DM <- c(3, 4, 5, 6, 7, 8, 10)
+LHI <- c(15.5, 14.25, 13.5, 13.5, 13, 12.75, 8.5)
+
+DM <- c(3, 4, 5, 6, 7, 9, 10)
+LHI <- c(15.5, 14.25, 13.5, 13.5, 13, 12.25, 10.75)
+
+DM <- c(4, 4, 5, 6, 7, 9)
+LHI <- c(15.5, 14.25, 13.5, 13.5, 13.25, 11.25)
+
 
 cat("Variance of DM:", round(var(DM), 2), "\n")
 cat("Variance of LHI:", round(var(LHI), 2), "\n")
@@ -489,3 +496,87 @@ In this logistic regression example:
 6.  Finally, we made a prediction for a new voter using the fitted model.
 
 This example demonstrates how logistic regression can be used in political science to analyze and predict voting behavior based on demographic factors.
+
+### Example 5: Anxiety vs. Test Score
+
+
+```{r}
+#| echo: true
+# Our data
+anxiety <- c(2.5, 3.2, 4.1, 4.8, 5.6, 6.3, 7.0, 7.9)  # Anxiety scores
+performance <- rev(c(72, 68, 74, 77, 82, 78, 85, 80))      # Exam scores (%)
+anxiety
+performance
+
+# Create a data frame for easy viewing
+data <- data.frame(
+  Student = 1:8,
+  Anxiety = anxiety,
+  Performance = performance
+)
+print(data)
+
+#| echo: true
+# Verify our calculations
+mean_x <- mean(anxiety)
+mean_y <- mean(performance)
+cat("Mean Anxiety:", mean_x, "\n")
+cat("Mean Performance:", mean_y, "\n")
+
+cat("Variance of Anxiety:", var(anxiety), "\n")
+cat("SD of Anxiety:", sd(anxiety), "\n")
+cat("Variance of Performance:", var(performance), "\n")
+cat("SD of Performance:", sd(performance), "\n")
+
+actual_cor <- cor(anxiety, performance)
+cat("Pearson correlation coefficient:", actual_cor, "\n")
+
+#| echo: true
+#| warning: false
+# Visualize errors for an arbitrary line
+library(ggplot2)
+
+# Create a simple model
+data <- data.frame(anxiety = anxiety, performance = performance)
+simple_model <- lm(performance ~ anxiety, data = data)
+summary(simple_model)
+data$predicted <- predict(simple_model)
+
+# Plot with error lines
+ggplot(data, aes(x = anxiety, y = performance)) +
+  geom_point(size = 4, color = "darkblue") +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  geom_segment(aes(xend = anxiety, yend = predicted), 
+               color = "gray50", linetype = "dashed", alpha = 0.7) +
+  labs(
+    title = "Visualizing Errors in Regression",
+    subtitle = "Dashed lines show errors (residuals) from each point to the regression line",
+    x = "Test Anxiety Score",
+    y = "Exam Performance (%)"
+  ) +
+  theme_minimal()
+
+```
+
+
+```{r}
+#| echo: true
+# Adjusted data for more realistic correlation
+anxiety <- c(2.5, 3.2, 4.1, 4.8, 5.6, 6.3, 7.0, 7.9)
+performance <- c(82, 84, 78, 75, 72, 71, 67, 65)
+
+# Recalculate with adjusted data
+mean_y_new <- mean(performance)  # 74.25
+var_y_new <- var(performance)     # 49.07
+sd_y_new <- sd(performance)       # 7.005
+
+# Calculate new covariance
+deviations_x <- anxiety - mean(anxiety)
+deviations_y <- performance - mean(performance)
+cov_xy_new <- sum(deviations_x * deviations_y) / 7  # -10.05
+
+# New correlation
+cor_new <- cor(anxiety, performance)
+cat("Adjusted correlation:", cor_new, "\n")
+
+```

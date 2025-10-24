@@ -1,0 +1,516 @@
+# Research Designs: Experimental and Non-Experimental Approaches
+
+```{r setup}
+#| include: false
+library(ggplot2)
+library(dplyr)
+```
+
+## Introduction
+
+Research designs are fundamental to the scientific process, providing structured approaches to investigate hypotheses and answer research questions. This chapter explores two main categories of research designs: experimental and non-experimental, with a focus on the Neyman-Rubin potential outcome framework. We'll delve into various design types, their characteristics, and provide practical examples using R for data analysis and visualization.
+
+
+## Experimental Designs
+
+Experimental designs are characterized by the researcher's control over the independent variable(s) and random assignment of subjects to different conditions. These designs are considered the gold standard for establishing causal relationships.
+
+### Randomized Controlled Trials (RCTs)
+
+RCTs are the most rigorous form of experimental design. They involve:
+
+1. Random assignment of subjects to treatment and control groups
+2. Manipulation of the independent variable
+3. Measurement of the dependent variable
+
+Let's visualize a simple RCT design:
+
+```{r}
+#| label: rct-plot
+#| fig-cap: "Randomized Controlled Trial Design"
+
+library(ggplot2)
+library(dplyr)
+
+set.seed(123)
+
+# Create sample data
+n <- 100
+data <- data.frame(
+  id = 1:n,
+  group = factor(rep(c("Control", "Treatment"), each = n/2)),
+  pre_test = rnorm(n, mean = 50, sd = 10),
+  post_test = NA
+)
+
+# Simulate treatment effect
+data$post_test <- ifelse(data$group == "Treatment",
+                         data$pre_test + rnorm(n/2, mean = 10, sd = 5),
+                         data$pre_test + rnorm(n/2, mean = 0, sd = 5))
+
+# Reshape data for plotting
+data_long <- tidyr::pivot_longer(data, cols = c(pre_test, post_test),
+                                 names_to = "time", values_to = "score")
+
+# Create plot
+ggplot(data_long, aes(x = time, y = score, color = group, group = interaction(id, group))) +
+  geom_line(alpha = 0.3) +
+  geom_point(alpha = 0.5) +
+  stat_summary(aes(group = group), fun = mean, geom = "line", size = 1.5) +
+  labs(title = "Pre-test and Post-test Scores in RCT",
+       x = "Time", y = "Score", color = "Group") +
+  theme_minimal() +
+  scale_color_brewer(palette = "Set1")
+```
+
+This plot shows individual trajectories and group means for pre-test and post-test scores in a hypothetical RCT. The treatment group shows a clear increase in scores compared to the control group.
+
+
+## A/B Testing: An Example and Comparison with RCTs
+
+
+A/B testing is a widely used experimental method in digital marketing, user experience design, and product development. This chapter will present an example of A/B testing, explain its methodology, and discuss how it differs from Randomized Controlled Trials (RCTs).
+
+### Example: Website Landing Page Conversion Rate
+
+Let's consider an example where an e-commerce company wants to improve the conversion rate of their landing page. They decide to test two different layouts: the current layout (A) and a new layout (B).
+
+```{r}
+#| label: fig-ab-test
+#| fig-cap: "A/B Test Results: Landing Page Conversion Rates"
+#| warning: false
+
+library(ggplot2)
+library(dplyr)
+
+set.seed(1234)
+
+# Simulate data
+n_visitors <- 10000
+data <- data.frame(
+  Version = sample(c("A", "B"), n_visitors, replace = TRUE),
+  Converted = rbinom(n_visitors, 1, ifelse(sample(c("A", "B"), n_visitors, replace = TRUE) == "A", 0.10, 0.12))
+)
+
+# Calculate conversion rates
+conversion_rates <- data %>%
+  group_by(Version) %>%
+  summarise(
+    Visitors = n(),
+    Conversions = sum(Converted),
+    ConversionRate = mean(Converted)
+  )
+
+# Visualize results
+ggplot(conversion_rates, aes(x = Version, y = ConversionRate, fill = Version)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = sprintf("%.2f%%", ConversionRate * 100)), 
+            vjust = -0.5, size = 4) +
+  theme_minimal() +
+  labs(title = "A/B Test: Landing Page Conversion Rates",
+       x = "Page Version", y = "Conversion Rate") +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 0.15)) +
+  scale_fill_brewer(palette = "Set1")
+```
+
+In this example, we simulated data for 10,000 visitors randomly assigned to either version A or B of the landing page. The results show that version B has a slightly higher conversion rate (11.44%) compared to version A (10.94%).
+
+### A/B Testing Methodology
+
+A/B testing typically follows these steps:
+
+1. Identify the element to be tested (e.g., landing page layout).
+2. Create two versions: the control (A) and the variant (B).
+3. Randomly assign visitors to either version.
+4. Collect data on the metric of interest (e.g., conversion rate).
+5. Analyze the results using statistical methods.
+6. Make a decision based on the results.
+
+### Differences between A/B Testing and RCTs
+
+While A/B testing and Randomized Controlled Trials (RCTs) share some similarities, they have several key differences:
+
+1. **Scope and Context:**
+   - A/B Testing: Typically used in digital environments for quick, iterative improvements.
+   - RCTs: Used in various fields, including medicine, psychology, and social sciences, often for more complex interventions.
+
+2. **Duration:**
+   - A/B Testing: Usually shorter, often running for days or weeks.
+   - RCTs: Can last months or years, especially in medical research.
+
+3. **Sample Size:**
+   - A/B Testing: Can involve very large sample sizes due to ease of implementation in digital platforms.
+   - RCTs: Sample sizes are often smaller due to practical and cost constraints.
+
+4. **Blinding:**
+   - A/B Testing: Participants are usually unaware they're part of a test.
+   - RCTs: May involve single, double, or triple blinding to reduce bias.
+
+5. **Ethical Considerations:**
+   - A/B Testing: Generally involves low-risk changes with minimal ethical concerns.
+   - RCTs: Often require extensive ethical review, especially in medical contexts.
+
+6. **Outcome Measures:**
+   - A/B Testing: Typically focuses on a single, easily measurable outcome (e.g., click-through rate).
+   - RCTs: Often measure multiple outcomes, including potential side effects or long-term impacts.
+
+7. **Generalizability:**
+   - A/B Testing: Results are often specific to the platform or context tested.
+   - RCTs: Aim for broader generalizability, though this can vary.
+
+8. **Analysis Complexity:**
+   - A/B Testing: Often uses simpler statistical analyses.
+   - RCTs: May involve more complex statistical methods to account for various factors.
+
+
+A/B testing is a powerful tool for making data-driven decisions in digital environments. While it shares the fundamental principle of randomization with RCTs, it is typically simpler, faster, and more focused on specific, measurable outcomes in digital contexts. Understanding these differences helps researchers and practitioners choose the most appropriate method for their specific needs and constraints.
+
+
+### Example 1: Effect of Sleep Duration on Cognitive Performance
+
+**Research Question:** Does increasing sleep duration improve cognitive performance in college students?
+
+```{r}
+#| label: fig-sleep-experiment
+#| fig-cap: "Effect of Sleep Duration on Cognitive Performance"
+
+# Generating sample data
+set.seed(456)
+n <- 100
+pre_experimental <- rnorm(n, mean = 70, sd = 10)
+post_experimental <- pre_experimental + rnorm(n, mean = 8, sd = 5)
+pre_control <- rnorm(n, mean = 70, sd = 10)
+post_control <- pre_control + rnorm(n, mean = 1, sd = 5)
+
+data <- data.frame(
+  Group = rep(c("Experimental", "Control"), each = n*2),
+  Time = rep(rep(c("Pre", "Post"), each = n), 2),
+  Score = c(pre_experimental, post_experimental, pre_control, post_control)
+)
+
+# Creating the plot
+ggplot(data, aes(x = Time, y = Score, color = Group, group = Group)) +
+  geom_point(position = position_jitter(width = 0.2), alpha = 0.5) +
+  stat_summary(fun = mean, geom = "point", size = 3) +
+  stat_summary(fun = mean, geom = "line") +
+  theme_minimal() +
+  ggtitle("Effect of Increased Sleep Duration on Cognitive Performance") +
+  xlab("Time") +
+  ylab("Cognitive Performance Score")
+```
+
+#### Interpretation
+
+This plot demonstrates the effect of increased sleep duration on cognitive performance. The experimental group, which increased their sleep duration, shows a more substantial improvement in cognitive performance compared to the control group. This suggests that increasing sleep duration may positively impact cognitive abilities in college students.
+
+### Example 2: Impact of Mindfulness Training on Stress Levels
+
+**Research Question:** Can a short-term mindfulness training program reduce stress levels in healthcare workers?
+
+```{r}
+#| label: fig-mindfulness-experiment
+#| fig-cap: "Impact of Mindfulness Training on Stress Levels"
+
+# Generating sample data
+set.seed(789)
+n <- 120
+pre_experimental <- rnorm(n, mean = 60, sd = 15)
+post_experimental <- pre_experimental + rnorm(n, mean = -12, sd = 8)
+pre_control <- rnorm(n, mean = 60, sd = 15)
+post_control <- pre_control + rnorm(n, mean = -2, sd = 6)
+
+data <- data.frame(
+  Group = rep(c("Mindfulness", "Control"), each = n*2),
+  Time = rep(rep(c("Pre", "Post"), each = n), 2),
+  StressScore = c(pre_experimental, post_experimental, pre_control, post_control)
+)
+
+# Creating the plot
+ggplot(data, aes(x = Time, y = StressScore, color = Group, group = Group)) +
+  geom_point(position = position_jitter(width = 0.2), alpha = 0.5) +
+  stat_summary(fun = mean, geom = "point", size = 3) +
+  stat_summary(fun = mean, geom = "line") +
+  theme_minimal() +
+  ggtitle("Impact of Mindfulness Training on Stress Levels") +
+  xlab("Time") +
+  ylab("Stress Score")
+```
+
+#### Interpretation
+
+This visualization illustrates the impact of a mindfulness training program on stress levels in healthcare workers. The mindfulness group shows a more significant decrease in stress scores compared to the control group. This suggests that the mindfulness training program may be effective in reducing stress levels among healthcare workers.
+
+
+When interpreting such results, it's important to consider:
+
+1. The magnitude of the change in each group
+2. The difference in change between the experimental and control groups
+3. The variability within each group
+4. Any potential confounding factors not accounted for in the experimental design
+
+These examples provide a template for visualizing and interpreting similar experimental designs across different research contexts.
+
+
+### Factorial Designs
+
+Factorial designs allow researchers to study the effects of multiple independent variables simultaneously. They are efficient and can reveal interaction effects between variables.
+
+Example of a 2x2 factorial design:
+
+```{r}
+#| label: factorial-plot
+#| fig-cap: "2x2 Factorial Design"
+
+# Create sample data for 2x2 factorial design
+set.seed(456)
+n_per_group <- 25
+
+factorial_data <- data.frame(
+  factor_a = rep(rep(c("Low", "High"), each = n_per_group), 2),
+  factor_b = rep(c("Control", "Treatment"), each = n_per_group * 2),
+  outcome = NA
+)
+
+# Generate outcomes
+factorial_data$outcome <- ifelse(factorial_data$factor_a == "Low" & factorial_data$factor_b == "Control",
+                                 rnorm(n_per_group, 40, 5),
+                                 ifelse(factorial_data$factor_a == "Low" & factorial_data$factor_b == "Treatment",
+                                        rnorm(n_per_group, 45, 5),
+                                        ifelse(factorial_data$factor_a == "High" & factorial_data$factor_b == "Control",
+                                               rnorm(n_per_group, 50, 5),
+                                               rnorm(n_per_group, 60, 5))))
+
+# Create plot
+ggplot(factorial_data, aes(x = factor_b, y = outcome, fill = factor_a)) +
+  geom_boxplot() +
+  facet_wrap(~factor_a, scales = "free_x") +
+  labs(title = "2x2 Factorial Design",
+       x = "Factor B", y = "Outcome", fill = "Factor A") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set2")
+```
+
+This plot illustrates a 2x2 factorial design, showing the effects of two factors (A and B) on the outcome variable. We can observe main effects for both factors and a potential interaction effect.
+
+
+## Non-Experimental Designs
+
+Non-experimental designs are used when randomization or manipulation of variables is not possible or ethical. They include observational/descriptive studies and quasi-experimental designs.
+
+### Observational Studies
+
+Observational studies involve collecting data without manipulating variables. They are useful for exploring relationships and generating hypotheses.
+
+Example: Correlation study
+
+```{r}
+#| label: correlation-plot
+#| fig-cap: "Correlation between Study Time and Exam Score"
+
+set.seed(789)
+n <- 100
+study_time <- runif(n, 0, 10)
+exam_score <- 50 + 5 * study_time + rnorm(n, 0, 10)
+
+correlation_data <- data.frame(study_time, exam_score)
+
+ggplot(correlation_data, aes(x = study_time, y = exam_score)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "Correlation between Study Time and Exam Score",
+       x = "Study Time (hours)", y = "Exam Score") +
+  theme_minimal()
+```
+
+This scatter plot shows the relationship between study time and exam scores, illustrating a positive correlation typical in observational studies.
+
+### Quasi-Experimental Designs
+
+Quasi-experimental designs lack random assignment but attempt to establish causal relationships. Common types include:
+
+1. Difference-in-Differences (DiD)
+2. Regression Discontinuity Design (RDD)
+
+#### Difference-in-Differences (DiD)
+
+DiD is used to estimate treatment effects by comparing the average change over time in the outcome variable for the treatment group to the average change over time for the control group.
+
+Let's simulate a DiD analysis using the `plm` package:
+
+```{r}
+#| label: did-analysis
+#| fig-cap: "Difference-in-Differences Analysis"
+
+library(plm)
+library(ggplot2)
+
+# Set seed for reproducibility
+set.seed(101)
+
+# Generate synthetic panel data
+n <- 1000
+time_periods <- 5
+intervention_time <- 3
+
+panel_data <- data.frame(
+  id = rep(1:n, each = time_periods),
+  time = rep(1:time_periods, times = n),
+  treatment = rep(sample(c(0, 1), n, replace = TRUE), each = time_periods)
+)
+
+# Generate outcomes
+panel_data$outcome <- with(panel_data,
+                           10 + 2 * time + 5 * treatment + 
+                           3 * (time >= intervention_time & treatment == 1) + 
+                           rnorm(n * time_periods, 0, 2))
+
+# Create post-treatment indicator
+panel_data$post <- as.integer(panel_data$time >= intervention_time)
+
+# Estimate DiD model
+did_model <- plm(outcome ~ treatment * post, 
+                 data = panel_data, 
+                 index = c("id", "time"), 
+                 model = "within")
+
+# Summarize results
+summary_did <- summary(did_model)
+
+# Calculate group means for each time period
+group_means <- aggregate(outcome ~ time + treatment, data = panel_data, FUN = mean)
+
+# Visualize DiD
+ggplot(group_means, aes(x = time, y = outcome, color = factor(treatment), group = treatment)) +
+  geom_line(size = 1) +
+  geom_point(size = 3) +
+  geom_vline(xintercept = intervention_time, linetype = "dashed", color = "gray50") +
+  labs(title = "Difference-in-Differences Analysis",
+       subtitle = paste("Estimated treatment effect:", round(coef(did_model)["treatment:post"], 3)),
+       x = "Time", y = "Outcome", color = "Treatment Group") +
+  theme_minimal() +
+  scale_color_brewer(palette = "Set1", labels = c("Control", "Treatment")) +
+  scale_x_continuous(breaks = 1:time_periods)
+
+# Print model summary
+print(summary_did)
+```
+
+The plot shows the average outcomes for treatment and control groups over time. The vertical dashed line indicates the intervention point. The DiD estimate is the difference between the two groups' changes from pre- to post-intervention periods.
+
+DiD Model:
+
+- The model outcome ~ treatment * post estimates:
+- The average treatment effect on the treated (ATT) after the intervention
+- The coefficient on treatment:post represents this effect
+
+Interpretation of Results:
+Looking at the model summary:
+
+- The coefficient for treatment:post is the DiD estimator. It represents the average treatment effect on the treated after the intervention.
+- If this coefficient is statistically significant, it suggests that the treatment had a causal effect on the outcome.
+- The magnitude of this coefficient tells us the size of the treatment effect.
+
+Visualization:
+The plot shows:
+
+- Separate trend lines for the treatment and control groups
+- A vertical dashed line indicating the intervention time
+- The parallel trends assumption can be visually assessed by looking at the pre-intervention period
+- The divergence of the lines after the intervention represents the treatment effect
+
+Assumptions and Limitations:
+
+It's important to note some key assumptions of DiD:
+
+- Parallel trends: In the absence of treatment, the difference between the treatment and control groups would remain constant over time.
+- No spillover effects: The treatment does not affect the control group.
+- No compositional changes: The composition of treatment and control groups remains stable over time.
+
+
+#### Regression Discontinuity Design (RDD)
+
+RDD is used when treatment assignment is determined by a cutoff value on a continuous variable. It compares observations just above and below the cutoff to estimate the treatment effect.
+
+Let's implement an RDD analysis using the `rdrobust` package:
+
+```{r}
+#| label: rdd-analysis
+#| fig-cap: "Regression Discontinuity Design Analysis"
+
+library(rdrobust)
+
+# Generate synthetic RDD data
+set.seed(202)
+n <- 1000
+x <- runif(n, -1, 1)
+y <- 3 + 2 * x + 4 * (x >= 0) + rnorm(n, 0, 1)
+
+rdd_data <- data.frame(x, y)
+
+# RDD analysis
+rdd_result <- rdrobust(y, x, c = 0)
+summary(rdd_result)
+
+# Visualize RDD
+ggplot(rdd_data, aes(x = x, y = y)) +
+  geom_point(alpha = 0.4) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "red") +
+  geom_smooth(data = subset(rdd_data, x < 0), method = "lm", se = FALSE, color = "blue") +
+  geom_smooth(data = subset(rdd_data, x >= 0), method = "lm", se = FALSE, color = "green") +
+  labs(title = "Regression Discontinuity Design",
+       x = "Running Variable", y = "Outcome") +
+  theme_minimal()
+```
+
+The plot shows the discontinuity at the cutoff point (x = 0), with separate regression lines fitted on either side. The treatment effect is estimated by the gap between these lines at the cutoff.
+
+## The Neyman-Rubin Potential Outcome Framework
+
+The Neyman-Rubin potential outcome framework provides a formal approach to causal inference. It introduces the concept of potential outcomes: for each unit, we consider the outcome under treatment and the outcome under control, even though we can only observe one in reality.
+
+Key concepts:
+
+1. **Potential Outcomes**: $Y_i(1)$ and $Y_i(0)$ for treatment and control, respectively.
+2. **Observed Outcome**: $Y_i = Y_i(1)T_i + Y_i(0)(1-T_i)$, where $T_i$ is the treatment indicator.
+3. **Individual Treatment Effect**: $\tau_i = Y_i(1) - Y_i(0)$
+4. **Average Treatment Effect (ATE)**: $E[\tau_i] = E[Y_i(1) - Y_i(0)]$
+
+The framework emphasizes the "fundamental problem of causal inference": we can never observe both potential outcomes for a single unit simultaneously.
+
+### Example: Estimating ATE in an RCT
+
+In an RCT, random assignment ensures that treatment is independent of potential outcomes, allowing unbiased estimation of the ATE:
+
+$$
+\hat{ATE} = \frac{1}{n_1} \sum_{i:T_i=1} Y_i - \frac{1}{n_0} \sum_{i:T_i=0} Y_i
+$$
+
+Where $n_1$ and $n_0$ are the numbers of treated and control units, respectively.
+
+```{r}
+#| label: ate-estimation
+
+# Using the RCT data from earlier
+ate_estimate <- mean(data$post_test[data$group == "Treatment"]) - 
+                mean(data$post_test[data$group == "Control"])
+
+cat("Estimated Average Treatment Effect:", round(ate_estimate, 2))
+```
+
+This estimate represents the causal effect of the treatment under the assumptions of the potential outcome framework.
+
+## Conclusion
+
+This chapter has explored various research designs, from experimental approaches like RCTs and factorial designs to non-experimental methods such as observational studies and quasi-experimental designs. We've demonstrated how to implement and visualize these designs using R, and introduced the Neyman-Rubin potential outcome framework for causal inference.
+
+Understanding these designs and their appropriate use is crucial for conducting rigorous research and drawing valid causal conclusions. Each design has its strengths and limitations, and the choice of design should be guided by the research question, ethical considerations, and practical constraints.
+
+## References
+
+1. Imbens, G. W., & Rubin, D. B. (2015). Causal Inference for Statistics, Social, and Biomedical Sciences: An Introduction. Cambridge University Press.
+
+2. Angrist, J. D., & Pischke, J. S. (2008). Mostly Harmless Econometrics: An Empiricist's Companion. Princeton University Press.
+
+3. Shadish, W. R., Cook, T. D., & Campbell, D. T. (2002). Experimental and Quasi-Experimental Designs for Generalized Causal Inference. Houghton Mifflin.
+
+4. Cunningham, S. (2021). Causal Inference: The Mixtape. Yale University Press.

@@ -1,314 +1,435 @@
-# Od Próby do Populacji - Zrozumienie Losowości, Pobierania Próby i Wnioskowania
-
-### Metody Doboru Próby
-
-### Dobór Probabilistyczny (Losowy)
-
-Metody doboru probabilistycznego opierają się na losowym doborze, gdzie każdy członek populacji ma znaną, niezerową szansę na wybór. Metody te pozwalają badaczom obliczyć błąd próby i wyciągać wnioski statystyczne o populacji.
-
-1. **Prosty Dobór Losowy (SRS)**
-   * **Definicja**: Każdy członek populacji ma równą szansę na wybór.
-   * **Zalety**: Minimalizuje błąd selekcji; umożliwia prostą analizę statystyczną.
-   * **Wady**: Wymaga kompletnej operatu losowania; może nie uchwycić wystarczającej liczby członków mniejszych podgrup.
-   * **Przykład**: Aby wybrać 100 studentów z uniwersytetu liczącego 10 000 studentów, przypisz każdemu studentowi numer i użyj generatora liczb losowych do wybrania 100 numerów.
-   * **Najlepsze zastosowanie**: Gdy populacja jest względnie jednorodna i dostępna jest kompletna lista członków populacji.
-
-2. **Dobór Losowy Warstwowy**
-   * **Definicja**: Populacja jest podzielona na wzajemnie wykluczające się podgrupy (warstwy) na podstawie wspólnych cech, a następnie próbki są losowo wybierane z każdej warstwy.
-   * **Zalety**: Zapewnia reprezentację kluczowych podgrup; może poprawić precyzję dla tej samej wielkości próby co SRS; umożliwia analizę wewnątrz i między warstwami.
-   * **Wady**: Wymaga wcześniejszej znajomości cech populacji do stratyfikacji; bardziej złożona analiza.
-   * **Przykład**: W krajowym sondażu politycznym, podziel populację na warstwy według regionów geograficznych (Północny-Wschód, Północny-Zachód, Południe, itp.) i następnie losowo pobierz próbki z każdego regionu proporcjonalnie do ich wielkości populacji.
-   * **Najlepsze zastosowanie**: Gdy populacja zawiera wyraźne podgrupy, które mogą reagować różnie na pytanie badawcze.
-
-3. **Dobór Grupowy (Klastrowy)**
-   * **Definicja**: Populacja jest podzielona na grupy (zwykle geograficzne), niektóre grupy są losowo wybierane, a wszyscy członkowie w tych grupach są badani.
-   * **Zalety**: Bardziej opłacalny gdy populacja jest geograficznie rozproszona; nie wymaga kompletnej listy członków populacji.
-   * **Wady**: Niższa precyzja statystyczna niż SRS lub dobór warstwowy; klastry muszą być reprezentatywne.
-   * **Przykład**: Aby zbadać nawyki uczenia się uczniów szkół średnich, losowo wybierz 20 szkół średnich z całego kraju i zbadaj wszystkich uczniów w tych szkołach.
-   * **Najlepsze zastosowanie**: Gdy populacja jest szeroko rozproszona geograficznie, a dotarcie do wszystkich jednostek byłoby kosztowne.
-
-4. **Dobór Systematyczny**
-   * **Definicja**: Wybieranie co k-tego elementu z listy po losowym starcie.
-   * **Zalety**: Prosty w implementacji; często bardziej praktyczny niż SRS; może uniknąć efektów sąsiedztwa.
-   * **Wady**: Może wprowadzić błąd, jeśli w liście występuje okresowy wzorzec.
-   * **Przykład**: W zatłoczonym centrum handlowym, badaj co 20. osobę, która wchodzi, zaczynając od losowo wybranego numeru między 1 a 20.
-   * **Najlepsze zastosowanie**: Gdy populacja jest uporządkowana losowo lub w sposób niezwiązany ze zmiennymi badania.
-
-5. **Dobór Wielostopniowy**
-   * **Definicja**: Łączenie wielu metod próbkowania w etapach.
-   * **Zalety**: Praktyczny dla badań na dużą skalę; równoważy koszty i precyzję.
-   * **Wady**: Złożony projekt i analiza; wiele etapów może kumulować błędy próbkowania.
-   * **Przykład**: Najpierw losowo wybierz powiaty (dobór klastrowy), następnie losowo wybierz gospodarstwa domowe w tych powiatach (prosty dobór losowy), a na końcu wybierz jednego dorosłego z każdego gospodarstwa (dobór systematyczny).
-   * **Najlepsze zastosowanie**: Badanie dużych, złożonych populacji na rozległych obszarach geograficznych.
-
-### Dobór Nieprobabilistyczny (Nielosowy)
-
-Dobór nieprobabilistyczny nie opiera się na losowym wyborze, co oznacza, że wnioskowanie statystyczne o populacji musi być dokonywane z ostrożnością. Chociaż może wprowadzać błąd, w niektórych sytuacjach jest niezbędny.
-
-1. **Dobór Przypadkowy (Convenience Sampling)**
-   * **Definicja**: Wybieranie łatwo dostępnych podmiotów.
-   * **Zalety**: Szybki, niedrogi i łatwy w implementacji.
-   * **Wady**: Wysokie ryzyko błędu selekcji; ograniczona możliwość uogólniania.
-   * **Przykład**: Badacz studiujący wzorce snu studentów może ankietować studentów ze swoich własnych zajęć.
-   * **Najlepsze zastosowanie**: Badania pilotażowe, badania eksploracyjne lub gdy zasoby są znacznie ograniczone.
-
-2. **Dobór Celowy**
-   * **Definicja**: Wybieranie podmiotów na podstawie określonych cech istotnych dla pytania badawczego.
-   * **Zalety**: Koncentruje się na istotnych przypadkach; przydatny do dogłębnych badań określonych grup.
-   * **Wady**: Błąd badacza w wyborze; ograniczona możliwość uogólniania.
-   * **Przykład**: W badaniu doświadczeń dyrektorów generalnych w branży technologicznej, celowo poszukuj i przeprowadzaj wywiady z dyrektorami różnych firm technologicznych.
-   * **Najlepsze zastosowanie**: Badania jakościowe, studia przypadków lub badanie unikalnych populacji.
-
-3. **Dobór Kuli Śnieżnej**
-   * **Definicja**: Uczestnicy rekrutują innych uczestników ze swoich sieci.
-   * **Zalety**: Dostęp do trudno dostępnych lub ukrytych populacji; bazuje na sieciach społecznych.
-   * **Wady**: Próba stronnicza w kierunku osób w określonych sieciach społecznych; nie można obliczyć prawdopodobieństwa wyboru.
-   * **Przykład**: W badaniu dostępu nielegalnych imigrantów do opieki zdrowotnej, badacze proszą początkowych uczestników o polecenie innych potencjalnych uczestników.
-   * **Najlepsze zastosowanie**: Badanie rzadkich populacji lub wrażliwych tematów, gdzie nie istnieje operat losowania.
-
-4. **Dobór Kwotowy**
-   * **Definicja**: Wybieranie uczestników w celu spełnienia określonych kwot dla pewnych cech, aby dopasować do znanych parametrów populacji.
-   * **Zalety**: Zapewnia reprezentację kluczowych grup demograficznych; szybszy i tańszy niż próbkowanie probabilistyczne; nie wymaga operatu losowania.
-   * **Wady**: Nielosowy wybór w ramach kwot może wprowadzić błąd; wnioskowanie jest ograniczone.
-   * **Przykład**: W badaniu rynkowym, badacze upewniają się, że przeprowadzają wywiady z określoną liczbą osób z różnych grup wiekowych, płci i poziomów dochodów.
-   * **Najlepsze zastosowanie**: Komercyjne sondaże, badania rynkowe lub gdy próbkowanie probabilistyczne nie jest wykonalne.
-
-### Próby Kwotowe vs. Próby Warstwowe: Porównanie i Praktyczne Zastosowania
+# Rzetelność i Trafność w Badaniach Statystycznych
 
-Choć na pierwszy rzut oka próbkowanie warstwowe i kwotowe może wydawać się podobne, istnieją między nimi fundamentalne różnice:
+W naukach o danych i badaniach naukowych, dwa kluczowe pojęcia, które określają jakość pomiarów i badań, to rzetelność i trafność. Zrozumienie tych pojęć jest niezbędne do prowadzenia solidnych badań i wyciągania znaczących wniosków z danych.
 
-#### Kluczowe różnice między doborem warstwowym a kwotowym:
+## Definiowanie Rzetelności i Trafności
 
-1. **Podstawa metodologiczna**:
-   * **Dobór warstwowy**: Jest metodą probabilistyczną, gdzie po podziale na warstwy, jednostki w każdej warstwie są wybierane losowo.
-   * **Dobór kwotowy**: Jest metodą nieprobabilistyczną, gdzie badacz lub ankieter ma swobodę wyboru konkretnych jednostek, o ile spełnione są założone kwoty.
+**Rzetelność** odnosi się do spójności pomiaru. Rzetelny pomiar lub badanie daje podobne wyniki w spójnych warunkach.
 
-2. **Możliwość wnioskowania statystycznego**:
-   * **Dobór warstwowy**: Pozwala na obliczenie błędu próbkowania i przedziałów ufności, umożliwiając formalne wnioskowanie statystyczne.
-   * **Dobór kwotowy**: Nie pozwala na obliczenie błędu próbkowania, co ogranicza możliwości formalnego wnioskowania statystycznego.
+**Trafność** odnosi się do dokładności pomiaru. Trafny pomiar lub badanie dokładnie reprezentuje to, co twierdzi, że mierzy.
 
-3. **Kontrola procesu doboru**:
-   * **Dobór warstwowy**: Każdy etap procesu doboru jest kontrolowany przez badacza – od definicji warstw po losowy wybór jednostek w warstwach.
-   * **Dobór kwotowy**: Ostateczny wybór respondentów pozostaje w rękach ankieterów, co może wprowadzać nieświadome obciążenia.
+## Cztery Kombinacje Rzetelności i Trafności
 
-4. **Praktyczne wdrożenie**:
-   * **Dobór warstwowy**: Wymaga operatu losowania (kompletnej listy populacji) do przeprowadzenia losowania.
-   * **Dobór kwotowy**: Nie wymaga operatu losowania, a jedynie znajomości rozkładu kluczowych cech w populacji.
+Istnieją cztery możliwe kombinacje rzetelności i trafności:
+
+1.  Wysoka Rzetelność, Wysoka Trafność
+2.  Wysoka Rzetelność, Niska Trafność
+3.  Niska Rzetelność, Wysoka Trafność
+4.  Niska Rzetelność, Niska Trafność
+
+Przyjrzyjmy się każdej z tych kombinacji z przykładami i wizualizacjami.
+
+### 1. Wysoka Rzetelność, Wysoka Trafność
+
+To idealny scenariusz w badaniach. Pomiary są zarówno spójne, jak i dokładne.
+
+**Przykład**: Dobrze skalibrowana waga cyfrowa używana do pomiaru wagi. Konsekwentnie daje ten sam odczyt dla tego samego obiektu i dokładnie reprezentuje prawdziwą wagę.
+
+### 2. Wysoka Rzetelność, Niska Trafność
+
+W tym przypadku pomiary są spójne, ale niedokładne.
+
+**Przykład**: Źle skalibrowana waga, która zawsze mierzy 5 kg za ciężko. Daje spójne wyniki (wysoka rzetelność), ale nie reprezentuje prawdziwej wagi (niska trafność).
+
+### 3. Niska Rzetelność, Wysoka Trafność
+
+Tutaj pomiary są dokładne średnio, ale niespójne.
 
-#### Jak dokładnie powstaje próba kwotowa w badaniach CATI lub CAPI
-
-Proces tworzenia próby kwotowej w badaniach CATI (Computer-Assisted Telephone Interviewing) lub CAPI (Computer-Assisted Personal Interviewing) obejmuje następujące etapy:
-
-1. **Etap planowania i przygotowania**:
-   * **Określenie zmiennych kwotowych**: Najczęściej są to podstawowe zmienne demograficzne: płeć, wiek, wykształcenie, miejsce zamieszkania (miasto/wieś), region. 
-   * **Ustalenie wielkości kwot**: Na podstawie danych GUS lub innych wiarygodnych źródeł danych (np. Diagnoza Społeczna) określa się, jaki procent populacji stanowią poszczególne kategorie.
-   * **Przygotowanie tabeli kwotowej**: Tworzy się wielowymiarową macierz kwot, np. ile powinno być kobiet w wieku 18-29 lat z wyższym wykształceniem mieszkających na wsi w województwie mazowieckim.
+**Przykład**: Waga, która waha się wokół prawdziwej wagi. Czasami pokazuje trochę więcej, czasami trochę mniej, ale średnio jest poprawna.
 
-2. **Przygotowanie operacyjne badania CATI**:
-   * **Przygotowanie bazy telefonicznej**: W przypadku CATI tworzy się bazę numerów telefonicznych (stacjonarnych i/lub komórkowych).
-   * **Losowanie numerów z puli**: Często stosuje się metodę RDD (Random Digit Dialing) dla telefonów komórkowych lub losowanie z książek telefonicznych (coraz rzadziej) dla telefonów stacjonarnych.
-   * **Przypisanie numerów do zespołów ankieterskich**: System CATI dystrybuuje numery do ankieterów.
+### 4. Niska Rzetelność, Niska Trafność
 
-3. **Realizacja badania CATI**:
-   * **Pytania filtrujące**: Na początku rozmowy ankieter zadaje pytania o wiek, płeć i inne zmienne kwotowe.
-   * **Decyzja o kontynuacji**: System CATI na bieżąco monitoruje wypełnienie kwot i decyduje, czy dana osoba kwalifikuje się do badania (czy jej profil demograficzny jest jeszcze potrzebny w próbie).
-   * **Realizacja wywiadu**: Jeśli respondent pasuje do wciąż otwartej kwoty, przeprowadzany jest wywiad.
-   * **Automatyczne zamykanie wypełnionych kwot**: Gdy dana kwota zostaje wypełniona, system przestaje przyjmować nowych respondentów o tym profilu.
-   * **Rejestracja odmów udziału w badaniu**: System rejestruje odmowy według ich typu (odmowa na etapie wprowadzenia, odmowa po pytaniach filtrujących, przerwanie wywiadu) oraz dane demograficzne, jeśli zostały zebrane przed odmową.
+To najgorszy scenariusz, gdzie pomiary nie są ani spójne, ani dokładne.
 
-4. **Przygotowanie operacyjne badania CAPI**:
-   * **Wybór lokalizacji**: Wybiera się punkty realizacji badania, często stratyfikowane według regionów, wielkości miejscowości itd.
-   * **Instrukcje dla ankieterów**: Ankieterzy otrzymują szczegółowe instrukcje dotyczące kwot, które muszą wypełnić w swoim rejonie.
+**Przykład**: Zepsuta waga, która daje losowe odczyty niezwiązane z prawdziwą wagą.
 
-5. **Realizacja badania CAPI**:
-   * **Screener**: Ankieter używa krótkiego kwestionariusza selekcyjnego do określenia, czy dana osoba spełnia kryteria kwotowe.
-   * **Dobór respondenta**: Ankieter sam decyduje, kogo zapytać o udział w badaniu, kierując się wytycznymi kwotowymi.
-   * **Monitorowanie realizacji kwot**: Ankieterzy regularnie raportują zrealizowane wywiady, a koordynator badania monitoruje wypełnienie kwot.
+## Wizualizacja Rzetelności i Trafności
 
-6. **Kontrola jakości i analiza odmów**:
-   * **Weryfikacja wywiadów**: Losowo wybrane wywiady są weryfikowane przez ponowny kontakt z respondentem.
-   * **Kontrola pracy ankieterów**: W badaniach CAPI często stosuje się geolokalizację ankieterów, żeby potwierdzić, że faktycznie byli w deklarowanych lokalizacjach.
-   * **Kontrola "efektu ankietera"**: Analizuje się, czy określeni ankieterzy nie mają systematycznie odmiennych wyników.
-   * **Analiza wskaźnika odpowiedzi (response rate)**: Oblicza się stosunek zrealizowanych wywiadów do wszystkich nawiązanych kontaktów.
-   * **Analiza struktury odmów**: Sprawdza się, czy odmowy nie są systematycznie powiązane z określonymi cechami demograficznymi, co mogłoby wprowadzić błąd.
+Aby lepiej zrozumieć te pojęcia, stwórzmy wizualizacje przy użyciu ggplot2 w R. Zasymulujemy dane pomiarowe dla każdego scenariusza i narysujemy je.
 
-7. **Ważenie końcowe (po realizacji badania)**:
-   * **Korekta nierównomiernej realizacji kwot**: Nawet przy najstaranniejszym doborze kwotowym rzadko udaje się idealnie odwzorować strukturę populacji, dlatego stosuje się ważenie danych po zakończeniu zbierania wywiadów.
-   * **Kalibracja do znanych parametrów populacji**: Próbę kalibruje się do dokładnych danych z GUS lub innych wiarygodnych źródeł, przypisując odpowiednie wagi poszczególnym respondentom.
-   * **Metody ważenia**: Najczęściej stosuje się ważenie brzegowe (rim weighting) lub iteracyjne dopasowywanie (raking), które pozwalają jednocześnie dopasować próbę do wielu zmiennych demograficznych.
+```{r}
+#| fig-width: 12
+#| fig-height: 20
+#| warning: false
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(patchwork)
 
-#### Praktyczny przykład realizacji badania CATI z doborem kwotowym w Polsce:
+set.seed(123)
 
-1. **Cel badania**: Ogólnopolski sondaż opinii na temat systemu edukacji, n=1000 wywiadów.
+# Generowanie danych dla każdego scenariusza
+n <- 100
+prawdziwa_wartosc <- 50
 
-2. **Zmienne kwotowe**:
-   * Płeć: 52% kobiety, 48% mężczyźni
-   * Wiek: 18-29 lat (18%), 30-44 lat (29%), 45-59 lat (25%), 60+ lat (28%)
-   * Wykształcenie: Podstawowe/gimnazjalne (18%), Zasadnicze zawodowe (23%), Średnie (35%), Wyższe (24%)
-   * Wielkość miejscowości: Wieś (39%), Miasto do 50 tys. (23%), Miasto 50-200 tys. (16%), Miasto 200+ tys. (22%)
-   * Region: Poszczególne województwa zgodnie z proporcjami GUS
+dane <- tibble(
+  wysoka_rz_wysoka_tr = rnorm(n, mean = prawdziwa_wartosc, sd = 1),
+  wysoka_rz_niska_tr = rnorm(n, mean = prawdziwa_wartosc + 5, sd = 1),
+  niska_rz_wysoka_tr = rnorm(n, mean = prawdziwa_wartosc, sd = 5),
+  niska_rz_niska_tr = runif(n, min = 0, max = 100)
+) %>%
+  mutate(id = row_number()) %>%
+  pivot_longer(cols = -id, names_to = "scenariusz", values_to = "pomiar")
 
-3. **Przebieg badania**:
-   * System CATI losuje numery telefonów i przydziela ankieterom
-   * Ankieter przeprowadza wywiad, jeśli respondent spełnia kryteria kwotowe i się zgadza
-   * System monitoruje wypełnienie kwot i automatycznie zamyka te, które osiągnęły zakładaną liczebność
-   * W trakcie realizacji badania okazuje się, że najtrudniej dotrzeć do mężczyzn z wykształceniem zasadniczym zawodowym w wieku 45-59 lat – ankieterom przydzielane są dodatkowe godziny na poszukiwanie respondentów o tym profilu
-   * Po zakończeniu zbierania danych, próba jest ważona, aby skorygować niewielkie odchylenia od założonych kwot
-
-### Dlaczego Ośrodki Badania Opinii Coraz Częściej Stosują Dobór Kwotowy
-
-W ostatnich latach wiele ośrodków badania opinii publicznej przeszło na metody doboru kwotowego z kilku kluczowych powodów:
+# Tworzenie wykresu punktowego
+wykres_punktowy <- ggplot(dane, aes(x = id, y = pomiar, color = scenariusz)) +
+  geom_point(alpha = 0.6, size = 2) +
+  geom_hline(yintercept = prawdziwa_wartosc, linetype = "dashed", color = "black", size = 1) +
+  facet_wrap(~ scenariusz, ncol = 2, scales = "free_y",
+             labeller = labeller(scenariusz = c(
+               "wysoka_rz_wysoka_tr" = "Wysoka Rzetelność, Wysoka Trafność",
+               "wysoka_rz_niska_tr" = "Wysoka Rzetelność, Niska Trafność",
+               "niska_rz_wysoka_tr" = "Niska Rzetelność, Wysoka Trafność",
+               "niska_rz_niska_tr" = "Niska Rzetelność, Niska Trafność"
+             ))) +
+  labs(title = "Wykresy punktowe pomiarów",
+       subtitle = "Przerywana linia reprezentuje prawdziwą wartość",
+       x = "ID pomiaru",
+       y = "Zmierzona wartość") +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "none",
+        strip.text = element_text(size = 16, face = "bold"),
+        plot.title = element_text(size = 20, face = "bold"),
+        plot.subtitle = element_text(size = 16))
 
-1. **Spadające Wskaźniki Realizacji**: Tradycyjne badania telefoniczne oparte na losowym doborze odnotowały spadek wskaźników odpowiedzi z około 36% w latach 90. do mniej niż 10% obecnie. Zwiększa to koszty i potencjalnie wprowadza błąd związany z odmowami, który może być gorszy niż błąd selekcji wynikający z metod nielosowych.
+# Tworzenie histogramu
+wykres_hist <- ggplot(dane, aes(x = pomiar, fill = scenariusz)) +
+  geom_histogram(bins = 20, alpha = 0.7) +
+  geom_vline(xintercept = prawdziwa_wartosc, color = "red", linetype = "dashed", size = 1) +
+  facet_wrap(~ scenariusz, ncol = 2, scales = "free",
+             labeller = labeller(scenariusz = c(
+               "wysoka_rz_wysoka_tr" = "Wysoka Rzetelność, Wysoka Trafność",
+               "wysoka_rz_niska_tr" = "Wysoka Rzetelność, Niska Trafność",
+               "niska_rz_wysoka_tr" = "Niska Rzetelność, Wysoka Trafność",
+               "niska_rz_niska_tr" = "Niska Rzetelność, Niska Trafność"
+             ))) +
+  labs(title = "Histogramy pomiarów",
+       subtitle = "Czerwona przerywana linia reprezentuje prawdziwą wartość",
+       x = "Zmierzona wartość",
+       y = "Liczba") +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "none",
+        strip.text = element_text(size = 16, face = "bold"),
+        plot.title = element_text(size = 20, face = "bold"),
+        plot.subtitle = element_text(size = 16))
 
-2. **Problemy z Dotarciem do Respondentów**: Losowe wybieranie numerów telefonicznych nie zapewnia już reprezentatywnej próby populacji, ponieważ wielu ludzi zrezygnowało z telefonów stacjonarnych na rzecz komórkowych, a wielu nie odbiera połączeń od nieznanych numerów.
+# Łączenie wykresów
+wykres_polaczony <- wykres_punktowy / wykres_hist +
+  plot_layout(heights = c(1, 1)) +
+  plot_annotation(
+    title = "Rzetelność i Trafność w Pomiarach",
+    theme = theme(plot.title = element_text(hjust = 0.5, size = 24, face = "bold"))
+  )
 
-3. **Efektywność Kosztowa**: Badania oparte na losowym doborze stały się niezwykle drogie wraz ze spadkiem wskaźników odpowiedzi, podczas gdy panele internetowe i dobór kwotowy są bardziej przystępne cenowo.
-
-4. **Szybkość**: W szybko zmieniających się kampaniach politycznych lub gwałtownie ewoluujących sytuacjach społecznych, dobór kwotowy może dostarczyć wyniki znacznie szybciej niż metody losowe.
-
-5. **Udoskonalenia w Technikach Ważenia**: Nowoczesne metody statystyczne pozwalają badaczom dostosować próby kwotowe, aby lepiej reprezentowały populację docelową poprzez ważenie odpowiedzi w oparciu o znane parametry populacji.
-
-6. **Podejścia Mieszane**: Wielu badaczy stosuje obecnie metody mieszane, które łączą elementy doboru losowego i nielosowego, z zaawansowanym ważeniem i modelowaniem w celu poprawy dokładności.
-
-#### Wpływ odmów na jakość próby i praktyczne problemy realizacji badań
-
-##### Problem odmów udziału w badaniach
-
-Odmowy udziału w badaniu stanowią jedno z największych wyzwań współczesnej metodologii badawczej i mają istotny wpływ na jakość uzyskiwanych wyników:
-
-1. **Skala zjawiska**:
-   * W klasycznych badaniach kwestionariuszowych poziom realizacji (response rate) w Polsce spadł z około 70-80% w latach 90. do 30-40% obecnie.
-   * W badaniach telefonicznych CATI współczynnik odpowiedzi wynosi często zaledwie 5-15%.
-   * W badaniach internetowych na panelach wskaźnik odpowiedzi może wynosić 20-30%, ale wśród respondentów dobieranych z ogółu populacji spada nawet do 1-2%.
-
-2. **Typy odmów**:
-   * **Odmowy "twarde"** – kategoryczna odmowa udziału w jakimkolwiek badaniu.
-   * **Odmowy "miękkie"** – wymówki typu "nie mam czasu", "jestem zajęty", które mogą wynikać z niechęci do tematu badania.
-   * **Odmowy selektywne** – odmowy udziału w badaniach na określone tematy (np. polityczne, dotyczące zdrowia).
-   * **Niedostępność** – niemożność nawiązania kontaktu z wylosowaną osobą mimo wielokrotnych prób.
-
-3. **Konsekwencje dla jakości badań**:
-   * **Błąd systematyczny** – jeśli osoby odmawiające udziału systematycznie różnią się od osób uczestniczących w badaniu pod względem kluczowych zmiennych.
-   * **Zawężenie próby do "zawodowych respondentów"** – szczególnie w panelach internetowych, gdzie uczestniczą głównie osoby chętne do udziału w wielu badaniach.
-   * **Nadreprezentacja określonych grup** – np. emerytów i rencistów, którzy częściej mają czas i chęć na udział w badaniach osobistych.
-
-4. **Metody radzenia sobie z odmowami**:
-   * **Ponowne próby kontaktu** – standardem jest wykonanie minimum 3-4 prób kontaktu w różnych dniach i porach.
-   * **Dostosowanie terminu** – oferowanie elastycznych terminów realizacji wywiadu.
-   * **Zachęty materialne** – oferowanie drobnych gratyfikacji za udział w badaniu.
-   * **Analiza i ważenie ze względu na odmowy** – uwzględnianie struktury osób odmawiających w procesie ważenia danych.
-   * **Techniki konwersji odmów** – specjalne szkolenia dla ankieterów w zakresie przekonywania osób początkowo odmawiających.
-
-5. **Dokumentacja odmów**:
-   * **Standard AAPOR** (American Association for Public Opinion Research) – zaleca dokładne raportowanie wszystkich kontaktów, odmów i przyczyn braku realizacji wywiadu.
-   * **Kategorie dokumentacji** – liczba połączeń/wizyt, powody niedostępności, typy i przyczyny odmów.
-   * **Transparentność metodologiczna** – raportowanie wskaźnika odpowiedzi oraz potencjalnego wpływu odmów na wyniki.
-
-#### Praktyczne problemy realizacji badań probabilistycznych w Polsce:
-
-1. **Brak dostępu do operatu losowania**: W Polsce nie ma łatwego dostępu do pełnych i aktualnych rejestrów populacji dla celów badawczych.
-
-2. **Problem z realizacją wywiadów pod wylosowanymi adresami**: Coraz trudniej przeprowadzić wywiady pod konkretnymi adresami ze względu na:
-   * Zwiększoną liczbę zamkniętych osiedli
-   * Spadek zaufania społecznego i niechęć do wpuszczania ankieterów do domów
-   * Różne godziny pracy potencjalnych respondentów wymagające wielokrotnych wizyt
-
-3. **Koszt realizacji**: Badania z prawdziwym losowym doborem próby (np. metodą random route) są kilkukrotnie droższe niż badania kwotowe.
-
-Wybory prezydenckie w USA w 2016 roku, gdzie wiele sondaży nie przewidziało dokładnie wyniku, doprowadziły do znacznych przemyśleń wśród ankieterów. Zamiast rezygnować z próbkowania kwotowego, wiele organizacji udoskonaliło swoje metody, koncentrując się na lepszych definicjach kwot, ulepszonych technikach ważenia i bardziej przejrzystym raportowaniu ograniczeń metodologicznych.
-
-Pomimo tych trendów, ważne jest, aby zauważyć, że próbkowanie probabilistyczne pozostaje złotym standardem wnioskowania statystycznego. Dobrze zaprojektowane próby probabilistyczne wciąż zapewniają najbardziej niezawodną podstawę do uogólniania z próby na populację, szczególnie w badaniach akademickich, gdzie dokładność jest priorytetem nad kosztem i szybkością.
-
-### Rodzaje Błędów Statystycznych - Poprawiona Klasyfikacja
-
-### Błąd Systematyczny a Błąd Losowy
-
-Błędy systematyczne i błędy losowe reprezentują fundamentalnie różne sposoby, w jakie pomiary mogą odbiegać od prawdziwych wartości:
-
-1. **Błąd Systematyczny (Obciążenie)**
-   * **Definicja**: Konsekwentne, przewidywalne odchylenia od prawdziwej wartości w określonym kierunku.
-   * **Cechy**:
-     * Skutkuje pomiarami, które są stale zbyt wysokie lub zbyt niskie
-     * Nie zmniejsza się wraz ze zwiększeniem wielkości próby
-     * Można go skorygować, jeśli zostanie zidentyfikowany
-   * **Przykłady**:
-     * Waga, która zawsze pokazuje o 1 kilogram więcej niż rzeczywista waga
-     * Błąd selekcji wynikający z pominięcia niektórych grup populacji
-     * Tendencyjne pytania w ankiecie, które skłaniają respondentów do konkretnych odpowiedzi
-   * **Wykrywanie i Korekta**:
-     * Kalibracja wobec znanych wzorców
-     * Porównanie z pomiarami przy użyciu różnych metod
-     * Staranne projektowanie badań i wstępne testowanie narzędzi badawczych
-
-2. **Błąd Losowy**
-   * **Definicja**: Nieprzewidywalne wahania w pomiarach wynikające z czynników przypadkowych.
-   * **Cechy**:
-     * Zmienia się zarówno pod względem wielkości, jak i kierunku w różnych pomiarach
-     * Zwykle podlega rozkładowi normalnemu
-     * Zmniejsza się wraz ze wzrostem wielkości próby (zależność √n)
-   * **Przykłady**:
-     * Naturalne różnice biologiczne między badanymi osobami
-     * Drobne wahania w przyrządach pomiarowych
-     * Warunki środowiskowe, które przypadkowo zmieniają się podczas pomiaru
-   * **Sposoby ograniczania**:
-     * Zwiększanie wielkości próby
-     * Wykonywanie powtórzonych pomiarów
-     * Poprawa precyzji pomiarów
-
-### Błędy Związane z Próbą a Błędy Niezwiązane z Próbą
-
-To rozróżnienie koncentruje się na źródle błędów w badaniach statystycznych:
-
-1. **Błąd Związany z Próbą (Błąd Próby)**
-   * **Definicja**: Różnica między statystyką próby a prawdziwym parametrem populacji wynikająca z losowych wahań w doborze.
-   * **Cechy**:
-     * Nieunikniony w każdym badaniu opartym na próbie
-     * Można go obliczyć za pomocą miar statystycznych (błąd standardowy, przedziały ufności)
-     * Zmniejsza się w przewidywalny sposób wraz ze wzrostem wielkości próby
-     * Zawsze ma charakter losowy (nie systematyczny)
-   * **Przykłady**:
-     * Losowa próba pokazująca 52% poparcia dla polityki, gdy prawdziwa wartość w populacji wynosi 50%
-     * Zróżnicowanie średniego dochodu w różnych losowych próbach z tej samej populacji
-   * **Metody kontroli**:
-     * Zwiększanie wielkości próby
-     * Stosowanie bardziej efektywnych schematów doboru próby (np. warstwowanie)
-     * Zastosowanie odpowiednich wag w analizie danych
-
-2. **Błąd Niezwiązany z Próbą (Błąd Niesamplowy)**
-   * **Definicja**: Wszystkie błędy, które nie wynikają z losowych wahań w doborze próby, występujące zarówno w badaniach na próbie, jak i w pełnych spisach.
-   * **Cechy**:
-     * Może być systematyczny lub losowy
-     * Często trudniejszy do wykrycia i zmierzenia niż błąd próby
-     * Niekoniecznie zmniejsza się wraz ze zwiększeniem próby
-     * Potencjalnie bardziej szkodliwy dla trafności badań niż błąd próby
-   * **Rodzaje i Przykłady**:
-     * **Błąd Pokrycia** (systematyczny): Korzystanie z listy wyborców, która nie obejmuje osób niedawno zarejestrowanych
-     * **Błąd Braku Odpowiedzi** (może być systematyczny lub losowy): Wyższy wskaźnik odmów wśród określonych grup demograficznych
-     * **Błąd Pomiaru** (może być systematyczny lub losowy): 
-       * Systematyczny: Źle sformułowane pytania, które konsekwentnie zniekształcają odpowiedzi
-       * Losowy: Sporadyczne błędy przy wprowadzaniu danych
-     * **Błąd Przetwarzania** (może być systematyczny lub losowy):
-       * Systematyczny: Konsekwentne niewłaściwe kodowanie określonych odpowiedzi
-       * Losowy: Przypadkowe błędy w transkrypcji
-
-### Model Całkowitego Błędu Badania
-
-Nowoczesna metodologia badawcza analizuje błędy poprzez model Całkowitego Błędu Badania (Total Survey Error), który uwzględnia wszystkie źródła błędów mogących wpływać na jakość badania:
-
-1. **Błędy Reprezentacji** (wpływające na to, kto jest uwzględniony):
-   * Błąd pokrycia
-   * Błąd próby
-   * Błąd braku odpowiedzi
-   * Błąd wynikający z procedur ważenia danych
-
-2. **Błędy Pomiaru** (wpływające na dokładność odpowiedzi):
-   * Błąd specyfikacji (mierzenie niewłaściwego zjawiska)
-   * Błąd pomiaru (wpływ respondenta, ankietera, kwestionariusza)
-   * Błąd przetwarzania (wprowadzanie danych, kodowanie, edytowanie)
-
-Zrozumienie wzajemnego oddziaływania między tymi rodzajami błędów jest kluczowe dla projektowania wysokiej jakości badań i właściwej interpretacji wyników. Chociaż błąd próby zwraca na siebie większą uwagę, ponieważ łatwiej go mierzyć, błędy niezwiązane z próbą często stanowią większe zagrożenie dla trafności i rzetelności współczesnych badań.
-
-![Źródło: https://scientistcafe.com/ids/vbtradeoff](stat_imgs/ModelError.png)
-
-*Rysunek: Związek między złożonością modelu, błędem systematycznym (obciążeniem) i wariancją. Ilustruje to, jak równowaga między błędem systematycznym a błędem losowym (wariancją) wpływa na ogólny błąd modelu.*
+# Wyświetlanie połączonego wykresu
+wykres_polaczony
+```
+
+### Interpretacja Wizualizacji
+
+1.  **Wysoka Rzetelność, Wysoka Trafność**: Punkty grupują się ciasno wokół prawdziwej wartości (przerywana linia).
+2.  **Wysoka Rzetelność, Niska Trafność**: Punkty grupują się ciasno, ale konsekwentnie powyżej prawdziwej wartości.
+3.  **Niska Rzetelność, Wysoka Trafność**: Punkty rozpraszają się szeroko, ale centrują się wokół prawdziwej wartości.
+4.  **Niska Rzetelność, Niska Trafność**: Punkty rozpraszają się losowo bez wyraźnego wzoru lub relacji do prawdziwej wartości.
+
+Zrozumienie rzetelności i trafności jest kluczowe w naukach o danych i badaniach. Wysoka rzetelność zapewnia spójne pomiary, podczas gdy wysoka trafność zapewnia dokładne reprezentacje tego, co zamierzamy zmierzyć. Biorąc pod uwagę oba aspekty, badacze mogą projektować bardziej solidne badania i wyciągać bardziej znaczące wnioski ze swoich danych.
+
+Prowadząc własne badania lub analizując pracę innych, zawsze należy rozważyć: - Jak rzetelne są pomiary? - Jak trafne jest podejście do pomiaru zamierzonego pojęcia? - Czy stosowane metody wspierają zarówno rzetelność, jak i trafność?
+
+Mając na uwadze te pytania, będziesz lepiej przygotowany do prowadzenia i interpretowania wysokiej jakości badań w naukach o danych.
+
+## Rodzaje Rzetelności
+
+Rzetelność można oceniać na kilka sposobów, każdy skupiający się na innym aspekcie spójności:
+
+1.  **Rzetelność test-retest**: Mierzy spójność testu w czasie. Polega na przeprowadzeniu tego samego testu na tej samej grupie uczestników w różnych momentach i porównaniu wyników.
+
+2.  **Rzetelność między oceniającymi**: Ocenia stopień zgodności między różnymi oceniającymi lub obserwatorami. Jest kluczowa, gdy w zbieraniu danych biorą udział subiektywne osądy.
+
+3.  **Spójność wewnętrzna**: Ocenia, jak dobrze różne elementy testu lub skali mierzą ten sam konstrukt. Alfa Cronbacha jest powszechną miarą spójności wewnętrznej.
+
+4.  **Rzetelność form równoległych**: Polega na stworzeniu dwóch równoważnych form testu i przeprowadzeniu ich na tej samej grupie. Korelacja między dwoma zestawami wyników wskazuje na rzetelność.
+
+## Rodzaje Trafności
+
+Trafność jest pojęciem wieloaspektowym, z kilkoma rodzajami, które badacze muszą wziąć pod uwagę:
+
+1.  **Trafność treściowa**: Zapewnia, że pomiar obejmuje wszystkie aspekty konstruktu, który ma mierzyć. Często jest oceniana przez osąd ekspertów.
+
+2.  **Trafność konstrukcyjna**: Ocenia, czy test mierzy zamierzony konstrukt teoretyczny. Obejmuje:
+
+    -   **Trafność zbieżną**: Stopień, w jakim pomiar koreluje z innymi pomiarami tego samego konstruktu.
+    -   **Trafność różnicową**: Zakres, w jakim pomiar nie koreluje z pomiarami różnych konstruktów.
+
+3.  **Trafność kryterialną**: Ocenia, jak dobrze pomiar przewiduje wynik. Obejmuje:
+
+    -   **Trafność współbieżną**: Jak dobrze pomiar koreluje z innymi pomiarami tego samego konstruktu w tym samym czasie.
+    -   **Trafność predykcyjną**: Jak dobrze pomiar przewiduje przyszłe wyniki.
+
+4.  **Trafność fasadowa**: Trafność fasadowa odnosi się do tego, jak osoby badane postrzegają test i czy uważają go za odpowiedni do celu, któremu ma służyć. Brak trafności fasadowej może mieć negatywne konsekwencje, nawet jeśli test jest faktycznie trafny (czyli mierzy to, co powinien mierzyć) z punktu widzenia jego zamierzonego celu. Choć nie jest to naukowa miara, może być ważna dla zaangażowania uczestników.
+
+## Trafność Wewnętrzna vs Zewnętrzna
+
+Te pojęcia są kluczowe w projektowaniu eksperymentów i możliwości uogólniania wyników badań:
+
+### Trafność Wewnętrzna
+
+Trafność wewnętrzna odnosi się do zakresu, w jakim badanie ustanawia związek przyczynowy między zmiennymi niezależnymi a zależnymi. Odpowiada na pytanie: "Czy eksperymentalne traktowanie rzeczywiście spowodowało zaobserwowane efekty?"
+
+Czynniki, które mogą zagrażać trafności wewnętrznej, obejmują: - Historia: Zewnętrzne wydarzenia występujące między pre-testem a post-testem - Dojrzewanie: Naturalne zmiany u uczestników w czasie - Efekty testowania: Zmiany wynikające z przeprowadzenia pre-testu - Instrumentacja: Zmiany w narzędziu pomiarowym lub obserwatorach - Błąd selekcji: Nielosowy przydział do grup - Utrata: Utrata uczestników podczas badania
+
+### Trafność Zewnętrzna
+
+Trafność zewnętrzna odnosi się do zakresu, w jakim wyniki badania mogą być uogólnione na inne sytuacje, populacje lub ustawienia. Odpowiada na pytanie: "W jakim stopniu wyniki mogą być zastosowane poza konkretnym kontekstem badania?"
+
+Czynniki, które mogą wpływać na trafność zewnętrzną, obejmują: - Trafność populacyjna: Jak dobrze próba reprezentuje szerszą populację - Trafność ekologiczna: Jak dobrze ustawienie badania reprezentuje warunki świata rzeczywistego - Trafność czasowa: Czy wyniki pozostają prawdziwe w czasie
+
+## Spójność w Badaniach
+
+Spójność jest ściśle związana z rzetelnością, ale wykracza poza sam pomiar. W badaniach spójność odnosi się do ogólnej koherencji i stabilności wyników w różnych kontekstach, metodach lub badaniach.
+
+Kluczowe aspekty spójności w badaniach obejmują:
+
+1.  **Replikowalność**: Zdolność do odtworzenia wyników badania przy użyciu tych samych metod i danych.
+
+2.  **Odporność**: Stabilność wyników w różnych podejściach analitycznych lub niewielkich zmianach w metodologii.
+
+3.  **Konwergencja**: Zbieżność wyników z różnych badań lub metod badających to samo zjawisko.
+
+4.  **Spójność długoterminowa**: Stabilność wyników w czasie, szczególnie ważna w badaniach długoterminowych.
+
+Zapewnienie spójności w badaniach obejmuje: - Stosowanie standaryzowanych procedur i miar - Dokładne dokumentowanie metod i decyzji analitycznych - Przeprowadzanie badań replikacyjnych - Meta-analizy w celu syntezy wyników z wielu badań
+
+## Równoważenie Rzetelności, Trafności i Spójności
+
+Chociaż rzetelność, trafność i spójność są kluczowe dla wysokiej jakości badań, czasami wiążą się z kompromisami:
+
+-   Wysoce rzetelna miara może nie mieć trafności, jeśli konsekwentnie mierzy niewłaściwą rzecz.
+-   Dążenie do idealnej trafności wewnętrznej (np. w ściśle kontrolowanych eksperymentach laboratoryjnych) może zmniejszyć trafność zewnętrzną.
+-   Zapewnienie wysokiej spójności w różnych kontekstach może wymagać poświęcenia pewnego stopnia precyzji lub głębi w konkretnych sytuacjach.
+
+Badacze muszą starannie równoważyć te aspekty w oparciu o swoje pytania badawcze i charakter badania. Kompleksowe zrozumienie rzetelności, trafności i spójności pomaga w projektowaniu solidnych badań, dokładnej interpretacji wyników i znaczącym wkładzie do korpusu wiedzy naukowej.
+
+## Kompromis między Obciążeniem a Wariancją
+
+Pojęcia rzetelności i trafności są ściśle związane ze statystycznym pojęciem kompromisu między obciążeniem a wariancją. Ten kompromis jest fundamentalny w uczeniu maszynowym i modelowaniu statystycznym.
+
+-   Obciążenie odnosi się do błędu wprowadzonego przez przybliżenie problemu ze świata rzeczywistego uproszczonym modelem. Wysokie obciążenie może prowadzić do niedopasowania.
+-   Wariancja odnosi się do błędu wprowadzonego przez wrażliwość modelu na małe fluktuacje w zbiorze treningowym. Wysoka wariancja może prowadzić do przeuczenia.
+
+Zobrazujmy to pojęcie za pomocą uproszczonego wykresu:
+
+```{r}
+#| label: bias-variance-plot
+#| fig-cap: "Wizualizacja kompromisu między obciążeniem a wariancją"
+
+x <- seq(0, 10, length.out = 100)
+y_prawdziwa <- sin(x)
+y_niskie_obciazenie_wysoka_wariancja <- y_prawdziwa + rnorm(100, 0, 0.3)
+y_wysokie_obciazenie_niska_wariancja <- 0.5 * x
+
+df <- data.frame(x = rep(x, 3),
+                 y = c(y_prawdziwa, y_niskie_obciazenie_wysoka_wariancja, y_wysokie_obciazenie_niska_wariancja),
+                 typ = rep(c("Prawdziwa Funkcja", "Niskie Obciążenie, Wysoka Wariancja", "Wysokie Obciążenie, Niska Wariancja"), each = 100))
+
+ggplot(df, aes(x = x, y = y, color = typ)) +
+  geom_line() +
+  geom_point(data = subset(df, typ != "Prawdziwa Funkcja"), alpha = 0.5) +
+  scale_color_manual(values = c("black", "blue", "red")) +
+  labs(title = "Kompromis między Obciążeniem a Wariancją",
+       x = "X",
+       y = "Y",
+       color = "Typ Modelu") +
+  theme_minimal()
+```
+
+Na tym wykresie: - Czarna linia reprezentuje prawdziwą funkcję bazową. - Niebieskie punkty reprezentują model z niskim obciążeniem, ale wysoką wariancją. Średnio podąża blisko prawdziwej funkcji, ale ma dużo szumu. - Czerwona linia reprezentuje model z wysokim obciążeniem, ale niską wariancją. Konsekwentnie niedoszacowuje prawdziwej funkcji, ale ma mniej szumu.
+
+## Dokładność i Precyzja
+
+Pojęcia dokładności i precyzji są ściśle związane z trafnością i rzetelnością:
+
+-   Dokładność odnosi się do tego, jak blisko pomiar jest prawdziwej wartości (podobnie do trafności).
+-   Precyzja odnosi się do tego, jak spójne lub powtarzalne są pomiary (podobnie do rzetelności).
+
+Możemy zobrazować te pojęcia za pomocą uproszczonej analogii do tarczy:
+
+```{r}
+#| label: accuracy-precision-plot
+#| fig-cap: "Wizualizacja Dokładności vs Precyzji"
+
+library(ggplot2)
+library(ggforce)
+
+create_points <- function(n, x_center, y_center, spread) {
+  data.frame(
+    x = rnorm(n, x_center, spread),
+    y = rnorm(n, y_center, spread)
+  )
+}
+
+set.seed(101)
+points <- rbind(
+  cbind(create_points(20, 0, 0, 0.1), type = "Wysoka Dokładność\nWysoka Precyzja"),
+  cbind(create_points(20, 0.5, 0.5, 0.1), type = "Niska Dokładność\nWysoka Precyzja"),
+  cbind(create_points(20, 0, 0, 0.3), type = "Wysoka Dokładność\nNiska Precyzja"),
+  cbind(create_points(20, 0.5, 0.5, 0.3), type = "Niska Dokładność\nNiska Precyzja")
+)
+
+ggplot(points, aes(x, y)) +
+  geom_circle(aes(x0 = 0, y0 = 0, r = 1), color = "black", fill = NA) +
+  geom_circle(aes(x0 = 0, y0 = 0, r = 0.5), color = "black", fill = NA) +
+  geom_point(color = "red", size = 2) +
+  facet_wrap(~type) +
+  coord_fixed(xlim = c(-1.1, 1.1), ylim = c(-1.1, 1.1)) +
+  theme_minimal() +
+  theme(axis.text = element_blank(), axis.title = element_blank()) +
+  labs(title = "Dokładność vs Precyzja")
+```
+
+W tej wizualizacji: - Wysoka dokładność oznacza, że punkty są blisko środka (dziesiątki). - Wysoka precyzja oznacza, że punkty są ściśle zgrupowane. - Każdy panel reprezentuje inną kombinację dokładności i precyzji.
+
+## Podsumowanie
+
+Zrozumienie rzetelności i trafności jest kluczowe dla prowadzenia solidnych badań. Pojęcia te pomagają nam zapewnić, że nasze pomiary są zarówno spójne, jak i dokładne. Łącząc je z ideami takimi jak kompromis między obciążeniem a wariancją oraz dokładnością i precyzją, zyskujemy głębsze zrozumienie wyzwań związanych z pomiarem i modelowaniem w badaniach naukowych. Jako badacze musimy dążyć do opracowania miar i modeli, które są zarówno rzetelne, jak i trafne, równoważąc kompromisy między obciążeniem a wariancją oraz między dokładnością a precyzją. Wymaga to starannego projektowania metodologii badań, rygorystycznego testowania naszych instrumentów pomiarowych i przemyślanej interpretacji naszych wyników.
+
+## Zrozumienie Obciążenia vs. Wariancji w Pomiarach Statystycznych
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(dplyr)
+set.seed(123)  # dla powtarzalności
+```
+
+### Wprowadzenie
+
+W statystyce i uczeniu maszynowym dwa ważne pojęcia, które wpływają na wydajność naszych modeli, to **obciążenie** (bias) i **wariancja** (variance). Zrozumienie tych pojęć jest kluczowe dla budowania efektywnych modeli predykcyjnych i unikania typowych pułapek, takich jak przeuczenie i niedouczenie.
+
+-   **Obciążenie** odnosi się do błędu wprowadzonego przez przybliżenie rzeczywistego problemu, który może być złożony, za pomocą uproszczonego modelu. Wysokie obciążenie może prowadzić do niedouczenia.
+    -   Wyobraź sobie obciążenie jako średnią odległość naszych przewidywań od prawdziwych wartości.
+    -   W kontekście trafności, wysokie obciążenie oznacza, że nasz model nie uchwycił prawdziwej zależności w danych.
+-   **Wariancja** odnosi się do tego, jak bardzo nasz model zmieniłby się, gdybyśmy oszacowali go przy użyciu innego zbioru treningowego. Wysoka wariancja może prowadzić do przeuczenia.
+    -   Wyobraź sobie wariancję jako to, jak bardzo nasze przewidywania wahałyby się, gdybyśmy użyli różnych zbiorów danych.
+    -   W kontekście rzetelności, wysoka wariancja oznacza, że nasz model jest zbyt wrażliwy na konkretne dane, na których został wytrenowany.
+
+Zbadamy cztery scenariusze, aby zilustrować różne kombinacje obciążenia i wariancji przy użyciu syntetycznych danych i modeli regresji.
+
+### Funkcja Generowania Danych i Dopasowywania Modelu
+
+Najpierw stwórzmy funkcję, która pomoże nam generować dane i dopasowywać modele dla każdego scenariusza:
+
+```{r}
+generuj_i_dopasuj <- function(n, wyraz_wolny, nachylenie, odch_szumu, stopien_modelu) {
+  # Generowanie syntetycznych danych
+  x <- runif(n, 0, 10)
+  y <- wyraz_wolny + nachylenie * x + rnorm(n, 0, odch_szumu)
+  
+  # Dopasowanie modelu
+  formula <- as.formula(paste("y ~", paste0("poly(x, ", stopien_modelu, ", raw = TRUE)")))
+  model <- lm(formula, data = data.frame(x, y))
+  
+  # Generowanie przewidywań
+  x_pred <- seq(0, 10, length.out = 100)
+  y_pred <- predict(model, newdata = data.frame(x = x_pred))
+  
+  # Wykres
+  ggplot(data.frame(x, y), aes(x, y)) +
+    geom_point(alpha = 0.5) +
+    geom_line(data = data.frame(x = x_pred, y = y_pred), color = "red", size = 1) +
+    geom_abline(intercept = wyraz_wolny, slope = nachylenie, color = "blue", linetype = "dashed") +
+    labs(title = paste("Stopień Modelu:", stopien_modelu),
+         subtitle = paste("Odchylenie Standardowe Szumu:", odch_szumu),
+         x = "X (Zmienna Wejściowa)",
+         y = "Y (Zmienna Docelowa)") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5),
+          plot.subtitle = element_text(hjust = 0.5))
+}
+```
+
+Ta funkcja wykonuje następujące czynności: 1. Generuje syntetyczne dane na podstawie naszych parametrów 2. Dopasowuje model regresji wielomianowej 3. Tworzy wykres pokazujący prawdziwą zależność (niebieska przerywana linia), przewidywania naszego modelu (czerwona ciągła linia) i punkty danych
+
+Teraz zbadajmy nasze cztery scenariusze!
+
+### Scenariusz 1: Niskie Obciążenie, Niska Wariancja
+
+W tym idealnym scenariuszu używamy modelu liniowego do dopasowania danych liniowych z niskim szumem.
+
+```{r}
+generuj_i_dopasuj(n = 100, wyraz_wolny = 1, nachylenie = 2, odch_szumu = 1, stopien_modelu = 1)
+```
+
+**Wyjaśnienie:** - Model (czerwona linia) ściśle podąża za prawdziwą zależnością (niebieska przerywana linia). - Punkty danych są skupione blisko linii, co wskazuje na niski szum. - Ten scenariusz reprezentuje dobre dopasowanie: model uchwycił podstawowy trend bez nadmiernej złożoności.
+
+## Scenariusz 2: Niskie Obciążenie, Wysoka Wariancja
+
+Tutaj używamy modelu liniowego do dopasowania danych liniowych, ale z wysokim szumem.
+
+```{r}
+generuj_i_dopasuj(n = 100, wyraz_wolny = 1, nachylenie = 2, odch_szumu = 5, stopien_modelu = 1)
+```
+
+**Wyjaśnienie:** - Model nadal uchwycił ogólny trend, ale punkty danych są bardziej rozproszone. - Ta wysoka wariancja oznacza, że przewidywania naszego modelu byłyby mniej wiarygodne. - W rzeczywistych warunkach mogłoby to reprezentować sytuację, w której nasze pomiary są średnio poprawne, ale mają dużo losowego błędu.
+
+### Scenariusz 3: Wysokie Obciążenie, Niska Wariancja
+
+W tym przypadku używamy modelu liniowego do dopasowania danych kwadratowych (zakrzywionych) z niskim szumem.
+
+```{r}
+dane_kwadratowe <- function(n, wyraz_wolny, nachylenie, odch_szumu, stopien_modelu) {
+  x <- runif(n, 0, 10)
+  y <- wyraz_wolny + nachylenie * x^2 + rnorm(n, 0, odch_szumu)
+  
+  formula <- as.formula(paste("y ~", paste0("poly(x, ", stopien_modelu, ", raw = TRUE)")))
+  model <- lm(formula, data = data.frame(x, y))
+  
+  x_pred <- seq(0, 10, length.out = 100)
+  y_pred <- predict(model, newdata = data.frame(x = x_pred))
+  
+  ggplot(data.frame(x, y), aes(x, y)) +
+    geom_point(alpha = 0.5) +
+    geom_line(data = data.frame(x = x_pred, y = y_pred), color = "red", size = 1) +
+    stat_function(fun = function(x) wyraz_wolny + nachylenie * x^2, color = "blue", linetype = "dashed") +
+    labs(title = paste("Stopień Modelu:", stopien_modelu),
+         subtitle = paste("Odchylenie Standardowe Szumu:", odch_szumu),
+         x = "X (Zmienna Wejściowa)",
+         y = "Y (Zmienna Docelowa)") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5),
+          plot.subtitle = element_text(hjust = 0.5))
+}
+
+dane_kwadratowe(n = 100, wyraz_wolny = 1, nachylenie = 0.2, odch_szumu = 1, stopien_modelu = 1)
+```
+
+**Wyjaśnienie:** - Model liniowy (czerwona linia) nie uchwycił krzywizny prawdziwej zależności (niebieska przerywana linia). - To wysokie obciążenie oznacza, że nasz model konsekwentnie myli się w swoich przewidywaniach. - W rzeczywistych warunkach mogłoby to reprezentować użycie zbyt uproszczonego modelu dla złożonego zjawiska.
+
+### Scenariusz 4: Wysokie Obciążenie, Wysoka Wariancja
+
+Na koniec używamy wielomianu wysokiego stopnia do dopasowania danych liniowych z wysokim szumem.
+
+```{r}
+generuj_i_dopasuj(n = 100, wyraz_wolny = 1, nachylenie = 2, odch_szumu = 5, stopien_modelu = 5)
+```
+
+**Wyjaśnienie:** - Model (czerwona linia) jest zbyt złożony, próbując dopasować się do szumu zamiast do podstawowego trendu. - Ta kombinacja wysokiego obciążenia i wysokiej wariancji prowadzi do słabej generalizacji. - W rzeczywistych warunkach mogłoby to reprezentować nadmierne skomplikowanie naszej analizy i wyciąganie fałszywych wniosków z losowych fluktuacji w naszych danych.
+
+### Podsumowanie
+
+Zrozumienie kompromisu między obciążeniem a wariancją jest kluczowe w modelowaniu statystycznym:
+
+1.  **Niskie Obciążenie, Niska Wariancja:** Idealny scenariusz, w którym nasz model dokładnie uchwycił podstawową zależność bez nadmiernej wrażliwości na szum.
+
+2.  **Niskie Obciążenie, Wysoka Wariancja:** Nasz model jest średnio poprawny, ale niewiarygodny ze względu na wysoką wrażliwość na pojedyncze punkty danych.
+
+3.  **Wysokie Obciążenie, Niska Wariancja:** Nasz model jest konsekwentnie błędny z powodu nadmiernego uproszczenia, ale daje stabilne przewidywania.
+
+4.  **Wysokie Obciążenie, Wysoka Wariancja:** Najgorszy scenariusz, w którym nasz model jest zarówno niedokładny, jak i niewiarygodny.
+
+W praktyce często musimy zrównoważyć obciążenie i wariancję. Techniki takie jak walidacja krzyżowa, regularyzacja i metody zespołowe mogą pomóc w znalezieniu tej równowagi.
+
+Pamiętaj: - Model z wysokim obciążeniem jest zbyt prosty i pomija ważne wzorce w danych. - Model z wysoką wariancją jest zbyt złożony i dopasowuje się do szumu w danych treningowych. - Celem jest znalezienie złotego środka, który uchwyci prawdziwe wzorce bez nadmiernego dopasowania do szumu.
+
+Zrozumienie tych pojęć pomoże ci lepiej wybierać odpowiednie modele, unikać przeuczenia i niedouczenia oraz budować bardziej efektywne modele predykcyjne w przyszłych analizach statystycznych!
+

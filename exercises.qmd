@@ -1,0 +1,997 @@
+# Exercises (Test)
+
+## Exercise 1. Identifying Measurement Scales
+
+For each of the following variables, determine the most appropriate scale of measurement (**Nominal, Ordinal, Interval, or Ratio**). Also evaluate whether the variable is discrete or continuous.
+
+1.  Gender: ***nominal level of measurement***, and ***discrete***;
+2.  Customer satisfaction: Poor, Fair, Good, Excellent
+3.  Height (questionnaire): "I am: very short, short, average, tall, very tall"
+4.  Height (inches)
+5.  Reaction time (milliseconds)
+6.  Postal codes: e.g., 61548, 61761, 62461, 47424, 65233
+7.  Age (years)
+8.  Nationality
+9.  Street addresses
+10. Military ranks
+11. Left-Right political scale placement
+12. Family size: 1 child, 2 children, 3 children, ...
+13. IQ score
+14. Shirt size (S, M, L, ...)
+15. Movie ratings (1 star, 2 stars, 3 stars)
+16. Temperature (Celsius)
+17. Temperature (Kelvin)
+18. Blood types: A, B, AB, O
+19. Income categories: low, medium, high
+20. Voter turnout
+21. Political party affiliation
+22. Electoral district magnitude
+
+Remember to justify your choices for each variable.
+
+**For instance**: In Stevens' typology of measurement scales, street addresses are nominal data. This is because:
+
+They serve purely as labels/identifiers. They have no inherent ordering (123 Main St isn't "more than" 23 Oak St). You can't perform meaningful mathematical operations on them.The only valid operation is testing for equality/inequality (is this the same address or different?)
+
+---
+
+## Exercise 2. Center and dispersion of data
+
+### Data
+We have salary data (in thousands of euros) from two small European companies:
+
+| Index | Company X | Company Y |
+|-------|-----------|-----------|
+| 1     | 2         | 3         |
+| 2     | 2         | 3         |
+| 3     | 2         | 4         |
+| 4     | 3         | 4         |
+| 5     | 3         | 4         |
+| 6     | 3         | 4         |
+| 7     | 3         | 4         |
+| 8     | 3         | 4         |
+| 9     | 3         | 5         |
+| 10    | 4         | 5         |
+| 11    | 4         | 5         |
+| 12    | 4         | 5         |
+| 13    | 4         | 5         |
+| 14    | 4         | 5         |
+| 15    | 5         | 5         |
+| 16    | 5         | 6         |
+| 17    | 5         | 6         |
+| 18    | 5         | 6         |
+| 19    | 20        | 7         |
+| 20    | 35        | 8         |
+
+This table presents the data for both Company X and Company Y side by side, with an index column for easy reference.
+
+### Tasks
+
+**A. Measures of Central Tendency**
+
+1. Calculate the **mean** salary for Company X and Company Y.
+2. Calculate the **median** salary for both companies.
+3. Find the **mode** for each company's salary distribution.
+4. Compare the mean and median for Company X. What does the difference between these values tell you about the data?
+
+**B. Quartiles and Percentiles**
+
+5. Calculate the first quartile (Q1), second quartile (Q2), and third quartile (Q3) for both companies.
+6. Verify that Q2 equals the median you calculated in question 2.
+
+**C. Measures of Dispersion**
+
+7. Calculate the **range** for both companies.
+8. Calculate the **interquartile range (IQR)** for both companies.
+9. Calculate the **variance** and **standard deviation** for both companies.
+10. Which company has more variability in salaries? Support your answer with the appropriate statistics.
+
+**D. Outlier Detection**
+
+11. Use the IQR method to identify potential outliers in both companies. (Recall: outliers are values below Q1 - 1.5×IQR or above Q3 + 1.5×IQR)
+12. How do the outliers in Company X affect the mean? Calculate the mean without the outliers and compare.
+
+**E. Boxplots**
+
+13. Draw a boxplot for Company X and Company Y (you may draw them side by side for comparison).
+14. Label the following on each boxplot: minimum, Q1, median, Q3, maximum, and any outliers.
+
+**F. Interpretation and Comparison**
+
+15. If you were reporting the "average" salary for Company X to potential employees, would you use the mean or the median? Justify your choice.
+16. Which company appears to have a more equitable salary distribution? Support your answer with statistical evidence.
+
+---
+
+## Exercise 3. Comparing Electoral District Size Variation Between Countries
+
+```{r setup_2, include=FALSE}
+library(tidyverse)
+library(knitr)
+options(digits = 4)
+```
+
+### Data
+
+We have electoral district size data from two countries:
+
+```{r data}
+x <- c(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)  # Country high variance
+y <- c(8, 9, 9, 10, 10, 11, 11, 12, 12, 13)  # Country low variance
+
+kable(data.frame(
+  "Country X (High var.)" = x,
+  "Country Y (Low var.)" = y
+))
+```
+
+---
+
+## Exercise 4. Voter Participation and Economic Prosperity: Correlation and Regression Analysis
+
+### Background
+In this exercise, we'll investigate the relationship between economic prosperity and voter turnout in local elections. Political scientists and sociologists have long debated whether economic conditions affect civic participation. Some theories suggest that higher income levels are associated with greater political engagement and higher voter turnout, as wealthier citizens may have more resources (time, education, political efficacy) to participate in democratic processes. We'll analyze data from five districts in a mid-sized European city following recent local elections to test this relationship empirically.
+
+### Data
+
+The sample includes five representative districts from a mid-sized European city's local elections:
+- **X**: Average household income (in thousands of euros)
+- **Y**: Voter turnout (percentage of eligible voters who cast ballots)
+
+| District  | Income (X) (€000s) | Turnout (Y) (%) |
+|-----------|-------------------|-----------------|
+| District A| 50                | 60              |
+| District B| 45                | 56              |
+| District C| 56                | 70              |
+| District D| 40                | 50              |
+| District E| 60                | 75              |
+
+### Tasks
+
+**A. Preliminary Data Analysis**
+
+1. Calculate the **mean** household income and the **mean** voter turnout for the sample.
+2. Calculate the **standard deviation** for both household income and voter turnout.
+
+**B. Covariance**
+
+3. Calculate the **covariance** between income (X) and voter turnout (Y). Show your work step by step using the formula:
+   $$\text{Cov}(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1}$$
+
+4. Is the covariance positive or negative? What does this tell you about the relationship between income and voter participation?
+
+**C. Pearson Correlation Coefficient**
+
+5. Calculate the **Pearson correlation coefficient (r)** using the formula:
+   $$r = \frac{\text{Cov}(X,Y)}{s_X \cdot s_Y}$$
+
+6. Interpret the Pearson correlation coefficient. What does its value tell you about the strength and direction of the linear relationship?
+
+7. Why is the Pearson correlation coefficient more useful than covariance for comparing relationships across different studies?
+
+**D. Simple Linear Regression (OLS)**
+
+8. Calculate the **slope (b₁)** of the regression line using the formula:
+    $$b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$$
+
+9. Calculate the **intercept (b₀)** of the regression line:
+    $$b_0 = \bar{y} - b_1\bar{x}$$
+
+10. Write the complete **regression equation**: $\hat{Y} = b_0 + b_1X$
+
+11. Interpret the slope coefficient in substantive terms. What does it mean for voter turnout when income increases by €1,000?
+
+12. Use your regression equation to predict the voter turnout for a district with an average household income of €52,000.
+
+**E. Coefficient of Determination (R²)**
+
+13. For each district, calculate the **predicted turnout** ($\hat{y}_i$) using your regression equation.
+
+14. Calculate the **Total Sum of Squares (SST)**: $SST = \sum(y_i - \bar{y})^2$
+
+15. Calculate the **Regression Sum of Squares (SSR)**: $SSR = \sum(\hat{y}_i - \bar{y})^2$
+
+16. Calculate the **Residual Sum of Squares (SSE)**: $SSE = \sum(y_i - \hat{y}_i)^2$
+
+17. Calculate the **coefficient of determination (R²)**: $R^2 = \frac{SSR}{SST}$
+
+18. Verify that your R² equals the square of the Pearson correlation coefficient from part C.
+
+19. Interpret the R² value. What percentage of variation in voter turnout is explained by household income?
+
+**F. Interpretation and Conclusions**
+
+20. Based on your analyses, summarize the relationship between household income and voter turnout in this city.
+
+21. What are the main limitations of this analysis? Consider sample size, causality, and omitted variables.
+
+22. Suggest two additional variables that could be included in a multiple regression model to better explain voter turnout.
+
+---
+
+## Exercise 5. Anxiety vs. Performance: Correlation and Regression Analysis
+
+### Background
+In this exercise, we'll explore the relationship between test anxiety levels and exam performance among university students. Research suggests that while a small amount of anxiety can be motivating, excessive anxiety typically impairs performance through reduced concentration, working memory interference, and physical symptoms (Yerkes-Dodson law). We'll analyze data from 8 students to understand this relationship mathematically.
+
+### Data
+We collected data from 8 students, measuring:
+- **X**: Test anxiety score (1-10 scale, where 1 = very low, 10 = very high)
+- **Y**: Exam performance (percentage score)
+
+| Student | Anxiety (X) | Performance (Y) |
+|---------|-------------|-----------------|
+| 1       | 2.5         | 80              |
+| 2       | 3.2         | 85              |
+| 3       | 4.1         | 78              |
+| 4       | 4.8         | 82              |
+| 5       | 5.6         | 77              |
+| 6       | 6.3         | 74              |
+| 7       | 7.0         | 68              |
+| 8       | 7.9         | 72              |
+
+### Tasks
+
+**A. Preliminary Data Analysis**
+
+1. Calculate the **mean** anxiety level and the **mean** exam performance for the group.
+2. Calculate the **standard deviation** for both anxiety scores and exam performance.
+3. Based on a visual inspection of the data, do you expect a positive or negative relationship between anxiety and performance? Explain your reasoning.
+
+**B. Covariance**
+
+4. Calculate the **covariance** between anxiety (X) and performance (Y). Show your work step by step.
+5. Is the covariance positive or negative? What does this tell you about the relationship between anxiety and performance?
+6. Why is covariance alone not sufficient to determine the strength of the relationship? What are its limitations?
+
+**C. Pearson Correlation Coefficient**
+
+7. Calculate the **Pearson correlation coefficient (r)** using the formula:
+   $$r = \frac{\text{Cov}(X,Y)}{s_X \cdot s_Y}$$
+   where $s_X$ and $s_Y$ are the standard deviations of X and Y.
+
+8. Alternatively, verify your answer using the formula:
+   $$r = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2 \cdot \sum(y_i - \bar{y})^2}}$$
+
+9. Interpret the Pearson correlation coefficient. What does its value tell you about:
+   - The direction of the relationship (positive or negative)?
+   - The strength of the linear relationship (weak, moderate, or strong)?
+
+10. How does Pearson's r improve upon covariance as a measure of association? What advantage does it have?
+
+11. What is the difference between correlation and causation? Can we conclude that anxiety causes poor performance based on this correlation alone?
+
+**D. Scatterplot**
+
+12. Create a **scatterplot** with anxiety on the x-axis and performance on the y-axis. Plot all 8 data points.
+13. Based on the scatterplot, describe the pattern you observe. Is the relationship linear or non-linear? Strong or weak?
+14. Are there any potential outliers or unusual observations in the data?
+
+**E. Simple Linear Regression (OLS)**
+
+15. Calculate the **slope (b₁)** of the regression line using the Ordinary Least Squares (OLS) method. Use the formula: 
+    $$b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$$
+
+16. Calculate the **intercept (b₀)** of the regression line using the formula:
+    $$b_0 = \bar{y} - b_1\bar{x}$$
+
+17. Write the complete **regression equation** in the form: $\hat{Y} = b_0 + b_1X$
+
+18. Interpret the slope coefficient in the context of this problem. What does it mean in practical terms?
+
+19. Use your regression equation to predict the exam performance for a student with an anxiety level of 6.0.
+
+20. Add the **regression line** to your scatterplot from part D.
+
+**F. Coefficient of Determination (R²)**
+
+21. Calculate the **Total Sum of Squares (SST)**: $SST = \sum(y_i - \bar{y})^2$
+
+22. Calculate the **Regression Sum of Squares (SSR)**: $SSR = \sum(\hat{y}_i - \bar{y})^2$
+
+23. Calculate the **Residual Sum of Squares (SSE)**: $SSE = \sum(y_i - \hat{y}_i)^2$
+
+24. Verify that: $SST = SSR + SSE$
+
+25. Calculate the **coefficient of determination (R²)** using the formula: $R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$
+
+26. Verify that $R^2 = r^2$ (the square of the Pearson correlation coefficient from part C).
+
+27. Interpret the R² value. What percentage of the variation in exam performance is explained by anxiety levels?
+
+**G. Interpretation and Conclusions**
+
+28. Based on your regression analysis, is anxiety a statistically meaningful predictor of exam performance in this sample? Explain.
+
+29. Compare the information provided by r and R². How are they related, and what does each tell you?
+
+30. What are the limitations of this analysis? Consider sample size, measurement issues, and potential confounding variables.
+
+31. If a student has very low anxiety (score of 2.0), would you feel confident using your regression equation to predict their performance? Why or why not? (Hint: consider extrapolation)
+
+32. Suggest two additional variables that might be important to include in a more comprehensive model of exam performance.
+
+---
+
+## Exercise 6. District Magnitude and Electoral Disproportionality: Correlation and Regression Analysis
+
+### Background
+In this exercise, we'll investigate the relationship between electoral district magnitude and disproportionality in parliamentary elections. District magnitude (DM) refers to the number of seats allocated per electoral district, while the Gallagher index (GH) measures the disproportionality between votes cast and seats won. Political scientists have theorized that larger district magnitudes tend to produce more proportional outcomes (lower disproportionality), as stated in Duverger's law and its extensions. We'll analyze data from 10 democracies to test this relationship empirically.
+
+### Data
+A political science student collected data from 10 randomly selected democracies:
+
+- **X**: District Magnitude (DM) - average number of seats per district
+- **Y**: Gallagher Index (GH) - measure of electoral disproportionality (higher values = more disproportional)
+
+| Democracy | District Magnitude (X) | Gallagher Index (Y) |
+|-----------|------------------------|---------------------|
+| 1         | 2                      | 18.2                |
+| 2         | 3                      | 16.7                |
+| 3         | 4                      | 15.8                |
+| 4         | 5                      | 15.3                |
+| 5         | 6                      | 15.0                |
+| 6         | 7                      | 14.8                |
+| 7         | 8                      | 14.7                |
+| 8         | 9                      | 14.6                |
+| 9         | 10                     | 14.55               |
+| 10        | 11                     | 14.52               |
+
+### Tasks
+
+**A. Preliminary Data Analysis**
+
+1. Calculate the **mean** district magnitude and the **mean** Gallagher index for the sample.
+2. Calculate the **standard deviation** for both district magnitude and the Gallagher index.
+3. Based on a visual inspection of the data, do you expect a positive or negative relationship between district magnitude and disproportionality? Does this align with political science theory?
+
+**B. Covariance**
+
+4. Calculate the **covariance** between district magnitude (X) and the Gallagher index (Y). Show your work step by step using the formula:
+
+   $$\text{Cov}(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1}$$
+   
+
+5. Is the covariance positive or negative? What does this tell you about the relationship between district magnitude and disproportionality?
+
+6. What are the units of your covariance? Why does this make it difficult to interpret the strength of the relationship?
+
+**C. Pearson Correlation Coefficient**
+
+7. Calculate the **Pearson correlation coefficient (r)** using the formula:
+   $$r = \frac{\text{Cov}(X,Y)}{s_X \cdot s_Y}$$
+
+8. Interpret the Pearson correlation coefficient:
+   - Is the relationship positive or negative?
+   - How strong is the linear relationship (weak, moderate, or strong)?
+   - What does this tell you about the district magnitude-disproportionality relationship?
+
+9. Calculate **r²** and interpret what it means in this context.
+
+10. Why is the Pearson correlation coefficient more useful than covariance for describing the strength of a linear relationship?
+
+**D. Simple Linear Regression (OLS)**
+
+11. Calculate the **slope (b₁)** of the regression line using the Ordinary Least Squares (OLS) method:
+    $$b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$$
+
+12. Calculate the **intercept (b₀)** of the regression line:
+    $$b_0 = \bar{y} - b_1\bar{x}$$
+
+13. Write the complete **regression equation**: $\hat{Y} = b_0 + b_1X$
+
+14. Interpret the slope coefficient in substantive political science terms. What does it mean for electoral systems?
+
+15. Use your regression equation to predict the Gallagher index for a democracy with a district magnitude of 7.5.
+
+16. What is the relationship between the slope (b₁) and the Pearson correlation coefficient (r)? Show this mathematically.
+
+**E. Coefficient of Determination (R²)**
+
+17. For each observation, calculate the **predicted value** ($\hat{y}_i$) using your regression equation.
+
+18. For each observation, calculate the **residual** ($e_i = y_i - \hat{y}_i$).
+
+19. Calculate the **Total Sum of Squares (SST)**: $SST = \sum(y_i - \bar{y})^2$
+
+20. Calculate the **Regression Sum of Squares (SSR)**: $SSR = \sum(\hat{y}_i - \bar{y})^2$
+
+21. Calculate the **Residual Sum of Squares (SSE)**: $SSE = \sum(y_i - \hat{y}_i)^2$
+
+22. Verify that: $SST = SSR + SSE$
+
+23. Calculate the **coefficient of determination (R²)**: $R^2 = \frac{SSR}{SST}$
+
+24. Verify that your R² equals the square of the Pearson correlation coefficient from part C.
+
+25. Interpret the R² value in the context of electoral systems. What percentage of variation in disproportionality is explained by district magnitude?
+
+26. What is the difference between r and R² in terms of interpretation? When would you report one versus the other?
+
+**F. Interpretation and Conclusions**
+
+27. Based on all your analyses (covariance, Pearson correlation, regression), summarize the relationship between district magnitude and electoral disproportionality.
+
+28. Do your findings support Duverger's hypothesis? Explain with reference to your statistical results.
+
+29. Compare the information provided by the following measures:
+    - Covariance
+    - Pearson correlation (r)
+    - Regression slope (b₁)
+    - R²
+
+30. What are the limitations of this analysis? Consider:
+    - Sample size
+    - External validity (generalizability)
+    - Omitted variables (what other factors might affect disproportionality?)
+
+31. Would you feel confident using your regression model to predict disproportionality for a democracy with DM = 20? Why or why not? What statistical concept is relevant here?
+
+32. Suggest three additional variables that could be included in a multiple regression model to better explain electoral disproportionality.
+
+33. Based on your regression results, what policy recommendation would you make to a country that wants to reduce electoral disproportionality?
+
+---
+
+## Exercise 7: Sum and Product Rules in Counting
+
+Consider the following counting problems and determine whether to use the **sum rule** (addition) or the **product rule** (multiplication).
+
+**a.** A restaurant offers 4 types of soup, 6 main courses, and 3 desserts. If a complete meal consists of one soup, one main course, and one dessert, how many different complete meals are possible?
+
+**b.** A student can take either a bus or a train to get to campus. There are 3 different bus lines and 2 different train lines. How many different ways can the student travel to campus?
+
+**c.** To create a password, you must choose 2 letters followed by 3 digits. How many different passwords are possible (assuming letters and digits can be repeated)?
+
+**d.** A committee needs either 1 representative from the Math department (5 candidates) OR 1 representative from the Physics department (4 candidates), but not both. How many ways can the representative be chosen?
+
+**Hints:**
+
+- **Product Rule (Multiply)**: Use when tasks are performed in sequence AND all tasks must be completed. Think: "this AND that AND that..."
+
+- **Sum Rule (Add)**: Use when there are mutually exclusive alternatives. Think: "this OR that (but not both)..."
+
+- For multiple choices in sequence where each choice is independent, multiply the number of options at each step.
+
+- For alphabet: 26 letters; for digits: 10 digits (0-9).
+
+**Answers:**
+
+**a.** Product rule: $4 \times 6 \times 3 = 72$ different complete meals.
+
+*Explanation*: You must choose soup AND main course AND dessert (all three selections in sequence).
+
+**b.** Sum rule: $3 + 2 = 5$ different ways.
+
+*Explanation*: You choose bus OR train (mutually exclusive alternatives).
+
+**c.** Product rule: $26 \times 26 \times 10 \times 10 \times 10 = 676{,}000$ different passwords.
+
+*Explanation*: You must choose 1st letter AND 2nd letter AND 1st digit AND 2nd digit AND 3rd digit (five sequential choices).
+
+**d.** Sum rule: $5 + 4 = 9$ different ways.
+
+*Explanation*: You choose from Math OR from Physics (mutually exclusive alternatives - cannot choose both).
+
+---
+
+## Exercise 8: Sampling with and without Replacement
+
+An urn contains 3 green balls and 2 red balls. Two balls are drawn from the urn. Calculate the probability for each of the following scenarios:
+
+a. The first ball is red and the second ball is green (order matters); drawing **without replacement**.
+
+b. The first ball is red and the second ball is green (order matters); drawing **with replacement**.
+
+c. The balls are of different colors (order doesn't matter); drawing **without replacement**.
+
+d. The balls are of different colors (order doesn't matter); drawing **with replacement**.
+
+**Hints:**
+
+- When drawing *without replacement*, the total number of balls and the composition change after the first draw.
+
+- When drawing *with replacement*, each draw is independent with the same probabilities.
+
+- When order doesn't matter, consider all possible ways to achieve the outcome (e.g., red-then-green OR green-then-red).
+
+- Use the multiplication rule for sequential events: $P(A \text{ and } B) = P(A) \times P(B|A)$
+
+- This problem can be solved using **probability trees** or by constructing the **sample space** visualized as a 2D grid, then applying the classical (naive) definition of probability: $P(A) = \frac{\text{favorable outcomes}}{\text{total outcomes}}$
+
+**Solutions:**
+
+**a.** Without replacement, red then green:
+
+$$P(\text{Red}_1 \cap \text{Green}_2) = \frac{2}{5} \times \frac{3}{4} = \frac{6}{20} = \frac{3}{10}$$
+
+*Explanation*: Initially 2 red out of 5 balls; after removing one red, 3 green out of 4 remaining balls.
+
+**b.** With replacement, red then green:
+
+$$P(\text{Red}_1 \cap \text{Green}_2) = \frac{2}{5} \times \frac{3}{5} = \frac{6}{25}$$
+
+*Explanation*: Each draw is independent with the same probabilities (2 red and 3 green out of 5 balls each time).
+
+**c.** Without replacement, different colors (order doesn't matter):
+
+$$P(\text{Different}) = P(\text{Red}_1 \cap \text{Green}_2) + P(\text{Green}_1 \cap \text{Red}_2) = \frac{2}{5} \times \frac{3}{4} + \frac{3}{5} \times \frac{2}{4} = \frac{6}{20} + \frac{6}{20} = \frac{12}{20} = \frac{3}{5}$$
+
+*Explanation*: Add probabilities for both orderings (red-green OR green-red).
+
+**d.** With replacement, different colors (order doesn't matter):
+
+$$P(\text{Different}) = P(\text{Red}_1 \cap \text{Green}_2) + P(\text{Green}_1 \cap \text{Red}_2) = \frac{2}{5} \times \frac{3}{5} + \frac{3}{5} \times \frac{2}{5} = \frac{6}{25} + \frac{6}{25} = \frac{12}{25}$$
+
+*Explanation*: Add probabilities for both orderings, with each draw independent.
+
+**Alternative approach using sample space:**
+
+- **With replacement**: Create a 5×5 grid where rows represent the first draw (R1, R2, G1, G2, G3) and columns represent the second draw (R1, R2, G1, G2, G3). Total outcomes: 25. Count favorable outcomes in the grid.
+
+- **Without replacement**: Create a grid excluding diagonal elements (can't draw the same ball twice). Total outcomes: 20. Count favorable outcomes in the grid.
+
+---
+
+
+## Exercise 9: Drawing Balls from an Urn
+
+An urn contains 4 red balls and 3 black balls (balls of the same color are indistinguishable). Two balls are drawn from the urn **without replacement**.
+
+What is the probability that:
+
+a. Both balls are red.
+
+b. The first ball is red and the second ball is black.
+
+c. The balls are of different colors.
+
+**Hints:**
+
+- When drawing without replacement, the total number of balls and the composition change after the first draw.
+
+- Use the multiplication rule: $P(A \cap B) = P(A) \times P(B|A)$
+
+- When order doesn't matter (part c), consider all possible orderings.
+
+- This problem can be solved using **probability trees** or by listing the **sample space** as ordered pairs. For the sample space approach, label the balls (R1, R2, R3, R4, B1, B2, B3) to ensure equally likely outcomes, even though balls of the same color are physically indistinguishable.
+
+**Solutions:**
+
+**a.** Both balls are red:
+
+$$P(\text{Red}_1 \cap \text{Red}_2) = \frac{4}{7} \times \frac{3}{6} = \frac{12}{42} = \frac{2}{7}$$
+
+*Explanation*: Initially 4 red out of 7 balls; after removing one red ball, 3 red out of 6 remaining balls.
+
+**b.** First red, second black:
+
+$$P(\text{Red}_1 \cap \text{Black}_2) = \frac{4}{7} \times \frac{3}{6} = \frac{12}{42} = \frac{2}{7}$$
+
+*Explanation*: Initially 4 red out of 7 balls; after removing one red ball, 3 black out of 6 remaining balls.
+
+**c.** Different colors (order doesn't matter):
+
+$$P(\text{Different}) = P(\text{Red}_1 \cap \text{Black}_2) + P(\text{Black}_1 \cap \text{Red}_2) = \frac{4}{7} \times \frac{3}{6} + \frac{3}{7} \times \frac{4}{6} = \frac{12}{42} + \frac{12}{42} = \frac{24}{42} = \frac{4}{7}$$
+
+*Explanation*: Add probabilities for both orderings (red-black OR black-red).
+
+**Alternative approach using sample space:**
+
+Label the balls as R1, R2, R3, R4, B1, B2, B3 to create a sample space with equally likely outcomes. Create a 7×6 grid (or list all ordered pairs) where the first coordinate represents the first draw and the second coordinate represents the second draw. Since we draw without replacement, exclude cases where the same ball is drawn twice. Total outcomes: $7 \times 6 = 42$. Count favorable outcomes for each scenario (e.g., for part a, count all pairs where both coordinates are red balls).
+
+---
+
+## Exercise 10: Complement Rule
+
+A bag contains 5 red balls and 3 blue balls. Two balls are drawn from the bag **without replacement**, one after another.
+
+Calculate the probability that at least one ball is red.
+
+**Hints:**
+
+- "At least one" means one or more (one red OR two red).
+
+- The **complement rule** is often easier: $P(A) = 1 - P(A^c)$, where $A^c$ is the complement of event $A$.
+
+- The complement of "at least one red" is "no red balls" (i.e., "both blue").
+
+- Calculate $P(\text{both blue})$ first, then use the complement rule.
+
+**Solution:**
+
+Let $A$ = "at least one ball is red"
+
+The complement is $A^c$ = "both balls are blue"
+
+$$P(\text{both blue}) = \frac{3}{8} \times \frac{2}{7} = \frac{6}{56} = \frac{3}{28}$$
+
+Using the complement rule:
+
+$$P(\text{at least one red}) = 1 - P(\text{both blue}) = 1 - \frac{3}{28} = \frac{25}{28}$$
+
+**Alternative direct approach:**
+
+$$P(\text{at least one red}) = P(\text{Red}_1 \cap \text{Blue}_2) + P(\text{Blue}_1 \cap \text{Red}_2) + P(\text{Red}_1 \cap \text{Red}_2)$$
+
+$$= \frac{5}{8} \times \frac{3}{7} + \frac{3}{8} \times \frac{5}{7} + \frac{5}{8} \times \frac{4}{7} = \frac{15}{56} + \frac{15}{56} + \frac{20}{56} = \frac{50}{56} = \frac{25}{28}$$
+
+The complement approach is simpler!
+
+---
+
+## Exercise 11: Addition Rule for Probability
+
+Consider a standard deck of 52 playing cards. A card is selected at random.
+
+What is the probability that the card is a diamond or a ten?
+
+**Hints:**
+
+- A standard deck has 4 suits (hearts, diamonds, clubs, spades), each with 13 cards.
+
+- Use the **addition rule**: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+
+- Be careful not to count cards twice! The ten of diamonds is both a diamond AND a ten.
+
+- Identify: How many diamonds? How many tens? How many cards are both?
+
+**Solution:**
+
+Let $A$ = "card is a diamond" and $B$ = "card is a ten"
+
+- Number of diamonds: 13
+- Number of tens: 4 (one in each suit)
+- Number of cards that are both diamond and ten: 1 (ten of diamonds)
+
+Using the addition rule:
+
+$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+
+$$= \frac{13}{52} + \frac{4}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}$$
+
+*Explanation*: We add the probabilities of drawing a diamond and drawing a ten, but we must subtract the probability of drawing the ten of diamonds (which was counted twice).
+
+---
+
+## Exercise 12: Conditional Probability and Multiplication Rule
+
+A box contains blocks of different shapes and colors:
+
+- Triangular blocks: 3 red and 2 green
+- Oval blocks: 2 red and 3 green  
+- Quadrilateral blocks: 3 green (no red)
+
+One block is randomly selected from the box.
+
+Calculate the following probabilities:
+
+a. $P(\text{triangle})$
+
+b. $P(\text{green})$
+
+c. $P(\text{triangle} \cap \text{green})$
+
+d. $P(\text{triangle} \mid \text{green})$
+
+e. $P(\text{green} \mid \text{triangle})$
+
+f. Verify the multiplication rule: $P(A \cap B) = P(A) \times P(B \mid A) = P(B) \times P(A \mid B)$
+
+**Hints:**
+
+- First, count the total number of blocks in the box.
+
+- **Conditional probability formula**: $P(A \mid B) = \frac{P(A \cap B)}{P(B)}$
+
+- $P(A \mid B)$ reads as "probability of $A$ given $B$" - it represents the probability of $A$ occurring when we know that $B$ has occurred.
+
+- **Multiplication rule**: $P(A \cap B) = P(A) \times P(B \mid A) = P(B) \times P(A \mid B)$
+
+- For conditional probability, restrict your sample space to only the outcomes where the condition is satisfied.
+
+**Solutions:**
+
+Total number of blocks: $5 + 5 + 3 = 13$
+
+**a.** Probability of selecting a triangle:
+
+$$P(\text{triangle}) = \frac{5}{13}$$
+
+*Explanation*: There are 5 triangular blocks out of 13 total blocks.
+
+**b.** Probability of selecting a green block:
+
+$$P(\text{green}) = \frac{2 + 3 + 3}{13} = \frac{8}{13}$$
+
+*Explanation*: There are 8 green blocks (2 triangular + 3 oval + 3 quadrilateral) out of 13 total blocks.
+
+**c.** Probability of selecting a block that is both triangle and green:
+
+$$P(\text{triangle} \cap \text{green}) = \frac{2}{13}$$
+
+*Explanation*: There are 2 blocks that are both triangular and green out of 13 total blocks.
+
+**d.** Probability of triangle given that the block is green:
+
+$$P(\text{triangle} \mid \text{green}) = \frac{P(\text{triangle} \cap \text{green})}{P(\text{green})} = \frac{2/13}{8/13} = \frac{2}{8} = \frac{1}{4}$$
+
+*Alternative reasoning*: If we know the block is green, we restrict our sample space to the 8 green blocks. Of these 8 green blocks, 2 are triangular. Therefore, $P(\text{triangle} \mid \text{green}) = \frac{2}{8} = \frac{1}{4}$.
+
+**e.** Probability of green given that the block is a triangle:
+
+$$P(\text{green} \mid \text{triangle}) = \frac{P(\text{triangle} \cap \text{green})}{P(\text{triangle})} = \frac{2/13}{5/13} = \frac{2}{5}$$
+
+*Alternative reasoning*: If we know the block is triangular, we restrict our sample space to the 5 triangular blocks. Of these 5 triangular blocks, 2 are green. Therefore, $P(\text{green} \mid \text{triangle}) = \frac{2}{5}$.
+
+**f.** Verification of the multiplication rule:
+
+$$P(\text{triangle} \cap \text{green}) = P(\text{triangle}) \times P(\text{green} \mid \text{triangle}) = \frac{5}{13} \times \frac{2}{5} = \frac{2}{13}$$ ✓
+
+$$P(\text{triangle} \cap \text{green}) = P(\text{green}) \times P(\text{triangle} \mid \text{green}) = \frac{8}{13} \times \frac{1}{4} = \frac{2}{13}$$ ✓
+
+Both formulations give the same result!
+
+---
+
+## Exercise 13: Bayes' Theorem and the Law of Total Probability
+
+Last week, Alice went to her doctor for a routine medical check-up. This morning, her doctor called to tell her that the result of one of the tests is positive, indicating that she may have a disease, which we'll denote by $D$. The prevalence of this disease in the population for people of Alice's age is 1 in 1000.
+
+Thinking there might be an error, Alice asked about the accuracy of the test. The doctor told her that the test is 95% accurate in both directions:
+
+- When someone has disease $D$, the test correctly detects it 95% of the time (sensitivity or true positive rate).
+- When someone does not have disease $D$, the test is correctly negative 95% of the time (specificity or true negative rate).
+
+What is the probability that Alice actually has the disease given that she tested positive? Calculate $P(D \mid T^+)$.
+
+**Hints:**
+
+- Let $D$ = "Alice has the disease" and $T^+$ = "Test is positive"
+- Given information:
+  - $P(D) = \frac{1}{1000} = 0.001$ (prevalence)
+  - $P(T^+ \mid D) = 0.95$ (sensitivity)
+  - $P(T^- \mid D^c) = 0.95$ (specificity), which means $P(T^+ \mid D^c) = 0.05$ (false positive rate)
+- Use **Bayes' theorem**: $P(D \mid T^+) = \frac{P(T^+ \mid D) \times P(D)}{P(T^+)}$
+- Use the **law of total probability** to find $P(T^+)$:
+  $$P(T^+) = P(T^+ \mid D) \times P(D) + P(T^+ \mid D^c) \times P(D^c)$$
+
+**Solution:**
+
+**Step 1:** Identify the known probabilities
+
+- $P(D) = 0.001$ (prevalence in population)
+- $P(D^c) = 1 - 0.001 = 0.999$ (probability of not having disease)
+- $P(T^+ \mid D) = 0.95$ (sensitivity)
+- $P(T^+ \mid D^c) = 0.05$ (false positive rate)
+
+**Step 2:** Calculate $P(T^+)$ using the law of total probability
+
+The law of total probability partitions the event "positive test" into two mutually exclusive scenarios: testing positive when having the disease OR testing positive when not having the disease.
+
+$$P(T^+) = P(T^+ \mid D) \times P(D) + P(T^+ \mid D^c) \times P(D^c)$$
+
+$$P(T^+) = 0.95 \times 0.001 + 0.05 \times 0.999$$
+
+$$P(T^+) = 0.00095 + 0.04995 = 0.0509$$
+
+**Step 3:** Apply Bayes' theorem
+
+$$P(D \mid T^+) = \frac{P(T^+ \mid D) \times P(D)}{P(T^+)} = \frac{0.95 \times 0.001}{0.0509} = \frac{0.00095}{0.0509} \approx 0.0187$$
+
+$$P(D \mid T^+) \approx 1.87\% \approx \frac{1}{54}$$
+
+**Interpretation:**
+
+Despite the test being 95% accurate, the probability that Alice actually has the disease given a positive test result is only about **1.9%** or roughly **1 in 54**!
+
+This counterintuitive result occurs because the disease is very rare (only 1 in 1000 people have it). Even though the test is quite accurate, the large number of healthy people (999 out of 1000) means that the 5% false positive rate generates many more false positives than there are true positives.
+
+**Visualization using a population of 100,000 people:**
+
+- People with disease $D$: $100{,}000 \times 0.001 = 100$
+  - True positives: $100 \times 0.95 = 95$
+  - False negatives: $100 \times 0.05 = 5$
+
+- People without disease $D$: $100{,}000 \times 0.999 = 99{,}900$
+  - False positives: $99{,}900 \times 0.05 = 4{,}995$
+  - True negatives: $99{,}900 \times 0.95 = 94{,}905$
+
+Total positive tests: $95 + 4{,}995 = 5{,}090$
+
+$$P(D \mid T^+) = \frac{95}{5{,}090} \approx 0.0187 \approx 1.87\%$$
+
+---
+
+## Exercise 14: COVID-19 Testing and Base Rate
+
+Suppose you think you may have contracted COVID-19, an infectious disease caused by the SARS-CoV-2 virus. You decide to take a diagnostic test, and you want to use its result to determine if you are infected or not.
+
+**Test characteristics:**
+
+- **Sensitivity** (true positive rate): $P(T = 1 \mid D = 1) = 87.5\%$ – the probability of a positive test given that you actually have the disease.
+- **Specificity** (true negative rate): $P(T = 0 \mid D = 0) = 97.5\%$ – the probability of a negative test given that you do not have the disease.
+- **False positive rate**: $P(T = 1 \mid D = 0) = 1 - 0.975 = 2.5\%$
+- **False negative rate**: $P(T = 0 \mid D = 1) = 1 - 0.875 = 12.5\%$
+
+where $D = 1$ means "has disease" and $T = 1$ means "test is positive".
+
+**Task:**
+
+Calculate $P(D = 1 \mid T = 1)$ (the probability that you have COVID-19 given a positive test) for two scenarios:
+
+a. **High prevalence**: $P(D = 1) = 0.1$ (10%), which was the prevalence in New York City in Spring 2020.
+
+b. **Low prevalence**: $P(D = 1) = 0.01$ (1%), representing a lower community transmission rate.
+
+**Hints:**
+
+- Use Bayes' theorem: $P(D = 1 \mid T = 1) = \frac{P(T = 1 \mid D = 1) \times P(D = 1)}{P(T = 1)}$
+- Use the law of total probability to find $P(T = 1)$
+
+**Solutions:**
+
+**a. High prevalence (10%):**
+
+Given:
+- $P(D = 1) = 0.1$, so $P(D = 0) = 0.9$
+- $P(T = 1 \mid D = 1) = 0.875$
+- $P(T = 1 \mid D = 0) = 0.025$
+
+Calculate $P(T = 1)$:
+$$P(T = 1) = P(T = 1 \mid D = 1) \times P(D = 1) + P(T = 1 \mid D = 0) \times P(D = 0)$$
+$$P(T = 1) = 0.875 \times 0.1 + 0.025 \times 0.9 = 0.0875 + 0.0225 = 0.11$$
+
+Apply Bayes' theorem:
+$$P(D = 1 \mid T = 1) = \frac{0.875 \times 0.1}{0.11} = \frac{0.0875}{0.11} \approx 0.795 = 79.5\%$$
+
+**b. Low prevalence (1%):**
+
+Given:
+- $P(D = 1) = 0.01$, so $P(D = 0) = 0.99$
+- $P(T = 1 \mid D = 1) = 0.875$
+- $P(T = 1 \mid D = 0) = 0.025$
+
+Calculate $P(T = 1)$:
+$$P(T = 1) = 0.875 \times 0.01 + 0.025 \times 0.99 = 0.00875 + 0.02475 = 0.0335$$
+
+Apply Bayes' theorem:
+$$P(D = 1 \mid T = 1) = \frac{0.875 \times 0.01}{0.0335} = \frac{0.00875}{0.0335} \approx 0.261 = 26.1\%$$
+
+**Key insight:**
+
+The **base rate** (prevalence) dramatically affects the interpretation of test results:
+
+- At 10% prevalence: A positive test means you have about an **80% chance** of being infected.
+- At 1% prevalence: A positive test means you have only about a **26% chance** of being infected.
+
+This demonstrates why the same test can have very different interpretations depending on the disease prevalence in your community!
+
+---
+
+## Exercise 15: Independence of Events
+
+A fair coin is flipped 3 times. Let $H_1$ = "tails on the first flip" and $A$ = "exactly two tails in total".
+
+Are events $H_1$ and $A$ independent?
+
+**Hints:**
+
+- Two events $A$ and $B$ are **independent** if and only if: $P(A \cap B) = P(A) \times P(B)$
+
+- Alternatively, events are independent if: $P(A \mid B) = P(A)$ (knowing $B$ doesn't change the probability of $A$)
+
+- List the sample space for three coin flips and identify which outcomes belong to each event.
+
+- For a fair coin, each outcome (sequence of 3 flips) has probability $(1/2)^3 = 1/8$.
+
+**Solution:**
+
+**Step 1:** List the sample space
+
+$$\Omega = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}$$
+
+Total outcomes: 8, each with probability $1/8$.
+
+**Step 2:** Identify outcomes for each event
+
+- $H_1$ = "tails on first flip" = $\{THH, THT, TTH, TTT\}$
+  $$P(H_1) = \frac{4}{8} = \frac{1}{2}$$
+
+- $A$ = "exactly two tails" = $\{HTT, THT, TTH\}$
+  $$P(A) = \frac{3}{8}$$
+
+- $H_1 \cap A$ = "tails on first flip AND exactly two tails" = $\{THT, TTH\}$
+  $$P(H_1 \cap A) = \frac{2}{8} = \frac{1}{4}$$
+
+**Step 3:** Check independence condition
+
+If independent, we need: $P(H_1 \cap A) = P(H_1) \times P(A)$
+
+$$P(H_1) \times P(A) = \frac{1}{2} \times \frac{3}{8} = \frac{3}{16}$$
+
+$$P(H_1 \cap A) = \frac{2}{8} = \frac{4}{16}$$
+
+Since $\frac{4}{16} \neq \frac{3}{16}$, the events are **NOT independent**.
+
+**Alternative approach using conditional probability:**
+
+$$P(A \mid H_1) = \frac{P(H_1 \cap A)}{P(H_1)} = \frac{2/8}{1/2} = \frac{2}{8} \times 2 = \frac{4}{8} = \frac{1}{2}$$
+
+Since $P(A \mid H_1) = \frac{1}{2} \neq \frac{3}{8} = P(A)$, the events are **NOT independent**.
+
+**Intuitive explanation:**
+
+Knowing that the first flip is tails changes the probability of getting exactly two tails total. If the first flip is tails, we need exactly one more tail in the remaining two flips (probability = $\frac{1}{2}$). Without this information, the probability of exactly two tails in three flips is $\frac{3}{8}$. Since these probabilities differ, the events are dependent.
+
+---
+
+
+## Exercise 16: Hypothesis Testing with Binomial Distribution
+
+A candidate in an election believes that approximately 50% ($p = 0.5$) of residents in a certain city support her.
+
+A researcher wants to test whether the candidate correctly estimates her support. Ten people were asked if they support the candidate; 7 people answered yes.
+
+Using the sample data, calculate the so-called **p-value** and decide whether there is sufficiently strong evidence to reject the candidate's hypothesis that $p = 0.5$. Assume the significance level (critical probability) is $\alpha = 0.05$.
+
+Note: We will conduct a **one-sided test** assuming the candidate may **underestimate** her support (i.e., the true support might be higher than 50%).
+
+**Hints:**
+
+- **Null hypothesis** $H_0$: $p = 0.5$ (candidate's support is 50%)
+- **Alternative hypothesis** $H_1$: $p > 0.5$ (candidate's support is greater than 50%, meaning she underestimates it)
+- The number of supporters follows a **binomial distribution**: $X \sim \text{Binomial}(n=10, p=0.5)$
+- **p-value** = probability of observing a result as extreme or more extreme than what we observed, assuming $H_0$ is true
+- For a one-sided test (right-tailed): p-value = $P(X \geq 7 \mid p = 0.5)$
+- **Binomial probability formula**: $P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}$
+- **Decision rule**: If p-value $< \alpha$, reject $H_0$; otherwise, fail to reject $H_0$
+
+**Solution:**
+
+**Step 1:** State the hypotheses
+
+- $H_0$: $p = 0.5$ (the candidate's estimate is correct)
+- $H_1$: $p > 0.5$ (the candidate underestimates her support)
+
+**Step 2:** Calculate the p-value
+
+The p-value is the probability of getting 7 or more supporters out of 10 people, assuming the true support is 50%:
+
+$$\text{p-value} = P(X \geq 7 \mid p = 0.5) = P(X = 7) + P(X = 8) + P(X = 9) + P(X = 10)$$
+
+For each term, use the binomial formula with $n = 10$ and $p = 0.5$:
+
+$$P(X = 7) = \binom{10}{7} (0.5)^{7} (0.5)^{3} = 120 \times (0.5)^{10} = \frac{120}{1024}$$
+
+$$P(X = 8) = \binom{10}{8} (0.5)^{8} (0.5)^{2} = 45 \times (0.5)^{10} = \frac{45}{1024}$$
+
+$$P(X = 9) = \binom{10}{9} (0.5)^{9} (0.5)^{1} = 10 \times (0.5)^{10} = \frac{10}{1024}$$
+
+$$P(X = 10) = \binom{10}{10} (0.5)^{10} (0.5)^{0} = 1 \times (0.5)^{10} = \frac{1}{1024}$$
+
+Sum these probabilities:
+
+$$\text{p-value} = \frac{120 + 45 + 10 + 1}{1024} = \frac{176}{1024} \approx 0.172$$
+
+**Step 3:** Make a decision
+
+Compare the p-value with the significance level $\alpha = 0.05$:
+
+$$\text{p-value} = 0.172 > 0.05 = \alpha$$
+
+Since the p-value is greater than the significance level, we **fail to reject** the null hypothesis $H_0$.
+
+**Conclusion:**
+
+There is **not sufficient evidence** at the 5% significance level to conclude that the candidate underestimates her support. While 7 out of 10 supporters seems high, this result could reasonably occur by chance even if the true support is only 50%. The observed data is consistent with the candidate's estimate of 50% support.
+
+**Interpretation of p-value:**
+
+The p-value of 0.172 means that if the true support is indeed 50%, there is about a 17.2% chance of observing 7 or more supporters in a random sample of 10 people. This is not an unusual occurrence, so we don't have strong evidence against the candidate's claim.
+
+---
+
+
+
+---

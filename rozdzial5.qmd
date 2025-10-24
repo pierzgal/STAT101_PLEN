@@ -7,55 +7,84 @@ Statystyki opisowe są fundamentalnymi narzędziami w badaniach nauk społecznyc
 -   Wykrywanie potencjalnych anomalii lub wartości odstających
 -   Zapewnienie podstawy do dalszej analizy statystycznej
 
-## Introduction to Sigma Notation (Σ) \| Wprowadzenie do Notacji Sigma (Σ)
+## Wprowadzenie do Notacji Sigma (Σ)
 
--   **What is Sigma? \| Co to jest notacja sumacyjna Sigma?** Sigma (Σ) is a mathematical operator that tells us to sum (add up) a sequence of terms - it functions as an instruction to perform addition of all elements in a specified range. \| Sigma (Σ) to operator matematyczny, który nakazuje nam zsumować (dodać) sekwencję wyrazów - działa jak instrukcja wykonania dodawania wszystkich elementów w określonym zakresie.
+-   **Co to jest notacja sumacyjna Sigma?** Sigma (Σ) to operator matematyczny, który nakazuje nam zsumować (dodać) sekwencję wyrazów - działa jak instrukcja wykonania dodawania wszystkich elementów w określonym zakresie.
+-   **Cel:** Zapewnia zwięzły sposób zapisu sum wielu podobnych wyrazów za pomocą jednego symbolu, unikając długich wyrażeń dodawania.
 
--   **Purpose: \| Cel:** Provides a compact way to write sums of many similar terms using a single symbol, avoiding lengthy addition expressions. \| Zapewnia zwięzły sposób zapisu sum wielu podobnych wyrazów za pomocą jednego symbolu, unikając długich wyrażeń dodawania.
+### Podstawowa formuła
 
-### Basic Formula \| Podstawowa formuła
-
--   The general form of a sigma notation is: \| Ogólna forma notacji sigma to:
+-   Ogólna forma notacji sigma to:
 
 $$\sum_{i=a}^{b} f(i)$$
 
--   **Index of Summation: \| Indeks sumowania:** $i$
--   **Lower Limit: \| Dolna granica:** $a$
--   **Upper Limit: \| Górna granica:** $b$
--   **Function: \| Funkcja:** $f(i)$
+-   **Indeks sumowania:** $i$
+-   **Dolna granica:** $a$
+-   **Górna granica:** $b$
+-   **Funkcja:** $f(i)$
 
-### Simple Example \| Prosty przykład
+### Przykłady zastosowania notacji Sigma
 
--   Consider you want to add the first five positive integers: \| Załóżmy, że chcesz dodać pierwsze pięć dodatnich liczb całkowitych:
+#### Prosty przykład: Suma liczb naturalnych
 
-$$\sum_{i=1}^{5} i = 1 + 2 + 3 + 4 + 5 = 15$$
+-   Załóżmy, że chcesz dodać pierwsze pięć dodatnich liczb całkowitych:
 
--   Adds the first five positive integers. \| Dodaje pierwsze pięć dodatnich liczb całkowitych.
+$\sum_{i=1}^{5} i = 1 + 2 + 3 + 4 + 5 = 15$
 
-### Example with a Function \| Przykład z funkcją
+-   Powyższy zapis dodaje pierwsze pięć dodatnich liczb całkowitych.
 
--   Suppose you want to sum the squares of the first four positive integers: \| Załóżmy, że chcesz zsumować kwadraty pierwszych czterech dodatnich liczb całkowitych:
+#### Suma kwadratów
 
-$$\sum_{i=1}^{4} i^2 = 1^2 + 2^2 + 3^2 + 4^2 = 30$$
+-   Załóżmy, że chcesz zsumować kwadraty pierwszych czterech dodatnich liczb całkowitych:
 
--   Sum of the squares of the first four positive integers. \| Suma kwadratów pierwszych czterech dodatnich liczb całkowitych.
+$\sum_{i=1}^{4} i^2 = 1^2 + 2^2 + 3^2 + 4^2 = 1 + 4 + 9 + 16 = 30$
 
-### Practical Application in Statistics \| Praktyczne zastosowanie w statystyce
+-   Jest to suma kwadratów pierwszych czterech dodatnich liczb całkowitych.
 
--   **Calculating the Mean: \| Obliczanie średniej:**
+#### Suma wartości stałej
 
-    -   Data Points: \| Punkty danych: $x_1, x_2, ..., x_n$
-    -   Mean $\bar{x}$: \| Średnia $\bar{x}$:
+-   Sumowanie stałej wartości $c$ dla $n$ wyrazów:
 
-$$\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$$
+$\sum_{i=1}^{n} c = c + c + c + ... + c \text{ (n razy)} = n \cdot c$
 
--   Example: \| Przykład: $x_1, x_2, x_3, x_4$ are 4, 8, 15, 16 \| $x_1, x_2, x_3, x_4$ to 4, 8, 15, 16
+-   **Przykład**: Suma pięciu piątek:
 
-$$\bar{x} = \frac{43}{4} = 10.75$$
+$\sum_{i=1}^{5} 5 = 5 + 5 + 5 + 5 + 5 = 5 \cdot 5 = 25$
 
-### Benefits of Using Sigma Notation \| Korzyści z używania notacji Sigma
+### Proste przykłady w kontekście statystyki
 
--   **Clarity: \| Jasność:** Provides a clear and concise representation of various statistical formulas. \| Zapewnia jasne i zwięzłe przedstawienie statystycznych formuł.
+$$\sum_{i=1}^{n} x_i$$
+
+-   **Indeks sumowania:** $i$ (zazwyczaj oznacza konkretną obserwację w zbiorze danych)
+-   **Dolna granica:** 1 (zwykle zaczynamy od pierwszej obserwacji)
+-   **Górna granica:** $n$ (całkowita liczba obserwacji w naszym zbiorze danych)
+-   **Wyrażenie:** $x_i$ (wartość $i$-tej obserwacji)
+
+#### Sumowanie wartości obserwacji
+
+-   Mamy zbiór danych: 5, 8, 12, 15, 20
+-   Suma wszystkich wartości:
+
+$$\sum_{i=1}^{5} x_i = x_1 + x_2 + x_3 + x_4 + x_5 = 5 + 8 + 12 + 15 + 20 = 60$$
+
+-   Ta suma jest kluczowym elementem przy obliczaniu średniej arytmetycznej.
+
+#### Suma odchyleń od średniej
+
+-   Dla tego samego zbioru danych (5, 8, 12, 15, 20), średnia wynosi $\bar{x} = 60/5 = 12$
+-   Suma odchyleń od średniej:
+
+$$\sum_{i=1}^{5} (x_i - \bar{x}) = (5-12) + (8-12) + (12-12) + (15-12) + (20-12)$$ $$= -7 + (-4) + 0 + 3 + 8 = 0$$
+
+-   **Ważna obserwacja:** Suma odchyleń od średniej zawsze wynosi 0, co jest podstawową właściwością średniej arytmetycznej.
+
+### Podsumowanie
+
+-   Notacja Sigma (Σ) pozwala na zwięzły zapis kluczowych wzorów statystycznych
+-   Najważniejsze zastosowania obejmują obliczanie:
+    -   Średniej arytmetycznej
+    -   Wariancji i odchylenia standardowego
+    -   Różnych sum kwadratów używanych w analizie regresji
 
 ::: callout-note
 ## Operatory Sumy (Σ) i Iloczynu (Π)
@@ -171,17 +200,18 @@ ggplot(dane_bimodalne, aes(x)) +
   labs(title = "Rozkład bimodalny", x = "Wartość", y = "Gęstość")
 ```
 
-| Distribution | Key Properties | Social Examples |
-|----------------------|------------------------|---------------------------|
-| Normal | Symmetric, bell-shaped, most values near mean | Height, IQ scores, standardized test scores |
-| Uniform | Equal probability across range | Birth dates in year, arrival times in hour |
-| Bimodal | Two peaks, suggests subgroups | Age in college towns, polarized opinions |
-| Log-normal | Right-skewed, cannot be negative | Income, house prices, social media followers |
-| Power law | Extreme skew, "rich get richer" | City sizes |
+| Rozkład | Kluczowe właściwości | Przykłady |
+|------------------|---------------------|---------------------------------|
+| Symetryczny (Normalny) | Symetryczny, kształt dzwonu, większość wartości blisko średniej | Wzrost dorosłych w populacji, wyniki testów IQ, błędy pomiarowe, wyniki egzaminów standaryzowanych |
+| Równomierny (Jednostajny) | Jednakowe prawdopodobieństwo w całym zakresie | Ostatnia cyfra numeru telefonu, wybór losowego dnia tygodnia, pozycja wskazówki po zakręceniu kołem fortuny |
+| Dwumodalny (Bimodalny) | Dwa wyraźne szczyty, sugeruje istnienie podgrup | Struktura wieku w miastach uniwersyteckich (studenci i stali mieszkańcy), opinie na tematy silnie polaryzujące społeczeństwo, godziny natężenia ruchu drogowego (poranny i popołudniowy szczyt) |
+| Skośny w prawo (Prawostronnie asymetryczny) | Wydłużony "ogon" po prawej stronie, większość wartości mniejsza od średniej | Czas oczekiwania w kolejce, czas dojazdu do pracy, wiek zawarcia pierwszego małżeństwa |
+| Skośny z grubym ogonem (Log-normalny) | Silna asymetria w prawo, wartości nie mogą być ujemne, długi "gruby ogon" | Dochody osobiste, ceny mieszkań, wielkość gospodarstw domowych |
+| Skośny o ekstremalnym ogonie (Potęgowy) | Ekstremalna asymetria, efekt "bogaty staje się bogatszym", brak charakterystycznej skali | Majątek najbogatszych osób, populacja miast, liczba obserwujących w mediach społecznościowych, liczba cytowań publikacji naukowych |
 
 ## Wizualizacja rozkładów danych rzeczywistych
 
-Użyjemy zbioru danych `palmerpenguins` do zbadania rozkładów danych rzeczywistych.
+Użyjemy zbioru danych `palmerpenguins` do wizualizacji rozkładów danych.
 
 ### Histogram i wykres gęstości
 
@@ -254,8 +284,6 @@ ggplot(penguins, aes(x = flipper_length_mm, y = species, fill = species)) +
 
 Zrozumienie i wizualizacja rozkładów danych są kluczowe w analizie danych. ggplot2 zapewnia elastyczny i potężny zestaw narzędzi do tworzenia różnych typów wykresów rozkładów. Badając różne techniki wizualizacji, możemy uzyskać wgląd w podstawowe wzorce i charakterystyki naszych danych.
 
-
-
 ## Wartości Odstające (Outliers)
 
 Przed zagłębieniem się w konkretne miary, kluczowe jest zrozumienie pojęcia wartości odstających, ponieważ mogą one znacząco wpływać na wiele statystyk opisowych.
@@ -264,15 +292,12 @@ Wartości odstające to punkty danych, które znacznie różnią się od innych 
 
 -   Błędów pomiaru lub zapisu
 -   Prawdziwych ekstremalnych wartości w populacji
--   Próbkowania z innej populacji
 
 Wartości odstające mogą mieć istotny wpływ na wiele miar statystycznych, szczególnie tych opartych na średnich lub sumach kwadratów odchyleń. Dlatego ważne jest, aby:
 
 1.  Identyfikować wartości odstające zarówno poprzez metody statystyczne, jak i wiedzę dziedzinową
 2.  Badać przyczyny wartości odstających
 3.  Podejmować świadome decyzje o tym, czy włączać je do analiz, czy nie
-
-W tym przewodniku omówimy, jak różne miary opisowe są dotknięte przez wartości odstające.
 
 ## Symbole Stosowane w Statystyce - podsumowanie
 
@@ -298,8 +323,6 @@ Dodatkowe ważne wzory:
 
 -   Momenty z próby: $m_k = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^k$
 -   Momenty populacji: $\mu_k = E[(X - \mu)^k]$
--   Błąd standardowy dla populacji: $\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$
--   Błąd standardowy z próby: $s_{\bar{x}} = \frac{s}{\sqrt{n}}$
 
 ## Miary Tendencji Centralnej
 
@@ -506,16 +529,19 @@ mean(dane)
 
 -   Łatwa do obliczenia i zrozumienia
 -   Wykorzystuje wszystkie punkty danych
--   Przydatna do dalszych obliczeń statystycznych
 
 **Wady:**
 
 -   Wrażliwa na wartości odstające
--   Nie idealna dla rozkładów skośnych
+-   Może nie być dobrą miarą dla silnie asymetrycznych rozkładów danych
 
 ### Mediana
 
-Mediana to środkowa wartość, gdy dane są uporządkowane.
+Mediana to "wartość środkowa", która dzieli uporządkowane dane na dwie równoliczne połowy.
+Bardziej precyzyjnie:
+
+- Jeśli n jest nieparzyste: Mediana to środkowa obserwacja (ta na pozycji (n+1)/2)
+- Jeśli n jest parzyste: Mediana to średnia arytmetyczna dwóch środkowych obserwacji (na pozycjach n/2 i n/2 + 1)
 
 **Przykład Ręcznego Obliczenia:**
 
@@ -543,7 +569,6 @@ median(dane)
 **Wady:**
 
 -   Nie wykorzystuje wszystkich punktów danych
--   Mniej przydatna do dalszych obliczeń statystycznych
 
 ::: callout-warning
 Jak znaleźć pozycję mediany w zbiorze danych:
@@ -599,7 +624,7 @@ mfv(dane)  # Najczęściej występująca wartość
 **Wady:**
 
 -   Nie zawsze jednoznacznie zdefiniowana
--   Nie przydatna dla danych ciągłych
+-   Nie jest odpowiednia dla danych ciągłych
 
 ### Średnia (arytmetyczna) Ważona (\*)
 
@@ -653,13 +678,11 @@ sum(x * w_normalized)
 **Zalety Średnich Ważonych:**
 
 -   Uwzględniają różną ważność punktów danych
--   Przydatne w analizie ankiet o różnych wielkościach próby lub poziomach ważności
--   Mogą korygować nierówne prawdopodobieństwa w projektach próbkowania
 
 **Wady Średnich Ważonych:**
 
 -   Wymagają uzasadnienia dla wag
--   Mogą być niewłaściwie wykorzystane do manipulacji wynikami
+-   Mogą być niewłaściwie wykorzystane w celu manipulacji wynikami
 -   Mogą być mniej intuicyjne w interpretacji niż prosta średnia arytmetyczna
 
 ## Miary Zmienności (Rozproszenia)
@@ -721,7 +744,7 @@ Powyższe trzy wykresy punktowe pokazują, w jaki sposób wariancja mierzy rozpr
 :::
 
 ::: callout-note
-## Zrozumienie Różnych Poziomów Zmienności
+## Różne Poziomy Zmienności
 
 ```{r}
 #| warning: false
@@ -821,7 +844,7 @@ Ta wizualizacja przedstawia trzy rozkłady normalne o tej samej średniej (μ = 
     -   Krzywa gęstości jest znacznie bardziej płaska i szeroka
     -   Większość obserwacji mieści się w przedziale ±4 jednostki od średniej
 
-Zwróć uwagę, jak odchylenie standardowe (σ) bezpośrednio wpływa na rozproszenie rozkładu - większe wartości σ wskazują na większą zmienność danych, podczas gdy mniejsze wartości oznaczają, że punkty danych mają tendencję do grupowania się bliżej średniej.
+Zwróć uwagę, jak odchylenie standardowe (σ) bezpośrednio powiązane jest z rozproszeniem rozkładu - większe wartości σ wskazują na większą zmienność danych, podczas gdy mniejsze wartości oznaczają, że punkty danych mają tendencję do grupowania się bliżej średniej.
 :::
 
 ### Rozstęp
@@ -1057,7 +1080,7 @@ Liczby: 2, 4, 6, 8, 10
 **Kiedy NIE Stosować:**
 
 -   W obliczeniach dla całej populacji (gdy mamy wszystkie dane)
--   Przy obliczaniu odchylenia od ustalonej, znanej wartości (nie obliczonej średniej)
+-   Przy obliczaniu odchylenia od ustalonej, znanej wartości parametru populacji statystycznej
 
 **Pamiętaj:**
 
@@ -1196,6 +1219,24 @@ Kwartyle to specjalne liczby, które dzielą uporządkowane dane na cztery równ
 -   Nazywany również 75-tym percentylem
 -   Przykład: Jeśli Q3 = 85, 75% uczniów uzyskało wynik poniżej 85
 
+**Zadanie 1: Kwartyle**
+
+Dane: 10, 12, 15, 15, 18, 20, 22, 25, 25 Znajdź: Q1, Q2, Q3
+
+Rozwiązanie:
+
+1.  Q2 (n = 9, nieparzyste)
+    -   Pozycja = (9 + 1)/2 = 5
+    -   Q2 = 18
+2.  Q1
+    -   Pozycja = (9 + 1)/4 = 2.5
+    -   Między 12 a 15
+    -   Q1 = (12 + 15)/2 = 13.5
+3.  Q3
+    -   Pozycja = 3(9 + 1)/4 = 7.5
+    -   Między 22 a 25
+    -   Q3 = (22 + 25)/2 = 23.5
+
 #### Jak Obliczać Kwartyle (Krok po Kroku) - Dwie Metody
 
 Przeanalizujmy wyniki testów uczniów używając obu popularnych metod wyznaczania kwartyli:
@@ -1206,7 +1247,7 @@ Przeanalizujmy wyniki testów uczniów używając obu popularnych metod wyznacza
 Krok 1: Znajdź Q2 (medianę) - Tak samo dla obu metod
 
 -   Przy n = 11 wartościach (nieparzyste)
--   Pozycja mediany = (n + 1)/2 = 6
+-   Pozycja mediany = 2(n + 1)/4 = (n + 1)/2 = 6
 -   Q2 = 78
 
 Krok 2: Znajdź Q1
@@ -1270,8 +1311,6 @@ Ważne Uwagi:
     -   Gdy pozycja wypada między wartościami, stosuje interpolację liniową
     -   Nie wymaga podziału danych na połowy
 
-Obie metody dają te same wyniki dla prostych pozycji (Przykład 1), ale mogą się różnić, gdy potrzebna jest interpolacja (Przykład 2).
-
 ::: callout-important
 ## Manual Construction of Tukey Boxplot
 
@@ -1323,7 +1362,7 @@ Obie metody dają te same wyniki dla prostych pozycji (Przykład 1), ale mogą s
 
 #### Czym są Percentyle?
 
-Percentyle dają nam bardziej szczegółowy obraz, dzieląc dane na 100 równych części. W przeciwieństwie do kwartyli, percentyle używają interpolacji liniowej.
+Percentyle dają nam bardziej szczegółowy obraz, dzieląc dane na 100 równych części.
 
 Kluczowe Punkty:
 
@@ -1359,60 +1398,100 @@ Krok 3: Interpoluj (ważne: percentyle używają interpolacji liniowej)
 
 Co to oznacza: 60% uczniów uzyskało wynik 86.8 lub niższy.
 
-### Rangi Percentylowe (PR) (\*)
+
+### Rangi Percentylowe (RP) (*)
 
 #### Czym jest Ranga Percentylowa?
 
-Podczas gdy percentyle mówią nam o wartości na określonej pozycji, ranga percentylowa mówi nam, jaki procent wartości znajduje się poniżej określonego wyniku. Można to traktować jako odpowiedź na pytanie "Jaki procent klasy uzyskał wynik niższy niż ja?"
+Percentyle i rangi percentylowe to powiązane, ale przeciwstawne pojęcia:
 
-$PR = \frac{\text{liczba wartości poniżej } + 0.5 \times \text{liczba równych wartości}}{\text{całkowita liczba wartości}} \times 100$
+**Kluczowa różnica:**
+- **Percentyl** → "Jaki wynik znajduje się na 75. percentylu?" (pozycja → wartość)
+- **Ranga Percentylowa** → "Jaką rangę percentylową ma wynik 75?" (wartość → pozycja)
 
-**Przykład 4: Znajdowanie Rangi Percentylowej** Rozważmy te wyniki egzaminu:
+**Ranga percentylowa** informuje nas, jaki procent wartości znajduje się poniżej określonego wyniku. Można o tym myśleć jako o odpowiedzi na pytanie: *"Ile procent klasy uzyskało wynik gorszy ode mnie?"*
 
-65, 70, 70, 75, 75, 75, 80, 85, 85, 90
+#### Wzór
 
-Znajdźmy PR dla wyniku 75.
+$$
+RP = \frac{\text{liczba wartości poniżej} + 0{,}5 \times \text{liczba wartości równych}}{\text{całkowita liczba wartości}} \times 100
+$$
 
-Krok 1: Dokładnie policz
+#### Przykład 4: Wyznaczanie Rangi Percentylowej
 
--   Wartości poniżej 75: 65, 70, 70 (3 wartości)
--   Wartości równe 75: 75, 75, 75 (3 wartości)
--   Całkowita liczba wartości: 10
+Rozważmy następujące wyniki egzaminu (posortowane):
 
-Krok 2: Zastosuj wzór
+| Pozycja | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 10 |
+|---------|----|----|----|----|----|----|----|----|----|----|
+| Wynik   | 65 | 70 | 70 | **75** | **75** | **75** | 80 | 85 | 85 | 90 |
 
-$PR = \frac{3 + 0.5(3)}{10} \times 100$ $PR = \frac{3 + 1.5}{10} \times 100$ $PR = \frac{4.5}{10} \times 100 = 45\%$
+Wyznaczmy RP dla wyniku **75** (wyróżnionego).
 
-Interpretacja: Wynik 75 jest wyższy niż 45% wyników w klasie.
+**Krok 1: Dokładne policzenie**
+- Wartości **poniżej** 75: 65, 70, 70 → **3 wartości**
+- Wartości **równe** 75: 75, 75, 75 → **3 wartości**
+- Wszystkie wartości: **10**
 
-**Uwaga:**
+**Krok 2: Zastosowanie wzoru**
 
-P1: "Dlaczego używamy 0.5 dla równych wartości w PR?"
+$$
+RP = \frac{3 + 0{,}5(3)}{10} \times 100 = \frac{3 + 1{,}5}{10} \times 100 = \frac{4{,}5}{10} \times 100 = 45\%
+$$
 
-O1: Jest tak, ponieważ zakładamy, że osoby z tym samym wynikiem są równomiernie rozłożone na tej pozycji. To jak powiedzenie, że dzielą pozycję po równo.
+**Interpretacja:** Wynik 75 jest wyższy niż 45% wyników w klasie.
 
-### Zadania z Rozwiązaniami
+**Sprawdzenie poprawności:** To ma sens! Jest 3 wyniki wyraźnie poniżej 75, a Ty jesteś w środku grupy 3 osób, które uzyskały 75, więc jesteś mniej więcej na pozycji 4,5 z 10 = 45%. ✓
 
-**Zadanie 1: Podstawowe Kwartyle**
+#### Zrozumienie Współczynnika 0,5
 
-Dane: 10, 12, 15, 15, 18, 20, 22, 25, 25 Znajdź: Q1, Q2, Q3
+**P: Dlaczego mnożymy wartości równe przez 0,5?**
 
-Rozwiązanie:
+**O:** Współczynnik 0,5 oznacza, że liczymy **połowę** wartości remisowych jako znajdujące się poniżej nas.
 
-1.  Q2 (n = 9, nieparzyste)
-    -   Pozycja = (9 + 1)/2 = 5
-    -   Q2 = 18
-2.  Q1
-    -   Pozycja = (9 + 1)/4 = 2.5
-    -   Między 12 a 15
-    -   Q1 = (12 + 15)/2 = 13.5
-3.  Q3
-    -   Pozycja = 3(9 + 1)/4 = 7.5
-    -   Między 22 a 25
-    -   Q3 = (22 + 25)/2 = 23.5
+Oto intuicja: Jeśli uzyskałeś wynik 75 wraz z dwiema innymi osobami, czy powinieneś uznać się za:
+- Lepszego od wszystkich z nich? (To nie byłoby sprawiedliwe wobec nich)
+- Gorszego od wszystkich z nich? (To nie byłoby sprawiedliwe wobec ciebie)
+- Gdzieś pośrodku? ✓ (To najsprawiedliwsze podejście)
+
+**Używając naszego przykładu:**
+- 3 osoby uzyskały wynik poniżej 75: liczymy wszystkie **3**
+- 3 osoby uzyskały dokładnie 75 (łącznie z tobą): liczymy **połowę** z nich = 0,5 × 3 = **1,5**
+- Razem poniżej lub remis: 3 + 1,5 = 4,5 z 10 = 45%
+
+Używając 0,5, mówimy zasadniczo: *"Spośród osób, które zremisowały ze mną, mogę założyć, że wypadłem lepiej niż połowa z nich."* To traktuje wszystkich z tym samym wynikiem równo i unika dawania komukolwiek niesprawiedliwej przewagi.
+
+#### Zadanie do Samodzielnego Rozwiązania
+
+Używając tego samego zestawu danych powyżej, wyznacz rangę percentylową dla wyniku **85**.
+
+<details>
+<summary>Kliknij, aby zobaczyć rozwiązanie</summary>
+
+**Liczenie:**
+- Wartości poniżej 85: 65, 70, 70, 75, 75, 75, 80 → 7 wartości
+- Wartości równe 85: 85, 85 → 2 wartości
+- Wszystkie: 10 wartości
+
+**Obliczenie:**
+$$
+RP = \frac{7 + 0{,}5(2)}{10} \times 100 = \frac{8}{10} \times 100 = 80\%
+$$
+
+**Odpowiedź:** Wynik 85 ma rangę percentylową 80%.
+
+</details>
+
+#### Uwaga o Implementacji w Oprogramowaniu
+
+Różne pakiety oprogramowania mogą używać nieco innych metod obliczania rang percentylowych:
+- **R**: Funkcja `ecdf()` lub obliczenia ręczne
+- **Python (pandas)**: Metoda `rank(pct=True)`
+
+Mogą one dawać nieco różne wyniki w zależności od sposobu obsługi wartości remisowych i przypadków brzegowych.
+
 
 ::: callout-important
-### Podwójna Rola Mediany
+### Podwójna Funkcja Mediany
 
 ```{r}
 #| label: fig-median-dual
@@ -1472,129 +1551,694 @@ Ta podwójna natura sprawia, że mediana jest szczególnie przydatna do:
 -   Dokonywania porównań między różnymi zbiorami danych
 :::
 
-## Miary Kształtu
+### Wykres pudełkowy {#sec-boxplots}
+
+```{r}
+#| include: false
+
+# Wczytanie wymaganych pakietów
+library(tidyr)
+library(ggplot2)
+library(ggpubr)
+
+# Ustawienie opcji wyświetlania
+options(scipen = 999, digits = 3)
+```
+
+Wykresy pudełkowe (znane również jako wykresy skrzynkowe lub box-and-whisker plots) są użytecznymi narzędziami wizualizacji rozkładów danych.
+
+#### Konstrukcja wykresu pudełkowego Tukeya {#sec-boxplot-construction}
+
+Wykres pudełkowy został wprowadzony przez Johna Tukeya jako część jego zestawu narzędzi eksploracyjnej analizy danych. Wykres wizualizuje rozkład danych na podstawie pięciu podstawowych statystyk.
+
+##### Podsumowanie pięciu liczb
+
+Wykres pudełkowy reprezentuje pięć kluczowych wartości statystycznych:
+
+1.  **Minimum**: Najmniejsza wartość w zbiorze danych (z wyłączeniem wartości odstających)
+2.  **Pierwszy kwartyl (Q1)**: 25. percentyl, poniżej którego znajduje się 25% obserwacji
+3.  **Mediana (Q2)**: 50. percentyl, który dzieli zbiór danych na dwie równe połowy
+4.  **Trzeci kwartyl (Q3)**: 75. percentyl, poniżej którego znajduje się 75% obserwacji
+5.  **Maksimum**: Największa wartość w zbiorze danych (z wyłączeniem wartości odstających)
+
+##### Komponenty wykresu pudełkowego
+
+```{r}
+#| label: fig-boxplot-diagram
+#| echo: false
+#| fig.cap: "Diagram wykresu pudełkowego pokazujący jego kluczowe komponenty."
+#| fig.height: 4
+#| fig.width: 8
+# Utworzenie przykładowego zbioru danych
+set.seed(123)
+sample_data <- c(rnorm(100, 10, 2), 2, 18, 19)
+# Utworzenie ramki danych
+df <- data.frame(value = sample_data)
+
+# Obliczenie wartości statystycznych
+q1 <- quantile(sample_data, 0.25)
+q3 <- quantile(sample_data, 0.75)
+iqr_val <- IQR(sample_data)
+lower_bound <- max(min(sample_data), q1 - 1.5 * iqr_val)
+upper_bound <- min(max(sample_data), q3 + 1.5 * iqr_val)
+med <- median(sample_data)
+
+# Utworzenie wykresu pudełkowego z adnotacjami
+p <- ggplot(df, aes(x = factor(1), y = value)) +
+  geom_boxplot(width = 0.4, outlier.shape = 8, outlier.size = 3) +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        plot.margin = margin(0.5, 2, 0.5, 0.5, "cm")) +  # Zwiększenie marginesu po prawej stronie
+  ylab("Wartość") +
+  coord_cartesian(xlim = c(0.7, 2.5)) +  # Rozszerzenie obszaru wykresu dla tekstu
+  
+  # Teksty po prawej stronie z odpowiednim odstępem
+  annotate("text", x = 1.4, y = med, label = "Mediana (Q2)", hjust = 0) +
+  annotate("text", x = 1.4, y = q1, label = "Pierwszy kwartyl (Q1)", hjust = 0) +
+  annotate("text", x = 1.4, y = q3, label = "Trzeci kwartyl (Q3)", hjust = 0) +
+  
+  # Odpowiednie przesunięcie opisów dla wartości min/max
+  annotate("text", x = 1.4, y = lower_bound - 0.3, 
+           label = "Minimum (w zakresie 1.5*IQR)", hjust = 0) +
+  annotate("text", x = 1.4, y = upper_bound + 0.3, 
+           label = "Maksimum (w zakresie 1.5*IQR)", hjust = 0) +
+  
+  # Oznaczenie wartości odstających z przesunięciem
+  annotate("text", x = 1.4, y = min(sample_data) - 0.3, label = "Wartość odstająca", hjust = 0) +
+  annotate("text", x = 1.4, y = max(sample_data) + 0.3, label = "Wartość odstająca", hjust = 0) +
+  
+  # Oznaczenie IQR po lewej stronie
+  annotate("segment", x = 0.8, xend = 0.8, y = q1, yend = q3,
+           arrow = arrow(ends = "both", length = unit(0.1, "inches")), color = "blue") +
+  annotate("text", x = 0.65, y = (q1 + q3)/2, label = "IQR", color = "blue")
+
+p
+```
+
+Komponenty wykresu pudełkowego obejmują:
+
+1.  **Pudełko**:
+    -   Reprezentuje rozstęp międzykwartylowy (IQR), zawierający środkowe 50% danych
+    -   Dolna krawędź reprezentuje Q1
+    -   Górna krawędź reprezentuje Q3
+    -   Linia wewnątrz pudełka reprezentuje medianę (Q2)
+2.  **Wąsy**:
+    -   Rozciągają się od pudełka, aby pokazać zakres danych niebędących wartościami odstającymi
+    -   W wykresie pudełkowym Tukeya wąsy rozciągają się do 1,5 × IQR od krawędzi pudełka:
+        -   Dolny wąs: rozciąga się do minimalnej wartości ≥ (Q1 - 1,5 × IQR)
+        -   Górny wąs: rozciąga się do maksymalnej wartości ≤ (Q3 + 1,5 × IQR)
+3.  **Wartości odstające**:
+    -   Punkty, które wykraczają poza wąsy
+    -   Indywidualnie zaznaczone jako kropki lub inne symbole
+    -   Wartości, które są \< (Q1 - 1,5 × IQR) lub \> (Q3 + 1,5 × IQR)
+
+##### Kluczowe cechy do obserwacji
+
+Interpretując wykresy pudełkowe, zwróć uwagę na następujące cechy:
+
+1.  **Tendencja centralna**: Położenie linii mediany wewnątrz pudełka
+2.  **Rozproszenie**: Szerokość pudełka (IQR) i długość wąsów
+3.  **Skośność**:
+    -   Dane symetryczne: mediana znajduje się w przybliżeniu na środku pudełka, wąsy mają podobną długość
+    -   Skośność prawostronna (dodatnia): mediana jest bliżej dolnej części pudełka, górny wąs jest dłuższy
+    -   Skośność lewostronna (ujemna): mediana jest bliżej górnej części pudełka, dolny wąs jest dłuższy
+4.  **Wartości odstające**: Obecność pojedynczych punktów poza wąsami
+
+#### Studium przypadku: Porównanie wzrostu między grupami {#sec-height-comparison}
+
+Zastosujmy nasze zrozumienie wykresów pudełkowych do rzeczywistego zbioru danych. Mamy pomiary wzrostu (w centymetrach) z dwóch grup, każda po 25 studentów.
+
+```{r}
+#| label: height-data
+#| echo: true
+
+# Utworzenie zbioru danych
+data_height <- data.frame(
+  group_1 = c(150, 160, 165, 168, 172, 173, 175, 176, 177, 178, 179, 180, 180, 181, 181, 182, 182, 183, 183, 184, 186, 188, 190, 191, 200),
+  group_2 = c(138, 140, 148, 152, 164, 164, 165, 165, 166, 166, 170, 175, 175, 175, 182, 182, 182, 182, 182, 182, 183, 183, 183, 188, 210)
+)
+
+# Przekształcenie zbioru danych z formatu szerokiego na długi
+data_height_l <- gather(data = data_height, key = "Group_number", value = "height", group_1:group_2)
+
+# Wyświetlenie pierwszych kilku wierszy
+head(data_height_l)
+```
+
+Obliczmy kilka statystyk podsumowujących dla każdej grupy:
+
+```{r}
+#| label: summary-stats
+#| echo: true
+
+# Obliczenie statystyk podsumowujących dla każdej grupy
+group1_stats <- summary(data_height$group_1)
+group2_stats <- summary(data_height$group_2)
+
+# Obliczenie IQR
+group1_iqr <- IQR(data_height$group_1)
+group2_iqr <- IQR(data_height$group_2)
+
+# Utworzenie tabeli porównawczej
+stats_table <- rbind(
+  group1_stats,
+  group2_stats
+)
+rownames(stats_table) <- c("Grupa 1", "Grupa 2")
+
+# Wyświetlenie tabeli
+stats_table
+
+# Wyświetlenie wartości IQR
+cat("IQR dla Grupy 1:", group1_iqr, "\n")
+cat("IQR dla Grupy 2:", group2_iqr, "\n")
+```
+
+#### Wizualizacja danych dotyczących wzrostu {#sec-visualizing-heights}
+
+Teraz zwizualizujmy dane za pomocą wykresów pudełkowych i wykresów gęstości:
+
+```{r}
+#| label: fig-boxplots
+#| fig.cap: "Wykresy pudełkowe porównujące rozkłady wzrostu między grupami."
+#| fig.width: 8
+#| fig.height: 4
+
+# Tworzenie poziomych wykresów pudełkowych
+ggplot(data = data_height_l) + 
+  geom_boxplot(aes(x = Group_number, y = height, colour = Group_number), notch = FALSE) + 
+  coord_flip() + 
+  scale_y_continuous(breaks = seq(130, 210, 5)) + 
+  theme_pubr() + 
+  grids(linetype = "dashed") +
+  labs(title = "Rozkład wzrostu według grupy",
+       x = "Grupa",
+       y = "Wzrost (cm)")
+```
+
+Aby uzupełnić nasze wykresy pudełkowe, przyjrzyjmy się również rozkładom gęstości:
+
+```{r}
+#| label: fig-density
+#| fig.cap: "Wykresy gęstości pokazujące rozkłady wzrostu dla każdej grupy."
+#| fig.width: 8
+#| fig.height: 4
+
+# Tworzenie wykresów gęstości
+ggplot(data = data_height_l) + 
+  geom_density(aes(x = height, fill = Group_number), alpha = 0.5) + 
+  facet_grid(~ Group_number) + 
+  scale_x_continuous(breaks = seq(130, 210, 10)) +
+  labs(title = "Gęstość wzrostu według grupy",
+       x = "Wzrost (cm)",
+       y = "Gęstość")
+```
+
+#### Ćwiczenie z interpretacji wykresów pudełkowych {#sec-boxplot-exercise}
+
+Na podstawie powyższych wykresów pudełkowych i wykresów gęstości określ, czy każde z poniższych stwierdzeń jest **Prawdziwe** czy **Fałszywe**. Dla każdego stwierdzenia podaj krótkie wyjaśnienie oparte na dowodach z wizualizacji.
+
+::: callout-note
+#### Pytania ćwiczeniowe
+
+1.  Studenci z grupy 2 (G2) w badanej próbie są, średnio, wyżsi niż ci z grupy 1 (G1).
+
+2.  Wzrost w grupie 1 (G1) jest bardziej rozproszony/rozłożony niż w grupie 2 (G2).
+
+3.  Najniższa osoba jest w grupie 2 (G2).
+
+4.  Oba zbiory danych mają skośność ujemną (lewostronną).
+
+5.  Połowa studentów w grupie 2 (G2) ma wzrost co najmniej 175 cm.
+:::
+
+##### Wskazówki do interpretacji
+
+Odpowiadając na te pytania, weź pod uwagę:
+
+-   Pozycję linii mediany w każdym pudełku
+-   Względne rozmiary pudełek (IQR)
+-   Pozycje wartości minimalnych i maksymalnych
+-   Symetrię rozkładów (zrównoważone czy z skośnością)
+-   Długości wąsów
+
+Dla każdego stwierdzenia ustal, czy jest Prawdziwe czy Fałszywe i podaj swoje wyjaśnienie:
+
+::: {.callout-tip collapse="true"}
+#### Szablon odpowiedzi
+
+1.  Studenci z G2 są, średnio, wyżsi niż z G1: \[Prawda/Fałsz\]
+    -   Wyjaśnienie:
+2.  Wzrost G1 jest bardziej rozproszony/rozłożony: \[Prawda/Fałsz\]
+    -   Wyjaśnienie:
+3.  Najniższa osoba jest w G2: \[Prawda/Fałsz\]
+    -   Wyjaśnienie:
+4.  Oba zbiory danych mają skośność ujemną (lewostronną): \[Prawda/Fałsz\]
+    -   Wyjaśnienie:
+5.  Połowa G2 ma wzrost co najmniej 175 cm: \[Prawda/Fałsz\]
+    -   Wyjaśnienie:
+:::
+
+Przeanalizujmy odpowiedzi na nasze pytania dotyczące interpretacji wykresów pudełkowych:
+
+::: {.callout-important collapse="true"}
+#### Rozwiązania
+
+1.  Studenci z G2 są, średnio, wyżsi niż z G1: **Fałsz**
+    -   Wyjaśnienie: Mediana wzrostu (środkowa linia w wykresie pudełkowym) dla G1 jest wyższa niż dla G2.
+2.  Wzrost G1 jest bardziej rozproszony/rozłożony: **Fałsz**
+    -   Wyjaśnienie: G2 wykazuje większe rozproszenie. Jest to widoczne na wykresie pudełkowym, gdzie G2 ma większy rozstęp międzykwartylowy (IQR) wynoszący 17,5 cm w porównaniu z 9,5 cm dla G1. G2 ma również szerszy zakres od wartości minimalnej do maksymalnej.
+3.  Najniższa osoba jest w G2: **Prawda**
+    -   Wyjaśnienie: Wartość minimalna w G2 wynosi 138 cm, co jest niższe niż wartość minimalna w G1 (150 cm).
+4.  Oba zbiory danych mają skośność ujemną (lewostronną): **Prawda**
+    -   Wyjaśnienie: W obu grupach linia mediany jest umieszczona w kierunku górnej części pudełka, a dolny wąs jest dłuższy niż górny. Wskazuje to na dłuższy ogon po lewej stronie rozkładu, co oznacza skośność ujemną.
+5.  Połowa G2 ma wzrost co najmniej 175 cm: **Prawda**
+    -   Wyjaśnienie: Mediana (środkowa linia w wykresie pudełkowym) dla G2 wynosi 175 cm, co oznacza, że 50% wartości jest większych lub równych 175 cm.
+:::
+
+#### Kod R {#sec-boxplot-code}
+
+```{r}
+#| label: complete-code
+#| eval: false
+
+# Wczytanie wymaganych pakietów
+library(tidyr)
+library(ggplot2)
+library(ggpubr)
+
+# Ustawienie opcji wyświetlania
+options(scipen = 999, digits = 3)
+
+# Utworzenie zbioru danych
+data_height <- data.frame(
+  group_1 = c(150, 160, 165, 168, 172, 173, 175, 176, 177, 178, 179, 180, 180, 181, 181, 182, 182, 183, 183, 184, 186, 188, 190, 191, 200),
+  group_2 = c(138, 140, 148, 152, 164, 164, 165, 165, 166, 166, 170, 175, 175, 175, 182, 182, 182, 182, 182, 182, 183, 183, 183, 188, 210)
+)
+
+# Przekształcenie zbioru danych z formatu szerokiego na długi
+data_height_l <- gather(data = data_height, key = "Group_number", value = "height", group_1:group_2)
+
+# Wyświetlenie pierwszych kilku wierszy
+head(data_height_l)
+
+# Obliczenie statystyk podsumowujących dla każdej grupy
+group1_stats <- summary(data_height$group_1)
+group2_stats <- summary(data_height$group_2)
+
+# Obliczenie IQR
+group1_iqr <- IQR(data_height$group_1)
+group2_iqr <- IQR(data_height$group_2)
+
+# Tworzenie poziomych wykresów pudełkowych
+ggplot(data = data_height_l) + 
+  geom_boxplot(aes(x = Group_number, y = height, colour = Group_number), notch = FALSE) + 
+  coord_flip() + 
+  scale_y_continuous(breaks = seq(130, 210, 5)) + 
+  theme_pubr() + 
+  grids(linetype = "dashed") +
+  labs(title = "Rozkład wzrostu według grupy",
+       x = "Grupa",
+       y = "Wzrost (cm)")
+
+# Tworzenie wykresów gęstości
+ggplot(data = data_height_l) + 
+  geom_density(aes(x = height, fill = Group_number), alpha = 0.5) + 
+  facet_grid(~ Group_number) + 
+  scale_x_continuous(breaks = seq(130, 210, 10)) +
+  labs(title = "Gęstość wzrostu według grupy",
+       x = "Wzrost (cm)",
+       y = "Gęstość")
+```
+
+---
+
+## Miary Kształtu Rozkładu (*)
 
 ### Skośność
 
-#### Definicja
+**Co mierzy:** Asymetrię rozkładu danych. Można to rozumieć jako odpowiedź na pytanie "który ogon jest dłuższy?"
 
-Skośność kwantyfikuje asymetrię rozkładu danych. Wskazuje, czy dane grupują się bardziej po jednej stronie średniej niż po drugiej.
+**Wzór:**
 
-#### Wyrażenie Matematyczne
+$SK = \frac{n}{(n-1)(n-2)} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s}\right)^3$
 
-$SK = \frac{n}{(n-1)(n-2)} \sum_{i=1}^n (\frac{x_i - \bar{x}}{s})^3$ gdzie:
+**Szybka interpretacja:**
 
--   $n$ to wielkość próby
--   $x_i$ to i-ta obserwacja
--   $\bar{x}$ to średnia z próby
--   $s$ to odchylenie standardowe z próby
+- **SK > 0**: Dłuższy prawy ogon (większość danych po lewej, kilka wysokich wartości odstających)
+- **SK < 0**: Dłuższy lewy ogon (większość danych po prawej, kilka niskich wartości odstających)  
+- **SK ≈ 0**: W przybliżeniu symetryczny
 
-#### Przykład: Analiza Frekwencji Wyborczej
-
+#### Wizualizacja Skośności
 ```{r}
 library(moments)
 library(ggplot2)
 library(tidyverse)
 
-# Generowanie przykładowych danych frekwencji w obwodach wyborczych
 set.seed(123)
-dane_frekwencji <- c(
-  # Obwody miejskie
-  rnorm(300, mean = 65, sd = 12),
-  # Obwody podmiejskie
-  rnorm(400, mean = 70, sd = 10),
-  # Obwody wiejskie
-  rnorm(300, mean = 68, sd = 15)
-) |> 
-  # Zapewnienie, że frekwencja mieści się w przedziale 0-100%
-  pmax(0) |> 
-  pmin(100)
 
-# Obliczenie i wizualizacja
-wartosc_skosnosci <- skewness(dane_frekwencji)
-wartosc_skosnosci
+# Generowanie wyraźnych przykładów z większą ilością danych dla gładkich rozkładów
+prawostronna <- c(rnorm(800, 5, 1.5), rexp(200, 0.2) + 5)
+lewostronna <- 20 - c(rnorm(800, 5, 1.5), rexp(200, 0.2) + 5)
+symetryczna <- rnorm(1000, 10, 2)
 
-ggplot(data.frame(x = dane_frekwencji), aes(x = x)) +
-  geom_histogram(bins = 50, fill = "skyblue", color = "black") +
-  geom_vline(xintercept = mean(dane_frekwencji), color = "red", linetype = "dashed") +
-  geom_vline(xintercept = median(dane_frekwencji), color = "blue", linetype = "dashed") +
+# Łączenie w ramkę danych
+df_skosnosc <- tibble(
+  wartosc = c(prawostronna, lewostronna, symetryczna),
+  typ = factor(rep(c("Skośność Prawostronna", "Skośność Lewostronna", "Symetryczny"),
+                    each = 1000),
+                levels = c("Skośność Prawostronna", "Symetryczny", "Skośność Lewostronna"))
+)
+
+# Obliczanie statystyk dla każdego typu
+statystyki_skosnosc <- df_skosnosc %>%
+  group_by(typ) %>%
+  summarise(
+    srednia = mean(wartosc),
+    mediana = median(wartosc),
+    sk = round(skewness(wartosc), 2)
+  )
+
+# Wykres gęstości z wyraźnymi adnotacjami
+ggplot(df_skosnosc, aes(x = wartosc, fill = typ)) +
+  geom_density(alpha = 0.7, color = NA) +
+  geom_vline(data = statystyki_skosnosc, aes(xintercept = srednia),
+             color = "#D55E00", linewidth = 1, linetype = "dashed") +
+  geom_vline(data = statystyki_skosnosc, aes(xintercept = mediana),
+             color = "#0072B2", linewidth = 1, linetype = "solid") +
+  geom_text(data = statystyki_skosnosc,
+            aes(x = Inf, y = Inf, 
+                label = paste0("Skośność = ", sk)),
+            hjust = 1.1, vjust = 2, size = 5, fontface = "bold") +
+  facet_wrap(~typ, scales = "free", ncol = 1) +
+  scale_fill_manual(values = c("#E69F00", "#009E73", "#CC79A7")) +
   labs(
-    title = str_glue("Rozkład Frekwencji w Obwodach Wyborczych (Skośność = {round(wartosc_skosnosci, 4)})"),
-    subtitle = "Czerwona: Średnia, Niebieska: Mediana",
-    x = "Frekwencja Wyborcza (%)",
-    y = "Liczba Obwodów"
+    title = "Zrozumienie Skośności: Gdzie Znajdują Się Ogony?",
+    subtitle = "Pomarańczowa przerywana = Średnia  |  Niebieska ciągła = Mediana",
+    x = "Wartość",
+    y = "Gęstość"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold", size = 12),
+    plot.title = element_text(face = "bold", size = 14)
+  )
 ```
 
-#### Przewodnik Interpretacji
+#### Przykład Zastosowania: Rozkład Dochodów
+```{r}
+set.seed(456)
 
--   **Skośność Dodatnia (\> 0)**: Rozkład ma dłuższy ogon prawy
--   **Skośność Ujemna (\< 0)**: Rozkład ma dłuższy ogon lewy
--   **Skośność Zero**: Rozkład w przybliżeniu symetryczny
+# Realistyczne scenariusze dochodów (w tysiącach PLN)
+# Prawostronna: Większość zarabia umiarkowanie, niewielu bardzo dużo
+dochody_miasto_a <- c(rgamma(900, shape = 2, scale = 15) + 25, 
+                      runif(100, 150, 300))
+
+# Lewostronna: Większość zarabia dużo, niewielu mało (zamożna dzielnica)
+dochody_miasto_b <- 180 - c(rgamma(900, shape = 2, scale = 15), 
+                            runif(100, 0, 50))
+
+# Symetryczny: Bardziej zrównoważony rozkład dochodów
+dochody_miasto_c <- rnorm(1000, 80, 20)
+
+df_dochody <- tibble(
+  dochod = c(dochody_miasto_a, dochody_miasto_b, dochody_miasto_c),
+  miasto = factor(rep(c("Miasto A: Skośność Prawostronna", 
+                        "Miasto B: Skośność Lewostronna", 
+                        "Miasto C: Symetryczny"),
+                      each = 1000),
+                  levels = c("Miasto A: Skośność Prawostronna", 
+                            "Miasto C: Symetryczny",
+                            "Miasto B: Skośność Lewostronna"))
+)
+
+# Obliczanie statystyk
+statystyki_dochody <- df_dochody %>%
+  group_by(miasto) %>%
+  summarise(
+    srednia = mean(dochod),
+    mediana = median(dochod),
+    sk = round(skewness(dochod), 2)
+  )
+
+ggplot(df_dochody, aes(x = dochod)) +
+  geom_histogram(aes(y = after_stat(density), fill = miasto),
+                 bins = 40, alpha = 0.7, color = "white") +
+  geom_density(linewidth = 1, color = "black") +
+  geom_vline(data = statystyki_dochody, aes(xintercept = srednia),
+             color = "#D55E00", linewidth = 1.2, linetype = "dashed") +
+  geom_vline(data = statystyki_dochody, aes(xintercept = mediana),
+             color = "#0072B2", linewidth = 1.2) +
+  geom_label(data = statystyki_dochody,
+             aes(x = srednia, y = Inf, label = paste("SK =", sk)),
+             vjust = 1.5, hjust = 0.5, size = 4, fontface = "bold",
+             fill = "white", alpha = 0.8) +
+  facet_wrap(~miasto, scales = "free", ncol = 1) +
+  scale_fill_manual(values = c("#E69F00", "#009E73", "#CC79A7")) +
+  labs(
+    title = "Rozkłady Dochodów w Trzech Miastach",
+    subtitle = "Pomarańczowa przerywana = Średnia  |  Niebieska ciągła = Mediana",
+    x = "Dochód Roczny (tys. PLN)",
+    y = "Gęstość"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold", size = 11)
+  )
+```
+
+---
 
 ### Kurtoza
 
-#### Definicja
+**Co mierzy:** "Ciężkość ogonów" rozkładu. Można to rozumieć jako odpowiedź na pytanie "jak ekstremalne są wartości ekstremalne?"
 
-Kurtoza mierzy "ogoniastość" rozkładu, wskazując na obecność wartości ekstremalnych w porównaniu z rozkładem normalnym.
+**Wzór:**
 
-#### Wyrażenie Matematyczne
+$K = \frac{n(n+1)}{(n-1)(n-2)(n-3)} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s}\right)^4 - \frac{3(n-1)^2}{(n-2)(n-3)}$
 
-$K = \frac{n(n+1)}{(n-1)(n-2)(n-3)} \sum_{i=1}^n (\frac{x_i - \bar{x}}{s})^4 - \frac{3(n-1)^2}{(n-2)(n-3)}$
+**Szybka interpretacja:**
 
-#### Przykład: Analiza Głosowań Parlamentarnych
+- **K > 3** (Leptokurtyczny): Ciężkie ogony, ostry szczyt (więcej wartości ekstremalnych)
+- **K < 3** (Platykurtyczny): Lekkie ogony, płaski szczyt (mniej wartości ekstremalnych)
+- **K ≈ 3** (Mezokurtyczny): Zachowanie podobne do rozkładu normalnego
 
+#### Wizualizacja Kurtozy
 ```{r}
-# Generowanie przykładowych wyników zgodności głosowań
-set.seed(456)
-zgodnosc_glosowan <- c(
-  # Standardowe wzorce głosowania
-  rnorm(400, mean = 75, sd = 10),
-  # Przypadki współpracy międzypartyjnej
-  rnorm(80, mean = 50, sd = 15),
-  # Głosowania zgodne z linią partii
-  rnorm(20, mean = 95, sd = 5)
-) |> 
-  pmax(0) |> 
-  pmin(100)
+set.seed(789)
 
-wartosc_kurtozy <- kurtosis(zgodnosc_glosowan)
-wartosc_kurtozy
+# Generowanie BARDZO wyraźnych przykładów - wszystkie wyśrodkowane w 0 z odch. stand. ≈ 1
+n <- 8000
 
-# Wizualizacja z porównaniem do rozkładu normalnego
-zakres_x <- seq(min(zgodnosc_glosowan)-1, max(zgodnosc_glosowan)+1, length.out = 100)
-rozklad_normalny <- dnorm(zakres_x, mean = mean(zgodnosc_glosowan), sd = sd(zgodnosc_glosowan))
+# EKSTREMALNE ciężkie ogony: mieszanka ciasnego centrum + ekstremalne wartości odstające
+ciezkie_ogony <- c(rnorm(7000, 0, 0.5),    # Bardzo ciasne centrum (ostry szczyt)
+                   rnorm(1000, 0, 4))       # Wiele ekstremalnych wartości
 
-ggplot() +
-  geom_density(
-    data = data.frame(x = zgodnosc_glosowan), 
-    aes(x = x), 
-    fill = "skyblue", 
-    alpha = 0.5
+# Lekkie ogony: rozkład jednostajny (brak możliwych wartości odstających)
+lekkie_ogony <- runif(n, -1.73, 1.73)  # Przeskalowane do odch. stand. ≈ 1
+
+# Normalny: rozkład referencyjny
+normalne_ogony <- rnorm(n, 0, 1)
+
+# Standaryzacja wszystkich do tej samej skali
+ciezkie_ogony <- scale(ciezkie_ogony)[,1]
+lekkie_ogony <- scale(lekkie_ogony)[,1]
+normalne_ogony <- scale(normalne_ogony)[,1]
+
+df_kurtoza <- tibble(
+  wartosc = c(ciezkie_ogony, lekkie_ogony, normalne_ogony),
+  typ = factor(rep(c("Ciężkie Ogony (Leptokurtyczny)", 
+                     "Lekkie Ogony (Platykurtyczny)", 
+                     "Normalny (Mezokurtyczny)"),
+                   each = n),
+               levels = c("Ciężkie Ogony (Leptokurtyczny)",
+                         "Normalny (Mezokurtyczny)",
+                         "Lekkie Ogony (Platykurtyczny)"))
+) %>%
+  filter(wartosc >= -5 & wartosc <= 5)
+
+# Obliczanie kurtozy
+statystyki_kurtoza <- df_kurtoza %>%
+  group_by(typ) %>%
+  summarise(k = round(kurtosis(wartosc), 2))
+
+# Nakładające się wykresy gęstości - najlepiej pokazują zachowanie ogonów
+ggplot(df_kurtoza, aes(x = wartosc, color = typ, fill = typ)) +
+  geom_density(alpha = 0.15, linewidth = 1.5) +
+  geom_vline(xintercept = 0, linetype = "dotted", color = "gray30", 
+             linewidth = 0.8) +
+  annotate("rect", xmin = -5, xmax = -2, ymin = 0, ymax = 0.5,
+           alpha = 0.1, fill = "red") +
+  annotate("rect", xmin = 2, xmax = 5, ymin = 0, ymax = 0.5,
+           alpha = 0.1, fill = "red") +
+  annotate("text", x = -3.5, y = 0.48, label = "Strefa Ogona",
+           color = "darkred", fontface = "bold", size = 4.5) +
+  annotate("text", x = 3.5, y = 0.48, label = "Strefa Ogona",
+           color = "darkred", fontface = "bold", size = 4.5) +
+  annotate("text", x = 0, y = 0.48, label = "Strefa Szczytu",
+           color = "darkblue", fontface = "bold", size = 4.5) +
+  scale_color_manual(
+    values = c("#D55E00", "#009E73", "#0072B2"),
+    labels = function(x) {
+      k_val <- statystyki_kurtoza$k[match(x, statystyki_kurtoza$typ)]
+      paste0(x, "\nK = ", k_val)
+    }
   ) +
-  geom_line(
-    data = data.frame(x = zakres_x, y = rozklad_normalny),
-    aes(x = x, y = y),
-    color = "red",
-    linetype = "dashed"
+  scale_fill_manual(
+    values = c("#D55E00", "#009E73", "#0072B2"),
+    labels = function(x) {
+      k_val <- statystyki_kurtoza$k[match(x, statystyki_kurtoza$typ)]
+      paste0(x, "\nK = ", k_val)
+    }
   ) +
+  coord_cartesian(ylim = c(0, 0.5)) +
   labs(
-    title = str_glue("Rozkład Zgodności Głosowań (Kurtoza = {round(wartosc_kurtozy, 4)})"),
-    subtitle = "Rozkład obserwowany (niebieski) vs. Rozkład normalny (czerwony)",
-    x = "Wskaźnik Zgodności Głosowań (%)",
+    title = "Kurtoza: Porównanie Ostrości Szczytu i Ciężaru Ogonów",
+    subtitle = "Pomarańczowy (K=10.3) ma OSTRY szczyt + CIĘŻKIE ogony  |  Różowy (K=1.8) jest PŁASKI wszędzie",
+    x = "Wartość Standaryzowana",
+    y = "Gęstość",
+    color = "Typ Rozkładu",
+    fill = "Typ Rozkładu"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "right",
+    legend.text = element_text(size = 10),
+    legend.title = element_text(face = "bold"),
+    plot.title = element_text(face = "bold", size = 14)
+  )
+
+# Widok panelowy koncentrujący się na różnicach
+ggplot(df_kurtoza, aes(x = wartosc, fill = typ)) +
+  geom_histogram(aes(y = after_stat(density)), 
+                 bins = 100, alpha = 0.7, color = "white", linewidth = 0.1) +
+  geom_density(linewidth = 1.2, color = "black") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray40") +
+  geom_text(data = statystyki_kurtoza,
+            aes(x = Inf, y = Inf, label = paste("K =", k)),
+            hjust = 1.1, vjust = 1.5, size = 6, fontface = "bold") +
+  facet_wrap(~typ, ncol = 1, scales = "free_y") +
+  scale_fill_manual(values = c("#D55E00", "#009E73", "#0072B2")) +
+  coord_cartesian(xlim = c(-4, 4)) +
+  labs(
+    title = "Porównanie Kurtozy: Zwróć Uwagę na Szczyt i Ogony",
+    subtitle = "Ciężkie ogony = Większość skupiona + częste ekstrema  |  Lekkie ogony = Równomiernie rozłożone, bez ekstremów",
+    x = "Wartość Standaryzowana",
     y = "Gęstość"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold", size = 12),
+    plot.title = element_text(face = "bold")
+  )
 ```
 
-#### Przewodnik Interpretacji
+#### Przykład Zastosowania: Stopy Zwrotu z Inwestycji
+```{r}
+set.seed(101)
 
--   **Nadwyżka Kurtozy**: Różnica względem kurtozy rozkładu normalnego
-    (3) 
--   **Leptokurtyczny (\> 3)**: Więcej wartości ekstremalnych niż w rozkładzie normalnym
--   **Platykurtyczny (\< 3)**: Mniej wartości ekstremalnych niż w rozkładzie normalnym
--   **Mezokurtyczny (= 3)**: Podobny do rozkładu normalnego
+# Symulacja dziennych stóp zwrotu z BARDZO różną kurtozą
+liczba_dni <- 3000
+
+# Zmienna kryptowaluta: ekstremalne ruchy (krachy i wzrosty)
+# Większość dni normalna, ale częste ekstremalne zdarzenia
+zwroty_krypto <- c(rnorm(2400, 0, 0.8),     # 80% normalnych dni
+                   rnorm(600, 0, 5))         # 20% dni ekstremalnej zmienności
+
+# Stabilne obligacje: bardzo konsekwentne, ograniczone zwroty (bez niespodzianek)
+zwroty_obligacje <- runif(liczba_dni, -1.2, 1.2)
+
+# Fundusz indeksowy: typowe zachowanie rynkowe
+zwroty_indeks <- rnorm(liczba_dni, 0, 1)
+
+# Standaryzacja dla porównania
+zwroty_krypto <- scale(zwroty_krypto)[,1]
+zwroty_obligacje <- scale(zwroty_obligacje)[,1]
+zwroty_indeks <- scale(zwroty_indeks)[,1]
+
+df_zwroty <- tibble(
+  zwrot = c(zwroty_krypto, zwroty_obligacje, zwroty_indeks),
+  inwestycja = factor(rep(c("Kryptowaluta", 
+                            "Fundusz Obligacji", 
+                            "Indeks Giełdowy"),
+                          each = liczba_dni),
+                      levels = c("Kryptowaluta",
+                                "Indeks Giełdowy",
+                                "Fundusz Obligacji"))
+) %>%
+  filter(zwrot >= -5 & zwrot <= 5)
+
+# Obliczanie kurtozy
+statystyki_zwroty <- df_zwroty %>%
+  group_by(inwestycja) %>%
+  summarise(
+    k = round(kurtosis(zwrot), 2),
+    poziom_ryzyka = case_when(
+      k > 5 ~ "RYZYKO EKSTREMALNE",
+      k > 3.5 ~ "RYZYKO WYSOKIE",
+      k > 2.5 ~ "RYZYKO UMIARKOWANE",
+      TRUE ~ "RYZYKO NISKIE"
+    )
+  )
+
+ggplot(df_zwroty, aes(x = zwrot, fill = inwestycja)) +
+  geom_histogram(aes(y = after_stat(density)), 
+                 bins = 80, alpha = 0.7, color = "white", linewidth = 0.1) +
+  geom_density(linewidth = 1.2, color = "black") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray40") +
+  geom_label(data = statystyki_zwroty,
+             aes(x = Inf, y = Inf, 
+                 label = paste0("K = ", k, "\n", poziom_ryzyka)),
+             hjust = 1.1, vjust = 1.1, size = 4.5, fontface = "bold",
+             fill = "white", alpha = 0.9) +
+  facet_wrap(~inwestycja, ncol = 1, scales = "free_y") +
+  scale_fill_manual(values = c("#D55E00", "#009E73", "#0072B2")) +
+  coord_cartesian(xlim = c(-4, 4)) +
+  labs(
+    title = "Zwroty z Inwestycji: Kurtoza jako Wskaźnik Ryzyka",
+    subtitle = "Wysokie K = Więcej zdarzeń 'Czarnego Łabędzia' (ekstremalne zyski ORAZ straty)",
+    x = "Standaryzowany Zwrot Dzienny",
+    y = "Gęstość"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold", size = 12)
+  )
+```
+
+---
+
+### Kluczowe Wnioski
+
+**Skośność informuje o asymetrii:**
+
+- Dodatnia: Długi prawy ogon → Średnia przesunięta powyżej mediany
+- Ujemna: Długi lewy ogon → Średnia przesunięta poniżej mediany
+
+**Kurtoza informuje o wartościach ekstremalnych:**
+
+- Wysoka kurtoza (K > 5): Spodziewaj się częstych wartości odstających - zdarzenia typu "czarny łabędź"
+- Niska kurtoza (K < 2): Dane pozostają przewidywalne, w wąskich granicach
+- Normalna kurtoza (K ≈ 3): Typowe zachowanie krzywej dzwonowej
+
+**Wskazówki wizualne:**
+
+- **Skośność**: Zwróć uwagę na długość ogonów - separację średniej od mediany
+- **Kurtoza**: Zwróć uwagę JEDNOCZEŚNIE na ostrość szczytu I grubość ogonów
+
+**Praktyczne znaczenie:**
+
+- Wysoka kurtoza ≠ tylko "grube ogony" - to ostry szczyt RAZEM z ciężkimi ogonami
+- Oznacza to: "przeważnie skupione, ale uważaj na niespodzianki"
+
+---
+
 
 ## Ćwiczenie 1. Porównanie wynagrodzeń
 
@@ -1632,6 +2276,18 @@ Mamy dane o wynagrodzeniach (w tysiącach euro) z dwóch małych firm europejski
 Średnia arytmetyczna to suma wszystkich wartości podzielona przez ich liczbę.
 
 Wzór: $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$
+
+Można też zapisać ten wzór w postaci:
+
+$\bar{x} = \frac{\sum_{i=1}^{k} x_i f_i}{n}$
+
+gdzie $f_i$ to częstość bezwzględna (liczba wystąpień, waga bezwzględna) $i$-tej wartości, a $k$ to liczba różnych wartości cechy (liczba wartości wyróżnionych).
+
+Z użyciem częstości względnych:
+
+$\bar{x} = \sum_{i=1}^{k} x_i p_i$
+
+gdzie $p_i$ to częstość względna (frakcja, waga znormalizowana) $i$-tej wartości, a $k$ to liczba różnych wartości cechy (liczba wartości wyróżnionych).
 
 ##### Obliczenia ręczne dla Firmy X
 
@@ -1722,6 +2378,36 @@ znajdz_dominante(Y)
 Wariancja mierzy średnie kwadratowe odchylenie od średniej.
 
 Wzór: $s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}$
+
+Poprawka Bessela jest stosowana przy obliczaniu wariancji z próby, aby uzyskać nieobciążony estymator wariancji populacji. W standardowym wzorze na wariancję z próby dzielimy przez $(n-1)$ zamiast przez $n$.
+
+**Modyfikacje wzoru dla danych pogrupowanych (szereg częstości):**
+
+Można też zapisać ten wzór w postaci:
+
+$$s^2 = \frac{1}{n-1} \sum_{i=1}^{k} f_i(x_i - \bar{x})^2$$
+
+gdzie $f_i$ to częstość bezwzględna (liczba wystąpień) $i$-tej wartości.
+
+Gdy w obliczeniach stosujemy częstości względne $p = f_i/n$, gdzie:
+
+-   $f_i$ to częstość (liczba wystąpień)
+-   $n$ to całkowita liczebność próby
+
+Wzór na wariancję z uwzględnieniem poprawki Bessela przyjmuje postać:
+
+$$s^2 = \frac{n}{n-1} \sum_{i=1}^{k} p_i(x_i - \bar{x})^2$$
+
+gdzie:
+
+-   $s^2$ to wariancja z próby
+-   $n$ to liczebność próby
+-   $p_i = f_i/n$ to częstość względna $i$-tej wartości
+-   $x_i$ to $i$-ta wartość cechy
+-   $\bar{x}$ to średnia arytmetyczna
+-   $k$ to liczba różnych wartości cechy
+
+Kluczowe jest to, że przy stosowaniu częstości względnych mnożymy całe wyrażenie przez czynnik $\frac{n}{n-1}$, który wprowadza poprawkę Bessela.
 
 ##### Obliczenia ręczne dla Firmy X
 
@@ -1864,10 +2550,6 @@ ggplot(dane, aes(x = Firma, y = Wynagrodzenie, fill = Firma)) +
 2.  Rozproszenie: Firma X wykazuje znacznie wyższą wariancję i odchylenie standardowe, sugerując większe dysproporcje w wynagrodzeniach.
 3.  Kształt rozkładu: Wynagrodzenia w Firmie Y są bardziej skupione, podczas gdy Firma X ma wartości ekstremalne (potencjalne wartości odstające), które znacząco wpływają na jej średnią i wariancję.
 4.  Kwartyle: Rozstęp międzykwartylowy (Q3 - Q1) Firmy Y jest nieznacznie większy, ale jej ogólny zakres jest znacznie mniejszy niż Firmy X.
-
-### Wnioski
-
-Ta analiza porównawcza ujawnia znaczące różnice w strukturach wynagrodzeń między dwiema firmami. Firma X wykazuje większą zmienność i potencjalną nierówność w swojej skali płac, podczas gdy Firma Y demonstruje bardziej spójny i wąsko rozłożony zakres wynagrodzeń.
 
 ## Ćwiczenie 2. Porównanie Zmienności Wielkości Okręgów Wyborczych Między Krajami
 
@@ -2381,7 +3063,7 @@ Wizualizacja w formie wykresu pudełkowego pokazuje:
 
 Analiza ta pokazuje fundamentalne różnice w projektowaniu systemów wyborczych między dwoma krajami, gdzie Kraj X przyjmuje bardziej zróżnicowane podejście, a Kraj Y utrzymuje większą jednolitość w wielkości okręgów wyborczych.
 
-## Zrozumienie Wykresów Pudełkowych na Przykładzie Danych o Długości Życia
+## Cwiczenie 3. Wykresy Pudełkowe na Przykładzie Danych o Długości Życia
 
 ```{r}
 #| message: false
@@ -2392,8 +3074,6 @@ library(gapminder)
 data_2007 <- gapminder %>%
   filter(year == 2007)
 ```
-
-## Wprowadzenie do Wykresów Pudełkowych
 
 Wykres pudełkowy (ang. box-and-whisker plot) przedstawia pięć kluczowych statystyk opisowych danych:
 
@@ -2426,7 +3106,7 @@ ggplot(data_2007, aes(x = reorder(continent, lifeExp, FUN = median), y = lifeExp
   scale_y_continuous(breaks = seq(40, 85, by = 5))
 ```
 
-## Analiza Danych
+### Analiza Danych
 
 ### Mediana i Rozkład
 
@@ -2456,7 +3136,7 @@ Odpowiedz Prawda lub Fałsz:
 2.  W rozkładzie dla Oceanii nie ma wartości odstających
 3.  Azja ma kilka niskich wartości odstających (poniżej 55 lat)
 
-## Zmiany w Czasie
+### Zmiany w Czasie
 
 ```{r}
 #| fig.height: 8
@@ -2476,8 +3156,8 @@ ggplot(time_comparison, aes(x = continent, y = lifeExp, fill = year)) +
   theme_minimal() +
   theme(
     plot.title = element_text(size = 16, face = "bold"),
-    axis.title = element_text(size = 12),
-    axis.text = element_text(size = 10)
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14)
   ) +
   scale_fill_brewer(palette = "Set2") +
   scale_y_continuous(breaks = seq(30, 85, by = 5))
@@ -2515,7 +3195,7 @@ knitr::kable(summary_stats, digits = 1,
              caption = "Statystyki Opisowe według Kontynentu i Roku")
 ```
 
-## Najważniejsze Wnioski
+### Najważniejsze Wnioski
 
 1.  **Centrum Rozkładu**:
     -   Mediana pokazuje typową długość życia
@@ -2530,7 +3210,7 @@ knitr::kable(summary_stats, digits = 1,
     -   Uwydatnia utrzymujące się różnice regionalne
     -   Ujawnia różne tempo postępu na poszczególnych kontynentach
 
-## Statistical Summary
+### Statystyki opisowe (podsumowanie)
 
 ```{r}
 # Calculate summary statistics
@@ -2559,7 +3239,7 @@ knitr::kable(summary_stats, digits = 1,
 #### Miary Tendencji Centralnej
 
 | Miara | Zalety | Wady | Zastosowanie do |
-|-----------------|-----------------|-----------------|--------------------|
+|------------------|------------------|------------------|-------------------|
 | Średnia | \- Wykorzystuje wszystkie punkty danych<br>- Pozwala na dalsze obliczenia statystyczne<br>- Idealna dla danych o rozkładzie normalnym | \- Wrażliwa na wartości odstające<br>- Nieodpowiednia dla rozkładów skośnych<br>- Bez znaczenia dla danych nominalnych | Interwałowe, Ilorazowe, niektóre Dyskretne, Ciągłe |
 | Mediana | \- Niewrażliwa na wartości odstające<br>- Dobra dla rozkładów skośnych<br>- Może być stosowana do danych porządkowych | \- Ignoruje rzeczywiste wartości większości punktów danych<br>- Mniej użyteczna do dalszych analiz statystycznych | Porządkowe, Interwałowe, Ilorazowe, Dyskretne, Ciągłe |
 | Moda | \- Może być stosowana do każdego typu danych<br>- Dobra do znajdowania najczęstszej kategorii | \- Może nie być unikalna (rozkłady multimodalne)<br>- Nieprzydatna do wielu typów analiz<br>- Ignoruje wielkość różnic między wartościami | Wszystkie typy |
@@ -2567,7 +3247,7 @@ knitr::kable(summary_stats, digits = 1,
 #### Miary Zmienności
 
 | Miara | Zalety | Wady | Zastosowanie do |
-|-----------------|-----------------|-----------------|--------------------|
+|------------------|------------------|------------------|-------------------|
 | Zakres | \- Prosty do obliczenia i zrozumienia<br>- Daje szybki obraz rozproszenia danych | \- Bardzo wrażliwy na wartości odstające<br>- Ignoruje wszystkie dane między ekstremami<br>- Nieprzydatny do dalszych analiz statystycznych | Porządkowe, Interwałowe, Ilorazowe, Dyskretne, Ciągłe |
 | Rozstęp międzykwartylowy (IQR) | \- Niewrażliwy na wartości odstające<br>- Dobry dla rozkładów skośnych | \- Ignoruje 50% danych<br>- Mniej intuicyjny niż zakres | Porządkowe, Interwałowe, Ilorazowe, Dyskretne, Ciągłe |
 | Wariancja | \- Wykorzystuje wszystkie punkty danych<br>- Podstawa wielu procedur statystycznych | \- Wrażliwa na wartości odstające<br>- Jednostki są podniesione do kwadratu (mniej intuicyjne) | Interwałowe, Ilorazowe, niektóre Dyskretne, Ciągłe |
@@ -2577,7 +3257,7 @@ knitr::kable(summary_stats, digits = 1,
 #### Miary Korelacji/Asocjacji
 
 | Miara | Zalety | Wady | Zastosowanie do |
-|-----------------|-----------------|-----------------|--------------------|
+|------------------|------------------|------------------|-------------------|
 | r Pearsona | \- Mierzy zależność liniową<br>- Szeroko stosowany i zrozumiały | \- Zakłada rozkład normalny<br>- Wrażliwy na wartości odstające<br>- Uchwytuje tylko zależności liniowe | Interwałowe, Ilorazowe, Ciągłe |
 | Rho Spearmana | \- Może być stosowany do danych porządkowych<br>- Uchwytuje zależności monotoniczne<br>- Mniej wrażliwy na wartości odstające | \- Traci informacje przez konwersję na rangi<br>- Może pominąć niektóre typy zależności | Porządkowe, Interwałowe, Ilorazowe |
 | Tau Kendalla | \- Może być stosowany do danych porządkowych<br>- Bardziej odporny niż Spearman dla małych próbek<br>- Ma ładną interpretację (prawdopodobieństwo zgodności) | \- Traci informacje, biorąc pod uwagę tylko porządek<br>- Bardziej intensywny obliczeniowo | Porządkowe, Interwałowe, Ilorazowe |

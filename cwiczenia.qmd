@@ -1,0 +1,995 @@
+# Ćwiczenia (Sprawdzian)
+
+## Ćwiczenie 1. Identyfikacja Skal Pomiarowych
+
+Dla każdej z poniższych zmiennych określ najbardziej odpowiednią skalę pomiaru (**Nominalna, Porządkowa, Przedziałowa lub Stosunkowa**). Czy zmienna jest dyskretna, czy ciągła?
+
+1.  Płeć: ***skala nominalna***; ***zmienna dyskretna***;
+2.  Satysfakcja klienta: Niska, Średnia, Dobra, Doskonała
+3.  Wzrost (ankieta): "Jestem: bardzo niski, niski, przeciętnego wzrostu, wysoki, bardzo wysoki"
+4.  Wzrost mierzony w centymetrach
+5.  Czas reakcji (w milisekundach)
+6.  Kody pocztowe: np. 00-001, 00-950, 80-452, 31-072
+7.  Wiek (w latach)
+8.  Marki samochodów
+9.  Narodowość
+10. Liczba dzieci w rodzinie: 1 dziecko, 2 dzieci, 3 dzieci, ...
+11. Wynik testu IQ
+12. Temperatura (skala Celsjusza)
+13. Temperatura (skala Kelvina)
+14. Frekwencja wyborcza
+15. Przynależność partyjna
+16. Wielkość okręgu wyborczego
+17. Współrzędne w układzie kartezjańskim
+18. Data (względem określonej epoki, np. n.e.)
+19. Wysokość nad poziomem morza
+20. Grupy krwi: A, B, AB, 0
+21. Kategorie dochodów: niskie, średnie, wysokie
+22. Stopnie wojskowe
+
+Pamiętaj, aby uzasadnić swój wybór skali dla każdej zmiennej.
+
+**Dla przykładu**: W typologii skal pomiarowych Stevensa, adresy uliczne są danymi nominalnymi. Dlaczego?
+
+Pełnią wyłącznie funkcję etykiet/identyfikatorów Nie mają naturalnego uporządkowania (ul. Mickiewicza 5 nie jest "większa" niż ul. Słowackiego 10) Nie można wykonywać na nich sensownych operacji matematycznych Jedyna dozwolona operacja to sprawdzanie równości/nierówności (czy to ten sam adres czy inny?)
+
+Mimo że numery domów są liczbami, w systemie adresowym funkcjonują jako etykiety, a nie wartości ilościowe. Liczba 100 w adresie "ul. Kilińskiego 100" nie jest używana matematycznie - równie dobrze mogłaby to być "ul. Jabłkowa" czy "ul. Zeusa", jeśli chodzi o jej funkcję w adresie.
+
+---
+
+## Ćwiczenie 2. Środek i rozproszenie danych
+
+### Dane
+Mamy dane o wynagrodzeniach (w tysiącach euro) z dwóch małych firm europejskich:
+
+| Indeks | Firma X | Firma Y |
+|--------|---------|---------|
+| 1      | 2       | 3       |
+| 2      | 2       | 3       |
+| 3      | 2       | 4       |
+| 4      | 3       | 4       |
+| 5      | 3       | 4       |
+| 6      | 3       | 4       |
+| 7      | 3       | 4       |
+| 8      | 3       | 4       |
+| 9      | 3       | 5       |
+| 10     | 4       | 5       |
+| 11     | 4       | 5       |
+| 12     | 4       | 5       |
+| 13     | 4       | 5       |
+| 14     | 4       | 5       |
+| 15     | 5       | 5       |
+| 16     | 5       | 6       |
+| 17     | 5       | 6       |
+| 18     | 5       | 6       |
+| 19     | 20      | 7       |
+| 20     | 35      | 8       |
+
+Ta tabela przedstawia dane dla obu firm (Firma X i Firma Y) obok siebie, z kolumną indeksu dla łatwego odniesienia.
+
+### Zadania
+
+**A. Miary tendencji centralnej**
+
+1. Oblicz **średnią arytmetyczną** wynagrodzeń dla Firmy X i Firmy Y.
+2. Oblicz **medianę** wynagrodzeń dla obu firm.
+3. Znajdź **dominantę** dla rozkładu wynagrodzeń każdej firmy.
+4. Porównaj średnią i medianę dla Firmy X. Co różnica między tymi wartościami mówi o danych?
+
+**B. Kwartyle i percentyle**
+
+5. Oblicz pierwszy kwartyl (Q1), drugi kwartyl (Q2) i trzeci kwartyl (Q3) dla obu firm.
+6. Sprawdź, że Q2 jest równy medianie obliczonej w zadaniu 2.
+
+**C. Miary rozproszenia**
+
+7. Oblicz **rozstęp** dla obu firm.
+8. Oblicz **rozstęp międzykwartylowy (IQR)** dla obu firm.
+9. Oblicz **wariancję** i **odchylenie standardowe** dla obu firm.
+10. Która firma ma większą zmienność wynagrodzeń? Uzasadnij swoją odpowiedź odpowiednimi statystykami.
+
+**D. Wykrywanie wartości odstających**
+
+11. Użyj metody IQR, aby zidentyfikować potencjalne wartości odstające w obu firmach. (Przypomnij sobie: wartości odstające to wartości poniżej Q1 - 1,5×IQR lub powyżej Q3 + 1,5×IQR)
+12. Jak wartości odstające w Firmie X wpływają na średnią? Oblicz średnią bez wartości odstających i porównaj.
+
+**E. Wykresy pudełkowe**
+
+13. Narysuj wykres pudełkowy dla Firmy X i Firmy Y (możesz narysować je obok siebie w celu porównania).
+14. Oznacz następujące elementy na każdym wykresie pudełkowym: minimum, Q1, mediana, Q3, maksimum oraz wszelkie wartości odstające.
+
+**F. Interpretacja i porównanie**
+
+15. Gdybyś przedstawiał „średnie" wynagrodzenie w Firmie X potencjalnym pracownikom, czy użyłbyś średniej arytmetycznej czy mediany? Uzasadnij swój wybór.
+16. Która firma wydaje się mieć bardziej sprawiedliwy rozkład wynagrodzeń? Uzasadnij swoją odpowiedź dowodami statystycznymi.
+
+---
+
+## Ćwiczenie 3. Uczestnictwo wyborcze a dobrobyt ekonomiczny: analiza korelacji i regresji
+
+### Kontekst
+W tym ćwiczeniu zbadamy związek między dobrobytem ekonomicznym a frekwencją wyborczą w wyborach lokalnych. Politolodzy i socjolodzy od dawna debatują, czy warunki ekonomiczne wpływają na uczestnictwo obywatelskie. Niektóre teorie sugerują, że wyższe dochody są powiązane z większym zaangażowaniem politycznym i wyższą frekwencją wyborczą, ponieważ bogatsi obywatele mogą dysponować większymi zasobami (czas, wykształcenie, poczucie sprawczości politycznej), aby uczestniczyć w procesach demokratycznych. Przeanalizujemy dane z pięciu dzielnic średniej wielkości europejskiego miasta po ostatnich wyborach lokalnych, aby empirycznie przetestować tę zależność.
+
+### Dane
+Próba obejmuje pięć reprezentatywnych dzielnic z wyborów lokalnych w średniej wielkości europejskim mieście:
+- **X**: Średni dochód gospodarstwa domowego (w tysiącach euro)
+- **Y**: Frekwencja wyborcza (procent uprawnionych wyborców, którzy oddali głos)
+
+| Dzielnica  | Dochód (X) (€000) | Frekwencja (Y) (%) |
+|------------|-------------------|---------------------|
+| Dzielnica A| 50                | 60                  |
+| Dzielnica B| 45                | 56                  |
+| Dzielnica C| 56                | 70                  |
+| Dzielnica D| 40                | 50                  |
+| Dzielnica E| 60                | 75                  |
+
+### Zadania
+
+**A. Wstępna analiza danych**
+
+1. Oblicz **średni** dochód gospodarstwa domowego oraz **średnią** frekwencję wyborczą dla próby.
+2. Oblicz **odchylenie standardowe** dla dochodów gospodarstw domowych i frekwencji wyborczej.
+
+**B. Kowariancja**
+
+3. Oblicz **kowariancję** między dochodem (X) a frekwencją wyborczą (Y). Pokaż swoje obliczenia krok po kroku używając wzoru:
+   $$\text{Cov}(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1}$$
+
+4. Czy kowariancja jest dodatnia czy ujemna? Co to mówi o związku między dochodem a uczestnictwem wyborczym?
+
+**C. Współczynnik korelacji Pearsona**
+
+5. Oblicz **współczynnik korelacji Pearsona (r)** używając wzoru:
+   $$r = \frac{\text{Cov}(X,Y)}{s_X \cdot s_Y}$$
+
+6. Zinterpretuj współczynnik korelacji Pearsona. Co jego wartość mówi o sile i kierunku związku liniowego?
+
+7. Dlaczego współczynnik korelacji Pearsona jest bardziej użyteczny niż kowariancja przy porównywaniu związków w różnych badaniach?
+
+**D. Prosta regresja liniowa (MNK)**
+
+8. Oblicz **współczynnik kierunkowy (b₁)** linii regresji używając wzoru:
+    $$b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$$
+
+9. Oblicz **wyraz wolny (b₀)** linii regresji:
+    $$b_0 = \bar{y} - b_1\bar{x}$$
+
+10. Zapisz kompletne **równanie regresji**: $\hat{Y} = b_0 + b_1X$
+
+11. Zinterpretuj współczynnik kierunkowy w kategoriach merytorycznych. Co to oznacza dla frekwencji wyborczej, gdy dochód wzrasta o €1 000?
+
+12. Użyj swojego równania regresji, aby przewidzieć frekwencję wyborczą dla dzielnicy o średnim dochodzie gospodarstwa domowego równym €52 000.
+
+**E. Współczynnik determinacji (R²)**
+
+13. Dla każdej dzielnicy oblicz **przewidywaną frekwencję** ($\hat{y}_i$) używając swojego równania regresji.
+
+14. Oblicz **całkowitą sumę kwadratów (SST)**: $SST = \sum(y_i - \bar{y})^2$
+
+15. Oblicz **regresyjną sumę kwadratów (SSR)**: $SSR = \sum(\hat{y}_i - \bar{y})^2$
+
+16. Oblicz **resztową sumę kwadratów (SSE)**: $SSE = \sum(y_i - \hat{y}_i)^2$
+
+17. Oblicz **współczynnik determinacji (R²)**: $R^2 = \frac{SSR}{SST}$
+
+18. Zweryfikuj, że twój R² jest równy kwadratowi współczynnika korelacji Pearsona z części C.
+
+19. Zinterpretuj wartość R². Jaki procent zmienności frekwencji wyborczej jest wyjaśniony przez dochód gospodarstwa domowego?
+
+**F. Interpretacja i wnioski**
+
+20. Na podstawie swoich analiz podsumuj związek między dochodem gospodarstwa domowego a frekwencją wyborczą w tym mieście.
+
+21. Jakie są główne ograniczenia tej analizy? Rozważ wielkość próby, związek przyczynowy i pominięte zmienne.
+
+22. Zaproponuj dwie dodatkowe zmienne, które mogłyby być uwzględnione w modelu regresji wielorakiej, aby lepiej wyjaśnić frekwencję wyborczą.
+
+---
+
+## Ćwiczenie 4. Porównanie Zmienności Wielkości Okręgów Wyborczych Między Krajami
+
+```{r setup_2, include=FALSE}
+library(tidyverse)
+library(knitr)
+options(digits = 4)
+```
+
+### Dane
+
+Mamy dane o wielkości okręgów wyborczych z dwóch krajów:
+
+```{r data}
+x <- c(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)  # Kraj wysoka zmienność
+y <- c(8, 9, 9, 10, 10, 11, 11, 12, 12, 13)  # Kraj niska zmienność
+
+kable(data.frame(
+  "Kraj X (Wysoka zm.)" = x,
+  "Kraj Y (Niska zm.)" = y
+))
+```
+
+---
+
+## Ćwiczenie 5. Lęk a wyniki: analiza korelacji i regresji
+
+### Kontekst
+W tym ćwiczeniu zbadamy związek między poziomem lęku przed egzaminem a wynikami egzaminacyjnymi wśród studentów uniwersyteckich. Badania sugerują, że chociaż niewielka ilość lęku może być motywująca, nadmierny lęk zazwyczaj pogarsza wyniki poprzez zmniejszoną koncentrację, zakłócenia pamięci roboczej i objawy fizyczne (prawo Yerkesa-Dodsona). Przeanalizujemy dane od 8 studentów, aby matematycznie zrozumieć tę relację.
+
+### Dane
+Zebraliśmy dane od 8 studentów, mierząc:
+- **X**: Poziom lęku przed testem (skala 1-10, gdzie 1 = bardzo niski, 10 = bardzo wysoki)
+- **Y**: Wyniki egzaminu (procent punktów)
+
+| Student | Lęk (X) | Wynik (Y) |
+|---------|---------|-----------|
+| 1       | 2,5     | 80        |
+| 2       | 3,2     | 85        |
+| 3       | 4,1     | 78        |
+| 4       | 4,8     | 82        |
+| 5       | 5,6     | 77        |
+| 6       | 6,3     | 74        |
+| 7       | 7,0     | 68        |
+| 8       | 7,9     | 72        |
+
+### Zadania
+
+**A. Wstępna analiza danych**
+
+1. Oblicz **średni** poziom lęku oraz **średni** wynik egzaminu dla grupy.
+2. Oblicz **odchylenie standardowe** dla poziomów lęku i wyników egzaminu.
+3. Na podstawie wizualnej inspekcji danych, czy spodziewasz się pozytywnej czy negatywnej relacji między lękiem a wynikami? Wyjaśnij swoje rozumowanie.
+
+**B. Kowariancja**
+
+4. Oblicz **kowariancję** między lękiem (X) a wynikami (Y). Pokaż swoje obliczenia krok po kroku.
+5. Czy kowariancja jest dodatnia czy ujemna? Co to mówi o związku między lękiem a wynikami?
+6. Dlaczego sama kowariancja nie jest wystarczająca do określenia siły związku? Jakie są jej ograniczenia?
+
+**C. Współczynnik korelacji Pearsona**
+
+7. Oblicz **współczynnik korelacji Pearsona (r)** używając wzoru:
+   $$r = \frac{\text{Cov}(X,Y)}{s_X \cdot s_Y}$$
+   gdzie $s_X$ i $s_Y$ to odchylenia standardowe X i Y.
+
+8. Alternatywnie, zweryfikuj swoją odpowiedź używając wzoru:
+   $$r = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2 \cdot \sum(y_i - \bar{y})^2}}$$
+
+9. Zinterpretuj współczynnik korelacji Pearsona. Co jego wartość mówi o:
+   - Kierunku związku (dodatni czy ujemny)?
+   - Sile związku liniowego (słaby, umiarkowany czy silny)?
+
+10. W jaki sposób współczynnik r Pearsona jest lepszy niż kowariancja jako miernik zależności? Jaką ma przewagę?
+
+11. Jaka jest różnica między korelacją a związkiem przyczynowym? Czy na podstawie samej korelacji możemy stwierdzić, że lęk powoduje gorsze wyniki?
+
+**D. Wykres rozrzutu**
+
+12. Stwórz **wykres rozrzutu** z lękiem na osi x i wynikami na osi y. Nanieś wszystkie 8 punktów danych.
+13. Na podstawie wykresu rozrzutu opisz zaobserwowany wzorzec. Czy związek jest liniowy czy nieliniowy? Silny czy słaby?
+14. Czy są jakieś potencjalne wartości odstające lub nietypowe obserwacje w danych?
+
+**E. Prosta regresja liniowa (MNK)**
+
+15. Oblicz **współczynnik kierunkowy (b₁)** linii regresji używając metody najmniejszych kwadratów (MNK). Użyj wzoru: 
+    $$b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$$
+
+16. Oblicz **wyraz wolny (b₀)** linii regresji używając wzoru:
+    $$b_0 = \bar{y} - b_1\bar{x}$$
+
+17. Zapisz kompletne **równanie regresji** w postaci: $\hat{Y} = b_0 + b_1X$
+
+18. Zinterpretuj współczynnik kierunkowy w kontekście tego problemu. Co oznacza w praktyce?
+
+19. Użyj swojego równania regresji, aby przewidzieć wynik egzaminu dla studenta z poziomem lęku równym 6,0.
+
+20. Dodaj **linię regresji** do swojego wykresu rozrzutu z części D.
+
+**F. Współczynnik determinacji (R²)**
+
+21. Oblicz **całkowitą sumę kwadratów (SST)**: $SST = \sum(y_i - \bar{y})^2$
+
+22. Oblicz **regresyjną sumę kwadratów (SSR)**: $SSR = \sum(\hat{y}_i - \bar{y})^2$
+
+23. Oblicz **resztową sumę kwadratów (SSE)**: $SSE = \sum(y_i - \hat{y}_i)^2$
+
+24. Zweryfikuj, że: $SST = SSR + SSE$
+
+25. Oblicz **współczynnik determinacji (R²)** używając wzoru: $R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$
+
+26. Zweryfikuj, że $R^2 = r^2$ (kwadrat współczynnika korelacji Pearsona z części C).
+
+27. Zinterpretuj wartość R². Jaki procent zmienności wyników egzaminu jest wyjaśniony przez poziomy lęku?
+
+**G. Interpretacja i wnioski**
+
+28. Na podstawie twojej analizy regresji, czy lęk jest statystycznie istotnym predyktorem wyników egzaminu w tej próbie? Wyjaśnij.
+
+29. Porównaj informacje dostarczone przez r i R². Jak są ze sobą powiązane i co każdy z nich mówi?
+
+30. Jakie są ograniczenia tej analizy? Rozważ wielkość próby, problemy z pomiarem i potencjalne zmienne zakłócające.
+
+31. Gdyby student miał bardzo niski poziom lęku (wynik 2,0), czy czułbyś się pewnie używając swojego równania regresji do przewidywania jego wyniku? Dlaczego tak lub dlaczego nie? (Wskazówka: rozważ ekstrapolację)
+
+32. Zaproponuj dwie dodatkowe zmienne, które mogłyby być ważne do uwzględnienia w bardziej kompleksowym modelu wyników egzaminu.
+
+---
+
+## Ćwiczenie 6. Wielkość okręgu wyborczego a dysproporcjonalność wyborcza: analiza korelacji i regresji
+
+### Kontekst
+W tym ćwiczeniu zbadamy związek między wielkością okręgu wyborczego a dysproporcjonalnością w wyborach parlamentarnych. Wielkość okręgu wyborczego (DM) oznacza liczbę mandatów przydzielonych na jeden okręg wyborczy, podczas gdy indeks Gallaghera (GH) mierzy dysproporcjonalność między oddanymi głosami a zdobytymi mandatami. Politolodzy teoretyzowali, że większe okręgi wyborcze prowadzą do bardziej proporcjonalnych wyników (niższa dysproporcjonalność), zgodnie z prawem Duvergera i jego rozszerzeniami. Przeanalizujemy dane z 10 demokracji, aby empirycznie przetestować tę zależność.
+
+### Dane
+Student politologii zebrał dane z 10 losowo wybranych demokracji:
+- **X**: Wielkość okręgu wyborczego (DM) - średnia liczba mandatów na okręg
+- **Y**: Indeks Gallaghera (GH) - miara dysproporcjonalności wyborczej (wyższe wartości = większa dysproporcjonalność)
+
+| Demokracja | Wielkość okręgu (X) | Indeks Gallaghera (Y) |
+|------------|---------------------|------------------------|
+| 1          | 2                   | 18,2                   |
+| 2          | 3                   | 16,7                   |
+| 3          | 4                   | 15,8                   |
+| 4          | 5                   | 15,3                   |
+| 5          | 6                   | 15,0                   |
+| 6          | 7                   | 14,8                   |
+| 7          | 8                   | 14,7                   |
+| 8          | 9                   | 14,6                   |
+| 9          | 10                  | 14,55                  |
+| 10         | 11                  | 14,52                  |
+
+### Zadania
+
+**A. Wstępna analiza danych**
+
+1. Oblicz **średnią** wielkość okręgu wyborczego oraz **średnią** wartość indeksu Gallaghera dla próby.
+2. Oblicz **odchylenie standardowe** dla wielkości okręgu wyborczego i indeksu Gallaghera.
+3. Na podstawie wizualnej inspekcji danych, czy spodziewasz się pozytywnego czy negatywnego związku między wielkością okręgu a dysproporcjonalnością? Czy to jest zgodne z teorią politologiczną?
+
+**B. Kowariancja**
+
+4. Oblicz **kowariancję** między wielkością okręgu wyborczego (X) a indeksem Gallaghera (Y). Pokaż swoje obliczenia krok po kroku używając wzoru:
+   $$\text{Cov}(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1}$$
+
+5. Czy kowariancja jest dodatnia czy ujemna? Co to mówi o związku między wielkością okręgu a dysproporcjonalnością?
+
+6. Jakie są jednostki twojej kowariancji? Dlaczego to utrudnia interpretację siły związku?
+
+**C. Współczynnik korelacji Pearsona**
+
+7. Oblicz **współczynnik korelacji Pearsona (r)** używając wzoru:
+   $$r = \frac{\text{Cov}(X,Y)}{s_X \cdot s_Y}$$
+
+8. Zinterpretuj współczynnik korelacji Pearsona:
+   - Czy związek jest dodatni czy ujemny?
+   - Jak silny jest związek liniowy (słaby, umiarkowany czy silny)?
+   - Co to mówi o relacji między wielkością okręgu a dysproporcjonalnością?
+
+9. Oblicz **r²** i zinterpretuj, co to oznacza w tym kontekście.
+
+10. Dlaczego współczynnik korelacji Pearsona jest bardziej użyteczny niż kowariancja do opisywania siły związku liniowego?
+
+**D. Prosta regresja liniowa (MNK)**
+
+11. Oblicz **współczynnik kierunkowy (b₁)** linii regresji używając metody najmniejszych kwadratów (MNK):
+    $$b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$$
+
+12. Oblicz **wyraz wolny (b₀)** linii regresji:
+    $$b_0 = \bar{y} - b_1\bar{x}$$
+
+13. Zapisz kompletne **równanie regresji**: $\hat{Y} = b_0 + b_1X$
+
+14. Zinterpretuj współczynnik kierunkowy w merytorycznych kategoriach politologicznych. Co to oznacza dla systemów wyborczych?
+
+15. Użyj swojego równania regresji, aby przewidzieć wartość indeksu Gallaghera dla demokracji o wielkości okręgu wyborczego równej 7,5.
+
+16. Jaki jest związek między współczynnikiem kierunkowym (b₁) a współczynnikiem korelacji Pearsona (r)? Pokaż to matematycznie.
+
+**E. Współczynnik determinacji (R²)**
+
+17. Dla każdej obserwacji oblicz **wartość przewidywaną** ($\hat{y}_i$) używając swojego równania regresji.
+
+18. Dla każdej obserwacji oblicz **residuum** ($e_i = y_i - \hat{y}_i$).
+
+19. Oblicz **całkowitą sumę kwadratów (SST)**: $SST = \sum(y_i - \bar{y})^2$
+
+20. Oblicz **regresyjną sumę kwadratów (SSR)**: $SSR = \sum(\hat{y}_i - \bar{y})^2$
+
+21. Oblicz **resztową sumę kwadratów (SSE)**: $SSE = \sum(y_i - \hat{y}_i)^2$
+
+22. Zweryfikuj, że: $SST = SSR + SSE$
+
+23. Oblicz **współczynnik determinacji (R²)**: $R^2 = \frac{SSR}{SST}$
+
+24. Zweryfikuj, że twój R² jest równy kwadratowi współczynnika korelacji Pearsona z części C.
+
+25. Zinterpretuj wartość R² w kontekście systemów wyborczych. Jaki procent zmienności w dysproporcjonalności jest wyjaśniony przez wielkość okręgu wyborczego?
+
+26. Jaka jest różnica między r a R² pod względem interpretacji? Kiedy raportowałbyś jedno, a kiedy drugie?
+
+**F. Interpretacja i wnioski**
+
+27. Na podstawie wszystkich swoich analiz (kowariancja, korelacja Pearsona, regresja), podsumuj związek między wielkością okręgu wyborczego a dysproporcjonalnością wyborczą.
+
+28. Czy twoje wyniki potwierdzają hipotezę Duvergera? Wyjaśnij, odwołując się do swoich wyników statystycznych.
+
+29. Porównaj informacje dostarczone przez następujące miary:
+    - Kowariancja
+    - Korelacja Pearsona (r)
+    - Współczynnik kierunkowy regresji (b₁)
+    - R²
+    
+    Jak są ze sobą powiązane? Jakie unikalne informacje dostarcza każda z nich?
+
+30. Jakie są ograniczenia tej analizy? Rozważ:
+    - Wielkość próby
+    - Trafność zewnętrzna (możliwość uogólnienia)
+    - Pominięte zmienne (jakie inne czynniki mogą wpływać na dysproporcjonalność?)
+    - Problemy pomiarowe
+
+31. Czy czułbyś się pewnie używając swojego modelu regresji do przewidywania dysproporcjonalności dla demokracji o DM = 20? Dlaczego tak lub dlaczego nie? Jaka koncepcja statystyczna jest tutaj istotna?
+
+32. Zaproponuj trzy dodatkowe zmienne, które mogłyby być uwzględnione w modelu regresji wielorakiej, aby lepiej wyjaśnić dysproporcjonalność wyborczą.
+
+33. Na podstawie swoich wyników regresji, jaką rekomendację polityczną przedstawiłbyś krajowi, który chce zmniejszyć dysproporcjonalność wyborczą?
+
+---
+
+## Ćwiczenie 7: Reguła sumy i iloczynu w zliczaniu
+
+Rozważ poniższe problemy zliczania i określ, czy użyć **reguły iloczynu** (mnożenie) czy **reguły sumy** (dodawanie).
+
+**a.** Restauracja oferuje 4 rodzaje zupy, 6 dań głównych i 3 desery. Jeśli pełny posiłek składa się z jednej zupy, jednego dania głównego i jednego deseru, ile różnych pełnych posiłków jest możliwych?
+
+**b.** Student może dojechać na uczelnię autobusem lub pociągiem. Są 3 różne linie autobusowe i 2 różne linie kolejowe. Na ile różnych sposobów student może dojechać na uczelnię?
+
+**c.** Aby utworzyć hasło, musisz wybrać 2 litery, a następnie 3 cyfry. Ile różnych haseł jest możliwych (zakładając, że litery i cyfry mogą się powtarzać)?
+
+**d.** Komitet potrzebuje albo 1 przedstawiciela z Wydziału Matematyki (5 kandydatów) ALBO 1 przedstawiciela z Wydziału Fizyki (4 kandydatów), ale nie obu. Na ile sposobów można wybrać przedstawiciela?
+
+**Wskazówki:**
+
+- **Reguła iloczynu (Mnożenie)**: Użyj, gdy zadania są wykonywane sekwencyjnie I wszystkie zadania muszą być ukończone. Myśl: "to I tamto I tamto..."
+
+- **Reguła sumy (Dodawanie)**: Użyj, gdy są wzajemnie wykluczające się alternatywy. Myśl: "to ALBO tamto (ale nie oba)..."
+
+- Dla wielu wyborów w sekwencji, gdzie każdy wybór jest niezależny, pomnóż liczbę opcji na każdym kroku.
+
+- Alfabet: 26 liter; cyfry: 10 cyfr (0-9).
+
+**Odpowiedzi:**
+
+**a.** Reguła iloczynu: $4 \times 6 \times 3 = 72$ różnych pełnych posiłków.
+
+*Wyjaśnienie*: Musisz wybrać zupę I danie główne I deser (wszystkie trzy wybory w sekwencji).
+
+**b.** Reguła sumy: $3 + 2 = 5$ różnych sposobów.
+
+*Wyjaśnienie*: Wybierasz autobus ALBO pociąg (wzajemnie wykluczające się alternatywy).
+
+**c.** Reguła iloczynu: $26 \times 26 \times 10 \times 10 \times 10 = 676{,}000$ różnych haseł.
+
+*Wyjaśnienie*: Musisz wybrać 1. literę I 2. literę I 1. cyfrę I 2. cyfrę I 3. cyfrę (pięć sekwencyjnych wyborów).
+
+**d.** Reguła sumy: $5 + 4 = 9$ różnych sposobów.
+
+*Wyjaśnienie*: Wybierasz z Matematyki ALBO z Fizyki (wzajemnie wykluczające się alternatywy - nie można wybrać obu).
+
+---
+
+## Ćwiczenie 8: Losowanie ze zwracaniem i bez zwracania
+
+Urna zawiera 3 zielone kule i 2 czerwone kule. Z urny losowane są dwie kule. Oblicz prawdopodobieństwo dla każdego z poniższych scenariuszy:
+
+a. Pierwsza kula jest czerwona, a druga zielona (kolejność ma znaczenie); losowanie **bez zwracania**.
+
+b. Pierwsza kula jest czerwona, a druga zielona (kolejność ma znaczenie); losowanie **ze zwracaniem**.
+
+c. Kule są różnych kolorów (kolejność nie ma znaczenia); losowanie **bez zwracania**.
+
+d. Kule są różnych kolorów (kolejność nie ma znaczenia); losowanie **ze zwracaniem**.
+
+**Wskazówki:**
+
+- Przy losowaniu *bez zwracania* całkowita liczba kul i skład zmieniają się po pierwszym losowaniu.
+
+- Przy losowaniu *ze zwracaniem* każde losowanie jest niezależne z takimi samymi prawdopodobieństwami.
+
+- Gdy kolejność nie ma znaczenia, rozważ wszystkie możliwe sposoby osiągnięcia wyniku (np. czerwona-potem-zielona LUB zielona-potem-czerwona).
+
+- Użyj reguły mnożenia dla zdarzeń sekwencyjnych: $P(A \text{ i } B) = P(A) \times P(B|A)$
+
+- Problem można rozwiązać za pomocą **drzew prawdopodobieństwa** lub konstruując **przestrzeń zdarzeń elementarnych** wizualizowaną jako siatka 2D, a następnie stosując klasyczną (naiwną) definicję prawdopodobieństwa: $P(A) = \frac{\text{zdarzenia sprzyjające}}{\text{wszystkie zdarzenia}}$
+
+**Rozwiązania:**
+
+**a.** Bez zwracania, czerwona potem zielona:
+
+$$P(\text{Czerwona}_1 \cap \text{Zielona}_2) = \frac{2}{5} \times \frac{3}{4} = \frac{6}{20} = \frac{3}{10}$$
+
+*Wyjaśnienie*: Początkowo 2 czerwone na 5 kul; po usunięciu jednej czerwonej, 3 zielone na 4 pozostałe kule.
+
+**b.** Ze zwracaniem, czerwona potem zielona:
+
+$$P(\text{Czerwona}_1 \cap \text{Zielona}_2) = \frac{2}{5} \times \frac{3}{5} = \frac{6}{25}$$
+
+*Wyjaśnienie*: Każde losowanie jest niezależne z takimi samymi prawdopodobieństwami (2 czerwone i 3 zielone na 5 kul za każdym razem).
+
+**c.** Bez zwracania, różne kolory (kolejność nie ma znaczenia):
+
+$$P(\text{Różne}) = P(\text{Czerwona}_1 \cap \text{Zielona}_2) + P(\text{Zielona}_1 \cap \text{Czerwona}_2) = \frac{2}{5} \times \frac{3}{4} + \frac{3}{5} \times \frac{2}{4} = \frac{6}{20} + \frac{6}{20} = \frac{12}{20} = \frac{3}{5}$$
+
+*Wyjaśnienie*: Dodaj prawdopodobieństwa dla obu kolejności (czerwona-zielona LUB zielona-czerwona).
+
+**d.** Ze zwracaniem, różne kolory (kolejność nie ma znaczenia):
+
+$$P(\text{Różne}) = P(\text{Czerwona}_1 \cap \text{Zielona}_2) + P(\text{Zielona}_1 \cap \text{Czerwona}_2) = \frac{2}{5} \times \frac{3}{5} + \frac{3}{5} \times \frac{2}{5} = \frac{6}{25} + \frac{6}{25} = \frac{12}{25}$$
+
+*Wyjaśnienie*: Dodaj prawdopodobieństwa dla obu kolejności, przy czym każde losowanie jest niezależne.
+
+**Alternatywne podejście wykorzystujące przestrzeń zdarzeń elementarnych:**
+
+- **Ze zwracaniem**: Utwórz siatkę 5×5, gdzie wiersze reprezentują pierwsze losowanie (C1, C2, Z1, Z2, Z3), a kolumny reprezentują drugie losowanie (C1, C2, Z1, Z2, Z3). Wszystkie zdarzenia: 25. Policz zdarzenia sprzyjające w siatce.
+
+- **Bez zwracania**: Utwórz siatkę wykluczając elementy na przekątnej (nie można wylosować tej samej kuli dwa razy). Wszystkie zdarzenia: 20. Policz zdarzenia sprzyjające w siatce.
+
+---
+
+
+## Ćwiczenie 9: Losowanie kul z urny
+
+Urna zawiera 4 kule czerwone i 3 czarne (kule w danym kolorze są nierozróżnialne). Dwie kule losujemy z urny **bez zwracania**.
+
+Jakie jest prawdopodobieństwo, że:
+
+a. Obie kule są czerwone.
+
+b. Pierwsza kula jest czerwona, a druga jest czarna.
+
+c. Kule są różnokolorowe.
+
+**Wskazówki:**
+
+- Przy losowaniu bez zwracania całkowita liczba kul i skład zmieniają się po pierwszym losowaniu.
+
+- Użyj reguły mnożenia: $P(A \cap B) = P(A) \times P(B|A)$
+
+- Gdy kolejność nie ma znaczenia (część c), rozważ wszystkie możliwe kolejności.
+
+- Problem można rozwiązać za pomocą **drzew prawdopodobieństwa** lub wypisując **przestrzeń zdarzeń elementarnych** jako pary uporządkowane. Dla podejścia z przestrzenią zdarzeń elementarnych, ponumeruj kule (C1, C2, C3, C4, Cz1, Cz2, Cz3), aby zapewnić jednakowo prawdopodobne zdarzenia elementarne, mimo że kule tego samego koloru są fizycznie nierozróżnialne.
+
+**Rozwiązania:**
+
+**a.** Obie kule są czerwone:
+
+$$P(\text{Czerwona}_1 \cap \text{Czerwona}_2) = \frac{4}{7} \times \frac{3}{6} = \frac{12}{42} = \frac{2}{7}$$
+
+*Wyjaśnienie*: Początkowo 4 czerwone na 7 kul; po usunięciu jednej czerwonej kuli, 3 czerwone na 6 pozostałych kul.
+
+**b.** Pierwsza czerwona, druga czarna:
+
+$$P(\text{Czerwona}_1 \cap \text{Czarna}_2) = \frac{4}{7} \times \frac{3}{6} = \frac{12}{42} = \frac{2}{7}$$
+
+*Wyjaśnienie*: Początkowo 4 czerwone na 7 kul; po usunięciu jednej czerwonej kuli, 3 czarne na 6 pozostałych kul.
+
+**c.** Różne kolory (kolejność nie ma znaczenia):
+
+$$P(\text{Różne}) = P(\text{Czerwona}_1 \cap \text{Czarna}_2) + P(\text{Czarna}_1 \cap \text{Czerwona}_2) = \frac{4}{7} \times \frac{3}{6} + \frac{3}{7} \times \frac{4}{6} = \frac{12}{42} + \frac{12}{42} = \frac{24}{42} = \frac{4}{7}$$
+
+*Wyjaśnienie*: Dodaj prawdopodobieństwa dla obu kolejności (czerwona-czarna LUB czarna-czerwona).
+
+**Alternatywne podejście wykorzystujące przestrzeń zdarzeń elementarnych:**
+
+Ponumeruj kule jako C1, C2, C3, C4, Cz1, Cz2, Cz3, aby utworzyć przestrzeń zdarzeń elementarnych z jednakowo prawdopodobnymi zdarzeniami. Utwórz siatkę 7×6 (lub wypisz wszystkie pary uporządkowane), gdzie pierwsza współrzędna reprezentuje pierwsze losowanie, a druga współrzędna reprezentuje drugie losowanie. Ponieważ losujemy bez zwracania, wyklucz przypadki, w których ta sama kula jest losowana dwa razy. Wszystkie zdarzenia elementarne: $7 \times 6 = 42$. Policz zdarzenia sprzyjające dla każdego scenariusza (np. dla części a, policz wszystkie pary, gdzie obie współrzędne to kule czerwone).
+
+---
+
+## Ćwiczenie 10: Reguła dopełnienia
+
+Worek zawiera 5 czerwonych i 3 niebieskie kulki. Z worka wyciągane są **bez zwracania**, jedna za drugą, dwie kulki.
+
+Oblicz prawdopodobieństwo, że przynajmniej jedna kulka jest czerwona.
+
+**Wskazówki:**
+
+- "Przynajmniej jedna" oznacza jedną lub więcej (jedna czerwona LUB dwie czerwone).
+
+- **Reguła dopełnienia** jest często łatwiejsza: $P(A) = 1 - P(A^c)$, gdzie $A^c$ jest dopełnieniem zdarzenia $A$.
+
+- Dopełnieniem "przynajmniej jedna czerwona" jest "żadna czerwona" (czyli "obie niebieskie").
+
+- Najpierw oblicz $P(\text{obie niebieskie})$, a następnie użyj reguły dopełnienia.
+
+**Rozwiązanie:**
+
+Niech $A$ = "przynajmniej jedna kulka jest czerwona"
+
+Dopełnieniem jest $A^c$ = "obie kulki są niebieskie"
+
+$$P(\text{obie niebieskie}) = \frac{3}{8} \times \frac{2}{7} = \frac{6}{56} = \frac{3}{28}$$
+
+Używając reguły dopełnienia:
+
+$$P(\text{przynajmniej jedna czerwona}) = 1 - P(\text{obie niebieskie}) = 1 - \frac{3}{28} = \frac{25}{28}$$
+
+**Alternatywne podejście bezpośrednie:**
+
+$$P(\text{przynajmniej jedna czerwona}) = P(\text{Czerwona}_1 \cap \text{Niebieska}_2) + P(\text{Niebieska}_1 \cap \text{Czerwona}_2) + P(\text{Czerwona}_1 \cap \text{Czerwona}_2)$$
+
+$$= \frac{5}{8} \times \frac{3}{7} + \frac{3}{8} \times \frac{5}{7} + \frac{5}{8} \times \frac{4}{7} = \frac{15}{56} + \frac{15}{56} + \frac{20}{56} = \frac{50}{56} = \frac{25}{28}$$
+
+Podejście z dopełnieniem jest prostsze!
+
+---
+
+## Ćwiczenie 11: Reguła dodawania prawdopodobieństw
+
+Rozważ standardową talię 52 kart do gry. Karta jest wybierana losowo.
+
+Jakie jest prawdopodobieństwo, że karta to karo lub dziesiątka?
+
+**Wskazówki:**
+
+- Standardowa talia ma 4 kolory (kiery, karo, trefle, piki), każdy z 13 kartami.
+
+- Użyj **reguły dodawania**: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+
+- Uważaj, aby nie liczyć kart dwa razy! Dziesiątka karo jest zarówno karo JAK I dziesiątką.
+
+- Określ: Ile jest karo? Ile jest dziesiątek? Ile kart jest jednocześnie karo i dziesiątką?
+
+**Rozwiązanie:**
+
+Niech $A$ = "karta jest karo" oraz $B$ = "karta jest dziesiątką"
+
+- Liczba kart karo: 13
+- Liczba dziesiątek: 4 (jedna w każdym kolorze)
+- Liczba kart, które są jednocześnie karo i dziesiątką: 1 (dziesiątka karo)
+
+Używając reguły dodawania:
+
+$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+
+$$= \frac{13}{52} + \frac{4}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}$$
+
+*Wyjaśnienie*: Dodajemy prawdopodobieństwa wylosowania karo i wylosowania dziesiątki, ale musimy odjąć prawdopodobieństwo wylosowania dziesiątki karo (która została policzona dwa razy).
+
+---
+
+## Ćwiczenie 12: Prawdopodobieństwo warunkowe i reguła mnożenia
+
+Pudełko zawiera klocki różnych kształtów i kolorów:
+
+- Klocki trójkątne: 3 czerwone i 2 zielone
+- Klocki owalne: 2 czerwone i 3 zielone
+- Klocki czworokątne: 3 zielone (brak czerwonych)
+
+Jeden klocek jest wybierany losowo z pudełka.
+
+Oblicz następujące prawdopodobieństwa:
+
+a. $P(\text{trójkąt})$
+
+b. $P(\text{zielony})$
+
+c. $P(\text{trójkąt} \cap \text{zielony})$
+
+d. $P(\text{trójkąt} \mid \text{zielony})$
+
+e. $P(\text{zielony} \mid \text{trójkąt})$
+
+f. Zweryfikuj regułę mnożenia: $P(A \cap B) = P(A) \times P(B \mid A) = P(B) \times P(A \mid B)$
+
+**Wskazówki:**
+
+- Najpierw policz całkowitą liczbę klocków w pudełku.
+
+- **Wzór na prawdopodobieństwo warunkowe**: $P(A \mid B) = \frac{P(A \cap B)}{P(B)}$
+
+- $P(A \mid B)$ czytamy jako "prawdopodobieństwo $A$ pod warunkiem $B$" - oznacza prawdopodobieństwo zajścia $A$, gdy wiemy, że $B$ już zaszło.
+
+- **Reguła mnożenia**: $P(A \cap B) = P(A) \times P(B \mid A) = P(B) \times P(A \mid B)$
+
+- Dla prawdopodobieństwa warunkowego, ogranicz przestrzeń zdarzeń elementarnych tylko do zdarzeń, gdzie warunek jest spełniony.
+
+**Rozwiązania:**
+
+Całkowita liczba klocków: $5 + 5 + 3 = 13$
+
+**a.** Prawdopodobieństwo wybrania trójkąta:
+
+$$P(\text{trójkąt}) = \frac{5}{13}$$
+
+*Wyjaśnienie*: Jest 5 klocków trójkątnych na 13 wszystkich klocków.
+
+**b.** Prawdopodobieństwo wybrania zielonego klocka:
+
+$$P(\text{zielony}) = \frac{2 + 3 + 3}{13} = \frac{8}{13}$$
+
+*Wyjaśnienie*: Jest 8 zielonych klocków (2 trójkątne + 3 owalne + 3 czworokątne) na 13 wszystkich klocków.
+
+**c.** Prawdopodobieństwo wybrania klocka, który jest jednocześnie trójkątem i zielony:
+
+$$P(\text{trójkąt} \cap \text{zielony}) = \frac{2}{13}$$
+
+*Wyjaśnienie*: Jest 2 klocki, które są jednocześnie trójkątne i zielone, na 13 wszystkich klocków.
+
+**d.** Prawdopodobieństwo trójkąta pod warunkiem, że klocek jest zielony:
+
+$$P(\text{trójkąt} \mid \text{zielony}) = \frac{P(\text{trójkąt} \cap \text{zielony})}{P(\text{zielony})} = \frac{2/13}{8/13} = \frac{2}{8} = \frac{1}{4}$$
+
+*Alternatywne rozumowanie*: Jeśli wiemy, że klocek jest zielony, ograniczamy naszą przestrzeń zdarzeń elementarnych do 8 zielonych klocków. Spośród tych 8 zielonych klocków, 2 są trójkątne. Zatem $P(\text{trójkąt} \mid \text{zielony}) = \frac{2}{8} = \frac{1}{4}$.
+
+**e.** Prawdopodobieństwo zielonego pod warunkiem, że klocek jest trójkątem:
+
+$$P(\text{zielony} \mid \text{trójkąt}) = \frac{P(\text{trójkąt} \cap \text{zielony})}{P(\text{trójkąt})} = \frac{2/13}{5/13} = \frac{2}{5}$$
+
+*Alternatywne rozumowanie*: Jeśli wiemy, że klocek jest trójkątny, ograniczamy naszą przestrzeń zdarzeń elementarnych do 5 klocków trójkątnych. Spośród tych 5 klocków trójkątnych, 2 są zielone. Zatem $P(\text{zielony} \mid \text{trójkąt}) = \frac{2}{5}$.
+
+**f.** Weryfikacja reguły mnożenia:
+
+$$P(\text{trójkąt} \cap \text{zielony}) = P(\text{trójkąt}) \times P(\text{zielony} \mid \text{trójkąt}) = \frac{5}{13} \times \frac{2}{5} = \frac{2}{13}$$ ✓
+
+$$P(\text{trójkąt} \cap \text{zielony}) = P(\text{zielony}) \times P(\text{trójkąt} \mid \text{zielony}) = \frac{8}{13} \times \frac{1}{4} = \frac{2}{13}$$ ✓
+
+Obie formuły dają ten sam wynik!
+
+---
+
+## Ćwiczenie 13: Twierdzenie Bayesa i prawo prawdopodobieństwa całkowitego
+
+W zeszłym tygodniu Alicja poszła do swojego lekarza na rutynowe badanie lekarskie. Dziś rano zadzwonił jej lekarz, aby powiedzieć jej, że wynik jednego z testów jest pozytywny, co wskazuje, że może mieć chorobę, którą oznaczymy literą $D$. Powszechność tej choroby w populacji dla osób w wieku Alicji to 1 na 1000.
+
+Myśląc, że doszło do błędu, Alicja zapytała o dokładność testu. Lekarz powiedział jej, że test jest w 95% dokładny w obu kierunkach:
+
+- Gdy ktoś ma chorobę $D$, test wykrywa to poprawnie w 95% przypadków (czułość lub wskaźnik prawdziwie dodatnich).
+- Gdy ktoś nie ma choroby $D$, test jest poprawnie negatywny w 95% przypadków (swoistość lub wskaźnik prawdziwie ujemnych).
+
+Jakie jest prawdopodobieństwo, że Alicja rzeczywiście ma chorobę, biorąc pod uwagę, że jej test był pozytywny? Oblicz $P(D \mid T^+)$.
+
+**Wskazówki:**
+
+- Niech $D$ = "Alicja ma chorobę" oraz $T^+$ = "Test jest pozytywny"
+- Dane informacje:
+  - $P(D) = \frac{1}{1000} = 0{,}001$ (powszechność)
+  - $P(T^+ \mid D) = 0{,}95$ (czułość)
+  - $P(T^- \mid D^c) = 0{,}95$ (swoistość), co oznacza, że $P(T^+ \mid D^c) = 0{,}05$ (wskaźnik fałszywie dodatnich)
+- Użyj **twierdzenia Bayesa**: $P(D \mid T^+) = \frac{P(T^+ \mid D) \times P(D)}{P(T^+)}$
+- Użyj **prawa prawdopodobieństwa całkowitego**, aby znaleźć $P(T^+)$:
+  $$P(T^+) = P(T^+ \mid D) \times P(D) + P(T^+ \mid D^c) \times P(D^c)$$
+
+**Rozwiązanie:**
+
+**Krok 1:** Określ znane prawdopodobieństwa
+
+- $P(D) = 0{,}001$ (powszechność w populacji)
+- $P(D^c) = 1 - 0{,}001 = 0{,}999$ (prawdopodobieństwo nieposiadania choroby)
+- $P(T^+ \mid D) = 0{,}95$ (czułość)
+- $P(T^+ \mid D^c) = 0{,}05$ (wskaźnik fałszywie dodatnich)
+
+**Krok 2:** Oblicz $P(T^+)$ używając prawa prawdopodobieństwa całkowitego
+
+Prawo prawdopodobieństwa całkowitego dzieli zdarzenie "pozytywny test" na dwa wzajemnie wykluczające się scenariusze: pozytywny wynik przy posiadaniu choroby LUB pozytywny wynik przy braku choroby.
+
+$$P(T^+) = P(T^+ \mid D) \times P(D) + P(T^+ \mid D^c) \times P(D^c)$$
+
+$$P(T^+) = 0{,}95 \times 0{,}001 + 0{,}05 \times 0{,}999$$
+
+$$P(T^+) = 0{,}00095 + 0{,}04995 = 0{,}0509$$
+
+**Krok 3:** Zastosuj twierdzenie Bayesa
+
+$$P(D \mid T^+) = \frac{P(T^+ \mid D) \times P(D)}{P(T^+)} = \frac{0{,}95 \times 0{,}001}{0{,}0509} = \frac{0{,}00095}{0{,}0509} \approx 0{,}0187$$
+
+$$P(D \mid T^+) \approx 1{,}87\% \approx \frac{1}{54}$$
+
+**Interpretacja:**
+
+Mimo że test jest w 95% dokładny, prawdopodobieństwo, że Alicja rzeczywiście ma chorobę przy pozytywnym wyniku testu, wynosi tylko około **1,9%** lub w przybliżeniu **1 na 54**!
+
+Ten nieintuitywny wynik występuje, ponieważ choroba jest bardzo rzadka (tylko 1 na 1000 osób ją ma). Nawet jeśli test jest dość dokładny, duża liczba zdrowych osób (999 na 1000) oznacza, że 5% wskaźnik fałszywie dodatnich generuje znacznie więcej fałszywie dodatnich wyników niż jest prawdziwie dodatnich.
+
+**Wizualizacja na populacji 100 000 osób:**
+
+- Osoby z chorobą $D$: $100\,000 \times 0{,}001 = 100$
+  - Prawdziwie dodatnie: $100 \times 0{,}95 = 95$
+  - Fałszywie ujemne: $100 \times 0{,}05 = 5$
+
+- Osoby bez choroby $D$: $100\,000 \times 0{,}999 = 99\,900$
+  - Fałszywie dodatnie: $99\,900 \times 0{,}05 = 4\,995$
+  - Prawdziwie ujemne: $99\,900 \times 0{,}95 = 94\,905$
+
+Łącznie testów pozytywnych: $95 + 4\,995 = 5\,090$
+
+$$P(D \mid T^+) = \frac{95}{5\,090} \approx 0{,}0187 \approx 1{,}87\%$$
+
+---
+
+## Ćwiczenie 14: Testowanie na COVID-19 i wskaźnik bazowy
+
+Załóżmy, że myślisz, że mogłeś zarazić się COVID-19, chorobą zakaźną wywoływaną przez wirus SARS-CoV-2. Decydujesz się wykonać test diagnostyczny i chcesz wykorzystać jego wynik, aby ustalić, czy jesteś zarażony.
+
+**Charakterystyka testu:**
+
+- **Czułość** (wskaźnik prawdziwie dodatnich): $P(T = 1 \mid D = 1) = 87{,}5\%$ – prawdopodobieństwo pozytywnego testu, gdy rzeczywiście masz chorobę.
+- **Swoistość** (wskaźnik prawdziwie ujemnych): $P(T = 0 \mid D = 0) = 97{,}5\%$ – prawdopodobieństwo negatywnego testu, gdy nie masz choroby.
+- **Wskaźnik fałszywie dodatnich**: $P(T = 1 \mid D = 0) = 1 - 0{,}975 = 2{,}5\%$
+- **Wskaźnik fałszywie ujemnych**: $P(T = 0 \mid D = 1) = 1 - 0{,}875 = 12{,}5\%$
+
+gdzie $D = 1$ oznacza "ma chorobę", a $T = 1$ oznacza "test jest pozytywny".
+
+**Zadanie:**
+
+Oblicz $P(D = 1 \mid T = 1)$ (prawdopodobieństwo, że masz COVID-19 przy pozytywnym teście) dla dwóch scenariuszy:
+
+a. **Wysoka powszechność**: $P(D = 1) = 0{,}1$ (10%), która była powszechnością w Nowym Jorku wiosną 2020 roku.
+
+b. **Niska powszechność**: $P(D = 1) = 0{,}01$ (1%), reprezentująca niższy wskaźnik transmisji w społeczności.
+
+**Wskazówki:**
+
+- Użyj twierdzenia Bayesa: $P(D = 1 \mid T = 1) = \frac{P(T = 1 \mid D = 1) \times P(D = 1)}{P(T = 1)}$
+- Użyj prawa prawdopodobieństwa całkowitego, aby znaleźć $P(T = 1)$
+
+**Rozwiązania:**
+
+**a. Wysoka powszechność (10%):**
+
+Dane:
+- $P(D = 1) = 0{,}1$, więc $P(D = 0) = 0{,}9$
+- $P(T = 1 \mid D = 1) = 0{,}875$
+- $P(T = 1 \mid D = 0) = 0{,}025$
+
+Oblicz $P(T = 1)$:
+$$P(T = 1) = P(T = 1 \mid D = 1) \times P(D = 1) + P(T = 1 \mid D = 0) \times P(D = 0)$$
+$$P(T = 1) = 0{,}875 \times 0{,}1 + 0{,}025 \times 0{,}9 = 0{,}0875 + 0{,}0225 = 0{,}11$$
+
+Zastosuj twierdzenie Bayesa:
+$$P(D = 1 \mid T = 1) = \frac{0{,}875 \times 0{,}1}{0{,}11} = \frac{0{,}0875}{0{,}11} \approx 0{,}795 = 79{,}5\%$$
+
+**b. Niska powszechność (1%):**
+
+Dane:
+- $P(D = 1) = 0{,}01$, więc $P(D = 0) = 0{,}99$
+- $P(T = 1 \mid D = 1) = 0{,}875$
+- $P(T = 1 \mid D = 0) = 0{,}025$
+
+Oblicz $P(T = 1)$:
+$$P(T = 1) = 0{,}875 \times 0{,}01 + 0{,}025 \times 0{,}99 = 0{,}00875 + 0{,}02475 = 0{,}0335$$
+
+Zastosuj twierdzenie Bayesa:
+$$P(D = 1 \mid T = 1) = \frac{0{,}875 \times 0{,}01}{0{,}0335} = \frac{0{,}00875}{0{,}0335} \approx 0{,}261 = 26{,}1\%$$
+
+**Kluczowy wniosek:**
+
+**Wskaźnik bazowy** (powszechność) dramatycznie wpływa na interpretację wyników testów:
+
+- Przy 10% powszechności: Pozytywny test oznacza, że masz około **80% szans** na zarażenie.
+- Przy 1% powszechności: Pozytywny test oznacza, że masz tylko około **26% szans** na zarażenie.
+
+To pokazuje, dlaczego ten sam test może mieć bardzo różne interpretacje w zależności od powszechności choroby w Twojej społeczności!
+
+---
+
+## Ćwiczenie 15: Niezależność zdarzeń
+
+Uczciwa moneta jest rzucana 3 razy. Niech $H_1$ = "reszka w pierwszym rzucie" oraz $A$ = "dokładnie dwie reszki łącznie".
+
+Czy zdarzenia $H_1$ i $A$ są niezależne?
+
+**Wskazówki:**
+
+- Dwa zdarzenia $A$ i $B$ są **niezależne** wtedy i tylko wtedy, gdy: $P(A \cap B) = P(A) \times P(B)$
+
+- Alternatywnie, zdarzenia są niezależne, gdy: $P(A \mid B) = P(A)$ (wiedza o $B$ nie zmienia prawdopodobieństwa $A$)
+
+- Wypisz przestrzeń zdarzeń elementarnych dla trzech rzutów monetą i określ, które wyniki należą do każdego zdarzenia.
+
+- Dla uczciwej monety każdy wynik (sekwencja 3 rzutów) ma prawdopodobieństwo $(1/2)^3 = 1/8$.
+
+**Rozwiązanie:**
+
+**Krok 1:** Wypisz przestrzeń zdarzeń elementarnych
+
+$$\Omega = \{OOO, OOR, ORO, ORR, ROO, ROR, RRO, RRR\}$$
+
+gdzie O = orzeł, R = reszka.
+
+Wszystkich zdarzeń elementarnych: 8, każde z prawdopodobieństwem $1/8$.
+
+**Krok 2:** Określ zdarzenia elementarne dla każdego zdarzenia
+
+- $H_1$ = "reszka w pierwszym rzucie" = $\{ROO, ROR, RRO, RRR\}$
+  $$P(H_1) = \frac{4}{8} = \frac{1}{2}$$
+
+- $A$ = "dokładnie dwie reszki" = $\{ORR, ROR, RRO\}$
+  $$P(A) = \frac{3}{8}$$
+
+- $H_1 \cap A$ = "reszka w pierwszym rzucie I dokładnie dwie reszki" = $\{ROR, RRO\}$
+  $$P(H_1 \cap A) = \frac{2}{8} = \frac{1}{4}$$
+
+**Krok 3:** Sprawdź warunek niezależności
+
+Jeśli niezależne, to potrzebujemy: $P(H_1 \cap A) = P(H_1) \times P(A)$
+
+$$P(H_1) \times P(A) = \frac{1}{2} \times \frac{3}{8} = \frac{3}{16}$$
+
+$$P(H_1 \cap A) = \frac{2}{8} = \frac{4}{16}$$
+
+Ponieważ $\frac{4}{16} \neq \frac{3}{16}$, zdarzenia **NIE są niezależne**.
+
+**Alternatywne podejście używając prawdopodobieństwa warunkowego:**
+
+$$P(A \mid H_1) = \frac{P(H_1 \cap A)}{P(H_1)} = \frac{2/8}{1/2} = \frac{2}{8} \times 2 = \frac{4}{8} = \frac{1}{2}$$
+
+Ponieważ $P(A \mid H_1) = \frac{1}{2} \neq \frac{3}{8} = P(A)$, zdarzenia **NIE są niezależne**.
+
+**Intuicyjne wyjaśnienie:**
+
+Wiedza, że pierwszy rzut to reszka, zmienia prawdopodobieństwo uzyskania dokładnie dwóch reszek łącznie. Jeśli pierwszy rzut to reszka, potrzebujemy dokładnie jeszcze jednej reszki w pozostałych dwóch rzutach (prawdopodobieństwo = $\frac{1}{2}$). Bez tej informacji prawdopodobieństwo dokładnie dwóch reszek w trzech rzutach wynosi $\frac{3}{8}$. Ponieważ te prawdopodobieństwa się różnią, zdarzenia są zależne.
+
+---
+
+## Ćwiczenie 16: Testowanie hipotez z rozkładem dwumianowym
+
+Kandydatka w wyborach uważa, że popiera ją około 50% ($p = 0{,}5$) mieszkańców w określonym mieście.
+
+Badacz chce sprawdzić, czy kandydatka prawidłowo szacuje swoje poparcie. Zapytano 10 osób, czy popierają kandydatkę; 7 osób odpowiedziało, że tak.
+
+Korzystając z danych z próby, oblicz tzw. **prawdopodobieństwo testowe (p-value)** i zdecyduj, czy istnieją dostatecznie silne dowody, aby odrzucić hipotezę kandydatki, że $p = 0{,}5$. Załóżmy, że tzw. poziom istotności (krytyczne prawdopodobieństwo) wynosi $\alpha = 0{,}05$.
+
+Uwaga: Przeprowadzimy **test jednostronny** zakładając, że kandydatka może **niedoszacować** swoje poparcie (tj. prawdziwe poparcie może być wyższe niż 50%).
+
+**Wskazówki:**
+
+- **Hipoteza zerowa** $H_0$: $p = 0{,}5$ (poparcie kandydatki wynosi 50%)
+- **Hipoteza alternatywna** $H_1$: $p > 0{,}5$ (poparcie kandydatki jest większe niż 50%, co oznacza, że je niedoszacowuje)
+- Liczba osób popierających ma **rozkład dwumianowy**: $X \sim \text{Dwumianowy}(n=10, p=0{,}5)$
+- **p-value** = prawdopodobieństwo zaobserwowania wyniku tak ekstremalnego lub bardziej ekstremalnego niż to, co zaobserwowaliśmy, przy założeniu prawdziwości $H_0$
+- Dla testu jednostronnego (prawostronne): p-value = $P(X \geq 7 \mid p = 0{,}5)$
+- **Wzór na prawdopodobieństwo dwumianowe**: $P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}$
+- **Reguła decyzyjna**: Jeśli p-value $< \alpha$, odrzucamy $H_0$; w przeciwnym razie nie odrzucamy $H_0$
+
+**Rozwiązanie:**
+
+**Krok 1:** Sformułuj hipotezy
+
+- $H_0$: $p = 0{,}5$ (oszacowanie kandydatki jest prawidłowe)
+- $H_1$: $p > 0{,}5$ (kandydatka niedoszacowuje swoje poparcie)
+
+**Krok 2:** Oblicz p-value
+
+p-value to prawdopodobieństwo uzyskania 7 lub więcej osób popierających na 10 zapytanych, przy założeniu, że prawdziwe poparcie wynosi 50%:
+
+$$\text{p-value} = P(X \geq 7 \mid p = 0{,}5) = P(X = 7) + P(X = 8) + P(X = 9) + P(X = 10)$$
+
+Dla każdego składnika użyj wzoru dwumianowego z $n = 10$ i $p = 0{,}5$:
+
+$$P(X = 7) = \binom{10}{7} (0{,}5)^{7} (0{,}5)^{3} = 120 \times (0{,}5)^{10} = \frac{120}{1024}$$
+
+$$P(X = 8) = \binom{10}{8} (0{,}5)^{8} (0{,}5)^{2} = 45 \times (0{,}5)^{10} = \frac{45}{1024}$$
+
+$$P(X = 9) = \binom{10}{9} (0{,}5)^{9} (0{,}5)^{1} = 10 \times (0{,}5)^{10} = \frac{10}{1024}$$
+
+$$P(X = 10) = \binom{10}{10} (0{,}5)^{10} (0{,}5)^{0} = 1 \times (0{,}5)^{10} = \frac{1}{1024}$$
+
+Zsumuj te prawdopodobieństwa:
+
+$$\text{p-value} = \frac{120 + 45 + 10 + 1}{1024} = \frac{176}{1024} \approx 0{,}172$$
+
+**Krok 3:** Podejmij decyzję
+
+Porównaj p-value z poziomem istotności $\alpha = 0{,}05$:
+
+$$\text{p-value} = 0{,}172 > 0{,}05 = \alpha$$
+
+Ponieważ p-value jest większe niż poziom istotności, **nie odrzucamy** hipotezy zerowej $H_0$.
+
+**Wniosek:**
+
+Nie ma **wystarczających dowodów** na poziomie istotności 5%, aby stwierdzić, że kandydatka niedoszacowuje swoje poparcie. Choć 7 na 10 osób popierających wydaje się wysokim wynikiem, taki rezultat może rozsądnie wystąpić przypadkiem, nawet jeśli prawdziwe poparcie wynosi tylko 50%. Zaobserwowane dane są zgodne z oszacowaniem kandydatki wynoszącym 50% poparcia.
+
+**Interpretacja p-value:**
+
+p-value wynoszące 0,172 oznacza, że jeśli prawdziwe poparcie rzeczywiście wynosi 50%, istnieje około 17,2% szans na zaobserwowanie 7 lub więcej osób popierających w losowej próbie 10 osób. To nie jest niezwykłe zdarzenie, więc nie mamy silnych dowodów przeciwko twierdzeniu kandydatki.
+
+---
