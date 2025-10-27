@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -277,17 +312,15 @@ window.Quarto = {
   <li><a href="#importance-in-research-and-analysis" id="toc-importance-in-research-and-analysis" class="nav-link" data-scroll-target="#importance-in-research-and-analysis">Importance in Research and Analysis</a></li>
   <li><a href="#controversies-and-limitations" id="toc-controversies-and-limitations" class="nav-link" data-scroll-target="#controversies-and-limitations">Controversies and Limitations</a></li>
   <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1">Conclusion</a></li>
-  <li><a href="#reality-iq-is-fundamentally-an-ordinal-scale" id="toc-reality-iq-is-fundamentally-an-ordinal-scale" class="nav-link" data-scroll-target="#reality-iq-is-fundamentally-an-ordinal-scale">Reality: IQ is Fundamentally an Ordinal Scale</a></li>
-  <li><a href="#practical-guidelines-for-researchers" id="toc-practical-guidelines-for-researchers" class="nav-link" data-scroll-target="#practical-guidelines-for-researchers">Practical Guidelines for Researchers</a></li>
   </ul></li>
   <li><a href="#common-ordinal-scales-in-behavioural-research" id="toc-common-ordinal-scales-in-behavioural-research" class="nav-link" data-scroll-target="#common-ordinal-scales-in-behavioural-research"><span class="header-section-number">3.4</span> Common Ordinal Scales in Behavioural Research</a>
   <ul class="collapse">
   <li><a href="#likert-scales" id="toc-likert-scales" class="nav-link" data-scroll-target="#likert-scales">Likert Scales</a></li>
-  <li><a href="#iq-and-other-psychological-variables-as-ordinal-measures" id="toc-iq-and-other-psychological-variables-as-ordinal-measures" class="nav-link" data-scroll-target="#iq-and-other-psychological-variables-as-ordinal-measures">IQ and Other Psychological Variables as Ordinal Measures</a></li>
-  <li><a href="#implications-for-analysis" id="toc-implications-for-analysis" class="nav-link" data-scroll-target="#implications-for-analysis">Implications for Analysis</a></li>
-  <li><a href="#conclusion-2" id="toc-conclusion-2" class="nav-link" data-scroll-target="#conclusion-2">Conclusion</a></li>
+  <li><a href="#iq-scores-a-complex-case" id="toc-iq-scores-a-complex-case" class="nav-link" data-scroll-target="#iq-scores-a-complex-case">IQ Scores: A Complex Case</a></li>
+  <li><a href="#other-psychological-measures" id="toc-other-psychological-measures" class="nav-link" data-scroll-target="#other-psychological-measures">Other Psychological Measures</a></li>
   </ul></li>
-  <li><a href="#appendix-a" id="toc-appendix-a" class="nav-link" data-scroll-target="#appendix-a"><span class="header-section-number">3.5</span> Appendix A</a></li>
+  <li><a href="#conclusion-2" id="toc-conclusion-2" class="nav-link" data-scroll-target="#conclusion-2"><span class="header-section-number">3.5</span> Conclusion</a></li>
+  <li><a href="#appendix-a" id="toc-appendix-a" class="nav-link" data-scroll-target="#appendix-a"><span class="header-section-number">3.6</span> Appendix A</a></li>
   </ul>
 </nav>
     </div>
@@ -819,68 +852,28 @@ pH as an Interval Scale
 <p>These characteristics align with the definition of an interval scale, where the differences between values are meaningful and consistent, but ratios are not interpretable.</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="reality-iq-is-fundamentally-an-ordinal-scale" class="level3">
-<h3 class="anchored" data-anchor-id="reality-iq-is-fundamentally-an-ordinal-scale">Reality: IQ is Fundamentally an Ordinal Scale</h3>
-<p><strong>How IQ scores are created – step by step:</strong></p>
-<ol type="1">
-<li><strong>Collecting raw scores:</strong> People take a test and receive a number of correct answers (e.g., 45 out of 60 questions)</li>
-<li><strong>Ordering:</strong> All raw scores are arranged from worst to best</li>
-<li><strong>Assigning ranks:</strong> Each score is assigned a position in the ranking</li>
-<li><strong>Transformation to IQ scale:</strong> Ranks are mathematically transformed so that the mean equals 100 and standard deviation equals 15</li>
-</ol>
-<p><strong>Key problem:</strong> This process forces a normal distribution onto data that may not have been normal in its original form. This means that equal differences in IQ points (e.g., difference between IQ 100 and 115 vs.&nbsp;difference between IQ 115 and 130) may not correspond to equal differences in actual cognitive abilities.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Key Point
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>IQ 130 does not mean “twice the intelligence” of IQ 65. IQ points only show a person’s position relative to other people in the sample, not the actual amount of intelligence. This is similar to places in a competition – the winner might win by a hair or by miles, but will still be in first place.</p>
-</div>
-</div>
-<p><strong>In research practice: why do we sometimes treat IQ as an interval scale?</strong></p>
-<p>This is a <strong>methodological compromise</strong> that allows for the use of more precise statistical tools:</p>
-<p>✅ <strong>Treating IQ as an interval scale is acceptable when:</strong></p>
-<ul>
-<li>Using standard statistical tests (correlations, regressions, t-tests)</li>
-<li>Comparing groups within the same test and population - Being aware of the limitations of this approach</li>
-<li>Our conclusions don’t depend on differences being exactly equal</li>
-</ul>
-<p>⚠️ <strong>Remember the limitations:</strong></p>
-<ul>
-<li>This is a simplification of reality</li>
-<li>The assumption works better for scores near the mean (IQ 85-115) than at the extremes</li>
-<li>Results must be interpreted carefully</li>
-</ul>
-<p>❌ <strong>Never:</strong></p>
-<ul>
-<li>Say that IQ differences mean equal differences in intelligence</li>
-<li>Use statements like “twice as intelligent”</li>
-</ul>
 </section>
-<section id="practical-guidelines-for-researchers" class="level3">
-<h3 class="anchored" data-anchor-id="practical-guidelines-for-researchers">Practical Guidelines for Researchers</h3>
+<section id="common-ordinal-scales-in-behavioural-research" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="common-ordinal-scales-in-behavioural-research"><span class="header-section-number">3.4</span> Common Ordinal Scales in Behavioural Research</h2>
+<p>Many measures in psychology and social sciences are ordinal in nature, even when they appear as numbers. Understanding this distinction is crucial for proper analysis and interpretation. Let’s explore the most common examples.</p>
+<section id="likert-scales" class="level3">
+<h3 class="anchored" data-anchor-id="likert-scales">Likert Scales</h3>
+<p>Likert scales are widely used in psychology and social sciences to measure attitudes, opinions, and perceptions. Named after psychologist Rensis Likert, these scales typically consist of statements or questions that respondents rate on a scale, often from “Strongly Disagree” to “Strongly Agree.”</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stat_imgs/Likert.svg" class="img-fluid figure-img"></p>
+<figcaption>https://individual-psychometrics.rbind.io/</figcaption>
+</figure>
+</div>
+<section id="why-likert-scales-are-ordinal-variables" class="level4">
+<h4 class="anchored" data-anchor-id="why-likert-scales-are-ordinal-variables">Why Likert Scales are Ordinal Variables</h4>
+<p>Likert scales are ordinal because:</p>
 <ol type="1">
-<li><strong>Be transparent:</strong>
-<ul>
-<li>Clearly state: “We treat IQ as an interval scale for statistical purposes, remembering that it is fundamentally an ordinal scale”</li>
-</ul></li>
-<li><strong>Consider alternatives:</strong>
-<ul>
-<li>Use non-parametric tests when sample size allows</li>
-<li>Compare results from different analytical methods</li>
-</ul></li>
-<li><strong>Interpret cautiously:</strong>
-<ul>
-<li>Focus on statements about order (“group A achieved higher scores than group B”)</li>
-<li>Avoid precise statements about the magnitude of differences</li>
-<li>Remember: a 15-point IQ difference means “one standard deviation in the sample,” not “a specific amount of additional intelligence”</li>
-</ul></li>
+<li><p><strong>Order without equal intervals</strong>: While responses have a clear order (e.g., “Strongly Disagree” &lt; “Disagree” &lt; “Neutral” &lt; “Agree” &lt; “Strongly Agree”), we cannot assume the psychological distance between “Disagree” and “Neutral” equals the distance between “Neutral” and “Agree.”</p></li>
+<li><p><strong>Subjective interpretation</strong>: Different respondents may interpret the same scale points differently. What feels like “Agree” to one person might be “Strongly Agree” to another.</p></li>
+<li><p><strong>Lack of true zero point</strong>: There’s no absolute zero representing “complete absence” of the attitude being measured.</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -892,69 +885,302 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>IQ is an ordinal scale that has been transformed to look like an interval scale. It can be used in statistical analyses requiring an interval scale, but one must always remember its true nature when interpreting results. The key is understanding that IQ points tell us about position in a group, not about the absolute amount of intelligence.</p>
+<p><strong>Think of it this way:</strong> If you’re ranking your favorite films as “Love it,” “Like it,” “Neutral,” “Dislike it,” “Hate it,” you know the order clearly. But can you say the difference between “Love it” and “Like it” is exactly the same as between “Dislike it” and “Hate it”? Probably not.</p>
 </div>
 </div>
 </section>
 </section>
-<section id="common-ordinal-scales-in-behavioural-research" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="common-ordinal-scales-in-behavioural-research"><span class="header-section-number">3.4</span> Common Ordinal Scales in Behavioural Research</h2>
-<section id="likert-scales" class="level3">
-<h3 class="anchored" data-anchor-id="likert-scales">Likert Scales</h3>
-<p>Likert scales are widely used in psychology and social sciences to measure attitudes, opinions, and perceptions. Named after psychologist Rensis Likert, these scales typically consist of a series of statements or questions that respondents rate on a scale, often from “Strongly Disagree” to “Strongly Agree.”</p>
+<section id="iq-scores-a-complex-case" class="level3">
+<h3 class="anchored" data-anchor-id="iq-scores-a-complex-case">IQ Scores: A Complex Case</h3>
+<p>IQ appears to be a continuous, interval-level measure, but it’s fundamentally ordinal. This is one of the most misunderstood aspects of psychological measurement.</p>
+<section id="how-iq-scores-are-actually-created" class="level4">
+<h4 class="anchored" data-anchor-id="how-iq-scores-are-actually-created">How IQ Scores are Actually Created</h4>
+<p>Let’s walk through a concrete example:</p>
+<ol type="1">
+<li><p><strong>Collecting raw scores:</strong> 1,000 children take a test with 60 questions. Child A answers 45 correctly, Child B answers 38, Child C answers 52, etc.</p></li>
+<li><p><strong>Ranking:</strong> All 1,000 raw scores are ordered from lowest (say, 12 correct) to highest (say, 58 correct)</p></li>
+<li><p><strong>Percentile assignment:</strong> Child A (45 correct) is at the 70th percentile—better than 70% of children. Child C (52 correct) is at the 95th percentile.</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is a Percentile?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A percentile tells you what percentage of people scored below you.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>50th percentile = you scored better than 50% of people (exactly average)</li>
+<li>70th percentile = you scored better than 70% of people (above average)</li>
+<li>95th percentile = you scored better than 95% of people (well above average)</li>
+<li>10th percentile = you scored better than only 10% of people (below average)</li>
+</ul>
+<p>If you’re at the 80th percentile, it means 80% of people scored lower than you, and 20% scored higher.</p>
+</div>
+</div>
+<ol start="4" type="1">
+<li><strong>Mathematical transformation:</strong> These percentiles are converted to IQ scores so that the mean equals 100 and standard deviation equals 15. Child A gets IQ 110, Child C gets IQ 125.</li>
+</ol>
+<p><strong>The fundamental issue:</strong> This process forces the scores into a bell curve shape, even if the original raw scores weren’t bell-shaped. Imagine if most children got either 20-30 questions right or 50-55 questions right, with few in between. The transformation would still produce a smooth bell curve of IQ scores, hiding this gap in the actual test performance.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is a Bell-Shaped (Normal) Distribution?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A bell-shaped distribution, also called a normal distribution or bell curve, is a symmetrical pattern where:</p>
+<ul>
+<li>Most values cluster around the average (the middle of the bell)</li>
+<li>Fewer values appear as you move away from the average in either direction</li>
+<li>The distribution is symmetrical—the left and right sides mirror each other</li>
+</ul>
+<p><strong>Think of heights:</strong> Most people are around average height (170-180 cm), fewer people are very short (150 cm) or very tall (200 cm), creating a bell shape.</p>
+<p><strong>In IQ:</strong> The scores are transformed so that most people score around 100 (the peak of the bell), fewer people score 85 or 115 (moving down the sides), and very few people score 70 or 130 (at the tails).</p>
+<p>The key issue: Real test performance might not naturally follow this pattern, but the IQ transformation forces it into one.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="stat_imgs/Likert.svg" class="img-fluid figure-img"></p>
-<figcaption>https://individual-psychometrics.rbind.io/</figcaption>
+<p><img src="stat_imgs/IQ_curve.svg" class="img-fluid figure-img"></p>
+<figcaption>https://en.wikipedia.org/wiki/File:IQ_curve.svg</figcaption>
 </figure>
 </div>
-<section id="why-likert-scales-are-ordinal-variables" class="level4">
-<h4 class="anchored" data-anchor-id="why-likert-scales-are-ordinal-variables">Why Likert Scales are Ordinal Variables</h4>
-<p>Likert scales are considered ordinal variables for several reasons:</p>
-<ol type="1">
-<li><p><strong>Order without equal intervals</strong>: While the responses have a clear order (e.g., “Strongly Disagree” &lt; “Disagree” &lt; “Neutral” &lt; “Agree” &lt; “Strongly Agree”), the intervals between these categories are not necessarily equal.</p></li>
-<li><p><strong>Subjective interpretation</strong>: The difference between “Strongly Disagree” and “Disagree” may not be the same as the difference between “Agree” and “Strongly Agree” for all respondents.</p></li>
-<li><p><strong>Lack of true zero point</strong>: Likert scales typically don’t have a true zero point, which is a characteristic of interval or ratio scales.</p></li>
-</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Point
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>IQ 130 does not mean “twice the intelligence” of IQ 65. IQ points only indicate a person’s position relative to others in the standardization sample, not an absolute quantity of intelligence.</p>
+</div>
+</div>
 </section>
-</section>
-<section id="iq-and-other-psychological-variables-as-ordinal-measures" class="level3">
-<h3 class="anchored" data-anchor-id="iq-and-other-psychological-variables-as-ordinal-measures">IQ and Other Psychological Variables as Ordinal Measures</h3>
-<p>Many psychological measures, including IQ, are often treated as interval scales but are, in fact, ordinal. Here’s why:</p>
-<ol type="1">
-<li><p><strong>IQ Scores</strong>:</p>
+<section id="the-methodological-compromise" class="level4">
+<h4 class="anchored" data-anchor-id="the-methodological-compromise">The Methodological Compromise</h4>
+<p>In research practice, IQ is often treated as an interval scale. This is a <strong>pragmatic compromise</strong> that allows researchers to use more powerful statistical tools, but it comes with important caveats.</p>
+<p>✅ <strong>Treating IQ as interval is acceptable when:</strong></p>
 <ul>
-<li>While IQ scores are presented as numbers, the difference between an IQ of 100 and 110 may not represent the same cognitive difference as between 130 and 140.</li>
-<li>The scale is normalized and adjusted over time, making it difficult to claim true interval properties.</li>
-</ul></li>
-<li><p><strong>Other Psychological Measures</strong>:</p>
+<li>Using standard statistical tests (correlations, regressions, t-tests) for exploratory or applied research</li>
+<li>Comparing groups who took the <em>same</em> IQ test, scored by the <em>same</em> norms (e.g., comparing 8-year-olds who all took WISC-V using 2024 norms—NOT comparing WISC-V scores to Stanford-Binet scores, or 2024 norms to 1990 norms)</li>
+<li>You explicitly acknowledge this limitation in your interpretation</li>
+<li>Your conclusions focus on patterns rather than precise numerical differences</li>
+</ul>
+<p>⚠️ <strong>Remember the limitations:</strong></p>
 <ul>
-<li>Depression scales (e.g., Beck Depression Inventory)</li>
-<li>Anxiety measures (e.g., State-Trait Anxiety Inventory)</li>
-<li>Personality assessments (e.g., Big Five Inventory)</li>
-</ul></li>
-</ol>
-<p>These measures often use summed Likert-type items or other scoring methods that don’t guarantee equal intervals between scores.</p>
+<li>This treatment works better for scores near the population mean (IQ 85-115) than at the extremes (IQ 70 or IQ 145)</li>
+<li>The assumption of equal intervals is an approximation, not reality</li>
+<li>Results must be interpreted with appropriate caution</li>
+</ul>
+<p>❌ <strong>Never:</strong></p>
+<ul>
+<li>Claim that equal IQ differences mean equal differences in ability (e.g., saying “the gap between IQ 100 and 115 represents the same cognitive difference as the gap between IQ 85 and 100”)</li>
+<li>Use ratio statements like “twice as intelligent” or “50% smarter”</li>
+<li>Say “Person A with IQ 130 is 15 points smarter than Person B with IQ 115, and Person B is 15 points smarter than Person C with IQ 100, so all three differences are equal”</li>
+<li>Interpret IQ differences as if they were physical measurements like height or weight</li>
+</ul>
 </section>
-<section id="implications-for-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="implications-for-analysis">Implications for Analysis</h3>
-<p>Recognizing these measures as ordinal has important implications for data analysis:</p>
-<ol type="1">
-<li><p><strong>Appropriate statistical tests</strong>: Use non-parametric tests (e.g., Mann-Whitney U, Kruskal-Wallis) instead of parametric ones.</p></li>
-<li><p><strong>Correlation analysis</strong>: Use Spearman’s rank correlation instead of Pearson’s correlation.</p></li>
-<li><p><strong>Central tendency</strong>: Report median and mode rather than mean.</p></li>
-<li><p><strong>Data visualization</strong>: Use methods appropriate for ordinal data, such as bar plots or stacked bar charts.</p></li>
-</ol>
 </section>
-<section id="conclusion-2" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion-2">Conclusion</h3>
-<p>While Likert scales and many behavioural measures are often treated as interval data for practical reasons, it’s crucial to remember their ordinal nature.</p>
+<section id="other-psychological-measures" class="level3">
+<h3 class="anchored" data-anchor-id="other-psychological-measures">Other Psychological Measures</h3>
+<p>Many widely-used psychological instruments share IQ’s ordinal nature:</p>
+<ul>
+<li><p><strong>Depression scales</strong> (e.g., Beck Depression Inventory): A score of 20 doesn’t mean “twice as depressed” as a score of 10. Someone scoring 30 might be having severe daily symptoms, while someone scoring 15 might have mild occasional symptoms—but the 15-point difference doesn’t represent the same change in depression severity as the difference between scores of 5 and 20.</p></li>
+<li><p><strong>Anxiety measures</strong> (e.g., State-Trait Anxiety Inventory): If three people score 30, 45, and 60, we know the order of their anxiety levels, but we can’t say the psychological distance between the first two equals the distance between the last two.</p></li>
+<li><p><strong>Personality assessments</strong> (e.g., Big Five Inventory): A score of 80 on Extraversion doesn’t mean “twice as extraverted” as a score of 40—it just means more extraverted.</p></li>
+</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="stat_imgs/SUDS.svg" class="img-fluid figure-img"></p>
 <figcaption>https://individual-psychometrics.rbind.io/</figcaption>
 </figure>
 </div>
+<p>These measures often use summed Likert-type items or other scoring methods that don’t guarantee equal intervals between scores, despite appearing as continuous numbers.</p>
+</section>
+</section>
+<section id="conclusion-2" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="conclusion-2"><span class="header-section-number">3.5</span> Conclusion</h2>
+<p>The ordinal nature of behavioural measures presents both a conceptual challenge and a practical dilemma. While these scales provide valuable information about relative standing and group differences, they don’t support the precise quantitative interpretations we might wish for.</p>
+<p><strong>Key takeaway:</strong> Most behavioural measures tell us about <em>order</em> and <em>relative position</em>, not about <em>absolute quantities</em> or <em>equal intervals</em>. This doesn’t make them less useful—it just means we must interpret them appropriately and honestly communicate their limitations to our students, readers, and research consumers.</p>
+<p><strong>Practical summary:</strong></p>
+<ul>
+<li>A higher score means more of the characteristic—this we can say confidently</li>
+<li>Group A scoring higher than Group B—this is a valid conclusion</li>
+<li>The difference between scores of 100 and 115 being exactly equal to the difference between 115 and 130—this we cannot claim</li>
+</ul>
+<p>By acknowledging these limitations and choosing appropriate analytical methods, we can conduct rigorous research while maintaining scientific integrity.</p>
+<hr>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+How Does the Transformation from Percentiles to IQ Work Exactly?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The transformation proceeds in two steps:</p>
+<p><strong>Step 1: From percentile to standard score (z-score)</strong></p>
+<p>A percentile is transformed into a standard score, which tells you how many standard deviations you are from the mean in a normal distribution.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>50th percentile (average) → <span class="math inline">z = 0</span></li>
+<li>84th percentile → <span class="math inline">z = +1</span> (one standard deviation above the mean)</li>
+<li>16th percentile → <span class="math inline">z = -1</span> (one standard deviation below the mean)</li>
+<li>98th percentile → <span class="math inline">z = +2</span></li>
+<li>2nd percentile → <span class="math inline">z = -2</span></li>
+</ul>
+<p><strong>What is a z-score and why do we use it?</strong></p>
+<p>A standard score (z-score) is a way of expressing where a given value falls relative to the rest of the data, using a common “measure of distance.”</p>
+<p><strong>Standardization formula (z-score):</strong></p>
+<p><span class="math display">z = \frac{X - \mu}{\sigma}</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">X</span> = raw score (e.g., number of correct answers)</li>
+<li><span class="math inline">\mu</span> = mean in the group</li>
+<li><span class="math inline">\sigma</span> = standard deviation in the group</li>
+</ul>
+<p><strong>Where does this formula come from?</strong></p>
+<p>The standardization process consists of two operations:</p>
+<ol type="1">
+<li><strong><span class="math inline">(X - \mu)</span></strong> — <strong>centering</strong>: we subtract the mean from each value
+<ul>
+<li>After this operation, the new mean = 0</li>
+<li>Example: if <span class="math inline">X = 45</span>, <span class="math inline">\mu = 40</span>, then <span class="math inline">(45 - 40) = 5</span> points above the mean</li>
+</ul></li>
+<li><strong><span class="math inline">/\sigma</span></strong> — <strong>scaling</strong>: we divide by the standard deviation
+<ul>
+<li>After this operation, the new standard deviation = 1</li>
+<li>Example: if <span class="math inline">\sigma = 10</span>, then 5 points above the mean = <span class="math inline">5/10 = 0.5</span> standard deviations</li>
+</ul></li>
+</ol>
+<p><strong>Result of standardization:</strong> We obtain a variable that has <span class="math inline">\mu = 0</span> and <span class="math inline">\sigma = 1</span>, regardless of what the original values were!</p>
+<p><strong>Intuitive example:</strong></p>
+<p>Imagine three tests:</p>
+<ul>
+<li>Test A: <span class="math inline">\mu = 50</span> points, <span class="math inline">\sigma = 10</span> points</li>
+<li>Test B: <span class="math inline">\mu = 200</span> points, <span class="math inline">\sigma = 40</span> points<br>
+</li>
+<li>Test C: <span class="math inline">\mu = 15</span> points, <span class="math inline">\sigma = 3</span> points</li>
+</ul>
+<p>A student who scores one standard deviation above the mean on each test will receive:</p>
+<ul>
+<li>Test A: 60 points → <span class="math inline">z = \frac{60-50}{10} = +1</span></li>
+<li>Test B: 240 points → <span class="math inline">z = \frac{240-200}{40} = +1</span></li>
+<li>Test C: 18 points → <span class="math inline">z = \frac{18-15}{3} = +1</span></li>
+</ul>
+<p>The raw scores are very different (60, 240, 18), but the z-score is the same <span class="math inline">(+1)</span>, which means the same <strong>relative position</strong> on each test. This is exactly what allows us to compare scores from different tests!</p>
+<p><strong>Step 2: From standard score to IQ (de-standardization)</strong></p>
+<p><strong>De-standardization is the reverse of the standardization process.</strong> If standardization transforms data to a scale with mean 0 and standard deviation 1, then de-standardization allows us to return to <strong>any chosen</strong> mean and standard deviation.</p>
+<p><strong>De-standardization formula:</strong></p>
+<p><span class="math display">X = \mu + \sigma \times z</span></p>
+<p><strong>Where does this formula come from?</strong></p>
+<p>This is an algebraic transformation of the z-score formula. We solve it for <span class="math inline">X</span>:</p>
+<p><span class="math display">
+\begin{align}
+z &amp;= \frac{X - \mu}{\sigma} \\[0.5em]
+z \times \sigma &amp;= X - \mu \quad \text{(multiply both sides by } \sigma \text{)} \\[0.5em]
+X &amp;= \mu + \sigma \times z \quad \text{(add } \mu \text{ to both sides)}
+\end{align}
+</span></p>
+<p><strong>What does this formula mean intuitively?</strong></p>
+<p>“Take the mean (<span class="math inline">\mu</span>), and add the appropriate number of standard deviations (<span class="math inline">\sigma \times z</span>) to it”</p>
+<ul>
+<li>If <span class="math inline">z = +1</span>, you add one standard deviation to the mean: <span class="math inline">X = \mu + \sigma</span></li>
+<li>If <span class="math inline">z = -1</span>, you subtract one standard deviation from the mean: <span class="math inline">X = \mu - \sigma</span></li>
+<li>If <span class="math inline">z = 0</span>, you get exactly the mean: <span class="math inline">X = \mu</span></li>
+</ul>
+<p><strong>IQ transformation is de-standardization with <span class="math inline">\mu = 100</span> and <span class="math inline">\sigma = 15</span>:</strong></p>
+<p><span class="math display">\text{IQ} = 100 + 15 \times z</span></p>
+<p><strong>Why 100 and 15 specifically?</strong></p>
+<p>This is an <strong>arbitrary convention</strong> established by David Wechsler in the 1930s for the WISC and WAIS scales. Earlier tests (like Stanford-Binet) used different values (<span class="math inline">\mu = 100</span>, but <span class="math inline">\sigma = 16</span>). Contemporary IQ tests most commonly use the convention <span class="math inline">\mu = 100</span>, <span class="math inline">\sigma = 15</span>, which makes it easier to compare scores between different tests.</p>
+<p>Theoretically, we could choose any values (e.g., <span class="math inline">\mu = 500</span>, <span class="math inline">\sigma = 100</span> as in the SAT), but 100 and 15 have become the standard for intelligence tests.</p>
+<p><strong>Comparison: standardization vs.&nbsp;de-standardization (IQ transformation)</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 11%">
+<col style="width: 17%">
+<col style="width: 32%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>Formula</th>
+<th>Mean</th>
+<th>Standard deviation</th>
+<th>Direction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standardization</td>
+<td><span class="math inline">z = \frac{X - \mu}{\sigma}</span></td>
+<td>0</td>
+<td>1</td>
+<td>Raw scores → z-score</td>
+</tr>
+<tr class="even">
+<td>De-standardization (IQ)</td>
+<td><span class="math inline">\text{IQ} = 100 + 15 \times z</span></td>
+<td>100</td>
+<td>15</td>
+<td>z-score → IQ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Logic of the process:</strong></p>
+<ol type="1">
+<li><strong>Standardization</strong> creates a “neutral” scale (<span class="math inline">\mu = 0</span>, <span class="math inline">\sigma = 1</span>) — a common “currency”</li>
+<li><strong>De-standardization</strong> transforms this neutral scale to more convenient numbers (<span class="math inline">\mu = 100</span>, <span class="math inline">\sigma = 15</span>) — currency exchange at a fixed rate</li>
+</ol>
+<p>It’s like temperature: Celsius → Kelvin (standardization to a “natural” scale) → Fahrenheit (transformation to another scale).</p>
+<p><strong>Concrete calculation example:</strong></p>
+<p>Child C is at the 95th percentile:</p>
+<ol type="1">
+<li>The 95th percentile in a normal distribution corresponds to <span class="math inline">z \approx +1.645</span></li>
+<li><span class="math inline">\text{IQ} = 100 + 15 \times 1.645 = 100 + 24.675 \approx 125</span></li>
+</ol>
+<p>Child A is at the 70th percentile:</p>
+<ol type="1">
+<li>The 70th percentile corresponds to <span class="math inline">z \approx +0.524</span></li>
+<li><span class="math inline">\text{IQ} = 100 + 15 \times 0.524 = 100 + 7.86 \approx 108</span></li>
+</ol>
+<p><strong>Key observation:</strong></p>
+<p>This formula can be applied to <em>any</em> data — even if the raw scores don’t have a normal distribution. This is exactly what “forcing” a normal distribution means — the mathematics creates a bell curve regardless of the actual shape of the data. Percentiles are transformed through a <strong>theoretical</strong> normal distribution, not the actual distribution of raw scores.</p>
+<p><strong>In R:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardization of a variable</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>raw_scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">42</span>, <span class="dv">45</span>, <span class="dv">38</span>, <span class="dv">51</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z_scores <span class="ot">&lt;-</span> <span class="fu">scale</span>(raw_scores)  <span class="co"># mean = 0, SD = 1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># De-standardization: back to original parameters</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>mean_original <span class="ot">&lt;-</span> <span class="fu">mean</span>(raw_scores)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>sd_original <span class="ot">&lt;-</span> <span class="fu">sd</span>(raw_scores)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>back_to_original <span class="ot">&lt;-</span> mean_original <span class="sc">+</span> sd_original <span class="sc">*</span> z_scores</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformation of percentiles to IQ (de-standardization with μ=100, σ=15)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>percentiles <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.70</span>, <span class="fl">0.95</span>)  <span class="co"># 70th and 95th percentile</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>z_from_percentile <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(percentiles)  <span class="co"># Step 1: percentile → z</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>IQ <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">+</span> <span class="dv">15</span> <span class="sc">*</span> z_from_percentile      <span class="co"># Step 2: z → IQ (de-standardization)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Result: 108, 125</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<hr>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -997,9 +1223,8 @@ Exercise: Identifying Measurement Scales
 </div>
 <hr>
 </section>
-</section>
-<section id="appendix-a" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="appendix-a"><span class="header-section-number">3.5</span> Appendix A</h2>
+<section id="appendix-a" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="appendix-a"><span class="header-section-number">3.6</span> Appendix A</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

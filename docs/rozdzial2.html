@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -278,20 +313,13 @@ window.Quarto = {
   <li><a href="#kontrowersje-i-ograniczenia" id="toc-kontrowersje-i-ograniczenia" class="nav-link" data-scroll-target="#kontrowersje-i-ograniczenia">Kontrowersje i Ograniczenia</a></li>
   <li><a href="#podsumowanie-1" id="toc-podsumowanie-1" class="nav-link" data-scroll-target="#podsumowanie-1">Podsumowanie</a></li>
   </ul></li>
-  <li><a href="#popularne-skale-porządkowe-w-badaniach-behawioralnych" id="toc-popularne-skale-porządkowe-w-badaniach-behawioralnych" class="nav-link" data-scroll-target="#popularne-skale-porządkowe-w-badaniach-behawioralnych"><span class="header-section-number">4.4</span> Popularne Skale Porządkowe w Badaniach Behawioralnych</a>
+  <li><a href="#popularne-skale-porządkowe-w-badaniach-nad-zachowaniem" id="toc-popularne-skale-porządkowe-w-badaniach-nad-zachowaniem" class="nav-link" data-scroll-target="#popularne-skale-porządkowe-w-badaniach-nad-zachowaniem"><span class="header-section-number">4.4</span> Popularne Skale Porządkowe w Badaniach nad Zachowaniem</a>
   <ul class="collapse">
   <li><a href="#skale-likerta" id="toc-skale-likerta" class="nav-link" data-scroll-target="#skale-likerta">Skale Likerta</a></li>
+  <li><a href="#wyniki-iq-złożony-przypadek" id="toc-wyniki-iq-złożony-przypadek" class="nav-link" data-scroll-target="#wyniki-iq-złożony-przypadek">Wyniki IQ: Złożony Przypadek</a></li>
+  <li><a href="#inne-miary-psychologiczne" id="toc-inne-miary-psychologiczne" class="nav-link" data-scroll-target="#inne-miary-psychologiczne">Inne Miary Psychologiczne</a></li>
   </ul></li>
-  <li><a href="#skale-pomiarowe-według-typologii-stevensa-zmienne-ilościowe-vs.-porządkowe" id="toc-skale-pomiarowe-według-typologii-stevensa-zmienne-ilościowe-vs.-porządkowe" class="nav-link" data-scroll-target="#skale-pomiarowe-według-typologii-stevensa-zmienne-ilościowe-vs.-porządkowe"><span class="header-section-number">4.5</span> Skale pomiarowe według typologii Stevensa: zmienne ilościowe vs.&nbsp;porządkowe</a>
-  <ul class="collapse">
-  <li><a href="#czym-są-zmienne-ilościowe-numeryczne" id="toc-czym-są-zmienne-ilościowe-numeryczne" class="nav-link" data-scroll-target="#czym-są-zmienne-ilościowe-numeryczne">Czym są zmienne ilościowe (numeryczne)?</a></li>
-  <li><a href="#rzeczywistość-iq-to-fundamentalnie-skala-porządkowa" id="toc-rzeczywistość-iq-to-fundamentalnie-skala-porządkowa" class="nav-link" data-scroll-target="#rzeczywistość-iq-to-fundamentalnie-skala-porządkowa">Rzeczywistość: IQ to fundamentalnie skala porządkowa</a></li>
-  <li><a href="#praktyczne-wskazówki-dla-badaczy" id="toc-praktyczne-wskazówki-dla-badaczy" class="nav-link" data-scroll-target="#praktyczne-wskazówki-dla-badaczy">Praktyczne wskazówki dla badaczy</a></li>
-  <li><a href="#punkty-egzaminacyjne---pomiędzy-skalą-porządkową-a-interwałową" id="toc-punkty-egzaminacyjne---pomiędzy-skalą-porządkową-a-interwałową" class="nav-link" data-scroll-target="#punkty-egzaminacyjne---pomiędzy-skalą-porządkową-a-interwałową">Punkty egzaminacyjne - pomiędzy skalą porządkową a interwałową</a></li>
-  <li><a href="#traktowanie-zmiennych-porządkowych-jako-ilościowych-w-praktyce" id="toc-traktowanie-zmiennych-porządkowych-jako-ilościowych-w-praktyce" class="nav-link" data-scroll-target="#traktowanie-zmiennych-porządkowych-jako-ilościowych-w-praktyce">Traktowanie zmiennych porządkowych jako ilościowych w praktyce</a></li>
-  <li><a href="#znaczenie-rozróżnienia-skal-pomiarowych" id="toc-znaczenie-rozróżnienia-skal-pomiarowych" class="nav-link" data-scroll-target="#znaczenie-rozróżnienia-skal-pomiarowych">Znaczenie rozróżnienia skal pomiarowych</a></li>
-  <li><a href="#podsumowanie-2" id="toc-podsumowanie-2" class="nav-link" data-scroll-target="#podsumowanie-2">Podsumowanie</a></li>
-  </ul></li>
+  <li><a href="#podsumowanie-2" id="toc-podsumowanie-2" class="nav-link" data-scroll-target="#podsumowanie-2"><span class="header-section-number">4.5</span> Podsumowanie</a></li>
   <li><a href="#appendix-a" id="toc-appendix-a" class="nav-link" data-scroll-target="#appendix-a"><span class="header-section-number">4.6</span> Appendix A</a></li>
   </ul>
 </nav>
@@ -337,7 +365,7 @@ Note
 <section id="podstawowe-zbiory-liczbowe" class="level3">
 <h3 class="anchored" data-anchor-id="podstawowe-zbiory-liczbowe">Podstawowe Zbiory Liczbowe</h3>
 <ol type="1">
-<li><strong>Liczby Naturalne (ℕ)</strong>: Liczby używane do liczenia obiektów {0, 1, 2, 3, …}</li>
+<li><strong>Liczby Naturalne (ℕ)</strong>: Liczby naturalne to zbiór liczb służących do liczenia i określania kolejności {0, 1, 2, 3, …}</li>
 <li><strong>Liczby Całkowite (ℤ)</strong>: Obejmują liczby naturalne, ich przeciwności i zero {…, -2, -1, 0, 1, 2, …}</li>
 <li><strong>Liczby Wymierne (ℚ)</strong>: Liczby, które można wyrazić jako ułamek dwóch liczb całkowitych</li>
 <li><strong>Liczby Rzeczywiste (ℝ)</strong>: Wszystkie liczby na osi liczbowej, w tym wymierne i niewymierne</li>
@@ -431,7 +459,7 @@ Uwaga matematyczna: Gęstość i ciągłość
 <section id="powody-traktowania-danych-dyskretnych-jako-ciągłych" class="level4">
 <h4 class="anchored" data-anchor-id="powody-traktowania-danych-dyskretnych-jako-ciągłych">Powody traktowania danych dyskretnych jako ciągłych:</h4>
 <ol type="1">
-<li><p><strong>Drobna granulacja (małe przyrosty dyskretne)</strong></p>
+<li><p><strong>Małe przyrosty dyskretne (wysokie zagęszczenie wartości na skali, np. dochód per capita w PLN)</strong></p>
 <ul>
 <li>Gdy zmienna dyskretna ma bardzo małe przyrosty między możliwymi wartościami, może aproksymować ciągłość.</li>
 <li>Przykład: Dochód mierzony w groszach. Choć technicznie dyskretny, bardzo małe przyrosty i ogromna liczba możliwych wartości sprawiają, że zachowuje się podobnie do zmiennej ciągłej.</li>
@@ -768,13 +796,15 @@ pH as an Interval Scale
 <p>These characteristics align with the definition of an interval scale, where the differences between values are meaningful and consistent, but ratios are not interpretable.</p>
 </div>
 </div>
+<hr>
 </section>
 </section>
-<section id="popularne-skale-porządkowe-w-badaniach-behawioralnych" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="popularne-skale-porządkowe-w-badaniach-behawioralnych"><span class="header-section-number">4.4</span> Popularne Skale Porządkowe w Badaniach Behawioralnych</h2>
+<section id="popularne-skale-porządkowe-w-badaniach-nad-zachowaniem" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="popularne-skale-porządkowe-w-badaniach-nad-zachowaniem"><span class="header-section-number">4.4</span> Popularne Skale Porządkowe w Badaniach nad Zachowaniem</h2>
+<p>Wiele miar w psychologii i naukach społecznych ma charakter porządkowy, nawet jeśli wyglądają jak liczby. Zrozumienie tego rozróżnienia jest kluczowe dla właściwej analizy i interpretacji. Przyjrzyjmy się najczęstszym przykładom.</p>
 <section id="skale-likerta" class="level3">
 <h3 class="anchored" data-anchor-id="skale-likerta">Skale Likerta</h3>
-<p>Skale Likerta są szeroko stosowane w psychologii i naukach społecznych do pomiaru postaw, opinii i percepcji. Nazwane na cześć psychologa Rensisa Likerta, skale te zazwyczaj składają się z serii stwierdzeń lub pytań, które respondenci oceniają na skali, często od “Zdecydowanie się nie zgadzam” do “Zdecydowanie się zgadzam”.</p>
+<p>Skale Likerta są szeroko stosowane w psychologii i naukach społecznych do pomiaru postaw, opinii i percepcji. Nazwane od nazwiska psychologa Rensisa Likerta, skale te zazwyczaj składają się z twierdzeń lub pytań, które respondenci oceniają na skali, często od „Zdecydowanie się nie zgadzam” do „Zdecydowanie się zgadzam”.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="stat_imgs/Likert.svg" class="img-fluid figure-img"></p>
@@ -783,107 +813,12 @@ pH as an Interval Scale
 </div>
 <section id="dlaczego-skale-likerta-są-zmiennymi-porządkowymi" class="level4">
 <h4 class="anchored" data-anchor-id="dlaczego-skale-likerta-są-zmiennymi-porządkowymi">Dlaczego Skale Likerta są Zmiennymi Porządkowymi</h4>
-<p>Skale Likerta są uważane za zmienne porządkowe z kilku powodów:</p>
+<p>Skale Likerta są porządkowe, ponieważ:</p>
 <ol type="1">
-<li><p><strong>Porządek bez równych odstępów</strong>: Chociaż odpowiedzi mają wyraźną kolejność (np. “Zdecydowanie się nie zgadzam” &lt; “Nie zgadzam się” &lt; “Neutralnie” &lt; “Zgadzam się” &lt; “Zdecydowanie się zgadzam”), odstępy między tymi kategoriami niekoniecznie są równe.</p></li>
-<li><p><strong>Subiektywna interpretacja</strong>: Różnica między “Zdecydowanie się nie zgadzam” a “Nie zgadzam się” może nie być taka sama jak różnica między “Zgadzam się” a “Zdecydowanie się zgadzam” dla wszystkich respondentów.</p></li>
-<li><p><strong>Brak prawdziwego punktu zerowego</strong>: Skale Likerta zazwyczaj nie mają prawdziwego punktu zerowego, co jest cechą charakterystyczną skal interwałowych lub ilorazowych.</p></li>
+<li><p><strong>Porządek bez równych odstępów</strong>: Chociaż odpowiedzi mają wyraźny porządek (np. „Zdecydowanie się nie zgadzam” &lt; „Nie zgadzam się” &lt; „Neutralnie” &lt; „Zgadzam się” &lt; „Zdecydowanie się zgadzam”), nie możemy zakładać, że psychologiczna odległość między „Nie zgadzam się” a „Neutralnie” jest równa odległości między „Neutralnie” a „Zgadzam się”.</p></li>
+<li><p><strong>Subiektywna interpretacja</strong>: Różni respondenci mogą interpretować te same punkty skali w różny sposób. To, co dla jednej osoby jest „Zgadzam się”, dla innej może być „Zdecydowanie się zgadzam”.</p></li>
+<li><p><strong>Brak prawdziwego punktu zerowego</strong>: Nie ma absolutnego zera reprezentującego „całkowity brak” mierzonej postawy.</p></li>
 </ol>
-</section>
-</section>
-</section>
-<section id="skale-pomiarowe-według-typologii-stevensa-zmienne-ilościowe-vs.-porządkowe" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="skale-pomiarowe-według-typologii-stevensa-zmienne-ilościowe-vs.-porządkowe"><span class="header-section-number">4.5</span> Skale pomiarowe według typologii Stevensa: zmienne ilościowe vs.&nbsp;porządkowe</h2>
-<section id="czym-są-zmienne-ilościowe-numeryczne" class="level3">
-<h3 class="anchored" data-anchor-id="czym-są-zmienne-ilościowe-numeryczne">Czym są zmienne ilościowe (numeryczne)?</h3>
-<p>W typologii Stevensa wyróżniamy cztery skale pomiarowe. Zmienne ilościowe to te, które mierzone są na skalach interwałowych lub ilorazowych:</p>
-<ul>
-<li><strong>Skala interwałowa</strong>: Posiada równe odstępy między jednostkami, ale brak naturalnego punktu zerowego</li>
-<li><strong>Skala ilorazowa</strong>: Posiada równe odstępy między jednostkami oraz naturalny punkt zerowy</li>
-</ul>
-<p>Zmienne ilościowe charakteryzują się następującymi właściwościami:</p>
-<ul>
-<li><strong>Równe interwały</strong>: Różnica między 5 a 6 reprezentuje taką samą wielkość jak różnica między 95 a 96</li>
-<li><strong>Spójne jednostki</strong>: Każdy przyrost reprezentuje taką samą ilość mierzonej cechy</li>
-<li><strong>Obiektywny pomiar</strong>: Mierzą rzeczywiste ilości, a nie tylko względne pozycje</li>
-<li><strong>Dopuszczalne operacje matematyczne</strong>: Można wykonywać operacje arytmetyczne</li>
-</ul>
-<p><strong>Przykłady zmiennych mierzonych na skali ilorazowej:</strong></p>
-<ul>
-<li>Wzrost: 170 cm jest dokładnie o 10 cm wyższe niż 160 cm, a 170 cm jest dokładnie dwa razy wyższe niż 85 cm</li>
-<li>Waga: Różnica między 50 kg a 60 kg to taka sama ilość wagi jak między 80 kg a 90 kg</li>
-<li>Czas: 4 godziny to dwa razy dłużej niż 2 godziny, a różnica między 3 a 4 godzinami jest taka sama jak między 9 a 10 godzinami</li>
-<li>Temperatura w Kelwinach: 200K jest dwa razy cieplejsza niż 100K (ponieważ 0K to zero absolutne)</li>
-</ul>
-<p><strong>Przykład skali interwałowej:</strong></p>
-<ul>
-<li>Temperatura w stopniach Celsjusza: Różnica między 20°C a 30°C jest taka sama jak między 70°C a 80°C, ale 40°C nie jest “dwa razy cieplejsze” niż 20°C (brak naturalnego zera)</li>
-<li>Rok kalendarzowy: Różnica między 2020 a 2021 jest taka sama jak między 1950 a 1951, ale rok 2000 nie jest “dwa razy starszy” niż rok 1000</li>
-</ul>
-</section>
-<section id="rzeczywistość-iq-to-fundamentalnie-skala-porządkowa" class="level3">
-<h3 class="anchored" data-anchor-id="rzeczywistość-iq-to-fundamentalnie-skala-porządkowa">Rzeczywistość: IQ to fundamentalnie skala porządkowa</h3>
-<p><strong>Jak powstają wyniki IQ – krok po kroku:</strong></p>
-<ol type="1">
-<li><strong>Zbieranie surowych wyników:</strong> Ludzie rozwiązują test i otrzymują liczbę poprawnych odpowiedzi (np. 45 z 60 pytań)</li>
-<li><strong>Uporządkowanie:</strong> Wszystkie surowe wyniki są uszeregowane od najgorszego do najlepszego</li>
-<li><strong>Przypisanie rang:</strong> Każdemu wynikowi przypisuje się pozycję w rankingu</li>
-<li><strong>Przekształcenie na skalę IQ:</strong> Rangi są przekształcane matematycznie tak, aby średnia wynosiła 100, a odchylenie standardowe 15</li>
-</ol>
-<p><strong>Kluczowy problem:</strong> Proces ten wymusza rozkład normalny na dane, które może wcale nie były normalne w pierwotnej postaci. To znaczy, że równe różnice w punktach IQ (np. różnica między IQ 100 a 115 vs.&nbsp;różnica między IQ 115 a 130) nie muszą odpowiadać równym różnicom w rzeczywistych zdolnościach poznawczych.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>IQ 130 nie oznacza „dwukrotnie większej inteligencji” niż IQ 65. Punkty IQ pokazują tylko pozycję danej osoby względem innych ludzi w próbie, nie rzeczywistą ilość inteligencji. To podobnie jak miejsca w konkursie – zwycięzca może wygrać o włos lub o kilometry, ale nadal będzie pierwszym miejscem.</p>
-</div>
-</div>
-<p><strong>W praktyce badawczej: dlaczego czasem traktujemy IQ jako skalę interwałową?</strong></p>
-<p>Jest to <strong>metodologiczny kompromis</strong>, który pozwala na użycie bardziej precyzyjnych narzędzi statystycznych:</p>
-<p>✅ <strong>Traktowanie IQ jako skali interwałowej jest dopuszczalne gdy:</strong></p>
-<ul>
-<li>Używamy standardowych testów statystycznych (korelacje, regresje, testy t)</li>
-<li>Porównujemy grupy w ramach tego samego testu i populacji</li>
-<li>Jesteśmy świadomi ograniczeń tego podejścia - Nasze wnioski nie zależą od tego, czy różnice są dokładnie równe</li>
-</ul>
-<p>⚠️ <strong>Pamiętaj o ograniczeniach:</strong></p>
-<ul>
-<li>To uproszczenie rzeczywistości</li>
-<li>Założenie działa lepiej dla wyników bliskich średniej (IQ 85-115) niż na krańcach</li>
-<li>Wyniki trzeba interpretować ostrożnie</li>
-</ul>
-<p>❌ <strong>Nigdy nie wolno:</strong></p>
-<ul>
-<li>Mówić, że różnice IQ oznaczają równe różnice w inteligencji</li>
-<li>Używać stwierdzeń typu “dwa razy bardziej inteligentny”</li>
-</ul>
-</section>
-<section id="praktyczne-wskazówki-dla-badaczy" class="level3">
-<h3 class="anchored" data-anchor-id="praktyczne-wskazówki-dla-badaczy">Praktyczne wskazówki dla badaczy</h3>
-<ol type="1">
-<li><strong>Bądź transparentny:</strong>
-<ul>
-<li>Wyraźnie wspominaj: “Traktujemy IQ jako skalę interwałową do celów statystycznych, pamiętając że fundamentalnie jest to skala porządkowa”</li>
-</ul></li>
-<li><strong>Rozważaj alternatywy:</strong>
-<ul>
-<li>Używaj testów nieparametrycznych, gdy wielkość próby na to pozwala</li>
-<li>Porównaj wyniki różnych metod analitycznych</li>
-</ul></li>
-<li><strong>Interpretuj ostrożnie:</strong>
-<ul>
-<li>Skupiaj się na stwierdzeniach o kolejności („grupa A osiągnęła wyższe wyniki niż grupa B”)</li>
-<li>Unikaj precyzyjnych stwierdzeń o wielkości różnic</li>
-<li>Pamiętaj: różnica 15 punktów IQ oznacza „jedno odchylenie standardowe w próbie”, nie „konkretną ilość dodatkowej inteligencji”</li>
-</ul></li>
-</ol>
-<hr>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -894,78 +829,324 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>IQ to skala porządkowa, która została przekształcona tak, aby wyglądała jak skala interwałowa. Można używać jej w analizach statystycznych wymagających skali interwałowej, ale zawsze należy pamiętać o jej rzeczywistej naturze przy interpretacji wyników. Kluczowe jest zrozumienie, że punkty IQ mówią nam o relatywnej pozycji w grupie, nie o bezwzględnej ilości inteligencji.</p>
+<p><strong>Pomyśl o tym w ten sposób:</strong> Jeśli oceniasz swoje ulubione filmy jako „Uwielbiam”, „Lubię”, „Neutralnie”, „Nie lubię”, „Nienawidzę”, to wyraźnie znasz kolejność. Ale czy możesz powiedzieć, że różnica między „Uwielbiam” a „Lubię” jest dokładnie taka sama jak między „Nie lubię” a „Nienawidzę”? Prawdopodobnie nie.</p>
 </div>
 </div>
-<p>Mimo liczbowego zapisu, wyniki IQ są w istocie zmienną porządkową (w typologii Stevensa), a nie zmienną interwałową, ponieważ:</p>
+</section>
+</section>
+<section id="wyniki-iq-złożony-przypadek" class="level3">
+<h3 class="anchored" data-anchor-id="wyniki-iq-złożony-przypadek">Wyniki IQ: Złożony Przypadek</h3>
+<p>IQ wydaje się być ciągłą miarą o charakterze przedziałowym, ale fundamentalnie ma charakter porządkowy. To jeden z najbardziej błędnie rozumianych aspektów pomiaru psychologicznego.</p>
+<section id="jak-faktycznie-tworzone-są-wyniki-iq" class="level4">
+<h4 class="anchored" data-anchor-id="jak-faktycznie-tworzone-są-wyniki-iq">Jak Faktycznie Tworzone są Wyniki IQ</h4>
+<p>Przejdźmy przez konkretny przykład:</p>
 <ol type="1">
-<li><strong>Brak jednolitej jednostki miary</strong>: Nie istnieje naturalna jednostka mierząca “inteligencję”</li>
-<li><strong>Konstrukcja oparta na rangach</strong>: Skala powstaje przez uszeregowanie ludzi względem siebie, a następnie przekształcenie tych rang w wyniki liczbowe</li>
-<li><strong>Nierówne interwały</strong>: Różnica między IQ 100 a 110 niekoniecznie reprezentuje taką samą różnicę poznawczą jak między 130 a 140</li>
-<li><strong>Brak absolutnego zera</strong>: Nie istnieje znaczące pojęcie “zerowej inteligencji”</li>
-<li><strong>Zależność od testu</strong>: Różne testy IQ mogą dać różne wyniki dla tej samej osoby</li>
+<li><p><strong>Zbieranie wyników surowych:</strong> 1000 dzieci rozwiązuje test z 60 pytaniami. Dziecko A odpowiada poprawnie na 45 pytań, Dziecko B na 38, Dziecko C na 52 itd.</p></li>
+<li><p><strong>Uszeregowanie:</strong> Wszystkie 1000 wyników surowych jest uporządkowanych od najniższego (powiedzmy, 12 poprawnych) do najwyższego (powiedzmy, 58 poprawnych).</p></li>
+<li><p><strong>Przypisanie percentyli:</strong> Dziecko A (45 poprawnych) jest na 70. centylu — lepsze od 70% dzieci. Dziecko C (52 poprawne) jest na 95. centylu.</p></li>
 </ol>
-<p><strong>Przykład:</strong> Rozważmy trzy osoby z wynikami IQ 85, 100 i 115. Choć moglibyśmy chcieć powiedzieć, że różnica między pierwszą a drugą osobą równa się różnicy między drugą a trzecią, nie jest to faktycznie znaczące—zdolności poznawcze reprezentowane przez te wyniki nie wzrastają w równych krokach, mimo że cyfry sugerują równe odstępy. Wyniki te informują nas głównie o pozycji osoby względem innych, co jest cechą skali porządkowej.</p>
-<p><strong>Inny przykład:</strong> Osoba z IQ 140 nie jest “dwa razy inteligentniejsza” niż osoba z IQ 70, mimo że stosunek liczb wynosi 2:1. Takie porównanie nie ma sensu na skali porządkowej.</p>
-</section>
-<section id="punkty-egzaminacyjne---pomiędzy-skalą-porządkową-a-interwałową" class="level3">
-<h3 class="anchored" data-anchor-id="punkty-egzaminacyjne---pomiędzy-skalą-porządkową-a-interwałową">Punkty egzaminacyjne - pomiędzy skalą porządkową a interwałową</h3>
-<p>Choć traktujemy punkty egzaminacyjne jak zmienne ilościowe (interwałowe), często mają one cechy zmiennych porządkowych:</p>
-<ol type="1">
-<li><strong>Nierówna trudność pytań</strong>: Pytanie za 10 punktów z fizyki kwantowej nie mierzy tej samej ilości wiedzy co pytanie za 10 punktów z podstawowej arytmetyki</li>
-<li><strong>Różne rodzaje kompetencji</strong>: Różne pytania testują różne umiejętności (zapamiętywanie, rozumienie, zastosowanie, analiza)</li>
-<li><strong>Subiektywne przydzielanie punktów</strong>: Punktacja zależy od oceny egzaminatora, a nie obiektywnych jednostek miary</li>
-<li><strong>Brak addytywności</strong>: Student zdobywający 90 punktów niekoniecznie jest “dwa razy bardziej wykształcony” niż student zdobywający 45 punktów</li>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Co to jest Percentyl?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Percentyl mówi ci, jaki procent osób uzyskał wynik gorszy niż ty.</p>
+<p><strong>Przykłady:</strong></p>
+<ul>
+<li><ol start="50" type="1">
+<li>percentyl = uzyskałeś wynik lepszy niż 50% osób (dokładnie średnia)</li>
+</ol></li>
+<li><ol start="70" type="1">
+<li>percentyl = uzyskałeś wynik lepszy niż 70% osób (powyżej średniej)</li>
+</ol></li>
+<li><ol start="95" type="1">
+<li>percentyl = uzyskałeś wynik lepszy niż 95% osób (znacznie powyżej średniej)</li>
+</ol></li>
+<li><ol start="10" type="1">
+<li>percentyl = uzyskałeś wynik lepszy tylko niż 10% osób (poniżej średniej)</li>
+</ol></li>
+</ul>
+<p>Jeśli jesteś na 80. centylu, oznacza to, że 80% osób uzyskało wynik gorszy niż ty, a 20% wynik lepszy.</p>
+</div>
+</div>
+<ol start="4" type="1">
+<li><strong>Transformacja matematyczna:</strong> Te percentyle są przekształcane na wyniki IQ tak, aby średnia wynosiła 100, a odchylenie standardowe 15. Dziecko A otrzymuje IQ 110, Dziecko C otrzymuje IQ 125.</li>
 </ol>
-<p><strong>Przykład:</strong> Wyobraźmy sobie dwóch studentów:</p>
+<p><strong>Fundamentalny problem:</strong> Ten proces wymusza na wynikach kształt krzywej dzwonowej, nawet jeśli oryginalne wyniki surowe nie miały tego kształtu. Wyobraź sobie, że większość dzieci odpowiedziała poprawnie na 20-30 pytań lub 50-55 pytań, z niewieloma wynikami pomiędzy. Transformacja nadal wytworzyłaby gładką krzywą dzwonową wyników IQ, ukrywając tę lukę w faktycznych wynikach testowych.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Co to jest Rozkład Dzwonowy (Normalny)?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Rozkład dzwonowy, zwany także rozkładem normalnym lub krzywą Gaussa, to symetryczny wzór, w którym:</p>
 <ul>
-<li>Student A: Odpowiada prawidłowo na wszystkie łatwe i średnie pytania (zdobywa 75 punktów)</li>
-<li>Student B: Odpowiada prawidłowo na wszystkie trudne pytania, ale żadne łatwe (zdobywa 75 punktów)</li>
+<li>Większość wartości skupia się wokół średniej (środek dzwonu)</li>
+<li>Im bardziej oddalamy się od średniej w obie strony, tym mniej wartości</li>
+<li>Rozkład jest symetryczny — lewa i prawa strona są swoim lustrzanym odbiciem</li>
 </ul>
-<p>Mimo równej punktacji, ich wiedza jest jakościowo różna. Punkty sugerują równość, ale w rzeczywistości są to różne profile kompetencji — typowy problem ze zmiennymi, które nie są w pełni ilościowe.</p>
+<p><strong>Pomyśl o wzroście:</strong> Większość ludzi ma wzrost około średniej (170-180 cm), mniej osób jest bardzo niskich (150 cm) lub bardzo wysokich (200 cm), co tworzy kształt dzwonu.</p>
+<p><strong>W przypadku IQ:</strong> Wyniki są przekształcane tak, aby większość osób uzyskiwała wyniki około 100 (szczyt dzwonu), mniej osób uzyskiwało 85 lub 115 (zbocza dzwonu), a bardzo niewiele osób uzyskiwało 70 lub 130 (ogony rozkładu).</p>
+<p>Kluczowy problem: Rzeczywiste wyniki w teście mogą naturalnie nie podlegać temu wzorcowi, ale transformacja IQ wymusza go.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stat_imgs/IQ_curve.svg" class="img-fluid figure-img"></p>
+<figcaption>https://en.wikipedia.org/wiki/File:IQ_curve.svg</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Kluczowa Kwestia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>IQ 130 nie oznacza „dwukrotnie większej inteligencji” niż IQ 65. Punkty IQ wskazują jedynie pozycję osoby względem innych w próbie standaryzacyjnej, a nie absolutną ilość inteligencji.</p>
+</div>
+</div>
 </section>
-<section id="traktowanie-zmiennych-porządkowych-jako-ilościowych-w-praktyce" class="level3">
-<h3 class="anchored" data-anchor-id="traktowanie-zmiennych-porządkowych-jako-ilościowych-w-praktyce">Traktowanie zmiennych porządkowych jako ilościowych w praktyce</h3>
-<p>Ze względów praktycznych często traktujemy zmienne porządkowe jak zmienne ilościowe, ponieważ:</p>
-<ol type="1">
-<li>Umożliwia to stosowanie znanych operacji matematycznych (średnie, odchylenia)</li>
-<li>Upraszcza komunikację i interpretację wyników (“średni wynik 78%”)</li>
-<li>Pozwala na stosowanie bardziej zaawansowanych metod statystycznych</li>
-</ol>
-<p><strong>Przykład:</strong> Średnia ocen</p>
+<section id="kompromis-metodologiczny" class="level4">
+<h4 class="anchored" data-anchor-id="kompromis-metodologiczny">Kompromis Metodologiczny</h4>
+<p>W praktyce badawczej IQ jest często traktowane jako skala przedziałowa. Jest to <strong>pragmatyczny kompromis</strong>, który pozwala badaczom używać potężniejszych narzędzi statystycznych, ale wiąże się z ważnymi zastrzeżeniami.</p>
+<p>✅ <strong>Traktowanie IQ jako skali przedziałowej jest dopuszczalne, gdy:</strong></p>
 <ul>
-<li>Obliczamy średnią, przypisując wartości liczbowe ocenom (5, 4, 3, 2, 1)</li>
-<li>Traktujemy te wartości jak zmienne ilościowe, obliczając np. średnią 4,5</li>
-<li>Ale czy różnica między oceną 5 a 4 (5-4=1) reprezentuje taką samą różnicę wiedzy jak między oceną 2 a 1 (2-1=1)?</li>
-<li>I czy średnia 5.0 jest naprawdę “dwa razy lepsza” niż średnia 2.5?</li>
+<li>Używamy standardowych testów statystycznych (korelacje, regresje, testy t) w badaniach eksploracyjnych lub aplikowanych</li>
+<li>Porównujemy grupy, które rozwiązywały <em>ten sam</em> test IQ, oceniony według <em>tych samych</em> norm (np. porównujemy 8-latki, które wszystkie rozwiązywały WISC-V z normami z 2024 roku — NIE porównujemy wyników WISC-V z wynikami Stanford-Binet, ani norm z 2024 z normami z 1990 roku)</li>
+<li>Wyraźnie przyznajemy to ograniczenie w naszej interpretacji</li>
+<li>Nasze wnioski koncentrują się na wzorcach, a nie na precyzyjnych różnicach numerycznych</li>
 </ul>
-<p><strong>Inny przykład:</strong> Skale Likerta</p>
+<p>⚠️ <strong>Pamiętaj o ograniczeniach:</strong></p>
 <ul>
-<li>W ankietach często stosujemy skale typu: 1 = “zdecydowanie nie zgadzam się”, 5 = “zdecydowanie zgadzam się”</li>
-<li>Obliczamy średnie odpowiedzi, zakładając równe odstępy między kategoriami</li>
-<li>Ale czy odległość między “zdecydowanie nie zgadzam się” a “raczej nie zgadzam się” jest naprawdę taka sama jak między “raczej zgadzam się” a “zdecydowanie zgadzam się”?</li>
+<li>Takie traktowanie działa lepiej dla wyników blisko średniej populacyjnej (IQ 85-115) niż na krańcach (IQ 70 lub IQ 145)</li>
+<li>Założenie o równych odstępach jest przybliżeniem, nie rzeczywistością</li>
+<li>Wyniki muszą być interpretowane z odpowiednią ostrożnością</li>
+</ul>
+<p>❌ <strong>Nigdy:</strong></p>
+<ul>
+<li>Nie twierdzić, że równe różnice IQ oznaczają równe różnice w zdolnościach (np. mówienie „różnica między IQ 100 a 115 reprezentuje taką samą różnicę poznawczą jak różnica między IQ 85 a 100”)</li>
+<li>Nie używać stwierdzeń proporcjonalnych typu „dwukrotnie bardziej inteligentny” lub „o 50% mądrzejszy”</li>
+<li>Nie mówić „Osoba A z IQ 130 jest o 15 punktów mądrzejsza niż Osoba B z IQ 115, a Osoba B jest o 15 punktów mądrzejsza niż Osoba C z IQ 100, więc wszystkie trzy różnice są równe”</li>
+<li>Nie interpretować różnic IQ tak, jakby były pomiarami fizycznymi jak wzrost czy waga</li>
 </ul>
 </section>
-<section id="znaczenie-rozróżnienia-skal-pomiarowych" class="level3">
-<h3 class="anchored" data-anchor-id="znaczenie-rozróżnienia-skal-pomiarowych">Znaczenie rozróżnienia skal pomiarowych</h3>
-<p>Rozumienie typologii skal pomiarowych Stevensa ma istotne konsekwencje praktyczne:</p>
-<ul>
-<li><strong>Zmienne jakościowe porządkowe</strong>: Pozwalają na stwierdzenie, że coś jest “większe/lepsze” lub “mniejsze/gorsze”, ale nie określają “o ile” (dopuszczalne porównania typu &gt;, &lt;, =)</li>
-<li><strong>Zmienne ilościowe</strong>: Pozwalają na określenie dokładnych różnic i proporcji (dopuszczalne operacje +, -, ×, ÷)</li>
-</ul>
-<p>Świadomość ograniczeń skali pomiarowej pomaga w poprawnej interpretacji danych i doborze odpowiednich metod analizy.</p>
-<p><strong>Przykład:</strong> Jeśli Anna uzyskała 75 punktów na teście z historii i 85 punktów na teście z matematyki, nie możemy jednoznacznie stwierdzić, że jest “lepsza z matematyki o 10 jednostek umiejętności”. Punkty z różnych testów nie są bezpośrednio porównywalne, a interwały mogą nie być równoważne.</p>
-<p><strong>Poprawniejsze podejście</strong>: Lepiej porównać jej wyniki z rozkładem wyników innych uczniów. Jeśli w historii 75 punktów plasuje ją w 50. percentylu, a 85 punktów z matematyki w 90. percentylu, to możemy powiedzieć, że względnie rzecz biorąc, radzi sobie lepiej z matematyką niż historią - co jest wnioskiem opartym na skali porządkowej.</p>
 </section>
-<section id="podsumowanie-2" class="level3">
-<h3 class="anchored" data-anchor-id="podsumowanie-2">Podsumowanie</h3>
-<p>Chociaż skale Likerta i wiele miar psychologicznych jest często traktowanych jako dane interwałowe ze względów praktycznych, ważne jest, aby pamiętać o ich porządkowym charakterze.</p>
+<section id="inne-miary-psychologiczne" class="level3">
+<h3 class="anchored" data-anchor-id="inne-miary-psychologiczne">Inne Miary Psychologiczne</h3>
+<p>Wiele szeroko stosowanych narzędzi psychologicznych ma porządkowy charakter podobny do IQ:</p>
+<ul>
+<li><p><strong>Skale depresji</strong> (np. Inwentarz Depresji Becka): Wynik 20 nie oznacza „dwukrotnie bardziej depresyjny” niż wynik 10. Ktoś z wynikiem 30 może mieć ciężkie codzienne objawy, podczas gdy ktoś z wynikiem 15 może mieć łagodne sporadyczne objawy — ale różnica 15 punktów nie reprezentuje tej samej zmiany nasilenia depresji co różnica między wynikami 5 a 20.</p></li>
+<li><p><strong>Miary lęku</strong> (np. Inwentarz Stanu i Cechy Lęku): Jeśli trzy osoby uzyskają wyniki 30, 45 i 60, znamy kolejność ich poziomów lęku, ale nie możemy powiedzieć, że psychologiczna odległość między pierwszą dwójką jest równa odległości między ostatnią dwójką.</p></li>
+<li><p><strong>Testy osobowości</strong> (np. Inwentarz Wielkiej Piątki): Wynik 80 w Ekstrawersji nie oznacza „dwukrotnie bardziej ekstrawertyczny” niż wynik 40 — oznacza tylko większą ekstrawersję.</p></li>
+</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="stat_imgs/SUDS.svg" class="img-fluid figure-img"></p>
 <figcaption>https://individual-psychometrics.rbind.io/</figcaption>
 </figure>
 </div>
+<p>Te miary często wykorzystują zsumowane pozycje typu Likerta lub inne metody punktacji, które nie gwarantują równych odstępów między wynikami, mimo że wyglądają jak liczby ciągłe.</p>
+</section>
+</section>
+<section id="podsumowanie-2" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="podsumowanie-2"><span class="header-section-number">4.5</span> Podsumowanie</h2>
+<p>Porządkowy charakter miar behawioralnych stanowi zarówno wyzwanie koncepcyjne, jak i praktyczny dylemat. Podczas gdy te skale dostarczają cennych informacji o względnej pozycji i różnicach między grupami, nie wspierają precyzyjnych interpretacji ilościowych, jakich moglibyśmy sobie życzyć.</p>
+<p><strong>Kluczowy wniosek:</strong> Większość miar behawioralnych mówi nam o <em>kolejności</em> i <em>względnej pozycji</em>, a nie o <em>absolutnych ilościach</em> czy <em>równych odstępach</em>. To ich nie czyni mniej użytecznymi — to tylko oznacza, że musimy je interpretować odpowiednio i uczciwie komunikować ich ograniczenia naszym studentom, czytelnikom i odbiorcom badań.</p>
+<p><strong>Praktyczne podsumowanie:</strong></p>
+<ul>
+<li>Wyższy wynik oznacza więcej danej cechy — to możemy powiedzieć pewnie</li>
+<li>Grupa A uzyskała wyższy wynik niż Grupa B — to jest ważny wniosek</li>
+<li>Różnica między wynikami 100 a 115 jest dokładnie równa różnicy między 115 a 130 — tego nie możemy twierdzić</li>
+</ul>
+<p>Uznając te ograniczenia i wybierając odpowiednie metody analityczne, możemy prowadzić rzetelne badania, zachowując przy tym integralność naukową.</p>
+<hr>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Jak Dokładnie Działa Transformacja Percentyli na IQ?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Transformacja przebiega w dwóch krokach:</p>
+<p><strong>Krok 1: Od percentyla do wyniku standardowego (z-score)</strong></p>
+<p>Percentyl jest przekształcany na wynik standardowy, który mówi, ile odchyleń standardowych jesteś od średniej w rozkładzie normalnym.</p>
+<p><strong>Przykłady:</strong></p>
+<ul>
+<li><ol start="50" type="1">
+<li>percentyl (średnia) → <span class="math inline">z = 0</span></li>
+</ol></li>
+<li><ol start="84" type="1">
+<li>percentyl → <span class="math inline">z = +1</span> (jedno odchylenie standardowe powyżej średniej)</li>
+</ol></li>
+<li><ol start="16" type="1">
+<li>percentyl → <span class="math inline">z = -1</span> (jedno odchylenie standardowe poniżej średniej)</li>
+</ol></li>
+<li><ol start="98" type="1">
+<li>percentyl → <span class="math inline">z = +2</span></li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>percentyl → <span class="math inline">z = -2</span></li>
+</ol></li>
+</ul>
+<p><strong>Co to jest z-score i po co go używamy?</strong></p>
+<p>Wynik standardowy (z-score) to sposób na wyrażenie, gdzie znajduje się dana wartość względem reszty danych, używając wspólnej “miary odległości”.</p>
+<p><strong>Formuła standaryzacji (z-score):</strong></p>
+<p><span class="math display">z = \frac{X - \mu}{\sigma}</span></p>
+<p>Gdzie:</p>
+<ul>
+<li><span class="math inline">X</span> = surowy wynik (np. liczba poprawnych odpowiedzi)</li>
+<li><span class="math inline">\mu</span> = średnia w grupie</li>
+<li><span class="math inline">\sigma</span> = odchylenie standardowe w grupie</li>
+</ul>
+<p><strong>Skąd się bierze ta formuła?</strong></p>
+<p>Proces standaryzacji składa się z dwóch operacji:</p>
+<ol type="1">
+<li><strong><span class="math inline">(X - \mu)</span></strong> — <strong>centrowanie</strong>: odejmujemy średnią od każdej wartości
+<ul>
+<li>Po tej operacji nowa średnia = 0</li>
+<li>Przykład: jeśli <span class="math inline">X = 45</span>, <span class="math inline">\mu = 40</span>, to <span class="math inline">(45 - 40) = 5</span> punktów powyżej średniej</li>
+</ul></li>
+<li><strong><span class="math inline">/\sigma</span></strong> — <strong>skalowanie</strong>: dzielimy przez odchylenie standardowe
+<ul>
+<li>Po tej operacji nowe odchylenie standardowe = 1</li>
+<li>Przykład: jeśli <span class="math inline">\sigma = 10</span>, to 5 punktów powyżej średniej = <span class="math inline">5/10 = 0.5</span> odchylenia standardowego</li>
+</ul></li>
+</ol>
+<p><strong>Rezultat standaryzacji:</strong> Otrzymujemy zmienną, która ma <span class="math inline">\mu = 0</span> i <span class="math inline">\sigma = 1</span>, niezależnie od tego, jakie były oryginalne wartości!</p>
+<p><strong>Intuicyjny przykład:</strong></p>
+<p>Wyobraź sobie trzy testy:</p>
+<ul>
+<li>Test A: <span class="math inline">\mu = 50</span> punktów, <span class="math inline">\sigma = 10</span> punktów</li>
+<li>Test B: <span class="math inline">\mu = 200</span> punktów, <span class="math inline">\sigma = 40</span> punktów<br>
+</li>
+<li>Test C: <span class="math inline">\mu = 15</span> punktów, <span class="math inline">\sigma = 3</span> punkty</li>
+</ul>
+<p>Uczeń, który w każdym teście jest o jedno odchylenie standardowe powyżej średniej, otrzyma:</p>
+<ul>
+<li>Test A: 60 punktów → <span class="math inline">z = \frac{60-50}{10} = +1</span></li>
+<li>Test B: 240 punktów → <span class="math inline">z = \frac{240-200}{40} = +1</span></li>
+<li>Test C: 18 punktów → <span class="math inline">z = \frac{18-15}{3} = +1</span></li>
+</ul>
+<p>Surowe wyniki są bardzo różne (60, 240, 18), ale z-score jest taki sam <span class="math inline">(+1)</span>, co oznacza tę samą <strong>relatywną pozycję</strong> w każdym teście. To właśnie pozwala nam porównywać wyniki z różnych testów!</p>
+<p><strong>Krok 2: Od wyniku standardowego do IQ (de-standaryzacja)</strong></p>
+<p><strong>De-standaryzacja to odwrócenie procesu standaryzacji.</strong> Jeśli standaryzacja przekształca dane do skali ze średnią 0 i odchyleniem standardowym 1, to de-standaryzacja pozwala nam wrócić do <strong>dowolnie wybranej</strong> średniej i odchylenia standardowego.</p>
+<p><strong>Formuła de-standaryzacji:</strong></p>
+<p><span class="math display">X = \mu + \sigma \times z</span></p>
+<p><strong>Skąd się bierze ten wzór?</strong></p>
+<p>To algebraiczne przekształcenie wzoru na z-score. Rozwiązujemy go względem <span class="math inline">X</span>:</p>
+<p><span class="math display">
+\begin{align}
+z &amp;= \frac{X - \mu}{\sigma} \\[0.5em]
+z \times \sigma &amp;= X - \mu \quad \text{(mnożymy obie strony przez } \sigma \text{)} \\[0.5em]
+X &amp;= \mu + \sigma \times z \quad \text{(dodajemy } \mu \text{ do obu stron)}
+\end{align}
+</span></p>
+<p><strong>Co oznacza ta formuła intuicyjnie?</strong></p>
+<p>“Weź średnią (<span class="math inline">\mu</span>), i dodaj do niej odpowiednią liczbę odchyleń standardowych (<span class="math inline">\sigma \times z</span>)”</p>
+<ul>
+<li>Jeśli <span class="math inline">z = +1</span>, dodajesz jedno odchylenie standardowe do średniej: <span class="math inline">X = \mu + \sigma</span></li>
+<li>Jeśli <span class="math inline">z = -1</span>, odejmujesz jedno odchylenie standardowe od średniej: <span class="math inline">X = \mu - \sigma</span></li>
+<li>Jeśli <span class="math inline">z = 0</span>, otrzymujesz dokładnie średnią: <span class="math inline">X = \mu</span></li>
+</ul>
+<p><strong>Transformacja IQ to de-standaryzacja z <span class="math inline">\mu = 100</span> i <span class="math inline">\sigma = 15</span>:</strong></p>
+<p><span class="math display">\text{IQ} = 100 + 15 \times z</span></p>
+<p><strong>Dlaczego akurat 100 i 15?</strong></p>
+<p>To <strong>arbitralna konwencja</strong> ustalona przez Davida Wechslera w latach 30. XX wieku dla skal WISC i WAIS. Wcześniejsze testy (jak Stanford-Binet) używały innych wartości (<span class="math inline">\mu = 100</span>, ale <span class="math inline">\sigma = 16</span>). Współczesne testy IQ stosują najczęściej konwencję <span class="math inline">\mu = 100</span>, <span class="math inline">\sigma = 15</span>, co ułatwia porównywanie wyników między różnymi testami.</p>
+<p>Teoretycznie moglibyśmy wybrać dowolne wartości (np. <span class="math inline">\mu = 500</span>, <span class="math inline">\sigma = 100</span> jak w teście SAT), ale 100 i 15 stały się standardem w testach inteligencji.</p>
+<p><strong>Porównanie: standaryzacja vs.&nbsp;de-standaryzacja (transformacja IQ)</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 11%">
+<col style="width: 17%">
+<col style="width: 32%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operacja</th>
+<th>Wzór</th>
+<th>Średnia</th>
+<th>Odchylenie std.</th>
+<th>Kierunek</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standaryzacja</td>
+<td><span class="math inline">z = \frac{X - \mu}{\sigma}</span></td>
+<td>0</td>
+<td>1</td>
+<td>Surowe wyniki → z-score</td>
+</tr>
+<tr class="even">
+<td>De-standaryzacja (IQ)</td>
+<td><span class="math inline">\text{IQ} = 100 + 15 \times z</span></td>
+<td>100</td>
+<td>15</td>
+<td>z-score → IQ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Logika procesu:</strong></p>
+<ol type="1">
+<li><strong>Standaryzacja</strong> tworzy “neutralną” skalę (<span class="math inline">\mu = 0</span>, <span class="math inline">\sigma = 1</span>) — wspólną “walutę”</li>
+<li><strong>De-standaryzacja</strong> przekształca tę neutralną skalę do wygodniejszych liczb (<span class="math inline">\mu = 100</span>, <span class="math inline">\sigma = 15</span>) — zmiana waluty według stałego kursu</li>
+</ol>
+<p>To jak temperatura: Celsjusz → Kelvin (standaryzacja do “naturalnej” skali) → Fahrenheit (transformacja do innej skali).</p>
+<p><strong>Konkretny przykład obliczeniowy:</strong></p>
+<p>Dziecko C jest na 95. centylu:</p>
+<ol type="1">
+<li><ol start="95" type="1">
+<li>percentyl w rozkładzie normalnym odpowiada <span class="math inline">z \approx +1.645</span></li>
+</ol></li>
+<li><span class="math inline">\text{IQ} = 100 + 15 \times 1.645 = 100 + 24.675 \approx 125</span></li>
+</ol>
+<p>Dziecko A jest na 70. centylu:</p>
+<ol type="1">
+<li><ol start="70" type="1">
+<li>percentyl odpowiada <span class="math inline">z \approx +0.524</span></li>
+</ol></li>
+<li><span class="math inline">\text{IQ} = 100 + 15 \times 0.524 = 100 + 7.86 \approx 108</span></li>
+</ol>
+<p><strong>Kluczowa obserwacja:</strong></p>
+<p>Ten wzór można zastosować do <em>dowolnych</em> danych — nawet jeśli surowe wyniki nie mają rozkładu normalnego. To właśnie oznacza “wymuszanie” rozkładu normalnego — matematyka tworzy krzywą dzwonową niezależnie od rzeczywistego kształtu danych. Percentyle są przekształcane przez <strong>teoretyczny</strong> rozkład normalny, nie rzeczywisty rozkład surowych wyników.</p>
+<p><strong>W R:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standaryzacja zmiennej</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>raw_scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">42</span>, <span class="dv">45</span>, <span class="dv">38</span>, <span class="dv">51</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z_scores <span class="ot">&lt;-</span> <span class="fu">scale</span>(raw_scores)  <span class="co"># średnia = 0, SD = 1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># De-standaryzacja: z powrotem do oryginalnych parametrów</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>mean_original <span class="ot">&lt;-</span> <span class="fu">mean</span>(raw_scores)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>sd_original <span class="ot">&lt;-</span> <span class="fu">sd</span>(raw_scores)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>back_to_original <span class="ot">&lt;-</span> mean_original <span class="sc">+</span> sd_original <span class="sc">*</span> z_scores</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformacja percentyli na IQ (de-standaryzacja z μ=100, σ=15)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>percentyle <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.70</span>, <span class="fl">0.95</span>)  <span class="co"># 70. i 95. percentyl</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>z_from_percentile <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(percentyle)  <span class="co"># Krok 1: percentyl → z</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>IQ <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">+</span> <span class="dv">15</span> <span class="sc">*</span> z_from_percentile      <span class="co"># Krok 2: z → IQ (de-standaryzacja)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Wynik: 108, 125</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<hr>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1008,7 +1189,6 @@ Tip
 </div>
 </div>
 <hr>
-</section>
 </section>
 <section id="appendix-a" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="appendix-a"><span class="header-section-number">4.6</span> Appendix A</h2>
