@@ -104,6 +104,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="default">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -296,14 +300,17 @@ window.Quarto = {
   <li><a href="#podstawowe-zbiory-liczbowe" id="toc-podstawowe-zbiory-liczbowe" class="nav-link" data-scroll-target="#podstawowe-zbiory-liczbowe">Podstawowe Zbiory Liczbowe</a></li>
   <li><a href="#właściwości-zbiorów" id="toc-właściwości-zbiorów" class="nav-link" data-scroll-target="#właściwości-zbiorów">Właściwości Zbiorów</a></li>
   </ul></li>
-  <li><a href="#dane-dyskretne-a-dane-ciągłe" id="toc-dane-dyskretne-a-dane-ciągłe" class="nav-link" data-scroll-target="#dane-dyskretne-a-dane-ciągłe"><span class="header-section-number">4.2</span> Dane dyskretne a dane ciągłe</a>
+  <li><a href="#typy-danych-dwie-podstawowe-typologie" id="toc-typy-danych-dwie-podstawowe-typologie" class="nav-link" data-scroll-target="#typy-danych-dwie-podstawowe-typologie"><span class="header-section-number">4.2</span> Typy danych (dwie podstawowe typologie)</a></li>
+  <li><a href="#typologia-danych-1-jakościowe-vs-ilościowe" id="toc-typologia-danych-1-jakościowe-vs-ilościowe" class="nav-link" data-scroll-target="#typologia-danych-1-jakościowe-vs-ilościowe"><span class="header-section-number">4.3</span> Typologia danych 1: Jakościowe vs Ilościowe</a></li>
+  <li><a href="#typologia-danych-2-poziomy-pomiaru-stevensa" id="toc-typologia-danych-2-poziomy-pomiaru-stevensa" class="nav-link" data-scroll-target="#typologia-danych-2-poziomy-pomiaru-stevensa"><span class="header-section-number">4.4</span> Typologia danych 2: Poziomy pomiaru Stevensa</a></li>
+  <li><a href="#dane-dyskretne-a-dane-ciągłe" id="toc-dane-dyskretne-a-dane-ciągłe" class="nav-link" data-scroll-target="#dane-dyskretne-a-dane-ciągłe"><span class="header-section-number">4.5</span> Dane dyskretne a dane ciągłe</a>
   <ul class="collapse">
   <li><a href="#dane-dyskretne" id="toc-dane-dyskretne" class="nav-link" data-scroll-target="#dane-dyskretne">Dane dyskretne</a></li>
   <li><a href="#dane-ciągłe" id="toc-dane-ciągłe" class="nav-link" data-scroll-target="#dane-ciągłe">Dane ciągłe</a></li>
   <li><a href="#spektrum-dyskretne-ciągłe" id="toc-spektrum-dyskretne-ciągłe" class="nav-link" data-scroll-target="#spektrum-dyskretne-ciągłe">Spektrum dyskretne-ciągłe</a></li>
   <li><a href="#podsumowanie" id="toc-podsumowanie" class="nav-link" data-scroll-target="#podsumowanie">Podsumowanie</a></li>
   </ul></li>
-  <li><a href="#wprowadzenie-do-typologii-danych-stevensa" id="toc-wprowadzenie-do-typologii-danych-stevensa" class="nav-link" data-scroll-target="#wprowadzenie-do-typologii-danych-stevensa"><span class="header-section-number">4.3</span> Wprowadzenie do Typologii Danych Stevensa</a>
+  <li><a href="#wprowadzenie-do-typologii-danych-stevensa" id="toc-wprowadzenie-do-typologii-danych-stevensa" class="nav-link" data-scroll-target="#wprowadzenie-do-typologii-danych-stevensa"><span class="header-section-number">4.6</span> Wprowadzenie do Typologii Danych Stevensa</a>
   <ul class="collapse">
   <li><a href="#skala-nominalna" id="toc-skala-nominalna" class="nav-link" data-scroll-target="#skala-nominalna">Skala Nominalna</a></li>
   <li><a href="#skala-porządkowa" id="toc-skala-porządkowa" class="nav-link" data-scroll-target="#skala-porządkowa">Skala Porządkowa</a></li>
@@ -313,14 +320,14 @@ window.Quarto = {
   <li><a href="#kontrowersje-i-ograniczenia" id="toc-kontrowersje-i-ograniczenia" class="nav-link" data-scroll-target="#kontrowersje-i-ograniczenia">Kontrowersje i Ograniczenia</a></li>
   <li><a href="#podsumowanie-1" id="toc-podsumowanie-1" class="nav-link" data-scroll-target="#podsumowanie-1">Podsumowanie</a></li>
   </ul></li>
-  <li><a href="#popularne-skale-porządkowe-w-badaniach-nad-zachowaniem" id="toc-popularne-skale-porządkowe-w-badaniach-nad-zachowaniem" class="nav-link" data-scroll-target="#popularne-skale-porządkowe-w-badaniach-nad-zachowaniem"><span class="header-section-number">4.4</span> Popularne Skale Porządkowe w Badaniach nad Zachowaniem</a>
+  <li><a href="#popularne-skale-porządkowe-w-badaniach-nad-zachowaniem" id="toc-popularne-skale-porządkowe-w-badaniach-nad-zachowaniem" class="nav-link" data-scroll-target="#popularne-skale-porządkowe-w-badaniach-nad-zachowaniem"><span class="header-section-number">4.7</span> Popularne Skale Porządkowe w Badaniach nad Zachowaniem</a>
   <ul class="collapse">
   <li><a href="#skale-likerta" id="toc-skale-likerta" class="nav-link" data-scroll-target="#skale-likerta">Skale Likerta</a></li>
   <li><a href="#wyniki-iq-złożony-przypadek" id="toc-wyniki-iq-złożony-przypadek" class="nav-link" data-scroll-target="#wyniki-iq-złożony-przypadek">Wyniki IQ: Złożony Przypadek</a></li>
   <li><a href="#inne-miary-psychologiczne" id="toc-inne-miary-psychologiczne" class="nav-link" data-scroll-target="#inne-miary-psychologiczne">Inne Miary Psychologiczne</a></li>
   </ul></li>
-  <li><a href="#podsumowanie-2" id="toc-podsumowanie-2" class="nav-link" data-scroll-target="#podsumowanie-2"><span class="header-section-number">4.5</span> Podsumowanie</a></li>
-  <li><a href="#appendix-a" id="toc-appendix-a" class="nav-link" data-scroll-target="#appendix-a"><span class="header-section-number">4.6</span> Appendix A</a></li>
+  <li><a href="#podsumowanie-2" id="toc-podsumowanie-2" class="nav-link" data-scroll-target="#podsumowanie-2"><span class="header-section-number">4.8</span> Podsumowanie</a></li>
+  <li><a href="#appendix-a" id="toc-appendix-a" class="nav-link" data-scroll-target="#appendix-a"><span class="header-section-number">4.9</span> Appendix A</a></li>
   </ul>
 </nav>
     </div>
@@ -382,8 +389,80 @@ Note
 <hr>
 </section>
 </section>
-<section id="dane-dyskretne-a-dane-ciągłe" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="dane-dyskretne-a-dane-ciągłe"><span class="header-section-number">4.2</span> Dane dyskretne a dane ciągłe</h2>
+<section id="typy-danych-dwie-podstawowe-typologie" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="typy-danych-dwie-podstawowe-typologie"><span class="header-section-number">4.2</span> Typy danych (dwie podstawowe typologie)</h2>
+<p>Na poziomie podstawowym zmienne można podzielić na numeryczne (ilościowe) lub kategorialne (jakościowe).</p>
+<ul>
+<li><p><strong>Zmienne numeryczne</strong> reprezentują każdą obserwację jako liczbę (np. liczba sprzedanych produktów, temperatura, wzrost, wiek). Mogą być dyskretne (zliczane) lub ciągłe (mierzone).</p></li>
+<li><p><strong>Zmienne kategorialne</strong> reprezentują każdą obserwację jako słowo lub etykietę (np. nazwy marek, typy zwierząt, kolory, nazwy krajów). Mogą być porządkowe (uporządkowane, jak rankingi) lub nominalne (nieuporządkowane, jak nazwy).</p></li>
+</ul>
+</section>
+<section id="typologia-danych-1-jakościowe-vs-ilościowe" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="typologia-danych-1-jakościowe-vs-ilościowe"><span class="header-section-number">4.3</span> Typologia danych 1: Jakościowe vs Ilościowe</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[Dane] --&gt; B[Jakościowe]
+    A --&gt; C[Ilościowe]
+    B --&gt; D[Nominalne]
+    B --&gt; E[Porządkowe]
+    C --&gt; F[Dyskretne]
+    C --&gt; G[Ciągłe]
+    
+    style A fill:#e1f5ff
+    style B fill:#fff4e1
+    style C fill:#ffe1f5
+    style D fill:#f0f0f0
+    style E fill:#f0f0f0
+    style F fill:#f0f0f0
+    style G fill:#f0f0f0
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="typologia-danych-2-poziomy-pomiaru-stevensa" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="typologia-danych-2-poziomy-pomiaru-stevensa"><span class="header-section-number">4.4</span> Typologia danych 2: Poziomy pomiaru Stevensa</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[Poziomy pomiaru] --&gt; B[Kategorialne/Jakościowe]
+    A --&gt; C[Numeryczne/Ilościowe]
+    
+    B --&gt; D[Nominalne]
+    B --&gt; E[Porządkowe]
+    C --&gt; F[Interwałowe]
+    C --&gt; G[Ilorazowe]
+    
+    D --&gt; D1[Tylko kategorie&lt;br/&gt;np. płeć, kolor]
+    E --&gt; E1[Uporządkowane kategorie&lt;br/&gt;np. rankingi, oceny]
+    F --&gt; F1[Równe przedziały, brak prawdziwego zera&lt;br/&gt;np. temperatura °C, IQ]
+    G --&gt; G1[Równe przedziały, prawdziwe zero&lt;br/&gt;np. wzrost, waga, wiek]
+    
+    style A fill:#e1f5ff
+    style B fill:#fff4e1
+    style C fill:#ffe1f5
+    style D fill:#f0f0f0
+    style E fill:#f0f0f0
+    style F fill:#f0f0f0
+    style G fill:#f0f0f0
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="dane-dyskretne-a-dane-ciągłe" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="dane-dyskretne-a-dane-ciągłe"><span class="header-section-number">4.5</span> Dane dyskretne a dane ciągłe</h2>
 <p>W analizie danych i statystyce kategoryzujemy zmienne jako dyskretne lub ciągłe. Ten podział kształtuje sposób, w jaki analizujemy dane i które metody statystyczne stosujemy. Jednak granica między tymi kategoriami nie zawsze jest ostra, a niektóre zmienne wykazują cechy obu typów. Niniejszy rozdział omawia dane dyskretne i ciągłe, ich różnice oraz interesujące przypadki zmiennych, które kwestionują nasze intuicyjne rozumienie.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -565,8 +644,8 @@ Dane Dyskretne vs.&nbsp;Ciągłe: Analogia Językowa
 </div>
 </section>
 </section>
-<section id="wprowadzenie-do-typologii-danych-stevensa" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="wprowadzenie-do-typologii-danych-stevensa"><span class="header-section-number">4.3</span> Wprowadzenie do Typologii Danych Stevensa</h2>
+<section id="wprowadzenie-do-typologii-danych-stevensa" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="wprowadzenie-do-typologii-danych-stevensa"><span class="header-section-number">4.6</span> Wprowadzenie do Typologii Danych Stevensa</h2>
 <p>Stanley S. Stevens, amerykański psycholog, wprowadził system klasyfikacji skal pomiarowych w swoim artykule z 1946 roku “On the Theory of Scales of Measurement”. Ten system, znany jako typologia danych Stevensa lub poziomy pomiaru, stał się fundamentalny dla zrozumienia, jak różne typy danych powinny być analizowane i interpretowane.</p>
 <p>Stevens zaproponował cztery poziomy pomiaru:</p>
 <ol type="1">
@@ -770,37 +849,25 @@ Typy pytań ze skalą Likerta
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-pH as an Interval Scale
+pH jako skala interwałowa
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>pH is considered an interval scale because:</p>
+<p>pH jest uważane za skalę interwałową, ponieważ:</p>
 <ol type="1">
-<li><p>It has ordered categories: Lower pH values indicate higher acidity, while higher values indicate higher alkalinity.</p></li>
-<li><p>The intervals between adjacent pH values are equal in terms of hydrogen ion concentration:</p>
-<ul>
-<li>Each whole number change in pH represents a tenfold change in hydrogen ion concentration.</li>
-<li>For example, the difference in acidity between pH 4 and pH 5 is the same as the difference between pH 7 and pH 8.</li>
-</ul></li>
-<li><p>It lacks a true zero point:</p>
-<ul>
-<li>pH 0 does not represent a complete absence of hydrogen ions.</li>
-<li>Negative pH values and values above 14 are possible in extreme conditions.</li>
-</ul></li>
-<li><p>Ratios are not meaningful:</p>
-<ul>
-<li>A pH of 4 is not “twice as acidic” as a pH of 2.</li>
-<li>The ratio of hydrogen ion concentrations, not pH values, indicates relative acidity.</li>
-</ul></li>
+<li><p><strong>Uporządkowane wartości</strong>: Niższe wartości pH wskazują na wyższą kwasowość, podczas gdy wyższe wartości wskazują na wyższą zasadowość.</p></li>
+<li><p><strong>Równe przedziały</strong>: Każda zmiana pH o jedną jednostkę reprezentuje konsekwentnie dziesięciokrotną zmianę stężenia jonów wodorowych (skala logarytmiczna). Przedział między pH 4 a pH 5 jest równoważny przedziałowi między pH 7 a pH 8.</p></li>
+<li><p><strong>Brak prawdziwego zera</strong>: pH 0 nie oznacza całkowitego braku jonów wodorowych. Ujemne wartości pH oraz wartości powyżej 14 są możliwe w ekstremalnych warunkach.</p></li>
+<li><p><strong>Stosunki nie mają znaczenia</strong>: pH 4 nie jest “dwukrotnie bardziej kwasowe” niż pH 2. Względna kwasowość jest określana przez stosunek stężeń jonów wodorowych, a nie przez same wartości pH.</p></li>
 </ol>
-<p>These characteristics align with the definition of an interval scale, where the differences between values are meaningful and consistent, but ratios are not interpretable.</p>
+<p>Te cechy są zgodne z definicją skali interwałowej: różnice między wartościami są znaczące, ale stosunki nie mogą być interpretowane.</p>
 </div>
 </div>
 <hr>
 </section>
 </section>
-<section id="popularne-skale-porządkowe-w-badaniach-nad-zachowaniem" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="popularne-skale-porządkowe-w-badaniach-nad-zachowaniem"><span class="header-section-number">4.4</span> Popularne Skale Porządkowe w Badaniach nad Zachowaniem</h2>
+<section id="popularne-skale-porządkowe-w-badaniach-nad-zachowaniem" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="popularne-skale-porządkowe-w-badaniach-nad-zachowaniem"><span class="header-section-number">4.7</span> Popularne Skale Porządkowe w Badaniach nad Zachowaniem</h2>
 <p>Wiele miar w psychologii i naukach społecznych ma charakter porządkowy, nawet jeśli wyglądają jak liczby. Zrozumienie tego rozróżnienia jest kluczowe dla właściwej analizy i interpretacji. Przyjrzyjmy się najczęstszym przykładom.</p>
 <section id="skale-likerta" class="level3">
 <h3 class="anchored" data-anchor-id="skale-likerta">Skale Likerta</h3>
@@ -961,8 +1028,8 @@ Kluczowa Kwestia
 <p>Te miary często wykorzystują zsumowane pozycje typu Likerta lub inne metody punktacji, które nie gwarantują równych odstępów między wynikami, mimo że wyglądają jak liczby ciągłe.</p>
 </section>
 </section>
-<section id="podsumowanie-2" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="podsumowanie-2"><span class="header-section-number">4.5</span> Podsumowanie</h2>
+<section id="podsumowanie-2" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="podsumowanie-2"><span class="header-section-number">4.8</span> Podsumowanie</h2>
 <p>Porządkowy charakter miar behawioralnych stanowi zarówno wyzwanie koncepcyjne, jak i praktyczny dylemat. Podczas gdy te skale dostarczają cennych informacji o względnej pozycji i różnicach między grupami, nie wspierają precyzyjnych interpretacji ilościowych, jakich moglibyśmy sobie życzyć.</p>
 <p><strong>Kluczowy wniosek:</strong> Większość miar behawioralnych mówi nam o <em>kolejności</em> i <em>względnej pozycji</em>, a nie o <em>absolutnych ilościach</em> czy <em>równych odstępach</em>. To ich nie czyni mniej użytecznymi — to tylko oznacza, że musimy je interpretować odpowiednio i uczciwie komunikować ich ograniczenia naszym studentom, czytelnikom i odbiorcom badań.</p>
 <p><strong>Praktyczne podsumowanie:</strong></p>
@@ -979,7 +1046,7 @@ Kluczowa Kwestia
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Jak Dokładnie Działa Transformacja Percentyli na IQ?
+Jak Dokładnie Działa Transformacja Percentyli na IQ (*)?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1190,8 +1257,8 @@ X &amp;= \mu + \sigma \times z \quad \text{(dodajemy } \mu \text{ do obu stron)}
 </div>
 <hr>
 </section>
-<section id="appendix-a" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="appendix-a"><span class="header-section-number">4.6</span> Appendix A</h2>
+<section id="appendix-a" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="appendix-a"><span class="header-section-number">4.9</span> Appendix A</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

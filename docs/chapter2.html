@@ -104,6 +104,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="default">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -296,14 +300,15 @@ window.Quarto = {
   <li><a href="#basic-number-sets" id="toc-basic-number-sets" class="nav-link" data-scroll-target="#basic-number-sets">Basic Number Sets</a></li>
   <li><a href="#properties-of-sets" id="toc-properties-of-sets" class="nav-link" data-scroll-target="#properties-of-sets">Properties of Sets</a></li>
   </ul></li>
-  <li><a href="#discrete-vs.-continuous-data" id="toc-discrete-vs.-continuous-data" class="nav-link" data-scroll-target="#discrete-vs.-continuous-data"><span class="header-section-number">3.2</span> Discrete vs.&nbsp;Continuous Data</a>
+  <li><a href="#types-of-data-basic-typologies" id="toc-types-of-data-basic-typologies" class="nav-link" data-scroll-target="#types-of-data-basic-typologies"><span class="header-section-number">3.2</span> Types of Data (Basic Typologies)</a></li>
+  <li><a href="#discrete-vs.-continuous-data-quantitative-data" id="toc-discrete-vs.-continuous-data-quantitative-data" class="nav-link" data-scroll-target="#discrete-vs.-continuous-data-quantitative-data"><span class="header-section-number">3.3</span> Discrete vs.&nbsp;Continuous Data (Quantitative Data)</a>
   <ul class="collapse">
   <li><a href="#discrete-data" id="toc-discrete-data" class="nav-link" data-scroll-target="#discrete-data">Discrete Data</a></li>
   <li><a href="#continuous-data" id="toc-continuous-data" class="nav-link" data-scroll-target="#continuous-data">Continuous Data</a></li>
   <li><a href="#the-discrete-continuous-spectrum" id="toc-the-discrete-continuous-spectrum" class="nav-link" data-scroll-target="#the-discrete-continuous-spectrum">The Discrete-Continuous Spectrum</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
-  <li><a href="#introduction-to-stevens-data-typology" id="toc-introduction-to-stevens-data-typology" class="nav-link" data-scroll-target="#introduction-to-stevens-data-typology"><span class="header-section-number">3.3</span> Introduction to Stevens’ Data Typology</a>
+  <li><a href="#introduction-to-stevens-data-typology" id="toc-introduction-to-stevens-data-typology" class="nav-link" data-scroll-target="#introduction-to-stevens-data-typology"><span class="header-section-number">3.4</span> Introduction to Stevens’ Data Typology</a>
   <ul class="collapse">
   <li><a href="#nominal-scale" id="toc-nominal-scale" class="nav-link" data-scroll-target="#nominal-scale">Nominal Scale</a></li>
   <li><a href="#ordinal-scale" id="toc-ordinal-scale" class="nav-link" data-scroll-target="#ordinal-scale">Ordinal Scale</a></li>
@@ -313,14 +318,14 @@ window.Quarto = {
   <li><a href="#controversies-and-limitations" id="toc-controversies-and-limitations" class="nav-link" data-scroll-target="#controversies-and-limitations">Controversies and Limitations</a></li>
   <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1">Conclusion</a></li>
   </ul></li>
-  <li><a href="#common-ordinal-scales-in-behavioural-research" id="toc-common-ordinal-scales-in-behavioural-research" class="nav-link" data-scroll-target="#common-ordinal-scales-in-behavioural-research"><span class="header-section-number">3.4</span> Common Ordinal Scales in Behavioural Research</a>
+  <li><a href="#common-ordinal-scales-in-behavioural-research" id="toc-common-ordinal-scales-in-behavioural-research" class="nav-link" data-scroll-target="#common-ordinal-scales-in-behavioural-research"><span class="header-section-number">3.5</span> Common Ordinal Scales in Behavioural Research</a>
   <ul class="collapse">
   <li><a href="#likert-scales" id="toc-likert-scales" class="nav-link" data-scroll-target="#likert-scales">Likert Scales</a></li>
   <li><a href="#iq-scores-a-complex-case" id="toc-iq-scores-a-complex-case" class="nav-link" data-scroll-target="#iq-scores-a-complex-case">IQ Scores: A Complex Case</a></li>
   <li><a href="#other-psychological-measures" id="toc-other-psychological-measures" class="nav-link" data-scroll-target="#other-psychological-measures">Other Psychological Measures</a></li>
   </ul></li>
-  <li><a href="#conclusion-2" id="toc-conclusion-2" class="nav-link" data-scroll-target="#conclusion-2"><span class="header-section-number">3.5</span> Conclusion</a></li>
-  <li><a href="#appendix-a" id="toc-appendix-a" class="nav-link" data-scroll-target="#appendix-a"><span class="header-section-number">3.6</span> Appendix A</a></li>
+  <li><a href="#conclusion-2" id="toc-conclusion-2" class="nav-link" data-scroll-target="#conclusion-2"><span class="header-section-number">3.6</span> Conclusion</a></li>
+  <li><a href="#appendix-a" id="toc-appendix-a" class="nav-link" data-scroll-target="#appendix-a"><span class="header-section-number">3.7</span> Appendix A</a></li>
   </ul>
 </nav>
     </div>
@@ -383,8 +388,81 @@ Note
 <hr>
 </section>
 </section>
-<section id="discrete-vs.-continuous-data" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="discrete-vs.-continuous-data"><span class="header-section-number">3.2</span> Discrete vs.&nbsp;Continuous Data</h2>
+<section id="types-of-data-basic-typologies" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="types-of-data-basic-typologies"><span class="header-section-number">3.2</span> Types of Data (Basic Typologies)</h2>
+<p>At a fundamental level, data variables can be classified as either numerical (quantitative) or categorical (qualitative).</p>
+<ul>
+<li><p><strong>Numerical data</strong> represents each data point as a number (e.g., items sold, temperature, height, age). It can be discrete (counted) or continuous (measured).</p></li>
+<li><p><strong>Categorical data</strong> represents each data point as a word or label (e.g., brand names, animal types, colours, countries). It can be ordinal (ordered, like rankings) or nominal (unordered, like names).</p></li>
+</ul>
+<section id="data-typology-1-qualitative-vs-quantitative" class="level4">
+<h4 class="anchored" data-anchor-id="data-typology-1-qualitative-vs-quantitative">Data Typology 1: Qualitative vs Quantitative</h4>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[Data] --&gt; B[Qualitative]
+    A --&gt; C[Quantitative]
+    B --&gt; D[Nominal]
+    B --&gt; E[Ordinal]
+    C --&gt; F[Discrete]
+    C --&gt; G[Continuous]
+    
+    style A fill:#e1f5ff
+    style B fill:#fff4e1
+    style C fill:#ffe1f5
+    style D fill:#f0f0f0
+    style E fill:#f0f0f0
+    style F fill:#f0f0f0
+    style G fill:#f0f0f0
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="data-typology-2-stevens-levels-of-measurement" class="level4">
+<h4 class="anchored" data-anchor-id="data-typology-2-stevens-levels-of-measurement">Data Typology 2: Stevens’ Levels of Measurement</h4>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[Levels of Measurement] --&gt; B[Categorical/Qualitative]
+    A --&gt; C[Numerical/Quantitative]
+    
+    B --&gt; D[Nominal]
+    B --&gt; E[Ordinal]
+    C --&gt; F[Interval]
+    C --&gt; G[Ratio]
+    
+    D --&gt; D1[Categories only&lt;br/&gt;e.g., gender, color]
+    E --&gt; E1[Ordered categories&lt;br/&gt;e.g., rankings, grades]
+    F --&gt; F1[Equal intervals, no true zero&lt;br/&gt;e.g., temperature °C, IQ]
+    G --&gt; G1[Equal intervals, true zero&lt;br/&gt;e.g., height, weight, age]
+    
+    style A fill:#e1f5ff
+    style B fill:#fff4e1
+    style C fill:#ffe1f5
+    style D fill:#f0f0f0
+    style E fill:#f0f0f0
+    style F fill:#f0f0f0
+    style G fill:#f0f0f0
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="discrete-vs.-continuous-data-quantitative-data" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="discrete-vs.-continuous-data-quantitative-data"><span class="header-section-number">3.3</span> Discrete vs.&nbsp;Continuous Data (Quantitative Data)</h2>
 <p>In data science and statistics, we categorize variables as either discrete or continuous. This distinction shapes how we analyze data and which statistical methods we apply. However, the boundary between these categories is not always clear-cut, and some variables exhibit characteristics of both types. This section explores discrete and continuous data, their differences, and the interesting cases of variables that challenge our intuitive understanding.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -568,8 +646,8 @@ Discrete vs.&nbsp;Continuous Numerical Data: A Language-Based Analogies
 </div>
 </section>
 </section>
-<section id="introduction-to-stevens-data-typology" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="introduction-to-stevens-data-typology"><span class="header-section-number">3.3</span> Introduction to Stevens’ Data Typology</h2>
+<section id="introduction-to-stevens-data-typology" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="introduction-to-stevens-data-typology"><span class="header-section-number">3.4</span> Introduction to Stevens’ Data Typology</h2>
 <p>Stanley S. Stevens, an American psychologist, introduced a classification system for scales of measurement in his 1946 paper “On the Theory of Scales of Measurement.” This system, known as Stevens’ data typology or levels of measurement, has become fundamental in understanding how different types of data should be analyzed and interpreted.</p>
 <p>Stevens proposed four levels of measurement:</p>
 <ol type="1">
@@ -832,31 +910,19 @@ pH as an Interval Scale
 <div class="callout-body-container callout-body">
 <p>pH is considered an interval scale because:</p>
 <ol type="1">
-<li><p>It has ordered categories: Lower pH values indicate higher acidity, while higher values indicate higher alkalinity.</p></li>
-<li><p>The intervals between adjacent pH values are equal in terms of hydrogen ion concentration:</p>
-<ul>
-<li>Each whole number change in pH represents a tenfold change in hydrogen ion concentration.</li>
-<li>For example, the difference in acidity between pH 4 and pH 5 is the same as the difference between pH 7 and pH 8.</li>
-</ul></li>
-<li><p>It lacks a true zero point:</p>
-<ul>
-<li>pH 0 does not represent a complete absence of hydrogen ions.</li>
-<li>Negative pH values and values above 14 are possible in extreme conditions.</li>
-</ul></li>
-<li><p>Ratios are not meaningful:</p>
-<ul>
-<li>A pH of 4 is not “twice as acidic” as a pH of 2.</li>
-<li>The ratio of hydrogen ion concentrations, not pH values, indicates relative acidity.</li>
-</ul></li>
+<li><p><strong>Ordered values</strong>: Lower pH values indicate higher acidity, while higher values indicate higher alkalinity.</p></li>
+<li><p><strong>Equal intervals</strong>: Each unit change in pH represents a consistent tenfold change in hydrogen ion concentration (logarithmic scale). The interval between pH 4 and pH 5 is equivalent to the interval between pH 7 and pH 8.</p></li>
+<li><p><strong>No true zero</strong>: pH 0 does not represent a complete absence of hydrogen ions. Negative pH values and values above 14 are possible in extreme conditions.</p></li>
+<li><p><strong>Ratios are not meaningful</strong>: A pH of 4 is not “twice as acidic” as a pH of 2. Relative acidity is determined by the ratio of hydrogen ion concentrations, not pH values themselves.</p></li>
 </ol>
-<p>These characteristics align with the definition of an interval scale, where the differences between values are meaningful and consistent, but ratios are not interpretable.</p>
+<p>These characteristics align with the interval scale definition: differences between values are meaningful and consistent, but ratios cannot be interpreted.</p>
 </div>
 </div>
 <hr>
 </section>
 </section>
-<section id="common-ordinal-scales-in-behavioural-research" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="common-ordinal-scales-in-behavioural-research"><span class="header-section-number">3.4</span> Common Ordinal Scales in Behavioural Research</h2>
+<section id="common-ordinal-scales-in-behavioural-research" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="common-ordinal-scales-in-behavioural-research"><span class="header-section-number">3.5</span> Common Ordinal Scales in Behavioural Research</h2>
 <p>Many measures in psychology and social sciences are ordinal in nature, even when they appear as numbers. Understanding this distinction is crucial for proper analysis and interpretation. Let’s explore the most common examples.</p>
 <section id="likert-scales" class="level3">
 <h3 class="anchored" data-anchor-id="likert-scales">Likert Scales</h3>
@@ -1009,8 +1075,8 @@ Key Point
 <p>These measures often use summed Likert-type items or other scoring methods that don’t guarantee equal intervals between scores, despite appearing as continuous numbers.</p>
 </section>
 </section>
-<section id="conclusion-2" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="conclusion-2"><span class="header-section-number">3.5</span> Conclusion</h2>
+<section id="conclusion-2" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="conclusion-2"><span class="header-section-number">3.6</span> Conclusion</h2>
 <p>The ordinal nature of behavioural measures presents both a conceptual challenge and a practical dilemma. While these scales provide valuable information about relative standing and group differences, they don’t support the precise quantitative interpretations we might wish for.</p>
 <p><strong>Key takeaway:</strong> Most behavioural measures tell us about <em>order</em> and <em>relative position</em>, not about <em>absolute quantities</em> or <em>equal intervals</em>. This doesn’t make them less useful—it just means we must interpret them appropriately and honestly communicate their limitations to our students, readers, and research consumers.</p>
 <p><strong>Practical summary:</strong></p>
@@ -1027,7 +1093,7 @@ Key Point
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-How Does the Transformation from Percentiles to IQ Work Exactly?
+How Does the Transformation from Percentiles to IQ Work Exactly (*)?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1223,8 +1289,8 @@ Exercise: Identifying Measurement Scales
 </div>
 <hr>
 </section>
-<section id="appendix-a" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="appendix-a"><span class="header-section-number">3.6</span> Appendix A</h2>
+<section id="appendix-a" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="appendix-a"><span class="header-section-number">3.7</span> Appendix A</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
