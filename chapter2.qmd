@@ -29,7 +29,63 @@ Understanding these set properties is crucial for grasping the nature of differe
 
 ------------------------------------------------------------------------
 
-## Discrete vs. Continuous Data
+## Types of Data (Basic Typologies)
+
+At a fundamental level, data variables can be classified as either numerical (quantitative) or categorical (qualitative).
+
+- **Numerical data** represents each data point as a number (e.g., items sold, temperature, height, age). It can be discrete (counted) or continuous (measured).
+
+- **Categorical data** represents each data point as a word or label (e.g., brand names, animal types, colours, countries). It can be ordinal (ordered, like rankings) or nominal (unordered, like names).
+
+#### Data Typology 1: Qualitative vs Quantitative
+
+```{mermaid}
+graph TD
+    A[Data] --> B[Qualitative]
+    A --> C[Quantitative]
+    B --> D[Nominal]
+    B --> E[Ordinal]
+    C --> F[Discrete]
+    C --> G[Continuous]
+    
+    style A fill:#e1f5ff
+    style B fill:#fff4e1
+    style C fill:#ffe1f5
+    style D fill:#f0f0f0
+    style E fill:#f0f0f0
+    style F fill:#f0f0f0
+    style G fill:#f0f0f0
+```
+
+#### Data Typology 2: Stevens' Levels of Measurement
+
+```{mermaid}
+graph TD
+    A[Levels of Measurement] --> B[Categorical/Qualitative]
+    A --> C[Numerical/Quantitative]
+    
+    B --> D[Nominal]
+    B --> E[Ordinal]
+    C --> F[Interval]
+    C --> G[Ratio]
+    
+    D --> D1[Categories only<br/>e.g., gender, color]
+    E --> E1[Ordered categories<br/>e.g., rankings, grades]
+    F --> F1[Equal intervals, no true zero<br/>e.g., temperature °C, IQ]
+    G --> G1[Equal intervals, true zero<br/>e.g., height, weight, age]
+    
+    style A fill:#e1f5ff
+    style B fill:#fff4e1
+    style C fill:#ffe1f5
+    style D fill:#f0f0f0
+    style E fill:#f0f0f0
+    style F fill:#f0f0f0
+    style G fill:#f0f0f0
+```
+
+---
+
+## Discrete vs. Continuous Data (Quantitative Data)
 
 In data science and statistics, we categorize variables as either discrete or continuous. This distinction shapes how we analyze data and which statistical methods we apply. However, the boundary between these categories is not always clear-cut, and some variables exhibit characteristics of both types. This section explores discrete and continuous data, their differences, and the interesting cases of variables that challenge our intuitive understanding.
 
@@ -120,7 +176,6 @@ In practice, some variables that are mathematically discrete are often treated a
     -   Discrete: Often given as whole numbers or fixed increments
     -   Continuous: In statistical analyses, may be treated as continuous, especially when the range of possible scores is large
 
-
 ### Conclusion
 
 The distinction between discrete and continuous data is not always rigid in practice. Many variables, including those involving money, percentages, or dense measurements, can be viewed through both discrete and continuous lenses. **When in doubt, consider both your measurement precision and your analytical goals when deciding how to treat a variable.** The choice should be guided by the nature of the data, the goals of the analysis, and the potential implications of the choice. This flexibility, when used thoughtfully, provides powerful tools for researchers to gain insights from their data.
@@ -197,8 +252,7 @@ Each level has specific properties and allows for different types of statistical
 
 ![](stat_imgs/stevens-typology-final.svg)
 
-
-::: {.callout-tip}
+::: callout-tip
 ## Why "Levels" of Measurement?
 
 Stanley Stevens used the term "levels of measurement" rather than simply "types" because he conceived of them as existing in a **hierarchy**, where each level builds upon the previous one with increasing mathematical properties.
@@ -211,10 +265,10 @@ Stevens organized them from least to most informative: Nominal → Ordinal → I
 
 Stevens was fundamentally concerned with what mathematical operations are meaningful at each level:
 
-- **Nominal**: only equality comparisons
-- **Ordinal**: adds greater than/less than
-- **Interval**: adds addition and subtraction  
-- **Ratio**: adds multiplication, division, and meaningful ratios
+-   **Nominal**: only equality comparisons
+-   **Ordinal**: adds greater than/less than
+-   **Interval**: adds addition and subtraction\
+-   **Ratio**: adds multiplication, division, and meaningful ratios
 
 The word "level" emphasizes that these aren't just arbitrary categories, but represent **degrees of measurement sophistication**. Higher levels allow more powerful statistical analyses and convey more information about the underlying phenomena being measured.
 
@@ -258,31 +312,29 @@ The ordinal scale categorizes data into ordered categories, but the intervals be
 -   Likert scales (Strongly Disagree, Disagree, Neutral, Agree, Strongly Agree)
 -   Socioeconomic status (Low, Medium, High)
 
-::: {.callout-note}
+::: callout-note
 ## Likert Scale Question Types
 
 Likert scales are a type of rating scale that constitute an **ordinal level of measurement**, meaning responses can be ranked in order but the distances between points are not necessarily equal.
 
-**Agreement Scale** (Strongly Disagree → Strongly Agree)
-- Best for measuring beliefs and perceptions
-- Example: "This website is easy to navigate"
+**Agreement Scale** (Strongly Disagree → Strongly Agree) - Best for measuring beliefs and perceptions - Example: "This website is easy to navigate"
 
-**Satisfaction Scale** (Very Dissatisfied → Very Satisfied)
-- Ideal for evaluating experiences and services
-- Example: "How satisfied are you with the customer service you received?"
+**Satisfaction Scale** (Very Dissatisfied → Very Satisfied) - Ideal for evaluating experiences and services - Example: "How satisfied are you with the customer service you received?"
 
-**Opinion Scale** (Strongly Oppose → Strongly Support)
-- Used to gauge positions on proposals or initiatives
-- Example: "How do you feel about implementing a hybrid work policy?"
+**Opinion Scale** (Strongly Oppose → Strongly Support) - Used to gauge positions on proposals or initiatives - Example: "How do you feel about implementing a hybrid work policy?"
 
-**Frequency/Attitude Scale** (Never → Always)
-- Measures behavioral patterns and consistency
-- Example: "I would recommend this product to others"
+**Frequency/Attitude Scale** (Never → Always) - Measures behavioral patterns and consistency - Example: "I would recommend this product to others"
 
 **Best Practices**: Use 5-7 point scales, keep neutral middle options, ensure statements are clear and unambiguous, and maintain consistent directionality (positive to negative or vice versa).
+
+------------------------------------------------------------------------
+
+**Examples of rating scales**
+
+![https://ppcexpo.com/ChartExpo/charts/csat-score-survey-chart](stat_imgs/CSATChart-Detail1.svg) ![https://www.culturemonkey.io/resources/guides/employee-survey-questions/](stat_imgs/Likert-scale-survey-questions.svg) ![https://www.culturemonkey.io/resources/guides/employee-survey-questions/](stat_imgs/Rating-scale-survey-questions.svg)
 :::
 
----
+------------------------------------------------------------------------
 
 ### Interval Scale
 
@@ -392,139 +444,309 @@ While Stevens' typology is widely used, it has faced some criticisms:
 
 Stevens' data typology provides a fundamental framework for understanding different types of data and their properties. By recognizing the level of measurement of their variables, researchers can make informed decisions about data collection, analysis, and interpretation. However, it's important to remember that while this typology is a useful guide, real-world data often requires nuanced consideration and may not always fit neatly into these categories.
 
-::: callout-note
+::: {.callout-note}
 ### pH as an Interval Scale
 
 pH is considered an interval scale because:
 
-1.  It has ordered categories: Lower pH values indicate higher acidity, while higher values indicate higher alkalinity.
+1. **Ordered values**: Lower pH values indicate higher acidity, while higher values indicate higher alkalinity.
 
-2.  The intervals between adjacent pH values are equal in terms of hydrogen ion concentration:
+2. **Equal intervals**: Each unit change in pH represents a consistent tenfold change in hydrogen ion concentration (logarithmic scale). The interval between pH 4 and pH 5 is equivalent to the interval between pH 7 and pH 8.
 
-    -   Each whole number change in pH represents a tenfold change in hydrogen ion concentration.
-    -   For example, the difference in acidity between pH 4 and pH 5 is the same as the difference between pH 7 and pH 8.
+3. **No true zero**: pH 0 does not represent a complete absence of hydrogen ions. Negative pH values and values above 14 are possible in extreme conditions.
 
-3.  It lacks a true zero point:
+4. **Ratios are not meaningful**: A pH of 4 is not "twice as acidic" as a pH of 2. Relative acidity is determined by the ratio of hydrogen ion concentrations, not pH values themselves.
 
-    -   pH 0 does not represent a complete absence of hydrogen ions.
-    -   Negative pH values and values above 14 are possible in extreme conditions.
-
-4.  Ratios are not meaningful:
-
-    -   A pH of 4 is not "twice as acidic" as a pH of 2.
-    -   The ratio of hydrogen ion concentrations, not pH values, indicates relative acidity.
-
-These characteristics align with the definition of an interval scale, where the differences between values are meaningful and consistent, but ratios are not interpretable.
+These characteristics align with the interval scale definition: differences between values are meaningful and consistent, but ratios cannot be interpreted.
 :::
 
-### Reality: IQ is Fundamentally an Ordinal Scale
-
-**How IQ scores are created – step by step:**
-
-1.  **Collecting raw scores:** People take a test and receive a number of correct answers (e.g., 45 out of 60 questions)
-2.  **Ordering:** All raw scores are arranged from worst to best
-3.  **Assigning ranks:** Each score is assigned a position in the ranking
-4.  **Transformation to IQ scale:** Ranks are mathematically transformed so that the mean equals 100 and standard deviation equals 15
-
-**Key problem:** This process forces a normal distribution onto data that may not have been normal in its original form. This means that equal differences in IQ points (e.g., difference between IQ 100 and 115 vs. difference between IQ 115 and 130) may not correspond to equal differences in actual cognitive abilities.
-
-::: callout-important
-### Key Point
-
-IQ 130 does not mean "twice the intelligence" of IQ 65. IQ points only show a person's position relative to other people in the sample, not the actual amount of intelligence. This is similar to places in a competition – the winner might win by a hair or by miles, but will still be in first place.
-:::
-
-**In research practice: why do we sometimes treat IQ as an interval scale?**
-
-This is a **methodological compromise** that allows for the use of more precise statistical tools:
-
-✅ **Treating IQ as an interval scale is acceptable when:**
-
--   Using standard statistical tests (correlations, regressions, t-tests)
--   Comparing groups within the same test and population - Being aware of the limitations of this approach
--   Our conclusions don't depend on differences being exactly equal
-
-⚠️ **Remember the limitations:**
-
--   This is a simplification of reality
--   The assumption works better for scores near the mean (IQ 85-115) than at the extremes
--   Results must be interpreted carefully
-
-❌ **Never:**
-
--   Say that IQ differences mean equal differences in intelligence
--   Use statements like "twice as intelligent"
-
-### Practical Guidelines for Researchers
-
-1.  **Be transparent:**
-    -   Clearly state: "We treat IQ as an interval scale for statistical purposes, remembering that it is fundamentally an ordinal scale"
-2.  **Consider alternatives:**
-    -   Use non-parametric tests when sample size allows
-    -   Compare results from different analytical methods
-3.  **Interpret cautiously:**
-    -   Focus on statements about order ("group A achieved higher scores than group B")
-    -   Avoid precise statements about the magnitude of differences
-    -   Remember: a 15-point IQ difference means "one standard deviation in the sample," not "a specific amount of additional intelligence"
-
-::: callout-tip
-IQ is an ordinal scale that has been transformed to look like an interval scale. It can be used in statistical analyses requiring an interval scale, but one must always remember its true nature when interpreting results. The key is understanding that IQ points tell us about position in a group, not about the absolute amount of intelligence.
-:::
+---
 
 ## Common Ordinal Scales in Behavioural Research
 
+Many measures in psychology and social sciences are ordinal in nature, even when they appear as numbers. Understanding this distinction is crucial for proper analysis and interpretation. Let's explore the most common examples.
+
 ### Likert Scales
 
-Likert scales are widely used in psychology and social sciences to measure attitudes, opinions, and perceptions. Named after psychologist Rensis Likert, these scales typically consist of a series of statements or questions that respondents rate on a scale, often from "Strongly Disagree" to "Strongly Agree."
+Likert scales are widely used in psychology and social sciences to measure attitudes, opinions, and perceptions. Named after psychologist Rensis Likert, these scales typically consist of statements or questions that respondents rate on a scale, often from "Strongly Disagree" to "Strongly Agree."
 
 ![https://individual-psychometrics.rbind.io/](stat_imgs/Likert.svg)
 
 #### Why Likert Scales are Ordinal Variables
 
-Likert scales are considered ordinal variables for several reasons:
+Likert scales are ordinal because:
 
-1.  **Order without equal intervals**: While the responses have a clear order (e.g., "Strongly Disagree" \< "Disagree" \< "Neutral" \< "Agree" \< "Strongly Agree"), the intervals between these categories are not necessarily equal.
+1. **Order without equal intervals**: While responses have a clear order (e.g., "Strongly Disagree" < "Disagree" < "Neutral" < "Agree" < "Strongly Agree"), we cannot assume the psychological distance between "Disagree" and "Neutral" equals the distance between "Neutral" and "Agree."
 
-2.  **Subjective interpretation**: The difference between "Strongly Disagree" and "Disagree" may not be the same as the difference between "Agree" and "Strongly Agree" for all respondents.
+2. **Subjective interpretation**: Different respondents may interpret the same scale points differently. What feels like "Agree" to one person might be "Strongly Agree" to another.
 
-3.  **Lack of true zero point**: Likert scales typically don't have a true zero point, which is a characteristic of interval or ratio scales.
+3. **Lack of true zero point**: There's no absolute zero representing "complete absence" of the attitude being measured.
 
-### IQ and Other Psychological Variables as Ordinal Measures
+::: callout-tip
+**Think of it this way:** If you're ranking your favorite films as "Love it," "Like it," "Neutral," "Dislike it," "Hate it," you know the order clearly. But can you say the difference between "Love it" and "Like it" is exactly the same as between "Dislike it" and "Hate it"? Probably not.
+:::
 
-Many psychological measures, including IQ, are often treated as interval scales but are, in fact, ordinal. Here's why:
+### IQ Scores: A Complex Case
 
-1.  **IQ Scores**:
+IQ appears to be a continuous, interval-level measure, but it's fundamentally ordinal. This is one of the most misunderstood aspects of psychological measurement.
 
-    -   While IQ scores are presented as numbers, the difference between an IQ of 100 and 110 may not represent the same cognitive difference as between 130 and 140.
-    -   The scale is normalized and adjusted over time, making it difficult to claim true interval properties.
+#### How IQ Scores are Actually Created
 
-2.  **Other Psychological Measures**:
+Let's walk through a concrete example:
 
-    -   Depression scales (e.g., Beck Depression Inventory)
-    -   Anxiety measures (e.g., State-Trait Anxiety Inventory)
-    -   Personality assessments (e.g., Big Five Inventory)
+1. **Collecting raw scores:** 1,000 children take a test with 60 questions. Child A answers 45 correctly, Child B answers 38, Child C answers 52, etc.
 
-These measures often use summed Likert-type items or other scoring methods that don't guarantee equal intervals between scores.
+2. **Ranking:** All 1,000 raw scores are ordered from lowest (say, 12 correct) to highest (say, 58 correct)
 
-### Implications for Analysis
+3. **Percentile assignment:** Child A (45 correct) is at the 70th percentile—better than 70% of children. Child C (52 correct) is at the 95th percentile.
 
-Recognizing these measures as ordinal has important implications for data analysis:
+::: callout-note
+### What is a Percentile?
 
-1.  **Appropriate statistical tests**: Use non-parametric tests (e.g., Mann-Whitney U, Kruskal-Wallis) instead of parametric ones.
+A percentile tells you what percentage of people scored below you. 
 
-2.  **Correlation analysis**: Use Spearman's rank correlation instead of Pearson's correlation.
+**Examples:**
 
-3.  **Central tendency**: Report median and mode rather than mean.
+- 50th percentile = you scored better than 50% of people (exactly average)
+- 70th percentile = you scored better than 70% of people (above average)
+- 95th percentile = you scored better than 95% of people (well above average)
+- 10th percentile = you scored better than only 10% of people (below average)
 
-4.  **Data visualization**: Use methods appropriate for ordinal data, such as bar plots or stacked bar charts.
+If you're at the 80th percentile, it means 80% of people scored lower than you, and 20% scored higher.
+:::
 
-### Conclusion
+4. **Mathematical transformation:** These percentiles are converted to IQ scores so that the mean equals 100 and standard deviation equals 15. Child A gets IQ 110, Child C gets IQ 125.
 
-While Likert scales and many behavioural measures are often treated as interval data for practical reasons, it's crucial to remember their ordinal nature.
+**The fundamental issue:** This process forces the scores into a bell curve shape, even if the original raw scores weren't bell-shaped. Imagine if most children got either 20-30 questions right or 50-55 questions right, with few in between. The transformation would still produce a smooth bell curve of IQ scores, hiding this gap in the actual test performance.
+
+::: callout-note
+### What is a Bell-Shaped (Normal) Distribution?
+
+A bell-shaped distribution, also called a normal distribution or bell curve, is a symmetrical pattern where:
+
+- Most values cluster around the average (the middle of the bell)
+- Fewer values appear as you move away from the average in either direction
+- The distribution is symmetrical—the left and right sides mirror each other
+
+**Think of heights:** Most people are around average height (170-180 cm), fewer people are very short (150 cm) or very tall (200 cm), creating a bell shape.
+
+**In IQ:** The scores are transformed so that most people score around 100 (the peak of the bell), fewer people score 85 or 115 (moving down the sides), and very few people score 70 or 130 (at the tails).
+
+The key issue: Real test performance might not naturally follow this pattern, but the IQ transformation forces it into one.
+
+![https://en.wikipedia.org/wiki/File:IQ_curve.svg](stat_imgs/IQ_curve.svg)
+:::
+
+::: callout-important
+### Key Point
+
+IQ 130 does not mean "twice the intelligence" of IQ 65. IQ points only indicate a person's position relative to others in the standardization sample, not an absolute quantity of intelligence. 
+:::
+
+#### The Methodological Compromise
+
+In research practice, IQ is often treated as an interval scale. This is a **pragmatic compromise** that allows researchers to use more powerful statistical tools, but it comes with important caveats.
+
+✅ **Treating IQ as interval is acceptable when:**
+
+- Using standard statistical tests (correlations, regressions, t-tests) for exploratory or applied research
+- Comparing groups who took the *same* IQ test, scored by the *same* norms (e.g., comparing 8-year-olds who all took WISC-V using 2024 norms—NOT comparing WISC-V scores to Stanford-Binet scores, or 2024 norms to 1990 norms)
+- You explicitly acknowledge this limitation in your interpretation
+- Your conclusions focus on patterns rather than precise numerical differences
+
+⚠️ **Remember the limitations:**
+
+- This treatment works better for scores near the population mean (IQ 85-115) than at the extremes (IQ 70 or IQ 145)
+- The assumption of equal intervals is an approximation, not reality
+- Results must be interpreted with appropriate caution
+
+❌ **Never:**
+
+- Claim that equal IQ differences mean equal differences in ability (e.g., saying "the gap between IQ 100 and 115 represents the same cognitive difference as the gap between IQ 85 and 100")
+- Use ratio statements like "twice as intelligent" or "50% smarter"
+- Say "Person A with IQ 130 is 15 points smarter than Person B with IQ 115, and Person B is 15 points smarter than Person C with IQ 100, so all three differences are equal"
+- Interpret IQ differences as if they were physical measurements like height or weight
+
+### Other Psychological Measures
+
+Many widely-used psychological instruments share IQ's ordinal nature:
+
+- **Depression scales** (e.g., Beck Depression Inventory): A score of 20 doesn't mean "twice as depressed" as a score of 10. Someone scoring 30 might be having severe daily symptoms, while someone scoring 15 might have mild occasional symptoms—but the 15-point difference doesn't represent the same change in depression severity as the difference between scores of 5 and 20.
+
+- **Anxiety measures** (e.g., State-Trait Anxiety Inventory): If three people score 30, 45, and 60, we know the order of their anxiety levels, but we can't say the psychological distance between the first two equals the distance between the last two.
+
+- **Personality assessments** (e.g., Big Five Inventory): A score of 80 on Extraversion doesn't mean "twice as extraverted" as a score of 40—it just means more extraverted.
 
 ![https://individual-psychometrics.rbind.io/](stat_imgs/SUDS.svg)
 
-::: {.callout-note icon="false"}
+These measures often use summed Likert-type items or other scoring methods that don't guarantee equal intervals between scores, despite appearing as continuous numbers.
+
+## Conclusion
+
+The ordinal nature of behavioural measures presents both a conceptual challenge and a practical dilemma. While these scales provide valuable information about relative standing and group differences, they don't support the precise quantitative interpretations we might wish for.
+
+**Key takeaway:** Most behavioural measures tell us about *order* and *relative position*, not about *absolute quantities* or *equal intervals*. This doesn't make them less useful—it just means we must interpret them appropriately and honestly communicate their limitations to our students, readers, and research consumers.
+
+**Practical summary:**
+
+- A higher score means more of the characteristic—this we can say confidently
+- Group A scoring higher than Group B—this is a valid conclusion
+- The difference between scores of 100 and 115 being exactly equal to the difference between 115 and 130—this we cannot claim
+
+By acknowledging these limitations and choosing appropriate analytical methods, we can conduct rigorous research while maintaining scientific integrity.
+
+---
+
+::: callout-tip
+### How Does the Transformation from Percentiles to IQ Work Exactly (*)?
+
+The transformation proceeds in two steps:
+
+**Step 1: From percentile to standard score (z-score)**
+
+A percentile is transformed into a standard score, which tells you how many standard deviations you are from the mean in a normal distribution.
+
+**Examples:**
+
+- 50th percentile (average) → $z = 0$
+- 84th percentile → $z = +1$ (one standard deviation above the mean)
+- 16th percentile → $z = -1$ (one standard deviation below the mean)
+- 98th percentile → $z = +2$
+- 2nd percentile → $z = -2$
+
+**What is a z-score and why do we use it?**
+
+A standard score (z-score) is a way of expressing where a given value falls relative to the rest of the data, using a common "measure of distance."
+
+**Standardization formula (z-score):** 
+
+$$z = \frac{X - \mu}{\sigma}$$
+
+Where:
+
+- $X$ = raw score (e.g., number of correct answers)
+- $\mu$ = mean in the group
+- $\sigma$ = standard deviation in the group
+
+**Where does this formula come from?**
+
+The standardization process consists of two operations:
+
+1. **$(X - \mu)$** — **centering**: we subtract the mean from each value
+   - After this operation, the new mean = 0
+   - Example: if $X = 45$, $\mu = 40$, then $(45 - 40) = 5$ points above the mean
+
+2. **$/\sigma$** — **scaling**: we divide by the standard deviation
+   - After this operation, the new standard deviation = 1
+   - Example: if $\sigma = 10$, then 5 points above the mean = $5/10 = 0.5$ standard deviations
+
+**Result of standardization:** We obtain a variable that has $\mu = 0$ and $\sigma = 1$, regardless of what the original values were!
+
+**Intuitive example:**
+
+Imagine three tests:
+
+- Test A: $\mu = 50$ points, $\sigma = 10$ points
+- Test B: $\mu = 200$ points, $\sigma = 40$ points  
+- Test C: $\mu = 15$ points, $\sigma = 3$ points
+
+A student who scores one standard deviation above the mean on each test will receive:
+
+- Test A: 60 points → $z = \frac{60-50}{10} = +1$
+- Test B: 240 points → $z = \frac{240-200}{40} = +1$
+- Test C: 18 points → $z = \frac{18-15}{3} = +1$
+
+The raw scores are very different (60, 240, 18), but the z-score is the same $(+1)$, which means the same **relative position** on each test. This is exactly what allows us to compare scores from different tests!
+
+**Step 2: From standard score to IQ (de-standardization)**
+
+**De-standardization is the reverse of the standardization process.** If standardization transforms data to a scale with mean 0 and standard deviation 1, then de-standardization allows us to return to **any chosen** mean and standard deviation.
+
+**De-standardization formula:**
+
+$$X = \mu + \sigma \times z$$
+
+**Where does this formula come from?**
+
+This is an algebraic transformation of the z-score formula. We solve it for $X$:
+
+$$
+\begin{align}
+z &= \frac{X - \mu}{\sigma} \\[0.5em]
+z \times \sigma &= X - \mu \quad \text{(multiply both sides by } \sigma \text{)} \\[0.5em]
+X &= \mu + \sigma \times z \quad \text{(add } \mu \text{ to both sides)}
+\end{align}
+$$
+
+**What does this formula mean intuitively?**
+
+"Take the mean ($\mu$), and add the appropriate number of standard deviations ($\sigma \times z$) to it"
+
+- If $z = +1$, you add one standard deviation to the mean: $X = \mu + \sigma$
+- If $z = -1$, you subtract one standard deviation from the mean: $X = \mu - \sigma$
+- If $z = 0$, you get exactly the mean: $X = \mu$
+
+**IQ transformation is de-standardization with $\mu = 100$ and $\sigma = 15$:**
+
+$$\text{IQ} = 100 + 15 \times z$$
+
+**Why 100 and 15 specifically?**
+
+This is an **arbitrary convention** established by David Wechsler in the 1930s for the WISC and WAIS scales. Earlier tests (like Stanford-Binet) used different values ($\mu = 100$, but $\sigma = 16$). Contemporary IQ tests most commonly use the convention $\mu = 100$, $\sigma = 15$, which makes it easier to compare scores between different tests. 
+
+Theoretically, we could choose any values (e.g., $\mu = 500$, $\sigma = 100$ as in the SAT), but 100 and 15 have become the standard for intelligence tests.
+
+**Comparison: standardization vs. de-standardization (IQ transformation)**
+
+| Operation | Formula | Mean | Standard deviation | Direction |
+|----------|------|---------|-----------------|----------|
+| Standardization | $z = \frac{X - \mu}{\sigma}$ | 0 | 1 | Raw scores → z-score |
+| De-standardization (IQ) | $\text{IQ} = 100 + 15 \times z$ | 100 | 15 | z-score → IQ |
+
+**Logic of the process:**
+
+1. **Standardization** creates a "neutral" scale ($\mu = 0$, $\sigma = 1$) — a common "currency"
+2. **De-standardization** transforms this neutral scale to more convenient numbers ($\mu = 100$, $\sigma = 15$) — currency exchange at a fixed rate
+
+It's like temperature: Celsius → Kelvin (standardization to a "natural" scale) → Fahrenheit (transformation to another scale).
+
+**Concrete calculation example:**
+
+Child C is at the 95th percentile:
+
+1. The 95th percentile in a normal distribution corresponds to $z \approx +1.645$
+2. $\text{IQ} = 100 + 15 \times 1.645 = 100 + 24.675 \approx 125$
+
+Child A is at the 70th percentile:
+
+1. The 70th percentile corresponds to $z \approx +0.524$
+2. $\text{IQ} = 100 + 15 \times 0.524 = 100 + 7.86 \approx 108$
+
+**Key observation:** 
+
+This formula can be applied to *any* data — even if the raw scores don't have a normal distribution. This is exactly what "forcing" a normal distribution means — the mathematics creates a bell curve regardless of the actual shape of the data. Percentiles are transformed through a **theoretical** normal distribution, not the actual distribution of raw scores.
+
+**In R:** 
+```{r}
+# Standardization of a variable
+raw_scores <- c(35, 42, 45, 38, 51)
+z_scores <- scale(raw_scores)  # mean = 0, SD = 1
+
+# De-standardization: back to original parameters
+mean_original <- mean(raw_scores)
+sd_original <- sd(raw_scores)
+back_to_original <- mean_original + sd_original * z_scores
+
+# Transformation of percentiles to IQ (de-standardization with μ=100, σ=15)
+percentiles <- c(0.70, 0.95)  # 70th and 95th percentile
+z_from_percentile <- qnorm(percentiles)  # Step 1: percentile → z
+IQ <- 100 + 15 * z_from_percentile      # Step 2: z → IQ (de-standardization)
+# Result: 108, 125
+```
+:::
+
+---
+
 ## Exercise: Identifying Measurement Scales
 
 For each of the following variables, determine the most appropriate scale of measurement (**Nominal, Ordinal, Interval, or Ratio**). Also evaluate whether the variable is discrete or continuous.
@@ -557,7 +779,6 @@ Remember to justify your choices for each variable.
 **For instance**: In Stevens' typology of measurement scales, street addresses are nominal data. This is because:
 
 They serve purely as labels/identifiers. They have no inherent ordering (123 Main St isn't "more than" 23 Oak St). You can't perform meaningful mathematical operations on them.The only valid operation is testing for equality/inequality (is this the same address or different?)
-:::
 
 ------------------------------------------------------------------------
 

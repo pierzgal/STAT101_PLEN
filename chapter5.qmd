@@ -515,8 +515,8 @@ The median is the "middle value" that divides ordered data into two equal-sized 
 
 More precisely:
 
-- If n is odd: The median is the middle observation (the one at position (n+1)/2)
-- If n is even: The median is the average of the two middle observations (at positions n/2 and n/2 + 1)
+-   If n is odd: The median is the middle observation (the one at position (n+1)/2)
+-   If n is even: The median is the average of the two middle observations (at positions n/2 and n/2 + 1)
 
 **Manual Calculation Example:**
 
@@ -1360,16 +1360,13 @@ Step 3: Interpolate (important: percentiles use linear interpolation)
 
 What this means: 60% of students scored 86.8 or below.
 
-
-### Percentile Ranks (PR) (*)
+### Percentile Ranks (PR) (\*)
 
 #### What is a Percentile Rank?
 
 Percentiles and percentile ranks are related but opposite concepts:
 
-**Key Difference:**
-- **Percentile** → "What score is at the 75th percentile?" (position → value)
-- **Percentile Rank** → "What percentile rank does a score of 75 have?" (value → position)
+**Key Difference:** - **Percentile** → "What score is at the 75th percentile?" (position → value) - **Percentile Rank** → "What percentile rank does a score of 75 have?" (value → position)
 
 **Percentile rank** tells us what percentage of values fall below a specific score. Think of it as answering: *"What percentage of the class did I score higher than?"*
 
@@ -1383,16 +1380,13 @@ $$
 
 Consider these exam scores (sorted):
 
-| Position | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 10 |
-|----------|----|----|----|----|----|----|----|----|----|----|
-| Score    | 65 | 70 | 70 | **75** | **75** | **75** | 80 | 85 | 85 | 90 |
+| Position | 1   | 2   | 3   | 4      | 5      | 6      | 7   | 8   | 9   | 10  |
+|----------|-----|-----|-----|--------|--------|--------|-----|-----|-----|-----|
+| Score    | 65  | 70  | 70  | **75** | **75** | **75** | 80  | 85  | 85  | 90  |
 
 Let's find the PR for a score of **75** (highlighted).
 
-**Step 1: Count carefully**
-- Values **below** 75: 65, 70, 70 → **3 values**
-- Values **equal to** 75: 75, 75, 75 → **3 values**
-- Total values: **10**
+**Step 1: Count carefully** - Values **below** 75: 65, 70, 70 → **3 values** - Values **equal to** 75: 75, 75, 75 → **3 values** - Total values: **10**
 
 **Step 2: Apply the formula**
 
@@ -1410,15 +1404,9 @@ $$
 
 **A:** The 0.5 factor means we count **half** of the tied values as being below us.
 
-Here's the intuition: If you scored 75 along with two other people, should you count yourself as:
-- Above all of them? (That wouldn't be fair to them)
-- Below all of them? (That wouldn't be fair to you)
-- Somewhere in the middle? ✓ (This is the fairest approach)
+Here's the intuition: If you scored 75 along with two other people, should you count yourself as: - Above all of them? (That wouldn't be fair to them) - Below all of them? (That wouldn't be fair to you) - Somewhere in the middle? ✓ (This is the fairest approach)
 
-**Using our example:**
-- 3 people scored below 75: we count all **3** of them
-- 3 people scored exactly 75 (including you): we count **half** of them = 0.5 × 3 = **1.5**
-- Total below or tied: 3 + 1.5 = 4.5 out of 10 = 45%
+**Using our example:** - 3 people scored below 75: we count all **3** of them - 3 people scored exactly 75 (including you): we count **half** of them = 0.5 × 3 = **1.5** - Total below or tied: 3 + 1.5 = 4.5 out of 10 = 45%
 
 By using 0.5, we're essentially saying: *"Of the people who tied with me, I can assume I did better than half of them."* This treats everyone with the same score equally and avoids giving any one person an unfair advantage.
 
@@ -1427,15 +1415,12 @@ By using 0.5, we're essentially saying: *"Of the people who tied with me, I can 
 Using the same dataset above, find the percentile rank for a score of **85**.
 
 <details>
+
 <summary>Click to see the solution</summary>
 
-**Counting:**
-- Values below 85: 65, 70, 70, 75, 75, 75, 80 → 7 values
-- Values equal to 85: 85, 85 → 2 values
-- Total: 10 values
+**Counting:** - Values below 85: 65, 70, 70, 75, 75, 75, 80 → 7 values - Values equal to 85: 85, 85 → 2 values - Total: 10 values
 
-**Calculation:**
-$$
+**Calculation:** $$
 PR = \frac{7 + 0.5(2)}{10} \times 100 = \frac{8}{10} \times 100 = 80\%
 $$
 
@@ -1445,12 +1430,9 @@ $$
 
 #### Note on Software Implementation
 
-Different software packages may use slightly different methods for calculating percentile ranks:
-- **R**: Use `ecdf()` function or manually calculate
-- **Python (pandas)**: Use `rank(pct=True)` method
+Different software packages may use slightly different methods for calculating percentile ranks: - **R**: Use `ecdf()` function or manually calculate - **Python (pandas)**: Use `rank(pct=True)` method
 
 These may produce slightly different results depending on how they handle ties and boundary cases.
-
 
 ### Understanding and Interpreting Box Plots {#sec-boxplots}
 
@@ -1637,6 +1619,7 @@ ggplot(data = data_height_l) +
   labs(title = "Height Distribution by Group",
        x = "Group",
        y = "Height (cm)")
+
 ```
 
 To complement our box plots, let's also look at the density distributions:
@@ -1776,9 +1759,9 @@ ggplot(data = data_height_l) +
        y = "Density")
 ```
 
----
+------------------------------------------------------------------------
 
-## Shape Measures (*)
+## Shape Measures (\*)
 
 ### Skewness
 
@@ -1790,11 +1773,12 @@ $SK = \frac{n}{(n-1)(n-2)} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s}\right)^3$
 
 **Quick interpretation:**
 
-- **SK > 0**: Right tail is longer (most data on the left, few high outliers)
-- **SK < 0**: Left tail is longer (most data on the right, few low outliers)  
-- **SK ≈ 0**: Roughly symmetric
+-   **SK \> 0**: Right tail is longer (most data on the left, few high outliers)
+-   **SK \< 0**: Left tail is longer (most data on the right, few low outliers)\
+-   **SK ≈ 0**: Roughly symmetric
 
 #### Clear Visualization of Skewness
+
 ```{r}
 library(moments)
 library(ggplot2)
@@ -1851,7 +1835,10 @@ ggplot(df_skew, aes(x = value, fill = type)) +
   )
 ```
 
+---
+
 #### Applied Example: Income Distribution
+
 ```{r}
 set.seed(456)
 
@@ -1914,7 +1901,7 @@ ggplot(df_income, aes(x = income)) +
   )
 ```
 
----
+------------------------------------------------------------------------
 
 ### Kurtosis
 
@@ -1926,11 +1913,12 @@ $K = \frac{n(n+1)}{(n-1)(n-2)(n-3)} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s}\r
 
 **Quick interpretation:**
 
-- **K > 3** (Leptokurtic): Heavy tails, sharp peak (more extreme values)
-- **K < 3** (Platykurtic): Light tails, flat peak (fewer extreme values)
-- **K ≈ 3** (Mesokurtic): Normal-like behavior
+-   **K \> 3** (Leptokurtic): Heavy tails, sharp peak (more extreme values)
+-   **K \< 3** (Platykurtic): Light tails, flat peak (fewer extreme values)
+-   **K ≈ 3** (Mesokurtic): Normal-like behavior
 
 #### Visualization of Kurtosis
+
 ```{r}
 set.seed(789)
 
@@ -2042,6 +2030,7 @@ ggplot(df_kurt, aes(x = value, fill = type)) +
 ```
 
 #### Applied Example: Stock Returns
+
 ```{r}
 set.seed(101)
 
@@ -2115,32 +2104,32 @@ ggplot(df_returns, aes(x = return, fill = investment)) +
   )
 ```
 
----
+------------------------------------------------------------------------
 
 ### Key Takeaways
 
 **Skewness tells you about asymmetry:**
 
-- Positive: Long right tail → Mean pulled above median
-- Negative: Long left tail → Mean pulled below median
+-   Positive: Long right tail → Mean pulled above median
+-   Negative: Long left tail → Mean pulled below median
 
 **Kurtosis tells you about extremes:**
 
-- High kurtosis (K > 5): Expect frequent outliers - "black swan" events
-- Low kurtosis (K < 2): Data stays predictable, within tight bounds
-- Normal kurtosis (K ≈ 3): Typical bell curve behavior
+-   High kurtosis (K \> 5): Expect frequent outliers - "black swan" events
+-   Low kurtosis (K \< 2): Data stays predictable, within tight bounds
+-   Normal kurtosis (K ≈ 3): Typical bell curve behavior
 
 **Visual cues:**
 
-- **Skewness**: Look at tail length - mean vs median separation
-- **Kurtosis**: Look at peak sharpness AND tail thickness simultaneously
+-   **Skewness**: Look at tail length - mean vs median separation
+-   **Kurtosis**: Look at peak sharpness AND tail thickness simultaneously
 
 **Practical meaning:**
 
-- High kurtosis ≠ just "fat tails" - it's a sharp peak WITH heavy tails
-- It means: "mostly clustered, but watch out for surprises"
+-   High kurtosis ≠ just "fat tails" - it's a sharp peak WITH heavy tails
+-   It means: "mostly clustered, but watch out for surprises"
 
----
+------------------------------------------------------------------------
 
 ## Exercise 1. Center and dispersion of data
 

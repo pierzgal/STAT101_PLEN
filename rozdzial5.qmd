@@ -201,7 +201,7 @@ ggplot(dane_bimodalne, aes(x)) +
 ```
 
 | Rozkład | Kluczowe właściwości | Przykłady |
-|------------------|---------------------|---------------------------------|
+|-------------------|---------------------|---------------------------------|
 | Symetryczny (Normalny) | Symetryczny, kształt dzwonu, większość wartości blisko średniej | Wzrost dorosłych w populacji, wyniki testów IQ, błędy pomiarowe, wyniki egzaminów standaryzowanych |
 | Równomierny (Jednostajny) | Jednakowe prawdopodobieństwo w całym zakresie | Ostatnia cyfra numeru telefonu, wybór losowego dnia tygodnia, pozycja wskazówki po zakręceniu kołem fortuny |
 | Dwumodalny (Bimodalny) | Dwa wyraźne szczyty, sugeruje istnienie podgrup | Struktura wieku w miastach uniwersyteckich (studenci i stali mieszkańcy), opinie na tematy silnie polaryzujące społeczeństwo, godziny natężenia ruchu drogowego (poranny i popołudniowy szczyt) |
@@ -537,11 +537,10 @@ mean(dane)
 
 ### Mediana
 
-Mediana to "wartość środkowa", która dzieli uporządkowane dane na dwie równoliczne połowy.
-Bardziej precyzyjnie:
+Mediana to "wartość środkowa", która dzieli uporządkowane dane na dwie równoliczne połowy. Bardziej precyzyjnie:
 
-- Jeśli n jest nieparzyste: Mediana to środkowa obserwacja (ta na pozycji (n+1)/2)
-- Jeśli n jest parzyste: Mediana to średnia arytmetyczna dwóch środkowych obserwacji (na pozycjach n/2 i n/2 + 1)
+-   Jeśli n jest nieparzyste: Mediana to środkowa obserwacja (ta na pozycji (n+1)/2)
+-   Jeśli n jest parzyste: Mediana to średnia arytmetyczna dwóch środkowych obserwacji (na pozycjach n/2 i n/2 + 1)
 
 **Przykład Ręcznego Obliczenia:**
 
@@ -639,7 +638,7 @@ Jest to standardowa forma średniej ważonej, gdzie wagi mogą być dowolnymi li
 **Przykład Obliczeń Ręcznych:** Obliczmy średnią ważoną dla zbioru danych: 2, 4, 5, 7 z wagami 1, 2, 3, 1
 
 | Krok | Opis | Obliczenie |
-|------------------|---------------------------|---------------------------|
+|-------------------|---------------------------|---------------------------|
 | 1 | Pomnóż każdą wartość przez jej wagę | (2 \* 1) + (4 \* 2) + (5 \* 3) + (7 \* 1) = 2 + 8 + 15 + 7 = 32 |
 | 2 | Zsumuj wagi | 1 + 2 + 3 + 1 = 7 |
 | 3 | Podziel wynik z kroku 1 przez wynik z kroku 2 | 32 / 7 = 4.57 |
@@ -663,7 +662,7 @@ W tym przypadku wagi są ułamkami sumującymi się do 1, reprezentującymi prop
 Obliczmy średnią ważoną dla zbioru danych: 2, 4, 5, 7 z wagami znormalizowanymi 0.1, 0.3, 0.4, 0.2
 
 | Krok | Opis | Obliczenie |
-|------------------|---------------------------|---------------------------|
+|-------------------|---------------------------|---------------------------|
 | 1 | Pomnóż każdą wartość przez jej wagę | (2 \* 0.1) + (4 \* 0.3) + (5 \* 0.4) + (7 \* 0.2) |
 | 2 | Zsumuj wyniki | 0.2 + 1.2 + 2.0 + 1.4 = 4.8 |
 
@@ -1398,16 +1397,13 @@ Krok 3: Interpoluj (ważne: percentyle używają interpolacji liniowej)
 
 Co to oznacza: 60% uczniów uzyskało wynik 86.8 lub niższy.
 
-
-### Rangi Percentylowe (RP) (*)
+### Rangi Percentylowe (RP) (\*)
 
 #### Czym jest Ranga Percentylowa?
 
 Percentyle i rangi percentylowe to powiązane, ale przeciwstawne pojęcia:
 
-**Kluczowa różnica:**
-- **Percentyl** → "Jaki wynik znajduje się na 75. percentylu?" (pozycja → wartość)
-- **Ranga Percentylowa** → "Jaką rangę percentylową ma wynik 75?" (wartość → pozycja)
+**Kluczowa różnica:** - **Percentyl** → "Jaki wynik znajduje się na 75. percentylu?" (pozycja → wartość) - **Ranga Percentylowa** → "Jaką rangę percentylową ma wynik 75?" (wartość → pozycja)
 
 **Ranga percentylowa** informuje nas, jaki procent wartości znajduje się poniżej określonego wyniku. Można o tym myśleć jako o odpowiedzi na pytanie: *"Ile procent klasy uzyskało wynik gorszy ode mnie?"*
 
@@ -1421,16 +1417,13 @@ $$
 
 Rozważmy następujące wyniki egzaminu (posortowane):
 
-| Pozycja | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 10 |
-|---------|----|----|----|----|----|----|----|----|----|----|
-| Wynik   | 65 | 70 | 70 | **75** | **75** | **75** | 80 | 85 | 85 | 90 |
+| Pozycja | 1   | 2   | 3   | 4      | 5      | 6      | 7   | 8   | 9   | 10  |
+|---------|-----|-----|-----|--------|--------|--------|-----|-----|-----|-----|
+| Wynik   | 65  | 70  | 70  | **75** | **75** | **75** | 80  | 85  | 85  | 90  |
 
 Wyznaczmy RP dla wyniku **75** (wyróżnionego).
 
-**Krok 1: Dokładne policzenie**
-- Wartości **poniżej** 75: 65, 70, 70 → **3 wartości**
-- Wartości **równe** 75: 75, 75, 75 → **3 wartości**
-- Wszystkie wartości: **10**
+**Krok 1: Dokładne policzenie** - Wartości **poniżej** 75: 65, 70, 70 → **3 wartości** - Wartości **równe** 75: 75, 75, 75 → **3 wartości** - Wszystkie wartości: **10**
 
 **Krok 2: Zastosowanie wzoru**
 
@@ -1448,15 +1441,9 @@ $$
 
 **O:** Współczynnik 0,5 oznacza, że liczymy **połowę** wartości remisowych jako znajdujące się poniżej nas.
 
-Oto intuicja: Jeśli uzyskałeś wynik 75 wraz z dwiema innymi osobami, czy powinieneś uznać się za:
-- Lepszego od wszystkich z nich? (To nie byłoby sprawiedliwe wobec nich)
-- Gorszego od wszystkich z nich? (To nie byłoby sprawiedliwe wobec ciebie)
-- Gdzieś pośrodku? ✓ (To najsprawiedliwsze podejście)
+Oto intuicja: Jeśli uzyskałeś wynik 75 wraz z dwiema innymi osobami, czy powinieneś uznać się za: - Lepszego od wszystkich z nich? (To nie byłoby sprawiedliwe wobec nich) - Gorszego od wszystkich z nich? (To nie byłoby sprawiedliwe wobec ciebie) - Gdzieś pośrodku? ✓ (To najsprawiedliwsze podejście)
 
-**Używając naszego przykładu:**
-- 3 osoby uzyskały wynik poniżej 75: liczymy wszystkie **3**
-- 3 osoby uzyskały dokładnie 75 (łącznie z tobą): liczymy **połowę** z nich = 0,5 × 3 = **1,5**
-- Razem poniżej lub remis: 3 + 1,5 = 4,5 z 10 = 45%
+**Używając naszego przykładu:** - 3 osoby uzyskały wynik poniżej 75: liczymy wszystkie **3** - 3 osoby uzyskały dokładnie 75 (łącznie z tobą): liczymy **połowę** z nich = 0,5 × 3 = **1,5** - Razem poniżej lub remis: 3 + 1,5 = 4,5 z 10 = 45%
 
 Używając 0,5, mówimy zasadniczo: *"Spośród osób, które zremisowały ze mną, mogę założyć, że wypadłem lepiej niż połowa z nich."* To traktuje wszystkich z tym samym wynikiem równo i unika dawania komukolwiek niesprawiedliwej przewagi.
 
@@ -1465,12 +1452,10 @@ Używając 0,5, mówimy zasadniczo: *"Spośród osób, które zremisowały ze mn
 Używając tego samego zestawu danych powyżej, wyznacz rangę percentylową dla wyniku **85**.
 
 <details>
+
 <summary>Kliknij, aby zobaczyć rozwiązanie</summary>
 
-**Liczenie:**
-- Wartości poniżej 85: 65, 70, 70, 75, 75, 75, 80 → 7 wartości
-- Wartości równe 85: 85, 85 → 2 wartości
-- Wszystkie: 10 wartości
+**Liczenie:** - Wartości poniżej 85: 65, 70, 70, 75, 75, 75, 80 → 7 wartości - Wartości równe 85: 85, 85 → 2 wartości - Wszystkie: 10 wartości
 
 **Obliczenie:**
 $$
@@ -1483,12 +1468,9 @@ $$
 
 #### Uwaga o Implementacji w Oprogramowaniu
 
-Różne pakiety oprogramowania mogą używać nieco innych metod obliczania rang percentylowych:
-- **R**: Funkcja `ecdf()` lub obliczenia ręczne
-- **Python (pandas)**: Metoda `rank(pct=True)`
+Różne pakiety oprogramowania mogą używać nieco innych metod obliczania rang percentylowych: - **R**: Funkcja `ecdf()` lub obliczenia ręczne - **Python (pandas)**: Metoda `rank(pct=True)`
 
 Mogą one dawać nieco różne wyniki w zależności od sposobu obsługi wartości remisowych i przypadków brzegowych.
-
 
 ::: callout-important
 ### Podwójna Funkcja Mediany
@@ -1873,9 +1855,9 @@ ggplot(data = data_height_l) +
        y = "Gęstość")
 ```
 
----
+------------------------------------------------------------------------
 
-## Miary Kształtu Rozkładu (*)
+## Miary Kształtu Rozkładu (\*)
 
 ### Skośność
 
@@ -1887,11 +1869,12 @@ $SK = \frac{n}{(n-1)(n-2)} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s}\right)^3$
 
 **Szybka interpretacja:**
 
-- **SK > 0**: Dłuższy prawy ogon (większość danych po lewej, kilka wysokich wartości odstających)
-- **SK < 0**: Dłuższy lewy ogon (większość danych po prawej, kilka niskich wartości odstających)  
-- **SK ≈ 0**: W przybliżeniu symetryczny
+-   **SK \> 0**: Dłuższy prawy ogon (większość danych po lewej, kilka wysokich wartości odstających)
+-   **SK \< 0**: Dłuższy lewy ogon (większość danych po prawej, kilka niskich wartości odstających)\
+-   **SK ≈ 0**: W przybliżeniu symetryczny
 
 #### Wizualizacja Skośności
+
 ```{r}
 library(moments)
 library(ggplot2)
@@ -1949,6 +1932,7 @@ ggplot(df_skosnosc, aes(x = wartosc, fill = typ)) +
 ```
 
 #### Przykład Zastosowania: Rozkład Dochodów
+
 ```{r}
 set.seed(456)
 
@@ -2011,7 +1995,7 @@ ggplot(df_dochody, aes(x = dochod)) +
   )
 ```
 
----
+------------------------------------------------------------------------
 
 ### Kurtoza
 
@@ -2023,11 +2007,12 @@ $K = \frac{n(n+1)}{(n-1)(n-2)(n-3)} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s}\r
 
 **Szybka interpretacja:**
 
-- **K > 3** (Leptokurtyczny): Ciężkie ogony, ostry szczyt (więcej wartości ekstremalnych)
-- **K < 3** (Platykurtyczny): Lekkie ogony, płaski szczyt (mniej wartości ekstremalnych)
-- **K ≈ 3** (Mezokurtyczny): Zachowanie podobne do rozkładu normalnego
+-   **K \> 3** (Leptokurtyczny): Ciężkie ogony, ostry szczyt (więcej wartości ekstremalnych)
+-   **K \< 3** (Platykurtyczny): Lekkie ogony, płaski szczyt (mniej wartości ekstremalnych)
+-   **K ≈ 3** (Mezokurtyczny): Zachowanie podobne do rozkładu normalnego
 
 #### Wizualizacja Kurtozy
+
 ```{r}
 set.seed(789)
 
@@ -2139,6 +2124,7 @@ ggplot(df_kurtoza, aes(x = wartosc, fill = typ)) +
 ```
 
 #### Przykład Zastosowania: Stopy Zwrotu z Inwestycji
+
 ```{r}
 set.seed(101)
 
@@ -2212,33 +2198,32 @@ ggplot(df_zwroty, aes(x = zwrot, fill = inwestycja)) +
   )
 ```
 
----
+------------------------------------------------------------------------
 
 ### Kluczowe Wnioski
 
 **Skośność informuje o asymetrii:**
 
-- Dodatnia: Długi prawy ogon → Średnia przesunięta powyżej mediany
-- Ujemna: Długi lewy ogon → Średnia przesunięta poniżej mediany
+-   Dodatnia: Długi prawy ogon → Średnia przesunięta powyżej mediany
+-   Ujemna: Długi lewy ogon → Średnia przesunięta poniżej mediany
 
 **Kurtoza informuje o wartościach ekstremalnych:**
 
-- Wysoka kurtoza (K > 5): Spodziewaj się częstych wartości odstających - zdarzenia typu "czarny łabędź"
-- Niska kurtoza (K < 2): Dane pozostają przewidywalne, w wąskich granicach
-- Normalna kurtoza (K ≈ 3): Typowe zachowanie krzywej dzwonowej
+-   Wysoka kurtoza (K \> 5): Spodziewaj się częstych wartości odstających - zdarzenia typu "czarny łabędź"
+-   Niska kurtoza (K \< 2): Dane pozostają przewidywalne, w wąskich granicach
+-   Normalna kurtoza (K ≈ 3): Typowe zachowanie krzywej dzwonowej
 
 **Wskazówki wizualne:**
 
-- **Skośność**: Zwróć uwagę na długość ogonów - separację średniej od mediany
-- **Kurtoza**: Zwróć uwagę JEDNOCZEŚNIE na ostrość szczytu I grubość ogonów
+-   **Skośność**: Zwróć uwagę na długość ogonów - separację średniej od mediany
+-   **Kurtoza**: Zwróć uwagę JEDNOCZEŚNIE na ostrość szczytu I grubość ogonów
 
 **Praktyczne znaczenie:**
 
-- Wysoka kurtoza ≠ tylko "grube ogony" - to ostry szczyt RAZEM z ciężkimi ogonami
-- Oznacza to: "przeważnie skupione, ale uważaj na niespodzianki"
+-   Wysoka kurtoza ≠ tylko "grube ogony" - to ostry szczyt RAZEM z ciężkimi ogonami
+-   Oznacza to: "przeważnie skupione, ale uważaj na niespodzianki"
 
----
-
+------------------------------------------------------------------------
 
 ## Ćwiczenie 1. Porównanie wynagrodzeń
 

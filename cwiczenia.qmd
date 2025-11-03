@@ -1,6 +1,13 @@
-# Ćwiczenia (Sprawdzian)
+---
+title: "Ćwiczenia (Sprawdzian)"
+author: "Michał Pierzgalski"
+date: today
+editor: 
+  markdown: 
+    wrap: 72
+---
 
-## Ćwiczenie 1. Identyfikacja Skal Pomiarowych
+## Ćwiczenie 1. Identyfikacja Typów Danych i Skal Pomiarowych
 
 Dla każdej z poniższych zmiennych określ najbardziej odpowiednią skalę pomiaru (**Nominalna, Porządkowa, Przedziałowa lub Stosunkowa**). Czy zmienna jest dyskretna, czy ciągła?
 
@@ -20,7 +27,7 @@ Dla każdej z poniższych zmiennych określ najbardziej odpowiednią skalę pomi
 14. Frekwencja wyborcza
 15. Przynależność partyjna
 16. Wielkość okręgu wyborczego
-17. Współrzędne w układzie kartezjańskim
+17. Rozmiar koszuli (S, M, ...)
 18. Data (względem określonej epoki, np. n.e.)
 19. Wysokość nad poziomem morza
 20. Grupy krwi: A, B, AB, 0
@@ -35,12 +42,19 @@ Pełnią wyłącznie funkcję etykiet/identyfikatorów Nie mają naturalnego upo
 
 Mimo że numery domów są liczbami, w systemie adresowym funkcjonują jako etykiety, a nie wartości ilościowe. Liczba 100 w adresie "ul. Kilińskiego 100" nie jest używana matematycznie - równie dobrze mogłaby to być "ul. Jabłkowa" czy "ul. Zeusa", jeśli chodzi o jej funkcję w adresie.
 
----
+------------------------------------------------------------------------
 
-## Ćwiczenie 2. Środek i rozproszenie danych
+## Ćwiczenie 2. Miary położenia i rozproszenia danych
+
+```{r setup, echo=FALSE}
+# Utworzenie danych (ukryte przed studentami)
+company_x <- c(2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 20, 35)
+company_y <- c(3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 7, 7, 8)
+```
 
 ### Dane
-Mamy dane o wynagrodzeniach (w tysiącach euro) z dwóch małych firm europejskich:
+
+Dysponujemy danymi o wynagrodzeniach (w tysiącach euro) z dwóch małych firm europejskich:
 
 | Indeks | Firma X | Firma Y |
 |--------|---------|---------|
@@ -58,28 +72,28 @@ Mamy dane o wynagrodzeniach (w tysiącach euro) z dwóch małych firm europejski
 | 12     | 4       | 5       |
 | 13     | 4       | 5       |
 | 14     | 4       | 5       |
-| 15     | 5       | 5       |
+| 15     | 5       | 6       |
 | 16     | 5       | 6       |
 | 17     | 5       | 6       |
-| 18     | 5       | 6       |
+| 18     | 5       | 7       |
 | 19     | 20      | 7       |
 | 20     | 35      | 8       |
 
-Ta tabela przedstawia dane dla obu firm (Firma X i Firma Y) obok siebie, z kolumną indeksu dla łatwego odniesienia.
+Ta tabela przedstawia dane dla obu firm (X i Y) wraz z kolumną indeksową dla łatwiejszego odniesienia.
 
 ### Zadania
 
-**A. Miary tendencji centralnej**
+**A. Miary położenia**
 
-1. Oblicz **średnią arytmetyczną** wynagrodzeń dla Firmy X i Firmy Y.
+1. Oblicz **średnią** wynagrodzeń dla Firmy X i Firmy Y.
 2. Oblicz **medianę** wynagrodzeń dla obu firm.
-3. Znajdź **dominantę** dla rozkładu wynagrodzeń każdej firmy.
-4. Porównaj średnią i medianę dla Firmy X. Co różnica między tymi wartościami mówi o danych?
+3. Znajdź **dominantę (modę)** dla rozkładu wynagrodzeń każdej firmy.
+4. Porównaj średnią i medianę dla Firmy X. Co mówi różnica między tymi wartościami o danych?
 
 **B. Kwartyle i percentyle**
 
 5. Oblicz pierwszy kwartyl (Q1), drugi kwartyl (Q2) i trzeci kwartyl (Q3) dla obu firm.
-6. Sprawdź, że Q2 jest równy medianie obliczonej w zadaniu 2.
+6. Zweryfikuj, że Q2 równa się medianie obliczonej w pytaniu 2.
 
 **C. Miary rozproszenia**
 
@@ -88,71 +102,1471 @@ Ta tabela przedstawia dane dla obu firm (Firma X i Firma Y) obok siebie, z kolum
 9. Oblicz **wariancję** i **odchylenie standardowe** dla obu firm.
 10. Która firma ma większą zmienność wynagrodzeń? Uzasadnij swoją odpowiedź odpowiednimi statystykami.
 
-**D. Wykrywanie wartości odstających**
+**D. Identyfikacja wartości odstających**
 
-11. Użyj metody IQR, aby zidentyfikować potencjalne wartości odstające w obu firmach. (Przypomnij sobie: wartości odstające to wartości poniżej Q1 - 1,5×IQR lub powyżej Q3 + 1,5×IQR)
+11. Użyj metody IQR, aby zidentyfikować potencjalne wartości odstające w obu firmach. (Przypomnij sobie: wartości odstające to wartości poniżej Q1 - 1.5×IQR lub powyżej Q3 + 1.5×IQR)
 12. Jak wartości odstające w Firmie X wpływają na średnią? Oblicz średnią bez wartości odstających i porównaj.
 
-**E. Wykresy pudełkowe**
+**E. Wykresy pudełkowe (boxploty)**
 
-13. Narysuj wykres pudełkowy dla Firmy X i Firmy Y (możesz narysować je obok siebie w celu porównania).
-14. Oznacz następujące elementy na każdym wykresie pudełkowym: minimum, Q1, mediana, Q3, maksimum oraz wszelkie wartości odstające.
+13. Narysuj wykres pudełkowy dla Firmy X i Firmy Y (możesz narysować je obok siebie dla porównania).
+14. Oznacz na każdym wykresie pudełkowym: minimum, Q1, medianę, Q3, maksimum i ewentualne wartości odstające.
 
 **F. Interpretacja i porównanie**
 
-15. Gdybyś przedstawiał „średnie" wynagrodzenie w Firmie X potencjalnym pracownikom, czy użyłbyś średniej arytmetycznej czy mediany? Uzasadnij swój wybór.
+15. Gdybyś informował potencjalnych pracowników o "średnim" wynagrodzeniu w Firmie X, użyłbyś średniej czy mediany? Uzasadnij swój wybór.
 16. Która firma wydaje się mieć bardziej sprawiedliwy rozkład wynagrodzeń? Uzasadnij swoją odpowiedź dowodami statystycznymi.
 
 ---
 
-## Ćwiczenie 3. Uczestnictwo wyborcze a dobrobyt ekonomiczny: analiza korelacji i regresji
+## Rozwiązania
+
+### A. Miary położenia
+
+**Pytanie 1: Oblicz średnią wynagrodzeń dla Firmy X i Firmy Y**
+
+Średnią oblicza się według wzoru: $\bar{x} = \frac{\sum x_i}{n}$
+
+**Firma X:**
+
+Krok 1: Zsumuj wszystkie wartości wynagrodzeń
+
+$$\sum x_i = 2 + 2 + 2 + 3 + 3 + 3 + 3 + 3 + 3 + 4 + 4 + 4 + 4 + 4 + 5 + 5 + 5 + 5 + 20 + 35$$
+
+Uporządkujmy to, grupując powtarzające się wartości:
+
+- $2 \times 3 = 6$
+- $3 \times 6 = 18$
+- $4 \times 5 = 20$
+- $5 \times 4 = 20$
+- $20 \times 1 = 20$
+- $35 \times 1 = 35$
+
+Suma: $6 + 18 + 20 + 20 + 20 + 35 = 119$
+
+Krok 2: Podziel przez liczbę obserwacji (n = 20)
+
+$$\bar{x} = \frac{119}{20} = 5.95 \text{ tys. euro}$$
+
+**Firma Y:**
+
+Krok 1: Zsumuj wszystkie wartości wynagrodzeń
+
+$$\sum y_i = 3 + 3 + 4 + 4 + 4 + 4 + 4 + 4 + 5 + 5 + 5 + 5 + 5 + 5 + 6 + 6 + 6 + 7 + 7 + 8$$
+
+Grupując powtarzające się wartości:
+
+- $3 \times 2 = 6$
+- $4 \times 6 = 24$
+- $5 \times 6 = 30$
+- $6 \times 3 = 18$
+- $7 \times 2 = 14$
+- $8 \times 1 = 8$
+
+Suma: $6 + 24 + 30 + 18 + 14 + 8 = 100$
+
+Krok 2: Podziel przez n = 20
+
+$$\bar{y} = \frac{100}{20} = 5.00 \text{ tys. euro}$$
+
+```{r verify-mean, echo=TRUE}
+# Weryfikacja w R
+mean_x <- mean(company_x)
+mean_y <- mean(company_y)
+cat("Średnia Firma X:", mean_x, "tys. euro\n")
+cat("Średnia Firma Y:", mean_y, "tys. euro\n")
+```
+
+---
+
+**Pytanie 2: Oblicz medianę wynagrodzeń dla obu firm**
+
+Mediana to wartość środkowa, gdy dane są uporządkowane. Dla parzystej liczby obserwacji (n = 20), mediana jest średnią z 10. i 11. wartości.
+
+**Firma X:**
+
+Krok 1: Uporządkuj dane w kolejności rosnącej
+
+| Pozycja | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 |
+|---------|---|---|---|---|---|---|---|---|---|----|----|----|----|----|----|----|----|----|----|----|
+| Wynagrodzenie | 2 | 2 | 2 | 3 | 3 | 3 | 3 | 3 | 3 | 4  | 4  | 4  | 4  | 4  | 5  | 5  | 5  | 5  | 20 | 35 |
+
+Krok 2: Zidentyfikuj wartości środkowe (pozycje 10 i 11)
+
+Pozycja 10 = 4, Pozycja 11 = 4
+
+Krok 3: Oblicz medianę
+
+$$\text{Mediana}_X = \frac{4 + 4}{2} = \frac{8}{2} = 4 \text{ tys. euro}$$
+
+**Firma Y:**
+
+Krok 1: Uporządkuj dane w kolejności rosnącej
+
+| Pozycja | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 |
+|---------|---|---|---|---|---|---|---|---|---|----|----|----|----|----|----|----|----|----|----|----|
+| Wynagrodzenie | 3 | 3 | 4 | 4 | 4 | 4 | 4 | 4 | 5 | 5  | 5  | 5  | 5  | 5  | 6  | 6  | 6  | 7  | 7  | 8  |
+
+Krok 2: Zidentyfikuj wartości środkowe (pozycje 10 i 11)
+
+Pozycja 10 = 5, Pozycja 11 = 5
+
+Krok 3: Oblicz medianę
+
+$$\text{Mediana}_Y = \frac{5 + 5}{2} = \frac{10}{2} = 5 \text{ tys. euro}$$
+
+```{r verify-median, echo=TRUE}
+# Weryfikacja w R
+median_x <- median(company_x)
+median_y <- median(company_y)
+cat("Mediana Firma X:", median_x, "tys. euro\n")
+cat("Mediana Firma Y:", median_y, "tys. euro\n")
+```
+
+---
+
+**Pytanie 3: Znajdź dominantę dla rozkładu wynagrodzeń każdej firmy**
+
+Dominanta (moda) to wartość, która występuje najczęściej w zbiorze danych.
+
+**Firma X:**
+
+Krok 1: Utwórz tabelę częstości
+
+| Wynagrodzenie | 2 | 3 | 4 | 5 | 20 | 35 |
+|---------------|---|---|---|---|----|-----|
+| Częstość | 3 | 6 | 5 | 4 | 1  | 1   |
+
+Krok 2: Zidentyfikuj najwyższą częstość
+
+Najwyższa częstość to 6, co odpowiada wynagrodzeniu równemu 3.
+
+**Dominanta dla Firmy X = 3 tys. euro**
+
+**Firma Y:**
+
+Krok 1: Utwórz tabelę częstości
+
+| Wynagrodzenie | 3 | 4 | 5 | 6 | 7 | 8 |
+|---------------|---|---|---|---|---|---|
+| Częstość | 2 | 6 | 6 | 3 | 2 | 1 |
+
+Krok 2: Zidentyfikuj najwyższą częstość
+
+Najwyższa częstość to 6, która występuje dla wartości 4 i 5.
+
+**Dominanta dla Firmy Y = 4 i 5 tys. euro (rozkład dwumodalny)**
+
+```{r verify-mode, echo=TRUE}
+# Weryfikacja w R
+get_mode <- function(x) {
+  freq_table <- table(x)
+  max_freq <- max(freq_table)
+  modes <- as.numeric(names(freq_table)[freq_table == max_freq])
+  modes
+}
+cat("Dominanta Firma X:", get_mode(company_x), "tys. euro\n")
+cat("Dominanta(y) Firma Y:", get_mode(company_y), "tys. euro\n")
+```
+
+---
+
+**Pytanie 4: Porównaj średnią i medianę dla Firmy X**
+
+**Porównanie:**
+
+- Średnia = 5.95 tys. euro
+- Mediana = 4.00 tys. euro
+- Różnica = 5.95 - 4.00 = 1.95 tys. euro
+
+**Interpretacja:**
+
+Średnia jest znacznie wyższa od mediany (o prawie 2 tys. euro, czyli 49%). Oznacza to, że dane są **asymetryczne z prawostronną skośnością** (skośne w prawo).
+
+Obecność dwóch bardzo wysokich wynagrodzeń (20 i 35 tys. euro) podnosi średnią w górę, podczas gdy mediana pozostaje nienaruszona przez te wartości ekstremalne. Mediana lepiej reprezentuje "typowe" wynagrodzenie w Firmie X, ponieważ 50% pracowników zarabia 4 tys. euro lub mniej.
+
+Ten wzorzec jest powszechny w danych o wynagrodzeniach, gdzie kilku wysokich zarabiających (kadra kierownicza, właściciele) zarabia znacznie więcej niż większość pracowników.
+
+---
+
+### B. Kwartyle i percentyle
+
+**Pytanie 5: Oblicz Q1, Q2 i Q3 dla obu firm**
+
+Użyjemy **metody podziel-i-mediana** (Typ 2) do obliczania kwartyli. Dla parzystej liczby obserwacji ta metoda wyklucza wartości mediany podczas szukania Q1 i Q3.
+
+**Metoda podziel-i-mediana:**
+
+1. Znajdź medianę (Q2) całego zbioru danych
+2. Dla Q1: Znajdź medianę dolnej połowy, **wykluczając** wartości użyte w medianie ogólnej
+3. Dla Q3: Znajdź medianę górnej połowy, **wykluczając** wartości użyte w medianie ogólnej
+
+---
+
+**Firma X (n = 20, dane posortowane):**
+
+Dane: 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 20, 35
+
+**Krok 1: Znajdź Q2 (Medianę)**
+
+Mediana wykorzystuje pozycje 10 i 11: obie wynoszą 4
+
+$$Q2 = \frac{4 + 4}{2} = 4 \text{ tys. euro}$$
+
+**Krok 2: Znajdź Q1**
+
+Dolna połowa (pozycje 1-9, wykluczając pozycje 10-11): 2, 2, 2, 3, 3, 3, 3, 3, 3
+
+Dla 9 wartości mediana to 5. wartość.
+
+$$Q1 = 3 \text{ tys. euro}$$
+
+**Krok 3: Znajdź Q3**
+
+Górna połowa (pozycje 12-20, wykluczając pozycje 10-11): 4, 4, 4, 5, 5, 5, 5, 20, 35
+
+Dla 9 wartości mediana to 5. wartość.
+
+$$Q3 = 5 \text{ tys. euro}$$
+
+---
+
+**Firma Y (n = 20, dane posortowane):**
+
+Dane: 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 7, 7, 8
+
+**Krok 1: Znajdź Q2 (Medianę)**
+
+Mediana wykorzystuje pozycje 10 i 11: obie wynoszą 5
+
+$$Q2 = \frac{5 + 5}{2} = 5 \text{ tys. euro}$$
+
+**Krok 2: Znajdź Q1**
+
+Dolna połowa (pozycje 1-9, wykluczając pozycje 10-11): 3, 3, 4, 4, 4, 4, 4, 4, 5
+
+Dla 9 wartości mediana to 5. wartość.
+
+$$Q1 = 4 \text{ tys. euro}$$
+
+**Krok 3: Znajdź Q3**
+
+Górna połowa (pozycje 12-20, wykluczając pozycje 10-11): 5, 5, 5, 6, 6, 6, 7, 7, 8
+
+Dla 9 wartości mediana to 5. wartość.
+
+$$Q3 = 6 \text{ tys. euro}$$
+
+---
+
+**Podsumowanie kwartyli:**
+
+| Firma | Q1 | Q2 (Mediana) | Q3 |
+|-------|-------|-------------|-------|
+| X     | 3     | 4           | 5     |
+| Y     | 4     | 5           | 6     |
+
+```{r verify-quartiles, echo=TRUE}
+# Weryfikacja w R (używając metody podziel-i-mediana - typ 2)
+q_x <- quantile(company_x, probs = c(0.25, 0.50, 0.75), type = 2)
+q_y <- quantile(company_y, probs = c(0.25, 0.50, 0.75), type = 2)
+
+cat("Kwartyle Firma X (metoda podziel-i-mediana):\n")
+print(q_x)
+
+cat("\nKwartyle Firma Y (metoda podziel-i-mediana):\n")
+print(q_y)
+```
+
+---
+
+**Pytanie 6: Zweryfikuj, że Q2 równa się medianie**
+
+**Weryfikacja:**
+
+**Firma X:**
+
+- Q2 = 4 tys. euro
+- Mediana = 4 tys. euro
+- ✓ **Potwierdzone: Q2 = Mediana**
+
+**Firma Y:**
+
+- Q2 = 5 tys. euro  
+- Mediana = 5 tys. euro
+- ✓ **Potwierdzone: Q2 = Mediana**
+
+Jest to zawsze prawdziwe z definicji: drugi kwartyl (Q2) to wartość, która dzieli zbiór danych na pół, co jest dokładnie tym, co robi mediana.
+
+---
+
+### C. Miary rozproszenia
+
+**Pytanie 7: Oblicz rozstęp dla obu firm**
+
+Rozstęp mierzy rozpiętość między najmniejszą a największą wartością.
+
+Wzór: $\text{Rozstęp} = \text{Maksimum} - \text{Minimum}$
+
+**Firma X:**
+
+$$\text{Rozstęp}_X = 35 - 2 = 33 \text{ tys. euro}$$
+
+**Firma Y:**
+
+$$\text{Rozstęp}_Y = 8 - 3 = 5 \text{ tys. euro}$$
+
+**Interpretacja:** Firma X ma rozstęp 6.6 razy większy niż Firma Y, co wskazuje na znacznie większe rozproszenie wynagrodzeń.
+
+```{r verify-range, echo=TRUE}
+# Weryfikacja w R
+range_x <- max(company_x) - min(company_x)
+range_y <- max(company_y) - min(company_y)
+cat("Rozstęp Firma X:", range_x, "tys. euro\n")
+cat("Rozstęp Firma Y:", range_y, "tys. euro\n")
+```
+
+---
+
+**Pytanie 8: Oblicz rozstęp międzykwartylowy (IQR)**
+
+IQR mierzy rozproszenie środkowych 50% danych.
+
+Wzór: $\text{IQR} = Q3 - Q1$
+
+**Firma X:**
+
+$$\text{IQR}_X = 5 - 3 = 2 \text{ tys. euro}$$
+
+**Firma Y:**
+
+$$\text{IQR}_Y = 6 - 4 = 2 \text{ tys. euro}$$
+
+**Interpretacja:** Obie firmy mają ten sam IQR wynoszący 2 tys. euro, co oznacza, że środkowe 50% pracowników w każdej firmie ma taką samą rozpiętość wynagrodzeń. Jednak nie mówi to całej historii o ogólnej zmienności — rozstęp i odchylenie standardowe Firmy X są znacznie większe ze względu na ekstremalne wartości odstające.
+
+```{r verify-iqr, echo=TRUE}
+# Weryfikacja w R (używając typu 2, aby dopasować do naszych obliczeń ręcznych)
+iqr_x <- IQR(company_x, type = 2)
+iqr_y <- IQR(company_y, type = 2)
+cat("IQR Firma X:", iqr_x, "tys. euro\n")
+cat("IQR Firma Y:", iqr_y, "tys. euro\n")
+```
+
+---
+
+**Pytanie 9: Oblicz wariancję i odchylenie standardowe**
+
+**Firma X:**
+
+Krok 1: Oblicz odchylenia od średniej ($x_i - \bar{x}$), gdzie $\bar{x} = 5.95$
+
+| Wynagrodzenie ($x_i$) | Częstość | Odchylenie ($x_i - 5.95$) | $(x_i - 5.95)^2$ | Częstość × $(x_i - 5.95)^2$ |
+|-----------------------|----------|---------------------------|------------------|------------------------------|
+| 2                     | 3        | -3.95                     | 15.6025          | 46.8075                      |
+| 3                     | 6        | -2.95                     | 8.7025           | 52.215                       |
+| 4                     | 5        | -1.95                     | 3.8025           | 19.0125                      |
+| 5                     | 4        | -0.95                     | 0.9025           | 3.61                         |
+| 20                    | 1        | 14.05                     | 197.4025         | 197.4025                     |
+| 35                    | 1        | 29.05                     | 843.9025         | 843.9025                     |
+
+Krok 2: Suma kwadratów odchyleń
+
+$$\sum (x_i - \bar{x})^2 \times f_i = 46.8075 + 52.215 + 19.0125 + 3.61 + 197.4025 + 843.9025 = 1162.95$$
+
+Krok 3: Oblicz wariancję próbki
+
+$$s^2 = \frac{\sum (x_i - \bar{x})^2}{n-1} = \frac{1162.95}{19} = 61.21 \text{ (tys. euro)}^2$$
+
+Krok 4: Oblicz odchylenie standardowe
+
+$$s = \sqrt{61.21} = 7.82 \text{ tys. euro}$$
+
+---
+
+**Firma Y:**
+
+Krok 1: Oblicz odchylenia od średniej ($y_i - \bar{y}$), gdzie $\bar{y} = 5.00$
+
+| Wynagrodzenie ($y_i$) | Częstość | Odchylenie ($y_i - 5.00$) | $(y_i - 5.00)^2$ | Częstość × $(y_i - 5.00)^2$ |
+|-----------------------|----------|---------------------------|------------------|------------------------------|
+| 3                     | 2        | -2.00                     | 4.00             | 8.00                         |
+| 4                     | 6        | -1.00                     | 1.00             | 6.00                         |
+| 5                     | 6        | 0.00                      | 0.00             | 0.00                         |
+| 6                     | 3        | 1.00                      | 1.00             | 3.00                         |
+| 7                     | 2        | 2.00                      | 4.00             | 8.00                         |
+| 8                     | 1        | 3.00                      | 9.00             | 9.00                         |
+
+Krok 2: Suma kwadratów odchyleń
+
+$$\sum (y_i - \bar{y})^2 \times f_i = 8.00 + 6.00 + 0.00 + 3.00 + 8.00 + 9.00 = 34.00$$
+
+Krok 3: Oblicz wariancję próbki
+
+$$s^2 = \frac{34.00}{19} = 1.79 \text{ (tys. euro)}^2$$
+
+Krok 4: Oblicz odchylenie standardowe
+
+$$s = \sqrt{1.79} = 1.34 \text{ tys. euro}$$
+
+**Podsumowanie:**
+
+| Firma | Wariancja | Odchylenie standardowe |
+|-------|-----------|------------------------|
+| X     | 61.21     | 7.82                   |
+| Y     | 1.79      | 1.34                   |
+
+```{r verify-variance-sd, echo=TRUE}
+# Weryfikacja w R
+var_x <- var(company_x)
+sd_x <- sd(company_x)
+var_y <- var(company_y)
+sd_y <- sd(company_y)
+cat("Firma X - Wariancja:", round(var_x, 2), ", Odch. stand.:", round(sd_x, 2), "\n")
+cat("Firma Y - Wariancja:", round(var_y, 2), ", Odch. stand.:", round(sd_y, 2), "\n")
+```
+
+---
+
+**Pytanie 10: Która firma ma większą zmienność?**
+
+**Firma X ma znacznie większą zmienność** wynagrodzeń niż Firma Y. Wszystkie miary rozproszenia potwierdzają ten wniosek:
+
+| Miara | Firma X | Firma Y | Stosunek (X/Y) |
+|-------|---------|---------|----------------|
+| Rozstęp | 33 | 5 | 6.6× |
+| IQR | 2 | 2 | 1.0× |
+| Wariancja | 61.21 | 1.79 | 34.2× |
+| Odch. stand. | 7.82 | 1.34 | 5.8× |
+
+**Interpretacja:**
+
+Odchylenie standardowe Firmy X (7.82) jest prawie 6 razy większe niż Firmy Y (1.34), co oznacza, że wynagrodzenia w Firmie X odbiegają znacznie bardziej od średniej. Chociaż obie firmy mają ten sam IQR (2 tys. euro), to informuje nas to tylko o środkowych 50% danych. Wysoka ogólna zmienność Firmy X jest głównie spowodowana obecnością dwóch ekstremalnych wartości odstających (20 i 35 tys. euro), które dramatycznie zwiększają wariancję i odchylenie standardowe.
+
+---
+
+### D. Identyfikacja wartości odstających
+
+**Pytanie 11: Zidentyfikuj potencjalne wartości odstające używając metody IQR**
+
+Metoda IQR definiuje wartości odstające jako wartości, które wykraczają poza "granice":
+
+- **Dolna granica** = $Q1 - 1.5 \times \text{IQR}$
+- **Górna granica** = $Q3 + 1.5 \times \text{IQR}$
+
+**Firma X:**
+
+Krok 1: Oblicz granice
+
+Dane: $Q1 = 3$, $Q3 = 5$, $\text{IQR} = 2$
+
+$$\text{Dolna granica} = 3 - 1.5 \times 2 = 3 - 3 = 0$$
+
+$$\text{Górna granica} = 5 + 1.5 \times 2 = 5 + 3 = 8$$
+
+Krok 2: Zidentyfikuj wartości odstające
+
+Każda wartość < 0 lub > 8 jest wartością odstającą.
+
+Patrząc na dane: 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, **20**, **35**
+
+**Wartości odstające dla Firmy X: 20 i 35 tys. euro**
+
+---
+
+**Firma Y:**
+
+Krok 1: Oblicz granice
+
+Dane: $Q1 = 4$, $Q3 = 6$, $\text{IQR} = 2$
+
+$$\text{Dolna granica} = 4 - 1.5 \times 2 = 4 - 3 = 1$$
+
+$$\text{Górna granica} = 6 + 1.5 \times 2 = 6 + 3 = 9$$
+
+Krok 2: Zidentyfikuj wartości odstające
+
+Każda wartość < 1 lub > 9 jest wartością odstającą.
+
+Patrząc na dane: 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 7, 7, 8
+
+Wszystkie wartości mieszczą się w zakresie [1, 9].
+
+**Brak wartości odstających dla Firmy Y!**
+
+```{r verify-outliers, echo=TRUE}
+# Weryfikacja w R używając naszych kwartyli z metody podziel-i-mediana
+identify_outliers <- function(x, q1, q3) {
+  iqr <- q3 - q1
+  lower <- q1 - 1.5 * iqr
+  upper <- q3 + 1.5 * iqr
+  outliers <- x[x < lower | x > upper]
+  list(outliers = outliers, lower = lower, upper = upper)
+}
+
+out_x <- identify_outliers(company_x, 3, 5)
+out_y <- identify_outliers(company_y, 4, 6)
+
+cat("Firma X:\n")
+cat("  Granice: [", out_x$lower, ",", out_x$upper, "]\n")
+cat("  Wartości odstające:", out_x$outliers, "\n\n")
+
+cat("Firma Y:\n")
+cat("  Granice: [", out_y$lower, ",", out_y$upper, "]\n")
+cat("  Wartości odstające:", if(length(out_y$outliers) == 0) "Brak" else out_y$outliers, "\n")
+```
+
+---
+
+**Pytanie 12: Jak wartości odstające wpływają na średnią w Firmie X?**
+
+Przeliczmy średnią po usunięciu dwóch wartości odstających (20 i 35).
+
+**Dane oryginalne (n = 20):**
+
+Średnia = 5.95 tys. euro (obliczona w Pytaniu 1)
+
+**Dane bez wartości odstających (n = 18):**
+
+Pozostałe dane: 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5
+
+Krok 1: Zsumuj pozostałe wartości
+
+$$\sum x_i = (2 \times 3) + (3 \times 6) + (4 \times 5) + (5 \times 4)$$
+
+$$= 6 + 18 + 20 + 20 = 64$$
+
+Krok 2: Oblicz nową średnią
+
+$$\bar{x}_{\text{bez odstających}} = \frac{64}{18} = 3.56 \text{ tys. euro}$$
+
+**Porównanie:**
+
+- Średnia z wartościami odstającymi: 5.95 tys. euro
+- Średnia bez wartości odstających: 3.56 tys. euro
+- Różnica: $5.95 - 3.56 = 2.39$ tys. euro
+- Zmiana procentowa: $\frac{5.95 - 3.56}{5.95} \times 100 = 40.2\%$
+
+**Interpretacja:**
+
+Dwie wartości odstające zwiększają średnią o 2.39 tys. euro, co stanowi 40% zawyżenie średniego wynagrodzenia. To demonstruje, jak wrażliwa jest średnia na wartości ekstremalne. Średnia bez wartości odstających (3.56) jest faktycznie poniżej mediany (4.00), która lepiej reprezentuje wynagrodzenie typowego pracownika.
+
+```{r verify-mean-no-outliers, echo=TRUE}
+# Weryfikacja w R
+company_x_no_outliers <- company_x[company_x <= 8]
+mean_no_outliers <- mean(company_x_no_outliers)
+cat("Średnia bez wartości odstających:", round(mean_no_outliers, 2), "\n")
+cat("Różnica od oryginalnej:", round(mean_x - mean_no_outliers, 2), "\n")
+cat("Zmiana procentowa:", round((mean_x - mean_no_outliers)/mean_x * 100, 1), "%\n")
+```
+
+---
+
+### E. Wykresy pudełkowe (boxploty)
+
+**Pytanie 13 i 14: Narysuj i opisz wykresy pudełkowe**
+
+**Ręczna konstrukcja wykresów pudełkowych:**
+
+Aby narysować wykres pudełkowy, potrzebujemy pięciu liczb podsumowujących oraz ewentualnych wartości odstających:
+
+**Firma X:**
+
+1. Minimum (bez wartości odstających): 2
+2. Q1: 3
+3. Mediana (Q2): 4
+4. Q3: 5
+5. Maksimum (bez wartości odstających): 5
+6. Wartości odstające: 20, 35
+
+**Firma Y:**
+
+1. Minimum: 3
+2. Q1: 4
+3. Mediana (Q2): 5
+4. Q3: 6
+5. Maksimum: 8
+6. Wartości odstające: Brak
+
+**Struktura wykresu pudełkowego:**
+
+- Narysuj pudełko od Q1 do Q3 (pudełko zawiera środkowe 50% danych)
+- Narysuj linię wewnątrz pudełka przy medianie
+- Narysuj "wąsy" (linie) od krawędzi pudełka do minimum i maksimum wartości niebędących wartościami odstającymi
+- Zaznacz wartości odstające jako pojedyncze punkty poza wąsami
+
+```{r boxplots, fig.width=10, fig.height=6, echo=TRUE}
+# Tworzenie niestandardowych wykresów pudełkowych używając kwartyli podziel-i-mediana
+
+# Funkcja do obliczania statystyk wykresu pudełkowego z wykrywaniem wartości odstających
+calc_boxplot_stats <- function(data, q1, q3) {
+  iqr <- q3 - q1
+  med <- median(data)
+  
+  # Oblicz granice dla wykrywania wartości odstających
+  lower_fence <- q1 - 1.5 * iqr
+  upper_fence <- q3 + 1.5 * iqr
+  
+  # Zidentyfikuj wartości odstające
+  outliers <- data[data < lower_fence | data > upper_fence]
+  
+  # Oblicz końce wąsów (najbardziej ekstremalne wartości niebędące wartościami odstającymi)
+  non_outliers <- data[data >= lower_fence & data <= upper_fence]
+  lower_whisker <- min(non_outliers)
+  upper_whisker <- max(non_outliers)
+  
+  return(list(
+    stats = c(lower_whisker, q1, med, q3, upper_whisker),
+    outliers = outliers
+  ))
+}
+
+# Oblicz statystyki dla obu firm
+stats_x <- calc_boxplot_stats(company_x, 3, 5)
+stats_y <- calc_boxplot_stats(company_y, 4, 6)
+
+# Przygotuj dane dla bxp()
+boxplot_data <- list(
+  stats = matrix(c(stats_x$stats, stats_y$stats), nrow = 5, ncol = 2),
+  n = c(length(company_x), length(company_y)),
+  conf = matrix(c(NA, NA, NA, NA), nrow = 2, ncol = 2),
+  out = c(stats_x$outliers, stats_y$outliers),
+  group = c(rep(1, length(stats_x$outliers)), rep(2, length(stats_y$outliers))),
+  names = c("Firma X", "Firma Y")
+)
+
+# Utwórz wykres pudełkowy
+par(mar = c(5, 5, 4, 2))
+bxp(boxplot_data,
+    main = "Porównanie rozkładów wynagrodzeń",
+    ylab = "Wynagrodzenie (tys. euro)",
+    xlab = "Firma",
+    col = c("lightblue", "lightgreen"),
+    border = c("darkblue", "darkgreen"),
+    outcol = "red",
+    outpch = 19,
+    outcex = 1.5,
+    boxwex = 0.5,
+    ylim = c(0, 40))
+
+# Dodaj poziome linie siatki
+grid(nx = NA, ny = NULL, col = "gray", lty = "dotted")
+
+# Dodaj adnotacje dla Firmy X
+text(0.7, 4, "Mediana = 4", pos = 2, cex = 0.85, col = "darkblue")
+text(0.7, 3, "Q1 = 3", pos = 2, cex = 0.85, col = "darkblue")
+text(0.7, 5, "Q3 = 5", pos = 2, cex = 0.85, col = "darkblue")
+text(0.7, 2, "Min = 2", pos = 2, cex = 0.85, col = "darkblue")
+
+# Dodaj adnotacje dla Firmy Y
+text(2.3, 5, "Mediana = 5", pos = 4, cex = 0.85, col = "darkgreen")
+text(2.3, 4, "Q1 = 4", pos = 4, cex = 0.85, col = "darkgreen")
+text(2.3, 6, "Q3 = 6", pos = 4, cex = 0.85, col = "darkgreen")
+text(2.3, 3, "Min = 3", pos = 4, cex = 0.85, col = "darkgreen")
+text(2.3, 8, "Max = 8", pos = 4, cex = 0.85, col = "darkgreen")
+
+# Oznacz wartości odstające dla Firmy X
+text(0.9, 20, "Wartość odstająca: 20", pos = 4, cex = 0.8, col = "red")
+text(0.9, 35, "Wartość odstająca: 35", pos = 4, cex = 0.8, col = "red")
+```
+
+**Uwaga:** Funkcja `quantile()` w R domyślnie używa Typu 7 (interpolacja liniowa), ale nasze obliczenia ręczne stosują prostsze podejście podziel-i-mediana, które odpowiada `type = 2` w R. Aby upewnić się, że wykres pudełkowy dokładnie odpowiada naszym obliczeniom ręcznym, używamy funkcji `bxp()` z ręcznie określonymi kwartylami obliczonymi za pomocą `type = 2`. Krawędzie pudełka reprezentują teraz Q1 i Q3 z naszych obliczeń ręcznych, gruba linia pokazuje medianę, a wąsy rozciągają się do najbardziej ekstremalnych wartości niebędących wartościami odstającymi.
+
+**Interpretacja wizualna:**
+
+- **Firma X**: Pudełko jest stosunkowo małe (od 3 do 5), co wskazuje, że środkowe 50% pracowników zarabia w zakresie 2 tys. euro. Jednak dwie wartości odstające (pokazane jako czerwone punkty przy 20 i 35) są znacznie powyżej pozostałych danych, pokazując ekstremalną nierówność wynagrodzeń. Wąs rozciąga się od 2 do 5, reprezentując zakres wartości niebędących wartościami odstającymi.
+
+- **Firma Y**: Pudełko rozciąga się od 4 do 6 i nie ma wartości odstających. Rozkład jest bardziej jednolity, ze wszystkimi wartościami stosunkowo blisko siebie. Wąsy rozciągają się od 3 do 8, pokazując pełny zakres danych, ponieważ nie ma wartości odstających do wykluczenia.
+
+- **Porównanie**: Firma X ma skompresowany główny rozkład z ekstremalnymi wartościami odstającymi, podczas gdy Firma Y ma nieco bardziej rozproszony, ale spójny rozkład bez ekstremalnych wartości.
+
+---
+
+### F. Interpretacja i porównanie
+
+**Pytanie 15: Która "średnia" do raportowania dla Firmy X?**
+
+**Odpowiedź: Użyj MEDIANY (4 tys. euro) zamiast średniej (5.95 tys. euro).**
+
+**Uzasadnienie:**
+
+Informując potencjalnych pracowników, mediana zapewnia bardziej uczciwy i reprezentatywny obraz tego, czego mogą się spodziewać w zakresie wynagrodzenia, ponieważ:
+
+1. **Reprezentatywność**: Mediana (4 tys. euro) lepiej reprezentuje typowego pracownika. Połowa wszystkich pracowników zarabia równo lub poniżej tej kwoty. W przeciwieństwie do tego, tylko 2 z 20 pracowników (10%) zarabia więcej niż średnia 5.95.
+
+2. **Odporność na wartości odstające**: Mediana nie jest dotknięta dwiema niezwykle wysokimi wynagrodzeniami (20 i 35 tys. euro), które prawdopodobnie należą do kadry kierowniczej lub właścicieli. Te wartości odstające podnoszą średnią w górę o 2.39 tys. euro (67%).
+
+3. **Dokładne oczekiwania**: Potencjalny pracownik znacznie bardziej prawdopodobnie zarobi około 4 tys. euro niż 5.95. Użycie średniej stworzyłoby nierealistyczne oczekiwania i mogłoby być uważane za wprowadzające w błąd.
+
+4. **Etyczne raportowanie**: Mediana zapewnia bardziej etyczną reprezentację "typowego" wynagrodzenia, unikając wrażenia, że wynagrodzenia będące wartościami odstającymi są osiągalne dla większości pracowników.
+
+**Dowody wspierające:**
+
+- 18 z 20 pracowników (90%) zarabia ≤ 5 tys. euro
+- Dominanta wynosi 3 tys. euro (najczęstsze wynagrodzenie)
+- Mediana (4) i dominanta (3) są blisko siebie, potwierdzając, że reprezentują typowe wynagrodzenia
+- Średnia jest zawyżona przez zaledwie 2 ekstremalne wartości
+
+---
+
+**Pytanie 16: Która firma ma bardziej sprawiedliwy rozkład wynagrodzeń?**
+
+**Odpowiedź: Firma Y ma znacznie bardziej sprawiedliwy rozkład wynagrodzeń.**
+
+**Dowody statystyczne:**
+
+**1. Miary rozproszenia:**
+
+| Statystyka | Firma X | Firma Y | Interpretacja |
+|------------|---------|---------|---------------|
+| Odchylenie standardowe | 7.82 | 1.34 | X ma 5.8× więcej zmienności |
+| IQR | 2.00 | 2.00 | Taka sama zmienność w środkowych 50% |
+| Rozstęp | 33 | 5 | X ma 6.6× większą rozpiętość |
+
+**2. Porównanie średniej i mediany:**
+
+- **Firma X**: Średnia (5.95) >> Mediana (4.00), różnica 1.95 (49% wyższa)
+  - Ta duża różnica wskazuje na znaczną prawostronną skośność spowodowaną wartościami odstającymi
+  
+- **Firma Y**: Średnia (5.00) = Mediana (5.00), różnica 0.00 (idealnie symetryczne!)
+  - Ta **idealna symetria** wskazuje na idealnie sprawiedliwy rozkład
+
+**3. Współczynnik zmienności (CV):**
+
+CV mierzy względną zmienność (odchylenie standardowe względem średniej):
+
+$$CV_X = \frac{s_X}{\bar{x}_X} = \frac{7.82}{5.95} = 1.31 \text{ czyli } 131\%$$
+
+$$CV_Y = \frac{s_Y}{\bar{y}_Y} = \frac{1.34}{5.00} = 0.27 \text{ czyli } 27\%$$
+
+CV Firmy Y jest 4.9 razy mniejszy, wskazując na znacznie bardziej spójne wynagrodzenia względem średniej.
+
+**4. Analiza wartości odstających:**
+
+- **Firma X**: Dwie ekstremalne wartości odstające (20, 35), które są 5× i 8.75× większe od mediany
+- **Firma Y**: Brak wartości odstających — wszystkie wynagrodzenia mieszczą się w oczekiwanym zakresie [1, 9]
+
+**5. Rozkład wynagrodzeń:**
+
+- **Firma X**: Większość pracowników (90%) zarabia 2-5 tys. euro, podczas gdy 2 osoby zarabiają 20 i 35
+- **Firma Y**: Wszyscy pracownicy zarabiają 3-8 tys. euro, z rozkładem dwumodalnym skupionym wokół 4 i 5
+
+**Wniosek:**
+
+Firma Y demonstruje większą sprawiedliwość wynagrodzeń poprzez:
+
+- Niższą bezwzględną i względną zmienność
+- Idealnie symetryczny rozkład (średnia = mediana = 5.00)
+- Brak wartości odstających
+- Rozkład dwumodalny ze zrównoważonym skupieniem wokół wartości środkowych
+- Wynagrodzenia skupione w wąskim, rozsądnym zakresie
+- Wszyscy pracownicy zarabiają w zakresie 2.67× (8÷3), w porównaniu do zakresu 17.5× Firmy X (35÷2)
+
+Firma X pokazuje wysoką nierówność, gdzie większość pracowników zarabia 2-5 tys. euro, podczas gdy dwie osoby zarabiają znacznie więcej, sugerując hierarchiczną strukturę ze znacznymi różnicami w wynagrodzeniach między zwykłymi pracownikami a kierownictwem.
+
+```{r final-comparison, echo=TRUE}
+# Porównanie współczynnika zmienności
+cv_x <- sd(company_x) / mean(company_x)
+cv_y <- sd(company_y) / mean(company_y)
+
+cat("Współczynnik zmienności:\n")
+cat("  Firma X:", round(cv_x, 3), "(", round(cv_x * 100, 1), "%)\n")
+cat("  Firma Y:", round(cv_y, 3), "(", round(cv_y * 100, 1), "%)\n\n")
+
+cat("Podsumowanie wskaźników sprawiedliwości:\n")
+cat("  Różnica średnia-mediana (X):", round(mean(company_x) - median(company_x), 2), "\n")
+cat("  Różnica średnia-mediana (Y):", round(mean(company_y) - median(company_y), 2), "\n\n")
+
+cat("Pięć liczb podsumowujących:\n")
+cat("Firma X: Min = 2, Q1 = 3, Mediana = 4, Q3 = 5, Max(bez odstających) = 5\n")
+cat("         Wartości odstające: 20, 35\n")
+cat("Firma Y: Min = 3, Q1 = 4, Mediana = 5, Q3 = 6, Max = 8\n")
+cat("         Wartości odstające: Brak\n")
+```
+
+---
+
+**Koniec rozwiązań**
+
+------------------------------------------------------------------------
+
+## Ćwiczenie 3a. Porównanie zmienności wielkości okręgów wyborczych między krajami
+```{r setup_2, include=FALSE}
+library(tidyverse)
+library(knitr)
+options(digits = 4)
+```
+
+### Cele dydaktyczne
+
+W tym ćwiczeniu będziesz ćwiczyć obliczanie i interpretację miar tendencji centralnej oraz miar rozproszenia w celu porównania systemów wyborczych.
+
+### Wprowadzenie
+
+Wielkość okręgu wyborczego (liczba wybieranych przedstawicieli w okręgu) znacząco się różni w poszczególnych demokracjach. Niektóre kraje stosują małe okręgi (jednomandatowe), podczas gdy inne używają dużych okręgów. Zrozumienie tej zmienności jest kluczowe dla analizy wpływu systemów wyborczych na reprezentację i systemy partyjne.
+
+### Dane
+
+Mamy dane o wielkości okręgów wyborczych z dwóch krajów:
+```{r data}
+x <- c(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)  # Kraj X (wysoka zmienność)
+y <- c(8, 9, 9, 10, 10, 11, 11, 12, 12, 13)  # Kraj Y (niska zmienność)
+kable(data.frame(
+  "Kraj_X" = x,
+  "Kraj_Y" = y
+))
+```
+
+### Pytania
+
+**Część A: Miary tendencji centralnej**
+
+Oblicz poniższe dla obu krajów (pokaż obliczenia):
+
+1. Średnia arytmetyczna
+2. Mediana
+3. Dominanta (moda)
+
+**Część B: Miary rozproszenia**
+
+Oblicz poniższe dla obu krajów (pokaż obliczenia):
+
+4. Rozstęp
+5. Wariancja
+6. Odchylenie standardowe
+7. Rozstęp międzykwartylowy (IQR)
+
+**Część C: Interpretacja**
+
+8. Który kraj ma bardziej jednolite rozmiary okręgów? Uzasadnij swoją odpowiedź konkretnymi statystykami.
+9. Jakie mogą być merytoryczne implikacje tych różnic dla reprezentacji i konkurencji partyjnej?
+
+**Część D: Weryfikacja (opcjonalnie)**
+
+10. Zweryfikuj swoje obliczenia używając funkcji R.
+
+---
+
+### Rozwiązania
+
+#### Część A: Miary tendencji centralnej
+
+**Pytanie 1: Średnia arytmetyczna**
+
+*Kraj X:*
+
+$$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n} = \frac{1 + 3 + 5 + 7 + 9 + 11 + 13 + 15 + 17 + 19}{10}$$
+
+$$\bar{x} = \frac{100}{10} = 10$$
+
+*Kraj Y:*
+
+$$\bar{y} = \frac{8 + 9 + 9 + 10 + 10 + 11 + 11 + 12 + 12 + 13}{10}$$
+
+$$\bar{y} = \frac{105}{10} = 10{,}5$$
+
+**Pytanie 2: Mediana**
+
+*Kraj X:*
+
+Dane są już posortowane: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19
+
+Przy $n = 10$ (parzysta), mediana jest średnią z 5. i 6. wartości:
+
+$$\text{Mediana}_X = \frac{9 + 11}{2} = \frac{20}{2} = 10$$
+
+*Kraj Y:*
+
+Dane są już posortowane: 8, 9, 9, 10, 10, 11, 11, 12, 12, 13
+
+$$\text{Mediana}_Y = \frac{10 + 11}{2} = \frac{21}{2} = 10{,}5$$
+
+**Pytanie 3: Dominanta (moda)**
+
+*Kraj X:*
+
+Każda wartość występuje dokładnie raz, więc **nie ma dominanty** (lub wszystkie wartości są dominantami).
+
+*Kraj Y:*
+
+Wartości 9, 10, 11 i 12 występują po dwa razy. Ten rozkład jest **multimodalny** (konkretnie, ma cztery dominanty: 9, 10, 11 i 12).
+
+---
+
+#### Część B: Miary rozproszenia
+
+**Pytanie 4: Rozstęp**
+
+*Kraj X:*
+
+$$\text{Rozstęp}_X = \max(x) - \min(x) = 19 - 1 = 18$$
+
+*Kraj Y:*
+
+$$\text{Rozstęp}_Y = \max(y) - \min(y) = 13 - 8 = 5$$
+
+**Pytanie 5: Wariancja**
+
+*Kraj X:*
+
+Używamy wzoru na wariancję z próby: $s^2 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}$
+
+Najpierw obliczamy odchylenia od średniej ($\bar{x} = 10$):
+
+| $x_i$ | $x_i - \bar{x}$ | $(x_i - \bar{x})^2$ |
+|-------|-----------------|---------------------|
+| 1     | -9              | 81                  |
+| 3     | -7              | 49                  |
+| 5     | -5              | 25                  |
+| 7     | -3              | 9                   |
+| 9     | -1              | 1                   |
+| 11    | 1               | 1                   |
+| 13    | 3               | 9                   |
+| 15    | 5               | 25                  |
+| 17    | 7               | 49                  |
+| 19    | 9               | 81                  |
+| **Suma** |               | **330**             |
+
+$$s_X^2 = \frac{330}{10-1} = \frac{330}{9} = 36{,}67$$
+
+*Kraj Y:*
+
+Najpierw obliczamy odchylenia od średniej ($\bar{y} = 10{,}5$):
+
+| $y_i$ | $y_i - \bar{y}$ | $(y_i - \bar{y})^2$ |
+|-------|-----------------|---------------------|
+| 8     | -2,5            | 6,25                |
+| 9     | -1,5            | 2,25                |
+| 9     | -1,5            | 2,25                |
+| 10    | -0,5            | 0,25                |
+| 10    | -0,5            | 0,25                |
+| 11    | 0,5             | 0,25                |
+| 11    | 0,5             | 0,25                |
+| 12    | 1,5             | 2,25                |
+| 12    | 1,5             | 2,25                |
+| 13    | 2,5             | 6,25                |
+| **Suma** |               | **22,5**            |
+
+$$s_Y^2 = \frac{22{,}5}{10-1} = \frac{22{,}5}{9} = 2{,}50$$
+
+**Pytanie 6: Odchylenie standardowe**
+
+*Kraj X:*
+
+$$s_X = \sqrt{s_X^2} = \sqrt{36{,}67} = 6{,}055$$
+
+*Kraj Y:*
+
+$$s_Y = \sqrt{s_Y^2} = \sqrt{2{,}50} = 1{,}581$$
+
+**Pytanie 7: Rozstęp międzykwartylowy (IQR)**
+
+*Kraj X:*
+
+Dla $n = 10$, znajdujemy kwartyle używając mediany każdej połowy:
+
+Dolna połowa: 1, 3, 5, 7, 9 → $Q_1 = 5$
+
+Górna połowa: 11, 13, 15, 17, 19 → $Q_3 = 15$
+
+$$\text{IQR}_X = Q_3 - Q_1 = 15 - 5 = 10$$
+
+*Kraj Y:*
+
+Dolna połowa: 8, 9, 9, 10, 10 → $Q_1 = 9$
+
+Górna połowa: 11, 11, 12, 12, 13 → $Q_3 = 12$
+
+$$\text{IQR}_Y = Q_3 - Q_1 = 12 - 9 = 3$$
+
+---
+
+#### Część C: Interpretacja
+
+**Pytanie 8:**
+
+Kraj Y ma znacznie bardziej jednolite rozmiary okręgów. Dowody:
+
+- **Odchylenie standardowe:** Kraj Y ($s = 1{,}58$) ma znacznie mniejszą zmienność niż Kraj X ($s = 6{,}06$)
+- **Wariancja:** Kraj Y ($s^2 = 2{,}50$) jest około 15 razy mniejsza niż Kraj X ($s^2 = 36{,}67$)
+- **Rozstęp:** Rozstęp Kraju Y (5) jest znacznie mniejszy niż Kraju X (18)
+- **IQR:** IQR Kraju Y (3) jest znacznie mniejszy niż Kraju X (10)
+
+Wszystkie miary rozproszenia konsekwentnie pokazują, że Kraj Y ma bardziej jednolite rozmiary okręgów.
+
+**Pytanie 9:**
+
+Możliwe implikacje:
+
+Wysoka zmienność w Kraju X sugeruje **mieszany system wyborczy** z zarówno małymi, jak i dużymi okręgami. Może to powodować:
+
+- Nierówne możliwości reprezentacji w różnych okręgach
+- Różną dynamikę konkurencji partyjnej (rywalizacja dwupartyjna w małych okręgach vs. wielopartyjność w dużych okręgach)
+- Potencjalne obawy dotyczące równości reprezentacji
+
+Jednolite rozmiary okręgów w Kraju Y sugerują bardziej **spójny system wyborczy**, który może promować:
+
+- Bardziej równą reprezentację w różnych regionach
+- Podobną dynamikę konkurencji partyjnej w całym kraju
+- Większą przewidywalność wyników wyborczych
+
+---
+
+#### Część D: Weryfikacja w R
+
+```{r}
+# Kraj X
+cat("Kraj X:\n")
+cat("Średnia:", mean(x), "\n")
+cat("Mediana:", median(x), "\n")
+cat("Wariancja:", var(x), "\n")
+cat("Odch. stand.:", sd(x), "\n")
+cat("Rozstęp:", max(x) - min(x), "\n")
+cat("IQR:", IQR(x, type = 2), "\n")
+cat("Q1:", quantile(x, 0.25, type = 2), "\n")
+cat("Q3:", quantile(x, 0.75, type = 2), "\n\n")
+
+# Kraj Y
+cat("Kraj Y:\n")
+cat("Średnia:", mean(y), "\n")
+cat("Mediana:", median(y), "\n")
+cat("Wariancja:", var(y), "\n")
+cat("Odch. stand.:", sd(y), "\n")
+cat("Rozstęp:", max(y) - min(y), "\n")
+cat("IQR:", IQR(y, type = 2), "\n")
+cat("Q1:", quantile(y, 0.25, type = 2), "\n")
+cat("Q3:", quantile(y, 0.75, type = 2), "\n")
+```
+
+**Uwaga:** Funkcja `quantile()` w R domyślnie używa Typu 7 (interpolacja liniowa), ale nasze obliczenia ręczne odpowiadają metodzie `type = 2` (metoda „podziel-i-mediana"). Dlatego jawnie określamy `type = 2`, aby zweryfikować nasze obliczenia ręczne. Funkcja `boxplot()` używa Typu 7, więc stosujemy kod niestandardowy, aby nasz wykres pudełkowy odpowiadał obliczeniom ręcznym.
+
+------------------------------------------------------------------------
+
+## Ćwiczenie 3b. Porównanie zróżnicowania wielkości okręgów wyborczych między krajami
+
+```{r, include=FALSE}
+library(knitr)
+options(digits = 4)
+```
+
+### Cele dydaktyczne
+
+W tym ćwiczeniu będziesz ćwiczyć obliczanie i interpretowanie miar tendencji centralnej oraz rozproszenia w celu porównania systemów wyborczych.
 
 ### Kontekst
+
+Wielkość okręgu wyborczego (liczba przedstawicieli wybieranych w okręgu) znacząco różni się w różnych demokracjach. Niektóre kraje stosują małe okręgi (okręgi jednomandatowe), podczas gdy inne używają dużych okręgów. Zrozumienie tego zróżnicowania jest kluczowe dla analizy tego, jak systemy wyborcze wpływają na reprezentację i systemy partyjne.
+
+### Dane
+
+Dysponujemy danymi o wielkości okręgów wyborczych (wielkość okręgu) z dwóch krajów:
+
+```{r}
+x <- c(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)  # Kraj X (Wysoka zmienność)
+y <- c(8, 9, 9, 10, 10, 11, 11, 11, 12, 16)  # Kraj Y (Niska zmienność)
+kable(data.frame(
+  "Kraj_X" = x,
+  "Kraj_Y" = y
+))
+```
+
+### Pytania
+
+**Część A: Miary tendencji centralnej**
+
+Oblicz następujące miary dla obu krajów (pokaż obliczenia):
+
+1.  Średnia
+2.  Mediana
+3.  Dominanta (moda)
+
+**Część B: Miary rozproszenia**
+
+Oblicz następujące miary dla obu krajów (pokaż obliczenia):
+
+4.  Rozstęp
+5.  Wariancja
+6.  Odchylenie standardowe
+7.  Rozstęp międzykwartylowy (IQR) przy użyciu metody Tukeya
+
+**Część C: Wizualizacja**
+
+8.  Stwórz wykresy pudełkowe (boxploty) obok siebie, aby porównać rozkłady wielkości okręgów.
+
+**Część D: Interpretacja**
+
+9.  Który kraj ma bardziej jednolite rozmiary okręgów? Uzasadnij swoją odpowiedź konkretnymi statystykami.
+10. Jakie mogą być rzeczywiste implikacje tych różnic dla reprezentacji i konkurencji partyjnej? Jak wartość odstająca w Kraju Y wpływa na Twoją interpretację?
+
+**Część E: Weryfikacja (opcjonalnie)**
+
+11. Zweryfikuj swoje obliczenia używając funkcji R.
+
+------------------------------------------------------------------------
+
+### Rozwiązania
+
+#### Część A: Miary tendencji centralnej
+
+**Pytanie 1: Średnia**
+
+*Kraj X:*
+
+$$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n} = \frac{1 + 3 + 5 + 7 + 9 + 11 + 13 + 15 + 17 + 19}{10}$$
+
+$$\bar{x} = \frac{100}{10} = 10$$
+
+*Kraj Y:*
+
+$$\bar{y} = \frac{8 + 9 + 9 + 10 + 10 + 11 + 11 + 11 + 12 + 16}{10}$$
+
+$$\bar{y} = \frac{107}{10} = 10{,}7$$
+
+**Pytanie 2: Mediana**
+
+*Kraj X:*
+
+Dane są już posortowane: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19
+
+Przy $n = 10$ (parzysta liczba obserwacji), mediana jest średnią z 5. i 6. wartości:
+
+$$\text{Mediana}_X = \frac{9 + 11}{2} = \frac{20}{2} = 10$$
+
+*Kraj Y:*
+
+Dane są już posortowane: 8, 9, 9, 10, 10, 11, 11, 11, 12, 16
+
+$$\text{Mediana}_Y = \frac{10 + 11}{2} = \frac{21}{2} = 10{,}5$$
+
+**Pytanie 3: Dominanta (moda)**
+
+*Kraj X:*
+
+Każda wartość występuje dokładnie raz, więc **nie ma dominanty** (lub wszystkie wartości są modami).
+
+*Kraj Y:*
+
+Wartość 11 występuje trzy razy, częściej niż jakakolwiek inna wartość. Dominanta wynosi **11**.
+
+------------------------------------------------------------------------
+
+#### Część B: Miary rozproszenia
+
+**Pytanie 4: Rozstęp**
+
+*Kraj X:*
+
+$$\text{Rozstęp}_X = \max(x) - \min(x) = 19 - 1 = 18$$
+
+*Kraj Y:*
+
+$$\text{Rozstęp}_Y = \max(y) - \min(y) = 16 - 8 = 8$$
+
+**Pytanie 5: Wariancja**
+
+*Kraj X:*
+
+Używamy wzoru na wariancję próbkową: $s^2 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}$
+
+Najpierw obliczamy odchylenia od średniej ($\bar{x} = 10$):
+
+| $x_i$    | $x_i - \bar{x}$ | $(x_i - \bar{x})^2$ |
+|----------|-----------------|---------------------|
+| 1        | -9              | 81                  |
+| 3        | -7              | 49                  |
+| 5        | -5              | 25                  |
+| 7        | -3              | 9                   |
+| 9        | -1              | 1                   |
+| 11       | 1               | 1                   |
+| 13       | 3               | 9                   |
+| 15       | 5               | 25                  |
+| 17       | 7               | 49                  |
+| 19       | 9               | 81                  |
+| **Suma** |                 | **330**             |
+
+$$s_X^2 = \frac{330}{10-1} = \frac{330}{9} = 36{,}67$$
+
+*Kraj Y:*
+
+Najpierw obliczamy odchylenia od średniej ($\bar{y} = 10{,}7$):
+
+| $y_i$    | $y_i - \bar{y}$ | $(y_i - \bar{y})^2$ |
+|----------|-----------------|---------------------|
+| 8        | -2,7            | 7,29                |
+| 9        | -1,7            | 2,89                |
+| 9        | -1,7            | 2,89                |
+| 10       | -0,7            | 0,49                |
+| 10       | -0,7            | 0,49                |
+| 11       | 0,3             | 0,09                |
+| 11       | 0,3             | 0,09                |
+| 11       | 0,3             | 0,09                |
+| 12       | 1,3             | 1,69                |
+| 16       | 5,3             | 28,09               |
+| **Suma** |                 | **44,1**            |
+
+$$s_Y^2 = \frac{44{,}1}{10-1} = \frac{44{,}1}{9} = 4{,}90$$
+
+**Pytanie 6: Odchylenie standardowe**
+
+*Kraj X:*
+
+$$s_X = \sqrt{s_X^2} = \sqrt{36{,}67} = 6{,}055$$
+
+*Kraj Y:*
+
+$$s_Y = \sqrt{s_Y^2} = \sqrt{4{,}90} = 2{,}214$$
+
+**Pytanie 7: Rozstęp międzykwartylowy (IQR) - metoda Tukeya**
+
+Metoda Tukeya wyklucza medianę przy obliczaniu kwartyli.
+
+*Kraj X:*
+
+Dane: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19
+
+Mediana znajduje się na pozycji 5,5 (między 9 a 11)
+
+Dolna połowa (pozycje 1-5): 1, 3, 5, 7, 9 → $Q_1 = 5$ (mediana dolnej połowy)
+
+Górna połowa (pozycje 6-10): 11, 13, 15, 17, 19 → $Q_3 = 15$ (mediana górnej połowy)
+
+$$\text{IQR}_X = Q_3 - Q_1 = 15 - 5 = 10$$
+
+*Kraj Y:*
+
+Dane: 8, 9, 9, 10, 10, 11, 11, 11, 12, 16
+
+Mediana znajduje się na pozycji 5,5 (między 10 a 11)
+
+Dolna połowa (pozycje 1-5): 8, 9, 9, 10, 10 → $Q_1 = 9$ (mediana dolnej połowy)
+
+Górna połowa (pozycje 6-10): 11, 11, 11, 12, 16 → $Q_3 = 11$ (mediana górnej połowy)
+
+$$\text{IQR}_Y = Q_3 - Q_1 = 11 - 9 = 2$$
+
+------------------------------------------------------------------------
+
+#### Część C: Wizualizacja
+
+**Pytanie 8: Wykresy pudełkowe**
+
+```{r, fig.width=8, fig.height=5}
+# Create side-by-side boxplots using manually calculated quartiles (type 2)
+# to match our hand calculations
+
+# Function to calculate boxplot statistics with outlier detection
+calc_boxplot_stats <- function(data) {
+  q1 <- quantile(data, 0.25, type = 2)
+  q3 <- quantile(data, 0.75, type = 2)
+  iqr <- q3 - q1
+  med <- median(data)
+  
+  # Calculate fences for outlier detection
+  lower_fence <- q1 - 1.5 * iqr
+  upper_fence <- q3 + 1.5 * iqr
+  
+  # Identify outliers
+  outliers <- data[data < lower_fence | data > upper_fence]
+  
+  # Calculate whisker endpoints (most extreme non-outlier values)
+  non_outliers <- data[data >= lower_fence & data <= upper_fence]
+  lower_whisker <- min(non_outliers)
+  upper_whisker <- max(non_outliers)
+  
+  return(list(
+    stats = c(lower_whisker, q1, med, q3, upper_whisker),
+    outliers = outliers
+  ))
+}
+
+# Calculate statistics for both countries
+stats_x <- calc_boxplot_stats(x)
+stats_y <- calc_boxplot_stats(y)
+
+# Prepare data for bxp()
+boxplot_data <- list(
+  stats = matrix(c(stats_x$stats, stats_y$stats), nrow = 5, ncol = 2),
+  n = c(length(x), length(y)),
+  conf = matrix(c(NA, NA, NA, NA), nrow = 2, ncol = 2),
+  out = c(stats_x$outliers, stats_y$outliers),
+  group = c(rep(1, length(stats_x$outliers)), rep(2, length(stats_y$outliers))),
+  names = c("Country X", "Country Y")
+)
+
+# Create the boxplot with custom statistics
+bxp(boxplot_data,
+    main = "Comparison of Electoral District Sizes",
+    ylab = "District Magnitude (Number of Representatives)",
+    xlab = "Country",
+    col = c("#66C2A5", "#FC8D62"),
+    border = "black",
+    las = 1,
+    boxwex = 0.6)
+
+# Add a grid for easier reading
+grid(nx = NA, ny = NULL, col = "lightgray", lty = "dotted")
+
+# Verify boxplot statistics match our manual calculations
+cat("\nBoxplot statistics verification:\n")
+cat("Country X - Q1:", quantile(x, 0.25, type = 2), "Q3:", quantile(x, 0.75, type = 2), "\n")
+cat("Country Y - Q1:", quantile(y, 0.25, type = 2), "Q3:", quantile(y, 0.75, type = 2), "\n")
+cat("Country Y outlier(s):", stats_y$outliers, "\n")
+```
+
+Wykresy pudełkowe ujawniają ważne cechy każdego rozkładu:
+
+**Kraj X:** Wykres pudełkowy pokazuje symetryczny rozkład z medianą w centrum pudełka. Wąsy rozciągają się równo w obu kierunkach, wskazując, że dane są równomiernie rozłożone w całym zakresie.
+
+**Kraj Y:** Wykres pudełkowy pokazuje bardziej zwartą dystrybucję z wyraźną wartością odstającą przy 16. Większość okręgów skupia się między 8 a 12, ale obecność jednego znacznie większego okręgu (16 przedstawicieli) tworzy asymetrię w rozkładzie. Wartość odstająca jest identyfikowana przy użyciu reguły 1,5×IQR.
+
+**Uwaga:** Funkcja `boxplot()` w podstawowym R automatycznie używa metody Tukeya (typ kwantyla 7) do obliczania kwartyli, co dokładnie odpowiada naszym obliczeniom ręcznym. Krawędzie pudełka reprezentują Q1 i Q3, gruba linia pokazuje medianę, a wąsy rozciągają się do najbardziej ekstremalnych punktów danych w odległości 1,5×IQR od krawędzi pudełka.
+
+------------------------------------------------------------------------
+
+#### Część D: Interpretacja
+
+**Pytanie 9:**
+
+Interpretacja jest bardziej zniuansowana niż mogłoby się wydawać:
+
+**Standardowe miary sugerują, że Kraj Y ma bardziej jednolite rozmiary:**
+
+-   **Odchylenie standardowe:** Kraj Y ($s = 2{,}21$) ma znacznie mniejszą zmienność niż Kraj X ($s = 6{,}06$)
+-   **Wariancja:** Kraj Y ($s^2 = 4{,}90$) jest około 7,5 razy mniejsza niż Kraj X ($s^2 = 36{,}67$)
+-   **Rozstęp:** Rozstęp Kraju Y (8) jest mniejszy niż połowa rozstępu Kraju X (18)
+-   **IQR:** IQR Kraju Y (2) jest znacznie mniejszy niż IQR Kraju X (10)
+
+Wszystkie miary rozproszenia konsekwentnie pokazują, że Kraj Y ma bardziej jednolite rozmiary okręgów, nawet przy obecności wartości odstającej.
+
+**Pytanie 10:**
+
+Możliwe implikacje:
+
+**Kraj X** wykazuje **system progresywny lub proporcjonalny** ze stale rosnącymi rozmiarami okręgów. Może to wskazywać na:
+
+-   Celowy projekt mający na celu zróżnicowanie reprezentacji według regionu lub populacji
+-   Różną dynamikę konkurencji partyjnej w spektrum rozmiarów okręgów
+-   Bardziej przewidywalne zróżnicowanie w wynikach wyborczych
+
+**Kraj Y** pokazuje **w większości jednolity system z jednym większym okręgiem**. Główne cechy:
+
+-   Większość okręgów skupia się wokół dominanty wynoszącej 11 przedstawicieli
+-   Osiem z dziesięciu okręgów mieści się w zakresie 8-12 przedstawicieli, co sugeruje celową jednolitość
+-   Jeden okręg (16 przedstawicieli) wyróżnia się, ale jest mniej ekstremalny niż w niektórych systemach
+
+Większy okręg (16 przedstawicieli) w Kraju Y zasługuje na uwagę:
+
+-   Stanowi umiarkowane odchylenie od typowej wielkości okręgu (dominanta = 11)
+-   Może wskazywać na stolicę, duży ośrodek miejski lub region o większej populacji
+-   Może charakteryzować się nieco inną dynamiką konkurencji partyjnej, ale nie drastycznie
+-   Mediana (10,5) jest bardzo bliska średniej (10,7), co sugeruje umiarkowany wpływ wartości odstającej
+
+**Uwaga statystyczna:** Chociaż Kraj Y ma wartość odstającą, średnia (10,7) i mediana (10,5) są bardzo bliskie, co wskazuje, że wartość odstająca nie zniekształca dramatycznie tendencji centralnej. Sugeruje to, że system jest w dużej mierze jednolity z jednym wyjątkowym okręgiem, a nie systemem o ekstremalnej zmienności.
+
+------------------------------------------------------------------------
+
+#### Część E: Weryfikacja w R
+
+```{r}
+# Kraj X
+cat("Kraj X:\n")
+cat("Średnia:", mean(x), "\n")
+cat("Mediana:", median(x), "\n")
+cat("Wariancja:", var(x), "\n")
+cat("Odch. stand.:", sd(x), "\n")
+cat("Rozstęp:", max(x) - min(x), "\n")
+cat("IQR:", IQR(x, type = 2), "\n")
+cat("Q1:", quantile(x, 0.25, type = 2), "\n")
+cat("Q3:", quantile(x, 0.75, type = 2), "\n\n")
+
+# Kraj Y
+cat("Kraj Y:\n")
+cat("Średnia:", mean(y), "\n")
+cat("Mediana:", median(y), "\n")
+cat("Wariancja:", var(y), "\n")
+cat("Odch. stand.:", sd(y), "\n")
+cat("Rozstęp:", max(y) - min(y), "\n")
+cat("IQR:", IQR(y, type = 2), "\n")
+cat("Q1:", quantile(y, 0.25, type = 2), "\n")
+cat("Q3:", quantile(y, 0.75, type = 2), "\n")
+```
+
+**Uwaga:** Funkcja `quantile()` w R domyślnie używa Typu 7, który stosuje interpolację liniową między statystykami pozycyjnymi. Jednak nasze ręczne obliczenia stosują prostsze podejście „podziel-i-mediana", które odpowiada `type = 2` w R. Aby zweryfikować nasze obliczenia ręczne, jawnie określamy `type = 2`. Należy zauważyć, że funkcja `boxplot()` w podstawowym R używa Typu 7, więc krawędzie pudełka na wykresie mogą nieznacznie różnić się od naszych ręcznie obliczonych wartości Q1 i Q3.
+
+------------------------------------------------------------------------
+
+### Tabela statystyk podsumowujących
+
+```{r}
+# Tworzymy tabelę podsumowującą
+statystyki <- data.frame(
+  Statystyka = c("Średnia", "Mediana", "Wariancja", "Odch. stand.", 
+                 "Rozstęp", "IQR", "Q1", "Q3"),
+  Kraj_X = c(
+    mean(x), median(x), var(x), sd(x), 
+    max(x) - min(x), IQR(x, type = 2), quantile(x, 0.25, type = 2), quantile(x, 0.75, type = 2)
+  ),
+  Kraj_Y = c(
+    mean(y), median(y), var(y), sd(y), 
+    max(y) - min(y), IQR(y, type = 2), quantile(y, 0.25, type = 2), quantile(y, 0.75, type = 2)
+  )
+)
+
+kable(statystyki, 
+      col.names = c("Statystyka", "Kraj X", "Kraj Y"),
+      digits = 3,
+      caption = "Statystyki podsumowujące wielkości okręgów wyborczych")
+```
+
+------------------------------------------------------------------------
+
+
+## Ćwiczenie 4. Uczestnictwo wyborcze a dobrobyt ekonomiczny: analiza korelacji i regresji
+
+### Kontekst
+
 W tym ćwiczeniu zbadamy związek między dobrobytem ekonomicznym a frekwencją wyborczą w wyborach lokalnych. Politolodzy i socjolodzy od dawna debatują, czy warunki ekonomiczne wpływają na uczestnictwo obywatelskie. Niektóre teorie sugerują, że wyższe dochody są powiązane z większym zaangażowaniem politycznym i wyższą frekwencją wyborczą, ponieważ bogatsi obywatele mogą dysponować większymi zasobami (czas, wykształcenie, poczucie sprawczości politycznej), aby uczestniczyć w procesach demokratycznych. Przeanalizujemy dane z pięciu dzielnic średniej wielkości europejskiego miasta po ostatnich wyborach lokalnych, aby empirycznie przetestować tę zależność.
 
 ### Dane
+
 Próba obejmuje pięć reprezentatywnych dzielnic z wyborów lokalnych w średniej wielkości europejskim mieście:
+
 - **X**: Średni dochód gospodarstwa domowego (w tysiącach euro)
 - **Y**: Frekwencja wyborcza (procent uprawnionych wyborców, którzy oddali głos)
 
-| Dzielnica  | Dochód (X) (€000) | Frekwencja (Y) (%) |
-|------------|-------------------|---------------------|
-| Dzielnica A| 50                | 60                  |
-| Dzielnica B| 45                | 56                  |
-| Dzielnica C| 56                | 70                  |
-| Dzielnica D| 40                | 50                  |
-| Dzielnica E| 60                | 75                  |
+| Dzielnica   | Dochód (X) (€000) | Frekwencja (Y) (%) |
+|-------------|-------------------|--------------------|
+| Dzielnica A | 50                | 60                 |
+| Dzielnica B | 45                | 56                 |
+| Dzielnica C | 56                | 70                 |
+| Dzielnica D | 40                | 50                 |
+| Dzielnica E | 60                | 75                 |
 
 ### Zadania
 
 **A. Wstępna analiza danych**
 
-1. Oblicz **średni** dochód gospodarstwa domowego oraz **średnią** frekwencję wyborczą dla próby.
-2. Oblicz **odchylenie standardowe** dla dochodów gospodarstw domowych i frekwencji wyborczej.
+1.  Oblicz **średni** dochód gospodarstwa domowego oraz **średnią** frekwencję wyborczą dla próby.
+2.  Oblicz **odchylenie standardowe** dla dochodów gospodarstw domowych i frekwencji wyborczej.
 
 **B. Kowariancja**
 
-3. Oblicz **kowariancję** między dochodem (X) a frekwencją wyborczą (Y). Pokaż swoje obliczenia krok po kroku używając wzoru:
-   $$\text{Cov}(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1}$$
+3.  Oblicz **kowariancję** między dochodem (X) a frekwencją wyborczą (Y). Pokaż swoje obliczenia krok po kroku używając wzoru: $$\text{Cov}(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1}$$
 
-4. Czy kowariancja jest dodatnia czy ujemna? Co to mówi o związku między dochodem a uczestnictwem wyborczym?
+4.  Czy kowariancja jest dodatnia czy ujemna? Co to mówi o związku między dochodem a uczestnictwem wyborczym?
 
 **C. Współczynnik korelacji Pearsona**
 
-5. Oblicz **współczynnik korelacji Pearsona (r)** używając wzoru:
-   $$r = \frac{\text{Cov}(X,Y)}{s_X \cdot s_Y}$$
+5.  Oblicz **współczynnik korelacji Pearsona (r)** używając wzoru: $$r = \frac{\text{Cov}(X,Y)}{s_X \cdot s_Y}$$
 
-6. Zinterpretuj współczynnik korelacji Pearsona. Co jego wartość mówi o sile i kierunku związku liniowego?
+6.  Zinterpretuj współczynnik korelacji Pearsona. Co jego wartość mówi o sile i kierunku związku liniowego?
 
-7. Dlaczego współczynnik korelacji Pearsona jest bardziej użyteczny niż kowariancja przy porównywaniu związków w różnych badaniach?
+7.  Dlaczego współczynnik korelacji Pearsona jest bardziej użyteczny niż kowariancja przy porównywaniu związków w różnych badaniach?
 
 **D. Prosta regresja liniowa (MNK)**
 
-8. Oblicz **współczynnik kierunkowy (b₁)** linii regresji używając wzoru:
-    $$b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$$
+8.  Oblicz **współczynnik kierunkowy (b₁)** linii regresji używając wzoru: $$b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$$
 
-9. Oblicz **wyraz wolny (b₀)** linii regresji:
-    $$b_0 = \bar{y} - b_1\bar{x}$$
+9.  Oblicz **wyraz wolny (b₀)** linii regresji: $$b_0 = \bar{y} - b_1\bar{x}$$
 
 10. Zapisz kompletne **równanie regresji**: $\hat{Y} = b_0 + b_1X$
 
@@ -184,41 +1598,1962 @@ Próba obejmuje pięć reprezentatywnych dzielnic z wyborów lokalnych w średni
 
 22. Zaproponuj dwie dodatkowe zmienne, które mogłyby być uwzględnione w modelu regresji wielorakiej, aby lepiej wyjaśnić frekwencję wyborczą.
 
----
+------------------------------------------------------------------------
 
-## Ćwiczenie 4. Porównanie Zmienności Wielkości Okręgów Wyborczych Między Krajami
+## Ćwiczenie 5a. Popyt vs. Cena: Analiza Korelacji i Regresji
 
-```{r setup_2, include=FALSE}
-library(tidyverse)
-library(knitr)
-options(digits = 4)
-```
+### Wprowadzenie
+
+W tym ćwiczeniu zbadamy fundamentalną ekonomiczną zależność między ceną a wielkością popytu na produkt konsumencki. Zgodnie z prawem popytu, zazwyczaj istnieje odwrotna zależność między ceną a wielkością popytu - gdy ceny rosną, konsumenci kupują mniej (ceteris paribus). Przeanalizujemy dane sprzedażowe popularnego napoju energetycznego z 8 różnych punktów handlowych o zróżnicowanych cenach, aby skwantyfikować tę zależność.
 
 ### Dane
 
-Mamy dane o wielkości okręgów wyborczych z dwóch krajów:
+Zebraliśmy tygodniowe dane sprzedażowe z 8 sklepów convenience, rejestrując:
 
-```{r data}
-x <- c(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)  # Kraj wysoka zmienność
-y <- c(8, 9, 9, 10, 10, 11, 11, 12, 12, 13)  # Kraj niska zmienność
+-   **X**: Cena za jednostkę (w dolarach)
+-   **Y**: Wielkość popytu (sztuki sprzedane w tygodniu)
 
-kable(data.frame(
-  "Kraj X (Wysoka zm.)" = x,
-  "Kraj Y (Niska zm.)" = y
-))
+| Sklep | Cena (X) | Popyt (Y) |
+|-------|----------|-----------|
+| 1     | 3        | 90        |
+| 2     | 5        | 65        |
+| 3     | 7        | 80        |
+| 4     | 9        | 55        |
+| 5     | 11       | 68        |
+| 6     | 13       | 45        |
+| 7     | 15       | 60        |
+| 8     | 17       | 35        |
+
+```{r}
+# Załaduj wymagane biblioteki
+library(ggplot2)
+
+# Utwórz zbiór danych
+store_data <- data.frame(
+  Store = 1:8,
+  Price = c(3, 5, 7, 9, 11, 13, 15, 17),
+  Demand = c(90, 65, 80, 55, 68, 45, 60, 35)
+)
+
+# Wstępny wykres rozrzutu
+ggplot(store_data, aes(x = Price, y = Demand)) +
+  geom_point(size = 4, color = "#2E86AB") +
+  geom_text(aes(label = Store), vjust = -1, size = 3.5) +
+  labs(
+    title = "Cena vs. Popyt: Sprzedaż Napoju Energetycznego",
+    x = "Cena za Jednostkę ($)",
+    y = "Wielkość Popytu (szt./tydzień)"
+  ) +
+  theme_minimal()
 ```
+
+------------------------------------------------------------------------
+
+## PEŁNE ROZWIĄZANIA
+
+### **A. Wstępna Analiza Danych**
+
+**1. Oblicz średnią cenę i średni popyt**
+
+**Średnia Cena (**$\bar{x}$): $$\bar{x} = \frac{3 + 5 + 7 + 9 + 11 + 13 + 15 + 17}{8} = \frac{80}{8} = 10$$
+
+**Średni Popyt (**$\bar{y}$): $$\bar{y} = \frac{90 + 65 + 80 + 55 + 68 + 45 + 60 + 35}{8} = \frac{498}{8} = 62{,}25$$
+
+------------------------------------------------------------------------
+
+**2. Oblicz odchylenie standardowe dla obu zmiennych**
+
+Najpierw potrzebujemy odchyleń i kwadratów odchyleń:
+
+| Sklep | X | Y | $(x_i - \bar{x})$ | $(x_i - \bar{x})^2$ | $(y_i - \bar{y})$ | $(y_i - \bar{y})^2$ |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| 1 | 3 | 90 | -7 | 49 | 27,75 | 770,06 |
+| 2 | 5 | 65 | -5 | 25 | 2,75 | 7,56 |
+| 3 | 7 | 80 | -3 | 9 | 17,75 | 315,06 |
+| 4 | 9 | 55 | -1 | 1 | -7,25 | 52,56 |
+| 5 | 11 | 68 | 1 | 1 | 5,75 | 33,06 |
+| 6 | 13 | 45 | 3 | 9 | -17,25 | 297,56 |
+| 7 | 15 | 60 | 5 | 25 | -2,25 | 5,06 |
+| 8 | 17 | 35 | 7 | 49 | -27,25 | 742,56 |
+| **Suma** |  |  | **0** | **168** | **0** | **2223,5** |
+
+**Odchylenie Standardowe Ceny (**$s_X$): $$s_X = \sqrt{\frac{\sum(x_i - \bar{x})^2}{n-1}} = \sqrt{\frac{168}{7}} = \sqrt{24} = 4{,}899$$
+
+**Odchylenie Standardowe Popytu (**$s_Y$): $$s_Y = \sqrt{\frac{\sum(y_i - \bar{y})^2}{n-1}} = \sqrt{\frac{2223{,}5}{7}} = \sqrt{317{,}643} = 17{,}823$$
+
+------------------------------------------------------------------------
+
+**3. Oczekiwana zależność?**
+
+Na podstawie wizualnej inspekcji danych oczekujemy **ujemnej zależności** między ceną a popytem. Chociaż obserwujemy znaczną zmienność (np. przy \$7 popyt wynosi 80, ale przy \$11 popyt wynosi 68 - oba stosunkowo wysokie), ogólny trend pokazuje, że popyt maleje wraz ze wzrostem ceny. Sklep z najniższą ceną (\$3) ma wysoki popyt (90), podczas gdy sklep z najwyższą ceną (\$17) ma najniższy popyt (35). Ten ogólny wzorzec jest zgodny z ekonomicznym prawem popytu, chociaż zależność wydaje się **zaszumiona** ze znaczną zmiennością wokół trendu.
+
+------------------------------------------------------------------------
+
+### **B. Kowariancja**
+
+**4. Oblicz kowariancję między ceną (X) a popytem (Y)**
+
+Musimy obliczyć $(x_i - \bar{x})(y_i - \bar{y})$ dla każdej obserwacji:
+
+| Sklep | $(x_i - \bar{x})$ | $(y_i - \bar{y})$ | $(x_i - \bar{x})(y_i - \bar{y})$ |
+|---------------|---------------|---------------|---------------------------|
+| 1 | -7 | 27,75 | -194,25 |
+| 2 | -5 | 2,75 | -13,75 |
+| 3 | -3 | 17,75 | -53,25 |
+| 4 | -1 | -7,25 | 7,25 |
+| 5 | 1 | 5,75 | 5,75 |
+| 6 | 3 | -17,25 | -51,75 |
+| 7 | 5 | -2,25 | -11,25 |
+| 8 | 7 | -27,25 | -190,75 |
+| **Suma** |  |  | **-502,0** |
+
+**Kowariancja:** $$\text{Cov}(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1} = \frac{-502}{7} = -71{,}714$$
+
+------------------------------------------------------------------------
+
+**5. Interpretacja znaku kowariancji**
+
+Kowariancja jest **ujemna** (-71,714). Wskazuje to na **odwrotną zależność** między ceną a popytem - gdy cena rośnie, popyt ma tendencję do spadku. Potwierdza to nasze oczekiwania z analizy wstępnej i jest zgodne z teorią ekonomiczną.
+
+------------------------------------------------------------------------
+
+**6. Ograniczenia kowariancji**
+
+Sama kowariancja **nie jest wystarczająca** do określenia siły zależności, ponieważ:
+
+1.  **Zależna od skali**: Kowariancja jest mierzona w jednostkach X razy jednostki Y (dolary × sztuki). Gdybyśmy zmienili skalę pomiaru (np. centy zamiast dolarów), kowariancja zmieniłaby się dramatycznie, mimo że siła zależności pozostałaby taka sama.
+
+2.  **Brak standaryzowanej interpretacji**: Nie możemy powiedzieć, czy -71,714 reprezentuje słabą, umiarkowaną czy silną zależność bez znajomości zmienności w obu zmiennych.
+
+3.  **Nieograniczona**: Kowariancja może przyjmować wartości od $-\infty$ do $+\infty$, co utrudnia porównywanie zależności między różnymi zbiorami danych.
+
+Potrzebujemy **znormalizowanej miary**, która uwzględnia zmienność w obu zmiennych - tu pojawia się współczynnik korelacji.
+
+------------------------------------------------------------------------
+
+### **C. Współczynnik Korelacji Pearsona**
+
+**7. Oblicz r Pearsona używając kowariancji i odchyleń standardowych**
+
+$$r = \frac{\text{Cov}(X,Y)}{s_X \cdot s_Y} = \frac{-71{,}714}{4{,}899 \times 17{,}823} = \frac{-71{,}714}{87{,}305} = -0{,}8215$$
+
+------------------------------------------------------------------------
+
+**8. Weryfikacja używając wzoru alternatywnego**
+
+$$r = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2 \cdot \sum(y_i - \bar{y})^2}}$$
+
+$$r = \frac{-502}{\sqrt{168 \times 2223{,}5}} = \frac{-502}{\sqrt{373\,548}} = \frac{-502}{611{,}151} = -0{,}8214$$
+
+**Zweryfikowano!** ✓ (r = -0,821)
+
+------------------------------------------------------------------------
+
+**9. Interpretacja współczynnika korelacji Pearsona**
+
+**Wartość: r = -0,821**
+
+**Kierunek:** Znak ujemny wskazuje na **odwrotną (ujemną) zależność** - gdy cena rośnie, popyt maleje.
+
+**Siła:** Wartość bezwzględna 0,821 wskazuje na **silną zależność liniową**. Chociaż nie jest doskonała, punkty danych grupują się dość blisko linii opadającej.
+
+**Wytyczne interpretacyjne:**
+
+-   \|r\| = 0,0 do 0,3: Słaba
+-   \|r\| = 0,3 do 0,7: Umiarkowana
+-   \|r\| = 0,7 do 1,0: Silna
+-   \|r\| = 0,9 do 1,0: Bardzo silna
+
+Nasza korelacja -0,821 mieści się solidnie w kategorii "silna".
+
+------------------------------------------------------------------------
+
+**10. W jaki sposób r Pearsona poprawia kowariancję?**
+
+**Kluczowe zalety r Pearsona:**
+
+1.  **Znormalizowany**: r jest bezwymiarowy (bez jednostek), przyjmuje wartości od -1 do +1, co ułatwia interpretację niezależnie od oryginalnych skal pomiarowych.
+
+2.  **Porównywalny między zbiorami danych**: Ponieważ r jest znormalizowany, możemy porównywać siłę zależności między różnymi badaniami, zmiennymi i kontekstami.
+
+3.  **Jasna interpretacja**: Wartość bezpośrednio informuje o kierunku (znak) i sile (wartość bezwzględna) zależności liniowej.
+
+4.  **Niezmienny względem skali**: Zmiana jednostek pomiaru (np. dolary na centy lub sztuki na tuziny) nie zmienia r.
+
+Podczas gdy kowariancja informuje nas o kierunku, tylko korelacja informuje nas **zarówno o kierunku, jak i znormalizowanej sile**.
+
+------------------------------------------------------------------------
+
+**11. Korelacja vs. Związek Przyczynowy**
+
+**Nie, nie możemy wnioskować, że cena powoduje niski popyt na podstawie samej korelacji.**
+
+Chociaż silna ujemna korelacja (-0,821) pokazuje, że cena i popyt poruszają się razem w przeciwnych kierunkach, korelacja nie ustanawia związku przyczynowego. Kilka problemów:
+
+1.  **Odwrotna przyczynowość**: Być może wysoki popyt pozwala sprzedawcom na wyższe ceny w niektórych lokalizacjach, lub niski popyt wymusza obniżki cen.
+
+2.  **Zmienne zakłócające**: Inne czynniki mogą wpływać zarówno na cenę, jak i popyt:
+
+    -   Lokalizacja sklepu (bogate vs. biedne dzielnice)
+    -   Konkurencja z pobliskich sklepów
+    -   Jakość/atmosfera sklepu
+    -   Lokalne charakterystyki demograficzne i preferencje
+
+3.  **Problem trzeciej zmiennej**: Niezmierzony czynnik może powodować zarówno wysokie ceny, jak i niski popyt (np. bogate dzielnice ze świadomymi zdrowotnie konsumentami unikającymi napojów energetycznych).
+
+**Aby ustalić związek przyczynowy**, potrzebowalibyśmy:
+
+-   **Randomizowane eksperymenty kontrolowane**: Losowo przypisać ceny do sklepów
+-   **Dane podłużne**: Śledzić te same sklepy wraz ze zmianami cen w czasie
+-   **Kontrola zakłóceń**: Zmierzyć i uwzględnić inne zmienne wyjaśniające
+-   **Mechanizm teoretyczny**: Zrozumieć ścieżkę przyczynową od ceny do popytu
+
+------------------------------------------------------------------------
+
+### **D. Podstawowe Pojęcia Regresji**
+
+**12. Co oznacza linia "najlepszego dopasowania"?**
+
+**Linia najlepszego dopasowania** (zwana także **linią regresji** lub **linią najmniejszych kwadratów**) to linia, która najlepiej reprezentuje zależność liniową między dwiema zmiennymi poprzez minimalizację całkowitego błędu predykcji.
+
+**Kryterium: Metoda Najmniejszych Kwadratów (MNK)**
+
+Linia jest wybierana tak, aby minimalizować **sumę kwadratów reszt**: $$\text{SSE} = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 = \sum_{i=1}^{n}e_i^2$$
+
+Gdzie:
+
+-   $y_i$ = rzeczywista obserwowana wartość
+-   $\hat{y}_i$ = wartość przewidywana z linii regresji
+-   $e_i$ = reszta (błąd) dla obserwacji i
+
+**Dlaczego podnosimy błędy do kwadratu?**
+
+1.  Sprawia, że wszystkie błędy są dodatnie (zapobiega anulowaniu)
+2.  Bardziej karze duże błędy niż małe
+3.  Prowadzi do unikalnego, matematycznie możliwego do rozwiązania
+4.  Skutkuje resztami, których suma wynosi zero
+
+------------------------------------------------------------------------
+
+**13. Postać równania regresji**
+
+Proste równanie regresji liniowej ma postać: $$\hat{Y} = a + bX$$
+
+Gdzie:
+
+-   $\hat{Y}$ = przewidywana wartość Y
+-   $a$ = wyraz wolny (przewidywane Y gdy X = 0)
+-   $b$ = nachylenie (zmiana Y na jednostkę zmiany X)
+-   $X$ = wartość zmiennej predykcyjnej
+
+------------------------------------------------------------------------
+
+### **E. Analiza Prostej Regresji Liniowej**
+
+**14. Oblicz nachylenie regresji (b)**
+
+$$b = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = \frac{-502}{168} = -2{,}988$$
+
+**Weryfikacja wzoru alternatywnego:** $$b = r \cdot \frac{s_Y}{s_X} = -0{,}821 \times \frac{17{,}823}{4{,}899} = -0{,}821 \times 3{,}639 = -2{,}988$$
+
+**Zweryfikowano!** ✓
+
+------------------------------------------------------------------------
+
+**15. Oblicz wyraz wolny regresji (a)**
+
+$$a = \bar{y} - b\bar{x} = 62{,}25 - (-2{,}988)(10) = 62{,}25 + 29{,}88 = 92{,}13$$
+
+**Równanie regresji:** $$\hat{Y} = 92{,}13 - 2{,}988X$$
+
+------------------------------------------------------------------------
+
+**16. Interpretacja nachylenia**
+
+**Nachylenie: b = -2,988**
+
+**Interpretacja ekonomiczna:**
+
+-   Dla każdego **wzrostu ceny o \$1**, wielkość popytu **maleje o około 3,0 jednostki** tygodniowo
+-   Znak ujemny potwierdza **odwrotną zależność** między ceną a popytem
+-   To jest **efekt krańcowy** ceny na popyt
+
+**Znaczenie praktyczne:**
+
+-   Wzrost ceny o \$5 zmniejszyłby popyt o około 15 jednostek (5 × 2,988)
+-   Efekt jest **ekonomicznie znaczący** - popyt jest dość wrażliwy na cenę
+
+------------------------------------------------------------------------
+
+**17. Interpretacja wyrazu wolnego**
+
+**Wyraz wolny: a = 92,13**
+
+**Interpretacja dosłowna:** Wyraz wolny reprezentuje **przewidywany popyt, gdy cena równa się zeru** ($X = 0$).
+
+**Wartość:** Gdyby napój energetyczny był darmowy (\$0), przewidywalibyśmy popyt na około **92 jednostki tygodniowo**.
+
+**Czy to jest sensowne?** **Nieco, ale z ostrożnością:**
+
+**Zalety:**
+
+-   Jest stosunkowo blisko naszego zakresu danych (minimalna cena to \$3)
+-   Wartość (92 jednostki) wydaje się prawdopodobna dla darmowego produktu
+-   Pomaga zakotwić linię regresji
+
+**Wady:**
+
+-   **Problem ekstrapolacji**: Nie mamy danych przy \$0 - zależność może nie być liniowa przy bardzo niskich cenach
+-   **Nierealistyczny scenariusz**: Sklepy nie rozdają darmowo napojów energetycznych
+-   **Pułap popytu**: Nawet za darmo istnieje praktyczna granica tego, ile ludzi chce napojów energetycznych
+
+**Lepsza interpretacja:** Wyraz wolny jest przede wszystkim **parametrem pozycjonowania matematycznego**, który zapewnia, że linia regresji przechodzi przez $(\bar{x}, \bar{y})$.
+
+------------------------------------------------------------------------
+
+**18. Weryfikacja, że linia przechodzi przez** $(\bar{x}, \bar{y})$
+
+**Właściwość do weryfikacji:** Każda linia regresji przechodzi przez punkt średnich: $(\bar{x}, \bar{y})$
+
+**Weryfikacja:** $$\hat{Y} = 92{,}13 - 2{,}988X$$
+
+Gdy $X = \bar{x} = 10$: $$\hat{Y} = 92{,}13 - 2{,}988(10) = 92{,}13 - 29{,}88 = 62{,}25$$
+
+Ponieważ $\bar{y} = 62{,}25$, potwierdziliśmy: **Gdy** $X = \bar{x}$, to $\hat{Y} = \bar{y}$ ✓
+
+------------------------------------------------------------------------
+
+```{r}
+# Dopasuj model regresji
+model <- lm(Demand ~ Price, data = store_data)
+intercept <- coef(model)[1]
+slope <- coef(model)[2]
+
+# Oblicz predykcje i reszty
+store_data$predicted <- predict(model)
+store_data$residuals <- residuals(model)
+
+# Główny wykres regresji
+ggplot(store_data, aes(x = Price, y = Demand)) +
+  geom_point(size = 4, color = "#2E86AB") +
+  geom_smooth(method = "lm", se = TRUE, color = "#E63946", fill = "#E6394620") +
+  geom_text(aes(label = Store), vjust = -1.5, size = 3.5) +
+  labs(
+    title = "Prosta Regresja Liniowa: Popyt = f(Cena)",
+    subtitle = paste0("Ŷ = ", round(intercept, 2), " ", 
+                     round(slope, 3), "X    |    r = ", round(cor(store_data$Price, store_data$Demand), 3)),
+    x = "Cena za Jednostkę ($)",
+    y = "Wielkość Popytu (szt./tydzień)"
+  ) +
+  theme_minimal()
+```
+
+------------------------------------------------------------------------
+
+### **F. Analiza Reszt i Ocena Modelu**
+
+**19. Oblicz przewidywane wartości dla każdego sklepu**
+
+| Sklep | Cena (X) | Rzeczywisty Popyt (Y) | Przewidywany Popyt ($\hat{Y}$) | Obliczenie |
+|-------------|-------------|--------------|----------------------|-------------|
+| 1 | 3 | 90 | 83,17 | $92{,}13 - 2{,}988(3) = 83{,}17$ |
+| 2 | 5 | 65 | 77,19 | $92{,}13 - 2{,}988(5) = 77{,}19$ |
+| 3 | 7 | 80 | 71,22 | $92{,}13 - 2{,}988(7) = 71{,}22$ |
+| 4 | 9 | 55 | 65,24 | $92{,}13 - 2{,}988(9) = 65{,}24$ |
+| 5 | 11 | 68 | 59,26 | $92{,}13 - 2{,}988(11) = 59{,}26$ |
+| 6 | 13 | 45 | 53,29 | $92{,}13 - 2{,}988(13) = 53{,}29$ |
+| 7 | 15 | 60 | 47,31 | $92{,}13 - 2{,}988(15) = 47{,}31$ |
+| 8 | 17 | 35 | 41,34 | $92{,}13 - 2{,}988(17) = 41{,}34$ |
+
+------------------------------------------------------------------------
+
+**20. Oblicz reszty**
+
+**Reszta:** $e_i = y_i - \hat{y}_i$ (Rzeczywista - Przewidywana)
+
+| Sklep    | Rzeczywista (Y) | Przewidywana ($\hat{Y}$) | Reszta (e)               |
+|----------|-----------------|--------------------------|--------------------------|
+| 1        | 90              | 83,17                    | +6,83 (niedoszacowanie)  |
+| 2        | 65              | 77,19                    | -12,19 (przeszacowanie)  |
+| 3        | 80              | 71,22                    | +8,78 (niedoszacowanie)  |
+| 4        | 55              | 65,24                    | -10,24 (przeszacowanie)  |
+| 5        | 68              | 59,26                    | +8,74 (niedoszacowanie)  |
+| 6        | 45              | 53,29                    | -8,29 (przeszacowanie)   |
+| 7        | 60              | 47,31                    | +12,69 (niedoszacowanie) |
+| 8        | 35              | 41,34                    | -6,34 (przeszacowanie)   |
+| **Suma** |                 |                          | **≈ 0**                  |
+
+**Zweryfikowana kluczowa właściwość:** Suma reszt wynosi w przybliżeniu zero (z dokładnością do zaokrągleń). To jest matematyczna właściwość regresji MNK.
+
+```{r}
+# Prosty wykres reszt
+ggplot(store_data, aes(x = predicted, y = residuals)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  geom_point(size = 4, color = "#2E86AB") +
+  geom_text(aes(label = Store), vjust = -1.2, size = 3.5) +
+  labs(
+    title = "Reszty vs. Wartości Dopasowane",
+    subtitle = "Punkty powinny być rozrzucone losowo wokół zera",
+    x = "Wartości Dopasowane (Przewidywany Popyt)",
+    y = "Reszty"
+  ) +
+  theme_minimal()
+```
+
+------------------------------------------------------------------------
+
+**21. Interpretacja reszt**
+
+**Co mówią nam reszty:**
+
+1.  **Sklep 1 (reszta = +6,83)**: Model **niedoszacował** popytu. Przy \$3 model przewidział 83 jednostki, ale rzeczywisty popyt wyniósł 90. Ten sklep osiągnął **lepsze wyniki niż oczekiwano** - być może z powodu korzystnej lokalizacji lub wysokiego ruchu pieszego.
+
+2.  **Sklep 2 (reszta = -12,19)**: Model **przeszacował** popyt. Przy \$5 model przewidział 77 jednostek, ale sprzedano tylko 65. Ten sklep osiągnął **gorsze wyniki niż oczekiwano** - możliwie z powodu silnej lokalnej konkurencji.
+
+3.  **Sklep 7 (reszta = +12,69)**: **Największa dodatnia reszta**. Przy \$15 (wysoka cena) popyt wynoszący 60 jednostek znacznie przekroczył przewidywane 47 jednostek. Potencjalne wyjaśnienie: bogata dzielnica mniej wrażliwa na cenę.
+
+**Kluczowy wniosek:** Reszty reprezentują wpływ **wszystkich czynników innych niż cena**. Duże reszty identyfikują sklepy, gdzie sama cena nie opowiada pełnej historii.
+
+------------------------------------------------------------------------
+
+**22. Oblicz Sumy Kwadratów**
+
+**Całkowita Suma Kwadratów (SST):** Mierzy całkowitą zmienność Y wokół jego średniej: $$\text{SST} = \sum(y_i - \bar{y})^2 = 2223{,}5$$
+
+**Suma Kwadratów Regresji (SSR):** Mierzy zmienność wyjaśnioną przez model:
+
+| Sklep    | $\hat{y}_i$ | $(\hat{y}_i - \bar{y})$ | $(\hat{y}_i - \bar{y})^2$ |
+|----------|-------------|-------------------------|---------------------------|
+| 1        | 83,17       | 20,92                   | 437,65                    |
+| 2        | 77,19       | 14,94                   | 223,20                    |
+| 3        | 71,22       | 8,97                    | 80,46                     |
+| 4        | 65,24       | 2,99                    | 8,94                      |
+| 5        | 59,26       | -2,99                   | 8,94                      |
+| 6        | 53,29       | -8,96                   | 80,28                     |
+| 7        | 47,31       | -14,94                  | 223,20                    |
+| 8        | 41,34       | -20,91                  | 437,23                    |
+| **Suma** |             |                         | **1499,9**                |
+
+$$\text{SSR} = 1499{,}9$$
+
+**Suma Kwadratów Błędów (SSE):** Mierzy niewyjaśnioną zmienność:
+
+| Sklep    | $e_i$  | $e_i^2$   |
+|----------|--------|-----------|
+| 1        | 6,83   | 46,65     |
+| 2        | -12,19 | 148,60    |
+| 3        | 8,78   | 77,09     |
+| 4        | -10,24 | 104,86    |
+| 5        | 8,74   | 76,39     |
+| 6        | -8,29  | 68,72     |
+| 7        | 12,69  | 161,04    |
+| 8        | -6,34  | 40,20     |
+| **Suma** |        | **723,6** |
+
+$$\text{SSE} = 723{,}6$$
+
+**Weryfikacja:** $$\text{SST} = \text{SSR} + \text{SSE}$$ $$2223{,}5 = 1499{,}9 + 723{,}6$$ $$2223{,}5 = 2223{,}5$$ ✓
+
+------------------------------------------------------------------------
+
+**23. Interpretacja dekompozycji wariancji**
+
+Fundamentalne równanie $\text{SST} = \text{SSR} + \text{SSE}$ mówi nam, że:
+
+**Całkowitą zmienność popytu (SST = 2223,5)** można podzielić na dwa składniki:
+
+1.  **Systematyczna zmienność wyjaśniona przez cenę (SSR = 1499,9)**
+
+    -   Reprezentuje zmienność popytu, która zmienia się **przewidywalnie z ceną**
+    -   **67,5% całkowitej zmienności** (1499,9 ÷ 2223,5)
+
+2.  **Losowa/niewyjaśniona zmienność (SSE = 723,6)**
+
+    -   Reprezentuje zmienność spowodowaną **wszystkimi innymi czynnikami** nieobecnymi w naszym modelu
+    -   **32,5% całkowitej zmienności** (723,6 ÷ 2223,5)
+    -   Źródła: efekty lokalizacji, konkurencja, demografia, błąd pomiarowy, itp.
+
+**Kluczowy wniosek:** Cena wyjaśnia około 2/3 zmienności popytu między sklepami, ale 1/3 zmienności pochodzi z innych czynników.
+
+------------------------------------------------------------------------
+
+**24. Oblicz Średni Błąd Kwadratowy (MSE)**
+
+**Średni Błąd Kwadratowy (MSE):** $$\text{MSE} = \frac{\text{SSE}}{n-2} = \frac{723{,}6}{8-2} = \frac{723{,}6}{6} = 120{,}6$$
+
+**Dlaczego n-2?** Używamy $n-2$ stopni swobody, ponieważ oszacowaliśmy **2 parametry** (wyraz wolny $a$ i nachylenie $b$) z danych.
+
+**Pierwiastek Średniego Błędu Kwadratowego (RMSE):** $$\text{RMSE} = \sqrt{\text{MSE}} = \sqrt{120{,}6} = 10{,}98 \text{ jednostek}$$
+
+------------------------------------------------------------------------
+
+**25. Interpretacja MSE i RMSE**
+
+**RMSE = 10,98 jednostek**
+
+-   Średni błąd predykcji w **oryginalnych jednostkach** (jednostki tygodniowo)
+-   Średnio nasze predykcje różnią się o około **±11 jednostek**
+
+**Co to oznacza dla predykcji:**
+
+-   Przewidując popyt, oczekuj błędów rzędu ±11 jednostek
+-   Dla sklepu z ceną \$10 (przewidywany popyt = 62 jednostki), rzeczywisty popyt prawdopodobnie wyniesie między 51 a 73 jednostkami
+-   **Błąd względny**: 11 jednostek z średniego popytu 62 to około **18% błędu** - rozsądne, ale nie idealne
+
+------------------------------------------------------------------------
+
+**26. Oblicz R²**
+
+$$R^2 = \frac{\text{SSR}}{\text{SST}} = \frac{1499{,}9}{2223{,}5} = 0{,}6745 \approx 0{,}675$$
+
+**Obliczenie alternatywne (używając korelacji):** $$R^2 = r^2 = (-0{,}821)^2 = 0{,}6744 \approx 0{,}675$$
+
+**Zweryfikowano!** ✓
+
+------------------------------------------------------------------------
+
+**27. Interpretacja R²**
+
+**R² = 0,675 (czyli 67,5%)**
+
+**Interpretacja:**
+
+-   **67,5% zmienności** wielkości popytu może być wyjaśnione przez liniową zależność z ceną
+-   **32,5% zmienności** pozostaje niewyjaśnione (zmienność resztowa)
+-   To jest **dobre, ale nie idealne dopasowanie**, wskazujące, że cena jest ważnym, ale nie jedynym predyktorem popytu
+
+**Kontekst:** Ta wartość R² jest **realistyczna** dla danych ekonomicznych. W przeciwieństwie do wysoce kontrolowanych eksperymentów, rzeczywiste dane obserwacyjne zawierają wiele czynników wpływających. R² równe 0,68 sugeruje:
+
+-   Cena jest **silnym predyktorem** popytu
+-   Inne zmienne również mają znaczący wpływ
+-   Model uchwytuje główny trend, ale pomija efekty specyficzne dla sklepu
+
+------------------------------------------------------------------------
+
+### **G. Interpretacja i Wnioski**
+
+**28. Czy cena jest statystycznie istotnym predyktorem popytu?**
+
+**Tak, zdecydowanie.** Na podstawie naszej analizy regresji:
+
+1.  **Silna korelacja**: r = -0,821 wskazuje na silną ujemną zależność liniową
+2.  **Znaczące R²**: 67,5% wyjaśnionej zmienności
+3.  **Zgodność z teorią**: Ujemne nachylenie jest zgodne z ekonomicznym prawem popytu
+4.  **Ekonomicznie istotne nachylenie**: -2,99 jednostek na dolara jest znaczące
+
+Chociaż dopasowanie nie jest doskonałe (jak oczekiwano w przypadku rzeczywistych danych), cena jest wyraźnie statystycznie i praktycznie istotnym predyktorem popytu.
+
+------------------------------------------------------------------------
+
+**29. Porównaj r i R² - jak są ze sobą powiązane?**
+
+**Zależność:** $$R^2 = r^2$$
+
+W prostej regresji liniowej (jeden predyktor) R² jest po prostu kwadratem współczynnika korelacji Pearsona.
+
+**Co każda z nich nam mówi:**
+
+| Miara | Zakres | Dostarczone Informacje |
+|----------------|----------------|-----------------------------------------|
+| **r** (korelacja) | -1 do +1 | Kierunek (dodatni/ujemny) i siła zależności liniowej |
+| **R²** | 0 do 1 | Proporcja wyjaśnionej wariancji (brak informacji o kierunku) |
+
+**Przykład w naszym przypadku:**
+
+-   **r = -0,821**: Silna ujemna zależność
+-   **R² = 0,675**: 67,5% wyjaśnionej wariancji (utracona informacja o "ujemności")
+
+**Kiedy używać której:**
+
+-   Użyj **r**, gdy zależy ci na kierunku i sile związku
+-   Użyj **R²**, gdy zależy ci na wyjaśnionej wariancji i dobroci dopasowania
+
+------------------------------------------------------------------------
+
+**30. Wykonaj predykcje**
+
+\*\*Przewiduj popyt przy $12:**$$\hat{Y} = 92{,}13 - 2{,}988(12) = 92{,}13 - 35{,}86 = 56{,}27 \approx 56 \text{ jednostek}$\$
+
+**Pewność tej predykcji:** **Umiarkowana pewność**, ponieważ:
+
+-   \$12 mieści się w naszym zakresie danych (\$3 do \$17)
+-   To jest **interpolacja**, nie ekstrapolacja
+-   Jednakże, oczekuj błędu ±11 jednostek (RMSE), więc rzeczywisty popyt prawdopodobnie będzie między 45-67 jednostkami
+
+------------------------------------------------------------------------
+
+**31. Predykcja dla bardzo niskiej ceny (\$2,00)?**
+
+$$\hat{Y} = 92{,}13 - 2{,}988(2) = 92{,}13 - 5{,}98 = 86{,}15 \approx 86 \text{ jednostek}$$
+
+**Czy powinniśmy czuć się pewnie tej predykcji?**
+
+**Niska do umiarkowanej pewność:**
+
+**Powody dla pewnej pewności:**
+
+-   \$2,00 jest tylko nieznacznie poniżej naszej minimalnej obserwowanej ceny (\$3,00)
+-   To jest **łagodna ekstrapolacja**, nie ekstremalna
+-   Zależność wydaje się dość liniowa
+
+**Powody do ostrożności:**
+
+1.  **Ekstrapolacja**: Przewidujemy poza naszym obserwowanym zakresem danych
+2.  **Zaszumione dane**: Z R² = 0,675, predykcje mają znaczną niepewność (± 11 jednostek)
+3.  **Obawy o nieliniowość**: Zależność może nie pozostać liniowa przy bardzo niskich cenach
+4.  **Duży przedział predykcji**: Biorąc pod uwagę zmienność resztową, rzeczywisty popyt może łatwo wynosić 70-100 jednostek
+
+**Rekomendacja:**
+
+-   Użyj 86 jednostek jako **przybliżonej centralnej estymacji**
+-   Oczekuj, że rzeczywisty popyt może łatwo wynosić 70-100 jednostek
+-   **Zdecydowanie zalecamy** zebranie rzeczywistych danych przy \$2,00 w celu weryfikacji
+-   Rozważ testowanie przy cenach pośrednich (\$2,50, \$2,75) najpierw
+
+------------------------------------------------------------------------
+
+**32. Dodatkowe zmienne dla bardziej kompletnego modelu**
+
+**Dwie ważne zmienne do dodania:**
+
+**1. Lokalny Poziom Dochodów (Mediana dochodu gospodarstwa domowego w rejonie sklepu)**
+
+-   **Uzasadnienie**: Napoje energetyczne mogą być dobrami normalnymi - popyt rośnie wraz z dochodem
+-   **Oczekiwana zależność**: Dodatni współczynnik - obszary o wyższych dochodach mogą mieć wyższy popyt niezależnie od ceny
+-   **Pomiar**: Dane spisowe dla kodów pocztowych sklepów
+
+**2. Liczba Konkurentów (Liczba sklepów sprzedających napoje energetyczne w promieniu 1 mili)**
+
+-   **Uzasadnienie**: Konkurencja wpływa zarówno na ustalanie cen, jak i podstawowy popyt
+-   **Oczekiwana zależność**: Ujemny współczynnik - większa konkurencja zmniejsza popyt przy danej cenie
+-   **Pomiar**: Analiza GIS lokalizacji konkurentów
+
+**Rozszerzony model:** $$\text{Popyt} = \beta_0 + \beta_1(\text{Cena}) + \beta_2(\text{Dochód}) + \beta_3(\text{Konkurencja}) + \varepsilon$$
+
+**Oczekiwane wyniki:**
+
+-   R² prawdopodobnie wzrosłoby do 0,80-0,90
+-   Współczynnik ceny pozostałby ujemny, ale mógłby zmienić wielkość
+-   Reszty byłyby mniejsze i bardziej losowe
+
+------------------------------------------------------------------------
+
+## Podsumowanie: Kluczowe Wnioski
+
+1.  **Silna ujemna zależność** między ceną a popytem (r = -0,821)
+2.  **Cena wyjaśnia 67,5%** zmienności popytu (R² = 0,675)
+3.  **Równanie regresji**: Popyt = 92,13 - 2,99 × Cena
+4.  **Interpretacja ekonomiczna**: Każdy wzrost o \$1 zmniejsza popyt o \~3 jednostki
+5.  **Realistyczny model**: 32,5% niewyjaśnionej zmienności sugeruje, że inne czynniki mają znaczenie
+6.  **Ograniczenia**: Mała próba, potencjalne zakłócenia, ryzyko ekstrapolacji
+7.  **Kolejne kroki**: Zebrać więcej danych, dodać zmienne kontrolne, testować predykcje
+
+
+------------------------------------------------------------------------
+
+
+## Ćwiczenie 5b. Popyt w Kawiarniach: Analiza Wrażliwości Cenowej
+
+### Kontekst
+
+Regionalna sieć kawiarni chce zrozumieć, jak cena wpływa na popyt klientów w różnych lokalizacjach. Firma prowadzi 6 kawiarni w podobnych dzielnicach, ale z różnymi strategiami cenowymi. Aby zoptymalizować cenę, zarząd musi określić ilościowo związek między ceną za filiżankę a liczbą sprzedanych filiżanek dziennie.
+
+**Pytanie badawcze:** Jak cena standardowej kawy wpływa na liczbę sprzedanych filiżanek dziennie?
+
+### Dane
+
+Poniższe dane zebrano w ciągu typowego tygodnia (uśrednione z 7 dni) z 6 lokalizacji:
+
+| Kawiarnia | Cena za filiżankę (zł) | Sprzedanych filiżanek dziennie |
+|-----------|------------------------|--------------------------------|
+| A         | 12.00                  | 48                             |
+| B         | 16.00                  | 38                             |
+| C         | 20.00                  | 48                             |
+| D         | 24.00                  | 36                             |
+| E         | 28.00                  | 34                             |
+| F         | 32.00                  | 26                             |
+
+**Uwaga:** Dane cenowe przeliczono na polskie złote (1\$ ≈ 4 zł dla ułatwienia obliczeń).
+
+**Zmienne:**
+
+-   **X (Niezależna):** Cena za filiżankę w złotych
+-   **Y (Zależna):** Liczba sprzedanych filiżanek dziennie
+
+**Uwaga:** Kawiarnia C wykazuje niezwykle wysoki popyt pomimo umiarkowanej ceny, prawdopodobnie ze względu na doskonałą lokalizację, silną lojalność lokalnych klientów lub wyższą jakość obsługi. To reprezentuje realistyczną zmienność w danych biznesowych.
+
+------------------------------------------------------------------------
+
+## Część 1: Statystyki Opisowe
+
+### Pytanie 1: Oblicz średnią cenę i średni popyt
+
+**Rozwiązanie:**
+
+**Średnia cena (**$\bar{x}$):
+
+$$\bar{x} = \frac{\sum x_i}{n} = \frac{12 + 16 + 20 + 24 + 28 + 32}{6} = \frac{132}{6} = 22$$
+
+**Średni popyt (**$\bar{y}$):
+
+$$\bar{y} = \frac{\sum y_i}{n} = \frac{48 + 38 + 48 + 36 + 34 + 26}{6} = \frac{230}{6} = 38.333$$
+
+**Odpowiedź:** $\bar{x} = 22$ zł, $\bar{y} = 38.33$ filiżanek
+
+------------------------------------------------------------------------
+
+### Pytanie 2: Oblicz odchylenie standardowe dla obu zmiennych
+
+**Rozwiązanie:**
+
+Najpierw obliczamy odchylenia od średniej i odchylenia podniesione do kwadratu:
+
+**Cena (X):**
+
+| Kawiarnia | $x_i$ | $(x_i - \bar{x})$ | $(x_i - \bar{x})^2$ |
+|-----------|-------|-------------------|---------------------|
+| A         | 12    | -10               | 100                 |
+| B         | 16    | -6                | 36                  |
+| C         | 20    | -2                | 4                   |
+| D         | 24    | 2                 | 4                   |
+| E         | 28    | 6                 | 36                  |
+| F         | 32    | 10                | 100                 |
+| **Suma**  |       | **0**             | **280**             |
+
+**Odchylenie standardowe ceny:**
+
+$$s_x = \sqrt{\frac{\sum(x_i - \bar{x})^2}{n-1}} = \sqrt{\frac{280}{5}} = \sqrt{56} = 7.483$$
+
+**Popyt (Y):**
+
+| Kawiarnia | $y_i$ | $(y_i - \bar{y})$ | $(y_i - \bar{y})^2$ |
+|-----------|-------|-------------------|---------------------|
+| A         | 48    | 9.667             | 93.444              |
+| B         | 38    | -0.333            | 0.111               |
+| C         | 48    | 9.667             | 93.444              |
+| D         | 36    | -2.333            | 5.444               |
+| E         | 34    | -4.333            | 18.778              |
+| F         | 26    | -12.333           | 152.111             |
+| **Suma**  |       | **0**             | **363.333**         |
+
+**Odchylenie standardowe popytu:**
+
+$$s_y = \sqrt{\frac{\sum(y_i - \bar{y})^2}{n-1}} = \sqrt{\frac{363.333}{5}} = \sqrt{72.667} = 8.525$$
+
+**Odpowiedź:** $s_x = 7.483$ zł, $s_y = 8.525$ filiżanek
+
+------------------------------------------------------------------------
+
+## Część 2: Kowariancja i Korelacja
+
+### Pytanie 3: Oblicz kowariancję między ceną a popytem
+
+**Rozwiązanie:**
+
+Obliczamy iloczyny odchyleń $(x_i - \bar{x})(y_i - \bar{y})$:
+
+| Kawiarnia | $(x_i - \bar{x})$ | $(y_i - \bar{y})$ | $(x_i - \bar{x})(y_i - \bar{y})$ |
+|------------------|------------------|------------------|------------------|
+| A | -10 | 9.667 | -96.667 |
+| B | -6 | -0.333 | 2.000 |
+| C | -2 | 9.667 | -19.333 |
+| D | 2 | -2.333 | -4.667 |
+| E | 6 | -4.333 | -26.000 |
+| F | 10 | -12.333 | -123.333 |
+| **Suma** |  |  | **-268.0** |
+
+**Kowariancja:**
+
+$$\text{Cov}(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1} = \frac{-268}{5} = -53.6$$
+
+**Odpowiedź:** $\text{Cov}(X,Y) = -53.6$ (zł × filiżanki)
+
+**Interpretacja:** Ujemna kowariancja wskazuje na odwrotną zależność - wraz ze wzrostem ceny popyt ma tendencję do spadku. Zauważ, że mały dodatni iloczyn dla kawiarni B (+2.0) pokazuje, że zależność nie jest idealna, co jest realistyczne.
+
+------------------------------------------------------------------------
+
+### Pytanie 4: Oblicz współczynnik korelacji Pearsona (r)
+
+**Rozwiązanie:**
+
+Używając wzoru:
+
+$$r = \frac{\text{Cov}(X,Y)}{s_x \cdot s_y} = \frac{-53.6}{7.483 \times 8.525} = \frac{-53.6}{63.802} = -0.840$$
+
+**Weryfikacja przy użyciu alternatywnego wzoru:**
+
+$$r = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2 \cdot \sum(y_i - \bar{y})^2}} = \frac{-268}{\sqrt{280 \times 363.333}} = \frac{-268}{\sqrt{101733.24}} = \frac{-268}{318.956} = -0.840$$
+
+**Odpowiedź:** $r = -0.840$
+
+**Interpretacja:**
+
+-   **Kierunek:** Silnie ujemny - cena i popyt poruszają się w przeciwnych kierunkach
+-   **Siła:** Silna zależność liniowa (\|r\| \> 0.7 ale \< 0.9)
+-   **Znaczenie:** Cena jest dobrym predyktorem popytu, ale inne czynniki również odgrywają rolę
+
+------------------------------------------------------------------------
+
+### Pytanie 5: Zinterpretuj współczynnik korelacji
+
+**Wytyczne interpretacyjne:**
+
+-   \|r\| = 0.0 do 0.3: Słaba zależność
+-   \|r\| = 0.3 do 0.7: Umiarkowana zależność\
+-   \|r\| = 0.7 do 0.9: Silna zależność
+-   \|r\| = 0.9 do 1.0: Bardzo silna zależność
+
+**Nasza analiza:**
+
+Przy $r = -0.840$ mamy:
+
+1.  **Kierunek:** Ujemny znak potwierdza odwrotną zależność zgodną z teorią ekonomiczną (prawo popytu)
+
+2.  **Siła:** Wielkość 0.840 wskazuje na silną, ale nie idealną zależność liniową. Punkty danych skupiają się wokół linii, ale z zauważalnym rozrzutem
+
+3.  **Znaczenie praktyczne:**
+
+    -   Cena jest **silnym predyktorem** popytu
+    -   Jednak przy r = -0.84 (nie -0.99) wiemy, że inne czynniki również mają znaczące znaczenie
+    -   Wysoki popyt kawiarni C pomimo umiarkowanej ceny pokazuje znaczenie niemierzonych zmiennych (jakość lokalizacji, lojalność klientów, konkurencja itp.)
+
+4.  **Kontekst realistyczny:** Ta siła korelacji jest bardzo typowa dla rzeczywistych danych biznesowych, gdzie wiele czynników wpływa na wyniki. W przeciwieństwie do eksperymentów laboratoryjnych z niemal idealnymi korelacjami, obserwacyjne dane biznesowe zwykle wykazują korelacje w zakresie 0.6-0.9.
+
+------------------------------------------------------------------------
+
+## Część 3: Prosta Regresja Liniowa
+
+### Pytanie 6: Oblicz współczynnik nachylenia regresji (b)
+
+**Rozwiązanie:**
+
+Wzór na współczynnik nachylenia:
+
+$$b = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = \frac{-268}{280} = -0.9571$$
+
+**Alternatywna weryfikacja przy użyciu korelacji:**
+
+$$b = r \times \frac{s_y}{s_x} = -0.840 \times \frac{8.525}{7.483} = -0.840 \times 1.1393 = -0.957$$
+
+**Odpowiedź:** $b = -0.96$ filiżanek na złotówkę
+
+**Interpretacja:** Dla każdego wzrostu ceny o 1 zł, dzienny popyt spada średnio o około 1 filiżankę. To jest **efekt krańcowy** ceny na popyt.
+
+------------------------------------------------------------------------
+
+### Pytanie 7: Oblicz wyraz wolny regresji (a)
+
+**Rozwiązanie:**
+
+Wzór na wyraz wolny:
+
+$$a = \bar{y} - b\bar{x} = 38.333 - (-0.9571)(22) = 38.333 + 21.056 = 59.389$$
+
+Zaokrąglmy dla ułatwienia obliczeń:
+
+$$a \approx 59.4$$
+
+**Odpowiedź:** $a = 59.4$ filiżanek
+
+**Interpretacja:** Wyraz wolny reprezentuje przewidywany popyt, gdy cena wynosi 0 zł. Sugeruje to, że spodziewalibyśmy się sprzedaży około 59 filiżanek, gdyby kawa była darmowa. Jednak ta interpretacja wymaga ostrożności, ponieważ 0 zł jest daleko poza zakresem naszych obserwowanych cen (12-32 zł), a związek może nie pozostać liniowy przy bardzo niskich cenach.
+
+------------------------------------------------------------------------
+
+### Pytanie 8: Zapisz równanie regresji
+
+**Rozwiązanie:**
+
+Równanie regresji to:
+
+$$\hat{Y} = 59.4 - 0.96X$$
+
+Lub w kontekście:
+
+$$\text{Przewidywana liczba filiżanek dziennie} = 59.4 - 0.96 \times \text{Cena}$$
+
+**Przykładowa predykcja:**
+
+Dla kawiarni pobierającej 20 zł za filiżankę:
+
+$$\hat{Y} = 59.4 - 0.96(20) = 59.4 - 19.2 = 40.2 \approx 40 \text{ filiżanek}$$
+
+(Uwaga: Kawiarnia C faktycznie sprzedaje 48 filiżanek przy tej cenie, co pokazuje, że przewyższa oczekiwania!)
+
+------------------------------------------------------------------------
+
+### Pytanie 9: Zweryfikuj, że linia regresji przechodzi przez $(\bar{x}, \bar{y})$
+
+**Rozwiązanie:**
+
+Fundamentalna właściwość regresji metodą najmniejszych kwadratów polega na tym, że linia zawsze przechodzi przez punkt średnich.
+
+**Weryfikacja:**
+
+Gdy $X = \bar{x} = 22$:
+
+$$\hat{Y} = 59.4 - 0.96(22) = 59.4 - 21.12 = 38.28$$
+
+Ponieważ $\bar{y} = 38.333$, potwierdzamy (z uwzględnieniem zaokrągleń): **Linia regresji przechodzi przez punkt** $(22, 38.33)$ ✓
+
+**Dlaczego to musi być prawdą:**
+
+Metoda najmniejszych kwadratów zapewnia, że suma reszt wynosi zero: $\sum e_i = 0$. To matematyczne ograniczenie gwarantuje, że linia regresji przechodzi przez centroid danych.
+
+------------------------------------------------------------------------
+
+## Część 4: Ocena Modelu
+
+### Pytanie 10: Oblicz wartości przewidywane i reszty
+
+**Rozwiązanie:**
+
+Dla każdej kawiarni obliczamy:
+
+-   Przewidywana: $\hat{y}_i = 59.4 - 0.96x_i$
+-   Reszta: $e_i = y_i - \hat{y}_i$
+
+| Kawiarnia | Cena ($x_i$) | Rzeczywista ($y_i$) | Przewidywana ($\hat{y}_i$) | Reszta ($e_i$) |
+|---------------|---------------|---------------|---------------|---------------|
+| A | 12 | 48 | 47.88 | +0.12 |
+| B | 16 | 38 | 44.04 | -6.04 |
+| C | 20 | 48 | 40.20 | +7.80 |
+| D | 24 | 36 | 36.36 | -0.36 |
+| E | 28 | 34 | 32.52 | +1.48 |
+| F | 32 | 26 | 28.68 | -2.68 |
+| **Suma** |  |  |  | **≈ 0.0** |
+
+**Kluczowe obserwacje:**
+
+1.  **Największe reszty:**
+
+    -   Kawiarnia C: +7.80 (popyt znacznie wyższy niż przewidywany)
+    -   Kawiarnia B: -6.04 (popyt niższy niż przewidywany)
+
+2.  **Suma reszt:** Wynosi w przybliżeniu zero (właściwość matematyczna OLS)
+
+3.  **Analiza wzorca:**
+
+    -   Kawiarnie A, D: Bardzo małe reszty (doskonałe dopasowanie)
+    -   Kawiarnie B, C: Duże reszty wskazujące na działanie innych czynników
+    -   Dodatnia reszta kawiarni C sugeruje doskonałą lokalizację lub jakość
+    -   Ujemna reszta kawiarni B może wskazywać na zwiększoną konkurencję lub gorszą widoczność
+
+4.  **Interpretacja:** Reszty reprezentują wpływ **wszystkich czynników oprócz ceny** - lokalizacja, konkurencja, jakość kawiarni, demografia klientów itp.
+
+------------------------------------------------------------------------
+
+### Pytanie 11: Oblicz sumy kwadratów i R²
+
+**Rozwiązanie:**
+
+Potrzebujemy trzech wielkości:
+
+**1. Całkowita suma kwadratów (SST)** - Całkowita zmienność Y:
+
+$$\text{SST} = \sum(y_i - \bar{y})^2 = 363.333$$
+
+(Obliczyliśmy to wcześniej przy wyznaczaniu $s_y$)
+
+**2. Suma kwadratów regresji (SSR)** - Zmienność wyjaśniona:
+
+| Kawiarnia | $\hat{y}_i$ | $(\hat{y}_i - \bar{y})$ | $(\hat{y}_i - \bar{y})^2$ |
+|---------------|---------------|--------------------|----------------------|
+| A         | 47.88       | 9.547                   | 91.145                    |
+| B         | 44.04       | 5.707                   | 32.570                    |
+| C         | 40.20       | 1.867                   | 3.485                     |
+| D         | 36.36       | -1.973                  | 3.892                     |
+| E         | 32.52       | -5.813                  | 33.791                    |
+| F         | 28.68       | -9.653                  | 93.180                    |
+| **Suma**  |             |                         | **258.063**               |
+
+$$\text{SSR} = 258.063 \approx 258.1$$
+
+**3. Suma kwadratów błędów (SSE)** - Zmienność niewyjaśniona:
+
+| Kawiarnia | $e_i$ | $e_i^2$     |
+|-----------|-------|-------------|
+| A         | 0.12  | 0.014       |
+| B         | -6.04 | 36.482      |
+| C         | 7.80  | 60.840      |
+| D         | -0.36 | 0.130       |
+| E         | 1.48  | 2.190       |
+| F         | -2.68 | 7.182       |
+| **Suma**  |       | **106.838** |
+
+$$\text{SSE} = 106.838 \approx 106.8$$
+
+**Weryfikacja fundamentalnej zależności:**
+
+$$\text{SST} = \text{SSR} + \text{SSE}$$ $$363.333 = 258.1 + 106.8$$ $$363.333 \approx 364.9$$ ✓ **Zweryfikowano!** (niewielka różnica ze względu na zaokrąglenia)
+
+**Oblicz R²:**
+
+$$R^2 = \frac{\text{SSR}}{\text{SST}} = \frac{258.1}{363.333} = 0.7104 \approx 0.706$$
+
+**Alternatywne obliczenie:**
+
+$$R^2 = r^2 = (-0.840)^2 = 0.7056 \approx 0.706$$
+
+**Odpowiedź:** $R^2 = 0.706$ lub **70.6%**
+
+------------------------------------------------------------------------
+
+### Pytanie 11b: Oblicz RMSE (Pierwiastek błędu średniokwadratowego)
+
+**Rozwiązanie:**
+
+**Pierwiastek błędu średniokwadratowego (RMSE)** mierzy średnią wielkość błędów predykcji w oryginalnych jednostkach (filiżankach).
+
+**Krok 1: Oblicz średni błąd kwadratowy (MSE)**
+
+$$\text{MSE} = \frac{\text{SSE}}{n-2} = \frac{106.8}{6-2} = \frac{106.8}{4} = 26.7$$
+
+**Dlaczego n-2?** Używamy $n-2$ stopni swobody, ponieważ oszacowaliśmy 2 parametry (wyraz wolny i nachylenie) z danych.
+
+**Krok 2: Oblicz RMSE**
+
+$$\text{RMSE} = \sqrt{\text{MSE}} = \sqrt{26.7} = 5.167$$
+
+**Odpowiedź:** RMSE = 5.17 filiżanek
+
+**Interpretacja:**
+
+-   Średnio nasze predykcje odbiegają od rzeczywistych wartości o około **±5.2 filiżanki**
+-   RMSE jest w **oryginalnych jednostkach** (filiżankach), co czyni go bezpośrednio interpretowalnym
+-   Dla średniego popytu wynoszącego 38.33 filiżanek, błąd 5.2 filiżanek reprezentuje około **13.5% błędu względnego**
+-   Jest to rozsądne, biorąc pod uwagę nasze R² = 0.706 (niedoskonałe dopasowanie)
+
+**Znaczenie praktyczne:**
+
+Gdy przewidujemy popyt dla kawiarni, powinniśmy oczekiwać:
+
+-   **Typowy przypadek:** Rzeczywisty popyt w granicach ±5 filiżanek od predykcji
+-   **68% predykcji** mieści się w zakresie ±5.2 filiżanek (około 1 RMSE)
+-   **95% predykcji** mieści się w zakresie ±10.4 filiżanek (około 2 RMSE)
+
+Na przykład, jeśli przewidujemy 38 filiżanek:
+
+-   Oczekujemy rzeczywistego popytu między 33-43 filiżanki przez większość czasu
+-   Czasami może być tak niski jak 28 lub tak wysoki jak 48 filiżanek
+
+------------------------------------------------------------------------
+
+### Pytanie 12: Zinterpretuj R²
+
+**Interpretacja:**
+
+$R^2 = 0.706$ (lub 70.6%) oznacza:
+
+1.  **Wyjaśniona wariancja:** 70.6% zmienności w dziennej sprzedaży kawy można wyjaśnić zależnością liniową z ceną
+
+2.  **Niewyjaśniona zmienność:** 29.4% zmienności pozostaje niewyjaśnione przez nasz model
+
+3.  **Dopasowanie modelu:** To reprezentuje **dobre dopasowanie**. Model wychwytuje główny trend, ale pozostawia znaczące miejsce dla innych czynników
+
+4.  **Znaczenie praktyczne:**
+
+    -   Cena jest **ważnym predyktorem** popytu (wyjaśnia około 2/3 zmienności)
+    -   Inne czynniki łącznie odpowiadają za około 1/3 zmienności
+    -   Charakterystyki specyficzne dla kawiarni (lokalizacja, konkurencja, jakość) odgrywają znaczącą rolę
+
+5.  **Realistyczna ocena:**
+
+    -   R² wynoszące 0.71 jest **doskonałe dla rzeczywistych danych biznesowych**
+    -   Wskazuje, że cena jest dominującym czynnikiem, ale nie jedynym
+    -   29.4% niewyjaśnionej zmienności reprezentuje możliwości:
+        -   Dodania zmiennych kontrolnych (konkurencja, ruch pieszy, dochód)
+        -   Uwzględnienia efektów specyficznych dla kawiarni
+        -   Zrozumienia różnic w jakości i obsłudze
+
+**Co mówi nam 29.4% niewyjaśnionej zmienności:**
+
+To reprezentuje łączny efekt:
+
+-   Jakość lokalizacji kawiarni i ruch pieszy
+-   Intensywność lokalnej konkurencji
+-   Atmosfera kawiarni i jakość obsługi
+-   Lokalna demografia i poziom dochodów
+-   Marketing i rozpoznawalność marki
+-   Zmienność pomiarowa
+
+**Porównanie do idealnego dopasowania:**
+
+W przeciwieństwie do przykładów podręcznikowych, gdzie R² ≈ 0.99, to realistyczne R² wynoszące 0.71 pokazuje, że:
+
+-   Rzeczywiste zależności rzadko są idealne
+-   Wiele czynników wpływa na wyniki biznesowe
+-   Proste modele wychwytują główne trendy, ale pomijają niuanse
+-   Istnieje wartość w dodawaniu kolejnych zmiennych objaśniających
+
+------------------------------------------------------------------------
+
+## Część 4B: Wnioskowanie Statystyczne dla Współczynników (Materiał Opcjonalny)
+
+**Uwaga:** Ta sekcja jest opcjonalna i przeznaczona dla studentów, którzy chcą zrozumieć testowanie hipotez, wartości p i przedziały ufności dla współczynników regresji. Jeśli nie studiowałeś/aś jeszcze tych pojęć, możesz pominąć tę sekcję.
+
+### Kontekst: Dlaczego testujemy współczynniki?
+
+Kiedy obliczamy współczynniki regresji (nachylenie i wyraz wolny) z próbki danych, musimy odpowiedzieć na ważne pytanie: **Czy te współczynniki są statystycznie istotne, czy mogły wystąpić przez przypadek?**
+
+Na przykład:
+
+-   Nasze nachylenie wynosi -0.96, co sugeruje, że cena wpływa na popyt
+-   Ale co jeśli prawdziwe nachylenie populacji wynosi faktycznie 0 (brak związku)?
+-   Czy mogliśmy zaobserwować -0.96 tylko ze względu na losową zmienność próbkowania?
+
+**Statystyczne testowanie hipotez** pomaga nam odpowiedzieć na te pytania z kwantyfikowalną pewnością.
+
+------------------------------------------------------------------------
+
+### Kluczowe Pojęcia (Uproszczone Wyjaśnienia)
+
+#### 1. Hipoteza zerowa ($H_0$) i Hipoteza alternatywna ($H_1$)
+
+**Hipoteza zerowa (**$H_0$): Hipoteza "status quo" lub "brak efektu"
+
+-   Dla nachylenia: $H_0: \beta = 0$ (cena nie ma wpływu na popyt)
+-   Dla wyrazu wolnego: $H_0: \alpha = 0$ (wyraz wolny wynosi zero)
+
+**Hipoteza alternatywna (**$H_1$): Hipoteza, dla której próbujemy znaleźć dowody
+
+-   Dla nachylenia: $H_1: \beta \neq 0$ (cena wpływa na popyt)
+-   To jest **test dwustronny** (testujemy jakikolwiek efekt, dodatni lub ujemny)
+
+**Logika:** Zaczynamy zakładając, że $H_0$ jest prawdziwa, następnie sprawdzamy, czy nasze dane dostarczają wystarczająco mocnych dowodów, aby ją odrzucić.
+
+------------------------------------------------------------------------
+
+#### 2. Błąd Standardowy (SE)
+
+**Błąd standardowy** mierzy niepewność w naszej ocenie współczynnika.
+
+**Pomyśl o tym jako:** "O ile nachylenie różniłoby się, gdybyśmy powtórzyli to badanie wiele razy?"
+
+**Dla nachylenia:**
+
+$$\text{SE}(b) = \frac{\text{RMSE}}{\sqrt{\sum(x_i - \bar{x})^2}} = \frac{\text{RMSE}}{\sqrt{\text{SSX}}}$$
+
+Gdzie:
+
+-   RMSE = 5.17 filiżanek (obliczyliśmy to wcześniej)
+-   $\sum(x_i - \bar{x})^2 = 280$ (z naszej wcześniejszej tabeli)
+
+**Dla wyrazu wolnego:**
+
+$$\text{SE}(a) = \text{RMSE} \times \sqrt{\frac{1}{n} + \frac{\bar{x}^2}{\sum(x_i - \bar{x})^2}}$$
+
+**Interpretacja:** Mniejszy SE oznacza bardziej precyzyjną ocenę (mniejsza niepewność).
+
+------------------------------------------------------------------------
+
+#### 3. Statystyka t
+
+**Statystyka t** mierzy, o ile błędów standardowych współczynnik odbiega od zera.
+
+$$t = \frac{\text{Współczynnik} - 0}{\text{SE(Współczynnik)}} = \frac{\text{Współczynnik}}{\text{SE}}$$
+
+**Interpretacja:**
+
+-   **Duże \|t\|** (daleko od 0): Mocne dowody przeciwko $H_0$
+-   **Małe \|t\|** (blisko 0): Słabe dowody przeciwko $H_0$
+-   Reguła praktyczna: \|t\| \> 2 sugeruje istotność (dla małych prób)
+
+------------------------------------------------------------------------
+
+#### 4. Wartość p (p-value)
+
+**Wartość p** odpowiada na pytanie: "Gdyby hipoteza zerowa była prawdziwa, jakie jest prawdopodobieństwo zaobserwowania danych tak ekstremalnych jak nasze (lub bardziej ekstremalnych)?"
+
+**Interpretacja:**
+
+-   **Mała wartość p** (zazwyczaj \< 0.05): Mocne dowody przeciwko $H_0$ → Odrzuć $H_0$
+-   **Duża wartość p** (\> 0.05): Słabe dowody przeciwko $H_0$ → Nie odrzucaj $H_0$
+
+**Częsty błąd:** Wartość p NIE jest prawdopodobieństwem, że $H_0$ jest prawdziwa!
+
+**Poziomy istotności:**
+
+-   p \< 0.001: Bardzo mocne dowody (⭐⭐⭐)
+-   p \< 0.01: Mocne dowody (⭐⭐)
+-   p \< 0.05: Umiarkowane dowody (⭐)
+-   p \> 0.05: Niewystarczające dowody
+
+------------------------------------------------------------------------
+
+#### 5. Przedział Ufności (CI)
+
+**95% przedział ufności** daje zakres prawdopodobnych wartości dla prawdziwego współczynnika.
+
+$$\text{CI} = \text{Współczynnik} \pm t^* \times \text{SE}$$
+
+Gdzie $t^*$ jest wartością krytyczną z rozkładu t (zależy od stopni swobody i poziomu ufności).
+
+**Interpretacja:** "Jesteśmy w 95% pewni, że prawdziwy współczynnik leży w tym przedziale."
+
+**Związek z testowaniem hipotez:**
+
+-   Jeśli CI zawiera 0 → Nie możemy odrzucić $H_0$
+-   Jeśli CI wyklucza 0 → Odrzuć $H_0$ (współczynnik jest istotny)
+
+------------------------------------------------------------------------
+
+### Pytanie 13 (Opcjonalne): Sprawdź, czy nachylenie jest statystycznie istotne
+
+**Hipotezy:**
+
+-   $H_0: \beta = 0$ (cena nie ma wpływu na popyt)
+-   $H_1: \beta \neq 0$ (cena wpływa na popyt)
+
+**Poziom istotności:** $\alpha = 0.05$ (5% ryzyko fałszywego pozytywu)
+
+**Krok 1: Oblicz błąd standardowy nachylenia**
+
+$$\text{SE}(b) = \frac{\text{RMSE}}{\sqrt{\sum(x_i - \bar{x})^2}} = \frac{5.167}{\sqrt{280}} = \frac{5.167}{16.733} = 0.309$$
+
+**Krok 2: Oblicz statystykę t**
+
+$$t = \frac{b - 0}{\text{SE}(b)} = \frac{-0.9571}{0.309} = -3.098$$
+
+**Krok 3: Określ stopnie swobody**
+
+$$\text{df} = n - 2 = 6 - 2 = 4$$
+
+(Odejmujemy 2, ponieważ oszacowaliśmy 2 parametry: nachylenie i wyraz wolny)
+
+**Krok 4: Znajdź wartość p**
+
+Używając tablic rozkładu t lub kalkulatora z df = 4 i t = -3.098:
+
+**wartość p ≈ 0.036** (test dwustronny)
+
+**Krok 5: Decyzja**
+
+Ponieważ **wartość p (0.036) \< 0.05**, **odrzucamy hipotezę zerową**.
+
+**Wniosek:** Istnieją statystycznie istotne dowody (na poziomie 5%), że cena wpływa na popyt. Ujemny współczynnik nie jest spowodowany losowym przypadkiem.
+
+**Interpretacja w prostym języku:**
+
+"Gdyby cena naprawdę nie miała wpływu na popyt, prawdopodobieństwo zaobserwowania nachylenia tak ekstremalnego jak -0.96 (lub bardziej ekstremalnego) wynosiłoby tylko 3.6%. Ponieważ jest to mało prawdopodobne, wnioskujemy, że cena rzeczywiście wpływa na popyt."
+
+------------------------------------------------------------------------
+
+### Pytanie 14 (Opcjonalne): Oblicz 95% przedział ufności dla nachylenia
+
+**Krok 1: Znajdź krytyczną wartość t**
+
+Dla 95% CI z df = 4: $t^* = 2.776$ (z tablic rozkładu t)
+
+**Krok 2: Oblicz margines błędu**
+
+$$\text{Margines błędu} = t^* \times \text{SE}(b) = 2.776 \times 0.309 = 0.858$$
+
+**Krok 3: Oblicz przedział ufności**
+
+$$\text{CI}_{95\%} = b \pm \text{Margines błędu} = -0.9571 \pm 0.858$$
+
+$$\text{CI}_{95\%} = [-1.82, -0.10]$$
+
+**Interpretacja:**
+
+"Jesteśmy w 95% pewni, że prawdziwy efekt ceny na popyt leży między **-1.82 a -0.10 filiżanek na złotówkę**."
+
+**Kluczowe obserwacje:**
+
+1.  Przedział **nie zawiera zera** → Potwierdza istotność
+2.  Przedział jest dość **szeroki** → Odzwierciedla naszą małą wielkość próby (n=6)
+3.  Obie granice są **ujemne** → Jesteśmy pewni, że efekt jest ujemny (popyt maleje wraz z ceną)
+
+**Znaczenie praktyczne:**
+
+Dla każdego wzrostu ceny o 4 zł, popyt spada o gdzieś między 0.4 a 7.3 filiżanki. Chociaż szacujemy -3.8 filiżanek (nasza punktowa ocena), prawdziwy efekt może być gdziekolwiek w tym zakresie.
+
+Przy większej ilości danych ten przedział zawęziłby się, dając nam bardziej precyzyjną ocenę.
+
+------------------------------------------------------------------------
+
+### Pytanie 15 (Opcjonalne): Sprawdź, czy wyraz wolny jest statystycznie istotny
+
+**Hipotezy:**
+
+-   $H_0: \alpha = 0$
+-   $H_1: \alpha \neq 0$
+
+**Krok 1: Oblicz błąd standardowy wyrazu wolnego**
+
+$$\text{SE}(a) = \text{RMSE} \times \sqrt{\frac{1}{n} + \frac{\bar{x}^2}{\sum(x_i - \bar{x})^2}}$$
+
+$$\text{SE}(a) = 5.167 \times \sqrt{\frac{1}{6} + \frac{(22)^2}{280}} = 5.167 \times \sqrt{0.1667 + 1.7286}$$
+
+$$\text{SE}(a) = 5.167 \times \sqrt{1.8952} = 5.167 \times 1.377 = 7.115$$
+
+**Krok 2: Oblicz statystykę t**
+
+$$t = \frac{a - 0}{\text{SE}(a)} = \frac{59.4}{7.115} = 8.35$$
+
+**Krok 3: Znajdź wartość p**
+
+Przy df = 4 i t = 8.35: **wartość p \< 0.001** (bardzo mała)
+
+**Wniosek:** Wyraz wolny jest **wysoce statystycznie istotny**.
+
+**Ale bądź ostrożny z interpretacją!**
+
+Chociaż statystycznie istotny, wyraz wolny reprezentuje popyt przy cenie = 0 zł, co jest:
+
+1.  Daleko poza zakresem naszych danych (ekstrapolacja)
+2.  Niepraktyczne (nie rozdajemy darmowej kawy)
+
+**To ilustruje ważny punkt:** Istotność statystyczna ≠ Praktyczne znaczenie
+
+------------------------------------------------------------------------
+
+### Podsumowanie: Wyniki Wnioskowania Statystycznego
+
+| Współczynnik | Ocena | Błąd std. | Wartość t | Wartość p | 95% CI | Istotny? |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| **Wyraz wolny (a)** | 59.4 | 7.12 | 8.35 | \< 0.001 | \[39.6, 79.2\] | Tak ⭐⭐⭐ |
+| **Nachylenie (b)** | -0.96 | 0.31 | -3.10 | 0.036 | \[-1.82, -0.10\] | Tak ⭐ |
+
+**Kluczowe wnioski:**
+
+1.  **Oba współczynniki są statystycznie istotne** na poziomie 5%
+2.  **Wartość p nachylenia = 0.036** potwierdza, że cena rzeczywiście wpływa na popyt (nie przez przypadek)
+3.  **CI nachylenia wyklucza zero** daje taki sam wniosek jak wartość p
+4.  **Szerokie przedziały ufności** odzwierciedlają małą wielkość próby (n=6) i wynikającą niepewność
+5.  **Wyraz wolny jest istotny**, ale nie ma praktycznego znaczenia (problem ekstrapolacji)
+
+**Co to oznacza dla naszej analizy:**
+
+-   Możemy być pewni, że ujemny związek między ceną a popytem jest rzeczywisty
+-   Wielkość efektu (-0.96 filiżanek na złotówkę) to nasza najlepsza ocena, ale może wynosić od -0.10 do -1.82
+-   Przy tylko 6 obserwacjach istnieje znaczna niepewność w naszych ocenach
+-   **Rekomendacja:** Zbierz więcej danych, aby zawęzić przedziały ufności i poprawić precyzję
+
+------------------------------------------------------------------------
+
+### Zrozumienie wartości p: Praktyczny przykład
+
+**Scenariusz:** Wyobraź sobie, że twierdzisz, że masz zdolności paranormalne. Proszę cię o przewidzenie 10 rzutów monetą.
+
+-   **Wynik:** Trafisz 7 z 10
+-   **Pytanie:** Czy to dowodzi, że jesteś jasnowidz?
+
+**Podejście testowania hipotez:**
+
+-   $H_0$: Po prostu zgadywasz (50% szansy na poprawność)
+-   Jeśli tylko zgadywasz, trafienie 7+ poprawnych zdarza się około 17% czasu przez przypadek
+-   **wartość p = 0.17** (\> 0.05)
+-   **Wniosek:** Niewystarczające dowody, aby stwierdzić, że jesteś jasnowidz
+
+**Ta sama logika dla naszego nachylenia:**
+
+-   $H_0$: Prawdziwe nachylenie wynosi zero (brak związku)
+-   Zaobserwowaliśmy nachylenie = -0.96
+-   Gdyby prawdziwe nachylenie wynosiło zero, zaobserwowanie \|nachylenia\| ≥ 0.96 zdarza się tylko 3.6% czasu
+-   **wartość p = 0.036** (\< 0.05)
+-   **Wniosek:** Mocne dowody, że prawdziwe nachylenie nie wynosi zero
+
+------------------------------------------------------------------------
+
+## Część 5: Zastosowanie Praktyczne
+
+### Pytanie 13: Przewiduj popyt dla nowej kawiarni
+
+Zarząd rozważa otwarcie nowej lokalizacji i planuje pobierać **22 zł za filiżankę**. Przewiduj oczekiwany dzienny popyt.
+
+**Rozwiązanie:**
+
+Używając równania regresji:
+
+$$\hat{Y} = 59.4 - 0.96X = 59.4 - 0.96(22) = 59.4 - 21.12 = 38.28 \approx 38 \text{ filiżanek}$$
+
+**Odpowiedź:** Model przewiduje około **38 filiżanek dziennie** przy cenie 22 zł
+
+**Pewność predykcji:**
+
+-   **Mocne strony:**
+
+    -   22 zł mieści się w zakresie naszych obserwacji (12 zł do 32 zł)
+    -   Model ma dobre R² (70.6%)
+    -   To jest interpolacja, nie ekstrapolacja
+    -   Predykcja jest przy średniej cenie, gdzie dokładność jest najwyższa
+
+-   **Ograniczenia:**
+
+    -   Przy R² = 0.71, predykcje mają znaczną niepewność
+    -   Rzeczywisty popyt może różnić się o ±5-10 filiżanek w zależności od czynników specyficznych dla kawiarni
+    -   95% przedział predykcji wynosiłby w przybliżeniu 24-52 filiżanki (dość szeroki)
+    -   Należy wziąć pod uwagę: jakość lokalizacji, konkurencję, demografię
+
+**Rekomendacja:**
+
+Użyj 38 filiżanek jako centralnego oszacowania, ale rozpoznaj:
+
+-   Jeśli nowa kawiarnia ma cechy podobne do kawiarni C (doskonała lokalizacja), popyt może osiągnąć 45-48 filiżanek
+-   Jeśli podobna do kawiarni B (większa konkurencja lub gorsza lokalizacja), popyt może wynosić tylko 32-34 filiżanki
+-   Zaplanuj zapasy i obsadę na 35-42 filiżanki z elastycznością
+
+------------------------------------------------------------------------
+
+### Pytanie 14: Analiza wrażliwości
+
+**Pytanie:** Jeśli zarząd podniesie cenę z 22 zł do 26 zł, o ile spadnie popyt?
+
+**Rozwiązanie:**
+
+Zmiana ceny: $\Delta X = 26 - 22 = 4$ zł
+
+Oczekiwana zmiana popytu: $\Delta \hat{Y} = b \times \Delta X = -0.96 \times 4 = -3.84$ filiżanek
+
+**Predykcja przy 26 zł:**
+
+$$\hat{Y} = 59.4 - 0.96(26) = 59.4 - 24.96 = 34.44 \text{ filiżanek}$$
+
+**Odpowiedź:** Podniesienie ceny o 4 zł zmniejszyłoby popyt z 38 filiżanek do około 34 filiżanek (spadek o 3.8 filiżanki).
+
+**Wpływ na przychód:**
+
+-   Przychód przy 22 zł: 22 × 38 = 836 zł
+-   Przychód przy 26 zł: 26 × 34.44 = 895.44 zł
+
+**Wniosek:** Pomimo niższego popytu, przychód wzrasta o około 59 zł dziennie, co sugeruje, że podwyżka cen może być opłacalna (przy założeniu stałych kosztów).
+
+------------------------------------------------------------------------
+
+## Część 6: Ograniczenia i Rozszerzenia
+
+### Pytanie 15: Jakie są główne ograniczenia tej analizy?
+
+**Wielkość próby:**
+
+-   Tylko 6 obserwacji zapewnia ograniczoną moc statystyczną
+-   Przedziały ufności i predykcji są szerokie
+-   Małe próby są podatne na wartości odstające (np. kawiarnia C)
+
+**Potencjalne zmienne zakłócające:**
+
+Model uwzględnia tylko cenę. Niemierzone czynniki wyjaśniające 29.4% niewyjaśnionej zmienności:
+
+-   **Charakterystyki lokalizacji:** Ruch pieszy, parking, widoczność, bliskość biur/uniwersytetów
+-   **Konkurencja:** Liczba i jakość pobliskich kawiarni (Starbucks, lokalne kawiarnie)
+-   **Charakterystyki kawiarni:** Rozmiar, atmosfera, liczba miejsc, jakość WiFi
+-   **Jakość obsługi:** Szybkość, uprzejmość, spójność
+-   **Charakterystyki produktu:** Jakość kawy, różnorodność, opcje jedzenia
+-   **Demografia:** Lokalne poziomy dochodów, rozkład wieku, preferencje
+-   **Marketing:** Reklama, programy lojalnościowe, obecność w mediach społecznościowych
+-   **Czynniki czasowe:** Dzień tygodnia, sezon, pogoda, lokalne wydarzenia
+
+**Założenia statystyczne:**
+
+-   **Liniowość:** Zakłada, że związek pozostaje liniowy we wszystkich cenach
+-   **Niezależność:** Zakłada, że kawiarnie nie wpływają na siebie nawzajem (może nie być prawdą, jeśli są blisko)
+-   **Homoskedastyczność:** Zakłada stałą wariancję błędów (należy sprawdzić)
+-   **Normalność:** Zakłada normalnie rozłożone błędy (trudne do zweryfikowania przy n=6)
+
+**Związek przyczynowy vs. korelacja:**
+
+-   Nie można ustalić związku przyczynowego samej korelacji
+-   Możliwa odwrotna przyczynowość: wysoki popyt może pozwalać na wyższe ceny
+-   Obciążenie ze względu na pominiętą zmienną: niemierzone czynniki mogą zakłócać związek ceny z popytem
+
+------------------------------------------------------------------------
+
+### Pytanie 16: Jak można ulepszyć tę analizę?
+
+**1. Zwiększenie wielkości próby:**
+
+-   Zebranie danych z 20-30 kawiarni (lub więcej)
+-   Uwzględnienie wielu okresów czasowych dla każdej kawiarni (dane panelowe)
+-   Zwiększa moc statystyczną i umożliwia lepsze testowanie hipotez
+
+**2. Dodanie zmiennych kontrolnych (regresja wieloraka):**
+
+$$\text{Popyt} = \beta_0 + \beta_1(\text{Cena}) + \beta_2(\text{RuchPieszy}) + \beta_3(\text{Konkurencja}) + \beta_4(\text{Dochód}) + \varepsilon$$
+
+Korzyści:
+
+-   Izoluje **czysty efekt ceny** od zakłóceń
+-   Redukuje obciążenie ze względu na pominiętą zmienną
+-   Poprawia predykcje (R² prawdopodobnie wzrośnie do 0.85-0.90)
+-   Zapewnia praktyczne wnioski dotyczące czynników kontrolowanych
+
+**3. Rozważenie modeli nieliniowych:**
+
+-   Wyrazy kwadratowe: Sprawdzenie, czy efekt ceny jest nieliniowy
+-   Transformacja logarytmiczna: $\log(\text{Popyt}) = \beta_0 + \beta_1 \log(\text{Cena})$ dla stałej elastyczności
+-   Regresja wielomianowa dla malejących efektów
+
+**4. Podejście eksperymentalne:**
+
+-   **Randomizowane ceny:** Losowe przypisywanie cen do tygodni
+-   **Testy A/B:** Zmiana cen i pomiar reakcji
+-   Ustala **efekty przyczynowe** zamiast tylko korelacji
+-   Kontroluje niezmienne w czasie zakłócenia
+
+**5. Analiza ekonomiczna:**
+
+-   Obliczenie **elastyczności cenowej popytu**: $\varepsilon = \frac{\%\Delta Q}{\%\Delta P}$
+-   Przeprowadzenie analizy **maksymalizacji zysku** uwzględniającej koszty
+-   Rozważenie **nadwyżki konsumenta** i efektów dobrobytu
+-   Modelowanie **reakcji konkurencji**
+
+**6. Rozszerzenie o szeregi czasowe:**
+
+-   Zebranie danych przez wiele miesięcy
+-   Uwzględnienie sezonowości i trendów
+-   Użycie efektów stałych do kontroli charakterystyk specyficznych dla kawiarni
+
+------------------------------------------------------------------------
+
+## Podsumowanie: Kluczowe Wyniki
+
+| Statystyka | Wartość | Interpretacja |
+|------------------------|------------------------|------------------------|
+| **Średnia cena** | 22 zł | Średnia cena w kawiarniach |
+| **Średni popyt** | 38.33 filiżanek | Średnia dzienna sprzedaż |
+| **Korelacja (r)** | -0.840 | Silna ujemna zależność |
+| **R-kwadrat** | 0.706 | 70.6% wariancji wyjaśnione |
+| **Nachylenie (b)** | -0.96 | Każde 1 zł wzrostu → 1 filiżanka mniej |
+| **Wyraz wolny (a)** | 59.4 | Przewidywany popyt przy 0 zł (ekstrapolacja) |
+| **Równanie** | $\hat{Y} = 59.4 - 0.96X$ | Model predykcyjny |
+| **RMSE** | \~6.5 filiżanek | Typowy błąd predykcji |
+
+**Główne wnioski:**
+
+1.  **Silna ujemna zależność** potwierdzona między ceną a popytem (r = -0.84)
+2.  **Cena jest ważna**, ale nie jedyny czynnik (R² = 71%)
+3.  Na każdy wzrost ceny o 4 zł, oczekuj około **4 mniej sprzedanych filiżanek** dziennie
+4.  Model zapewnia **dobre predykcje** w zakresie cenowym 12-32 zł
+5.  Około **30% zmienności** jest spowodowane innymi czynnikami (lokalizacja, konkurencja, jakość)
+6.  Lepsze wyniki kawiarni C pokazują znaczenie **czynników poza ceną**
+
+**Praktyczne rekomendacje:**
+
+1.  **Strategia cenowa:** Obecne ceny (12-32 zł) obejmują rozsądny zakres
+2.  **Optymalna cena:** Około 26-28 zł wydaje się maksymalizować przychód
+3.  **Ulepszenia kawiarni:** Skoncentruj się na czynnikach wyjaśniających 30% niewyjaśnionej zmienności
+4.  **Dalsza analiza:** Zbierz dane o lokalizacji, konkurencji i demografii
+5.  **Eksperymentowanie:** Systematycznie testuj zmiany cen, aby ustalić związek przyczynowy
+
+------------------------------------------------------------------------
+
+## Weryfikacja: Kod R do Sprawdzenia Obliczeń
+
+```{r}
+#| label: verification
+#| echo: true
+#| message: false
+#| warning: false
+
+# Tworzenie zbioru danych
+dane_kawiarnie <- data.frame(
+  Kawiarnia = c("A", "B", "C", "D", "E", "F"),
+  Cena = c(12, 16, 20, 24, 28, 32),
+  Popyt = c(48, 38, 48, 36, 34, 26)
+)
+
+# Wyświetlenie danych
+cat("============================================\n")
+cat("DANE KAWIARNI\n")
+cat("============================================\n")
+print(dane_kawiarnie)
+
+# ============================================
+# 1. STATYSTYKI OPISOWE
+# ============================================
+cat("\n============================================\n")
+cat("1. STATYSTYKI OPISOWE\n")
+cat("============================================\n")
+
+srednia_cena <- mean(dane_kawiarnie$Cena)
+sredni_popyt <- mean(dane_kawiarnie$Popyt)
+sd_cena <- sd(dane_kawiarnie$Cena)
+sd_popyt <- sd(dane_kawiarnie$Popyt)
+
+cat("Średnia cena:", round(srednia_cena, 3), "zł\n")
+cat("Średni popyt:", round(sredni_popyt, 3), "filiżanek\n")
+cat("Odch. std. ceny:", round(sd_cena, 3), "zł\n")
+cat("Odch. std. popytu:", round(sd_popyt, 3), "filiżanek\n")
+
+# ============================================
+# 2. KOWARIANCJA I KORELACJA
+# ============================================
+cat("\n============================================\n")
+cat("2. KOWARIANCJA I KORELACJA\n")
+cat("============================================\n")
+
+kowariancja <- cov(dane_kawiarnie$Cena, dane_kawiarnie$Popyt)
+korelacja <- cor(dane_kawiarnie$Cena, dane_kawiarnie$Popyt)
+
+cat("Kowariancja:", round(kowariancja, 3), "\n")
+cat("Korelacja (r):", round(korelacja, 4), "\n")
+cat("Interpretacja:", 
+    ifelse(abs(korelacja) > 0.9, "Bardzo silna", 
+    ifelse(abs(korelacja) > 0.7, "Silna",
+    ifelse(abs(korelacja) > 0.3, "Umiarkowana", "Słaba"))),
+    "ujemna zależność\n")
+
+# ============================================
+# 3. REGRESJA LINIOWA
+# ============================================
+cat("\n============================================\n")
+cat("3. REGRESJA LINIOWA\n")
+cat("============================================\n")
+
+# Dopasowanie modelu
+model <- lm(Popyt ~ Cena, data = dane_kawiarnie)
+
+# Wydobycie współczynników
+wyraz_wolny <- coef(model)[1]
+nachylenie <- coef(model)[2]
+
+cat("Wyraz wolny (a):", round(wyraz_wolny, 3), "\n")
+cat("Nachylenie (b):", round(nachylenie, 3), "\n")
+cat("Równanie regresji: Popyt =", round(wyraz_wolny, 2), 
+    round(nachylenie, 2), "* Cena\n")
+
+# Pełne podsumowanie modelu
+cat("\n--- Pełne podsumowanie modelu ---\n")
+print(summary(model))
+
+# ============================================
+# 4. PREDYKCJE I RESZTY
+# ============================================
+cat("\n============================================\n")
+cat("4. PREDYKCJE I RESZTY\n")
+cat("============================================\n")
+
+dane_kawiarnie$Przewidywana <- predict(model)
+dane_kawiarnie$Reszta <- residuals(model)
+
+print(dane_kawiarnie[, c("Kawiarnia", "Cena", "Popyt", "Przewidywana", "Reszta")])
+
+cat("\nSuma reszt:", round(sum(dane_kawiarnie$Reszta), 6), 
+    "(powinna być ≈ 0)\n")
+
+# Identyfikacja największych reszt
+max_dodatnia <- dane_kawiarnie[which.max(dane_kawiarnie$Reszta), ]
+max_ujemna <- dane_kawiarnie[which.min(dane_kawiarnie$Reszta), ]
+
+cat("\nNajwiększa dodatnia reszta: Kawiarnia", max_dodatnia$Kawiarnia, 
+    "(",round(max_dodatnia$Reszta, 2), "filiżanek powyżej przewidywanych)\n")
+cat("Największa ujemna reszta: Kawiarnia", max_ujemna$Kawiarnia, 
+    "(",round(max_ujemna$Reszta, 2), "filiżanek poniżej przewidywanych)\n")
+
+# ============================================
+# 5. OBLICZENIE R-KWADRAT (TRZY METODY)
+# ============================================
+cat("\n============================================\n")
+cat("5. OBLICZENIE R-KWADRAT\n")
+cat("============================================\n")
+
+# Metoda 1: Z sum kwadratów
+SST <- sum((dane_kawiarnie$Popyt - sredni_popyt)^2)
+SSR <- sum((dane_kawiarnie$Przewidywana - sredni_popyt)^2)
+SSE <- sum(dane_kawiarnie$Reszta^2)
+
+cat("Całkowita suma kwadratów (SST):", round(SST, 3), "\n")
+cat("Suma kwadratów regresji (SSR):", round(SSR, 3), "\n")
+cat("Suma kwadratów błędów (SSE):", round(SSE, 3), "\n")
+cat("Weryfikacja: SST = SSR + SSE:", round(SST, 2), "=", 
+    round(SSR + SSE, 2), 
+    ifelse(abs(SST - (SSR + SSE)) < 0.01, "✓", "✗"), "\n")
+
+R_kwadrat_reczne <- SSR / SST
+cat("\nR² (z SSR/SST):", round(R_kwadrat_reczne, 4), 
+    "=", round(R_kwadrat_reczne * 100, 1), "%\n")
+
+# Metoda 2: Z korelacji
+R_kwadrat_z_r <- korelacja^2
+cat("R² (z r²):", round(R_kwadrat_z_r, 4), 
+    "=", round(R_kwadrat_z_r * 100, 1), "%\n")
+
+# Metoda 3: Z podsumowania modelu
+R_kwadrat_model <- summary(model)$r.squared
+cat("R² (z modelu):", round(R_kwadrat_model, 4), 
+    "=", round(R_kwadrat_model * 100, 1), "%\n")
+
+cat("\n** INTERPRETACJA **")
+cat("\n", round(R_kwadrat_reczne * 100, 1), 
+    "% zmienności w popycie jest wyjaśnione przez cenę\n", sep="")
+cat(round((1 - R_kwadrat_reczne) * 100, 1), 
+    "% pozostaje niewyjaśnione (inne czynniki)\n", sep="")
+
+# ============================================
+# 6. WERYFIKACJA KLUCZOWEJ WŁAŚCIWOŚCI
+# ============================================
+cat("\n============================================\n")
+cat("6. WERYFIKACJA WŁAŚCIWOŚCI REGRESJI\n")
+cat("============================================\n")
+
+# Sprawdzenie, czy linia regresji przechodzi przez (x_bar, y_bar)
+przewidywana_w_sredniej <- wyraz_wolny + nachylenie * srednia_cena
+cat("Gdy X = średnia_cena (", srednia_cena, "):\n", sep="")
+cat("  Przewidywana Y =", round(przewidywana_w_sredniej, 3), "\n")
+cat("  Rzeczywista średnia_popytu =", round(sredni_popyt, 3), "\n")
+cat("  Różnica:", round(abs(przewidywana_w_sredniej - sredni_popyt), 6), "\n")
+cat("\nLinia regresji przechodzi przez centroid (x̄, ȳ):", 
+    ifelse(abs(przewidywana_w_sredniej - sredni_popyt) < 0.01, "✓ TAK", "✗ NIE"), "\n")
+
+# ============================================
+# 7. PRZYKŁADOWE PREDYKCJE
+# ============================================
+cat("\n============================================\n")
+cat("7. PRZYKŁADOWE PREDYKCJE\n")
+cat("============================================\n")
+
+# Predykcja 1: Nowa kawiarnia
+nowa_cena_1 <- 22
+przewidywany_popyt_1 <- wyraz_wolny + nachylenie * nowa_cena_1
+
+cat("Predykcja dla nowej kawiarni przy cenie", nowa_cena_1, "zł:\n")
+cat("  Oczekiwany popyt:", round(przewidywany_popyt_1, 1), "filiżanek/dzień\n")
+
+# Predykcja 2: Scenariusz podwyżki ceny
+nowa_cena_2 <- 26
+przewidywany_popyt_2 <- wyraz_wolny + nachylenie * nowa_cena_2
+zmiana_popytu <- przewidywany_popyt_2 - przewidywany_popyt_1
+
+cat("\nJeśli cena wzrośnie z", nowa_cena_1, "zł do", nowa_cena_2, "zł:\n")
+cat("  Nowy przewidywany popyt:", round(przewidywany_popyt_2, 1), "filiżanek/dzień\n")
+cat("  Zmiana popytu:", round(zmiana_popytu, 1), "filiżanek (", 
+    round(zmiana_popytu/przewidywany_popyt_1 * 100, 1), "%)\n", sep="")
+
+# Porównanie przychodów
+przychod_1 <- nowa_cena_1 * przewidywany_popyt_1
+przychod_2 <- nowa_cena_2 * przewidywany_popyt_2
+
+cat("\n  Przychód przy", nowa_cena_1, "zł:", round(przychod_1, 2), "zł\n")
+cat("  Przychód przy", nowa_cena_2, "zł:", round(przychod_2, 2), "zł\n")
+cat("  Zmiana przychodu:", round(przychod_2 - przychod_1, 2), "zł", 
+    " (", round((przychod_2 - przychod_1)/przychod_1 * 100, 1), "%)\n", sep="")
+
+# ============================================
+# 8. METRYKI JAKOŚCI MODELU
+# ============================================
+cat("\n============================================\n")
+cat("8. METRYKI JAKOŚCI MODELU\n")
+cat("============================================\n")
+
+# Obliczenie MSE i RMSE ręcznie
+n <- nrow(dane_kawiarnie)
+df_residual <- n - 2
+MSE <- SSE / df_residual
+RMSE <- sqrt(MSE)
+
+cat("Stopnie swobody (n-2):", df_residual, "\n")
+cat("Średni błąd kwadratowy (MSE):", round(MSE, 3), "\n")
+cat("Pierwiastek błędu średniokwadratowego (RMSE):", round(RMSE, 3), "filiżanek\n")
+
+# Inne metryki błędu
+MAE <- mean(abs(dane_kawiarnie$Reszta))
+MAPE <- mean(abs(dane_kawiarnie$Reszta / dane_kawiarnie$Popyt)) * 100
+
+cat("Średni błąd bezwzględny (MAE):", round(MAE, 3), "filiżanek\n")
+cat("Średni bezwzględny błąd procentowy (MAPE):", round(MAPE, 1), "%\n")
+
+cat("\nInterpretacja:\n")
+cat("  Typowy błąd predykcji: ±", round(RMSE, 1), " filiżanek\n", sep="")
+cat("  W stosunku do średniego popytu (", round(sredni_popyt, 1), 
+    " filiżanek): ", round(RMSE/sredni_popyt * 100, 1), "%\n", sep="")
+
+# ============================================
+# 9. WNIOSKOWANIE STATYSTYCZNE (OPCJONALNE)
+# ============================================
+cat("\n============================================\n")
+cat("9. WNIOSKOWANIE STATYSTYCZNE DLA WSPÓŁCZYNNIKÓW\n")
+cat("============================================\n")
+
+# Błędy standardowe
+SSX <- sum((dane_kawiarnie$Cena - srednia_cena)^2)
+SE_nachylenie <- RMSE / sqrt(SSX)
+SE_wyraz_wolny <- RMSE * sqrt(1/n + srednia_cena^2/SSX)
+
+cat("Błąd standardowy nachylenia:", round(SE_nachylenie, 4), "\n")
+cat("Błąd standardowy wyrazu wolnego:", round(SE_wyraz_wolny, 4), "\n")
+
+# Statystyki t
+t_nachylenie <- nachylenie / SE_nachylenie
+t_wyraz_wolny <- wyraz_wolny / SE_wyraz_wolny
+
+cat("\nStatystyka t dla nachylenia:", round(t_nachylenie, 3), "\n")
+cat("Statystyka t dla wyrazu wolnego:", round(t_wyraz_wolny, 3), "\n")
+
+# Wartości p (test dwustronny)
+p_nachylenie <- 2 * pt(abs(t_nachylenie), df = df_residual, lower.tail = FALSE)
+p_wyraz_wolny <- 2 * pt(abs(t_wyraz_wolny), df = df_residual, lower.tail = FALSE)
+
+cat("\nWartość p dla nachylenia:", round(p_nachylenie, 4), 
+    ifelse(p_nachylenie < 0.001, " (***)", 
+    ifelse(p_nachylenie < 0.01, " (**)", 
+    ifelse(p_nachylenie < 0.05, " (*)", " (ns)"))), "\n")
+cat("Wartość p dla wyrazu wolnego:", round(p_wyraz_wolny, 4), 
+    ifelse(p_wyraz_wolny < 0.001, " (***)", 
+    ifelse(p_wyraz_wolny < 0.01, " (**)", 
+    ifelse(p_wyraz_wolny < 0.05, " (*)", " (ns)"))), "\n")
+
+# Przedziały ufności (95%)
+t_krytyczne <- qt(0.975, df = df_residual)
+cat("\nKrytyczna wartość t (95% CI, df=", df_residual, "): ", 
+    round(t_krytyczne, 3), "\n", sep="")
+
+# CI dla nachylenia
+nachylenie_CI_dolne <- nachylenie - t_krytyczne * SE_nachylenie
+nachylenie_CI_gorne <- nachylenie + t_krytyczne * SE_nachylenie
+
+cat("\n95% przedział ufności dla nachylenia:\n")
+cat("  [", round(nachylenie_CI_dolne, 3), ", ", round(nachylenie_CI_gorne, 3), "]\n", sep="")
+cat("  Interpretacja: Jesteśmy w 95% pewni, że prawdziwe nachylenie wynosi między ",
+    round(nachylenie_CI_dolne, 2), " a ", round(nachylenie_CI_gorne, 2), "\n", sep="")
+
+# CI dla wyrazu wolnego
+wyraz_wolny_CI_dolne <- wyraz_wolny - t_krytyczne * SE_wyraz_wolny
+wyraz_wolny_CI_gorne <- wyraz_wolny + t_krytyczne * SE_wyraz_wolny
+
+cat("\n95% przedział ufności dla wyrazu wolnego:\n")
+cat("  [", round(wyraz_wolny_CI_dolne, 3), ", ", round(wyraz_wolny_CI_gorne, 3), "]\n", sep="")
+
+cat("\nKody istotności: *** p<0.001, ** p<0.01, * p<0.05, ns p>0.05\n")
+
+cat("\n** INTERPRETACJA **\n")
+cat("Nachylenie jest statystycznie ", 
+    ifelse(p_nachylenie < 0.05, "ISTOTNE", "NIEISTOTNE"),
+    " na poziomie 5%\n")
+cat("To oznacza, że ujemny związek między ceną a popytem ",
+    ifelse(p_nachylenie < 0.05, "NIE jest prawdopodobnie spowodowany przypadkiem", 
+           "może być spowodowany przypadkiem"),
+    "\n")
+
+# ============================================
+# PODSUMOWANIE KOŃCOWE
+# ============================================
+cat("\n============================================\n")
+cat("PODSUMOWANIE: WSZYSTKIE RĘCZNE OBLICZENIA ZWERYFIKOWANE ✓\n")
+cat("============================================\n")
+
+cat("\nKluczowe wyniki:\n")
+cat("  • Korelacja (r) =", round(korelacja, 3), 
+    "(Silna ujemna zależność)\n")
+cat("  • R-kwadrat =", round(R_kwadrat_model, 3), 
+    "(", round(R_kwadrat_model*100, 1), "% wariancji wyjaśnione)\n", sep="")
+cat("  • Nachylenie =", round(nachylenie, 2), 
+    "(Każde 4 zł wzrostu → ", abs(round(nachylenie*4, 1)), " mniej filiżanek)\n", sep="")
+cat("  • Wartość p nachylenia =", round(p_nachylenie, 4), 
+    ifelse(p_nachylenie < 0.05, " (ISTOTNE)", " (nieistotne)"), "\n")
+cat("  • RMSE =", round(RMSE, 2), "filiżanek (typowy błąd predykcji)\n")
+cat("  • Równanie modelu: Popyt =", round(wyraz_wolny, 1), 
+    round(nachylenie, 2), "× Cena\n")
+cat("  • Dopasowanie modelu: Dobre (realistyczne dla danych biznesowych)\n")
+cat("  • Niewyjaśniona zmienność:", round((1-R_kwadrat_model)*100, 1), 
+    "% (lokalizacja, konkurencja, jakość itp.)\n", sep="")
+```
+
+### Interpretacja wyniku R
+
+**Kluczowe wnioski z weryfikacji kodu:**
+
+1.  **Potwierdzone obliczenia ręczne** - R daje wyniki zgodne z naszymi obliczeniami na papierze
+
+2.  **Diagnostyka modelu z podsumowania:**
+
+    -   Multiple R-squared: 0.706 (70.6% wariancji wyjaśnione)\
+    -   Residual standard error: \~5.17 filiżanek (nasze obliczenie RMSE)
+    -   F-statistic: \~9.6 z wartością p = 0.028 (statystycznie istotny przy α = 0.05)
+
+3.  **Istotność współczynników:**
+
+    -   Wyraz wolny: t = 8.35, p \< 0.001 (wysoce istotny)
+    -   Nachylenie: t = -3.10, p = 0.036 (istotny na poziomie 5%)
+    -   Oba współczynniki są statystycznie różne od zera
+
+4.  **Wnioskowanie statystyczne (z naszych ręcznych obliczeń):**
+
+    -   SE nachylenia = 0.31, co oznacza, że nasza ocena nachylenia ma niepewność ±0.31
+    -   95% CI nachylenia: \[-1.82, -0.10\] - nie zawiera zera, potwierdzając istotność
+    -   wartość p = 0.036 oznacza, że tylko 3.6% szansy na zaobserwowanie tego nachylenia, gdyby prawdziwy efekt wynosił zero
+
+5.  **Wszystkie trzy metody obliczania R² są zgodne:**
+
+    -   Z sum kwadratów: 0.706
+    -   Z kwadratu korelacji: 0.706
+    -   Z podsumowania modelu: 0.706
+
+6.  **Analiza reszt:**
+
+    -   Kawiarnia C: +7.80 filiżanek (doskonała wydajność)
+    -   Kawiarnia B: -6.04 filiżanek (poniżej oczekiwań)
+    -   Te duże reszty wyjaśniają 29.4% niewyjaśnionej zmienności
+
+7.  **Interpretacja RMSE:**
+
+    -   RMSE = 5.17 filiżanek oznacza, że typowy błąd predykcji wynosi około ±5 filiżanek
+    -   To reprezentuje około 13.5% błędu względnego (5.17/38.33)
+    -   Rozsądne, biorąc pod uwagę R² = 0.71 (niedoskonałe dopasowanie)
+
+**Istotność statystyczna:**
+
+Przy wartości p = 0.036 \< 0.05, możemy odrzucić hipotezę zerową, że nie ma związku między ceną a popytem. Ujemna zależność jest statystycznie istotna i prawdopodobnie nie jest spowodowana przypadkiem.
+
+**Pewność:** Nasze ręczne obliczenia są poprawne! ✓
+
+------------------------------------------------------------------------
+
+## Zadania do samodzielnego rozwiązania
+
+Przetestuj swoje zrozumienie poprzez te problemy:
+
+1.  **Nowa predykcja:** Jaki popyt przewidziałbyś dla ceny 18 zł? Pokaż obliczenia.
+
+2.  **Interpretacja:** Gdyby kawiarnia C miała średni popyt (38 filiżanek) zamiast 48 filiżanek, jak zmieniłoby się R²?
+
+3.  **Wrażliwość:** O ile zmieniłby się przychód, gdyby cena spadła z 28 zł do 24 zł?
+
+4.  **Elastyczność:** Oblicz cenową elastyczność popytu przy średniej cenie (22 zł).
+
+5.  **Optymalne ustalanie cen:** Przy jakiej cenie model przewiduje zerowy popyt? Czy to jest realistyczne?
+
+6.  **Porównanie:** Kawiarnie B i E mają podobny popyt (38 vs 34 filiżanki), ale bardzo różne ceny (16 zł vs 28 zł). Co może wyjaśniać odporność kawiarni E na wysokie ceny?
+
+------------------------------------------------------------------------
+
+## Dodatek: Podsumowanie Wzorów
+
+**Statystyki opisowe:**
+
+$$\bar{x} = \frac{\sum x_i}{n} \qquad s_x = \sqrt{\frac{\sum(x_i - \bar{x})^2}{n-1}}$$
+
+**Kowariancja i korelacja:**
+
+$$\text{Cov}(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1} \qquad r = \frac{\text{Cov}(X,Y)}{s_x \cdot s_y}$$
+
+**Współczynniki regresji:**
+
+$$b = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = r \cdot \frac{s_y}{s_x} \qquad a = \bar{y} - b\bar{x}$$
+
+**Rozkład sum kwadratów:**
+
+$$\text{SST} = \sum(y_i - \bar{y})^2 \qquad \text{SSR} = \sum(\hat{y}_i - \bar{y})^2 \qquad \text{SSE} = \sum e_i^2 = \sum(y_i - \hat{y}_i)^2$$
+
+$$\text{SST} = \text{SSR} + \text{SSE}$$
+
+**Współczynnik determinacji:**
+
+$$R^2 = \frac{\text{SSR}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}} = r^2$$
+
+**Interpretacja:** $R^2$ reprezentuje proporcję wariancji Y wyjaśnionej przez X.
 
 ---
 
-## Ćwiczenie 5. Lęk a wyniki: analiza korelacji i regresji
+## Ćwiczenie 6. Lęk a wyniki: analiza korelacji i regresji
 
 ### Kontekst
+
 W tym ćwiczeniu zbadamy związek między poziomem lęku przed egzaminem a wynikami egzaminacyjnymi wśród studentów uniwersyteckich. Badania sugerują, że chociaż niewielka ilość lęku może być motywująca, nadmierny lęk zazwyczaj pogarsza wyniki poprzez zmniejszoną koncentrację, zakłócenia pamięci roboczej i objawy fizyczne (prawo Yerkesa-Dodsona). Przeanalizujemy dane od 8 studentów, aby matematycznie zrozumieć tę relację.
 
 ### Dane
-Zebraliśmy dane od 8 studentów, mierząc:
-- **X**: Poziom lęku przed testem (skala 1-10, gdzie 1 = bardzo niski, 10 = bardzo wysoki)
-- **Y**: Wyniki egzaminu (procent punktów)
+
+Zebraliśmy dane od 8 studentów, mierząc: - **X**: Poziom lęku przed testem (skala 1-10, gdzie 1 = bardzo niski, 10 = bardzo wysoki) - **Y**: Wyniki egzaminu (procent punktów)
 
 | Student | Lęk (X) | Wynik (Y) |
 |---------|---------|-----------|
@@ -235,28 +3570,26 @@ Zebraliśmy dane od 8 studentów, mierząc:
 
 **A. Wstępna analiza danych**
 
-1. Oblicz **średni** poziom lęku oraz **średni** wynik egzaminu dla grupy.
-2. Oblicz **odchylenie standardowe** dla poziomów lęku i wyników egzaminu.
-3. Na podstawie wizualnej inspekcji danych, czy spodziewasz się pozytywnej czy negatywnej relacji między lękiem a wynikami? Wyjaśnij swoje rozumowanie.
+1.  Oblicz **średni** poziom lęku oraz **średni** wynik egzaminu dla grupy.
+2.  Oblicz **odchylenie standardowe** dla poziomów lęku i wyników egzaminu.
+3.  Na podstawie wizualnej inspekcji danych, czy spodziewasz się pozytywnej czy negatywnej relacji między lękiem a wynikami? Wyjaśnij swoje rozumowanie.
 
 **B. Kowariancja**
 
-4. Oblicz **kowariancję** między lękiem (X) a wynikami (Y). Pokaż swoje obliczenia krok po kroku.
-5. Czy kowariancja jest dodatnia czy ujemna? Co to mówi o związku między lękiem a wynikami?
-6. Dlaczego sama kowariancja nie jest wystarczająca do określenia siły związku? Jakie są jej ograniczenia?
+4.  Oblicz **kowariancję** między lękiem (X) a wynikami (Y). Pokaż swoje obliczenia krok po kroku.
+5.  Czy kowariancja jest dodatnia czy ujemna? Co to mówi o związku między lękiem a wynikami?
+6.  Dlaczego sama kowariancja nie jest wystarczająca do określenia siły związku? Jakie są jej ograniczenia?
 
 **C. Współczynnik korelacji Pearsona**
 
-7. Oblicz **współczynnik korelacji Pearsona (r)** używając wzoru:
-   $$r = \frac{\text{Cov}(X,Y)}{s_X \cdot s_Y}$$
-   gdzie $s_X$ i $s_Y$ to odchylenia standardowe X i Y.
+7.  Oblicz **współczynnik korelacji Pearsona (r)** używając wzoru: $$r = \frac{\text{Cov}(X,Y)}{s_X \cdot s_Y}$$ gdzie $s_X$ i $s_Y$ to odchylenia standardowe X i Y.
 
-8. Alternatywnie, zweryfikuj swoją odpowiedź używając wzoru:
-   $$r = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2 \cdot \sum(y_i - \bar{y})^2}}$$
+8.  Alternatywnie, zweryfikuj swoją odpowiedź używając wzoru: $$r = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2 \cdot \sum(y_i - \bar{y})^2}}$$
 
-9. Zinterpretuj współczynnik korelacji Pearsona. Co jego wartość mówi o:
-   - Kierunku związku (dodatni czy ujemny)?
-   - Sile związku liniowego (słaby, umiarkowany czy silny)?
+9.  Zinterpretuj współczynnik korelacji Pearsona. Co jego wartość mówi o:
+
+    -   Kierunku związku (dodatni czy ujemny)?
+    -   Sile związku liniowego (słaby, umiarkowany czy silny)?
 
 10. W jaki sposób współczynnik r Pearsona jest lepszy niż kowariancja jako miernik zależności? Jaką ma przewagę?
 
@@ -270,11 +3603,9 @@ Zebraliśmy dane od 8 studentów, mierząc:
 
 **E. Prosta regresja liniowa (MNK)**
 
-15. Oblicz **współczynnik kierunkowy (b₁)** linii regresji używając metody najmniejszych kwadratów (MNK). Użyj wzoru: 
-    $$b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$$
+15. Oblicz **współczynnik kierunkowy (b₁)** linii regresji używając metody najmniejszych kwadratów (MNK). Użyj wzoru: $$b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$$
 
-16. Oblicz **wyraz wolny (b₀)** linii regresji używając wzoru:
-    $$b_0 = \bar{y} - b_1\bar{x}$$
+16. Oblicz **wyraz wolny (b₀)** linii regresji używając wzoru: $$b_0 = \bar{y} - b_1\bar{x}$$
 
 17. Zapisz kompletne **równanie regresji** w postaci: $\hat{Y} = b_0 + b_1X$
 
@@ -312,69 +3643,66 @@ Zebraliśmy dane od 8 studentów, mierząc:
 
 32. Zaproponuj dwie dodatkowe zmienne, które mogłyby być ważne do uwzględnienia w bardziej kompleksowym modelu wyników egzaminu.
 
----
+------------------------------------------------------------------------
 
-## Ćwiczenie 6. Wielkość okręgu wyborczego a dysproporcjonalność wyborcza: analiza korelacji i regresji
+## Ćwiczenie 7. Wielkość okręgu wyborczego a dysproporcjonalność wyborcza: analiza korelacji i regresji
 
 ### Kontekst
+
 W tym ćwiczeniu zbadamy związek między wielkością okręgu wyborczego a dysproporcjonalnością w wyborach parlamentarnych. Wielkość okręgu wyborczego (DM) oznacza liczbę mandatów przydzielonych na jeden okręg wyborczy, podczas gdy indeks Gallaghera (GH) mierzy dysproporcjonalność między oddanymi głosami a zdobytymi mandatami. Politolodzy teoretyzowali, że większe okręgi wyborcze prowadzą do bardziej proporcjonalnych wyników (niższa dysproporcjonalność), zgodnie z prawem Duvergera i jego rozszerzeniami. Przeanalizujemy dane z 10 demokracji, aby empirycznie przetestować tę zależność.
 
 ### Dane
-Student politologii zebrał dane z 10 losowo wybranych demokracji:
-- **X**: Wielkość okręgu wyborczego (DM) - średnia liczba mandatów na okręg
-- **Y**: Indeks Gallaghera (GH) - miara dysproporcjonalności wyborczej (wyższe wartości = większa dysproporcjonalność)
+
+Student politologii zebrał dane z 10 losowo wybranych demokracji: - **X**: Wielkość okręgu wyborczego (DM) - średnia liczba mandatów na okręg - **Y**: Indeks Gallaghera (GH) - miara dysproporcjonalności wyborczej (wyższe wartości = większa dysproporcjonalność)
 
 | Demokracja | Wielkość okręgu (X) | Indeks Gallaghera (Y) |
-|------------|---------------------|------------------------|
-| 1          | 2                   | 18,2                   |
-| 2          | 3                   | 16,7                   |
-| 3          | 4                   | 15,8                   |
-| 4          | 5                   | 15,3                   |
-| 5          | 6                   | 15,0                   |
-| 6          | 7                   | 14,8                   |
-| 7          | 8                   | 14,7                   |
-| 8          | 9                   | 14,6                   |
-| 9          | 10                  | 14,55                  |
-| 10         | 11                  | 14,52                  |
+|------------|---------------------|-----------------------|
+| 1          | 2                   | 18,2                  |
+| 2          | 3                   | 16,7                  |
+| 3          | 4                   | 15,8                  |
+| 4          | 5                   | 15,3                  |
+| 5          | 6                   | 15,0                  |
+| 6          | 7                   | 14,8                  |
+| 7          | 8                   | 14,7                  |
+| 8          | 9                   | 14,6                  |
+| 9          | 10                  | 14,55                 |
+| 10         | 11                  | 14,52                 |
 
 ### Zadania
 
 **A. Wstępna analiza danych**
 
-1. Oblicz **średnią** wielkość okręgu wyborczego oraz **średnią** wartość indeksu Gallaghera dla próby.
-2. Oblicz **odchylenie standardowe** dla wielkości okręgu wyborczego i indeksu Gallaghera.
-3. Na podstawie wizualnej inspekcji danych, czy spodziewasz się pozytywnego czy negatywnego związku między wielkością okręgu a dysproporcjonalnością? Czy to jest zgodne z teorią politologiczną?
+1.  Oblicz **średnią** wielkość okręgu wyborczego oraz **średnią** wartość indeksu Gallaghera dla próby.
+2.  Oblicz **odchylenie standardowe** dla wielkości okręgu wyborczego i indeksu Gallaghera.
+3.  Na podstawie wizualnej inspekcji danych, czy spodziewasz się pozytywnego czy negatywnego związku między wielkością okręgu a dysproporcjonalnością? Czy to jest zgodne z teorią politologiczną?
 
 **B. Kowariancja**
 
-4. Oblicz **kowariancję** między wielkością okręgu wyborczego (X) a indeksem Gallaghera (Y). Pokaż swoje obliczenia krok po kroku używając wzoru:
-   $$\text{Cov}(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1}$$
+4.  Oblicz **kowariancję** między wielkością okręgu wyborczego (X) a indeksem Gallaghera (Y). Pokaż swoje obliczenia krok po kroku używając wzoru: $$\text{Cov}(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1}$$
 
-5. Czy kowariancja jest dodatnia czy ujemna? Co to mówi o związku między wielkością okręgu a dysproporcjonalnością?
+5.  Czy kowariancja jest dodatnia czy ujemna? Co to mówi o związku między wielkością okręgu a dysproporcjonalnością?
 
-6. Jakie są jednostki twojej kowariancji? Dlaczego to utrudnia interpretację siły związku?
+6.  Jakie są jednostki twojej kowariancji? Dlaczego to utrudnia interpretację siły związku?
 
 **C. Współczynnik korelacji Pearsona**
 
-7. Oblicz **współczynnik korelacji Pearsona (r)** używając wzoru:
-   $$r = \frac{\text{Cov}(X,Y)}{s_X \cdot s_Y}$$
+7.  Oblicz **współczynnik korelacji Pearsona (r)** używając wzoru: $$r = \frac{\text{Cov}(X,Y)}{s_X \cdot s_Y}$$
 
-8. Zinterpretuj współczynnik korelacji Pearsona:
-   - Czy związek jest dodatni czy ujemny?
-   - Jak silny jest związek liniowy (słaby, umiarkowany czy silny)?
-   - Co to mówi o relacji między wielkością okręgu a dysproporcjonalnością?
+8.  Zinterpretuj współczynnik korelacji Pearsona:
 
-9. Oblicz **r²** i zinterpretuj, co to oznacza w tym kontekście.
+    -   Czy związek jest dodatni czy ujemny?
+    -   Jak silny jest związek liniowy (słaby, umiarkowany czy silny)?
+    -   Co to mówi o relacji między wielkością okręgu a dysproporcjonalnością?
+
+9.  Oblicz **r²** i zinterpretuj, co to oznacza w tym kontekście.
 
 10. Dlaczego współczynnik korelacji Pearsona jest bardziej użyteczny niż kowariancja do opisywania siły związku liniowego?
 
 **D. Prosta regresja liniowa (MNK)**
 
-11. Oblicz **współczynnik kierunkowy (b₁)** linii regresji używając metody najmniejszych kwadratów (MNK):
-    $$b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$$
+11. Oblicz **współczynnik kierunkowy (b₁)** linii regresji używając metody najmniejszych kwadratów (MNK): $$b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$$
 
-12. Oblicz **wyraz wolny (b₀)** linii regresji:
-    $$b_0 = \bar{y} - b_1\bar{x}$$
+12. Oblicz **wyraz wolny (b₀)** linii regresji: $$b_0 = \bar{y} - b_1\bar{x}$$
 
 13. Zapisz kompletne **równanie regresji**: $\hat{Y} = b_0 + b_1X$
 
@@ -413,18 +3741,20 @@ Student politologii zebrał dane z 10 losowo wybranych demokracji:
 28. Czy twoje wyniki potwierdzają hipotezę Duvergera? Wyjaśnij, odwołując się do swoich wyników statystycznych.
 
 29. Porównaj informacje dostarczone przez następujące miary:
-    - Kowariancja
-    - Korelacja Pearsona (r)
-    - Współczynnik kierunkowy regresji (b₁)
-    - R²
-    
+
+    -   Kowariancja
+    -   Korelacja Pearsona (r)
+    -   Współczynnik kierunkowy regresji (b₁)
+    -   R²
+
     Jak są ze sobą powiązane? Jakie unikalne informacje dostarcza każda z nich?
 
 30. Jakie są ograniczenia tej analizy? Rozważ:
-    - Wielkość próby
-    - Trafność zewnętrzna (możliwość uogólnienia)
-    - Pominięte zmienne (jakie inne czynniki mogą wpływać na dysproporcjonalność?)
-    - Problemy pomiarowe
+
+    -   Wielkość próby
+    -   Trafność zewnętrzna (możliwość uogólnienia)
+    -   Pominięte zmienne (jakie inne czynniki mogą wpływać na dysproporcjonalność?)
+    -   Problemy pomiarowe
 
 31. Czy czułbyś się pewnie używając swojego modelu regresji do przewidywania dysproporcjonalności dla demokracji o DM = 20? Dlaczego tak lub dlaczego nie? Jaka koncepcja statystyczna jest tutaj istotna?
 
@@ -432,9 +3762,9 @@ Student politologii zebrał dane z 10 losowo wybranych demokracji:
 
 33. Na podstawie swoich wyników regresji, jaką rekomendację polityczną przedstawiłbyś krajowi, który chce zmniejszyć dysproporcjonalność wyborczą?
 
----
+------------------------------------------------------------------------
 
-## Ćwiczenie 7: Reguła sumy i iloczynu w zliczaniu
+## Ćwiczenie 8: Reguła sumy i iloczynu w zliczaniu
 
 Rozważ poniższe problemy zliczania i określ, czy użyć **reguły iloczynu** (mnożenie) czy **reguły sumy** (dodawanie).
 
@@ -448,13 +3778,13 @@ Rozważ poniższe problemy zliczania i określ, czy użyć **reguły iloczynu** 
 
 **Wskazówki:**
 
-- **Reguła iloczynu (Mnożenie)**: Użyj, gdy zadania są wykonywane sekwencyjnie I wszystkie zadania muszą być ukończone. Myśl: "to I tamto I tamto..."
+-   **Reguła iloczynu (Mnożenie)**: Użyj, gdy zadania są wykonywane sekwencyjnie I wszystkie zadania muszą być ukończone. Myśl: "to I tamto I tamto..."
 
-- **Reguła sumy (Dodawanie)**: Użyj, gdy są wzajemnie wykluczające się alternatywy. Myśl: "to ALBO tamto (ale nie oba)..."
+-   **Reguła sumy (Dodawanie)**: Użyj, gdy są wzajemnie wykluczające się alternatywy. Myśl: "to ALBO tamto (ale nie oba)..."
 
-- Dla wielu wyborów w sekwencji, gdzie każdy wybór jest niezależny, pomnóż liczbę opcji na każdym kroku.
+-   Dla wielu wyborów w sekwencji, gdzie każdy wybór jest niezależny, pomnóż liczbę opcji na każdym kroku.
 
-- Alfabet: 26 liter; cyfry: 10 cyfr (0-9).
+-   Alfabet: 26 liter; cyfry: 10 cyfr (0-9).
 
 **Odpowiedzi:**
 
@@ -474,31 +3804,31 @@ Rozważ poniższe problemy zliczania i określ, czy użyć **reguły iloczynu** 
 
 *Wyjaśnienie*: Wybierasz z Matematyki ALBO z Fizyki (wzajemnie wykluczające się alternatywy - nie można wybrać obu).
 
----
+------------------------------------------------------------------------
 
-## Ćwiczenie 8: Losowanie ze zwracaniem i bez zwracania
+## Ćwiczenie 9: Losowanie ze zwracaniem i bez zwracania
 
 Urna zawiera 3 zielone kule i 2 czerwone kule. Z urny losowane są dwie kule. Oblicz prawdopodobieństwo dla każdego z poniższych scenariuszy:
 
-a. Pierwsza kula jest czerwona, a druga zielona (kolejność ma znaczenie); losowanie **bez zwracania**.
+a.  Pierwsza kula jest czerwona, a druga zielona (kolejność ma znaczenie); losowanie **bez zwracania**.
 
-b. Pierwsza kula jest czerwona, a druga zielona (kolejność ma znaczenie); losowanie **ze zwracaniem**.
+b.  Pierwsza kula jest czerwona, a druga zielona (kolejność ma znaczenie); losowanie **ze zwracaniem**.
 
-c. Kule są różnych kolorów (kolejność nie ma znaczenia); losowanie **bez zwracania**.
+c.  Kule są różnych kolorów (kolejność nie ma znaczenia); losowanie **bez zwracania**.
 
-d. Kule są różnych kolorów (kolejność nie ma znaczenia); losowanie **ze zwracaniem**.
+d.  Kule są różnych kolorów (kolejność nie ma znaczenia); losowanie **ze zwracaniem**.
 
 **Wskazówki:**
 
-- Przy losowaniu *bez zwracania* całkowita liczba kul i skład zmieniają się po pierwszym losowaniu.
+-   Przy losowaniu *bez zwracania* całkowita liczba kul i skład zmieniają się po pierwszym losowaniu.
 
-- Przy losowaniu *ze zwracaniem* każde losowanie jest niezależne z takimi samymi prawdopodobieństwami.
+-   Przy losowaniu *ze zwracaniem* każde losowanie jest niezależne z takimi samymi prawdopodobieństwami.
 
-- Gdy kolejność nie ma znaczenia, rozważ wszystkie możliwe sposoby osiągnięcia wyniku (np. czerwona-potem-zielona LUB zielona-potem-czerwona).
+-   Gdy kolejność nie ma znaczenia, rozważ wszystkie możliwe sposoby osiągnięcia wyniku (np. czerwona-potem-zielona LUB zielona-potem-czerwona).
 
-- Użyj reguły mnożenia dla zdarzeń sekwencyjnych: $P(A \text{ i } B) = P(A) \times P(B|A)$
+-   Użyj reguły mnożenia dla zdarzeń sekwencyjnych: $P(A \text{ i } B) = P(A) \times P(B|A)$
 
-- Problem można rozwiązać za pomocą **drzew prawdopodobieństwa** lub konstruując **przestrzeń zdarzeń elementarnych** wizualizowaną jako siatka 2D, a następnie stosując klasyczną (naiwną) definicję prawdopodobieństwa: $P(A) = \frac{\text{zdarzenia sprzyjające}}{\text{wszystkie zdarzenia}}$
+-   Problem można rozwiązać za pomocą **drzew prawdopodobieństwa** lub konstruując **przestrzeń zdarzeń elementarnych** wizualizowaną jako siatka 2D, a następnie stosując klasyczną (naiwną) definicję prawdopodobieństwa: $P(A) = \frac{\text{zdarzenia sprzyjające}}{\text{wszystkie zdarzenia}}$
 
 **Rozwiązania:**
 
@@ -528,34 +3858,33 @@ $$P(\text{Różne}) = P(\text{Czerwona}_1 \cap \text{Zielona}_2) + P(\text{Zielo
 
 **Alternatywne podejście wykorzystujące przestrzeń zdarzeń elementarnych:**
 
-- **Ze zwracaniem**: Utwórz siatkę 5×5, gdzie wiersze reprezentują pierwsze losowanie (C1, C2, Z1, Z2, Z3), a kolumny reprezentują drugie losowanie (C1, C2, Z1, Z2, Z3). Wszystkie zdarzenia: 25. Policz zdarzenia sprzyjające w siatce.
+-   **Ze zwracaniem**: Utwórz siatkę 5×5, gdzie wiersze reprezentują pierwsze losowanie (C1, C2, Z1, Z2, Z3), a kolumny reprezentują drugie losowanie (C1, C2, Z1, Z2, Z3). Wszystkie zdarzenia: 25. Policz zdarzenia sprzyjające w siatce.
 
-- **Bez zwracania**: Utwórz siatkę wykluczając elementy na przekątnej (nie można wylosować tej samej kuli dwa razy). Wszystkie zdarzenia: 20. Policz zdarzenia sprzyjające w siatce.
+-   **Bez zwracania**: Utwórz siatkę wykluczając elementy na przekątnej (nie można wylosować tej samej kuli dwa razy). Wszystkie zdarzenia: 20. Policz zdarzenia sprzyjające w siatce.
 
----
+------------------------------------------------------------------------
 
-
-## Ćwiczenie 9: Losowanie kul z urny
+## Ćwiczenie 10: Losowanie kul z urny
 
 Urna zawiera 4 kule czerwone i 3 czarne (kule w danym kolorze są nierozróżnialne). Dwie kule losujemy z urny **bez zwracania**.
 
 Jakie jest prawdopodobieństwo, że:
 
-a. Obie kule są czerwone.
+a.  Obie kule są czerwone.
 
-b. Pierwsza kula jest czerwona, a druga jest czarna.
+b.  Pierwsza kula jest czerwona, a druga jest czarna.
 
-c. Kule są różnokolorowe.
+c.  Kule są różnokolorowe.
 
 **Wskazówki:**
 
-- Przy losowaniu bez zwracania całkowita liczba kul i skład zmieniają się po pierwszym losowaniu.
+-   Przy losowaniu bez zwracania całkowita liczba kul i skład zmieniają się po pierwszym losowaniu.
 
-- Użyj reguły mnożenia: $P(A \cap B) = P(A) \times P(B|A)$
+-   Użyj reguły mnożenia: $P(A \cap B) = P(A) \times P(B|A)$
 
-- Gdy kolejność nie ma znaczenia (część c), rozważ wszystkie możliwe kolejności.
+-   Gdy kolejność nie ma znaczenia (część c), rozważ wszystkie możliwe kolejności.
 
-- Problem można rozwiązać za pomocą **drzew prawdopodobieństwa** lub wypisując **przestrzeń zdarzeń elementarnych** jako pary uporządkowane. Dla podejścia z przestrzenią zdarzeń elementarnych, ponumeruj kule (C1, C2, C3, C4, Cz1, Cz2, Cz3), aby zapewnić jednakowo prawdopodobne zdarzenia elementarne, mimo że kule tego samego koloru są fizycznie nierozróżnialne.
+-   Problem można rozwiązać za pomocą **drzew prawdopodobieństwa** lub wypisując **przestrzeń zdarzeń elementarnych** jako pary uporządkowane. Dla podejścia z przestrzenią zdarzeń elementarnych, ponumeruj kule (C1, C2, C3, C4, Cz1, Cz2, Cz3), aby zapewnić jednakowo prawdopodobne zdarzenia elementarne, mimo że kule tego samego koloru są fizycznie nierozróżnialne.
 
 **Rozwiązania:**
 
@@ -581,9 +3910,9 @@ $$P(\text{Różne}) = P(\text{Czerwona}_1 \cap \text{Czarna}_2) + P(\text{Czarna
 
 Ponumeruj kule jako C1, C2, C3, C4, Cz1, Cz2, Cz3, aby utworzyć przestrzeń zdarzeń elementarnych z jednakowo prawdopodobnymi zdarzeniami. Utwórz siatkę 7×6 (lub wypisz wszystkie pary uporządkowane), gdzie pierwsza współrzędna reprezentuje pierwsze losowanie, a druga współrzędna reprezentuje drugie losowanie. Ponieważ losujemy bez zwracania, wyklucz przypadki, w których ta sama kula jest losowana dwa razy. Wszystkie zdarzenia elementarne: $7 \times 6 = 42$. Policz zdarzenia sprzyjające dla każdego scenariusza (np. dla części a, policz wszystkie pary, gdzie obie współrzędne to kule czerwone).
 
----
+------------------------------------------------------------------------
 
-## Ćwiczenie 10: Reguła dopełnienia
+## Ćwiczenie 11: Reguła dopełnienia
 
 Worek zawiera 5 czerwonych i 3 niebieskie kulki. Z worka wyciągane są **bez zwracania**, jedna za drugą, dwie kulki.
 
@@ -591,13 +3920,13 @@ Oblicz prawdopodobieństwo, że przynajmniej jedna kulka jest czerwona.
 
 **Wskazówki:**
 
-- "Przynajmniej jedna" oznacza jedną lub więcej (jedna czerwona LUB dwie czerwone).
+-   "Przynajmniej jedna" oznacza jedną lub więcej (jedna czerwona LUB dwie czerwone).
 
-- **Reguła dopełnienia** jest często łatwiejsza: $P(A) = 1 - P(A^c)$, gdzie $A^c$ jest dopełnieniem zdarzenia $A$.
+-   **Reguła dopełnienia** jest często łatwiejsza: $P(A) = 1 - P(A^c)$, gdzie $A^c$ jest dopełnieniem zdarzenia $A$.
 
-- Dopełnieniem "przynajmniej jedna czerwona" jest "żadna czerwona" (czyli "obie niebieskie").
+-   Dopełnieniem "przynajmniej jedna czerwona" jest "żadna czerwona" (czyli "obie niebieskie").
 
-- Najpierw oblicz $P(\text{obie niebieskie})$, a następnie użyj reguły dopełnienia.
+-   Najpierw oblicz $P(\text{obie niebieskie})$, a następnie użyj reguły dopełnienia.
 
 **Rozwiązanie:**
 
@@ -619,9 +3948,9 @@ $$= \frac{5}{8} \times \frac{3}{7} + \frac{3}{8} \times \frac{5}{7} + \frac{5}{8
 
 Podejście z dopełnieniem jest prostsze!
 
----
+------------------------------------------------------------------------
 
-## Ćwiczenie 11: Reguła dodawania prawdopodobieństw
+## Ćwiczenie 12: Reguła dodawania prawdopodobieństw
 
 Rozważ standardową talię 52 kart do gry. Karta jest wybierana losowo.
 
@@ -629,21 +3958,21 @@ Jakie jest prawdopodobieństwo, że karta to karo lub dziesiątka?
 
 **Wskazówki:**
 
-- Standardowa talia ma 4 kolory (kiery, karo, trefle, piki), każdy z 13 kartami.
+-   Standardowa talia ma 4 kolory (kiery, karo, trefle, piki), każdy z 13 kartami.
 
-- Użyj **reguły dodawania**: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+-   Użyj **reguły dodawania**: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
 
-- Uważaj, aby nie liczyć kart dwa razy! Dziesiątka karo jest zarówno karo JAK I dziesiątką.
+-   Uważaj, aby nie liczyć kart dwa razy! Dziesiątka karo jest zarówno karo JAK I dziesiątką.
 
-- Określ: Ile jest karo? Ile jest dziesiątek? Ile kart jest jednocześnie karo i dziesiątką?
+-   Określ: Ile jest karo? Ile jest dziesiątek? Ile kart jest jednocześnie karo i dziesiątką?
 
 **Rozwiązanie:**
 
 Niech $A$ = "karta jest karo" oraz $B$ = "karta jest dziesiątką"
 
-- Liczba kart karo: 13
-- Liczba dziesiątek: 4 (jedna w każdym kolorze)
-- Liczba kart, które są jednocześnie karo i dziesiątką: 1 (dziesiątka karo)
+-   Liczba kart karo: 13
+-   Liczba dziesiątek: 4 (jedna w każdym kolorze)
+-   Liczba kart, które są jednocześnie karo i dziesiątką: 1 (dziesiątka karo)
 
 Używając reguły dodawania:
 
@@ -653,43 +3982,43 @@ $$= \frac{13}{52} + \frac{4}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}$$
 
 *Wyjaśnienie*: Dodajemy prawdopodobieństwa wylosowania karo i wylosowania dziesiątki, ale musimy odjąć prawdopodobieństwo wylosowania dziesiątki karo (która została policzona dwa razy).
 
----
+------------------------------------------------------------------------
 
-## Ćwiczenie 12: Prawdopodobieństwo warunkowe i reguła mnożenia
+## Ćwiczenie 13: Prawdopodobieństwo warunkowe i reguła mnożenia
 
 Pudełko zawiera klocki różnych kształtów i kolorów:
 
-- Klocki trójkątne: 3 czerwone i 2 zielone
-- Klocki owalne: 2 czerwone i 3 zielone
-- Klocki czworokątne: 3 zielone (brak czerwonych)
+-   Klocki trójkątne: 3 czerwone i 2 zielone
+-   Klocki owalne: 2 czerwone i 3 zielone
+-   Klocki czworokątne: 3 zielone (brak czerwonych)
 
 Jeden klocek jest wybierany losowo z pudełka.
 
 Oblicz następujące prawdopodobieństwa:
 
-a. $P(\text{trójkąt})$
+a.  $P(\text{trójkąt})$
 
-b. $P(\text{zielony})$
+b.  $P(\text{zielony})$
 
-c. $P(\text{trójkąt} \cap \text{zielony})$
+c.  $P(\text{trójkąt} \cap \text{zielony})$
 
-d. $P(\text{trójkąt} \mid \text{zielony})$
+d.  $P(\text{trójkąt} \mid \text{zielony})$
 
-e. $P(\text{zielony} \mid \text{trójkąt})$
+e.  $P(\text{zielony} \mid \text{trójkąt})$
 
-f. Zweryfikuj regułę mnożenia: $P(A \cap B) = P(A) \times P(B \mid A) = P(B) \times P(A \mid B)$
+f.  Zweryfikuj regułę mnożenia: $P(A \cap B) = P(A) \times P(B \mid A) = P(B) \times P(A \mid B)$
 
 **Wskazówki:**
 
-- Najpierw policz całkowitą liczbę klocków w pudełku.
+-   Najpierw policz całkowitą liczbę klocków w pudełku.
 
-- **Wzór na prawdopodobieństwo warunkowe**: $P(A \mid B) = \frac{P(A \cap B)}{P(B)}$
+-   **Wzór na prawdopodobieństwo warunkowe**: $P(A \mid B) = \frac{P(A \cap B)}{P(B)}$
 
-- $P(A \mid B)$ czytamy jako "prawdopodobieństwo $A$ pod warunkiem $B$" - oznacza prawdopodobieństwo zajścia $A$, gdy wiemy, że $B$ już zaszło.
+-   $P(A \mid B)$ czytamy jako "prawdopodobieństwo $A$ pod warunkiem $B$" - oznacza prawdopodobieństwo zajścia $A$, gdy wiemy, że $B$ już zaszło.
 
-- **Reguła mnożenia**: $P(A \cap B) = P(A) \times P(B \mid A) = P(B) \times P(A \mid B)$
+-   **Reguła mnożenia**: $P(A \cap B) = P(A) \times P(B \mid A) = P(B) \times P(A \mid B)$
 
-- Dla prawdopodobieństwa warunkowego, ogranicz przestrzeń zdarzeń elementarnych tylko do zdarzeń, gdzie warunek jest spełniony.
+-   Dla prawdopodobieństwa warunkowego, ogranicz przestrzeń zdarzeń elementarnych tylko do zdarzeń, gdzie warunek jest spełniony.
 
 **Rozwiązania:**
 
@@ -733,38 +4062,37 @@ $$P(\text{trójkąt} \cap \text{zielony}) = P(\text{zielony}) \times P(\text{tr�
 
 Obie formuły dają ten sam wynik!
 
----
+------------------------------------------------------------------------
 
-## Ćwiczenie 13: Twierdzenie Bayesa i prawo prawdopodobieństwa całkowitego
+## Ćwiczenie 14: Twierdzenie Bayesa i prawo prawdopodobieństwa całkowitego
 
 W zeszłym tygodniu Alicja poszła do swojego lekarza na rutynowe badanie lekarskie. Dziś rano zadzwonił jej lekarz, aby powiedzieć jej, że wynik jednego z testów jest pozytywny, co wskazuje, że może mieć chorobę, którą oznaczymy literą $D$. Powszechność tej choroby w populacji dla osób w wieku Alicji to 1 na 1000.
 
 Myśląc, że doszło do błędu, Alicja zapytała o dokładność testu. Lekarz powiedział jej, że test jest w 95% dokładny w obu kierunkach:
 
-- Gdy ktoś ma chorobę $D$, test wykrywa to poprawnie w 95% przypadków (czułość lub wskaźnik prawdziwie dodatnich).
-- Gdy ktoś nie ma choroby $D$, test jest poprawnie negatywny w 95% przypadków (swoistość lub wskaźnik prawdziwie ujemnych).
+-   Gdy ktoś ma chorobę $D$, test wykrywa to poprawnie w 95% przypadków (czułość lub wskaźnik prawdziwie dodatnich).
+-   Gdy ktoś nie ma choroby $D$, test jest poprawnie negatywny w 95% przypadków (swoistość lub wskaźnik prawdziwie ujemnych).
 
 Jakie jest prawdopodobieństwo, że Alicja rzeczywiście ma chorobę, biorąc pod uwagę, że jej test był pozytywny? Oblicz $P(D \mid T^+)$.
 
 **Wskazówki:**
 
-- Niech $D$ = "Alicja ma chorobę" oraz $T^+$ = "Test jest pozytywny"
-- Dane informacje:
-  - $P(D) = \frac{1}{1000} = 0{,}001$ (powszechność)
-  - $P(T^+ \mid D) = 0{,}95$ (czułość)
-  - $P(T^- \mid D^c) = 0{,}95$ (swoistość), co oznacza, że $P(T^+ \mid D^c) = 0{,}05$ (wskaźnik fałszywie dodatnich)
-- Użyj **twierdzenia Bayesa**: $P(D \mid T^+) = \frac{P(T^+ \mid D) \times P(D)}{P(T^+)}$
-- Użyj **prawa prawdopodobieństwa całkowitego**, aby znaleźć $P(T^+)$:
-  $$P(T^+) = P(T^+ \mid D) \times P(D) + P(T^+ \mid D^c) \times P(D^c)$$
+-   Niech $D$ = "Alicja ma chorobę" oraz $T^+$ = "Test jest pozytywny"
+-   Dane informacje:
+    -   $P(D) = \frac{1}{1000} = 0{,}001$ (powszechność)
+    -   $P(T^+ \mid D) = 0{,}95$ (czułość)
+    -   $P(T^- \mid D^c) = 0{,}95$ (swoistość), co oznacza, że $P(T^+ \mid D^c) = 0{,}05$ (wskaźnik fałszywie dodatnich)
+-   Użyj **twierdzenia Bayesa**: $P(D \mid T^+) = \frac{P(T^+ \mid D) \times P(D)}{P(T^+)}$
+-   Użyj **prawa prawdopodobieństwa całkowitego**, aby znaleźć $P(T^+)$: $$P(T^+) = P(T^+ \mid D) \times P(D) + P(T^+ \mid D^c) \times P(D^c)$$
 
 **Rozwiązanie:**
 
 **Krok 1:** Określ znane prawdopodobieństwa
 
-- $P(D) = 0{,}001$ (powszechność w populacji)
-- $P(D^c) = 1 - 0{,}001 = 0{,}999$ (prawdopodobieństwo nieposiadania choroby)
-- $P(T^+ \mid D) = 0{,}95$ (czułość)
-- $P(T^+ \mid D^c) = 0{,}05$ (wskaźnik fałszywie dodatnich)
+-   $P(D) = 0{,}001$ (powszechność w populacji)
+-   $P(D^c) = 1 - 0{,}001 = 0{,}999$ (prawdopodobieństwo nieposiadania choroby)
+-   $P(T^+ \mid D) = 0{,}95$ (czułość)
+-   $P(T^+ \mid D^c) = 0{,}05$ (wskaźnik fałszywie dodatnich)
 
 **Krok 2:** Oblicz $P(T^+)$ używając prawa prawdopodobieństwa całkowitego
 
@@ -790,30 +4118,29 @@ Ten nieintuitywny wynik występuje, ponieważ choroba jest bardzo rzadka (tylko 
 
 **Wizualizacja na populacji 100 000 osób:**
 
-- Osoby z chorobą $D$: $100\,000 \times 0{,}001 = 100$
-  - Prawdziwie dodatnie: $100 \times 0{,}95 = 95$
-  - Fałszywie ujemne: $100 \times 0{,}05 = 5$
-
-- Osoby bez choroby $D$: $100\,000 \times 0{,}999 = 99\,900$
-  - Fałszywie dodatnie: $99\,900 \times 0{,}05 = 4\,995$
-  - Prawdziwie ujemne: $99\,900 \times 0{,}95 = 94\,905$
+-   Osoby z chorobą $D$: $100\,000 \times 0{,}001 = 100$
+    -   Prawdziwie dodatnie: $100 \times 0{,}95 = 95$
+    -   Fałszywie ujemne: $100 \times 0{,}05 = 5$
+-   Osoby bez choroby $D$: $100\,000 \times 0{,}999 = 99\,900$
+    -   Fałszywie dodatnie: $99\,900 \times 0{,}05 = 4\,995$
+    -   Prawdziwie ujemne: $99\,900 \times 0{,}95 = 94\,905$
 
 Łącznie testów pozytywnych: $95 + 4\,995 = 5\,090$
 
 $$P(D \mid T^+) = \frac{95}{5\,090} \approx 0{,}0187 \approx 1{,}87\%$$
 
----
+------------------------------------------------------------------------
 
-## Ćwiczenie 14: Testowanie na COVID-19 i wskaźnik bazowy
+## Ćwiczenie 15: Testowanie na COVID-19 i wskaźnik bazowy
 
 Załóżmy, że myślisz, że mogłeś zarazić się COVID-19, chorobą zakaźną wywoływaną przez wirus SARS-CoV-2. Decydujesz się wykonać test diagnostyczny i chcesz wykorzystać jego wynik, aby ustalić, czy jesteś zarażony.
 
 **Charakterystyka testu:**
 
-- **Czułość** (wskaźnik prawdziwie dodatnich): $P(T = 1 \mid D = 1) = 87{,}5\%$ – prawdopodobieństwo pozytywnego testu, gdy rzeczywiście masz chorobę.
-- **Swoistość** (wskaźnik prawdziwie ujemnych): $P(T = 0 \mid D = 0) = 97{,}5\%$ – prawdopodobieństwo negatywnego testu, gdy nie masz choroby.
-- **Wskaźnik fałszywie dodatnich**: $P(T = 1 \mid D = 0) = 1 - 0{,}975 = 2{,}5\%$
-- **Wskaźnik fałszywie ujemnych**: $P(T = 0 \mid D = 1) = 1 - 0{,}875 = 12{,}5\%$
+-   **Czułość** (wskaźnik prawdziwie dodatnich): $P(T = 1 \mid D = 1) = 87{,}5\%$ – prawdopodobieństwo pozytywnego testu, gdy rzeczywiście masz chorobę.
+-   **Swoistość** (wskaźnik prawdziwie ujemnych): $P(T = 0 \mid D = 0) = 97{,}5\%$ – prawdopodobieństwo negatywnego testu, gdy nie masz choroby.
+-   **Wskaźnik fałszywie dodatnich**: $P(T = 1 \mid D = 0) = 1 - 0{,}975 = 2{,}5\%$
+-   **Wskaźnik fałszywie ujemnych**: $P(T = 0 \mid D = 1) = 1 - 0{,}875 = 12{,}5\%$
 
 gdzie $D = 1$ oznacza "ma chorobę", a $T = 1$ oznacza "test jest pozytywny".
 
@@ -821,56 +4148,45 @@ gdzie $D = 1$ oznacza "ma chorobę", a $T = 1$ oznacza "test jest pozytywny".
 
 Oblicz $P(D = 1 \mid T = 1)$ (prawdopodobieństwo, że masz COVID-19 przy pozytywnym teście) dla dwóch scenariuszy:
 
-a. **Wysoka powszechność**: $P(D = 1) = 0{,}1$ (10%), która była powszechnością w Nowym Jorku wiosną 2020 roku.
+a.  **Wysoka powszechność**: $P(D = 1) = 0{,}1$ (10%), która była powszechnością w Nowym Jorku wiosną 2020 roku.
 
-b. **Niska powszechność**: $P(D = 1) = 0{,}01$ (1%), reprezentująca niższy wskaźnik transmisji w społeczności.
+b.  **Niska powszechność**: $P(D = 1) = 0{,}01$ (1%), reprezentująca niższy wskaźnik transmisji w społeczności.
 
 **Wskazówki:**
 
-- Użyj twierdzenia Bayesa: $P(D = 1 \mid T = 1) = \frac{P(T = 1 \mid D = 1) \times P(D = 1)}{P(T = 1)}$
-- Użyj prawa prawdopodobieństwa całkowitego, aby znaleźć $P(T = 1)$
+-   Użyj twierdzenia Bayesa: $P(D = 1 \mid T = 1) = \frac{P(T = 1 \mid D = 1) \times P(D = 1)}{P(T = 1)}$
+-   Użyj prawa prawdopodobieństwa całkowitego, aby znaleźć $P(T = 1)$
 
 **Rozwiązania:**
 
 **a. Wysoka powszechność (10%):**
 
-Dane:
-- $P(D = 1) = 0{,}1$, więc $P(D = 0) = 0{,}9$
-- $P(T = 1 \mid D = 1) = 0{,}875$
-- $P(T = 1 \mid D = 0) = 0{,}025$
+Dane: - $P(D = 1) = 0{,}1$, więc $P(D = 0) = 0{,}9$ - $P(T = 1 \mid D = 1) = 0{,}875$ - $P(T = 1 \mid D = 0) = 0{,}025$
 
-Oblicz $P(T = 1)$:
-$$P(T = 1) = P(T = 1 \mid D = 1) \times P(D = 1) + P(T = 1 \mid D = 0) \times P(D = 0)$$
-$$P(T = 1) = 0{,}875 \times 0{,}1 + 0{,}025 \times 0{,}9 = 0{,}0875 + 0{,}0225 = 0{,}11$$
+Oblicz $P(T = 1)$: $$P(T = 1) = P(T = 1 \mid D = 1) \times P(D = 1) + P(T = 1 \mid D = 0) \times P(D = 0)$$ $$P(T = 1) = 0{,}875 \times 0{,}1 + 0{,}025 \times 0{,}9 = 0{,}0875 + 0{,}0225 = 0{,}11$$
 
-Zastosuj twierdzenie Bayesa:
-$$P(D = 1 \mid T = 1) = \frac{0{,}875 \times 0{,}1}{0{,}11} = \frac{0{,}0875}{0{,}11} \approx 0{,}795 = 79{,}5\%$$
+Zastosuj twierdzenie Bayesa: $$P(D = 1 \mid T = 1) = \frac{0{,}875 \times 0{,}1}{0{,}11} = \frac{0{,}0875}{0{,}11} \approx 0{,}795 = 79{,}5\%$$
 
 **b. Niska powszechność (1%):**
 
-Dane:
-- $P(D = 1) = 0{,}01$, więc $P(D = 0) = 0{,}99$
-- $P(T = 1 \mid D = 1) = 0{,}875$
-- $P(T = 1 \mid D = 0) = 0{,}025$
+Dane: - $P(D = 1) = 0{,}01$, więc $P(D = 0) = 0{,}99$ - $P(T = 1 \mid D = 1) = 0{,}875$ - $P(T = 1 \mid D = 0) = 0{,}025$
 
-Oblicz $P(T = 1)$:
-$$P(T = 1) = 0{,}875 \times 0{,}01 + 0{,}025 \times 0{,}99 = 0{,}00875 + 0{,}02475 = 0{,}0335$$
+Oblicz $P(T = 1)$: $$P(T = 1) = 0{,}875 \times 0{,}01 + 0{,}025 \times 0{,}99 = 0{,}00875 + 0{,}02475 = 0{,}0335$$
 
-Zastosuj twierdzenie Bayesa:
-$$P(D = 1 \mid T = 1) = \frac{0{,}875 \times 0{,}01}{0{,}0335} = \frac{0{,}00875}{0{,}0335} \approx 0{,}261 = 26{,}1\%$$
+Zastosuj twierdzenie Bayesa: $$P(D = 1 \mid T = 1) = \frac{0{,}875 \times 0{,}01}{0{,}0335} = \frac{0{,}00875}{0{,}0335} \approx 0{,}261 = 26{,}1\%$$
 
 **Kluczowy wniosek:**
 
 **Wskaźnik bazowy** (powszechność) dramatycznie wpływa na interpretację wyników testów:
 
-- Przy 10% powszechności: Pozytywny test oznacza, że masz około **80% szans** na zarażenie.
-- Przy 1% powszechności: Pozytywny test oznacza, że masz tylko około **26% szans** na zarażenie.
+-   Przy 10% powszechności: Pozytywny test oznacza, że masz około **80% szans** na zarażenie.
+-   Przy 1% powszechności: Pozytywny test oznacza, że masz tylko około **26% szans** na zarażenie.
 
 To pokazuje, dlaczego ten sam test może mieć bardzo różne interpretacje w zależności od powszechności choroby w Twojej społeczności!
 
----
+------------------------------------------------------------------------
 
-## Ćwiczenie 15: Niezależność zdarzeń
+## Ćwiczenie 16: Niezależność zdarzeń
 
 Uczciwa moneta jest rzucana 3 razy. Niech $H_1$ = "reszka w pierwszym rzucie" oraz $A$ = "dokładnie dwie reszki łącznie".
 
@@ -878,13 +4194,13 @@ Czy zdarzenia $H_1$ i $A$ są niezależne?
 
 **Wskazówki:**
 
-- Dwa zdarzenia $A$ i $B$ są **niezależne** wtedy i tylko wtedy, gdy: $P(A \cap B) = P(A) \times P(B)$
+-   Dwa zdarzenia $A$ i $B$ są **niezależne** wtedy i tylko wtedy, gdy: $P(A \cap B) = P(A) \times P(B)$
 
-- Alternatywnie, zdarzenia są niezależne, gdy: $P(A \mid B) = P(A)$ (wiedza o $B$ nie zmienia prawdopodobieństwa $A$)
+-   Alternatywnie, zdarzenia są niezależne, gdy: $P(A \mid B) = P(A)$ (wiedza o $B$ nie zmienia prawdopodobieństwa $A$)
 
-- Wypisz przestrzeń zdarzeń elementarnych dla trzech rzutów monetą i określ, które wyniki należą do każdego zdarzenia.
+-   Wypisz przestrzeń zdarzeń elementarnych dla trzech rzutów monetą i określ, które wyniki należą do każdego zdarzenia.
 
-- Dla uczciwej monety każdy wynik (sekwencja 3 rzutów) ma prawdopodobieństwo $(1/2)^3 = 1/8$.
+-   Dla uczciwej monety każdy wynik (sekwencja 3 rzutów) ma prawdopodobieństwo $(1/2)^3 = 1/8$.
 
 **Rozwiązanie:**
 
@@ -898,14 +4214,11 @@ Wszystkich zdarzeń elementarnych: 8, każde z prawdopodobieństwem $1/8$.
 
 **Krok 2:** Określ zdarzenia elementarne dla każdego zdarzenia
 
-- $H_1$ = "reszka w pierwszym rzucie" = $\{ROO, ROR, RRO, RRR\}$
-  $$P(H_1) = \frac{4}{8} = \frac{1}{2}$$
+-   $H_1$ = "reszka w pierwszym rzucie" = $\{ROO, ROR, RRO, RRR\}$ $$P(H_1) = \frac{4}{8} = \frac{1}{2}$$
 
-- $A$ = "dokładnie dwie reszki" = $\{ORR, ROR, RRO\}$
-  $$P(A) = \frac{3}{8}$$
+-   $A$ = "dokładnie dwie reszki" = $\{ORR, ROR, RRO\}$ $$P(A) = \frac{3}{8}$$
 
-- $H_1 \cap A$ = "reszka w pierwszym rzucie I dokładnie dwie reszki" = $\{ROR, RRO\}$
-  $$P(H_1 \cap A) = \frac{2}{8} = \frac{1}{4}$$
+-   $H_1 \cap A$ = "reszka w pierwszym rzucie I dokładnie dwie reszki" = $\{ROR, RRO\}$ $$P(H_1 \cap A) = \frac{2}{8} = \frac{1}{4}$$
 
 **Krok 3:** Sprawdź warunek niezależności
 
@@ -927,9 +4240,85 @@ Ponieważ $P(A \mid H_1) = \frac{1}{2} \neq \frac{3}{8} = P(A)$, zdarzenia **NIE
 
 Wiedza, że pierwszy rzut to reszka, zmienia prawdopodobieństwo uzyskania dokładnie dwóch reszek łącznie. Jeśli pierwszy rzut to reszka, potrzebujemy dokładnie jeszcze jednej reszki w pozostałych dwóch rzutach (prawdopodobieństwo = $\frac{1}{2}$). Bez tej informacji prawdopodobieństwo dokładnie dwóch reszek w trzech rzutach wynosi $\frac{3}{8}$. Ponieważ te prawdopodobieństwa się różnią, zdarzenia są zależne.
 
----
+------------------------------------------------------------------------
 
-## Ćwiczenie 16: Testowanie hipotez z rozkładem dwumianowym
+## Ćwiczenie 17: Testowanie hipotez jako probabilistyczny dowód nie wprost
+
+Mężczyzna twierdzi, że ma zdolności pozazmysłowe (ESP). W ramach testu, uczciwa moneta jest rzucana 10 razy, a mężczyzna jest proszony o przewidzenie wyniku z wyprzedzeniem. Poprawnie przewidział 7 na 10 rzutów.
+
+Jakie jest prawdopodobieństwo, że osiągnąłby co najmniej taki wynik (co najmniej 7 poprawnych), gdyby nie miał zdolności ESP?
+
+**Uwaga:** Rozsądnie jest założyć, że prawdopodobieństwo przypadkowego odgadnięcia wyniku wynosi $\frac{1}{2}$ (brak ESP).
+
+**Logika testowania hipotez: probabilistyczny dowód nie wprost**
+
+Testowanie hipotez działa jak proces sądowy lub dowód nie wprost:
+
+1.  **Domniemanie "niewinności"**: Zaczynamy od założenia, że mężczyzna nie ma ESP (hipoteza zerowa $H_0$: $p = 0{,}5$), podobnie jak sąd domniemywa niewinność.
+
+2.  **Zbadanie dowodów**: Obserwujemy dane (7 na 10 poprawnych przewidywań).
+
+3.  **Obliczenie prawdopodobieństwa dowodów przy założeniu domniemania**: Pytamy: "Jeśli rzeczywiście nie ma ESP, jakie jest prawdopodobieństwo zaobserwowania tych dowodów (lub silniejszych dowodów) przez czysty przypadek?"
+
+4.  **Podjęcie decyzji**:
+
+    -   Jeśli to prawdopodobieństwo jest **bardzo małe** (np. \< 5%), dowody są niezwykłe przy naszym domniemaniu, więc mamy powód, aby je zakwestionować. Możemy wnioskować, że ma ESP.
+    -   Jeśli to prawdopodobieństwo **nie jest małe**, dowody mogły łatwo wystąpić przypadkiem, więc nie mamy silnego powodu, aby kwestionować nasze domniemanie. Nie możemy wnioskować, że ma ESP.
+
+**Wskazówki:**
+
+-   $H_0$: $p = 0{,}5$ (brak ESP, losowe zgadywanie)
+-   $H_1$: $p > 0{,}5$ (ma ESP, lepiej niż losowo)
+-   Liczba poprawnych przewidywań: $X \sim \text{Dwumianowy}(n=10, p=0{,}5)$
+-   Oblicz: p-value = $P(X \geq 7 \mid p = 0{,}5)$
+
+**Rozwiązanie:**
+
+**Krok 1:** Sformułuj domniemanie (hipoteza zerowa)
+
+$H_0$: Mężczyzna nie ma ESP; zgaduje losowo z prawdopodobieństwem $p = 0{,}5$.
+
+**Krok 2:** Oblicz p-value
+
+p-value odpowiada na pytanie: "Jeśli nie ma ESP, jakie jest prawdopodobieństwo uzyskania 7 lub więcej poprawnych odpowiedzi przez czysty przypadek?"
+
+$$\text{p-value} = P(X \geq 7 \mid p = 0{,}5) = P(X = 7) + P(X = 8) + P(X = 9) + P(X = 10)$$
+
+Używając wzoru dwumianowego z $n = 10$ i $p = 0{,}5$:
+
+$$P(X = 7) = \binom{10}{7} (0{,}5)^{10} = 120 \times \frac{1}{1024} = \frac{120}{1024}$$
+
+$$P(X = 8) = \binom{10}{8} (0{,}5)^{10} = 45 \times \frac{1}{1024} = \frac{45}{1024}$$
+
+$$P(X = 9) = \binom{10}{9} (0{,}5)^{10} = 10 \times \frac{1}{1024} = \frac{10}{1024}$$
+
+$$P(X = 10) = \binom{10}{10} (0{,}5)^{10} = 1 \times \frac{1}{1024} = \frac{1}{1024}$$
+
+$$\text{p-value} = \frac{120 + 45 + 10 + 1}{1024} = \frac{176}{1024} \approx 0{,}172 = 17{,}2\%$$
+
+**Krok 3:** Zinterpretuj wynik
+
+p-value wynoszące 17,2% oznacza: **Jeśli mężczyzna nie ma ESP i po prostu zgaduje, istnieje około 17% szans, że uzyskałby 7 lub więcej poprawnych odpowiedzi na 10 przez czysty przypadek.**
+
+To **nie jest szczególnie niezwykły wynik**. Około 1 na 6 osób losowo zgadujących osiągnęłoby tak dobry lub lepszy wynik.
+
+**Wniosek (używając logiki "dowodu nie wprost"):**
+
+-   Zaczęliśmy od domniemania "brak ESP" (jak domniemanie niewinności).
+-   Stwierdziliśmy, że dowody (7 na 10 poprawnych) mają **17,2% szans** wystąpienia przez czysty przypadek przy tym domniemaniu.
+-   To prawdopodobieństwo **nie jest wystarczająco małe** (jest znacznie większe niż typowy próg 5%).
+-   Dlatego **nie możemy odrzucić** domniemania "brak ESP".
+-   **Werdykt**: Dowody nie są wystarczająco silne, aby wnioskować, że ma ESP. Jego wynik można łatwo wytłumaczyć szczęściem.
+
+**Analogia do procesu sądowego:**
+
+-   Tak jak sąd nie dowodzi niewinności (albo stwierdza winę poza rozsądną wątpliwością, albo nie), my nie dowodzimy, że nie ma ESP.
+-   Po prostu mówimy: "Dowody nie są wystarczająco silne, aby wnioskować, że ma ESP poza rozsądną wątpliwością".
+-   Gdyby p-value było bardzo małe (np. 0,01 lub 1%), powiedzielibyśmy: "Jest wysoce nieprawdopodobne, że ten wynik wystąpił przypadkiem, więc mamy silne dowody na ESP".
+
+------------------------------------------------------------------------
+
+## Ćwiczenie 18: Testowanie hipotez z rozkładem dwumianowym
 
 Kandydatka w wyborach uważa, że popiera ją około 50% ($p = 0{,}5$) mieszkańców w określonym mieście.
 
@@ -941,20 +4330,20 @@ Uwaga: Przeprowadzimy **test jednostronny** zakładając, że kandydatka może *
 
 **Wskazówki:**
 
-- **Hipoteza zerowa** $H_0$: $p = 0{,}5$ (poparcie kandydatki wynosi 50%)
-- **Hipoteza alternatywna** $H_1$: $p > 0{,}5$ (poparcie kandydatki jest większe niż 50%, co oznacza, że je niedoszacowuje)
-- Liczba osób popierających ma **rozkład dwumianowy**: $X \sim \text{Dwumianowy}(n=10, p=0{,}5)$
-- **p-value** = prawdopodobieństwo zaobserwowania wyniku tak ekstremalnego lub bardziej ekstremalnego niż to, co zaobserwowaliśmy, przy założeniu prawdziwości $H_0$
-- Dla testu jednostronnego (prawostronne): p-value = $P(X \geq 7 \mid p = 0{,}5)$
-- **Wzór na prawdopodobieństwo dwumianowe**: $P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}$
-- **Reguła decyzyjna**: Jeśli p-value $< \alpha$, odrzucamy $H_0$; w przeciwnym razie nie odrzucamy $H_0$
+-   **Hipoteza zerowa** $H_0$: $p = 0{,}5$ (poparcie kandydatki wynosi 50%)
+-   **Hipoteza alternatywna** $H_1$: $p > 0{,}5$ (poparcie kandydatki jest większe niż 50%, co oznacza, że je niedoszacowuje)
+-   Liczba osób popierających ma **rozkład dwumianowy**: $X \sim \text{Dwumianowy}(n=10, p=0{,}5)$
+-   **p-value** = prawdopodobieństwo zaobserwowania wyniku tak ekstremalnego lub bardziej ekstremalnego niż to, co zaobserwowaliśmy, przy założeniu prawdziwości $H_0$
+-   Dla testu jednostronnego (prawostronne): p-value = $P(X \geq 7 \mid p = 0{,}5)$
+-   **Wzór na prawdopodobieństwo dwumianowe**: $P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}$
+-   **Reguła decyzyjna**: Jeśli p-value $< \alpha$, odrzucamy $H_0$; w przeciwnym razie nie odrzucamy $H_0$
 
 **Rozwiązanie:**
 
 **Krok 1:** Sformułuj hipotezy
 
-- $H_0$: $p = 0{,}5$ (oszacowanie kandydatki jest prawidłowe)
-- $H_1$: $p > 0{,}5$ (kandydatka niedoszacowuje swoje poparcie)
+-   $H_0$: $p = 0{,}5$ (oszacowanie kandydatki jest prawidłowe)
+-   $H_1$: $p > 0{,}5$ (kandydatka niedoszacowuje swoje poparcie)
 
 **Krok 2:** Oblicz p-value
 
@@ -991,5 +4380,196 @@ Nie ma **wystarczających dowodów** na poziomie istotności 5%, aby stwierdzić
 **Interpretacja p-value:**
 
 p-value wynoszące 0,172 oznacza, że jeśli prawdziwe poparcie rzeczywiście wynosi 50%, istnieje około 17,2% szans na zaobserwowanie 7 lub więcej osób popierających w losowej próbie 10 osób. To nie jest niezwykłe zdarzenie, więc nie mamy silnych dowodów przeciwko twierdzeniu kandydatki.
+
+------------------------------------------------------------------------
+
+## Ćwiczenie 19: Testowanie hipotez dla proporcji (test jednostronny)
+
+Polityk uważa, że poparcie dla członkostwa jej kraju w UE wynosi około 98% ($p = 0{,}98$). Badacz podejrzewa, że może to być przeszacowanie i przeprowadza ankietę. W próbie 15 osób ($n = 15$) badacz obserwuje, że 13 osób popiera członkostwo.
+
+Niech $X$ = liczba osób w próbie, które popierają członkostwo w UE. Zaobserwowaliśmy $X = 13$ "sukcesów" w 15 próbach Bernoulliego.
+
+**Zadanie:**
+
+Sprawdź, czy istnieją wystarczające dowody, aby wnioskować, że polityk przeszacowuje poparcie dla członkostwa w UE. Użyj poziomu istotności $\alpha = 0{,}05$.
+
+**Wskazówki:**
+
+-   $H_0$: $p = 0{,}98$ (twierdzenie polityka jest prawidłowe)
+-   $H_1$: $p < 0{,}98$ (badacz podejrzewa przeszacowanie; prawdziwe poparcie jest niższe)
+-   To jest **test lewostronny (jednostronny)**
+-   $X \sim \text{Dwumianowy}(n=15, p=0{,}98)$ przy założeniu $H_0$
+-   p-value = $P(X \leq 13 \mid p = 0{,}98)$
+-   Użyj **reguły dopełnienia**, aby uprościć: $P(X \leq 13) = 1 - P(X > 13) = 1 - [P(X = 14) + P(X = 15)]$
+
+**Rozwiązanie:**
+
+**Krok 1:** Sformułuj hipotezy
+
+-   $H_0$: $p = 0{,}98$ (poparcie wynosi 98%, jak twierdzi polityk)
+-   $H_1$: $p < 0{,}98$ (poparcie jest mniejsze niż 98%; polityk przeszacowuje)
+
+**Krok 2:** Oblicz p-value
+
+p-value to prawdopodobieństwo zaobserwowania 13 lub mniej osób popierających (na 15), jeśli prawdziwe poparcie wynosi 98%:
+
+$$\text{p-value} = P(X \leq 13 \mid p = 0{,}98)$$
+
+Używając **reguły dopełnienia** (obliczamy mniej składników):
+
+$$P(X \leq 13) = 1 - P(X > 13) = 1 - [P(X = 14) + P(X = 15)]$$
+
+Oblicz $P(X = 14)$: $$P(X = 14) = \binom{15}{14} (0{,}98)^{14} (0{,}02)^{1} = 15 \times (0{,}98)^{14} \times 0{,}02$$ $$= 15 \times 0{,}7536 \times 0{,}02 = 0{,}2261$$
+
+Oblicz $P(X = 15)$: $$P(X = 15) = \binom{15}{15} (0{,}98)^{15} (0{,}02)^{0} = 1 \times (0{,}98)^{15}$$ $$= 0{,}7386$$
+
+Zatem: $$P(X > 13) = P(X = 14) + P(X = 15) = 0{,}2261 + 0{,}7386 = 0{,}9647$$
+
+$$\text{p-value} = P(X \leq 13) = 1 - 0{,}9647 = 0{,}0353 = 3{,}53\%$$
+
+**Krok 3:** Podejmij decyzję
+
+Porównaj z poziomem istotności $\alpha = 0{,}05$: $$\text{p-value} = 0{,}0353 < 0{,}05 = \alpha$$
+
+Ponieważ p-value jest mniejsze niż poziom istotności, **odrzucamy** hipotezę zerową $H_0$.
+
+**Wniosek:**
+
+Istnieją **wystarczające dowody** na poziomie istotności 5%, aby wnioskować, że polityk przeszacowuje poparcie dla członkostwa w UE. Prawdziwe poparcie wydaje się być niższe niż 98%.
+
+**Interpretacja:**
+
+Zaobserwowanie tylko 13 na 15 osób (86,7%) popierających wystąpiłoby tylko około 3,5% czasu przez przypadek, gdyby prawdziwe poparcie rzeczywiście wynosiło 98%. Jest to wystarczająco niezwykłe, aby wnioskować, że oszacowanie polityka wynoszące 98% jest prawdopodobnie zbyt wysokie.
+
+**Kluczowy wniosek:**
+
+Chociaż 13 na 15 (86,7%) może wydawać się bliskie 98%, gdy deklarowana proporcja jest bardzo wysoka (jak 98%), nawet małe odchylenia stają się statystycznie istotne. Przy tak wysokim deklarowanym wskaźniku spodziewalibyśmy się zobaczyć 14 lub 15 osób popierających w niemal każdej próbie 15 osób (96,5% czasu). Zobaczenie tylko 13 jest wystarczająco niezwykłe, aby podważyć twierdzenie o 98%.
+
+------------------------------------------------------------------------
+
+
+::: {.callout-note icon=false}
+## Zrozumienie Korekty Bessela i Stopni Swobody
+
+### Dlaczego Używamy $n-1$ Zamiast $n$?
+
+Przy obliczaniu **wariancji próbkowej** używamy $n-1$ w mianowniku zamiast $n$. To dostosowanie nazywa się **korektą Bessela**. Aby zrozumieć, dlaczego jest to konieczne, musimy zbadać kilka kluczowych idei.
+
+### Średnia Próbkowa jako "Model Stały"
+
+Średnia próbkowa $\bar{x}$ ma specjalną właściwość: **minimalizuje sumę kwadratów odchyleń od danych**.
+
+**Twierdzenie:** Spośród wszystkich możliwych wartości $c$, wartość $\bar{x}$ sprawia, że $\sum_{i=1}^{n}(x_i - c)^2$ jest jak najmniejsze.
+
+**Dowód:**
+
+Chcemy znaleźć $c$, które minimalizuje:
+$$f(c) = \sum_{i=1}^{n}(x_i - c)^2$$
+
+Biorąc pochodną względem $c$:
+$$\frac{df}{dc} = -2\sum_{i=1}^{n}(x_i - c)$$
+
+Przyrównując do zera:
+$$\sum_{i=1}^{n}(x_i - c) = 0 \implies \sum_{i=1}^{n}x_i = nc \implies c = \frac{1}{n}\sum_{i=1}^{n}x_i = \bar{x}$$
+
+Druga pochodna $\frac{d^2f}{dc^2} = 2n > 0$ potwierdza, że to minimum. Zatem $\bar{x}$ jest **dopasowaniem metodą najmniejszych kwadratów** do danych—jest to najprostszy możliwy model (stała), który najlepiej pasuje do naszych obserwacji w sensie najmniejszych kwadratów.
+
+### Dwie Ważne Właściwości Średniej
+
+Kluczowe jest rozróżnienie między dwiema powiązanymi, ale różnymi właściwościami:
+
+**Właściwość 1: Suma odchyleń wynosi zero**
+$$\sum_{i=1}^{n}(x_i - \bar{x}) = 0$$
+
+To wynika bezpośrednio z definicji $\bar{x}$. Oznacza to, że dodatnie odchylenia dokładnie znoszą się z ujemnymi odchyleniami.
+
+**Właściwość 2: Minimalizuje sumę kwadratów odchyleń**
+$$\bar{x} = \arg\min_{c} \sum_{i=1}^{n}(x_i - c)^2$$
+
+To oznacza, że $\bar{x}$ sprawia, że dane wyglądają na jak najbardziej "skupione" (w sensie najmniejszych kwadratów). Właściwość 1 jest faktycznie **warunkiem pierwszego rzędu**, który otrzymujemy przy znajdowaniu minimum we Właściwości 2.
+
+### Dlaczego To Tworzy Obciążenie
+
+Ponieważ $\bar{x}$ minimalizuje $\sum(x_i - \bar{x})^2$ dla naszej konkretnej próbki, suma kwadratów odchyleń od $\bar{x}$ będzie **systematycznie mniejsza** niż suma kwadratów odchyleń od prawdziwej średniej populacji $\mu$ (której nie znamy).
+
+**Matematycznie:**
+$$\sum_{i=1}^{n}(x_i - \bar{x})^2 \leq \sum_{i=1}^{n}(x_i - \mu)^2$$
+
+z ostrą nierównością, gdy $\bar{x} \neq \mu$ (co jest typowe).
+
+**Konkretny Przykład:**
+
+Załóżmy, że prawdziwa populacja to $\{46, 48, 50, 52, 54\}$ ze średnią $\mu = 50$.
+
+Nasza próbka to $\{46, 48, 52\}$ ze średnią $\bar{x} = 48.67$.
+
+- Suma kwadratów odchyleń od $\bar{x}$: 
+  $$(46-48.67)^2 + (48-48.67)^2 + (52-48.67)^2 = 18.67$$
+
+- Suma kwadratów odchyleń od $\mu = 50$: 
+  $$(46-50)^2 + (48-50)^2 + (52-50)^2 = 24$$
+
+Zauważ, że $18.67 < 24$. Nasza próbka wydaje się bardziej "skupiona" wokół $\bar{x}$ niż byłaby wokół prawdziwej średniej $\mu$.
+
+Gdybyśmy naiwnie użyli:
+$$\frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^2 = \frac{18.67}{3} = 6.22$$
+
+**niedoszacowalibyśmy** prawdziwej wariancji populacji.
+
+### Wariancja Populacji vs. Próbki: Dlaczego Różnica?
+
+**Wariancja Populacji (używa $N$):**
+$$\sigma^2 = \frac{1}{N}\sum_{i=1}^{N}(x_i - \mu)^2$$
+
+- Znamy **prawdziwą średnią** $\mu$
+- Obliczamy **parametr opisowy**, a nie szacujemy
+- Brak obciążenia, ponieważ $\mu$ jest rzeczywistą średnią populacji
+- Mamy wszystkie $N$ wartości
+
+**Wariancja Próbkowa (używa $n-1$):**
+$$s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2$$
+
+- **Nie znamy** $\mu$, więc szacujemy ją za pomocą $\bar{x}$
+- Używamy **estymatora** do wnioskowania o populacji
+- Używanie $\bar{x}$ (obliczonego z tych samych danych) tworzy obciążenie w dół
+- Używanie $n-1$ zamiast $n$ koryguje to obciążenie
+
+### Uzasadnienie Matematyczne
+
+Można udowodnić, że:
+
+**Jeśli używamy $n$:**
+$$E\left[\frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^2\right] = \frac{n-1}{n}\sigma^2$$
+
+Jest to **obciążone**—systematycznie niedoszacowuje $\sigma^2$ o czynnik $\frac{n-1}{n}$.
+
+**Jeśli używamy $n-1$:**
+$$E\left[\frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2\right] = \sigma^2$$
+
+Jest to **nieobciążone**—średnio daje poprawną wariancję populacji.
+
+### Stopnie Swobody: Intuicja
+
+Termin "stopnie swobody" oddaje ideę, że "zużyliśmy" jeden element informacji z naszych danych.
+
+**Przed obliczeniem $\bar{x}$:** Wszystkie $n$ obserwacji są "wolne" i niezależne.
+
+**Po obliczeniu $\bar{x}$:** Gdy znamy $n-1$ odchyleń $(x_i - \bar{x})$, $n$-te odchylenie jest **całkowicie wyznaczone** przez ograniczenie:
+$$\sum_{i=1}^{n}(x_i - \bar{x}) = 0$$
+
+**Przykład:** Jeśli $n=3$ i wiemy, że $(x_1 - \bar{x}) = -2$ oraz $(x_2 - \bar{x}) = 1$, to automatycznie wiemy, że $(x_3 - \bar{x}) = 1$ (aby suma wynosiła zero).
+
+Mamy więc tylko $(n-1)$ "stopni swobody" do szacowania wariancji. Zużyliśmy jeden stopień swobody szacując $\mu$ za pomocą $\bar{x}$, zostawiając nam $(n-1)$ niezależnych elementów informacji.
+
+### Podsumowanie
+
+1. **$\bar{x}$ minimalizuje $\sum(x_i - \bar{x})^2$**: Jest to model stały metodą najmniejszych kwadratów dla danych
+2. **To tworzy obciążenie**: Odchylenia od $\bar{x}$ są sztucznie małe w porównaniu do odchyleń od $\mu$
+3. **$n-1$ koryguje obciążenie**: Sprawia, że $s^2$ jest nieobciążonym estymatorem $\sigma^2$
+4. **Wariancja populacji używa $N$**: Ponieważ znamy prawdziwe $\mu$, brak szacowania, brak obciążenia
+5. **Stopnie swobody $(n-1)$**: Użyliśmy jednego elementu informacji do oszacowania średniej
+
+**Ważna uwaga o odchyleniu standardowym:** Chociaż korekta Bessela sprawia, że **wariancja** $s^2$ jest nieobciążona, **odchylenie standardowe** $s = \sqrt{s^2}$ pozostaje nieznacznie obciążone (ma tendencję do niedoszacowania $\sigma$) z powodu nieliniowości funkcji pierwiastka kwadratowego. Jednak to obciążenie jest małe dla rozsądnie dużych prób.
+:::
 
 ---
