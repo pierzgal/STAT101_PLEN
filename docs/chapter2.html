@@ -1122,12 +1122,12 @@ How Does the Transformation from Percentiles to IQ Work Exactly (*)?
 <p><strong>Where does this formula come from?</strong></p>
 <p>The standardization process consists of two operations:</p>
 <ol type="1">
-<li><strong><span class="math inline">(X - \mu)</span></strong> — <strong>centering</strong>: we subtract the mean from each value
+<li><span class="math inline">(X - \mu)</span> — <strong>centering</strong>: we subtract the mean from each value
 <ul>
 <li>After this operation, the new mean = 0</li>
 <li>Example: if <span class="math inline">X = 45</span>, <span class="math inline">\mu = 40</span>, then <span class="math inline">(45 - 40) = 5</span> points above the mean</li>
 </ul></li>
-<li><strong><span class="math inline">/\sigma</span></strong> — <strong>scaling</strong>: we divide by the standard deviation
+<li><span class="math inline">/\sigma</span> — <strong>scaling</strong>: we divide by the standard deviation
 <ul>
 <li>After this operation, the new standard deviation = 1</li>
 <li>Example: if <span class="math inline">\sigma = 10</span>, then 5 points above the mean = <span class="math inline">5/10 = 0.5</span> standard deviations</li>
@@ -1169,7 +1169,7 @@ X &amp;= \mu + \sigma \times z \quad \text{(add } \mu \text{ to both sides)}
 <li>If <span class="math inline">z = -1</span>, you subtract one standard deviation from the mean: <span class="math inline">X = \mu - \sigma</span></li>
 <li>If <span class="math inline">z = 0</span>, you get exactly the mean: <span class="math inline">X = \mu</span></li>
 </ul>
-<p><strong>IQ transformation is de-standardization with <span class="math inline">\mu = 100</span> and <span class="math inline">\sigma = 15</span>:</strong></p>
+<p><strong>IQ transformation is de-standardization with</strong> <span class="math inline">\mu = 100</span> and <span class="math inline">\sigma = 15</span>:</p>
 <p><span class="math display">\text{IQ} = 100 + 15 \times z</span></p>
 <p><strong>Why 100 and 15 specifically?</strong></p>
 <p>This is an <strong>arbitrary convention</strong> established by David Wechsler in the 1930s for the WISC and WAIS scales. Earlier tests (like Stanford-Binet) used different values (<span class="math inline">\mu = 100</span>, but <span class="math inline">\sigma = 16</span>). Contemporary IQ tests most commonly use the convention <span class="math inline">\mu = 100</span>, <span class="math inline">\sigma = 15</span>, which makes it easier to compare scores between different tests.</p>
@@ -1177,11 +1177,11 @@ X &amp;= \mu + \sigma \times z \quad \text{(add } \mu \text{ to both sides)}
 <p><strong>Comparison: standardization vs.&nbsp;de-standardization (IQ transformation)</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 11%">
-<col style="width: 17%">
-<col style="width: 32%">
-<col style="width: 19%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 25%">
+<col style="width: 18%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1253,7 +1253,7 @@ X &amp;= \mu + \sigma \times z \quad \text{(add } \mu \text{ to both sides)}
 <h2 data-number="3.7" class="anchored" data-anchor-id="exercise-identifying-measurement-scales"><span class="header-section-number">3.7</span> Exercise: Identifying Measurement Scales</h2>
 <p>For each of the following variables, determine the most appropriate scale of measurement (<strong>Nominal, Ordinal, Interval, or Ratio</strong>). Also evaluate whether the variable is discrete or continuous.</p>
 <ol type="1">
-<li>Gender: <strong><em>nominal level of measurement</em></strong>, and <strong><em>discrete</em></strong>;</li>
+<li>Gender</li>
 <li>Customer satisfaction: Poor, Fair, Good, Excellent</li>
 <li>Height (questionnaire): “I am: very short, short, average, tall, very tall”</li>
 <li>Height (inches)</li>
@@ -1263,20 +1263,29 @@ X &amp;= \mu + \sigma \times z \quad \text{(add } \mu \text{ to both sides)}
 <li>Nationality</li>
 <li>Street addresses</li>
 <li>Military ranks</li>
-<li>Left-Right political scale placement</li>
+<li>Left-Right political self-placement (0-10 scale)</li>
 <li>Family size: 1 child, 2 children, 3 children, …</li>
 <li>IQ score</li>
-<li>Shirt size (S, M, L, …)</li>
-<li>Movie ratings (1 star, 2 stars, 3 stars)</li>
+<li>Shirt size (S, M, L, XL, …)</li>
+<li>Movie ratings (1 star, 2 stars, 3 stars, 4 stars, 5 stars)</li>
 <li>Temperature (Celsius)</li>
 <li>Temperature (Kelvin)</li>
 <li>Blood types: A, B, AB, O</li>
 <li>Income categories: low, medium, high</li>
-<li>Voter turnout</li>
+<li>Voter turnout (percentage)</li>
 <li>Political party affiliation</li>
-<li>Electoral district magnitude</li>
+<li>Electoral district magnitude (number of seats)</li>
+<li>Educational attainment: No degree, High school, Bachelor’s, Master’s, PhD</li>
+<li>Number of votes received by a candidate</li>
+<li>Year of birth (e.g., 1985, 1990, 2000)</li>
+<li>Marathon finish time (hours:minutes:seconds)</li>
+<li>Likert scale response: Strongly Disagree, Disagree, Neutral, Agree, Strongly Agree</li>
+<li>Social class: Working class, Middle class, Upper class</li>
+<li>Number of political parties in parliament</li>
+<li>Distance from home to polling station (kilometers)</li>
 </ol>
-<p>Remember to justify your choices for each variable.</p>
+<p>Remember to justify your choices for each variable. Pay special attention to ambiguous cases where reasonable scholars might disagree about the appropriate scale.</p>
+<hr>
 <p><strong>For instance</strong>: In Stevens’ typology of measurement scales, street addresses are nominal data. This is because:</p>
 <p>They serve purely as labels/identifiers. They have no inherent ordering (123 Main St isn’t “more than” 23 Oak St). You can’t perform meaningful mathematical operations on them.The only valid operation is testing for equality/inequality (is this the same address or different?)</p>
 <hr>

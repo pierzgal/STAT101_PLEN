@@ -1083,12 +1083,12 @@ Jak Dokładnie Działa Transformacja Percentyli na IQ (*)?
 <p><strong>Skąd się bierze ta formuła?</strong></p>
 <p>Proces standaryzacji składa się z dwóch operacji:</p>
 <ol type="1">
-<li><strong><span class="math inline">(X - \mu)</span></strong> — <strong>centrowanie</strong>: odejmujemy średnią od każdej wartości
+<li><span class="math inline">(X - \mu)</span> — <strong>centrowanie</strong>: odejmujemy średnią od każdej wartości
 <ul>
 <li>Po tej operacji nowa średnia = 0</li>
 <li>Przykład: jeśli <span class="math inline">X = 45</span>, <span class="math inline">\mu = 40</span>, to <span class="math inline">(45 - 40) = 5</span> punktów powyżej średniej</li>
 </ul></li>
-<li><strong><span class="math inline">/\sigma</span></strong> — <strong>skalowanie</strong>: dzielimy przez odchylenie standardowe
+<li><span class="math inline">/\sigma</span> — <strong>skalowanie</strong>: dzielimy przez odchylenie standardowe
 <ul>
 <li>Po tej operacji nowe odchylenie standardowe = 1</li>
 <li>Przykład: jeśli <span class="math inline">\sigma = 10</span>, to 5 punktów powyżej średniej = <span class="math inline">5/10 = 0.5</span> odchylenia standardowego</li>
@@ -1130,7 +1130,7 @@ X &amp;= \mu + \sigma \times z \quad \text{(dodajemy } \mu \text{ do obu stron)}
 <li>Jeśli <span class="math inline">z = -1</span>, odejmujesz jedno odchylenie standardowe od średniej: <span class="math inline">X = \mu - \sigma</span></li>
 <li>Jeśli <span class="math inline">z = 0</span>, otrzymujesz dokładnie średnią: <span class="math inline">X = \mu</span></li>
 </ul>
-<p><strong>Transformacja IQ to de-standaryzacja z <span class="math inline">\mu = 100</span> i <span class="math inline">\sigma = 15</span>:</strong></p>
+<p><strong>Transformacja IQ to de-standaryzacja z</strong> <span class="math inline">\mu = 100</span> i <span class="math inline">\sigma = 15</span>:</p>
 <p><span class="math display">\text{IQ} = 100 + 15 \times z</span></p>
 <p><strong>Dlaczego akurat 100 i 15?</strong></p>
 <p>To <strong>arbitralna konwencja</strong> ustalona przez Davida Wechslera w latach 30. XX wieku dla skal WISC i WAIS. Wcześniejsze testy (jak Stanford-Binet) używały innych wartości (<span class="math inline">\mu = 100</span>, ale <span class="math inline">\sigma = 16</span>). Współczesne testy IQ stosują najczęściej konwencję <span class="math inline">\mu = 100</span>, <span class="math inline">\sigma = 15</span>, co ułatwia porównywanie wyników między różnymi testami.</p>
@@ -1138,11 +1138,11 @@ X &amp;= \mu + \sigma \times z \quad \text{(dodajemy } \mu \text{ do obu stron)}
 <p><strong>Porównanie: standaryzacja vs.&nbsp;de-standaryzacja (transformacja IQ)</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 11%">
-<col style="width: 17%">
-<col style="width: 32%">
-<col style="width: 19%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 25%">
+<col style="width: 18%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1216,32 +1216,41 @@ X &amp;= \mu + \sigma \times z \quad \text{(dodajemy } \mu \text{ do obu stron)}
 </section>
 <section id="ćwiczenie-identyfikacja-skal-pomiarowych" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="ćwiczenie-identyfikacja-skal-pomiarowych"><span class="header-section-number">4.7</span> Ćwiczenie: Identyfikacja Skal Pomiarowych</h2>
-<p>Dla każdej z poniższych zmiennych określ najbardziej odpowiednią skalę pomiaru (<strong>Nominalna, Porządkowa, Przedziałowa lub Stosunkowa</strong>). Czy zmienna jest dyskretna, czy ciągła?</p>
+<p>Dla każdej z poniższych zmiennych określ najbardziej odpowiednią skalę pomiaru (<strong>Nominalna, Porządkowa, Przedziałowa lub Ilorazowa</strong>). Oceń również, czy zmienna jest dyskretna czy ciągła.</p>
 <ol type="1">
-<li>Płeć: <strong><em>skala nominalna</em></strong>; <strong><em>zmienna dyskretna</em></strong>;</li>
-<li>Satysfakcja klienta: Niska, Średnia, Dobra, Doskonała</li>
-<li>Wzrost (ankieta): “Jestem: bardzo niski, niski, przeciętnego wzrostu, wysoki, bardzo wysoki”</li>
-<li>Wzrost mierzony w centymetrach</li>
-<li>Czas reakcji (w milisekundach)</li>
-<li>Kody pocztowe: np. 00-001, 00-950, 80-452, 31-072</li>
-<li>Wiek (w latach)</li>
-<li>Marki samochodów</li>
+<li>Płeć</li>
+<li>Satysfakcja klienta: Zła, Słaba, Dobra, Doskonała</li>
+<li>Wzrost (kwestionariusz): “Jestem: bardzo niski/a, niski/a, średniego wzrostu, wysoki/a, bardzo wysoki/a”</li>
+<li>Wzrost (cale)</li>
+<li>Czas reakcji (milisekundy)</li>
+<li>Kody pocztowe: np. 90-001, 00-950, 31-011, 80-309</li>
+<li>Wiek (lata)</li>
 <li>Narodowość</li>
-<li>Liczba dzieci w rodzinie: 1 dziecko, 2 dzieci, 3 dzieci, …</li>
-<li>Wynik testu IQ</li>
-<li>Temperatura (skala Celsjusza)</li>
-<li>Temperatura (skala Kelvina)</li>
-<li>Frekwencja wyborcza</li>
-<li>Przynależność partyjna</li>
-<li>Wielkość okręgu wyborczego</li>
-<li>Współrzędne w układzie kartezjańskim</li>
-<li>Data (względem określonej epoki, np. n.e.)</li>
-<li>Wysokość nad poziomem morza</li>
-<li>Grupy krwi: A, B, AB, 0</li>
-<li>Kategorie dochodów: niskie, średnie, wysokie</li>
+<li>Adresy ulic</li>
 <li>Stopnie wojskowe</li>
+<li>Umiejscowienie polityczne na skali lewica-prawica (skala 0-10)</li>
+<li>Liczebność rodziny: 1 dziecko, 2 dzieci, 3 dzieci, …</li>
+<li>Wynik testu IQ</li>
+<li>Rozmiar koszulki (S, M, L, XL, …)</li>
+<li>Oceny filmów (1 gwiazdka, 2 gwiazdki, 3 gwiazdki, 4 gwiazdki, 5 gwiazdek)</li>
+<li>Temperatura (Celsjusz)</li>
+<li>Temperatura (Kelwin)</li>
+<li>Grupy krwi: A, B, AB, 0</li>
+<li>Kategorie dochodów: niski, średni, wysoki</li>
+<li>Frekwencja wyborcza (procent)</li>
+<li>Przynależność partyjna</li>
+<li>Wielkość okręgu wyborczego (liczba mandatów)</li>
+<li>Wykształcenie: Brak dyplomu, Średnie, Licencjat, Magisterium, Doktorat</li>
+<li>Liczba głosów otrzymanych przez kandydata</li>
+<li>Rok urodzenia (np. 1985, 1990, 2000)</li>
+<li>Czas ukończenia maratonu (godziny:minuty:sekundy)</li>
+<li>Odpowiedź na skali Likerta: Zdecydowanie się nie zgadzam, Nie zgadzam się, Neutralny/a, Zgadzam się, Zdecydowanie się zgadzam</li>
+<li>Klasa społeczna: Klasa robotnicza, Klasa średnia, Klasa wyższa</li>
+<li>Liczba partii politycznych w parlamencie</li>
+<li>Odległość od domu do lokalu wyborczego (kilometry)</li>
 </ol>
-<p>Pamiętaj, aby uzasadnić swój wybór skali dla każdej zmiennej.</p>
+<p>Pamiętaj, aby uzasadnić swoje wybory dla każdej zmiennej. Zwróć szczególną uwagę na przypadki niejednoznaczne, w których badacze mogą mieć różne zdania co do odpowiedniej skali.</p>
+<hr>
 <p><strong>Dla przykładu</strong>: W typologii skal pomiarowych Stevensa, adresy uliczne są danymi nominalnymi. Dlaczego?</p>
 <p>Pełnią wyłącznie funkcję etykiet/identyfikatorów Nie mają naturalnego uporządkowania (ul. Mickiewicza 5 nie jest “większa” niż ul. Słowackiego 10) Nie można wykonywać na nich sensownych operacji matematycznych Jedyna dozwolona operacja to sprawdzanie równości/nierówności (czy to ten sam adres czy inny?)</p>
 <p>Mimo że numery domów są liczbami, w systemie adresowym funkcjonują jako etykiety, a nie wartości ilościowe. Liczba 100 w adresie “ul. Kilińskiego 100” nie jest używana matematycznie - równie dobrze mogłaby to być “ul. Jabłkowa” czy “ul. Zeusa”, jeśli chodzi o jej funkcję w adresie.</p>
