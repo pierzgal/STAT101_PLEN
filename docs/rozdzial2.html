@@ -312,7 +312,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#skala-nominalna" id="toc-skala-nominalna" class="nav-link" data-scroll-target="#skala-nominalna">Skala Nominalna</a></li>
   <li><a href="#skala-porządkowa" id="toc-skala-porządkowa" class="nav-link" data-scroll-target="#skala-porządkowa">Skala Porządkowa</a></li>
-  <li><a href="#skala-interwałowa" id="toc-skala-interwałowa" class="nav-link" data-scroll-target="#skala-interwałowa">Skala Interwałowa</a></li>
+  <li><a href="#skala-interwałowa-interval-scale" id="toc-skala-interwałowa-interval-scale" class="nav-link" data-scroll-target="#skala-interwałowa-interval-scale">Skala interwałowa (Interval Scale)</a></li>
   <li><a href="#skala-ilorazowa" id="toc-skala-ilorazowa" class="nav-link" data-scroll-target="#skala-ilorazowa">Skala Ilorazowa</a></li>
   <li><a href="#znaczenie-w-badaniach-i-analizie" id="toc-znaczenie-w-badaniach-i-analizie" class="nav-link" data-scroll-target="#znaczenie-w-badaniach-i-analizie">Znaczenie w Badaniach i Analizie</a></li>
   <li><a href="#kontrowersje-i-ograniczenia" id="toc-kontrowersje-i-ograniczenia" class="nav-link" data-scroll-target="#kontrowersje-i-ograniczenia">Kontrowersje i Ograniczenia</a></li>
@@ -443,7 +443,7 @@ Note
     D --&gt; D1[Tylko kategorie&lt;br/&gt;np. płeć, kolor]
     E --&gt; E1[Uporządkowane kategorie&lt;br/&gt;np. rankingi, oceny]
     F --&gt; F1[Równe przedziały, brak prawdziwego zera&lt;br/&gt;np. temperatura °C]
-    G --&gt; G1[Równe przedziały, prawdziwe zero&lt;br/&gt;np. wzrost, waga, wiek]
+    G --&gt; G1[Równe przedziały, prawdziwe zero&lt;br/&gt;np. wzrost, waga, wiek, Kelwiny]
     
     style A fill:#e1f5ff
     style B fill:#fff4e1
@@ -458,6 +458,28 @@ Note
 </div>
 </div>
 </div>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Kluczowa różnica: skale kategorialne (jakościowe) vs.&nbsp;numeryczne
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Fundamentalna różnica między skalami kategorialnymi a numerycznymi nie polega na liczbie kategorii, ale na <strong>naturze odstępów</strong> (intervals). Skale numeryczne (interwałowe i stosunkowe) mają odstępy zdefiniowane przez obiektywny, fizyczny standard pomiaru. Na przykład:</p>
+<ul>
+<li><strong>Temperatura</strong>: każdy stopień reprezentuje tę samą zmianę energii termicznej, niezależnie od tego, jak to odczuwamy</li>
+<li><strong>Odległość</strong>: centymetr między 5cm a 6cm reprezentuje dokładnie tę samą fizyczną długość co centymetr między 105cm a 106cm</li>
+<li><strong>Czas</strong>: sekunda między 10:00:01 a 10:00:02 ma ten sam czas trwania co sekunda między 15:47:33 a 15:47:34</li>
+<li><strong>Waga</strong>: różnica między 50kg a 51kg reprezentuje tę samą ilość masy co różnica między 150kg a 151kg</li>
+</ul>
+<p>Skale kategorialne, w tym wszystkie skale ocen (rating scales), nie posiadają tego obiektywnego standardu: nawet 1000-punktowa skala ocen pozostaje porządkowa (ordinal), ponieważ odstępy są <strong>zdefiniowane psychologicznie</strong>, a nie fizycznie zmierzone. Kiedy ktoś ocenia swoją zgodność jako “7” versus “8” na skali od 1 do 1000, nie ma gwarancji, że psychologiczna odległość między 7 a 8 jest równa odległości między 47 a 48, lub między 847 a 848. Respondent zasadniczo wybiera spośród uporządkowanych kategorii, a nie mierzy np. linijką. Dodanie większej liczby kategorii nie tworzy równych odstępów - po prostu tworzy więcej uporządkowanych kategorii. Dlatego nawet pozornie ciągła skala ocen z setkami wartości pozostaje fundamentalnie kategorialna: <strong>brakuje jej obiektywnego standardu pomiaru, który sprawiłby, że odstępy byłyby udowodnione jako równe</strong>.</p>
+</div>
+</div>
+<hr>
 </section>
 </section>
 <section id="dane-dyskretne-a-dane-ciągłe" class="level2" data-number="4.3">
@@ -742,11 +764,27 @@ Typy pytań ze skalą Likerta
 </div>
 <div class="callout-body-container callout-body">
 <p>Skala Likerta to rodzaj skali ocen (rating scales), który stanowi <strong>porządkowy poziom pomiaru</strong>, co oznacza, że odpowiedzi można uszeregować w kolejności, ale odległości między poszczególnymi punktami niekoniecznie są równe.</p>
-<p><strong>Skala zgody</strong> (Zdecydowanie się nie zgadzam → Zdecydowanie się zgadzam) - Najlepsza do mierzenia przekonań i percepcji - Przykład: “Ta strona internetowa jest łatwa w nawigacji”</p>
-<p><strong>Skala satysfakcji</strong> (Bardzo niezadowolony → Bardzo zadowolony) - Idealna do oceny doświadczeń i usług - Przykład: “Jak ocenia Pan/Pani jakość obsługi klienta?”</p>
-<p><strong>Skala opinii</strong> (Zdecydowanie się sprzeciwiam → Zdecydowanie popieram) - Wykorzystywana do badania stanowisk wobec propozycji lub inicjatyw - Przykład: “Jak Pan/Pani ocenia wprowadzenie pracy hybrydowej?”</p>
-<p><strong>Skala częstotliwości/postawy</strong> (Nigdy → Zawsze) - Mierzy wzorce zachowań i konsystencję - Przykład: “Poleciłbym/Poleciłabym ten produkt innym”</p>
-<p><strong>Dobre praktyki</strong>: Używaj skal 5-7 punktowych, zachowaj neutralną opcję środkową, upewnij się, że stwierdzenia są jasne i jednoznaczne oraz utrzymuj spójny kierunek (od pozytywnego do negatywnego lub odwrotnie).</p>
+<p><strong>Skala zgody</strong> (Zdecydowanie się nie zgadzam → Zdecydowanie się zgadzam)</p>
+<ul>
+<li>Najlepsza do mierzenia przekonań i percepcji</li>
+<li>Przykład: “Ta strona internetowa jest łatwa w nawigacji”</li>
+</ul>
+<p><strong>Skala satysfakcji</strong> (Bardzo niezadowolony → Bardzo zadowolony)</p>
+<ul>
+<li>Idealna do oceny doświadczeń i usług</li>
+<li>Przykład: “Jak ocenia Pan/Pani jakość obsługi klienta?”</li>
+</ul>
+<p><strong>Skala opinii</strong> (Zdecydowanie się sprzeciwiam → Zdecydowanie popieram)</p>
+<ul>
+<li>Wykorzystywana do badania stanowisk wobec propozycji lub inicjatyw</li>
+<li>Przykład: “Jak Pan/Pani ocenia wprowadzenie pracy hybrydowej?”</li>
+</ul>
+<p><strong>Skala częstotliwości/postawy</strong> (Nigdy → Zawsze)</p>
+<ul>
+<li>Mierzy wzorce zachowań i konsystencję</li>
+<li>Przykład: “Poleciłbym/Poleciłabym ten produkt innym”</li>
+</ul>
+<p><strong>Dobre praktyki</strong>: Używaj skal 5-7 punktowych, upewnij się, że stwierdzenia są jasne i jednoznaczne oraz utrzymuj spójny kierunek (od pozytywnego do negatywnego lub odwrotnie).</p>
 <hr>
 <p><strong>Przykłady skali ocen (rating scales)</strong></p>
 <div class="quarto-figure quarto-figure-center">
@@ -772,19 +810,20 @@ Typy pytań ze skalą Likerta
 <hr>
 </section>
 </section>
-<section id="skala-interwałowa" class="level3">
-<h3 class="anchored" data-anchor-id="skala-interwałowa">Skala Interwałowa</h3>
+<section id="skala-interwałowa-interval-scale" class="level3">
+<h3 class="anchored" data-anchor-id="skala-interwałowa-interval-scale">Skala interwałowa (Interval Scale)</h3>
 <section id="definicja-2" class="level4">
 <h4 class="anchored" data-anchor-id="definicja-2">Definicja</h4>
-<p>Skala interwałowa ma uporządkowane kategorie z równymi odstępami między sąsiednimi kategoriami. Jednak brakuje jej prawdziwego punktu zerowego.</p>
+<p>Skala interwałowa posiada uporządkowane kategorie z równymi odstępami między sąsiednimi kategoriami. Jednakże brakuje jej prawdziwego punktu zerowego.</p>
 </section>
 <section id="właściwości-2" class="level4">
 <h4 class="anchored" data-anchor-id="właściwości-2">Właściwości</h4>
 <ul>
-<li>Równe odstępy między sąsiednimi kategoriami</li>
-<li>Brak prawdziwego punktu zerowego (zero jest umowne)</li>
-<li>Stosunki między wartościami nie są znaczące</li>
+<li><p><strong>Równe odstępy między sąsiednimi kategoriami</strong>: Różnica między dowolnymi dwiema sąsiednimi wartościami reprezentuje tę samą wielkość zmiany. Na przykład różnica między 10°C a 20°C reprezentuje tę samą zmianę temperatury co różnica między 80°C a 90°C. Oznacza to, że możemy sensownie dodawać i odejmować wartości (np. “dzisiaj jest o 5 stopni cieplej niż wczoraj”).</p></li>
+<li><p><strong>Brak prawdziwego punktu zerowego</strong> (zero jest arbitralne): Zero nie reprezentuje całkowitego braku mierzonej własności. Na przykład 0°C nie oznacza “braku temperatury” - to po prostu punkt zamarzania wody. To arbitralne zero mogłoby być umieszczone gdzie indziej (jak w skali Fahrenheita, gdzie woda zamarza przy 32°F).</p></li>
+<li><p><strong>Stosunki między wartościami nie są znaczące</strong>: Ponieważ zero jest arbitralne, nie możemy powiedzieć, że 20°C jest “dwa razy cieplejsze” niż 10°C. Gdybyśmy przeliczyć to na Fahrenheita (50°F i 68°F), stosunek byłby zupełnie inny, co pokazuje, że stosunek zależy od naszego arbitralnego wyboru skali.</p></li>
 </ul>
+<p><strong>Kluczowa intuicja</strong>: Na skali interwałowej <em>różnice</em> mają spójne znaczenie, ale <em>stosunki</em> nie.</p>
 </section>
 <section id="przykłady-4" class="level4">
 <h4 class="anchored" data-anchor-id="przykłady-4">Przykłady</h4>

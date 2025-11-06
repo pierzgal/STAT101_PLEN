@@ -444,7 +444,7 @@ Note
     D --&gt; D1[Categories only&lt;br/&gt;e.g., gender, color]
     E --&gt; E1[Ordered categories&lt;br/&gt;e.g., rankings, grades]
     F --&gt; F1[Equal intervals, no true zero&lt;br/&gt;e.g., temperature °C]
-    G --&gt; G1[Equal intervals, true zero&lt;br/&gt;e.g., height, weight, age]
+    G --&gt; G1[Equal intervals, true zero&lt;br/&gt;e.g., height, weight, age, Kelvins]
     
     style A fill:#e1f5ff
     style B fill:#fff4e1
@@ -457,6 +457,27 @@ Note
 </div>
 <p></p></figure><p></p>
 </div>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Difference: Categorical vs.&nbsp;Numerical Scales
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The fundamental difference between categorical and numerical scales lies not in the number of categories, but in the <strong>nature of the intervals</strong>. Numerical scales (interval and ratio) have intervals defined by an objective, physical measurement standard. For example:</p>
+<ul>
+<li><strong>Temperature</strong>: each degree represents the same amount of thermal energy change, regardless of how we feel about it</li>
+<li><strong>Distance</strong>: a centimeter between 5cm and 6cm represents exactly the same physical length as a centimeter between 105cm and 106cm</li>
+<li><strong>Time</strong>: a second between 10:00:01 and 10:00:02 has the same duration as a second between 15:47:33 and 15:47:34</li>
+<li><strong>Weight</strong>: the difference between 50kg and 51kg represents the same amount of mass as the difference between 150kg and 151kg</li>
+</ul>
+<p>Categorical scales, including all rating scales, lack this objective standard: even a 1000-point rating scale remains ordinal because the intervals are <strong>psychologically defined</strong>, not physically measured. When someone rates their agreement as “7” versus “8” on a scale from 1 to 1000, there is no guarantee that the psychological distance between 7 and 8 equals the distance between 47 and 48, or between 847 and 848. The respondent is essentially choosing among ordered categories, not measuring with, e.g., a ruler. Adding more categories doesn’t create equal intervals - it just creates more ordered categories. This is why even a seemingly continuous rating scale with hundreds of values remains fundamentally categorical: <strong>it lacks the objective measurement standard that would make the intervals provably equal</strong>.</p>
 </div>
 </div>
 <hr>
@@ -747,11 +768,27 @@ Likert Scale Question Types
 </div>
 <div class="callout-body-container callout-body">
 <p>Likert scales are a type of rating scale that constitute an <strong>ordinal level of measurement</strong>, meaning responses can be ranked in order but the distances between points are not necessarily equal.</p>
-<p><strong>Agreement Scale</strong> (Strongly Disagree → Strongly Agree) - Best for measuring beliefs and perceptions - Example: “This website is easy to navigate”</p>
-<p><strong>Satisfaction Scale</strong> (Very Dissatisfied → Very Satisfied) - Ideal for evaluating experiences and services - Example: “How satisfied are you with the customer service you received?”</p>
-<p><strong>Opinion Scale</strong> (Strongly Oppose → Strongly Support) - Used to gauge positions on proposals or initiatives - Example: “How do you feel about implementing a hybrid work policy?”</p>
-<p><strong>Frequency/Attitude Scale</strong> (Never → Always) - Measures behavioral patterns and consistency - Example: “I would recommend this product to others”</p>
-<p><strong>Best Practices</strong>: Use 5-7 point scales, keep neutral middle options, ensure statements are clear and unambiguous, and maintain consistent directionality (positive to negative or vice versa).</p>
+<p><strong>Agreement Scale</strong> (Strongly Disagree → Strongly Agree)</p>
+<ul>
+<li>Best for measuring beliefs and perceptions</li>
+<li>Example: “This website is easy to navigate”</li>
+</ul>
+<p><strong>Satisfaction Scale</strong> (Very Dissatisfied → Very Satisfied)</p>
+<ul>
+<li>Ideal for evaluating experiences and services</li>
+<li>Example: “How satisfied are you with the customer service you received?”</li>
+</ul>
+<p><strong>Opinion Scale</strong> (Strongly Oppose → Strongly Support)</p>
+<ul>
+<li>Used to gauge positions on proposals or initiatives</li>
+<li>Example: “How do you feel about implementing a hybrid work policy?”</li>
+</ul>
+<p><strong>Frequency/Attitude Scale</strong> (Never → Always)</p>
+<ul>
+<li>Measures behavioral patterns and consistency</li>
+<li>Example: “I would recommend this product to others”</li>
+</ul>
+<p><strong>Best Practices</strong>: Use 5-7 point scales, ensure statements are clear and unambiguous, and maintain consistent directionality (positive to negative or vice versa).</p>
 <hr>
 <p><strong>Examples of rating scales</strong></p>
 <p><img src="stat_imgs/CSATChart-Detail1.svg" class="img-fluid" alt="https://ppcexpo.com/ChartExpo/charts/csat-score-survey-chart"> <img src="stat_imgs/Likert-scale-survey-questions.svg" class="img-fluid" alt="https://www.culturemonkey.io/resources/guides/employee-survey-questions/"> <img src="stat_imgs/Rating-scale-survey-questions.svg" class="img-fluid" alt="https://www.culturemonkey.io/resources/guides/employee-survey-questions/"></p>
@@ -769,10 +806,11 @@ Likert Scale Question Types
 <section id="properties-2" class="level4">
 <h4 class="anchored" data-anchor-id="properties-2">Properties</h4>
 <ul>
-<li>Equal intervals between adjacent categories</li>
-<li>No true zero point (zero is arbitrary)</li>
-<li>Ratios between values are not meaningful</li>
+<li><p><strong>Equal intervals between adjacent categories</strong>: The difference between any two adjacent values represents the same magnitude of change. For example, the difference between 10°C and 20°C represents the same amount of temperature change as the difference between 80°C and 90°C. This means we can meaningfully add and subtract values (e.g., “it’s 5 degrees warmer today than yesterday”).</p></li>
+<li><p><strong>No true zero point</strong> (zero is arbitrary): Zero does not represent the complete absence of the measured property. For example, 0°C does not mean “no temperature” - it’s simply the freezing point of water. This arbitrary zero could be placed elsewhere (as in Fahrenheit, where water freezes at 32°F).</p></li>
+<li><p><strong>Ratios between values are not meaningful</strong>: Because zero is arbitrary, we cannot say that 20°C is “twice as hot” as 10°C. If we converted to Fahrenheit (50°F and 68°F), the ratio would be completely different, showing that the ratio depends on our arbitrary choice of scale.</p></li>
 </ul>
+<p><strong>Key insight</strong>: On an interval scale, <em>differences</em> have consistent meaning, but <em>ratios</em> do not.</p>
 </section>
 <section id="examples-4" class="level4">
 <h4 class="anchored" data-anchor-id="examples-4">Examples</h4>
