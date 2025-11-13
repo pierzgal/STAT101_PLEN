@@ -929,6 +929,103 @@ Figure&nbsp;6.1
 </div>
 </div>
 <hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Średnia Arytmetyczna Ważona
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>W wielu sytuacjach pracujemy z <strong>rozkładami częstości</strong>, w których wartości występują wielokrotnie. Zamiast wypisywać każdą wartość osobno, możemy użyć <strong>średniej ważonej</strong>, która uwzględnia, jak często każda wartość występuje.</p>
+<p><strong>Dla Częstości Bezwzględnych:</strong></p>
+<p>Gdy mamy rozkład częstości z wartościami <span class="math inline">x_1, x_2, \ldots, x_k</span> występującymi odpowiednio <span class="math inline">f_1, f_2, \ldots, f_k</span> razy (gdzie <span class="math inline">n = \sum_{i=1}^{k} f_i</span>), średnia ważona wynosi:</p>
+<p><span class="math display">\bar{x}_w = \frac{\sum_{i=1}^{k} f_i \cdot x_i}{\sum_{i=1}^{k} f_i} = \frac{f_1 x_1 + f_2 x_2 + \cdots + f_k x_k}{f_1 + f_2 + \cdots + f_k}</span></p>
+<p>Ponieważ <span class="math inline">\sum_{i=1}^{k} f_i = n</span>, możemy to uprościć do:</p>
+<p><span class="math display">\bar{x}_w = \frac{\sum_{i=1}^{k} f_i \cdot x_i}{n} = \frac{1}{n}\sum_{i=1}^{k} f_i \cdot x_i</span></p>
+<p><strong>Dla Częstości Względnych (Znormalizowanych):</strong></p>
+<p>Gdy częstości wyrażone są jako proporcje <span class="math inline">p_i = \frac{f_i}{n}</span> (gdzie <span class="math inline">\sum_{i=1}^{k} p_i = 1</span>), wzór upraszcza się do:</p>
+<p><span class="math display">\bar{x}_w = \sum_{i=1}^{k} p_i \cdot x_i = p_1 x_1 + p_2 x_2 + \cdots + p_k x_k</span></p>
+<p><strong>Przykład (Obliczenia Ręczne):</strong></p>
+<p>Załóżmy, że przeprowadziliśmy ankietę wśród studentów o liczbę godzin nauki tygodniowo:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Godziny <span class="math inline">(x_i)</span></th>
+<th>Częstość <span class="math inline">(f_i)</span></th>
+<th>Częst. względna <span class="math inline">(p_i)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td>3</td>
+<td>0,15</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>8</td>
+<td>0,40</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>7</td>
+<td>0,35</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>2</td>
+<td>0,10</td>
+</tr>
+<tr class="odd">
+<td><strong>Razem</strong></td>
+<td><span class="math inline">n = 20</span></td>
+<td>1,00</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Używając częstości bezwzględnych:</strong></p>
+<p><span class="math display">\bar{x}_w = \frac{(3 \times 5) + (8 \times 10) + (7 \times 15) + (2 \times 20)}{20} = \frac{15 + 80 + 105 + 40}{20} = \frac{240}{20} = 12</span></p>
+<p><strong>Używając częstości względnych:</strong></p>
+<p><span class="math display">\bar{x}_w = (0,15 \times 5) + (0,40 \times 10) + (0,35 \times 15) + (0,10 \times 20)</span></p>
+<p><span class="math display">= 0,75 + 4,00 + 5,25 + 2,00 = 12</span></p>
+<p>Obie metody dają ten sam wynik: studenci uczą się średnio 12 godzin tygodniowo.</p>
+<p><strong>Prościej mówiąc:</strong> Gdy niektóre wartości występują częściej niż inne, “ważymy” je według tego, jak często się pojawiają. Wartość, która występuje 8 razy, wnosi do średniej 8 razy więcej niż wartość, która występuje raz.</p>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Inne Rodzaje Średnich: Geometryczna i Harmoniczna
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Choć <strong>średnia arytmetyczna</strong> jest zdecydowanie najczęściej używaną miarą tendencji centralnej w naukach społecznych, istnieją dwa inne rodzaje średnich do specjalnych zastosowań:</p>
+<p><strong>Średnia Geometryczna:</strong></p>
+<p><span class="math display">\bar{x}_G = \sqrt[n]{x_1 \cdot x_2 \cdot \ldots \cdot x_n} = (x_1 \cdot x_2 \cdot \ldots \cdot x_n)^{1/n}</span></p>
+<ul>
+<li>Stosowana do: Stóp wzrostu, stóp zmian, uśredniania wskaźników</li>
+<li>Przykład: Średnia roczna stopa wzrostu PKB w ciągu kilku lat</li>
+<li>Ważne: Wszystkie wartości muszą być dodatnie</li>
+</ul>
+<p><strong>Średnia Harmoniczna:</strong></p>
+<p><span class="math display">\bar{x}_H = \frac{n}{\frac{1}{x_1} + \frac{1}{x_2} + \cdots + \frac{1}{x_n}} = \frac{n}{\sum_{i=1}^{n} \frac{1}{x_i}}</span></p>
+<ul>
+<li>Stosowana do: Uśredniania wskaźników i prędkości</li>
+<li>Przykład: Średnia prędkość, gdy odległości są równe, ale czasy różne</li>
+<li>Ważne: Wszystkie wartości muszą być różne od zera</li>
+</ul>
+<p><strong>Ważna zależność:</strong> Dla dowolnego zbioru danych z wartościami dodatnimi: <span class="math inline">\bar{x}_H \leq \bar{x}_G \leq \bar{x}</span> (harmoniczna ≤ geometryczna ≤ arytmetyczna)</p>
+<p>W większości zastosowań w naukach społecznych te alternatywne średnie są rzadko potrzebne. Trzymaj się średniej arytmetycznej, chyba że masz konkretny powód teoretyczny, by użyć innego rodzaju.</p>
+</div>
+</div>
+<hr>
 </section>
 <section id="mediana" class="level3">
 <h3 class="anchored" data-anchor-id="mediana">Mediana</h3>
@@ -2366,7 +2463,7 @@ Exercise Questions
 </ul>
 <p>For each statement, determine whether it is True or False and provide your explanation:</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2375,7 +2472,7 @@ Answer Template
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Students from G2 are, on average, taller than G1: [True/False]
@@ -2404,7 +2501,7 @@ Answer Template
 </div>
 <p>Let’s review the answers to our box plot interpretation questions:</p>
 <div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2413,7 +2510,7 @@ Solutions
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Students from G2 are, on average, taller than G1: <strong>False</strong>
