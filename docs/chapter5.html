@@ -1527,6 +1527,99 @@ Other Types of Means: Geometric and Harmonic
 </div>
 <p><strong>Notice:</strong> This dataset has a larger variance (10 vs.&nbsp;1.9) and standard deviation (3.16 vs.&nbsp;1.38) than our first example, reflecting the fact that the values are more spread out from their mean.</p>
 <hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Weighted Variance and Standard Deviation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Just as we can calculate a weighted mean for frequency distributions, we can also calculate <strong>weighted variance</strong> and <strong>weighted standard deviation</strong>.</p>
+<p><strong>For Absolute Frequencies (Population):</strong></p>
+<p><span class="math display">\sigma^2_w = \frac{\sum_{i=1}^{k} f_i (x_i - \bar{x}_w)^2}{n}</span></p>
+<p><span class="math display">\sigma_w = \sqrt{\frac{\sum_{i=1}^{k} f_i (x_i - \bar{x}_w)^2}{n}}</span></p>
+<p><strong>For Absolute Frequencies (Sample - with Bessel’s Correction):</strong></p>
+<p>When working with sample data, we use <span class="math inline">n-1</span> instead of <span class="math inline">n</span> in the denominator:</p>
+<p><span class="math display">s^2_w = \frac{\sum_{i=1}^{k} f_i (x_i - \bar{x}_w)^2}{n-1}</span></p>
+<p><span class="math display">s_w = \sqrt{\frac{\sum_{i=1}^{k} f_i (x_i - \bar{x}_w)^2}{n-1}}</span></p>
+<p><strong>For Relative Frequencies (Proportions):</strong></p>
+<p>With proportions <span class="math inline">p_i = \frac{f_i}{n}</span>:</p>
+<p><strong>Population:</strong></p>
+<p><span class="math display">\sigma^2_w = \sum_{i=1}^{k} p_i (x_i - \bar{x}_w)^2</span></p>
+<p><strong>Sample (with Bessel’s Correction):</strong></p>
+<p><span class="math display">s^2_w = \frac{n}{n-1} \sum_{i=1}^{k} p_i (x_i - \bar{x}_w)^2</span></p>
+<p>The factor <span class="math inline">\frac{n}{n-1}</span> is Bessel’s correction applied to the proportion-based formula.</p>
+<p><strong>Example (Manual Calculation):</strong></p>
+<p>Using our previous study hours data where <span class="math inline">\bar{x}_w = 12</span> and <span class="math inline">n = 20</span>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 20%">
+<col style="width: 22%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Hours <span class="math inline">(x_i)</span></th>
+<th>Freq. <span class="math inline">(f_i)</span></th>
+<th><span class="math inline">(x_i - \bar{x})</span></th>
+<th><span class="math inline">(x_i - \bar{x})^2</span></th>
+<th><span class="math inline">f_i(x_i - \bar{x})^2</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td>3</td>
+<td>-7</td>
+<td>49</td>
+<td>147</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>8</td>
+<td>-2</td>
+<td>4</td>
+<td>32</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>7</td>
+<td>3</td>
+<td>9</td>
+<td>63</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>2</td>
+<td>8</td>
+<td>64</td>
+<td>128</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td><span class="math inline">n=20</span></td>
+<td></td>
+<td></td>
+<td>370</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample variance:</strong></p>
+<p><span class="math display">s^2_w = \frac{370}{20-1} = \frac{370}{19} = 19.47</span></p>
+<p><strong>Sample standard deviation:</strong></p>
+<p><span class="math display">s_w = \sqrt{19.47} = 4.41</span></p>
+<p><strong>Using proportions with Bessel’s correction:</strong></p>
+<p><span class="math display">s^2_w = \frac{20}{19} \times [(0.15 \times 49) + (0.40 \times 4) + (0.35 \times 9) + (0.10 \times 64)]</span></p>
+<p><span class="math display">= \frac{20}{19} \times [7.35 + 1.60 + 3.15 + 6.40] = \frac{20}{19} \times 18.50 = 19.47</span></p>
+<p><strong>Plain English:</strong> Bessel’s correction (using <span class="math inline">n-1</span>) makes the sample variance an unbiased estimator of the population variance. Without it, we would systematically underestimate the true population variance.</p>
+</div>
+</div>
+<hr>
 </section>
 </section>
 <section id="interquartile-range-iqr" class="level3">
@@ -2541,7 +2634,7 @@ Exercise Questions
 </ul>
 <p>For each statement, determine whether it is True or False and provide your explanation:</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2550,7 +2643,7 @@ Answer Template
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Students from G2 are, on average, taller than G1: [True/False]
@@ -2579,7 +2672,7 @@ Answer Template
 </div>
 <p>Let’s review the answers to our box plot interpretation questions:</p>
 <div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2588,7 +2681,7 @@ Solutions
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Students from G2 are, on average, taller than G1: <strong>False</strong>

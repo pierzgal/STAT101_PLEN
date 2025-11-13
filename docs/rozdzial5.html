@@ -1445,6 +1445,99 @@ Inne Rodzaje Średnich: Geometryczna i Harmoniczna
 </div>
 <p><strong>Zauważ:</strong> Ten zbiór danych ma większą wariancję (10 vs.&nbsp;1.9) i odchylenie standardowe (3.16 vs.&nbsp;1.38) niż nasz pierwszy przykład, co odzwierciedla fakt, że wartości są bardziej rozproszone wokół swojej średniej.</p>
 <hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ważona Wariancja i Odchylenie Standardowe
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Podobnie jak możemy obliczyć średnią ważoną dla rozkładów częstości, możemy również obliczyć <strong>ważoną wariancję</strong> i <strong>ważone odchylenie standardowe</strong>.</p>
+<p><strong>Dla Częstości Bezwzględnych (Populacja):</strong></p>
+<p><span class="math display">\sigma^2_w = \frac{\sum_{i=1}^{k} f_i (x_i - \bar{x}_w)^2}{n}</span></p>
+<p><span class="math display">\sigma_w = \sqrt{\frac{\sum_{i=1}^{k} f_i (x_i - \bar{x}_w)^2}{n}}</span></p>
+<p><strong>Dla Częstości Bezwzględnych (Próba - z Poprawką Bessela):</strong></p>
+<p>Przy pracy z danymi próbkowymi używamy <span class="math inline">n-1</span> zamiast <span class="math inline">n</span> w mianowniku:</p>
+<p><span class="math display">s^2_w = \frac{\sum_{i=1}^{k} f_i (x_i - \bar{x}_w)^2}{n-1}</span></p>
+<p><span class="math display">s_w = \sqrt{\frac{\sum_{i=1}^{k} f_i (x_i - \bar{x}_w)^2}{n-1}}</span></p>
+<p><strong>Dla Częstości Względnych (Proporcji):</strong></p>
+<p>Przy proporcjach <span class="math inline">p_i = \frac{f_i}{n}</span>:</p>
+<p><strong>Populacja:</strong></p>
+<p><span class="math display">\sigma^2_w = \sum_{i=1}^{k} p_i (x_i - \bar{x}_w)^2</span></p>
+<p><strong>Próba (z Poprawką Bessela):</strong></p>
+<p><span class="math display">s^2_w = \frac{n}{n-1} \sum_{i=1}^{k} p_i (x_i - \bar{x}_w)^2</span></p>
+<p>Czynnik <span class="math inline">\frac{n}{n-1}</span> to poprawka Bessela zastosowana do wzoru opartego na proporcjach.</p>
+<p><strong>Przykład (Obliczenia Ręczne):</strong></p>
+<p>Używając naszych wcześniejszych danych o godzinach nauki, gdzie <span class="math inline">\bar{x}_w = 12</span> i <span class="math inline">n = 20</span>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 16%">
+<col style="width: 20%">
+<col style="width: 22%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Godz. <span class="math inline">(x_i)</span></th>
+<th>Częst. <span class="math inline">(f_i)</span></th>
+<th><span class="math inline">(x_i - \bar{x})</span></th>
+<th><span class="math inline">(x_i - \bar{x})^2</span></th>
+<th><span class="math inline">f_i(x_i - \bar{x})^2</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td>3</td>
+<td>-7</td>
+<td>49</td>
+<td>147</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>8</td>
+<td>-2</td>
+<td>4</td>
+<td>32</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>7</td>
+<td>3</td>
+<td>9</td>
+<td>63</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>2</td>
+<td>8</td>
+<td>64</td>
+<td>128</td>
+</tr>
+<tr class="odd">
+<td><strong>Razem</strong></td>
+<td><span class="math inline">n=20</span></td>
+<td></td>
+<td></td>
+<td>370</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wariancja próbkowa:</strong></p>
+<p><span class="math display">s^2_w = \frac{370}{20-1} = \frac{370}{19} = 19{,}47</span></p>
+<p><strong>Odchylenie standardowe próbkowe:</strong></p>
+<p><span class="math display">s_w = \sqrt{19{,}47} = 4{,}41</span></p>
+<p><strong>Używając proporcji z poprawką Bessela:</strong></p>
+<p><span class="math display">s^2_w = \frac{20}{19} \times [(0{,}15 \times 49) + (0{,}40 \times 4) + (0{,}35 \times 9) + (0{,}10 \times 64)]</span></p>
+<p><span class="math display">= \frac{20}{19} \times [7{,}35 + 1{,}60 + 3{,}15 + 6{,}40] = \frac{20}{19} \times 18{,}50 = 19{,}47</span></p>
+<p><strong>Prościej mówiąc:</strong> Poprawka Bessela (używanie <span class="math inline">n-1</span>) sprawia, że wariancja próbkowa jest nieobciążonym estymatorem wariancji populacyjnej. Bez niej systematycznie niedoszacowalibyśmy prawdziwej wariancji populacji.</p>
+</div>
+</div>
+<hr>
 </section>
 </section>
 <section id="rozstęp-międzykwartylowy-iqr" class="level3">
@@ -2463,7 +2556,7 @@ Exercise Questions
 </ul>
 <p>For each statement, determine whether it is True or False and provide your explanation:</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2472,7 +2565,7 @@ Answer Template
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Students from G2 are, on average, taller than G1: [True/False]
@@ -2501,7 +2594,7 @@ Answer Template
 </div>
 <p>Let’s review the answers to our box plot interpretation questions:</p>
 <div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2510,7 +2603,7 @@ Solutions
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Students from G2 are, on average, taller than G1: <strong>False</strong>
