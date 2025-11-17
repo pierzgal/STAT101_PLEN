@@ -448,7 +448,7 @@ window.Quarto = {
 <p><strong>Pytanie:</strong> Gdzie dana obserwacja znajduje się względem innych? Jaka proporcja danych znajduje się poniżej danej wartości?</p>
 <p><strong>Powszechne miary:</strong></p>
 <ul>
-<li>Kwantyle (<em>quantiles</em>) - pojęcie ogólne</li>
+<li>Kwantyle (<em>quantiles</em>) - wartości dzielące uporządkowany zbiór danych na równe części</li>
 <li>Percentyle (<em>percentiles</em>) - dzielą dane na 100 części</li>
 <li>Kwartyle (<em>quartiles</em>) - dzielą dane na 4 części</li>
 <li>Wyniki znormalizowane (<em>standardized scores, z-scores</em>)</li>
@@ -462,7 +462,7 @@ window.Quarto = {
 <ul>
 <li>Skośność (<em>skewness</em>) - asymetria, czy jest długi ogon po jednej stronie?</li>
 <li>Kurtoza (<em>kurtosis</em>) - “ciężkość” ogonów rozkładu, czy jest wiele wartości ekstremalnych?</li>
-<li>Modalność (<em>modality</em>) - liczba szczytów (jednomodalny, dwumodalny, wielomodalny)</li>
+<li>Modalność (<em>modality</em>) - liczba wartości dominujących (jednomodalny, dwumodalny, wielomodalny)</li>
 </ul>
 <p><strong>Cel:</strong> Te miary opisują ogólny wzorzec rozkładu. Choć nie będziemy ich obliczać numerycznie w ramach tego kursu, będziemy identyfikować cechy kształtu wizualnie, używając np. wykresów pudełkowych.</p>
 <p><strong>Związek między kategoriami:</strong></p>
@@ -577,7 +577,7 @@ window.Quarto = {
 <li><strong>Mediana:</strong> Poprawna - “Mediana poziomu wykształcenia to licencjat”</li>
 <li><strong>Średnia:</strong> Problematyczna - “Średni poziom wykształcenia to 3,2” jest trudna do interpretacji, ponieważ odstępy między poziomami nie są równe (różnica między podstawowym a średnim nie jest taka sama jak różnica między magisterium a doktoratem)</li>
 </ul>
-<p>W tym rozdziale skupimy się głównie na danych interwałowych i ilorazowych, gdzie wszystkie miary statystyczne są odpowiednie. Należy jednak pamiętać o tych rozróżnieniach podczas pracy z różnymi typami danych w praktyce.</p>
+<p>W tym rozdziale skupimy się głównie na danych interwałowych i ilorazowych, gdzie wszystkie miary statystyczne są odpowiednie.</p>
 </section>
 </section>
 <section id="notacja-sigma" class="level2" data-number="6.4">
@@ -1198,7 +1198,7 @@ Inne Rodzaje Średnich: Geometryczna i Harmoniczna
 </div>
 </div>
 </div>
-<p>Szare przerywane linie pokazują <strong>odchylenia</strong> od średniej. Wariancja będzie kwantyfikować średnią kwadratową długość tych odchyleń.</p>
+<p>Szare przerywane linie pokazują <strong>odchylenia</strong> od średniej. Wariancja będzie kwantyfikować średnią długość kwadratów tych odchyleń.</p>
 </section>
 </section>
 <section id="dlaczego-podnosimy-odchylenia-do-kwadratu" class="level4">
@@ -1255,7 +1255,7 @@ Inne Rodzaje Średnich: Geometryczna i Harmoniczna
 <li><strong>Wygoda matematyczna:</strong> Podnoszenie do kwadratu ma lepsze właściwości matematyczne dla teorii statystyki</li>
 <li><strong>Podkreśla większe odchylenia:</strong> Podnoszenie do kwadratu nadaje większą wagę ekstremalnym odchyleniom (punkt oddalony o 10 jednostek wnosi 100 do wariancji, podczas gdy punkt oddalony o 5 jednostek wnosi tylko 25)</li>
 </ul>
-<p><strong>Problem jednostek:</strong> Ponieważ podnieśliśmy odchylenia do kwadratu, wariancja jest w <strong>jednostkach kwadratowych</strong>. Jeśli nasze dane są w centymetrach, wariancja jest w centymetrach kwadratowych. Dlatego często wolimy odchylenie standardowe.</p>
+<p><strong>Problem jednostek:</strong> Ponieważ podnieśliśmy odchylenia do kwadratu, wariancja jest w <strong>jednostkach kwadratowych</strong>. Jeśli nasze dane są w centymetrach, wariancja jest w centymetrach kwadratowych. Dlatego preferowanym miernikiem jest odchylenie standardowe, które wyrażone jest w oryginalnych jednostkach badanej zmiennej.</p>
 </section>
 <section id="wariancja" class="level4">
 <h4 class="anchored" data-anchor-id="wariancja">Wariancja</h4>
@@ -1323,7 +1323,7 @@ Inne Rodzaje Średnich: Geometryczna i Harmoniczna
 </section>
 <section id="korekta-bessela-dlaczego-n-1" class="level5">
 <h5 class="anchored" data-anchor-id="korekta-bessela-dlaczego-n-1">Korekta Bessela: Dlaczego <span class="math inline">n-1</span>?</h5>
-<p><strong>Problem:</strong> Kiedy używamy danych z próby do oszacowania wariancji populacji, wzór <span class="math inline">\frac{\sum(x_i - \bar{x})^2}{n}</span> ma tendencję do <strong>niedoszacowywania</strong> prawdziwej wariancji populacji. Dzieje się tak, ponieważ <span class="math inline">\bar{x}</span> jest obliczane z tych samych danych, przez co odchylenia są sztucznie mniejsze (mierzymy odchylenia od średniej próby, a nie od prawdziwej średniej populacji).</p>
+<p><strong>Problem:</strong> Kiedy używamy danych z próby do oszacowania wariancji populacji, wzór <span class="math inline">\frac{\sum(x_i - \bar{x})^2}{n}</span> ma tendencję do <strong>niedoszacowywania</strong> prawdziwej wariancji populacji (mierzymy odchylenia od średniej próby, a nie od prawdziwej średniej populacji).</p>
 <p><strong>Rozwiązanie:</strong> Korekta Bessela koryguje to obciążenie poprzez dzielenie przez <span class="math inline">n-1</span> zamiast przez <span class="math inline">n</span>. Daje to nieobciążony estymator wariancji populacji.</p>
 <p><strong>Wzór na wariancję próby:</strong></p>
 <p><span class="math display">s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2</span></p>

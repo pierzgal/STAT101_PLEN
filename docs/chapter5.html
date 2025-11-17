@@ -448,7 +448,7 @@ window.Quarto = {
 <p><strong>Question:</strong> Where does a particular observation stand relative to others? What proportion of data falls below a given value?</p>
 <p><strong>Common measures:</strong></p>
 <ul>
-<li>Quantiles (general concept)</li>
+<li>Quantiles (values that divide a dataset into equal-sized subgroups, where each subgroup has an equal probability of containing an observation)</li>
 <li>Percentiles (divide data into 100 parts)</li>
 <li>Quartiles (divide data into 4 parts)</li>
 <li>Standardized scores (z-scores)</li>
@@ -1406,7 +1406,7 @@ Other Types of Means: Geometric and Harmonic
 </section>
 <section id="bessels-correction-why-n-1" class="level5">
 <h5 class="anchored" data-anchor-id="bessels-correction-why-n-1">Bessel’s Correction: Why <span class="math inline">n-1</span>?</h5>
-<p><strong>The Problem:</strong> When we use sample data to estimate population variance, the formula <span class="math inline">\frac{\sum(x_i - \bar{x})^2}{n}</span> tends to <strong>underestimate</strong> the true population variance. This happens because <span class="math inline">\bar{x}</span> is calculated from the same data, making the deviations artificially smaller (we’re measuring deviations from the sample mean, not the true population mean).</p>
+<p><strong>The Problem:</strong> When we use sample data to estimate population variance, the formula <span class="math inline">\frac{\sum(x_i - \bar{x})^2}{n}</span> tends to <strong>underestimate</strong> the true population variance (we’re measuring deviations from the sample mean, not the true population mean).</p>
 <p><strong>The Solution:</strong> Bessel’s correction adjusts for this bias by dividing by <span class="math inline">n-1</span> instead of <span class="math inline">n</span>. This produces an unbiased estimate of the population variance.</p>
 <p><strong>Sample variance formula:</strong></p>
 <p><span class="math display">s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2</span></p>
