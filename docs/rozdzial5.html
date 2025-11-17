@@ -314,7 +314,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#średnia-średnia-arytmetyczna" id="toc-średnia-średnia-arytmetyczna" class="nav-link" data-scroll-target="#średnia-średnia-arytmetyczna">Średnia (średnia arytmetyczna)</a></li>
   <li><a href="#mediana" id="toc-mediana" class="nav-link" data-scroll-target="#mediana">Mediana</a></li>
-  <li><a href="#moda" id="toc-moda" class="nav-link" data-scroll-target="#moda">Moda</a></li>
+  <li><a href="#moda-dominanta" id="toc-moda-dominanta" class="nav-link" data-scroll-target="#moda-dominanta">Moda (Dominanta)</a></li>
   <li><a href="#porównanie-średniej-mediany-i-modalnej" id="toc-porównanie-średniej-mediany-i-modalnej" class="nav-link" data-scroll-target="#porównanie-średniej-mediany-i-modalnej">Porównanie średniej, mediany i modalnej</a></li>
   </ul></li>
   <li><a href="#miary-zmienności-rozproszenia-measures-of-dispersion-variability" id="toc-miary-zmienności-rozproszenia-measures-of-dispersion-variability" class="nav-link" data-scroll-target="#miary-zmienności-rozproszenia-measures-of-dispersion-variability"><span class="header-section-number">6.7</span> Miary Zmienności (Rozproszenia) / Measures of Dispersion (Variability)</a>
@@ -413,9 +413,9 @@ window.Quarto = {
 <li>Zidentyfikować “typową” lub “centralną” wartość w danych</li>
 <li>Zrozumieć, jak bardzo rozproszone lub zróżnicowane są dane</li>
 <li>Wykryć nietypowe obserwacje (<em>outliers</em>)</li>
-<li>Skutecznie komunikować wyniki innym</li>
+<li>Skutecznie komunikować wyniki</li>
 </ul>
-<p>W tym rozdziale zbadamy fundamentalne narzędzia do opisywania danych numerycznych, zaczynając od podstawowej notacji i przechodząc przez miary tendencji centralnej, rozproszenia oraz techniki wizualizacji.</p>
+<p>W tym rozdziale omówimy podstawowe narzędzia do opisywania danych numerycznych, zaczynając od podstawowej notacji i przechodząc przez miary tendencji centralnej, rozproszenia oraz techniki wizualizacji.</p>
 </section>
 <section id="przegląd-cztery-typy-miar-opisowych" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="przegląd-cztery-typy-miar-opisowych"><span class="header-section-number">6.2</span> Przegląd: cztery typy miar opisowych</h2>
@@ -1047,8 +1047,8 @@ Inne Rodzaje Średnich: Geometryczna i Harmoniczna
 <p><strong>Prostym językiem:</strong> Mediana to wartość, która znajduje się pośrodku, gdy ustawimy wszystkie obserwacje od najmniejszej do największej. Połowa obserwacji jest mniejsza od mediany, a połowa większa.</p>
 <p><strong>Kluczowa zaleta:</strong> Mediana jest <strong>odporna na wartości odstające</strong> (<em>resistant to outliers</em>). Wartości ekstremalne nie wpływają na nią znacząco, co czyni ją użyteczną, gdy dane zawierają wartości odstające.</p>
 </section>
-<section id="moda" class="level3">
-<h3 class="anchored" data-anchor-id="moda">Moda</h3>
+<section id="moda-dominanta" class="level3">
+<h3 class="anchored" data-anchor-id="moda-dominanta">Moda (Dominanta)</h3>
 <p><strong>Moda</strong> (<em>mode</em>) to wartość, która pojawia się najczęściej w zbiorze danych.</p>
 <p><strong>Stosowna dla:</strong> Danych nominalnych, porządkowych, interwałowych i ilorazowych (wszystkie skale)</p>
 <p><strong>Właściwości:</strong></p>
@@ -1168,7 +1168,7 @@ Inne Rodzaje Średnich: Geometryczna i Harmoniczna
 <h3 class="anchored" data-anchor-id="wariancja-i-odchylenie-standardowe">Wariancja i odchylenie standardowe</h3>
 <section id="wizualizacja-zmienności-przykład-roboczy" class="level4">
 <h4 class="anchored" data-anchor-id="wizualizacja-zmienności-przykład-roboczy">Wizualizacja zmienności: przykład roboczy</h4>
-<p>Aby zrozumieć wariancję i odchylenie standardowe, przeanalizujmy kompletny przykład z danymi <span class="math inline">X = (2, 2, 3, 4, 5, 5)</span>. Potraktujemy je jako sekwencyjne obserwacje (np. pomiary w czasie), aby zwizualizować, jak poszczególne wartości odchylają się od swojej średniej.</p>
+<p>Aby zrozumieć wariancję i odchylenie standardowe, przeanalizujmy przykład z syntetycznymi danymi <span class="math inline">X = (2, 2, 3, 4, 5, 5)</span>. Potraktujemy je jako sekwencyjne obserwacje (np. pomiary w czasie [t]), aby zwizualizować, jak poszczególne wartości odchylają się od swojej średniej.</p>
 <section id="krok-1-oblicz-średnią" class="level5">
 <h5 class="anchored" data-anchor-id="krok-1-oblicz-średnią">Krok 1: Oblicz średnią</h5>
 <p><span class="math display">\bar{x} = \frac{2 + 2 + 3 + 4 + 5 + 5}{6} = \frac{21}{6} = 3.5</span></p>
@@ -1376,7 +1376,7 @@ Inne Rodzaje Średnich: Geometryczna i Harmoniczna
 </section>
 <section id="przykład-do-ćwiczenia" class="level4">
 <h4 class="anchored" data-anchor-id="przykład-do-ćwiczenia">Przykład do ćwiczenia</h4>
-<p>Przeanalizujmy kolejny kompletny przykład, aby utrwalić te koncepcje.</p>
+<p>Przeanalizujmy kolejny prosty przykład.</p>
 <p><strong>Dane:</strong> 2, 4, 6, 8, 10</p>
 <p><strong>Krok 1:</strong> Oblicz średnią:</p>
 <p><span class="math display">\bar{x} = \frac{2+4+6+8+10}{5} = \frac{30}{5} = 6</span></p>

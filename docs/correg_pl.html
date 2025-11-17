@@ -434,7 +434,7 @@ window.Quarto = {
   <li><a href="#podsumowanie-i-interpretacja" id="toc-podsumowanie-i-interpretacja" class="nav-link" data-scroll-target="#podsumowanie-i-interpretacja">Podsumowanie i Interpretacja</a></li>
   <li><a href="#dodatek-kompletny-kod-r" id="toc-dodatek-kompletny-kod-r" class="nav-link" data-scroll-target="#dodatek-kompletny-kod-r">Dodatek: Kompletny Kod R</a></li>
   </ul></li>
-  <li><a href="#przykład-5.-district-magnitude-and-electoral-disproportionality-a-comparative-analysis-en" id="toc-przykład-5.-district-magnitude-and-electoral-disproportionality-a-comparative-analysis-en" class="nav-link" data-scroll-target="#przykład-5.-district-magnitude-and-electoral-disproportionality-a-comparative-analysis-en"><span class="header-section-number">10.23</span> Przykład 5. District Magnitude and Electoral Disproportionality: A Comparative Analysis (*) [EN]</a>
+  <li><a href="#przykład-5.-district-magnitude-and-electoral-disproportionality-a-comparative-analysis-en" id="toc-przykład-5.-district-magnitude-and-electoral-disproportionality-a-comparative-analysis-en" class="nav-link" data-scroll-target="#przykład-5.-district-magnitude-and-electoral-disproportionality-a-comparative-analysis-en"><span class="header-section-number">10.21</span> Przykład 5. District Magnitude and Electoral Disproportionality: A Comparative Analysis (*) [EN]</a>
   <ul class="collapse">
   <li><a href="#data-generating-process" id="toc-data-generating-process" class="nav-link" data-scroll-target="#data-generating-process">Data Generating Process</a></li>
   <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics">Descriptive Statistics</a></li>
@@ -1647,6 +1647,32 @@ Figure&nbsp;10.3: Porównanie różnych linii i ich wartości SSE
 </div>
 </div>
 <p>Zauważ, że linia MNK ma <strong>najmniejsze SSE</strong> – to właśnie czyni ją linią “najlepszego” dopasowania (ang. <em>best fit</em>).</p>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Konwencje notacji w regresji
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Model populacyjny (nieznane, prawdziwe parametry):</strong></p>
+<p><span class="math display">Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i</span></p>
+<p>gdzie <span class="math inline">\beta_0, \beta_1</span> to parametry populacji, a <span class="math inline">\varepsilon_i</span> to składnik losowy.</p>
+<p><strong>Dopasowana linia regresji (estymatory z próby):</strong></p>
+<p><span class="math display">\hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i</span></p>
+<p>gdzie <span class="math inline">\hat{\beta}_0, \hat{\beta}_1</span> to estymatory MNK parametrów.</p>
+<p><strong>Notacja alternatywna:</strong> Niektóre podręczniki używają <span class="math inline">b_0, b_1</span> dla estymatorów zamiast <span class="math inline">\hat{\beta}_0, \hat{\beta}_1</span>, aby uniknąć nadmiaru symboli z daszkiem.</p>
+<p><strong>Reszty (residua):</strong></p>
+<p><span class="math display">e_i = Y_i - \hat{Y}_i = Y_i - \hat{\beta}_0 - \hat{\beta}_1 X_i</span></p>
+<p><strong>Suma kwadratów reszt (SSE):</strong></p>
+<p><span class="math display">SSE = \sum_{i=1}^{n} e_i^2 = \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2 = \sum_{i=1}^{n}(Y_i - \hat{\beta}_0 - \hat{\beta}_1 X_i)^2</span></p>
+<p><strong>Kluczowe rozróżnienie:</strong> Daszek (<span class="math inline">\hat{~}</span>) oznacza estymator z próby; brak daszka oznacza parametr populacji.</p>
+</div>
+</div>
+<hr>
 </section>
 <section id="model-zerowy-przewidywanie-ze-średniej" class="level3">
 <h3 class="anchored" data-anchor-id="model-zerowy-przewidywanie-ze-średniej">Model Zerowy: Przewidywanie ze Średniej</h3>
@@ -7120,69 +7146,18 @@ Model wyjaśnia 98.9 % zmienności frekwencji</code></pre>
 </div>
 </section>
 <section id="ocena-modelu" class="level3">
-<h3 class="anchored">Ocena Modelu</h3>
+<h3 class="anchored" data-anchor-id="ocena-modelu">Ocena Modelu</h3>
 <section id="dekompozycja-wariancji" class="level4">
-<h4 class="anchored">Dekompozycja Wariancji</h4>
+<h4 class="anchored" data-anchor-id="dekompozycja-wariancji">Dekompozycja Wariancji</h4>
 <p>Całkowita zmienność w Y może być rozłożona na dwie części:</p>
 <p><span class="math display">SST = SSE + SSR</span></p>
 <p>Gdzie:</p>
 <ul>
 <li><strong>SST (Sum of Squares Total)</strong>: Całkowita zmienność w Y</li>
-<li><strong>SSE (Sum of Squared Errors)</strong>: Niewyjaśniona zmienność<br>
-</li>
+<li><strong>SSE (Sum of Squared Errors)</strong>: Niewyjaśniona zmienność</li>
 <li><strong>SSR (Sum of Squares Regression)</strong>: Wyjaśniona zmienność</li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Wyobraź sobie, że chcesz zrozumieć, <strong>dlaczego pensje w firmie się różnią</strong>. Jedni zarabiają 40 000, inni 80 000, a jeszcze inni 120 000. Mamy więc <strong>zmienność</strong> wynagrodzeń — nie są takie same.</p>
-<section id="całkowita-zmienność-sst" class="level3">
-<h3 class="anchored" data-anchor-id="całkowita-zmienność-sst">Całkowita zmienność (SST)</h3>
-<p>To pytanie: „<strong>Jak bardzo</strong> wszystkie pensje są rozproszone wokół <strong>średniej pensji</strong>?” Jeśli średnia to 70 000, to SST mierzy, o ile każda pensja różni się od 70 000, <strong>podnosi te różnice do kwadratu</strong> (żeby były dodatnie) i <strong>sumuje</strong>. To <strong>całkowita ilość zmienności, którą próbujemy wyjaśnić</strong>.</p>
-</section>
-<section id="zmienność-wyjaśniona-ssr" class="level3">
-<h3 class="anchored" data-anchor-id="zmienność-wyjaśniona-ssr">Zmienność wyjaśniona (SSR)</h3>
-<p>Załóżmy, że budujemy model przewidujący pensję na podstawie <strong>lat doświadczenia</strong>. Model może mówić:</p>
-<ul>
-<li>2 lata doświadczenia → przewiduje 50 000</li>
-<li>5 lat doświadczenia → przewiduje 70 000</li>
-<li>10 lat doświadczenia → przewiduje 100 000</li>
-</ul>
-<p><strong>SSR</strong> mierzy, jak bardzo te <strong>przewidywania różnią się od średniej</strong>. To ta część zmienności, którą model <strong>„wyjaśnia”</strong> relacją z doświadczeniem. Innymi słowy: „tę część różnic w pensjach da się przypisać różnym poziomom doświadczenia”.</p>
-</section>
-<section id="zmienność-niewyjaśniona-sse" class="level3">
-<h3 class="anchored" data-anchor-id="zmienność-niewyjaśniona-sse">Zmienność niewyjaśniona (SSE)</h3>
-<p>To to, co <strong>zostaje</strong> — część, której model nie tłumaczy. Może być tak, że dwie osoby mają po 5 lat doświadczenia, ale jedna zarabia 65 000, a druga 75 000. Model obu przewidział 70 000. Te różnice względem przewidywań (<strong>błędy</strong>) reprezentują zmienność wynikającą z innych czynników — np. edukacja, wyniki pracy, umiejętności negocjacyjne albo po prostu losowość.</p>
-</section>
-<section id="kluczowa-intuicja" class="level2" data-number="10.21">
-<h2 data-number="10.21" class="anchored" data-anchor-id="kluczowa-intuicja"><span class="header-section-number">10.21</span> Kluczowa intuicja</h2>
-<p>Piękne jest to, że te trzy wielkości <strong>zawsze</strong> spełniają zależność: <strong>Całkowita zmienność = Zmienność wyjaśniona + Zmienność niewyjaśniona</strong> czyli <strong>SST = SSR + SSE</strong>.</p>
-<p>Możesz myśleć o tym jak o <strong>„wykresie kołowym powodów, dlaczego pensje się różnią”</strong>:</p>
-<ul>
-<li>Jeden kawałek to „różnice wyjaśnione doświadczeniem” (SSR),</li>
-<li>Drugi kawałek to „różnice z innych powodów” (SSE),</li>
-<li>Razem dają całość (SST).</li>
-</ul>
-</section>
-<section id="dlaczego-to-ważne" class="level2" data-number="10.22">
-<h2 data-number="10.22" class="anchored" data-anchor-id="dlaczego-to-ważne"><span class="header-section-number">10.22</span> Dlaczego to ważne</h2>
-<p>To rozbicie pozwala policzyć <strong>współczynnik determinacji</strong> <span class="math inline">R^2</span>:</p>
-<p><span class="math display">
-R^2 = \frac{\mathrm{SSR}}{\mathrm{SST}} = \frac{\text{Zmienność wyjaśniona}}{\text{Całkowita zmienność}}.
-</span></p>
-<p>Jeśli <span class="math inline">R^2 = 0{,}70</span>, to model <strong>wyjaśnia 70%</strong> tego, <strong>dlaczego wartości</strong> <span class="math inline">Y</span> (tu: pensje) <strong>różnią się między sobą</strong>. Pozostałe 30% to czynniki nieuwzględnione lub szum losowy.</p>
-<p>Pomyśl o tym jak o <strong>rozwiązywaniu zagadki</strong>: SST to cała zagadka do rozwiązania, SSR to część już rozwiązana, a SSE to to, co wciąż pozostaje do wyjaśnienia!</p>
-</section>
-</div>
-</div>
-<p>Obliczmy każdą:</p>
+<p>Obliczmy każdą sumę:</p>
 <p><strong>Krok 1: Oblicz przewidywane wartości</strong></p>
 <p>Używając <span class="math inline">\hat{Y} = 89,684 - 2,451X</span>:</p>
 <table class="caption-top table">
@@ -7367,6 +7342,51 @@ R^2 = \frac{\mathrm{SSR}}{\mathrm{SST}} = \frac{\text{Zmienność wyjaśniona}}{
 <pre><code>Korelacja do kwadratu: 0.6896667 </code></pre>
 </div>
 </div>
+<hr>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dekompozycja wariancji - podsumowanie
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wyobraź sobie, że chcesz zrozumieć, <strong>dlaczego pensje w firmie się różnią</strong>. Jedni zarabiają 40 000, inni 80 000, a jeszcze inni 120 000. Mamy więc <strong>zmienność</strong> wynagrodzeń — nie są takie same.</p>
+<section id="całkowita-zmienność-sst" class="level4">
+<h4 class="anchored" data-anchor-id="całkowita-zmienność-sst">Całkowita zmienność (SST)</h4>
+<p>To pytanie: „<strong>Jak bardzo</strong> wszystkie pensje są rozproszone wokół <strong>średniej pensji</strong>?” Jeśli średnia to 70 000, to SST mierzy, o ile każda pensja różni się od 70 000, <strong>podnosi te różnice do kwadratu</strong> (żeby były dodatnie) i <strong>sumuje</strong>. To <strong>całkowita ilość zmienności, którą próbujemy wyjaśnić</strong>.</p>
+</section>
+<section id="zmienność-wyjaśniona-ssr" class="level4">
+<h4 class="anchored" data-anchor-id="zmienność-wyjaśniona-ssr">Zmienność wyjaśniona (SSR)</h4>
+<p>Załóżmy, że budujemy model przewidujący pensję na podstawie <strong>lat doświadczenia</strong>. Model może mówić:</p>
+<ul>
+<li>2 lata doświadczenia → przewiduje 50 000</li>
+<li>5 lat doświadczenia → przewiduje 70 000</li>
+<li>10 lat doświadczenia → przewiduje 100 000</li>
+</ul>
+<p><strong>SSR</strong> mierzy, jak bardzo te <strong>przewidywania różnią się od średniej</strong>. To ta część zmienności, którą model <strong>„wyjaśnia”</strong> relacją z doświadczeniem. Innymi słowy: „tę część różnic w pensjach da się przypisać różnym poziomom doświadczenia”.</p>
+</section>
+<section id="zmienność-niewyjaśniona-sse" class="level4">
+<h4 class="anchored" data-anchor-id="zmienność-niewyjaśniona-sse">Zmienność niewyjaśniona (SSE)</h4>
+<p>To to, co <strong>zostaje</strong> — część, której model nie tłumaczy. Może być tak, że dwie osoby mają po 5 lat doświadczenia, ale jedna zarabia 65 000, a druga 75 000. Model obu przewidział 70 000. Te różnice względem przewidywań (<strong>błędy</strong>) reprezentują zmienność wynikającą z innych czynników — np. edukacja, wyniki pracy, umiejętności negocjacyjne albo po prostu losowość.</p>
+<blockquote class="blockquote">
+<p>Uwaga: <strong>Całkowita zmienność = Zmienność wyjaśniona + Zmienność niewyjaśniona</strong> czyli <strong>SST = SSR + SSE</strong>.</p>
+</blockquote>
+</section>
+<section id="dlaczego-to-ważne" class="level4">
+<h4 class="anchored" data-anchor-id="dlaczego-to-ważne">Dlaczego to ważne</h4>
+<p>Ta dekompozycja wariancji pozwala policzyć <strong>współczynnik determinacji</strong> <span class="math inline">R^2</span>:</p>
+<p><span class="math display">
+R^2 = \frac{\mathrm{SSR}}{\mathrm{SST}} = \frac{\text{Zmienność wyjaśniona}}{\text{Całkowita zmienność}}.
+</span></p>
+<p>Jeśli <span class="math inline">R^2 = 0{,}70</span>, to model <strong>wyjaśnia 70%</strong> tego, <strong>dlaczego wartości</strong> <span class="math inline">Y</span> (tu: pensje) <strong>różnią się między sobą</strong>. Pozostałe 30% to czynniki nieuwzględnione lub szum losowy.</p>
+<p>Pomyśl o tym jak o <strong>rozwiązywaniu zagadki</strong>: SST to cała zagadka do rozwiązania, SSR to część już rozwiązana, a SSE to to, co wciąż pozostaje do wyjaśnienia!</p>
+</section>
+</div>
+</div>
+<hr>
 </section>
 </section>
 <section id="wielkość-efektu" class="level3">
@@ -7601,8 +7621,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <hr>
 </section>
 </section>
-<section id="przykład-5.-district-magnitude-and-electoral-disproportionality-a-comparative-analysis-en" class="level2" data-number="10.23">
-<h2 data-number="10.23" class="anchored" data-anchor-id="przykład-5.-district-magnitude-and-electoral-disproportionality-a-comparative-analysis-en"><span class="header-section-number">10.23</span> Przykład 5. District Magnitude and Electoral Disproportionality: A Comparative Analysis (*) [EN]</h2>
+<section id="przykład-5.-district-magnitude-and-electoral-disproportionality-a-comparative-analysis-en" class="level2" data-number="10.21">
+<h2 data-number="10.21" class="anchored" data-anchor-id="przykład-5.-district-magnitude-and-electoral-disproportionality-a-comparative-analysis-en"><span class="header-section-number">10.21</span> Przykład 5. District Magnitude and Electoral Disproportionality: A Comparative Analysis (*) [EN]</h2>
 <section id="data-generating-process" class="level3">
 <h3 class="anchored" data-anchor-id="data-generating-process">Data Generating Process</h3>
 <p>Let’s set up a DGP where:</p>
