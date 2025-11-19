@@ -325,6 +325,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#wprowadzenie-do-modelowania-statystycznego-analizy-regresji-i-metody-mnk" id="toc-wprowadzenie-do-modelowania-statystycznego-analizy-regresji-i-metody-mnk" class="nav-link" data-scroll-target="#wprowadzenie-do-modelowania-statystycznego-analizy-regresji-i-metody-mnk"><span class="header-section-number">10.8</span> Wprowadzenie do Modelowania Statystycznego, Analizy Regresji i Metody MNK</a>
   <ul class="collapse">
+  <li><a href="#czym-jest-model-i-dlaczego-potrzebujemy-modeli" id="toc-czym-jest-model-i-dlaczego-potrzebujemy-modeli" class="nav-link" data-scroll-target="#czym-jest-model-i-dlaczego-potrzebujemy-modeli">Czym jest model i dlaczego potrzebujemy modeli?</a></li>
+  <li><a href="#dlaczego-analiza-regresji" id="toc-dlaczego-analiza-regresji" class="nav-link" data-scroll-target="#dlaczego-analiza-regresji">Dlaczego analiza regresji?</a></li>
   <li><a href="#modele-deterministyczne-a-stochastyczne" id="toc-modele-deterministyczne-a-stochastyczne" class="nav-link" data-scroll-target="#modele-deterministyczne-a-stochastyczne">Modele Deterministyczne a Stochastyczne</a></li>
   <li><a href="#wizualizacja-relacji-wykresy-rozrzutu-i-typy-wzorców" id="toc-wizualizacja-relacji-wykresy-rozrzutu-i-typy-wzorców" class="nav-link" data-scroll-target="#wizualizacja-relacji-wykresy-rozrzutu-i-typy-wzorców">Wizualizacja Relacji: Wykresy Rozrzutu i Typy Wzorców</a></li>
   <li><a href="#prosty-przykład-godziny-nauki-i-wyniki-egzaminów" id="toc-prosty-przykład-godziny-nauki-i-wyniki-egzaminów" class="nav-link" data-scroll-target="#prosty-przykład-godziny-nauki-i-wyniki-egzaminów">Prosty Przykład: Godziny Nauki i Wyniki Egzaminów</a></li>
@@ -1714,6 +1716,38 @@ Czy dane są liczbowe (numeryczne)?
 </section>
 <section id="wprowadzenie-do-modelowania-statystycznego-analizy-regresji-i-metody-mnk" class="level2" data-number="10.8">
 <h2 data-number="10.8" class="anchored" data-anchor-id="wprowadzenie-do-modelowania-statystycznego-analizy-regresji-i-metody-mnk"><span class="header-section-number">10.8</span> Wprowadzenie do Modelowania Statystycznego, Analizy Regresji i Metody MNK</h2>
+<section id="czym-jest-model-i-dlaczego-potrzebujemy-modeli" class="level3">
+<h3 class="anchored" data-anchor-id="czym-jest-model-i-dlaczego-potrzebujemy-modeli">Czym jest model i dlaczego potrzebujemy modeli?</h3>
+<p><strong>Model</strong> to uproszczona reprezentacja rzeczywistości. Nie ma na celu uchwycenia każdego szczegółu świata – byłoby to niemożliwe i bezużyteczne.</p>
+<p>Model celowo ignoruje większość złożoności, aby skupić się na istotnych relacjach, które nas interesują.</p>
+<p>Pomyśl o mapie metra. Nie pokazuje rzeczywistych odległości, układu ulic ani lokalizacji budynków. Jest “nieprawdziwa” w większości szczegółów – ale jest niesamowicie użyteczna, ponieważ pokazuje to, co się liczy: które stacje są połączone i w jakiej kolejności.</p>
+<p>W naukach społecznych budujemy modele, aby:</p>
+<ul>
+<li><strong>Zrozumieć relacje</strong>: Czy wykształcenie wpływa na dochody? Czy wydatki na kampanię wpływają na wyniki wyborów? Modele pomagają nam wyizolować konkretne relacje z szumu rzeczywistości.</li>
+<li><strong>Dokonywać prognoz</strong>: Jakiej frekwencji wyborczej możemy się spodziewać przy obecnych warunkach ekonomicznych? Modele pozwalają nam robić świadome przewidywania dotyczące nieznanych lub przyszłych wartości.</li>
+<li><strong>Testować teorie</strong>: Czy istnieją dowody na to, że systemy proporcjonalne zwiększają partycypację wyborczą? Modele dostarczają ram do rygorystycznego testowania hipotez.</li>
+<li><strong>Upraszczać złożoność</strong>: Rzeczywiste zjawiska społeczne obejmują tysiące czynników. Modele pomagają nam skupić się na tym, co najważniejsze.</li>
+</ul>
+<p>Statystyk George Box napisał: <em>“All models are wrong, but some are useful”</em> (Wszystkie modele są błędne, ale niektóre są użyteczne). Wiemy, że nasze modele nie uwzględniają każdego szczegółu rzeczywistości, ale niektóre modele mogą być użyteczne.</p>
+</section>
+<section id="dlaczego-analiza-regresji" class="level3">
+<h3 class="anchored" data-anchor-id="dlaczego-analiza-regresji">Dlaczego analiza regresji?</h3>
+<p>Analiza regresji jest jednym z najbardziej fundamentalnych narzędzi w ilościowych naukach społecznych. W swojej istocie regresja odpowiada na proste pytanie: <strong>Jak zmienia się <span class="math inline">Y</span>, gdy zmienia się <span class="math inline">X</span>?</strong></p>
+<p>Na przykład:</p>
+<ul>
+<li>Jak wzrost PKB (Y) wiąże się z długiem publicznym (X)?</li>
+<li>Jak frekwencja wyborcza (Y) zmienia się wraz z poziomem wykształcenia (X)?</li>
+<li>Jak poparcie dla polityki (Y) reaguje na relacje medialne (X)?</li>
+</ul>
+<p>Ale regresja robi więcej niż tylko opisuje relacje. Pozwala nam:</p>
+<ol type="1">
+<li><strong>Kwantyfikować relacje</strong>: Nie tylko “wykształcenie wpływa na dochody”, ale “każdy dodatkowy rok edukacji wiąże się z około X% wyższymi dochodami, średnio rzecz biorąc.”</li>
+<li><strong>Kontrolować czynniki zakłócające</strong>: Możemy zbadać wpływ X na Y, jednocześnie utrzymując inne zmienne na stałym poziomie – kluczowe, gdy nie możemy przeprowadzić kontrolowanych eksperymentów.</li>
+<li><strong>Dokonywać warunkowych prognoz</strong>: Przy danych konkretnych wartościach naszych zmiennych predykcyjnych, jakiego wyniku byśmy się spodziewali?</li>
+<li><strong>Testować konkurencyjne wyjaśnienia</strong>: Czy czynniki ekonomiczne czy kulturowe lepiej wyjaśniają zachowania wyborcze? Regresja pozwala nam porównać.</li>
+</ol>
+<hr>
+</section>
 <section id="modele-deterministyczne-a-stochastyczne" class="level3">
 <h3 class="anchored" data-anchor-id="modele-deterministyczne-a-stochastyczne">Modele Deterministyczne a Stochastyczne</h3>
 <p>W naukach ścisłych i społecznych pracujemy z dwoma fundamentalnie różnymi typami modeli:</p>
