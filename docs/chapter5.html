@@ -379,7 +379,6 @@ window.Quarto = {
   <li><a href="#temporal-comparison-1960-vs-2015" id="toc-temporal-comparison-1960-vs-2015" class="nav-link" data-scroll-target="#temporal-comparison-1960-vs-2015">Temporal Comparison: 1960 vs 2015</a></li>
   <li><a href="#distribution-of-fertility-rate-changes-1960-2015" id="toc-distribution-of-fertility-rate-changes-1960-2015" class="nav-link" data-scroll-target="#distribution-of-fertility-rate-changes-1960-2015">Distribution of Fertility Rate Changes (1960-2015)</a></li>
   <li><a href="#exercise-questions-1" id="toc-exercise-questions-1" class="nav-link" data-scroll-target="#exercise-questions-1">Exercise Questions</a></li>
-  <li><a href="#answers-with-statistical-calculations" id="toc-answers-with-statistical-calculations" class="nav-link" data-scroll-target="#answers-with-statistical-calculations">Answers with Statistical Calculations</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1858,6 +1857,9 @@ Measures of Center and Dispersion: Summary Table
 <section id="computing-quartiles-the-tukey-method" class="level3">
 <h3 class="anchored" data-anchor-id="computing-quartiles-the-tukey-method">Computing Quartiles: The Tukey Method</h3>
 <p>There are several methods for computing quartiles. In this course, we use the <strong>Tukey method</strong> (also called the hinges method):</p>
+<blockquote class="blockquote">
+<p>John Wilder Tukey was an American mathematician and statistician, best known for the development of the fast Fourier Transform algorithm and the box plot.</p>
+</blockquote>
 <p><strong>Steps:</strong></p>
 <ol type="1">
 <li>Find the median of the entire dataset</li>
@@ -2780,7 +2782,7 @@ Exercise Questions
 <li><p>Group 1 (G1) height measurements are more dispersed/spread out than group 2 (G2).</p></li>
 <li><p>The lowest person is in group 2 (G2).</p></li>
 <li><p>Both data sets are negatively (left) skewed.</p></li>
-<li><p>Half of the students in group 2 (G2) measure at least 175 cm.</p></li>
+<li><p>At least half of the students in group 2 (G2) measure 175 cm or more.</p></li>
 </ol>
 </div>
 </div>
@@ -2824,7 +2826,7 @@ Answer Template
 <ul>
 <li>Explanation:</li>
 </ul></li>
-<li>Half of G2 measure at least 175 cm: [True/False]
+<li>At least half of the students in group 2 (G2) measure 175 cm or more.: [True/False]
 <ul>
 <li>Explanation:</li>
 </ul></li>
@@ -2862,9 +2864,9 @@ Solutions
 <ul>
 <li>Explanation: In both groups, the median line is positioned toward the upper part of the box, and the lower whisker is longer than the upper whisker. This indicates that there’s a longer tail on the left side of the distribution, which means negative skewness.</li>
 </ul></li>
-<li>Half of G2 measure at least 175 cm: <strong>True</strong>
+<li>At least half of G2 measure 175 cm or more: <strong>True</strong>
 <ul>
-<li>Explanation: The median (middle line in the boxplot) for G2 is 175 cm, which means that 50% of the values are greater than or equal to 175 cm.</li>
+<li>Explanation: The median height for G2 is 175 cm. By definition, at least 50% of observations are <span class="math inline">\geq</span> the median. In this dataset, because there are tied values at the median (three students measure exactly 175 cm), 14 out of 25 students (56%) measure at least 175 cm.</li>
 </ul></li>
 </ol>
 </div>
@@ -3311,119 +3313,12 @@ Solutions
 <li>Which continent experienced the largest decline in median fertility between 1960 and 2015?</li>
 <li>Did any continent show an increase in fertility rate during this period?</li>
 <li>Which continent shows the most homogeneous change (smallest IQR for change)?</li>
-<li>Are there any countries that bucked the global trend and increased their fertility rates?</li>
 <li>Compare the variability (IQR) in fertility rates in 1960 vs 2015 for Africa. What does this tell us?</li>
-</ol>
-</section>
-<section id="answers-with-statistical-calculations" class="level3">
-<h3 class="anchored" data-anchor-id="answers-with-statistical-calculations">Answers with Statistical Calculations</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics for 1960 and 2015</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>comparison_stats <span class="ot">&lt;-</span> data_comparison <span class="sc">%&gt;%</span></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span></span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(fertility),</span>
-<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(fertility, <span class="fl">0.25</span>),</span>
-<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(fertility, <span class="fl">0.75</span>),</span>
-<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(fertility),</span>
-<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(continent, year)</span>
-<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(comparison_stats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 7
-   continent  year     n median    Q1    Q3   IQR
-   &lt;fct&gt;     &lt;int&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 Africa     1960    51   6.69  6.16  6.98 0.815
- 2 Africa     2015    51   4.55  3.23  5.06 1.82 
- 3 Americas   1960    36   6.5   4.78  6.79 2.01 
- 4 Americas   2015    35   2.14  1.87  2.42 0.555
- 5 Asia       1960    47   6.3   5.62  6.96 1.34 
- 6 Asia       2015    47   2.18  1.79  2.83 1.04 
- 7 Europe     1960    39   2.63  2.34  3.10 0.765
- 8 Europe     2015    39   1.55  1.45  1.78 0.33 
- 9 Oceania    1960    12   6.42  5.55  7.01 1.46 
-10 Oceania    2015    12   3.04  2.07  3.67 1.60 </code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics for changes</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>change_stats <span class="ot">&lt;-</span> fertility_change <span class="sc">%&gt;%</span></span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_change =</span> <span class="fu">median</span>(change),</span>
-<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1_change =</span> <span class="fu">quantile</span>(change, <span class="fl">0.25</span>),</span>
-<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3_change =</span> <span class="fu">quantile</span>(change, <span class="fl">0.75</span>),</span>
-<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">IQR_change =</span> <span class="fu">IQR</span>(change),</span>
-<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_change =</span> <span class="fu">min</span>(change),</span>
-<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_change =</span> <span class="fu">max</span>(change),</span>
-<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_1960 =</span> <span class="fu">median</span>(year_1960),</span>
-<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_2015 =</span> <span class="fu">median</span>(year_2015)</span>
-<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(median_change)</span>
-<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(change_stats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 10
-  continent     n median_change Q1_change Q3_change IQR_change min_change
-  &lt;fct&gt;     &lt;int&gt;         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-1 Asia         47         -4.17     -4.58    -3.18        1.40      -5.16
-2 Americas     35         -3.7      -4.56    -2.96        1.61      -5.54
-3 Oceania      12         -3.62     -3.78    -2.58        1.2       -4.06
-4 Africa       51         -2.14     -3.36    -1.22        2.14      -5.28
-5 Europe       39         -0.95     -1.60    -0.765       0.83      -4.41
-# ℹ 3 more variables: max_change &lt;dbl&gt;, median_1960 &lt;dbl&gt;, median_2015 &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify countries with increasing fertility</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>increasing_fertility <span class="ot">&lt;-</span> fertility_change <span class="sc">%&gt;%</span></span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(change <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(change)) <span class="sc">%&gt;%</span></span>
-<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, continent, year_1960, year_2015, change, percent_change)</span>
-<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(increasing_fertility)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 6
-  country continent year_1960 year_2015 change percent_change
-  &lt;fct&gt;   &lt;fct&gt;         &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;          &lt;dbl&gt;
-1 Niger   Africa         7.05      7.51  0.46            6.52
-2 Mali    Africa         6.7       6.81  0.110           1.64
-3 Gambia  Africa         5.57      5.67  0.100           1.80</code></pre>
-</div>
-</div>
-<section id="answer-key" class="level4">
-<h4 class="anchored" data-anchor-id="answer-key">Answer Key:</h4>
-<p><strong>1. Highest median fertility rate in 1960:</strong> Africa (median ≈ 6.6 births per woman), though Asia and Americas were also quite high (around 5.5-6.0).</p>
-<p><strong>2. Largest decline in median fertility:</strong> Asia experienced the most dramatic decline, with median fertility dropping from approximately 5.7 in 1960 to 2.2 in 2015 (decline of about 3.5 births per woman). Africa showed the smallest median decline (from ~6.6 to ~4.7).</p>
-<p><strong>3. Increasing fertility rates:</strong> Yes, a few countries show positive changes, though these are outliers. The table above lists specific countries, but generally these are rare exceptions to the global fertility decline.</p>
-<p><strong>4. Most homogeneous change:</strong> Europe shows the smallest IQR for change (approximately 1.0), indicating that European countries experienced similar patterns of fertility decline. Africa shows the largest IQR for change (approximately 2.5), indicating highly heterogeneous experiences across African countries.</p>
-<p><strong>5. Countries bucking the trend:</strong> The <code>increasing_fertility</code> table shows specific countries. These are typically small island nations or countries recovering from conflicts, but they represent a tiny minority of cases.</p>
-<p><strong>6. Africa’s variability comparison:</strong></p>
-<ul>
-<li><strong>1960</strong>: Africa had IQR ≈ 2.0, showing moderate variability</li>
-<li><strong>2015</strong>: Africa has IQR ≈ 2.4, showing slightly increased variability</li>
-<li><strong>Interpretation</strong>: Despite overall fertility decline, African countries have become <em>more</em> heterogeneous over time, suggesting different speeds of demographic transition. Some African countries (e.g., South Africa, Tunisia) have completed or nearly completed their demographic transition, while others (e.g., Niger, Somalia) maintain very high fertility rates.</li>
-</ul>
-</section>
-<section id="interpretation" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation">Interpretation:</h4>
-<p>The temporal comparison reveals several important patterns:</p>
-<ol type="1">
-<li><p><strong>Universal decline</strong>: Nearly all continents experienced substantial fertility declines, reflecting the global demographic transition.</p></li>
-<li><p><strong>Varying speeds</strong>: Asia’s dramatic decline (median drop of ~3.5) contrasts with Africa’s more modest decline (median drop of ~1.9), suggesting different stages and speeds of demographic transition.</p></li>
-<li><p><strong>Convergence in some regions</strong>: Europe and Americas show narrower distributions in 2015 compared to 1960, indicating convergence toward replacement-level fertility.</p></li>
-<li><p><strong>Divergence in Africa</strong>: Unlike other continents, Africa’s distribution has become wider, not narrower, indicating that some countries have rapidly reduced fertility while others have changed little.</p></li>
-<li><p><strong>Below-replacement fertility</strong>: Europe’s 2015 median (1.5) is below the replacement rate of 2.1, raising questions about population aging and sustainability.</p></li>
 </ol>
 <hr>
 <p><strong>Note:</strong> This exercise uses the <code>dslabs</code> package which contains extended gapminder data including fertility rates. If you’re using the standard <code>gapminder</code> package, you’ll need to install <code>dslabs</code> first: <code>install.packages("dslabs")</code>.</p>
 
 
-</section>
 </section>
 </section>
 
