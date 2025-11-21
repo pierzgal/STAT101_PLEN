@@ -1759,7 +1759,10 @@ Measures of Center and Dispersion: Summary Table
 </ul>
 <section id="quantiles" class="level3">
 <h3 class="anchored" data-anchor-id="quantiles">Quantiles</h3>
-<p>A <strong>quantile</strong> is a value that divides a dataset into equal-sized groups. More formally, the <span class="math inline">p</span>-th quantile is a value below which a proportion <span class="math inline">p</span> of the data falls.</p>
+<p>A <strong>quantile</strong> is a value that divides a sorted dataset into two parts. More formally, the <span class="math inline">p</span>-th quantile (where <span class="math inline">0 \leq p \leq 1</span>) is a value below which approximately a proportion <span class="math inline">p</span> of the observations falls, and above which a proportion <span class="math inline">1-p</span> falls.</p>
+<blockquote class="blockquote">
+<p>Special sets of quantiles are used to divide data into multiple equal-sized groups: quartiles divide data into four parts, deciles into ten parts, and percentiles into one hundred parts.</p>
+</blockquote>
 <p><strong>Applicable to:</strong> Ordinal, Interval, and Ratio data</p>
 <p><strong>Definition:</strong></p>
 <p>For a proportion <span class="math inline">p</span> (where <span class="math inline">0 &lt; p &lt; 1</span>), the <span class="math inline">p</span>-th quantile <span class="math inline">q_p</span> satisfies:</p>
@@ -1806,12 +1809,6 @@ Measures of Center and Dispersion: Summary Table
 <li><span class="math inline">Q_3</span> (Third quartile or 75th percentile): 75% of data fall below this value</li>
 </ul>
 <p>Think of quartiles as special numbers that split your ordered data into four equal parts.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="stat_imgs/IMG_4327.jpg" class="img-fluid figure-img"></p>
-<figcaption>Doane, D. P., &amp; Seward, L. W. (2016). Applied statistics in business and economics. Mcgraw-Hill.</figcaption>
-</figure>
-</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization of quartiles</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
@@ -1867,6 +1864,12 @@ Measures of Center and Dispersion: Summary Table
 <li><span class="math inline">Q_1</span> = median of the lower half</li>
 <li><span class="math inline">Q_3</span> = median of the upper half</li>
 </ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stat_imgs/IMG_4327.jpg" class="img-fluid figure-img"></p>
+<figcaption>Doane, D. P., &amp; Seward, L. W. (2016). Applied statistics in business and economics. Mcgraw-Hill.</figcaption>
+</figure>
+</div>
 <p><strong>Example with even <span class="math inline">n</span>:</strong></p>
 <p>Data: 2, 4, 5, 7, 8, 10, 12, 15 (<span class="math inline">n = 8</span>)</p>
 <p>Median position: between positions 4 and 5 → Median = <span class="math inline">\frac{7+8}{2} = 7.5</span></p>
