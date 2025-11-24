@@ -311,14 +311,14 @@ window.Quarto = {
   <li><a href="#wariancja-i-odchylenie-standardowe" id="toc-wariancja-i-odchylenie-standardowe" class="nav-link" data-scroll-target="#wariancja-i-odchylenie-standardowe">Wariancja i odchylenie standardowe</a></li>
   <li><a href="#rozstęp-międzykwartylowy-iqr" id="toc-rozstęp-międzykwartylowy-iqr" class="nav-link" data-scroll-target="#rozstęp-międzykwartylowy-iqr">Rozstęp międzykwartylowy (IQR)</a></li>
   </ul></li>
-  <li><a href="#miary-pozycji-względnej" id="toc-miary-pozycji-względnej" class="nav-link" data-scroll-target="#miary-pozycji-względnej"><span class="header-section-number">6.8</span> Miary pozycji względnej</a>
+  <li><a href="#miary-pozycji-względnej" id="toc-miary-pozycji-względnej" class="nav-link" data-scroll-target="#miary-pozycji-względnej"><span class="header-section-number">6.8</span> Miary pozycji względnej (*)</a>
   <ul class="collapse">
   <li><a href="#kwantyle" id="toc-kwantyle" class="nav-link" data-scroll-target="#kwantyle">Kwantyle</a></li>
   <li><a href="#percentyle" id="toc-percentyle" class="nav-link" data-scroll-target="#percentyle">Percentyle</a></li>
-  <li><a href="#kwartyle" id="toc-kwartyle" class="nav-link" data-scroll-target="#kwartyle">Kwartyle</a></li>
+  <li><a href="#kwartyle" id="toc-kwartyle" class="nav-link" data-scroll-target="#kwartyle">Kwartyle (***)</a></li>
   <li><a href="#obliczanie-kwartyli-metoda-tukeya" id="toc-obliczanie-kwartyli-metoda-tukeya" class="nav-link" data-scroll-target="#obliczanie-kwartyli-metoda-tukeya">Obliczanie kwartyli: metoda Tukeya</a></li>
   </ul></li>
-  <li><a href="#miary-kształtu" id="toc-miary-kształtu" class="nav-link" data-scroll-target="#miary-kształtu"><span class="header-section-number">6.9</span> Miary kształtu</a>
+  <li><a href="#miary-kształtu" id="toc-miary-kształtu" class="nav-link" data-scroll-target="#miary-kształtu"><span class="header-section-number">6.9</span> Miary kształtu (*)</a>
   <ul class="collapse">
   <li><a href="#skośność-asymetria" id="toc-skośność-asymetria" class="nav-link" data-scroll-target="#skośność-asymetria">Skośność (asymetria)</a></li>
   <li><a href="#kurtoza-grubość-ogonów-rozkładu" id="toc-kurtoza-grubość-ogonów-rozkładu" class="nav-link" data-scroll-target="#kurtoza-grubość-ogonów-rozkładu">Kurtoza (grubość “ogonów” rozkładu)</a></li>
@@ -438,7 +438,7 @@ window.Quarto = {
 <ul>
 <li>Kwantyle (<em>quantiles</em>) - <em>Kwantyl to wartość graniczna w uporządkowanym zbiorze danych; (p)-ty kwantyl to taka wartość, poniżej której znajduje się w przybliżeniu ułamek (p) obserwacji.</em></li>
 <li>Percentyle (<em>percentiles</em>) - dzielą dane na 100 części</li>
-<li>Kwartyle (<em>quartiles</em>) - dzielą dane na 4 części</li>
+<li>Kwartyle (<em>quartiles</em>) - dzielą dane na 4 równe części</li>
 <li>Wyniki znormalizowane (<em>standardized scores, z-scores</em>)</li>
 </ul>
 <p><strong>Cel:</strong> Te miary pomagają nam zrozumieć pozycję poszczególnych obserwacji w całym rozkładzie. Odpowiadają na pytania typu “Jak wynik tego studenta wypada w porównaniu z innymi?”</p>
@@ -1656,7 +1656,7 @@ Miary tendencji centralnej i rozproszenia: Tabela porównawcza
 </section>
 </section>
 <section id="miary-pozycji-względnej" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="miary-pozycji-względnej"><span class="header-section-number">6.8</span> Miary pozycji względnej</h2>
+<h2 data-number="6.8" class="anchored" data-anchor-id="miary-pozycji-względnej"><span class="header-section-number">6.8</span> Miary pozycji względnej (*)</h2>
 <p>Miary pozycji względnej pomagają nam zrozumieć, gdzie dana obserwacja znajduje się w całym rozkładzie. Te miary odpowiadają na pytania typu “Jak ta wartość wypada w porównaniu z innymi w zbiorze danych?”</p>
 <p><strong>Odpowiednie skale pomiarowe:</strong></p>
 <ul>
@@ -1709,8 +1709,8 @@ Miary tendencji centralnej i rozproszenia: Tabela porównawcza
 <p><strong>Interpretacja:</strong> Jeśli zdobyłeś 85. percentyl w teście, poradziłeś sobie lepiej niż 85% zdających.</p>
 </section>
 <section id="kwartyle" class="level3">
-<h3 class="anchored" data-anchor-id="kwartyle">Kwartyle</h3>
-<p><strong>Kwartyle</strong> (<em>quartiles</em>) to konkretne kwantyle, które dzielą dane na cztery równe części. Są to 25., 50. i 75. percentyle:</p>
+<h3 class="anchored" data-anchor-id="kwartyle">Kwartyle (***)</h3>
+<p><strong>Kwartyle</strong> (<em>quartiles</em>) to takie kwantyle, które dzielą dane na cztery równe części. Są to 25., 50. i 75. percentyle:</p>
 <p><strong>Odpowiednie dla:</strong> Danych porządkowych, interwałowych i ilorazowych</p>
 <ul>
 <li><span class="math inline">Q_1</span> (Pierwszy kwartyl lub 25. percentyl): 25% danych znajduje się poniżej tej wartości</li>
@@ -1787,7 +1787,7 @@ Miary tendencji centralnej i rozproszenia: Tabela porównawcza
 </section>
 </section>
 <section id="miary-kształtu" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="miary-kształtu"><span class="header-section-number">6.9</span> Miary kształtu</h2>
+<h2 data-number="6.9" class="anchored" data-anchor-id="miary-kształtu"><span class="header-section-number">6.9</span> Miary kształtu (*)</h2>
 <p>Miary kształtu opisują ogólną formę lub wzorzec rozkładu. Chociaż zazwyczaj oceniamy kształt wizualnie za pomocą histogramów i wykresów pudełkowych, ważne jest zrozumienie kluczowych koncepcji.</p>
 <section id="skośność-asymetria" class="level3">
 <h3 class="anchored" data-anchor-id="skośność-asymetria">Skośność (asymetria)</h3>
@@ -2021,7 +2021,7 @@ Miary tendencji centralnej i rozproszenia: Tabela porównawcza
 <p>gdzie IQR to rozstęp międzykwartylowy (<em>interquartile range</em>). Najbardziej odporna na wartości odstające; zalecana dla rozkładów skośnych (<em>skewed distributions</em>).</p>
 <p><strong>4. Reguła Pierwiastka Kwadratowego</strong> (<em>Square Root Rule</em>)<strong>:</strong></p>
 <p><span class="math display">k = \lceil \sqrt{n} \rceil</span></p>
-<p>Prosta, ale często produkuje zbyt mało przedziałów dla dużych zbiorów danych.</p>
+<p>Prosta, ale często podaje zbyt mało przedziałów dla dużych zbiorów danych.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Przykład: Różne metody wyboru przedziałów</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">789</span>)</span>
@@ -2361,7 +2361,7 @@ Table&nbsp;6.1: Statystyki wykresu pudełkowego dla przykładowego zbioru danych
 <li>Zawsze kończą się na rzeczywistych obserwacjach ze zbioru danych</li>
 <li>Są zawsze rysowane na wykresie pudełkowym</li>
 </ul>
-<p><strong>Częsty błąd:</strong> Studenci często myślą, że wąsy rozciągają się dokładnie do wartości płotków. To jest nieprawidłowe! Wąsy rozciągają się tylko do najbardziej ekstremalnych <strong>rzeczywistych wartości danych</strong>, które mieszczą się w granicach płotków. Jeśli najbardziej ekstremalna wartość nie będąca obserwacją odstającą znajduje się znacznie wewnątrz płotka, wąs zatrzymuje się tam.</p>
+<p><strong>Częsty błąd:</strong> Studenci często myślą, że wąsy rozciągają się dokładnie do wartości płotków. To jest nieprawda! Wąsy rozciągają się tylko do najbardziej ekstremalnych <strong>rzeczywistych wartości danych</strong>, które mieszczą się w granicach płotków.</p>
 <hr>
 <p><strong>Kluczowe spostrzeżenia z wykresów pudełkowych:</strong></p>
 <ul>
